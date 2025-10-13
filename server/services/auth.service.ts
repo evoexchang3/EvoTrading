@@ -6,13 +6,29 @@ import { users, accounts, sessions } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import type { User } from '@shared/schema';
 
-const JWT_SECRET = process.env.JWT_ACCESS_SECRET || crypto.randomBytes(64).toString('hex');
-const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || crypto.randomBytes(64).toString('hex');
+// JWT Secret configuration with production safety
+const isProduction = process.env.NODE_ENV === 'production';
 
-// Warn if using default secrets
-if (!process.env.JWT_ACCESS_SECRET || !process.env.JWT_REFRESH_SECRET) {
-  console.warn('WARNING: Using generated JWT secrets. Set JWT_ACCESS_SECRET and JWT_REFRESH_SECRET in production!');
+if (isProduction && (!process.env.JWT_ACCESS_SECRET || !process.env.JWT_REFRESH_SECRET)) {
+  throw new Error(
+    'CRITICAL: JWT_ACCESS_SECRET and JWT_REFRESH_SECRET must be set in production environment. ' +
+    'Add these secrets to your Replit Secrets or environment variables.'
+  );
 }
+
+const JWT_SECRET = process.env.JWT_ACCESS_SECRET || (() => {
+  const secret = crypto.randomBytes(64).toString('hex');
+  console.warn('\n⚠️  WARNING: Using generated JWT_ACCESS_SECRET for development.');
+  console.warn('⚠️  Set JWT_ACCESS_SECRET in Replit Secrets for production.\n');
+  return secret;
+})();
+
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || (() => {
+  const secret = crypto.randomBytes(64).toString('hex');
+  console.warn('\n⚠️  WARNING: Using generated JWT_REFRESH_SECRET for development.');
+  console.warn('⚠️  Set JWT_REFRESH_SECRET in Replit Secrets for production.\n');
+  return secret;
+})();
 
 export class AuthService {
   static async hashPassword(password: string): Promise<string> {
