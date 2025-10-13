@@ -171,14 +171,14 @@ export default function LoginPage() {
         <CardFooter className="flex flex-col gap-4">
           <div className="flex w-full items-center justify-between text-sm">
             <Link href="/forgot-password">
-              <a className="text-primary hover:underline" data-testid="link-forgot-password">
+              <span className="text-primary hover:underline cursor-pointer" data-testid="link-forgot-password">
                 Forgot password?
-              </a>
+              </span>
             </Link>
             <Link href="/register">
-              <a className="text-primary hover:underline" data-testid="link-register">
+              <span className="text-primary hover:underline cursor-pointer" data-testid="link-register">
                 Create account
-              </a>
+              </span>
             </Link>
           </div>
         </CardFooter>

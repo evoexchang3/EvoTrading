@@ -58,9 +58,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <nav className="flex flex-1 items-center gap-1 ml-8">
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
-              <a
+              <span
                 className={cn(
-                  "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2",
+                  "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2 cursor-pointer",
                   location === item.href
                     ? "bg-accent text-accent-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -69,7 +69,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               >
                 <item.icon className="h-4 w-4" />
                 {item.name}
-              </a>
+              </span>
             </Link>
           ))}
         </nav>
