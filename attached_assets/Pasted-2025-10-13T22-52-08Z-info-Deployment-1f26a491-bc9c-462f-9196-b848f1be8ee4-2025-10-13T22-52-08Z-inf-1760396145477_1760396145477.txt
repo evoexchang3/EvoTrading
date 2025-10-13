@@ -1,0 +1,76 @@
+2025-10-13T22:52:08Z info: Deployment: 1f26a491-bc9c-462f-9196-b848f1be8ee4
+2025-10-13T22:52:08Z info: Build: ed977bfb-9ae6-4dc5-84c3-868367204f57
+2025-10-13T22:52:08Z info: Connecting to builder
+2025-10-13T22:52:11Z info: Builder connected
+2025-10-13T22:52:11Z info: Installing packages
+2025-10-13T22:52:11Z info: Starting Build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+
+vite v5.4.20 building for production...
+
+transforming...
+
+Browserslist: browsers data (caniuse-lite) is 12 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+
+✓ 1874 modules transformed.
+
+rendering chunks...
+
+computing gzip size...
+
+../dist/public/index.html                   0.75 kB │ gzip:   0.41 kB
+
+../dist/public/assets/index-BlZNKaav.css   92.04 kB │ gzip:  14.56 kB
+
+✓ built in 8.58s
+
+
+  dist/index.js  55.7kb
+
+⚡ Done in 14ms
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.6.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+npm notice To update run: npm install -g npm@11.6.2
+npm notice
+
+2025-10-13T22:52:23Z info: Pushing pid1 binary layer...
+2025-10-13T22:52:25Z info: Pushing Repl layer...
+2025-10-13T22:52:25Z info: Pushing hosting layer...
+2025-10-13T22:52:25Z info: Created hosting layer
+2025-10-13T22:52:25Z info: Created pid1 binary layer
+2025-10-13T22:52:46Z info: Created Repl layer
+2025-10-13T22:52:48Z info: Pushed image manifest
+2025-10-13T22:52:50Z info: Pushed soci index manifest
+2025-10-13T22:52:50Z info: Pushed referrer manifest
+2025-10-13T22:52:53Z info: Creating Autoscale service
+    at async ModuleLoader.import (node:internal/modules/esm/loader:540:24)
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+> NODE_ENV=production node dist/index.js
+    at ModuleJob.run (node:internal/modules/esm/module_job:263:25)
+> NODE_ENV=production node dist/index.js
+file:///home/runner/workspace/dist/index.js:375
+> NODE_ENV=production node dist/index.js
+Error: CRITICAL: JWT_ACCESS_SECRET and JWT_REFRESH_SECRET must be set in production environment. Add these secrets to your Replit Secrets or environment variables.
+    at __init (file:///home/runner/workspace/dist/index.js:4:56)
+
+    at __init (file:///home/runner/workspace/dist/index.js:4:56)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+      throw new Error(
+file:///home/runner/workspace/dist/index.js:375
+    at ModuleJob.run (node:internal/modules/esm/module_job:263:25)
+            ^
+    at async ModuleLoader.import (node:internal/modules/esm/loader:540:24)
+> rest-express@1.0.0 start
+    at __init (file:///home/runner/workspace/dist/index.js:4:56)
+    at server/services/auth.service.ts (file:///home/runner/workspace/dist/index.js:375:13)
+command finished with error [npm run start]: exit status 1
