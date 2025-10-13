@@ -59,7 +59,11 @@ export function PositionsTable({ positions }: PositionsTableProps) {
     },
   });
 
-  const mockPositions: Position[] = positions || [
+  const { data: fetchedPositions = [] } = useQuery<Position[]>({
+    queryKey: ["/api/trading/positions"],
+  });
+
+  const mockPositions: Position[] = positions || fetchedPositions.length > 0 ? fetchedPositions : [
     {
       id: "1",
       symbol: "EURUSD",

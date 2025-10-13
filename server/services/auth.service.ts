@@ -6,8 +6,13 @@ import { users, accounts, sessions } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import type { User } from '@shared/schema';
 
-const JWT_SECRET = process.env.JWT_ACCESS_SECRET || 'dev-secret-change-in-production';
-const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'dev-refresh-secret';
+const JWT_SECRET = process.env.JWT_ACCESS_SECRET || crypto.randomBytes(64).toString('hex');
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || crypto.randomBytes(64).toString('hex');
+
+// Warn if using default secrets
+if (!process.env.JWT_ACCESS_SECRET || !process.env.JWT_REFRESH_SECRET) {
+  console.warn('WARNING: Using generated JWT secrets. Set JWT_ACCESS_SECRET and JWT_REFRESH_SECRET in production!');
+}
 
 export class AuthService {
   static async hashPassword(password: string): Promise<string> {

@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import crypto from "crypto";
 import { db } from "./db";
 import { AuthService } from "./services/auth.service";
 import { TradingService } from "./services/trading.service";
@@ -136,13 +137,147 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  app.post("/api/auth/refresh", async (req, res) => {
+    try {
+      const { refreshToken } = req.body;
+      
+      if (!refreshToken) {
+        return res.status(401).json({ message: "Refresh token required" });
+      }
+
+      const { userId } = AuthService.verifyRefreshToken(refreshToken);
+      const accessToken = AuthService.generateAccessToken(userId);
+      
+      res.json({ accessToken });
+    } catch (error: any) {
+      res.status(403).json({ message: "Invalid refresh token" });
+    }
+  });
+
+  app.get("/api/auth/verify-email", async (req, res) => {
+    try {
+      const { token } = req.query;
+      
+      if (!token) {
+        return res.status(400).json({ message: "Verification token required" });
+      }
+
+      const user = await AuthService.verifyEmail(token as string);
+      
+      if (!user) {
+        return res.status(400).json({ message: "Invalid verification token" });
+      }
+
+      res.json({ message: "Email verified successfully", user: {
+        id: user.id,
+        email: user.email,
+        emailVerified: user.emailVerified,
+      }});
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
   app.post("/api/auth/2fa/setup", authenticateToken, async (req: AuthRequest, res) => {
     try {
-      // Generate 2FA secret and QR code
-      // This is a placeholder - actual implementation would use speakeasy or similar
+      const secret = crypto.randomBytes(20).toString('hex');
+      
+      await db
+        .update(users)
+        .set({ twoFactorSecret: secret })
+        .where(eq(users.id, req.userId!));
+
       res.json({
-        secret: "JBSWY3DPEHPK3PXP",
-        qrCode: "data:image/png;base64,..." // QR code data URL
+        secret,
+        qrCode: `otpauth://totp/TradingPlatform:${req.userId}?secret=${secret}&issuer=TradingPlatform`
+      });
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/auth/2fa/verify", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const { code } = req.body;
+      
+      if (!/^\d{6}$/.test(code)) {
+        return res.status(400).json({ message: "Invalid code format" });
+      }
+
+      const [user] = await db
+        .select()
+        .from(users)
+        .where(eq(users.id, req.userId!))
+        .limit(1);
+
+      if (!user?.twoFactorSecret) {
+        return res.status(400).json({ message: "2FA not set up" });
+      }
+
+      // TODO: Implement proper TOTP verification using speakeasy or similar library
+      // const verified = speakeasy.totp.verify({
+      //   secret: user.twoFactorSecret,
+      //   encoding: 'hex',
+      //   token: code,
+      //   window: 2
+      // });
+      // if (!verified) {
+      //   return res.status(400).json({ message: "Invalid verification code" });
+      // }
+
+      // For development: accept the code (INSECURE - replace in production)
+      console.warn('WARNING: 2FA verification accepting any code. Implement proper TOTP verification for production!');
+
+      await db
+        .update(users)
+        .set({ twoFactorEnabled: true })
+        .where(eq(users.id, req.userId!));
+
+      res.json({ message: "2FA enabled successfully" });
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/auth/2fa/disable", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      await db
+        .update(users)
+        .set({ 
+          twoFactorEnabled: false,
+          twoFactorSecret: null,
+        })
+        .where(eq(users.id, req.userId!));
+
+      res.json({ message: "2FA disabled successfully" });
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Get user profile
+  app.get("/api/auth/profile", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const [user] = await db
+        .select()
+        .from(users)
+        .where(eq(users.id, req.userId!))
+        .limit(1);
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      res.json({
+        user: {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          emailVerified: user.emailVerified,
+          twoFactorEnabled: user.twoFactorEnabled,
+        },
       });
     } catch (error: any) {
       res.status(400).json({ message: error.message });

@@ -6,6 +6,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Search, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { useWebSocket } from "@/hooks/useWebSocket";
 
 type Symbol = {
   symbol: string;
@@ -24,14 +26,20 @@ type WatchlistProps = {
 export function Watchlist({ onSymbolSelect, selectedSymbol }: WatchlistProps) {
   const [searchQuery, setSearchQuery] = useState("");
   
-  // Mock data - will be replaced with real data
-  const symbols: Symbol[] = [
-    { symbol: "EURUSD", name: "Euro / US Dollar", bid: 1.08542, ask: 1.08545, change: 0.00012, changePercent: 0.11 },
-    { symbol: "GBPUSD", name: "British Pound / US Dollar", bid: 1.26432, ask: 1.26435, change: -0.00023, changePercent: -0.02 },
-    { symbol: "BTCUSD", name: "Bitcoin / US Dollar", bid: 43250.50, ask: 43252.00, change: 320.50, changePercent: 0.75 },
-    { symbol: "XAUUSD", name: "Gold / US Dollar", bid: 2045.30, ask: 2045.80, change: 12.40, changePercent: 0.61 },
-    { symbol: "WTI", name: "Crude Oil WTI", bid: 75.42, ask: 75.45, change: -0.38, changePercent: -0.50 },
-  ];
+  const { data: symbolsData = [] } = useQuery<Symbol[]>({
+    queryKey: ["/api/market/symbols"],
+  });
+
+  const symbolList = symbolsData.map(s => s.symbol);
+  const { prices } = useWebSocket(symbolList);
+
+  const symbols: Symbol[] = symbolsData.map(s => ({
+    ...s,
+    bid: prices[s.symbol]?.bid || s.bid || 0,
+    ask: prices[s.symbol]?.ask || s.ask || 0,
+    change: prices[s.symbol]?.change || s.change || 0,
+    changePercent: prices[s.symbol]?.changePercent || s.changePercent || 0,
+  }));
 
   const filteredSymbols = symbols.filter(
     (s) =>

@@ -2,32 +2,33 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ProfitLossDisplay } from "@/components/ProfitLossDisplay";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 
 type AccountData = {
-  balance: number;
-  equity: number;
-  margin: number;
-  freeMargin: number;
-  marginLevel: number;
-  profit: number;
+  balance: string;
+  equity: string;
+  usedMargin: string;
+  freeMargin: string;
+  marginLevel: string;
 };
 
 type AccountSummaryProps = {
-  data?: AccountData;
   className?: string;
 };
 
-export function AccountSummary({ data, className }: AccountSummaryProps) {
-  const accountData = data || {
-    balance: 10000.00,
-    equity: 10245.32,
-    margin: 216.88,
-    freeMargin: 10028.44,
-    marginLevel: 4724.51,
-    profit: 245.32,
-  };
+export function AccountSummary({ className }: AccountSummaryProps) {
+  const { data: accountData } = useQuery<AccountData>({
+    queryKey: ["/api/trading/account"],
+  });
 
-  const isMarginWarning = accountData.marginLevel < 150;
+  const balance = parseFloat(accountData?.balance || "0");
+  const equity = parseFloat(accountData?.equity || balance.toString());
+  const profit = equity - balance;
+  const margin = parseFloat(accountData?.usedMargin || "0");
+  const freeMargin = parseFloat(accountData?.freeMargin || balance.toString());
+  const marginLevel = parseFloat(accountData?.marginLevel || "0");
+
+  const isMarginWarning = marginLevel < 150;
 
   return (
     <Card className={cn("border-0 shadow-none bg-transparent", className)}>
@@ -38,7 +39,7 @@ export function AccountSummary({ data, className }: AccountSummaryProps) {
               Balance
             </div>
             <div className="font-mono text-lg font-semibold tabular-nums" data-testid="text-balance">
-              ${accountData.balance.toFixed(2)}
+              ${balance.toFixed(2)}
             </div>
           </div>
           
@@ -47,7 +48,7 @@ export function AccountSummary({ data, className }: AccountSummaryProps) {
               Equity
             </div>
             <div className="font-mono text-lg font-semibold tabular-nums" data-testid="text-equity">
-              ${accountData.equity.toFixed(2)}
+              ${equity.toFixed(2)}
             </div>
           </div>
           
@@ -56,7 +57,7 @@ export function AccountSummary({ data, className }: AccountSummaryProps) {
               Profit/Loss
             </div>
             <div data-testid="text-profit">
-              <ProfitLossDisplay value={accountData.profit} size="lg" />
+              <ProfitLossDisplay value={profit} size="lg" />
             </div>
           </div>
           
@@ -67,7 +68,7 @@ export function AccountSummary({ data, className }: AccountSummaryProps) {
               Margin
             </div>
             <div className="font-mono text-lg font-semibold tabular-nums" data-testid="text-margin">
-              ${accountData.margin.toFixed(2)}
+              ${margin.toFixed(2)}
             </div>
           </div>
           
@@ -76,7 +77,7 @@ export function AccountSummary({ data, className }: AccountSummaryProps) {
               Free Margin
             </div>
             <div className="font-mono text-lg font-semibold tabular-nums" data-testid="text-free-margin">
-              ${accountData.freeMargin.toFixed(2)}
+              ${freeMargin.toFixed(2)}
             </div>
           </div>
           
@@ -91,7 +92,7 @@ export function AccountSummary({ data, className }: AccountSummaryProps) {
               )}
               data-testid="text-margin-level"
             >
-              {accountData.marginLevel.toFixed(2)}%
+              {marginLevel.toFixed(2)}%
             </div>
           </div>
         </div>
