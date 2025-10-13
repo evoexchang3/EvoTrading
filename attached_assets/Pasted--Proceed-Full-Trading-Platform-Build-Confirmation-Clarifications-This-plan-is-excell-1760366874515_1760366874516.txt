@@ -1,0 +1,162 @@
+
+---
+
+### ✅ Proceed — Full Trading Platform Build Confirmation & Clarifications
+
+This plan is excellent and aligned with our requirements — please proceed with the **production-ready trading platform** as outlined, with the following clarifications and additions to make sure everything integrates seamlessly with our CRM and runs as a complete client system.
+
+---
+
+## 🔹 1) Scope Confirmation
+
+This project builds **only the client trading platform** (public registration, trading dashboard, and backend API).
+The CRM is a separate system already in development and will connect via **API keys, SSO impersonation, and webhooks**.
+
+All features listed below belong to this trading platform only.
+
+---
+
+## 🔹 2) Architecture Overview
+
+* **Frontend:** React + TypeScript + Vite + Tailwind CSS + shadcn/ui
+* **Backend:** Node.js + TypeScript (NestJS preferred)
+* **Database:** External PostgreSQL (Neon/Supabase)
+* **Storage:** S3-compatible for KYC and file uploads
+* **Docs:** Swagger/OpenAPI for all routes
+* **Version Control:** Full repo pushed to GitHub with CI (lint/typecheck/tests)
+* **Replit Constraint:** No Docker runtime; still include Dockerfile + Compose for off-Replit deployment.
+
+---
+
+## 🔹 3) Core Features (Confirmed)
+
+1. **Authentication & Security**
+
+   * Email registration, verification, login, refresh tokens
+   * Forgot/reset password flow
+   * Optional **TOTP 2FA** (QR setup + backup codes)
+   * Secure sessions, rate limiting, CSRF protection, and audit logging for all login events
+
+2. **Market Data (Twelve Data Integration)**
+
+   * Live quotes via **WebSocket relay** (one backend WS per symbol, broadcast to all users)
+   * Historical candles via **REST API** with **caching** in memory + PostgreSQL
+   * Automatic reconnect + REST fallback when WS drops
+   * Endpoints:
+
+     * `GET /market/symbols`
+     * `GET /market/candles?symbol=EURUSD&interval=1m&limit=1000`
+     * `WS /stream?symbols=EURUSD,BTCUSD,XAUUSD,WTI`
+   * Environment variables:
+
+     ```
+     TWELVEDATA_API_KEY=...
+     TWELVEDATA_WS_URL=wss://ws.twelvedata.com/v1/quotes/price
+     TWELVEDATA_REST_URL=https://api.twelvedata.com
+     MD_WS_SYMBOLS_MAX=500
+     ```
+
+3. **Trading Engine**
+
+   * Order types: Market, Limit, Stop, Stop-Limit
+   * Full trade lifecycle: open, modify, partial close, close-all
+   * TP/SL support with automatic triggers
+   * Live **P/L and margin calculations** based on Twelve Data bid/ask
+   * Configurable leverage, spread, slippage, commissions, and swap/rollover
+   * **Margin call / stop-out logic** with automatic liquidation
+   * All order/trade events fully audited.
+
+4. **Trading Dashboard UI**
+
+   * Watchlist, symbol search, and order ticket
+   * Open positions, orders, trade history
+   * Account summary (balance, equity, margin, free margin, margin level)
+   * TradingView Lightweight Charts with live price overlay
+   * Edit/close orders directly from the dashboard.
+
+5. **Deposits & Withdrawals**
+
+   * Clients can create deposit/withdrawal requests
+   * Requests stored in DB and **synced to CRM** via webhook/API
+   * Status updates (approved/declined) mirrored back from CRM.
+
+6. **KYC Management**
+
+   * Clients upload documents to S3 storage (passport, ID, proof of address)
+   * Metadata saved in DB; CRM receives updates via webhook.
+
+7. **CRM Integration**
+
+   * **SSO Impersonation Endpoint:**
+
+     * `POST /sso/impersonate` (CRM → Site; shared secret or JWT service token)
+     * Returns short-lived, single-use JWT (~2 min)
+     * `GET /sso/consume?token=...` establishes client session
+     * Full audit log (adminId, clientId, IP, reason)
+   * **Webhooks (Site → CRM):**
+
+     * Events: `user.created`, `user.updated`, `email.verified`, `kyc.status_changed`,
+       `order.placed`, `position.closed`, `balance.updated`, `deposit.requested`, `withdrawal.requested`
+     * HMAC-signed, retries with backoff.
+   * **Service API (CRM → Site):**
+
+     * `POST /crm/users` (create/update)
+     * `PATCH /crm/users/:id` (update flags, limits)
+     * `POST /crm/force-logout`
+     * `POST /crm/password-reset`
+
+8. **Audit & Compliance**
+
+   * Track every CRUD and auth action (login, impersonation, trade operations, deposits, withdrawals).
+   * Visual audit log in admin dashboard (filters + CSV export).
+
+---
+
+## 🔹 4) Additional Requirements & Recommendations
+
+### A. UX / Design
+
+* Use a clean, minimal **professional trading UI** (no marketing pages).
+* Responsive layout for desktop/tablet/mobile.
+* Dark/light mode toggle.
+* Add optional **language JSON files** for easy localization (start with EN).
+
+### B. Security
+
+* JWT secrets and keys in `.env.example`.
+* HMAC validation for CRM webhooks.
+* Enforce HTTPS and secure cookies.
+* Role-based access control (clients vs admins).
+* Full audit of SSO impersonation and deposits/withdrawals.
+
+### C. Database Entities (minimum)
+
+* `users`, `accounts`, `orders`, `positions`, `trades`,
+  `deposits`, `withdrawals`, `kyc_documents`, `audit_logs`.
+
+### D. API Documentation
+
+* Generate **Swagger/OpenAPI** docs automatically from backend.
+* Include example payloads for all SSO, webhook, and CRM endpoints.
+* Add short README section showing how the CRM connects.
+
+---
+
+## 🔹 5) Deliverables
+
+1. **Complete trading platform** deployed on Replit (frontend + backend).
+2. Fully functional trading dashboard with Twelve Data live quotes and trading engine.
+3. Deposits, withdrawals, and KYC working and integrated with CRM endpoints.
+4. Webhook + SSO + Service API verified end-to-end.
+5. Audit log system operational for all major actions.
+6. Code pushed to GitHub with CI + `.env.example` and Dockerfile/compose for external deployments.
+7. Swagger/OpenAPI docs complete.
+
+---
+
+## 🔹 6) Next Step
+
+Please proceed with the **detailed milestone/task breakdown** using this version as the final specification.
+Start with the **Auth + Twelve Data Market Data integration**, followed by **Trading Engine**, then **Dashboard UI and CRM connectivity (SSO + webhooks + service API)**.
+
+If you identify any Replit limitation that prevents a feature, choose the **closest viable alternative** — the goal is a complete, production-ready system that integrates cleanly with the CRM.

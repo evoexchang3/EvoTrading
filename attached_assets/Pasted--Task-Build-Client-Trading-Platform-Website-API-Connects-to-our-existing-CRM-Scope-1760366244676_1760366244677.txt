@@ -1,0 +1,156 @@
+
+
+# Task: Build Client Trading Platform (Website + API) — **Connects to our existing CRM**
+
+## Scope (very important)
+
+* **Build only the client trading platform** (public site + auth + client dashboard + trading engine + market data).
+* **Do NOT build the CRM.** The CRM already exists/is in progress and will integrate with this platform via APIs/webhooks/SSO.
+
+---
+
+## Goals
+
+* Users can **register, verify email, log in, (optional) 2FA**, and access a **trading dashboard**.
+* Real-time **market data** via **Twelve Data** (WS live quotes + REST candles with caching).
+* **In-house trading engine** (simulated execution on real quotes): Market, Limit, Stop, Stop-Limit; TP/SL; partial close; margin/leverage; live P/L; full audit.
+* **Integrations to our CRM**:
+
+  * **SSO impersonation** endpoint (CRM can open client session without password)
+  * **Webhooks** (Site → CRM) for user/trade/funding events
+  * **Service API** (CRM → Site) to sync users/flags/limits
+
+---
+
+## Architecture
+
+* **apps/site** – React + TypeScript (Vite, Tailwind, shadcn/ui): public pages + client dashboard (charts, orders, positions, funding).
+* **apps/api** – Node.js + TypeScript (NestJS preferred): auth, market data relay, trading engine, funding endpoints, CRM webhooks & SSO, service API.
+* **DB** – External PostgreSQL (Neon/Supabase). Use robust schemas for Users, Accounts, Symbols, Candles, Orders, Positions, Trades, Deposits, Withdrawals, AuditLogs.
+* **Replit constraint** – No Docker runtime on Replit; still include Dockerfile/compose in repo for off-Replit deployments.
+
+---
+
+## Market Data (Twelve Data)
+
+* **One WebSocket per symbol** on backend; **relay** quotes to unlimited clients via `/stream?symbols=...`.
+* **REST** for historical candles; **cache** in memory + DB with TTL.
+* Fallback to **REST polling (1–2s)** if WS drops, with auto-reconnect.
+
+**Env (.env.example):**
+
+```
+TWELVEDATA_API_KEY=...
+TWELVEDATA_WS_URL=wss://ws.twelvedata.com/v1/quotes/price
+TWELVEDATA_REST_URL=https://api.twelvedata.com
+MD_WS_SYMBOLS_MAX=500
+MD_HISTORY_TTL_1M_SEC=3600
+MD_HISTORY_TTL_1H_SEC=86400
+```
+
+**Endpoints:**
+
+* `GET /market/symbols`
+* `GET /market/candles?symbol=EURUSD&interval=1m&limit=1000`
+* **WS/SSE**: `/stream?symbols=EURUSD,BTCUSD,XAUUSD,WTI`
+
+---
+
+## Trading Engine (simulated on real quotes)
+
+* Uses live **bid/ask** from Twelve Data; configurable **spread, slippage, commission**, optional **swap**.
+* **Order types:** Market, Limit, Stop, Stop-Limit; TP/SL management; **partial close**; **modify**; **close all**.
+* **Risk:** leverage, required margin, free margin, margin level; **margin call/stop-out** logic.
+* **P/L:** real-time floating + realized; multi-currency conversions.
+* **Audit:** log place/modify/close, partials, TP/SL triggers, liquidations.
+
+---
+
+## Client-Facing Features
+
+* **Auth:** register, email verification, login, refresh tokens, forgot/reset, **optional TOTP 2FA**.
+* **Dashboard:** balances, equity/margin, open positions, orders, history, live P/L.
+* **Trading UI:** watchlist, symbol search, chart (TradingView Lightweight Charts or similar) + live overlay; order ticket; modify/partial/close; margin warnings.
+* **Account:** profile, KYC doc upload (S3 compatible), security (2FA), active sessions.
+* **Funding:** deposit/withdrawal requests with status tracking (managed by CRM).
+
+---
+
+## Integration with our CRM (this is the only CRM work you do)
+
+### 1) SSO Impersonation (CRM → Site)
+
+* `POST /sso/impersonate` (CRM calls with shared secret / service token + {clientId, reason}).
+* Returns **single-use, ~2-minute SSO JWT**.
+* `GET /sso/consume?token=...` establishes a client session.
+* **Audit:** adminId (from CRM), clientId, IP, reason, timestamps.
+
+### 2) Webhooks (Site → CRM)
+
+* `POST /webhooks/crm` with HMAC signature (secret): events include
+
+  * `user.created`, `user.updated`, `email.verified`, `kyc.status_changed`
+  * `order.placed`, `order.modified`, `position.closed`, `liquidation`
+  * `balance.updated`, `deposit.requested`, `withdrawal.requested`
+* Retries with exponential backoff; idempotency keys.
+
+### 3) Service API (CRM → Site)
+
+* Secured by **service JWT** (`CRM_SERVICE_TOKEN`).
+* `POST /crm/users` (create/update with `externalId`)
+* `PATCH /crm/users/:id` (flags, limits, disable trading)
+* `POST /crm/force-logout`
+* `POST /crm/password-reset`
+* All calls audited.
+
+**Additional env:**
+
+```
+APP_URL=https://site.example.com
+API_URL=https://api.example.com
+JWT_ACCESS_SECRET=...
+JWT_REFRESH_SECRET=...
+SSO_IMPERSONATION_SECRET=...
+CRM_BASE_URL=https://crm.example.com
+CRM_SERVICE_TOKEN=...
+SITE_WEBHOOK_SECRET=...
+DATABASE_URL=postgres://...
+S3_ENDPOINT=...
+S3_BUCKET=...
+S3_ACCESS_KEY=...
+S3_SECRET_KEY=...
+SMTP_URL=...
+RECAPTCHA_SECRET=...
+```
+
+---
+
+## API Surface (summary)
+
+* **Auth:** `POST /auth/register|login|refresh|forgot|reset|verify-email`, `POST /auth/2fa/*`
+* **Market:** `GET /market/symbols`, `GET /market/candles`, `WS /stream`
+* **Trading:** `GET /trading/account`, `GET /trading/positions|orders|history`, `POST /trading/order`, `PATCH /trading/order/:id`, `POST /trading/close/:id`, `POST /trading/close-all`
+* **Funding:** `POST /funding/deposit`, `POST /funding/withdrawal`, `GET /funding/history`
+* **CRM Integration:** webhooks + service API + SSO endpoints above
+
+---
+
+## Deliverables & Acceptance Criteria
+
+1. **Production-ready** client site + API on Replit (no Docker runtime), external Postgres.
+2. Twelve Data **live quotes relayed** to unlimited clients; **REST candles cached**; real-time charts.
+3. **Trading engine complete**: open/modify/close, TP/SL, partials, margin & stop-out, live P/L, full audit.
+4. **Auth** with email verification and optional **2FA**; secure sessions; rate-limits, CSRF for web.
+5. **Funding requests** recorded and synced to CRM via webhooks; statuses reflect CRM updates via service API.
+6. **SSO impersonation** from CRM works (single-use, short-lived token) and is fully audited.
+7. **Swagger/OpenAPI** docs, **README**, `.env.example`, and integration guide for CRM endpoints.
+8. **GitHub** repo pushed with CI (lint/typecheck/tests). Include Dockerfile/compose for off-Replit deploys.
+
+---
+
+## Explicit non-goals for this task
+
+* **Do NOT build CRM UI or CRM backend.**
+* Only implement **the hooks and endpoints** needed so our existing CRM can manage this platform.
+
+Please proceed with this build. If any Replit limitation blocks a detail, pick the **closest working alternative** while keeping the **full functionality** above.
