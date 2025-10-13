@@ -26,10 +26,12 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { LandingLayout } from "@/components/LandingLayout";
+import { SEO } from "@/components/SEO";
 
 export default function LoginPage() {
   const [, setLocation] = useLocation();
-  const { setUser } = useAuth();
+  const { login } = useAuth();
   const { toast } = useToast();
   const [showTwoFactor, setShowTwoFactor] = useState(false);
 
@@ -44,33 +46,29 @@ export default function LoginPage() {
 
   const loginMutation = useMutation({
     mutationFn: async (data: LoginRequest) => {
-      const response = await apiRequest("POST", "/api/auth/login", data);
-      return response;
+      await login(data.username, data.password, data.twoFactorCode);
     },
-    onSuccess: (data: any) => {
-      if (data.requiresTwoFactor) {
+    onSuccess: () => {
+      toast({
+        title: "Welcome back!",
+        description: "Successfully logged in",
+      });
+      setLocation("/dashboard");
+    },
+    onError: (error: any) => {
+      if (error.message === "2FA_REQUIRED") {
         setShowTwoFactor(true);
         toast({
           title: "2FA Required",
           description: "Please enter your 2FA code",
         });
       } else {
-        localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("refreshToken", data.refreshToken);
-        setUser(data.user);
         toast({
-          title: "Welcome back!",
-          description: "Successfully logged in",
+          title: "Login failed",
+          description: error.message || "Invalid credentials",
+          variant: "destructive",
         });
-        setLocation("/dashboard");
       }
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Login failed",
-        description: error.message || "Invalid credentials",
-        variant: "destructive",
-      });
     },
   });
 
@@ -79,8 +77,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
+    <LandingLayout>
+      <SEO
+        title="Login to Your Account"
+        description="Sign in to your trading account. Access your portfolio, trade forex, crypto, and commodities securely."
+        keywords="trading login, sign in, account access, trader portal"
+      />
+      <div className="flex min-h-[calc(100vh-16rem)] items-center justify-center p-4">
+        <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-semibold">
             Sign in to Trading Platform
@@ -183,6 +187,7 @@ export default function LoginPage() {
           </div>
         </CardFooter>
       </Card>
-    </div>
+      </div>
+    </LandingLayout>
   );
 }

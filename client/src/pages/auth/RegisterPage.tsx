@@ -24,6 +24,8 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { LandingLayout } from "@/components/LandingLayout";
+import { SEO } from "@/components/SEO";
 
 export default function RegisterPage() {
   const [, setLocation] = useLocation();
@@ -65,8 +67,14 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
+    <LandingLayout>
+      <SEO
+        title="Create Your Trading Account"
+        description="Open a free trading account in minutes. Start trading forex, cryptocurrencies, and commodities with a regulated broker."
+        keywords="create trading account, open account, sign up, register trading, new account"
+      />
+      <div className="flex min-h-[calc(100vh-16rem)] items-center justify-center p-4">
+        <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-semibold">
             Create your account
@@ -201,6 +209,7 @@ export default function RegisterPage() {
           </p>
         </CardFooter>
       </Card>
-    </div>
+      </div>
+    </LandingLayout>
   );
 }

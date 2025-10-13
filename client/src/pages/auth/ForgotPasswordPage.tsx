@@ -24,6 +24,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, ArrowLeft } from "lucide-react";
+import { LandingLayout } from "@/components/LandingLayout";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -66,8 +67,9 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
+    <LandingLayout>
+      <div className="flex min-h-[calc(100vh-16rem)] items-center justify-center p-4">
+        <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-semibold">
             Reset your password
@@ -125,6 +127,7 @@ export default function ForgotPasswordPage() {
           </Link>
         </CardFooter>
       </Card>
-    </div>
+      </div>
+    </LandingLayout>
   );
 }
