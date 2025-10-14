@@ -33,19 +33,36 @@ export function setupWebSocket(httpServer: Server) {
 
     twelveDataWs = new WebSocket(`${TWELVEDATA_WS_URL}?apikey=${TWELVEDATA_API_KEY}`);
 
-    twelveDataWs.on('open', () => {
+    twelveDataWs.on('open', async () => {
       console.log('Connected to Twelve Data WebSocket');
       
       // Resubscribe to all symbols that have subscribers
       if (subscribedSymbols.size > 0) {
-        const symbolsArray = Array.from(subscribedSymbols);
-        console.log(`Subscribing to ${symbolsArray.length} symbols`);
-        twelveDataWs?.send(JSON.stringify({
-          action: 'subscribe',
-          params: {
-            symbols: symbolsArray.join(',')
-          }
-        }));
+        // Fetch the twelveDataSymbol format for all subscribed symbols
+        const symbolsToSubscribe = Array.from(subscribedSymbols);
+        console.log(`Subscribing to ${symbolsToSubscribe.length} symbols`);
+        
+        // Get the proper Twelve Data format for each symbol
+        const { db } = await import('./db');
+        const { symbols: symbolsTable } = await import('@shared/schema');
+        const { inArray } = await import('drizzle-orm');
+        
+        const symbolRecords = await db
+          .select({ symbol: symbolsTable.symbol, twelveDataSymbol: symbolsTable.twelveDataSymbol })
+          .from(symbolsTable)
+          .where(inArray(symbolsTable.symbol, symbolsToSubscribe));
+        
+        // Use twelve_data_symbol if available, otherwise use symbol as-is
+        const formattedSymbols = symbolRecords.map(s => s.twelveDataSymbol || s.symbol).join(',');
+        
+        if (formattedSymbols) {
+          twelveDataWs?.send(JSON.stringify({
+            action: 'subscribe',
+            params: {
+              symbols: formattedSymbols
+            }
+          }));
+        }
       }
     });
 
@@ -125,32 +142,58 @@ export function setupWebSocket(httpServer: Server) {
     });
   }
 
-  function subscribeToSymbol(symbol: string) {
+  async function subscribeToSymbol(symbol: string) {
     if (!subscribedSymbols.has(symbol)) {
       subscribedSymbols.add(symbol);
       
       // If connection is open, subscribe immediately
       if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
+        // Get the proper Twelve Data format for this symbol
+        const { db } = await import('./db');
+        const { symbols: symbolsTable } = await import('@shared/schema');
+        const { eq } = await import('drizzle-orm');
+        
+        const [symbolRecord] = await db
+          .select({ twelveDataSymbol: symbolsTable.twelveDataSymbol })
+          .from(symbolsTable)
+          .where(eq(symbolsTable.symbol, symbol))
+          .limit(1);
+        
+        const formattedSymbol = symbolRecord?.twelveDataSymbol || symbol;
+        
         twelveDataWs.send(JSON.stringify({
           action: 'subscribe',
           params: {
-            symbols: symbol
+            symbols: formattedSymbol
           }
         }));
       }
     }
   }
 
-  function unsubscribeFromSymbol(symbol: string) {
+  async function unsubscribeFromSymbol(symbol: string) {
     if (subscribedSymbols.has(symbol)) {
       subscribedSymbols.delete(symbol);
       
       // If connection is open, unsubscribe immediately
       if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
+        // Get the proper Twelve Data format for this symbol
+        const { db } = await import('./db');
+        const { symbols: symbolsTable } = await import('@shared/schema');
+        const { eq } = await import('drizzle-orm');
+        
+        const [symbolRecord] = await db
+          .select({ twelveDataSymbol: symbolsTable.twelveDataSymbol })
+          .from(symbolsTable)
+          .where(eq(symbolsTable.symbol, symbol))
+          .limit(1);
+        
+        const formattedSymbol = symbolRecord?.twelveDataSymbol || symbol;
+        
         twelveDataWs.send(JSON.stringify({
           action: 'unsubscribe',
           params: {
-            symbols: symbol
+            symbols: formattedSymbol
           }
         }));
       }

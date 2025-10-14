@@ -65,8 +65,9 @@ export const accounts = pgTable("accounts", {
 export const symbols = pgTable("symbols", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   symbol: text("symbol").notNull().unique(),
+  twelveDataSymbol: text("twelve_data_symbol"), // Original format from Twelve Data (e.g. "EUR/USD", "BTC/USD")
   name: text("name").notNull(),
-  type: text("type").default('forex'), // forex, crypto, commodity, index
+  type: text("type").default('forex'), // forex, crypto, commodity, index, stock, etf
   digits: integer("digits").default(5),
   contractSize: decimal("contract_size", { precision: 18, scale: 2 }).default('100000'),
   minLot: decimal("min_lot", { precision: 10, scale: 2 }).default('0.01'),
@@ -76,6 +77,9 @@ export const symbols = pgTable("symbols", {
   commission: decimal("commission", { precision: 10, scale: 2 }).default('0'),
   swapLong: decimal("swap_long", { precision: 10, scale: 2 }).default('0'),
   swapShort: decimal("swap_short", { precision: 10, scale: 2 }).default('0'),
+  exchange: text("exchange"), // For stocks/ETFs
+  country: text("country"), // For stocks/ETFs
+  currency: text("currency"), // Base currency
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
 });
