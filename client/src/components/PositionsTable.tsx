@@ -12,7 +12,7 @@ import { ProfitLossDisplay } from "@/components/ProfitLossDisplay";
 import { Badge } from "@/components/ui/badge";
 import { X, Edit2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
