@@ -191,13 +191,13 @@ export const kycDocuments = pgTable("kyc_documents", {
   reviewedAt: timestamp("reviewed_at"),
 });
 
-// Audit Logs
+// Audit Logs (CRM structure - no foreign key enforcement)
 export const auditLogs = pgTable("audit_logs", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  clientId: varchar("client_id").references(() => clients.id),
+  userId: varchar("user_id"), // Maps to CRM's user_id column (can be client or user id)
   action: text("action").notNull(),
-  entity: text("entity").notNull(), // client, order, position, transaction, etc
-  entityId: text("entity_id"),
+  targetType: text("target_type"), // Maps to CRM's target_type column
+  targetId: varchar("target_id"), // Maps to CRM's target_id column
   details: jsonb("details"),
   ipAddress: text("ip_address"),
   userAgent: text("user_agent"),
