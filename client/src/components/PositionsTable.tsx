@@ -130,23 +130,23 @@ export function PositionsTable({ positions }: PositionsTableProps) {
                 </Badge>
               </TableCell>
               <TableCell className="font-mono tabular-nums">
-                {position.volume.toFixed(2)}
+                {Number(position.volume).toFixed(2)}
               </TableCell>
               <TableCell className="font-mono tabular-nums">
-                {position.openPrice.toFixed(position.symbol.includes("BTC") ? 2 : 5)}
+                {Number(position.openPrice).toFixed(position.symbol.includes("BTC") ? 2 : 5)}
               </TableCell>
               <TableCell className="font-mono tabular-nums">
-                {position.currentPrice.toFixed(position.symbol.includes("BTC") ? 2 : 5)}
+                {Number(position.currentPrice).toFixed(position.symbol.includes("BTC") ? 2 : 5)}
               </TableCell>
               <TableCell className="font-mono text-xs tabular-nums">
                 {position.takeProfit && (
                   <div className="text-chart-1">
-                    TP: {position.takeProfit.toFixed(position.symbol.includes("BTC") ? 2 : 5)}
+                    TP: {Number(position.takeProfit).toFixed(position.symbol.includes("BTC") ? 2 : 5)}
                   </div>
                 )}
                 {position.stopLoss && (
                   <div className="text-chart-2">
-                    SL: {position.stopLoss.toFixed(position.symbol.includes("BTC") ? 2 : 5)}
+                    SL: {Number(position.stopLoss).toFixed(position.symbol.includes("BTC") ? 2 : 5)}
                   </div>
                 )}
                 {!position.takeProfit && !position.stopLoss && (

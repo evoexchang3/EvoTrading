@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, useCallback, ReactNode } from 'react';
 
 interface WebSocketMessage {
   type: string;
@@ -60,7 +60,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const subscribe = (symbols: string[]) => {
+  const subscribe = useCallback((symbols: string[]) => {
     if (!ws.current || ws.current.readyState !== WebSocket.OPEN) {
       return;
     }
@@ -74,9 +74,9 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
       type: 'subscribe',
       symbols: newSymbols,
     }));
-  };
+  }, []);
 
-  const unsubscribe = (symbols: string[]) => {
+  const unsubscribe = useCallback((symbols: string[]) => {
     if (!ws.current || ws.current.readyState !== WebSocket.OPEN) {
       return;
     }
@@ -90,7 +90,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
       type: 'unsubscribe',
       symbols: symbolsToRemove,
     }));
-  };
+  }, []);
 
   return (
     <WebSocketContext.Provider value={{ prices, isConnected, subscribe, unsubscribe }}>
