@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertTriangle, TrendingUp, TrendingDown, Activity, Wallet, Link as LinkIcon } from "lucide-react";
 import { Link } from "wouter";
+import { formatCurrency } from "@/lib/currencyUtils";
 import type { Client, Account } from "@shared/schema";
 
 export default function DashboardPage() {
@@ -17,6 +18,11 @@ export default function DashboardPage() {
     queryKey: ["/api/account"],
   });
 
+  const { data: preferences } = useQuery<{ displayCurrency?: string }>({
+    queryKey: ["/api/preferences"],
+  });
+
+  const displayCurrency = preferences?.displayCurrency || 'USD';
   const isLoading = clientLoading || accountLoading;
 
   const getGreeting = () => {
@@ -79,7 +85,7 @@ export default function DashboardPage() {
             ) : (
               <>
                 <div className="text-2xl font-bold" data-testid="text-balance">
-                  ${balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  {formatCurrency(balance, displayCurrency)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
                   Account #{account?.accountNumber || 'N/A'}
@@ -101,11 +107,11 @@ export default function DashboardPage() {
             ) : (
               <>
                 <div className="text-2xl font-bold" data-testid="text-equity">
-                  ${equity.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  {formatCurrency(equity, displayCurrency)}
                 </div>
                 <p className={`text-xs mt-1 flex items-center gap-1 ${profitLoss >= 0 ? 'text-chart-1' : 'text-chart-2'}`}>
                   {profitLoss >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                  {profitLoss >= 0 ? '+' : ''}${Math.abs(profitLoss).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  {profitLoss >= 0 ? '+' : ''}{formatCurrency(Math.abs(profitLoss), displayCurrency)}
                 </p>
               </>
             )}
@@ -124,7 +130,7 @@ export default function DashboardPage() {
             ) : (
               <>
                 <div className="text-2xl font-bold" data-testid="text-margin">
-                  ${margin.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  {formatCurrency(margin, displayCurrency)}
                 </div>
                 <p className={`text-xs mt-1 ${showMarginWarning ? 'text-chart-4 font-medium' : 'text-muted-foreground'}`}>
                   Level: {marginLevel > 0 ? marginLevel.toFixed(2) : 'N/A'}%
@@ -146,7 +152,7 @@ export default function DashboardPage() {
             ) : (
               <>
                 <div className="text-2xl font-bold" data-testid="text-free-margin">
-                  ${freeMargin.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  {formatCurrency(freeMargin, displayCurrency)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
                   Available to trade

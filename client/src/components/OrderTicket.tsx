@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { placeOrderSchema, type PlaceOrderRequest } from "@shared/schema";
+import { placeOrderSchema, type PlaceOrderRequest, type Symbol, type Account } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Minus, Plus } from "lucide-react";
@@ -37,6 +37,18 @@ export function OrderTicket({ symbol, currentPrice = 1.08545 }: OrderTicketProps
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  const { data: symbols } = useQuery<Symbol[]>({
+    queryKey: ["/api/market/symbols"],
+  });
+
+  const { data: account } = useQuery<Account>({
+    queryKey: ["/api/account"],
+  });
+
+  const symbolData = useMemo(() => {
+    return symbols?.find((s) => s.symbol === symbol);
+  }, [symbols, symbol]);
+
   const form = useForm<PlaceOrderRequest>({
     resolver: zodResolver(placeOrderSchema),
     defaultValues: {
@@ -48,9 +60,25 @@ export function OrderTicket({ symbol, currentPrice = 1.08545 }: OrderTicketProps
     },
   });
 
+  const volume = form.watch("volume");
+
+  const marginRequired = useMemo(() => {
+    if (!symbolData || !account || !volume) return 0;
+    
+    const contractSize = parseFloat(symbolData.contractSize || "100000");
+    const leverage = account.leverage || 100;
+    const price = currentPrice || 1;
+    
+    return (volume * contractSize * price) / leverage;
+  }, [symbolData, account, volume, currentPrice]);
+
   const orderMutation = useMutation({
     mutationFn: async (data: PlaceOrderRequest) => {
-      return await apiRequest("POST", "/api/trading/order", data);
+      const payload = {
+        ...data,
+        volume: parseFloat(data.volume.toString()),
+      };
+      return await apiRequest("POST", "/api/trading/order", payload);
     },
     onSuccess: () => {
       toast({
@@ -283,11 +311,15 @@ export function OrderTicket({ symbol, currentPrice = 1.08545 }: OrderTicketProps
         <div className="rounded-md bg-muted/50 p-3 space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Margin Required</span>
-            <span className="font-mono font-medium">$108.54</span>
+            <span className="font-mono font-medium" data-testid="text-margin-required">
+              ${marginRequired.toFixed(2)}
+            </span>
           </div>
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Current Price</span>
-            <span className="font-mono font-medium">{currentPrice.toFixed(5)}</span>
+            <span className="font-mono font-medium" data-testid="text-current-price">
+              {currentPrice.toFixed(5)}
+            </span>
           </div>
         </div>
       </CardContent>
