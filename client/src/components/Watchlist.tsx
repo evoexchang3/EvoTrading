@@ -45,7 +45,7 @@ export function Watchlist({ onSymbolSelect, selectedSymbol }: WatchlistProps) {
     if (symbolList.length > 0) {
       subscribe(symbolList);
     }
-  }, [symbolList.join(',')]);
+  }, [symbolList.join(','), subscribe]);
 
   const symbols: SymbolWithPrice[] = symbolsData.map(s => ({
     ...s,

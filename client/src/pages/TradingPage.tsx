@@ -43,11 +43,11 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
   });
 
   const { prices, subscribe } = useWebSocketContext();
-  const currentPrice = prices[selectedSymbol]?.bid || 1.08545;
+  const currentPrice = prices[selectedSymbol]?.bid || prices[selectedSymbol]?.ask || 0;
 
   useEffect(() => {
     subscribe([selectedSymbol]);
-  }, [selectedSymbol]);
+  }, [selectedSymbol, subscribe]);
 
   const togglePanel = (panel: keyof PanelVisibility) => {
     setPanelVisibility((prev) => ({

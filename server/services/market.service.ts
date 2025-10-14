@@ -12,9 +12,18 @@ export class MarketService {
 
   static async getQuote(symbol: string) {
     try {
+      // Get the twelve_data_symbol from database
+      const [symbolRecord] = await db
+        .select({ twelveDataSymbol: symbols.twelveDataSymbol })
+        .from(symbols)
+        .where(eq(symbols.symbol, symbol))
+        .limit(1);
+
+      const apiSymbol = symbolRecord?.twelveDataSymbol || symbol;
+
       const response = await axios.get('https://api.twelvedata.com/quote', {
         params: {
-          symbol: symbol.replace('USD', '/USD'),
+          symbol: apiSymbol,
           apikey: TWELVE_DATA_API_KEY,
         },
       });
@@ -60,11 +69,20 @@ export class MarketService {
       return cached;
     }
 
+    // Get the twelve_data_symbol from database
+    const [symbolRecord] = await db
+      .select({ twelveDataSymbol: symbols.twelveDataSymbol })
+      .from(symbols)
+      .where(eq(symbols.symbol, symbol))
+      .limit(1);
+
+    const apiSymbol = symbolRecord?.twelveDataSymbol || symbol;
+
     // Fetch from API
     try {
       const response = await axios.get('https://api.twelvedata.com/time_series', {
         params: {
-          symbol: symbol.replace('USD', '/USD'),
+          symbol: apiSymbol,
           interval,
           outputsize: limit,
           apikey: TWELVE_DATA_API_KEY,
