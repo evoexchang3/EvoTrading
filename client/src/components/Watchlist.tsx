@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -38,7 +38,7 @@ export function Watchlist({ onSymbolSelect, selectedSymbol }: WatchlistProps) {
     queryKey: ["/api/market/symbols"],
   });
 
-  const symbolList = symbolsData.map(s => s.symbol);
+  const symbolList = useMemo(() => symbolsData.map(s => s.symbol), [symbolsData]);
   const { prices } = useWebSocket(symbolList);
 
   const symbols: SymbolWithPrice[] = symbolsData.map(s => ({
