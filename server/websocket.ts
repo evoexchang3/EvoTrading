@@ -86,9 +86,6 @@ export function setupWebSocket(httpServer: Server) {
       try {
         const message = JSON.parse(data.toString());
         
-        // Log all messages for debugging
-        console.log('Twelve Data message:', JSON.stringify(message).substring(0, 200));
-        
         // Handle successful subscription confirmation
         if (message.event === 'subscribe-status') {
           if (message.status === 'ok') {
@@ -101,26 +98,40 @@ export function setupWebSocket(httpServer: Server) {
 
         // Handle price updates
         if (message.event === 'price') {
-          const symbol = message.symbol;
+          const twelveDataSymbol = message.symbol; // EUR/USD format
           const price = parseFloat(message.price);
           
-          console.log(`Price update: ${symbol} = ${price}`);
+          // Find the database symbol (EURUSD) from the formatted symbol (EUR/USD)
+          let dbSymbol = null;
+          for (const [key, value] of symbolFormatCache.entries()) {
+            if (value === twelveDataSymbol) {
+              dbSymbol = key;
+              break;
+            }
+          }
+
+          if (!dbSymbol) {
+            // Fallback: remove slashes
+            dbSymbol = twelveDataSymbol.replace(/\//g, '');
+          }
+          
+          // Price updates are flowing - no need to log every one
           
           // Update positions for this symbol
           try {
-            await TradingService.updatePositionPrices(symbol, price);
+            await TradingService.updatePositionPrices(dbSymbol, price);
           } catch (error) {
-            console.error(`Error updating positions for ${symbol}:`, error);
+            console.error(`Error updating positions for ${dbSymbol}:`, error);
           }
 
-          // Broadcast to all subscribers
-          const subscribers = symbolSubscribers.get(symbol);
+          // Broadcast to all subscribers using the database symbol format
+          const subscribers = symbolSubscribers.get(dbSymbol);
           if (subscribers) {
             const priceUpdate = JSON.stringify({
               type: 'price',
-              symbol,
+              symbol: dbSymbol, // Use database format: EURUSD
               data: {
-                symbol,
+                symbol: dbSymbol,
                 bid: price,
                 ask: price + 0.00002, // Add small spread
                 change: 0,

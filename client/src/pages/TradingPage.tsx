@@ -49,7 +49,6 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
     const ws = new WebSocket(wsUrl);
 
     ws.onopen = () => {
-      console.log("WebSocket connected");
       // Subscribe to the selected symbol
       ws.send(JSON.stringify({
         type: "subscribe",
