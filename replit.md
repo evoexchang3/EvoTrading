@@ -10,6 +10,16 @@ The platform is designed as a client-facing trading application that integrates 
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+### October 14, 2025 - Critical Fixes
+- **Fixed WebSocket Symbol Format**: Backend now converts Twelve Data format (EUR/USD) to database format (EURUSD) for proper price broadcast
+- **Added /api/account Endpoint**: Created endpoint alias for frontend to fetch account balance, equity, margin, and leverage
+- **Fixed Margin Calculation**: OrderTicket now receives live prices and calculates margin required in real-time
+- **Fixed Chart Data Loading**: Resolved duplicate key constraint error by deleting existing candle data before caching new data
+- **Live Price Updates**: All WebSocket price updates now flow correctly to OrderTicket and TradingChart components
+- **Cleaned Console Logging**: Removed excessive debug logs for production-ready experience
+
 ## System Architecture
 
 ### Frontend Architecture
