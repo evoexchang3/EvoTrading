@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import {
   ResizablePanelGroup,
@@ -41,6 +41,48 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
     orderTicket: true,
     positions: true,
   });
+
+  // Connect to WebSocket for live prices
+  useEffect(() => {
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const wsUrl = `${protocol}//${window.location.host}/ws`;
+    const ws = new WebSocket(wsUrl);
+
+    ws.onopen = () => {
+      console.log("WebSocket connected");
+      // Subscribe to the selected symbol
+      ws.send(JSON.stringify({
+        type: "subscribe",
+        symbols: [selectedSymbol],
+      }));
+    };
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === "price" && data.symbol === selectedSymbol) {
+        setCurrentPrice(data.data.bid);
+      }
+    };
+
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket disconnected");
+    };
+
+    return () => {
+      // Unsubscribe before closing
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({
+          type: "unsubscribe",
+          symbols: [selectedSymbol],
+        }));
+      }
+      ws.close();
+    };
+  }, [selectedSymbol]);
 
   const togglePanel = (panel: keyof PanelVisibility) => {
     setPanelVisibility((prev) => ({

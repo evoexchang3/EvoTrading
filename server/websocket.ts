@@ -86,6 +86,9 @@ export function setupWebSocket(httpServer: Server) {
       try {
         const message = JSON.parse(data.toString());
         
+        // Log all messages for debugging
+        console.log('Twelve Data message:', JSON.stringify(message).substring(0, 200));
+        
         // Handle successful subscription confirmation
         if (message.event === 'subscribe-status') {
           if (message.status === 'ok') {
@@ -100,6 +103,8 @@ export function setupWebSocket(httpServer: Server) {
         if (message.event === 'price') {
           const symbol = message.symbol;
           const price = parseFloat(message.price);
+          
+          console.log(`Price update: ${symbol} = ${price}`);
           
           // Update positions for this symbol
           try {
