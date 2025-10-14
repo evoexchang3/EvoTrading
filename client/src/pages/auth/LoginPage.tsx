@@ -33,20 +33,18 @@ export default function LoginPage() {
   const [, setLocation] = useLocation();
   const { login } = useAuth();
   const { toast } = useToast();
-  const [showTwoFactor, setShowTwoFactor] = useState(false);
 
   const form = useForm<LoginRequest>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
-      twoFactorCode: "",
     },
   });
 
   const loginMutation = useMutation({
     mutationFn: async (data: LoginRequest) => {
-      await login(data.username, data.password, data.twoFactorCode);
+      await login(data.email, data.password);
     },
     onSuccess: () => {
       toast({
@@ -56,19 +54,11 @@ export default function LoginPage() {
       setLocation("/dashboard");
     },
     onError: (error: any) => {
-      if (error.message === "2FA_REQUIRED") {
-        setShowTwoFactor(true);
-        toast({
-          title: "2FA Required",
-          description: "Please enter your 2FA code",
-        });
-      } else {
-        toast({
-          title: "Login failed",
-          description: error.message || "Invalid credentials",
-          variant: "destructive",
-        });
-      }
+      toast({
+        title: "Login failed",
+        description: error.message || "Invalid credentials",
+        variant: "destructive",
+      });
     },
   });
 
@@ -98,15 +88,16 @@ export default function LoginPage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
-                name="username"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username or Email</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        data-testid="input-username"
-                        placeholder="Enter your username"
+                        type="email"
+                        data-testid="input-email"
+                        placeholder="Enter your email"
                         disabled={loginMutation.isPending}
                       />
                     </FormControl>
@@ -133,27 +124,6 @@ export default function LoginPage() {
                   </FormItem>
                 )}
               />
-              {showTwoFactor && (
-                <FormField
-                  control={form.control}
-                  name="twoFactorCode"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>2FA Code</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          data-testid="input-2fa-code"
-                          placeholder="Enter 6-digit code"
-                          maxLength={6}
-                          disabled={loginMutation.isPending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              )}
               <Button
                 type="submit"
                 className="w-full"

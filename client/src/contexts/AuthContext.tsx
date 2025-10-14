@@ -5,7 +5,7 @@ import { apiRequest } from "@/lib/queryClient";
 type AuthContextType = {
   user: User | null;
   isAuthenticated: boolean;
-  login: (username: string, password: string, twoFactorCode?: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   register: (data: any) => Promise<void>;
   refreshAccessToken: () => Promise<void>;
@@ -44,16 +44,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const login = async (username: string, password: string, twoFactorCode?: string) => {
+  const login = async (email: string, password: string) => {
     const response = await apiRequest("POST", "/api/auth/login", {
-      username,
+      email,
       password,
-      twoFactorCode,
     });
-
-    if (response.requiresTwoFactor) {
-      throw new Error("2FA_REQUIRED");
-    }
 
     localStorage.setItem("accessToken", response.accessToken);
     localStorage.setItem("refreshToken", response.refreshToken);
