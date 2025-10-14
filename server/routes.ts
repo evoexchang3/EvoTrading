@@ -293,7 +293,7 @@ export function registerRoutes(app: Express): Server {
 
   app.get("/api/trading/positions", authenticateToken, async (req: AuthRequest, res) => {
     try {
-      const account = await TradingService.getAccount(req.userId!);
+      const account = await TradingService.getAccount(req.clientId!);
       const positions = await TradingService.getPositions(account.id);
       res.json(positions);
     } catch (error: any) {
@@ -303,7 +303,7 @@ export function registerRoutes(app: Express): Server {
 
   app.get("/api/trading/orders", authenticateToken, async (req: AuthRequest, res) => {
     try {
-      const account = await TradingService.getAccount(req.userId!);
+      const account = await TradingService.getAccount(req.clientId!);
       const orders = await TradingService.getOrders(account.id);
       res.json(orders);
     } catch (error: any) {
@@ -313,7 +313,7 @@ export function registerRoutes(app: Express): Server {
 
   app.get("/api/trading/trades", authenticateToken, async (req: AuthRequest, res) => {
     try {
-      const account = await TradingService.getAccount(req.userId!);
+      const account = await TradingService.getAccount(req.clientId!);
       const trades = await TradingService.getTrades(account.id);
       res.json(trades);
     } catch (error: any) {
@@ -324,7 +324,7 @@ export function registerRoutes(app: Express): Server {
   app.post("/api/trading/order", authenticateToken, async (req: AuthRequest, res) => {
     try {
       const orderData = placeOrderSchema.parse(req.body);
-      const account = await TradingService.getAccount(req.userId!);
+      const account = await TradingService.getAccount(req.clientId!);
       
       const currentPrice = await MarketService.getCurrentPrice(orderData.symbol);
       const result = await TradingService.placeOrder(account.id, orderData, currentPrice);
@@ -411,7 +411,7 @@ export function registerRoutes(app: Express): Server {
   app.post("/api/funding/deposit", authenticateToken, async (req: AuthRequest, res) => {
     try {
       const data = createTransactionSchema.parse(req.body);
-      const account = await TradingService.getAccount(req.userId!);
+      const account = await TradingService.getAccount(req.clientId!);
 
       const [transaction] = await db.insert(transactions).values({
         accountId: account.id,
@@ -441,7 +441,7 @@ export function registerRoutes(app: Express): Server {
   app.post("/api/funding/withdrawal", authenticateToken, async (req: AuthRequest, res) => {
     try {
       const data = createTransactionSchema.parse(req.body);
-      const account = await TradingService.getAccount(req.userId!);
+      const account = await TradingService.getAccount(req.clientId!);
 
       if (parseFloat(account.balance) < data.amount) {
         return res.status(400).json({ message: "Insufficient balance" });

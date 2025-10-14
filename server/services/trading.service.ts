@@ -4,11 +4,11 @@ import { eq, and, sql } from 'drizzle-orm';
 import type { PlaceOrderRequest } from '@shared/schema';
 
 export class TradingService {
-  static async getAccount(userId: string) {
+  static async getAccount(clientId: string) {
     const [account] = await db
       .select()
       .from(accounts)
-      .where(eq(accounts.userId, userId))
+      .where(eq(accounts.clientId, clientId))
       .limit(1);
 
     return account;
