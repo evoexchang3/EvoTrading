@@ -244,6 +244,26 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Get user profile (alias endpoint)
+  app.get("/api/auth/me", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const [client] = await db
+        .select()
+        .from(clients)
+        .where(eq(clients.id, req.clientId!))
+        .limit(1);
+
+      if (!client) {
+        return res.status(404).json({ message: "Client not found" });
+      }
+
+      // Return client data directly for DashboardPage
+      res.json(client);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
   // Get user profile
   app.get("/api/auth/profile", authenticateToken, async (req: AuthRequest, res) => {
     try {
