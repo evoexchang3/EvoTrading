@@ -39,16 +39,10 @@ async function importForexPairs() {
     const forexPairs = response.data.data;
     console.log(`Found ${forexPairs.length} forex pairs`);
 
-    // Filter for major and popular pairs (USD-based)
-    const popularPairs = forexPairs.filter(pair => 
-      pair.symbol.includes('/USD') || 
-      pair.currency_group === 'Major' ||
-      ['EUR/GBP', 'EUR/JPY', 'GBP/JPY', 'AUD/NZD', 'EUR/CHF', 'GBP/CHF'].includes(pair.symbol)
-    );
+    // Import ALL forex pairs (Twelve Data Ultra plan provides thousands)
+    console.log(`Importing all ${forexPairs.length} forex pairs...`);
 
-    console.log(`Importing ${popularPairs.length} popular forex pairs...`);
-
-    for (const pair of popularPairs.slice(0, 100)) {
+    for (const pair of forexPairs) {
       const symbolCode = pair.symbol.replace('/', '');
       
       try {
@@ -90,15 +84,10 @@ async function importCryptocurrencies() {
     const cryptos = response.data.data;
     console.log(`Found ${cryptos.length} cryptocurrencies`);
 
-    // Filter for USD pairs and major cryptos
-    const popularCryptos = cryptos.filter(crypto => 
-      crypto.symbol.endsWith('/USD') && 
-      ['BTC', 'ETH', 'XRP', 'LTC', 'BCH', 'ADA', 'DOT', 'LINK', 'BNB', 'SOL', 'DOGE', 'AVAX', 'MATIC', 'UNI', 'ATOM', 'XLM', 'ALGO', 'VET', 'ICP', 'FIL'].some(major => crypto.symbol.startsWith(major))
-    );
+    // Import ALL cryptocurrencies (Twelve Data Ultra plan provides extensive coverage)
+    console.log(`Importing all ${cryptos.length} cryptocurrencies...`);
 
-    console.log(`Importing ${popularCryptos.length} popular cryptocurrencies...`);
-
-    for (const crypto of popularCryptos) {
+    for (const crypto of cryptos) {
       const symbolCode = crypto.symbol.replace('/', '');
       
       try {
@@ -171,7 +160,7 @@ async function importCommodities() {
 async function importIndices() {
   console.log('Importing indices...');
   
-  // Major stock indices available on Twelve Data
+  // Comprehensive stock indices available on Twelve Data
   const indices = [
     { symbol: 'SPX', name: 'S&P 500 Index' },
     { symbol: 'DJI', name: 'Dow Jones Industrial Average' },
@@ -188,12 +177,19 @@ async function importIndices() {
     { symbol: 'ASX200', name: 'ASX 200' },
     { symbol: 'US500', name: 'US 500 CFD' },
     { symbol: 'US30', name: 'US 30 CFD' },
+    { symbol: 'US100', name: 'US Tech 100 CFD' },
     { symbol: 'GER30', name: 'Germany 30 CFD' },
+    { symbol: 'DE40', name: 'Germany 40 CFD' },
     { symbol: 'UK100', name: 'UK 100 CFD' },
-    { symbol: 'JPN225', name: 'Japan 225 CFD' },
+    { symbol: 'FR40', name: 'France 40 CFD' },
+    { symbol: 'ES35', name: 'Spain 35 CFD' },
+    { symbol: 'EU50', name: 'Euro Stoxx 50 CFD' },
+    { symbol: 'JP225', name: 'Japan 225 CFD' },
+    { symbol: 'JPN225', name: 'Japan 225 Index' },
     { symbol: 'AUS200', name: 'Australia 200 CFD' },
     { symbol: 'HK50', name: 'Hong Kong 50 CFD' },
     { symbol: 'CHINA50', name: 'China A50 CFD' },
+    { symbol: 'NGAS', name: 'Natural Gas CFD' },
   ];
 
   for (const index of indices) {

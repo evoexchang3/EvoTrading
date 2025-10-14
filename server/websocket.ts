@@ -11,43 +11,61 @@ export function setupWebSocket(httpServer: Server) {
   // Map to track client subscriptions
   const clientSubscriptions = new Map<WebSocket, Set<string>>();
   
-  // Map to track symbols to their Twelve Data WebSocket connections
-  const symbolConnections = new Map<string, WebSocket>();
+  // Single Twelve Data WebSocket connection for all symbols
+  let twelveDataWs: WebSocket | null = null;
+  let reconnectTimeout: NodeJS.Timeout | null = null;
   
   // Map to track which symbols have subscribers
   const symbolSubscribers = new Map<string, Set<WebSocket>>();
+  
+  // Track subscribed symbols on Twelve Data
+  const subscribedSymbols = new Set<string>();
 
-  function connectToTwelveData(symbol: string) {
-    if (symbolConnections.has(symbol)) {
-      return; // Already connected
+  function ensureTwelveDataConnection() {
+    if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
+      return;
     }
 
-    const twelveWs = new WebSocket(`${TWELVEDATA_WS_URL}?apikey=${TWELVEDATA_API_KEY}`);
-    symbolConnections.set(symbol, twelveWs);
+    if (reconnectTimeout) {
+      clearTimeout(reconnectTimeout);
+      reconnectTimeout = null;
+    }
 
-    twelveWs.on('open', () => {
-      console.log(`Connected to Twelve Data for ${symbol}`);
-      // Subscribe to symbol
-      twelveWs.send(JSON.stringify({
-        action: 'subscribe',
-        params: {
-          symbols: symbol
-        }
-      }));
+    twelveDataWs = new WebSocket(`${TWELVEDATA_WS_URL}?apikey=${TWELVEDATA_API_KEY}`);
+
+    twelveDataWs.on('open', () => {
+      console.log('Connected to Twelve Data WebSocket');
+      
+      // Resubscribe to all symbols that have subscribers
+      if (subscribedSymbols.size > 0) {
+        const symbolsArray = Array.from(subscribedSymbols);
+        console.log(`Subscribing to ${symbolsArray.length} symbols`);
+        twelveDataWs?.send(JSON.stringify({
+          action: 'subscribe',
+          params: {
+            symbols: symbolsArray.join(',')
+          }
+        }));
+      }
     });
 
-    twelveWs.on('message', async (data: Buffer) => {
+    twelveDataWs.on('message', async (data: Buffer) => {
       try {
         const message = JSON.parse(data.toString());
         
         // Handle successful subscription confirmation
-        if (message.event === 'subscribe-status' && message.status === 'ok') {
-          console.log(`Successfully subscribed to ${symbol}`);
+        if (message.event === 'subscribe-status') {
+          if (message.status === 'ok') {
+            console.log(`Successfully subscribed to symbols`);
+          } else {
+            console.error('Subscription error:', message);
+          }
           return;
         }
 
         // Handle price updates
         if (message.event === 'price') {
+          const symbol = message.symbol;
           const price = parseFloat(message.price);
           
           // Update positions for this symbol
@@ -84,40 +102,58 @@ export function setupWebSocket(httpServer: Server) {
 
         // Handle heartbeat
         if (message.event === 'heartbeat') {
-          twelveWs.send(JSON.stringify({ event: 'heartbeat', response: 'pong' }));
+          twelveDataWs?.send(JSON.stringify({ event: 'heartbeat', response: 'pong' }));
         }
       } catch (error) {
-        console.error(`Error processing Twelve Data message for ${symbol}:`, error);
+        console.error('Error processing Twelve Data message:', error);
       }
     });
 
-    twelveWs.on('error', (error) => {
-      console.error(`Twelve Data WebSocket error for ${symbol}:`, error);
+    twelveDataWs.on('error', (error) => {
+      console.error('Twelve Data WebSocket error:', error);
     });
 
-    twelveWs.on('close', () => {
-      console.log(`Twelve Data connection closed for ${symbol}`);
-      symbolConnections.delete(symbol);
+    twelveDataWs.on('close', () => {
+      console.log('Twelve Data connection closed');
+      twelveDataWs = null;
       
-      // Reconnect if there are still subscribers
-      if (symbolSubscribers.get(symbol)?.size > 0) {
-        setTimeout(() => connectToTwelveData(symbol), 5000);
+      // Reconnect if there are subscribers
+      if (symbolSubscribers.size > 0) {
+        console.log('Reconnecting to Twelve Data in 5 seconds...');
+        reconnectTimeout = setTimeout(() => ensureTwelveDataConnection(), 5000);
       }
     });
   }
 
-  function disconnectFromTwelveData(symbol: string) {
-    const conn = symbolConnections.get(symbol);
-    if (conn && conn.readyState === WebSocket.OPEN) {
-      // Unsubscribe from symbol
-      conn.send(JSON.stringify({
-        action: 'unsubscribe',
-        params: {
-          symbols: symbol
-        }
-      }));
-      conn.close();
-      symbolConnections.delete(symbol);
+  function subscribeToSymbol(symbol: string) {
+    if (!subscribedSymbols.has(symbol)) {
+      subscribedSymbols.add(symbol);
+      
+      // If connection is open, subscribe immediately
+      if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
+        twelveDataWs.send(JSON.stringify({
+          action: 'subscribe',
+          params: {
+            symbols: symbol
+          }
+        }));
+      }
+    }
+  }
+
+  function unsubscribeFromSymbol(symbol: string) {
+    if (subscribedSymbols.has(symbol)) {
+      subscribedSymbols.delete(symbol);
+      
+      // If connection is open, unsubscribe immediately
+      if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
+        twelveDataWs.send(JSON.stringify({
+          action: 'unsubscribe',
+          params: {
+            symbols: symbol
+          }
+        }));
+      }
     }
   }
 
@@ -143,9 +179,12 @@ export function setupWebSocket(httpServer: Server) {
             }
             symbolSubscribers.get(symbol)!.add(ws);
 
-            // Connect to Twelve Data if not already connected
-            connectToTwelveData(symbol);
+            // Subscribe to symbol on Twelve Data
+            subscribeToSymbol(symbol);
           });
+
+          // Ensure connection is established
+          ensureTwelveDataConnection();
 
           ws.send(JSON.stringify({
             type: 'subscribed',
@@ -162,9 +201,9 @@ export function setupWebSocket(httpServer: Server) {
             // Remove from symbol subscribers
             symbolSubscribers.get(symbol)?.delete(ws);
 
-            // Disconnect from Twelve Data if no more subscribers
+            // Unsubscribe from Twelve Data if no more subscribers
             if (symbolSubscribers.get(symbol)?.size === 0) {
-              disconnectFromTwelveData(symbol);
+              unsubscribeFromSymbol(symbol);
               symbolSubscribers.delete(symbol);
             }
           });
@@ -183,9 +222,9 @@ export function setupWebSocket(httpServer: Server) {
         clientSubs.forEach((symbol) => {
           symbolSubscribers.get(symbol)?.delete(ws);
 
-          // Disconnect from Twelve Data if no more subscribers
+          // Unsubscribe from Twelve Data if no more subscribers
           if (symbolSubscribers.get(symbol)?.size === 0) {
-            disconnectFromTwelveData(symbol);
+            unsubscribeFromSymbol(symbol);
             symbolSubscribers.delete(symbol);
           }
         });

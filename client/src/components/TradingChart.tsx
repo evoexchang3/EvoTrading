@@ -92,25 +92,37 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
       chartRef.current = null;
     }
 
+    // Professional trading colors for dark mode
+    const colors = {
+      background: 'transparent',
+      textColor: '#e5e5e5',
+      borderColor: '#2a2a2a',
+      upColor: '#10b981',      // Green for bullish
+      downColor: '#ef4444',    // Red for bearish
+      lineColor: '#3b82f6',    // Blue for line charts
+      areaTopColor: 'rgba(59, 130, 246, 0.4)',
+      areaBottomColor: 'rgba(59, 130, 246, 0.0)',
+    };
+
     // Create new chart
     const chart = createChart(chartContainerRef.current, {
       layout: {
-        background: { type: ColorType.Solid, color: 'transparent' },
-        textColor: 'hsl(var(--foreground))',
+        background: { type: ColorType.Solid, color: colors.background },
+        textColor: colors.textColor,
       },
       grid: {
-        vertLines: { color: 'hsl(var(--border))' },
-        horzLines: { color: 'hsl(var(--border))' },
+        vertLines: { color: colors.borderColor },
+        horzLines: { color: colors.borderColor },
       },
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
       timeScale: {
         timeVisible: true,
         secondsVisible: false,
-        borderColor: 'hsl(var(--border))',
+        borderColor: colors.borderColor,
       },
       rightPriceScale: {
-        borderColor: 'hsl(var(--border))',
+        borderColor: colors.borderColor,
       },
       crosshair: {
         mode: 1,
@@ -124,23 +136,23 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
     
     if (chartType === 'candlestick') {
       series = chart.addSeries(CandlestickSeries, {
-        upColor: 'hsl(var(--chart-1))',
-        downColor: 'hsl(var(--chart-2))',
-        borderUpColor: 'hsl(var(--chart-1))',
-        borderDownColor: 'hsl(var(--chart-2))',
-        wickUpColor: 'hsl(var(--chart-1))',
-        wickDownColor: 'hsl(var(--chart-2))',
+        upColor: colors.upColor,
+        downColor: colors.downColor,
+        borderUpColor: colors.upColor,
+        borderDownColor: colors.downColor,
+        wickUpColor: colors.upColor,
+        wickDownColor: colors.downColor,
       });
     } else if (chartType === 'line') {
       series = chart.addSeries(LineSeries, {
-        color: 'hsl(var(--primary))',
+        color: colors.lineColor,
         lineWidth: 2,
       });
     } else {
       series = chart.addSeries(AreaSeries, {
-        topColor: 'hsla(var(--primary), 0.4)',
-        bottomColor: 'hsla(var(--primary), 0.0)',
-        lineColor: 'hsl(var(--primary))',
+        topColor: colors.areaTopColor,
+        bottomColor: colors.areaBottomColor,
+        lineColor: colors.lineColor,
         lineWidth: 2,
       });
     }
