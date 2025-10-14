@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -52,17 +52,33 @@ export default function SettingsPage() {
 
   const form = useForm<SettingsFormData>({
     resolver: zodResolver(settingsSchema),
-    values: {
-      displayCurrency: preferences?.displayCurrency || 'USD',
-      theme: preferences?.theme || 'dark',
-      defaultLotSize: preferences?.defaultLotSize || '0.01',
-      notifications: preferences?.notifications || {
+    defaultValues: {
+      displayCurrency: 'USD',
+      theme: 'dark',
+      defaultLotSize: '0.01',
+      notifications: {
         trades: true,
         deposits: true,
         margin: true,
       },
     },
   });
+
+  // Update form when preferences load
+  useEffect(() => {
+    if (preferences && !isLoading) {
+      form.reset({
+        displayCurrency: preferences.displayCurrency || 'USD',
+        theme: preferences.theme || 'dark',
+        defaultLotSize: preferences.defaultLotSize || '0.01',
+        notifications: preferences.notifications || {
+          trades: true,
+          deposits: true,
+          margin: true,
+        },
+      });
+    }
+  }, [preferences, isLoading, form]);
 
   const updatePreferencesMutation = useMutation({
     mutationFn: async (data: Partial<UserPreference>) => {

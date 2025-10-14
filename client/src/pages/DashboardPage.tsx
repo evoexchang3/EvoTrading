@@ -1,89 +1,229 @@
 import { useState } from "react";
-import { Watchlist } from "@/components/Watchlist";
-import { TradingChart } from "@/components/TradingChart";
-import { OrderTicket } from "@/components/OrderTicket";
-import { AccountSummary } from "@/components/AccountSummary";
-import { PositionsTable } from "@/components/PositionsTable";
-import { OrdersTable } from "@/components/OrdersTable";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useQuery } from "@tanstack/react-query";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertTriangle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { AlertTriangle, TrendingUp, TrendingDown, Activity, Wallet, Link as LinkIcon } from "lucide-react";
+import { Link } from "wouter";
+import type { Client, Account } from "@shared/schema";
 
 export default function DashboardPage() {
-  const [selectedSymbol, setSelectedSymbol] = useState("EURUSD");
-  const marginLevel = 4724.51; // Mock data
-  const showMarginWarning = marginLevel < 150;
+  const { data: client, isLoading: clientLoading } = useQuery<Client>({
+    queryKey: ["/api/auth/me"],
+  });
+
+  const { data: account, isLoading: accountLoading } = useQuery<Account>({
+    queryKey: ["/api/account"],
+  });
+
+  const isLoading = clientLoading || accountLoading;
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
+  };
+
+  const marginLevel = account ? parseFloat(account.marginLevel || '0') : 0;
+  const showMarginWarning = marginLevel > 0 && marginLevel < 150;
+  const balance = account ? parseFloat(account.balance) : 0;
+  const equity = account ? parseFloat(account.equity) : 0;
+  const margin = account ? parseFloat(account.margin) : 0;
+  const freeMargin = account ? parseFloat(account.freeMargin) : 0;
+  const profitLoss = equity - balance;
 
   return (
-    <div className="flex h-full flex-col gap-4 p-6">
+    <div className="flex h-full flex-col gap-6 p-6">
+      {/* Welcome Section */}
+      <div>
+        {isLoading ? (
+          <>
+            <Skeleton className="h-9 w-64 mb-2" />
+            <Skeleton className="h-5 w-96" />
+          </>
+        ) : (
+          <>
+            <h1 className="text-3xl font-bold" data-testid="text-greeting">
+              {getGreeting()}, {client?.firstName}
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              Welcome back to your trading platform. Here's your portfolio overview.
+            </p>
+          </>
+        )}
+      </div>
+
       {/* Margin Warning */}
       {showMarginWarning && (
         <Alert className="border-chart-4 bg-chart-4/10">
           <AlertTriangle className="h-4 w-4 text-chart-4" />
           <AlertDescription className="text-chart-4">
-            Warning: Your margin level is below 150%. Please close positions or add funds to avoid liquidation.
+            Warning: Your margin level is {marginLevel.toFixed(2)}% - below 150%. Please close positions or add funds to avoid liquidation.
           </AlertDescription>
         </Alert>
       )}
 
-      {/* Account Summary */}
-      <AccountSummary />
+      {/* Account Overview Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Balance Card */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Balance</CardTitle>
+            <Wallet className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            {isLoading ? (
+              <Skeleton className="h-8 w-32" />
+            ) : (
+              <>
+                <div className="text-2xl font-bold" data-testid="text-balance">
+                  ${balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Account #{account?.accountNumber || 'N/A'}
+                </p>
+              </>
+            )}
+          </CardContent>
+        </Card>
 
-      {/* Main Trading Area */}
-      <div className="flex flex-1 gap-4 min-h-0">
-        {/* Watchlist Sidebar */}
-        <div className="w-80 flex-shrink-0">
-          <Watchlist 
-            onSymbolSelect={setSelectedSymbol} 
-            selectedSymbol={selectedSymbol} 
-          />
-        </div>
+        {/* Equity Card */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Equity</CardTitle>
+            <Activity className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            {isLoading ? (
+              <Skeleton className="h-8 w-32" />
+            ) : (
+              <>
+                <div className="text-2xl font-bold" data-testid="text-equity">
+                  ${equity.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </div>
+                <p className={`text-xs mt-1 flex items-center gap-1 ${profitLoss >= 0 ? 'text-chart-1' : 'text-chart-2'}`}>
+                  {profitLoss >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                  {profitLoss >= 0 ? '+' : ''}${Math.abs(profitLoss).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </p>
+              </>
+            )}
+          </CardContent>
+        </Card>
 
-        {/* Chart & Order Ticket */}
-        <div className="flex flex-1 gap-4 min-w-0">
-          {/* Chart */}
-          <div className="flex-1 min-w-0">
-            <TradingChart symbol={selectedSymbol} />
-          </div>
+        {/* Margin Card */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Margin Used</CardTitle>
+            <AlertTriangle className={`h-4 w-4 ${showMarginWarning ? 'text-chart-4' : 'text-muted-foreground'}`} />
+          </CardHeader>
+          <CardContent>
+            {isLoading ? (
+              <Skeleton className="h-8 w-32" />
+            ) : (
+              <>
+                <div className="text-2xl font-bold" data-testid="text-margin">
+                  ${margin.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </div>
+                <p className={`text-xs mt-1 ${showMarginWarning ? 'text-chart-4 font-medium' : 'text-muted-foreground'}`}>
+                  Level: {marginLevel > 0 ? marginLevel.toFixed(2) : 'N/A'}%
+                </p>
+              </>
+            )}
+          </CardContent>
+        </Card>
 
-          {/* Order Ticket */}
-          <div className="w-80 flex-shrink-0">
-            <OrderTicket symbol={selectedSymbol} />
-          </div>
-        </div>
+        {/* Free Margin Card */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Free Margin</CardTitle>
+            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            {isLoading ? (
+              <Skeleton className="h-8 w-32" />
+            ) : (
+              <>
+                <div className="text-2xl font-bold" data-testid="text-free-margin">
+                  ${freeMargin.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Available to trade
+                </p>
+              </>
+            )}
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Positions & Orders */}
+      {/* Quick Actions */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="hover-elevate transition-all">
+          <CardHeader>
+            <CardTitle className="text-lg">Start Trading</CardTitle>
+            <CardDescription>
+              Access the full trading platform with advanced charts and tools
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/trading">
+              <Button className="w-full" data-testid="button-start-trading">
+                <LinkIcon className="mr-2 h-4 w-4" />
+                Go to Trading Platform
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        <Card className="hover-elevate transition-all">
+          <CardHeader>
+            <CardTitle className="text-lg">Fund Account</CardTitle>
+            <CardDescription>
+              Deposit funds to increase your trading capacity
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/deposits">
+              <Button variant="outline" className="w-full" data-testid="button-deposit">
+                <Wallet className="mr-2 h-4 w-4" />
+                Make a Deposit
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        <Card className="hover-elevate transition-all">
+          <CardHeader>
+            <CardTitle className="text-lg">Withdrawals</CardTitle>
+            <CardDescription>
+              Request a withdrawal from your trading account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/withdrawals">
+              <Button variant="outline" className="w-full" data-testid="button-withdraw">
+                <TrendingDown className="mr-2 h-4 w-4" />
+                Withdraw Funds
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Recent Activity Placeholder */}
       <Card>
-        <CardHeader className="pb-3">
-          <Tabs defaultValue="positions" className="w-full">
-            <div className="flex items-center justify-between">
-              <TabsList>
-                <TabsTrigger value="positions" data-testid="tab-positions">
-                  Open Positions
-                </TabsTrigger>
-                <TabsTrigger value="orders" data-testid="tab-orders">
-                  Pending Orders
-                </TabsTrigger>
-                <TabsTrigger value="history" data-testid="tab-history">
-                  History
-                </TabsTrigger>
-              </TabsList>
-            </div>
-            <TabsContent value="positions" className="mt-4">
-              <PositionsTable />
-            </TabsContent>
-            <TabsContent value="orders" className="mt-4">
-              <OrdersTable />
-            </TabsContent>
-            <TabsContent value="history" className="mt-4">
-              <div className="flex h-32 items-center justify-center rounded-md border border-dashed">
-                <p className="text-sm text-muted-foreground">No trade history</p>
-              </div>
-            </TabsContent>
-          </Tabs>
+        <CardHeader>
+          <CardTitle>Recent Activity</CardTitle>
+          <CardDescription>
+            Your latest trades and account activity
+          </CardDescription>
         </CardHeader>
+        <CardContent>
+          <div className="flex h-32 items-center justify-center rounded-md border border-dashed">
+            <p className="text-sm text-muted-foreground">No recent activity</p>
+          </div>
+        </CardContent>
       </Card>
     </div>
   );

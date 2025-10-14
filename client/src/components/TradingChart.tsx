@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { createChart, ColorType, IChartApi, ISeriesApi, CandlestickData, UTCTimestamp } from 'lightweight-charts';
+import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ConnectionStatus } from "@/components/ConnectionStatus";
+import { useWebSocket } from "@/hooks/useWebSocket";
 import { BarChart3, LineChart, CandlestickChart, TrendingUp, ZoomIn, ZoomOut } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 type TradingChartProps = {
   symbol: string;
@@ -15,18 +18,80 @@ type TradingChartProps = {
 type ChartType = 'candlestick' | 'line' | 'area';
 type Timeframe = '1m' | '5m' | '15m' | '1h' | '4h' | '1d' | '1w';
 
+interface CandleData {
+  symbol: string;
+  interval: string;
+  timestamp: string;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
+}
+
+// Map timeframe values to API intervals
+const timeframeToInterval: Record<Timeframe, string> = {
+  '1m': '1min',
+  '5m': '5min',
+  '15m': '15min',
+  '1h': '1h',
+  '4h': '4h',
+  '1d': '1day',
+  '1w': '1week',
+};
+
 export function TradingChart({ symbol, connectionStatus = "connected" }: TradingChartProps) {
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const seriesRef = useRef<ISeriesApi<"Candlestick"> | ISeriesApi<"Line"> | ISeriesApi<"Area"> | null>(null);
+  const lastCandleRef = useRef<CandlestickData | null>(null);
   
   const [chartType, setChartType] = useState<ChartType>('candlestick');
   const [timeframe, setTimeframe] = useState<Timeframe>('1h');
+  const { toast } = useToast();
 
+  // Subscribe to WebSocket for real-time price updates
+  const { prices } = useWebSocket([symbol]);
+
+  // Fetch historical candle data
+  const { data: candles, isLoading, error, refetch } = useQuery<CandleData[]>({
+    queryKey: ['/api/market/candles', symbol, timeframe],
+    queryFn: async () => {
+      const interval = timeframeToInterval[timeframe];
+      const response = await fetch(`/api/market/candles/${symbol}?interval=${interval}&limit=100`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch candle data');
+      }
+      
+      return response.json();
+    },
+    retry: 2,
+    staleTime: 60000,
+  });
+
+  // Show error toast if data fetch fails
   useEffect(() => {
-    if (!chartContainerRef.current) return;
+    if (error) {
+      toast({
+        title: "Error loading chart data",
+        description: error instanceof Error ? error.message : "Failed to fetch candle data",
+        variant: "destructive",
+      });
+    }
+  }, [error, toast]);
 
-    // Create chart
+  // Create and update chart when candles, chartType, or timeframe change
+  useEffect(() => {
+    if (!chartContainerRef.current || !candles || candles.length === 0) return;
+
+    // Clean up existing chart
+    if (chartRef.current) {
+      chartRef.current.remove();
+      chartRef.current = null;
+    }
+
+    // Create new chart
     const chart = createChart(chartContainerRef.current, {
       layout: {
         background: { type: ColorType.Solid, color: 'transparent' },
@@ -47,7 +112,7 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
         borderColor: 'hsl(var(--border))',
       },
       crosshair: {
-        mode: 1, // Normal crosshair mode
+        mode: 1,
       },
     });
 
@@ -81,40 +146,25 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
 
     seriesRef.current = series;
 
-    // Generate sample data - replace with real API call
-    const generateSampleData = (): CandlestickData[] => {
-      const data: CandlestickData[] = [];
-      const now = Date.now() / 1000;
-      let currentPrice = symbol === 'BTCUSD' ? 45000 : 1.10500;
-      const priceMultiplier = symbol === 'BTCUSD' ? 1000 : 0.001;
+    // Convert candle data to chart format
+    const chartData: CandlestickData[] = candles.map((candle) => ({
+      time: (new Date(candle.timestamp).getTime() / 1000) as UTCTimestamp,
+      open: parseFloat(candle.open),
+      high: parseFloat(candle.high),
+      low: parseFloat(candle.low),
+      close: parseFloat(candle.close),
+    })).sort((a, b) => (a.time as number) - (b.time as number));
 
-      for (let i = 100; i >= 0; i--) {
-        const time = (now - i * 3600) as UTCTimestamp;
-        const open = currentPrice;
-        const close = currentPrice + (Math.random() - 0.5) * priceMultiplier;
-        const high = Math.max(open, close) + Math.random() * priceMultiplier * 0.5;
-        const low = Math.min(open, close) - Math.random() * priceMultiplier * 0.5;
-        
-        data.push({
-          time,
-          open,
-          high,
-          low,
-          close,
-        });
-        
-        currentPrice = close;
-      }
-      return data;
-    };
+    // Store last candle for incremental updates
+    if (chartData.length > 0) {
+      lastCandleRef.current = chartData[chartData.length - 1];
+    }
 
-    const sampleData = generateSampleData();
-    
     if (chartType === 'candlestick') {
-      (series as ISeriesApi<"Candlestick">).setData(sampleData);
+      (series as ISeriesApi<"Candlestick">).setData(chartData);
     } else {
-      // For line and area charts, convert to simple price data
-      const priceData = sampleData.map(d => ({
+      // For line and area charts, convert to price data
+      const priceData = chartData.map(d => ({
         time: d.time,
         value: d.close,
       }));
@@ -143,7 +193,50 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
         chartRef.current = null;
       }
     };
-  }, [symbol, chartType, timeframe]);
+  }, [candles, chartType, timeframe]);
+
+  // Update chart incrementally with real-time WebSocket price data
+  useEffect(() => {
+    if (!seriesRef.current || !prices[symbol] || !lastCandleRef.current) return;
+
+    const priceData = prices[symbol];
+    const newPrice = priceData.bid || priceData.ask || priceData.price;
+    
+    if (!newPrice) return;
+
+    const currentTime = (Date.now() / 1000) as UTCTimestamp;
+
+    // Update last candle incrementally
+    if (chartType === 'candlestick' && seriesRef.current) {
+      const series = seriesRef.current as ISeriesApi<"Candlestick">;
+      const lastCandle = lastCandleRef.current;
+      
+      // Update the last candle with new price
+      const updatedCandle: CandlestickData = {
+        time: lastCandle.time,
+        open: lastCandle.open,
+        high: Math.max(lastCandle.high, newPrice),
+        low: Math.min(lastCandle.low, newPrice),
+        close: newPrice,
+      };
+      
+      lastCandleRef.current = updatedCandle;
+      series.update(updatedCandle);
+    } else if (chartType === 'line' || chartType === 'area') {
+      const series = seriesRef.current as ISeriesApi<"Line"> | ISeriesApi<"Area">;
+      const lastCandle = lastCandleRef.current;
+      
+      series.update({
+        time: lastCandle.time,
+        value: newPrice,
+      });
+    }
+  }, [prices, symbol, chartType]);
+
+  // Refetch data when timeframe changes
+  useEffect(() => {
+    refetch();
+  }, [timeframe, refetch]);
 
   const handleZoomIn = () => {
     if (chartRef.current) {
@@ -179,13 +272,28 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
     }
   };
 
+  // Show loading skeleton while fetching data
+  if (isLoading) {
+    return (
+      <Card className="relative h-full flex flex-col p-4">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <Skeleton className="h-8 w-32" />
+            <Skeleton className="h-8 w-48" />
+          </div>
+          <Skeleton className="h-full w-full min-h-[400px]" />
+        </div>
+      </Card>
+    );
+  }
+
   return (
     <Card className="relative h-full flex flex-col">
       {/* Chart Header */}
       <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div>
-            <div className="text-lg font-semibold">{symbol}</div>
+            <div className="text-lg font-semibold" data-testid="text-chart-symbol">{symbol}</div>
             <div className="text-xs text-muted-foreground">{timeframe} Chart</div>
           </div>
           <ConnectionStatus status={connectionStatus} />
