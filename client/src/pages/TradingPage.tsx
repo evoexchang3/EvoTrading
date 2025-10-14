@@ -13,7 +13,7 @@ import { TradingChart } from "@/components/TradingChart";
 import { OrderTicket } from "@/components/OrderTicket";
 import { PositionsTable } from "@/components/PositionsTable";
 import { OrdersTable } from "@/components/OrdersTable";
-import { useWebSocket } from "@/hooks/useWebSocket";
+import { useWebSocketContext } from "@/contexts/WebSocketContext";
 import {
   LayoutDashboard,
   PanelLeft,
@@ -42,8 +42,12 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
     positions: true,
   });
 
-  const { prices } = useWebSocket([selectedSymbol]);
+  const { prices, subscribe } = useWebSocketContext();
   const currentPrice = prices[selectedSymbol]?.bid || 1.08545;
+
+  useEffect(() => {
+    subscribe([selectedSymbol]);
+  }, [selectedSymbol, subscribe]);
 
   const togglePanel = (panel: keyof PanelVisibility) => {
     setPanelVisibility((prev) => ({
