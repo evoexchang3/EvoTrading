@@ -23,6 +23,28 @@ export function setupWebSocket(httpServer: Server) {
   
   // Cache for symbol format mappings (symbol -> twelveDataSymbol)
   const symbolFormatCache = new Map<string, string>();
+  
+  // Pre-load all symbol mappings into cache
+  (async () => {
+    try {
+      const { db } = await import('./db');
+      const { symbols: symbolsTable } = await import('@shared/schema');
+      
+      const allSymbols = await db
+        .select({ symbol: symbolsTable.symbol, twelveDataSymbol: symbolsTable.twelveDataSymbol })
+        .from(symbolsTable);
+      
+      allSymbols.forEach(s => {
+        if (s.twelveDataSymbol) {
+          symbolFormatCache.set(s.symbol, s.twelveDataSymbol);
+        }
+      });
+      
+      console.log(`Loaded ${symbolFormatCache.size} symbol format mappings into cache`);
+    } catch (error) {
+      console.error('Error pre-loading symbol cache:', error);
+    }
+  })();
 
   function ensureTwelveDataConnection() {
     if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
