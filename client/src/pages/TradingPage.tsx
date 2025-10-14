@@ -13,6 +13,7 @@ import { TradingChart } from "@/components/TradingChart";
 import { OrderTicket } from "@/components/OrderTicket";
 import { PositionsTable } from "@/components/PositionsTable";
 import { OrdersTable } from "@/components/OrdersTable";
+import { useWebSocket } from "@/hooks/useWebSocket";
 import {
   LayoutDashboard,
   PanelLeft,
@@ -35,53 +36,14 @@ type TradingPageProps = {
 
 export default function TradingPage({ symbol: initialSymbol }: TradingPageProps) {
   const [selectedSymbol, setSelectedSymbol] = useState(initialSymbol || "EURUSD");
-  const [currentPrice, setCurrentPrice] = useState(1.08545);
   const [panelVisibility, setPanelVisibility] = useState<PanelVisibility>({
     watchlist: true,
     orderTicket: true,
     positions: true,
   });
 
-  // Connect to WebSocket for live prices
-  useEffect(() => {
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${protocol}//${window.location.host}/ws`;
-    const ws = new WebSocket(wsUrl);
-
-    ws.onopen = () => {
-      // Subscribe to the selected symbol
-      ws.send(JSON.stringify({
-        type: "subscribe",
-        symbols: [selectedSymbol],
-      }));
-    };
-
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === "price" && data.symbol === selectedSymbol) {
-        setCurrentPrice(data.data.bid);
-      }
-    };
-
-    ws.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    };
-
-    ws.onclose = () => {
-      console.log("WebSocket disconnected");
-    };
-
-    return () => {
-      // Unsubscribe before closing
-      if (ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({
-          type: "unsubscribe",
-          symbols: [selectedSymbol],
-        }));
-      }
-      ws.close();
-    };
-  }, [selectedSymbol]);
+  const { prices } = useWebSocket([selectedSymbol]);
+  const currentPrice = prices[selectedSymbol]?.bid || 1.08545;
 
   const togglePanel = (panel: keyof PanelVisibility) => {
     setPanelVisibility((prev) => ({
@@ -182,12 +144,7 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
                   >
                     <div className="h-full p-4">
                       <Watchlist
-                        onSymbolSelect={(symbol) => {
-                          setSelectedSymbol(symbol);
-                          setCurrentPrice(
-                            symbol === "BTCUSD" ? 43250.5 : 1.08545
-                          );
-                        }}
+                        onSymbolSelect={setSelectedSymbol}
                         selectedSymbol={selectedSymbol}
                       />
                     </div>
