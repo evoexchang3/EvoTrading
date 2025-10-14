@@ -83,8 +83,18 @@ export class MarketService {
           volume: v.volume || '0',
         }));
 
-        // Cache candles
-        await db.insert(candles).values(candleData);
+        // Cache candles - delete existing entries first to avoid duplicate key errors
+        try {
+          await db.delete(candles).where(
+            and(
+              eq(candles.symbol, symbol),
+              eq(candles.interval, interval)
+            )
+          );
+          await db.insert(candles).values(candleData);
+        } catch (error) {
+          console.error('Error caching candles:', error);
+        }
 
         return candleData;
       }

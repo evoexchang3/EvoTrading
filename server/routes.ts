@@ -271,9 +271,20 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Trading routes
+  // Account endpoint - returns trading account with balance, equity, margin
+  app.get("/api/account", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const account = await TradingService.getAccount(req.clientId!);
+      res.json(account);
+    } catch (error: any) {
+      console.error("Error fetching account:", error);
+      res.status(400).json({ message: error.message });
+    }
+  });
+
   app.get("/api/trading/account", authenticateToken, async (req: AuthRequest, res) => {
     try {
-      const account = await TradingService.getAccount(req.userId!);
+      const account = await TradingService.getAccount(req.clientId!);
       res.json(account);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
