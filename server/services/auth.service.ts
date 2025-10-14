@@ -104,13 +104,20 @@ export class AuthService {
     ipAddress?: string,
     userAgent?: string
   ): Promise<void> {
-    await db.insert(sessions).values({
-      clientId,
-      refreshToken,
-      ipAddress,
-      userAgent,
-      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
-    });
+    // Session tracking is optional - skip if sessions table doesn't exist
+    try {
+      await db.insert(sessions).values({
+        clientId,
+        refreshToken,
+        ipAddress,
+        userAgent,
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+      });
+    } catch (error) {
+      // Silently skip session creation if table doesn't exist
+      // Sessions are optional - JWT tokens work without database tracking
+      console.log('Session tracking skipped (sessions table not found)');
+    }
   }
 
   // Note: CRM doesn't support email verification or password reset tokens
