@@ -47,7 +47,7 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
 
   useEffect(() => {
     subscribe([selectedSymbol]);
-  }, [selectedSymbol, subscribe]);
+  }, [selectedSymbol]);
 
   const togglePanel = (panel: keyof PanelVisibility) => {
     setPanelVisibility((prev) => ({
