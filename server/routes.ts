@@ -247,25 +247,22 @@ export function registerRoutes(app: Express): Server {
   // Get user profile
   app.get("/api/auth/profile", authenticateToken, async (req: AuthRequest, res) => {
     try {
-      const [user] = await db
+      const [client] = await db
         .select()
-        .from(users)
-        .where(eq(users.id, req.userId!))
+        .from(clients)
+        .where(eq(clients.id, req.clientId!))
         .limit(1);
 
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
+      if (!client) {
+        return res.status(404).json({ message: "Client not found" });
       }
 
       res.json({
         user: {
-          id: user.id,
-          email: user.email,
-          username: user.username,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          emailVerified: user.emailVerified,
-          twoFactorEnabled: user.twoFactorEnabled,
+          id: client.id,
+          email: client.email,
+          firstName: client.firstName,
+          lastName: client.lastName,
         },
       });
     } catch (error: any) {
@@ -510,18 +507,18 @@ export function registerRoutes(app: Express): Server {
     try {
       const { firstName, lastName, phone } = req.body;
 
-      const [updatedUser] = await db
-        .update(users)
+      const [updatedClient] = await db
+        .update(clients)
         .set({
           firstName,
           lastName,
           phone,
           updatedAt: new Date(),
         })
-        .where(eq(users.id, req.userId!))
+        .where(eq(clients.id, req.clientId!))
         .returning();
 
-      res.json({ user: updatedUser });
+      res.json({ user: updatedClient });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
