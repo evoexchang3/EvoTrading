@@ -13,7 +13,7 @@ import {
   placeOrderSchema,
   createTransactionSchema 
 } from "@shared/schema";
-import { users, accounts, transactions, kycDocuments } from "@shared/schema";
+import { clients, accounts, transactions, kycDocuments } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
 export function registerRoutes(app: Express): Server {
@@ -21,27 +21,24 @@ export function registerRoutes(app: Express): Server {
   app.post("/api/auth/register", async (req, res) => {
     try {
       const data = registerSchema.parse(req.body);
-      const { user, verificationToken } = await AuthService.register(data);
+      const { client } = await AuthService.register(data);
 
       await AuditService.log({
-        userId: user.id,
+        clientId: client.id,
         action: "register",
-        entity: "user",
-        entityId: user.id,
+        entity: "client",
+        entityId: client.id,
         ipAddress: req.ip,
         userAgent: req.headers['user-agent'],
       });
 
-      // In production, send email with verification link
-      console.log(`Verification token for ${user.email}: ${verificationToken}`);
-      console.log(`Verification link: http://localhost:5000/verify-email?token=${verificationToken}`);
-
       res.json({ 
-        message: "Registration successful. Please check your email to verify your account.",
-        user: {
-          id: user.id,
-          email: user.email,
-          username: user.username,
+        message: "Registration successful. You can now login.",
+        client: {
+          id: client.id,
+          email: client.email,
+          firstName: client.firstName,
+          lastName: client.lastName,
         }
       });
     } catch (error: any) {
@@ -52,36 +49,31 @@ export function registerRoutes(app: Express): Server {
   app.post("/api/auth/login", async (req, res) => {
     try {
       const data = loginSchema.parse(req.body);
-      const user = await AuthService.login(data.username, data.password);
+      const client = await AuthService.login(data.email, data.password);
 
-      if (!user) {
+      if (!client) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
-      if (!user.isActive) {
+      if (!client.isActive) {
         return res.status(403).json({ message: "Account is disabled" });
       }
 
-      // Check 2FA
-      if (user.twoFactorEnabled && !data.twoFactorCode) {
-        return res.json({ requiresTwoFactor: true });
-      }
-
-      const accessToken = AuthService.generateAccessToken(user.id);
-      const refreshToken = AuthService.generateRefreshToken(user.id);
+      const accessToken = AuthService.generateAccessToken(client.id);
+      const refreshToken = AuthService.generateRefreshToken(client.id);
 
       await AuthService.createSession(
-        user.id,
+        client.id,
         refreshToken,
         req.ip,
         req.headers['user-agent']
       );
 
       await AuditService.log({
-        userId: user.id,
+        clientId: client.id,
         action: "login",
-        entity: "user",
-        entityId: user.id,
+        entity: "client",
+        entityId: client.id,
         ipAddress: req.ip,
         userAgent: req.headers['user-agent'],
       });
@@ -90,13 +82,10 @@ export function registerRoutes(app: Express): Server {
         accessToken,
         refreshToken,
         user: {
-          id: user.id,
-          email: user.email,
-          username: user.username,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          emailVerified: user.emailVerified,
-          twoFactorEnabled: user.twoFactorEnabled,
+          id: client.id,
+          email: client.email,
+          firstName: client.firstName,
+          lastName: client.lastName,
         },
       });
     } catch (error: any) {

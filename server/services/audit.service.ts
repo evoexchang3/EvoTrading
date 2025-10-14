@@ -3,7 +3,7 @@ import { auditLogs } from '@shared/schema';
 
 export class AuditService {
   static async log(data: {
-    userId?: string;
+    clientId?: string;
     action: string;
     entity: string;
     entityId?: string;
@@ -12,7 +12,7 @@ export class AuditService {
     userAgent?: string;
   }) {
     await db.insert(auditLogs).values({
-      userId: data.userId,
+      clientId: data.clientId,
       action: data.action,
       entity: data.entity,
       entityId: data.entityId,

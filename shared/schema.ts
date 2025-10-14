@@ -20,43 +20,45 @@ export const orderStatusEnum = pgEnum('order_status', ['pending', 'filled', 'par
 export const transactionTypeEnum = pgEnum('transaction_type', ['deposit', 'withdrawal']);
 export const transactionStatusEnum = pgEnum('transaction_status', ['pending', 'approved', 'rejected', 'processing', 'completed']);
 export const kycStatusEnum = pgEnum('kyc_status', ['pending', 'approved', 'rejected', 'under_review']);
+export const clientStatusEnum = pgEnum('client_status', ['new', 'active', 'inactive', 'suspended']);
 
-// Users table
-export const users = pgTable("users", {
+// Clients table (CRM structure)
+export const clients = pgTable("clients", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   email: text("email").notNull().unique(),
-  username: text("username").notNull().unique(),
   password: text("password").notNull(),
-  firstName: text("first_name"),
-  lastName: text("last_name"),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
   phone: text("phone"),
-  emailVerified: boolean("email_verified").default(false),
-  twoFactorEnabled: boolean("two_factor_enabled").default(false),
-  twoFactorSecret: text("two_factor_secret"),
-  resetToken: text("reset_token"),
-  resetTokenExpiry: timestamp("reset_token_expiry"),
-  verificationToken: text("verification_token"),
-  isActive: boolean("is_active").default(true),
-  tradingEnabled: boolean("trading_enabled").default(true),
-  externalId: text("external_id"), // CRM reference
-  role: text("role").default('client'),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  address: text("address"),
+  city: text("city"),
+  country: text("country"),
+  dateOfBirth: timestamp("date_of_birth"),
+  kycStatus: kycStatusEnum("kyc_status").notNull().default('pending'),
+  kycDocuments: jsonb("kyc_documents").default('[]'),
+  assignedAgentId: varchar("assigned_agent_id"),
+  teamId: varchar("team_id"),
+  mustResetPassword: boolean("must_reset_password").notNull().default(false),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  status: clientStatusEnum("status").notNull().default('new'),
 });
 
-// Trading accounts
+// Trading accounts (CRM structure)
 export const accounts = pgTable("accounts", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").references(() => users.id).notNull(),
-  balance: decimal("balance", { precision: 18, scale: 2 }).default('0'),
-  currency: text("currency").default('USD'),
-  leverage: integer("leverage").default(1),
-  marginLevel: decimal("margin_level", { precision: 10, scale: 2 }),
-  equity: decimal("equity", { precision: 18, scale: 2 }),
-  freeMargin: decimal("free_margin", { precision: 18, scale: 2 }),
-  usedMargin: decimal("used_margin", { precision: 18, scale: 2 }),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  clientId: varchar("client_id").references(() => clients.id).notNull(),
+  accountNumber: text("account_number").notNull().unique(),
+  currency: text("currency").notNull().default('USD'),
+  balance: decimal("balance", { precision: 18, scale: 2 }).notNull().default('0'),
+  equity: decimal("equity", { precision: 18, scale: 2 }).notNull().default('0'),
+  margin: decimal("margin", { precision: 18, scale: 2 }).notNull().default('0'),
+  freeMargin: decimal("free_margin", { precision: 18, scale: 2 }).notNull().default('0'),
+  marginLevel: decimal("margin_level", { precision: 8, scale: 2 }).default('0'),
+  leverage: integer("leverage").notNull().default(100),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
 // Symbols
@@ -178,7 +180,7 @@ export const transactions = pgTable("transactions", {
 // KYC Documents
 export const kycDocuments = pgTable("kyc_documents", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").references(() => users.id).notNull(),
+  clientId: varchar("client_id").references(() => clients.id).notNull(),
   documentType: text("document_type").notNull(), // passport, id_card, proof_address
   fileName: text("file_name").notNull(),
   fileUrl: text("file_url"),
@@ -192,9 +194,9 @@ export const kycDocuments = pgTable("kyc_documents", {
 // Audit Logs
 export const auditLogs = pgTable("audit_logs", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").references(() => users.id),
+  clientId: varchar("client_id").references(() => clients.id),
   action: text("action").notNull(),
-  entity: text("entity").notNull(), // user, order, position, transaction, etc
+  entity: text("entity").notNull(), // client, order, position, transaction, etc
   entityId: text("entity_id"),
   details: jsonb("details"),
   ipAddress: text("ip_address"),
@@ -202,11 +204,11 @@ export const auditLogs = pgTable("audit_logs", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-// SSO Tokens (for impersonation)
+// SSO Tokens (for impersonation) 
 export const ssoTokens = pgTable("sso_tokens", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   token: text("token").notNull().unique(),
-  userId: varchar("user_id").references(() => users.id).notNull(),
+  clientId: varchar("client_id").references(() => clients.id).notNull(),
   adminId: text("admin_id"), // CRM admin who initiated
   reason: text("reason"),
   ipAddress: text("ip_address"),
@@ -219,7 +221,7 @@ export const ssoTokens = pgTable("sso_tokens", {
 // Sessions
 export const sessions = pgTable("sessions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").references(() => users.id).notNull(),
+  clientId: varchar("client_id").references(() => clients.id).notNull(),
   refreshToken: text("refresh_token").notNull().unique(),
   ipAddress: text("ip_address"),
   userAgent: text("user_agent"),
@@ -228,7 +230,7 @@ export const sessions = pgTable("sessions", {
 });
 
 // Insert schemas
-export const insertUserSchema = createInsertSchema(users).omit({
+export const insertClientSchema = createInsertSchema(clients).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
@@ -237,7 +239,6 @@ export const insertUserSchema = createInsertSchema(users).omit({
 export const insertAccountSchema = createInsertSchema(accounts).omit({
   id: true,
   createdAt: true,
-  updatedAt: true,
 });
 
 export const insertSymbolSchema = createInsertSchema(symbols).omit({
@@ -281,8 +282,8 @@ export const insertAuditLogSchema = createInsertSchema(auditLogs).omit({
 });
 
 // Types
-export type User = typeof users.$inferSelect;
-export type InsertUser = z.infer<typeof insertUserSchema>;
+export type Client = typeof clients.$inferSelect;
+export type InsertClient = z.infer<typeof insertClientSchema>;
 
 export type Account = typeof accounts.$inferSelect;
 export type InsertAccount = z.infer<typeof insertAccountSchema>;
@@ -314,16 +315,15 @@ export type Session = typeof sessions.$inferSelect;
 // API Request/Response schemas
 export const registerSchema = z.object({
   email: z.string().email(),
-  username: z.string().min(3),
   password: z.string().min(8),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
+  firstName: z.string(),
+  lastName: z.string(),
+  phone: z.string().optional(),
 });
 
 export const loginSchema = z.object({
-  username: z.string(),
+  email: z.string().email(),
   password: z.string(),
-  twoFactorCode: z.string().optional(),
 });
 
 export const placeOrderSchema = z.object({

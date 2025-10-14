@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { AuthService } from '../services/auth.service';
 
 export interface AuthRequest extends Request {
-  userId?: string;
+  clientId?: string;
 }
 
 export const authenticateToken = async (
@@ -18,8 +18,8 @@ export const authenticateToken = async (
       return res.status(401).json({ message: 'Access token required' });
     }
 
-    const { userId } = AuthService.verifyAccessToken(token);
-    req.userId = userId;
+    const { clientId } = AuthService.verifyAccessToken(token);
+    req.clientId = clientId;
     next();
   } catch (error) {
     return res.status(403).json({ message: 'Invalid or expired token' });

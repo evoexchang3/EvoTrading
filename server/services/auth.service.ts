@@ -2,9 +2,9 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import { db } from '../db';
-import { users, accounts, sessions } from '@shared/schema';
+import { clients, accounts, sessions } from '@shared/schema';
 import { eq } from 'drizzle-orm';
-import type { User } from '@shared/schema';
+import type { Client } from '@shared/schema';
 
 // JWT Secret configuration with production safety
 const isProduction = process.env.NODE_ENV === 'production';
@@ -39,20 +39,20 @@ export class AuthService {
     return bcrypt.compare(password, hash);
   }
 
-  static generateAccessToken(userId: string): string {
-    return jwt.sign({ userId }, JWT_SECRET, { expiresIn: '15m' });
+  static generateAccessToken(clientId: string): string {
+    return jwt.sign({ clientId }, JWT_SECRET, { expiresIn: '15m' });
   }
 
-  static generateRefreshToken(userId: string): string {
-    return jwt.sign({ userId }, JWT_REFRESH_SECRET, { expiresIn: '7d' });
+  static generateRefreshToken(clientId: string): string {
+    return jwt.sign({ clientId }, JWT_REFRESH_SECRET, { expiresIn: '7d' });
   }
 
-  static verifyAccessToken(token: string): { userId: string } {
-    return jwt.verify(token, JWT_SECRET) as { userId: string };
+  static verifyAccessToken(token: string): { clientId: string } {
+    return jwt.verify(token, JWT_SECRET) as { clientId: string };
   }
 
-  static verifyRefreshToken(token: string): { userId: string } {
-    return jwt.verify(token, JWT_REFRESH_SECRET) as { userId: string };
+  static verifyRefreshToken(token: string): { clientId: string } {
+    return jwt.verify(token, JWT_REFRESH_SECRET) as { clientId: string };
   }
 
   static generateResetToken(): string {
@@ -65,68 +65,58 @@ export class AuthService {
 
   static async register(data: {
     email: string;
-    username: string;
     password: string;
-    firstName?: string;
-    lastName?: string;
-  }): Promise<{ user: User; verificationToken: string }> {
+    firstName: string;
+    lastName: string;
+    phone?: string;
+  }): Promise<{ client: Client }> {
     const hashedPassword = await this.hashPassword(data.password);
-    const verificationToken = this.generateVerificationToken();
 
-    const [user] = await db
-      .insert(users)
+    const [client] = await db
+      .insert(clients)
       .values({
         email: data.email,
-        username: data.username,
         password: hashedPassword,
         firstName: data.firstName,
         lastName: data.lastName,
-        verificationToken,
+        phone: data.phone,
       })
       .returning();
 
-    // Create default trading account
+    // Create default trading account with generated account number
+    const accountNumber = `ACC${Date.now()}${Math.floor(Math.random() * 1000)}`;
     await db.insert(accounts).values({
-      userId: user.id,
+      clientId: client.id,
+      accountNumber,
       balance: '10000', // Demo balance
+      equity: '10000',
       leverage: 100,
     });
 
-    return { user, verificationToken };
+    return { client };
   }
 
-  static async login(username: string, password: string): Promise<User | null> {
-    const [user] = await db
+  static async login(email: string, password: string): Promise<Client | null> {
+    const [client] = await db
       .select()
-      .from(users)
-      .where(eq(users.username, username))
+      .from(clients)
+      .where(eq(clients.email, email))
       .limit(1);
 
-    if (!user) {
-      const [userByEmail] = await db
-        .select()
-        .from(users)
-        .where(eq(users.email, username))
-        .limit(1);
+    if (!client) return null;
 
-      if (!userByEmail) return null;
-
-      const validPassword = await this.comparePassword(password, userByEmail.password);
-      return validPassword ? userByEmail : null;
-    }
-
-    const validPassword = await this.comparePassword(password, user.password);
-    return validPassword ? user : null;
+    const validPassword = await this.comparePassword(password, client.password);
+    return validPassword ? client : null;
   }
 
   static async createSession(
-    userId: string,
+    clientId: string,
     refreshToken: string,
     ipAddress?: string,
     userAgent?: string
   ): Promise<void> {
     await db.insert(sessions).values({
-      userId,
+      clientId,
       refreshToken,
       ipAddress,
       userAgent,

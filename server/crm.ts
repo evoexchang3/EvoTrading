@@ -1,7 +1,7 @@
 import axios from 'axios';
 import crypto from 'crypto';
 import { db } from './db';
-import { ssoTokens, users } from '@shared/schema';
+import { ssoTokens, clients } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import type { Express } from 'express';
 
