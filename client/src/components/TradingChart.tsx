@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ConnectionStatus } from "@/components/ConnectionStatus";
-import { useWebSocket } from "@/hooks/useWebSocket";
+import { useWebSocketContext } from "@/contexts/WebSocketContext";
 import { BarChart3, LineChart, CandlestickChart, TrendingUp, ZoomIn, ZoomOut } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -52,7 +52,7 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
   const { toast } = useToast();
 
   // Subscribe to WebSocket for real-time price updates
-  const { prices } = useWebSocket([symbol]);
+  const { prices } = useWebSocketContext();
 
   // Fetch historical candle data
   const { data: candles, isLoading, error, refetch } = useQuery<CandleData[]>({
@@ -295,6 +295,30 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
             <Skeleton className="h-8 w-48" />
           </div>
           <Skeleton className="h-full w-full min-h-[400px]" />
+        </div>
+      </Card>
+    );
+  }
+
+  // Show message when no data is available
+  if (!candles || candles.length === 0) {
+    return (
+      <Card className="relative h-full flex flex-col">
+        <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div>
+              <div className="text-lg font-semibold" data-testid="text-chart-symbol">{symbol}</div>
+              <div className="text-xs text-muted-foreground">{timeframe} Chart</div>
+            </div>
+            <ConnectionStatus status={connectionStatus} />
+          </div>
+        </div>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center space-y-2">
+            <BarChart3 className="h-12 w-12 mx-auto text-muted-foreground/50" />
+            <p className="text-sm font-medium text-muted-foreground">No chart data available</p>
+            <p className="text-xs text-muted-foreground">Chart data for {symbol} is not available at this time</p>
+          </div>
         </div>
       </Card>
     );
