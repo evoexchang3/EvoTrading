@@ -29,8 +29,12 @@ type PanelVisibility = {
   positions: boolean;
 };
 
-export default function TradingPage() {
-  const [selectedSymbol, setSelectedSymbol] = useState("EURUSD");
+type TradingPageProps = {
+  symbol?: string;
+};
+
+export default function TradingPage({ symbol: initialSymbol }: TradingPageProps) {
+  const [selectedSymbol, setSelectedSymbol] = useState(initialSymbol || "EURUSD");
   const [currentPrice, setCurrentPrice] = useState(1.08545);
   const [panelVisibility, setPanelVisibility] = useState<PanelVisibility>({
     watchlist: true,

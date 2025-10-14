@@ -67,10 +67,12 @@ function AppRoutes() {
         </ProtectedRoute>
       </Route>
       
-      <Route path="/trading">
-        <ProtectedRoute>
-          <TradingPage />
-        </ProtectedRoute>
+      <Route path="/trading/:symbol?">
+        {(params) => (
+          <ProtectedRoute>
+            <TradingPage symbol={params.symbol} />
+          </ProtectedRoute>
+        )}
       </Route>
 
       <Route path="/deposits">
