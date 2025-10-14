@@ -13,7 +13,7 @@ import {
   placeOrderSchema,
   createTransactionSchema 
 } from "@shared/schema";
-import { clients, accounts, transactions, kycDocuments } from "@shared/schema";
+import { clients, accounts, transactions, kycDocuments, userPreferences } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
 export function registerRoutes(app: Express): Server {
@@ -519,6 +519,68 @@ export function registerRoutes(app: Express): Server {
         .returning();
 
       res.json({ user: updatedClient });
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // User Preferences routes
+  app.get("/api/preferences", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const [prefs] = await db
+        .select()
+        .from(userPreferences)
+        .where(eq(userPreferences.clientId, req.clientId!))
+        .limit(1);
+
+      if (!prefs) {
+        // Create default preferences
+        const [newPrefs] = await db
+          .insert(userPreferences)
+          .values({
+            clientId: req.clientId!,
+          })
+          .returning();
+        return res.json(newPrefs);
+      }
+
+      res.json(prefs);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  app.patch("/api/preferences", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const { displayCurrency, theme, defaultLotSize, layoutConfig, favorites, notifications } = req.body;
+
+      const updateData: any = { updatedAt: new Date() };
+      if (displayCurrency !== undefined) updateData.displayCurrency = displayCurrency;
+      if (theme !== undefined) updateData.theme = theme;
+      if (defaultLotSize !== undefined) updateData.defaultLotSize = defaultLotSize;
+      if (layoutConfig !== undefined) updateData.layoutConfig = layoutConfig;
+      if (favorites !== undefined) updateData.favorites = favorites;
+      if (notifications !== undefined) updateData.notifications = notifications;
+
+      const [updatedPrefs] = await db
+        .update(userPreferences)
+        .set(updateData)
+        .where(eq(userPreferences.clientId, req.clientId!))
+        .returning();
+
+      if (!updatedPrefs) {
+        // Create if doesn't exist
+        const [newPrefs] = await db
+          .insert(userPreferences)
+          .values({
+            clientId: req.clientId!,
+            ...updateData,
+          })
+          .returning();
+        return res.json(newPrefs);
+      }
+
+      res.json(updatedPrefs);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }

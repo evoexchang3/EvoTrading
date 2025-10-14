@@ -24,11 +24,13 @@ import AMLPage from "@/pages/legal/AMLPage";
 import RiskPage from "@/pages/legal/RiskPage";
 import CookiesPage from "@/pages/legal/CookiesPage";
 import DashboardPage from "@/pages/DashboardPage";
+import TradingPage from "@/pages/TradingPage";
 import DepositsPage from "@/pages/funding/DepositsPage";
 import WithdrawalsPage from "@/pages/funding/WithdrawalsPage";
 import ProfilePage from "@/pages/account/ProfilePage";
 import SecurityPage from "@/pages/account/SecurityPage";
 import KYCPage from "@/pages/account/KYCPage";
+import SettingsPage from "@/pages/SettingsPage";
 import { CookieConsent } from "@/components/CookieConsent";
 
 function AppRoutes() {
@@ -67,9 +69,7 @@ function AppRoutes() {
       
       <Route path="/trading">
         <ProtectedRoute>
-          <DashboardLayout>
-            <DashboardPage />
-          </DashboardLayout>
+          <TradingPage />
         </ProtectedRoute>
       </Route>
 
@@ -100,7 +100,7 @@ function AppRoutes() {
       <Route path="/settings">
         <ProtectedRoute>
           <DashboardLayout>
-            <SecurityPage />
+            <SettingsPage />
           </DashboardLayout>
         </ProtectedRoute>
       </Route>

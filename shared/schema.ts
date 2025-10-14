@@ -229,6 +229,19 @@ export const sessions = pgTable("sessions", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// User Preferences
+export const userPreferences = pgTable("user_preferences", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  clientId: varchar("client_id").references(() => clients.id).notNull().unique(),
+  displayCurrency: text("display_currency").notNull().default('USD'), // USD, EUR, GBP, JPY
+  theme: text("theme").default('dark'), // dark, light
+  defaultLotSize: decimal("default_lot_size", { precision: 10, scale: 2 }).default('0.01'),
+  layoutConfig: jsonb("layout_config"), // Stores panel positions, sizes, visibility
+  favorites: text("favorites").array().default(sql`ARRAY[]::text[]`), // Favorite symbols
+  notifications: jsonb("notifications").default('{"trades": true, "deposits": true, "margin": true}'),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 // Insert schemas
 export const insertClientSchema = createInsertSchema(clients).omit({
   id: true,
@@ -311,6 +324,7 @@ export type InsertAuditLog = z.infer<typeof insertAuditLogSchema>;
 
 export type SsoToken = typeof ssoTokens.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
+export type UserPreference = typeof userPreferences.$inferSelect;
 
 // API Request/Response schemas
 export const registerSchema = z.object({
