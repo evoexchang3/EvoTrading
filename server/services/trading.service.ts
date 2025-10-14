@@ -1,6 +1,6 @@
 import { db } from '../db';
 import { accounts, orders, positions, trades, symbols } from '@shared/schema';
-import { eq, and } from 'drizzle-orm';
+import { eq, and, sql } from 'drizzle-orm';
 import type { PlaceOrderRequest } from '@shared/schema';
 
 export class TradingService {
@@ -15,10 +15,27 @@ export class TradingService {
   }
 
   static async getPositions(accountId: string) {
-    return await db
-      .select()
-      .from(positions)
-      .where(eq(positions.accountId, accountId));
+    // Use raw SQL to avoid schema mismatch issues
+    const result = await db.execute(sql`
+      SELECT 
+        id,
+        account_id as "accountId",
+        symbol,
+        side,
+        COALESCE(volume, quantity) as volume,
+        open_price as "openPrice",
+        current_price as "currentPrice",
+        take_profit as "takeProfit",
+        stop_loss as "stopLoss",
+        commission,
+        swap,
+        COALESCE(profit, unrealized_pnl) as profit,
+        margin_required as "marginRequired",
+        COALESCE(created_at, opened_at) as "createdAt"
+      FROM positions
+      WHERE account_id = ${accountId}
+    `);
+    return result.rows;
   }
 
   static async getOrders(accountId: string) {

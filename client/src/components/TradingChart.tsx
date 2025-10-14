@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createChart, ColorType, IChartApi, ISeriesApi, CandlestickData, UTCTimestamp } from 'lightweight-charts';
+import { CandlestickSeries, LineSeries, AreaSeries } from 'lightweight-charts';
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -118,11 +119,11 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
 
     chartRef.current = chart;
 
-    // Create series based on chart type
+    // Create series based on chart type (v5 API)
     let series: ISeriesApi<"Candlestick"> | ISeriesApi<"Line"> | ISeriesApi<"Area">;
     
     if (chartType === 'candlestick') {
-      series = chart.addCandlestickSeries({
+      series = chart.addSeries(CandlestickSeries, {
         upColor: 'hsl(var(--chart-1))',
         downColor: 'hsl(var(--chart-2))',
         borderUpColor: 'hsl(var(--chart-1))',
@@ -131,12 +132,12 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
         wickDownColor: 'hsl(var(--chart-2))',
       });
     } else if (chartType === 'line') {
-      series = chart.addLineSeries({
+      series = chart.addSeries(LineSeries, {
         color: 'hsl(var(--primary))',
         lineWidth: 2,
       });
     } else {
-      series = chart.addAreaSeries({
+      series = chart.addSeries(AreaSeries, {
         topColor: 'hsla(var(--primary), 0.4)',
         bottomColor: 'hsla(var(--primary), 0.0)',
         lineColor: 'hsl(var(--primary))',
