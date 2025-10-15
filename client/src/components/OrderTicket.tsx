@@ -57,7 +57,7 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
       type: "market",
       side,
       volume: 0.01,
-      price: currentPrice,
+      // Don't set price for market orders (undefined passes validation)
     },
   });
 
@@ -105,8 +105,6 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
   });
 
   const onSubmit = (data: PlaceOrderRequest) => {
-    console.log("📝 OrderTicket onSubmit called", { data, side, priceTimestamp, currentPrice });
-    console.log("📝 Form errors:", form.formState.errors);
     orderMutation.mutate({ ...data, side });
   };
 
@@ -134,15 +132,7 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
         </Tabs>
 
         <Form {...form}>
-          <form 
-            onSubmit={(e) => {
-              console.log("🔥 Form submit event triggered");
-              console.log("🔥 Form state:", form.formState);
-              console.log("🔥 Form values:", form.getValues());
-              form.handleSubmit(onSubmit)(e);
-            }} 
-            className="space-y-4"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="type"
