@@ -77,7 +77,7 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
     mutationFn: async (data: PlaceOrderRequest) => {
       const payload = {
         ...data,
-        volume: parseFloat(data.volume.toString()),
+        volume: parseFloat((data.volume || 0.01).toString()),
         // Include live WebSocket price and timestamp ONLY if available
         ...(currentPrice && priceTimestamp ? {
           currentPrice: currentPrice,
@@ -109,7 +109,7 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
   };
 
   const adjustVolume = (delta: number) => {
-    const currentVolume = form.getValues("volume");
+    const currentVolume = form.getValues("volume") || 0.01;
     const newVolume = Math.max(0.01, currentVolume + delta);
     form.setValue("volume", parseFloat(newVolume.toFixed(2)));
   };
