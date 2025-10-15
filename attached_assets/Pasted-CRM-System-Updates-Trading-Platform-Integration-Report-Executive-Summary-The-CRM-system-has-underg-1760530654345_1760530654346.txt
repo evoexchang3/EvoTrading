@@ -1,0 +1,242 @@
+CRM System Updates - Trading Platform Integration Report
+Executive Summary
+The CRM system has undergone significant enhancements to support leverage-based position sizing, contract multipliers, fee tracking, and market data staleness protection. These changes affect how orders are placed, positions are calculated, and P&L is reported.
+
+1. Database Schema Changes
+Positions Table - New Columns Added
+-- Added to positions table:
+contractMultiplier VARCHAR DEFAULT '1'  -- Multiplier for position value calculations
+marginMode VARCHAR DEFAULT 'isolated'    -- 'isolated' or 'cross' margin mode
+marginUsed VARCHAR                       -- Amount of margin allocated to position
+Impact: The trading platform should now expect these fields when:
+
+Receiving position data via shared database
+Processing webhook notifications about new positions
+2. Order Placement API Changes
+New Margin-Based Order Input (PREFERRED METHOD)
+Endpoint: POST /api/orders
+
+Previous Behavior:
+
+{
+  "symbol": "EUR/USD",
+  "type": "market",
+  "side": "buy",
+  "quantity": 1.0,          // Direct quantity input
+  "leverage": "100"
+}
+New Behavior (margin-based - RECOMMENDED):
+
+{
+  "symbol": "EUR/USD",
+  "type": "market",
+  "side": "buy",
+  "margin": "1000",         // Margin amount in USD
+  "leverage": "100"         // System calculates quantity automatically
+}
+Position Sizing Formula
+When margin is provided instead of quantity:
+
+Position Size = margin × leverage
+Quantity = Position Size / (entry_price × contract_multiplier)
+Example:
+
+Margin: $1,000
+Leverage: 1:100
+Entry Price: 1.08500 (EUR/USD)
+Contract Multiplier: 100,000 (standard forex lot)
+Calculation:
+
+Position Size = $1,000 × 100 = $100,000
+Quantity = $100,000 / (1.08500 × 100,000) = 0.92 lots
+3. Contract Multiplier Registry
+Instrument Configuration
+The CRM now maintains a contract multiplier registry for all instruments:
+
+Instrument Type	Contract Multiplier
+Forex (Standard Lot)	100,000
+Forex (Mini Lot)	10,000
+BTC/USD	1
+ETH/USD	1
+S&P 500 (ES)	50
+Gold (XAU/USD)	100
+Silver (XAG/USD)	5,000
+Oil (WTI)	1,000
+Trading Platform Action Required:
+
+Ensure your contract multipliers match these values
+When receiving position data, use the contractMultiplier field for calculations
+4. P&L Calculation Updates
+Unrealized P&L Formula (Updated)
+// Previous (incorrect):
+unrealizedPnl = (currentPrice - openPrice) × quantity
+// New (correct):
+grossPnl = (currentPrice - openPrice) × quantity × contractMultiplier
+unrealizedPnl = grossPnl - openFees  // Fees already paid are deducted
+Realized P&L Formula (Updated)
+// Previous (incorrect):
+realizedPnl = (closePrice - openPrice) × quantity
+// New (correct):
+grossPnl = (closePrice - openPrice) × quantity × contractMultiplier
+closeFees = (quantity × closePrice × contractMultiplier) × 0.0005  // 0.05% fee
+totalFees = openFees + closeFees
+realizedPnl = grossPnl - totalFees  // Net P&L after all fees
+Key Change:
+
+Contract multiplier is now applied to P&L calculations
+Fees are deducted from both unrealized and realized P&L
+Transaction records now include gross P&L, fees, and net P&L details
+5. Market Data Staleness Protection
+Live-Only Trading Gate
+The CRM now enforces a 5-second staleness threshold for market data:
+
+Order Placement:
+
+Orders are REJECTED if market data is older than 5 seconds
+Error message: "Cannot place order: Market data for [SYMBOL] is stale (age: Xms > 5000ms threshold)"
+P&L Updates:
+
+Position P&L updates are FROZEN when market data is stale
+No updates occur until fresh data arrives (prevents false P&L display)
+API Behavior:
+
+// When placing order:
+if (quoteAge > 5000ms) {
+  throw Error("Cannot place order: Market data is stale")
+}
+// When updating P&L:
+if (quoteAge > 5000ms) {
+  return position;  // Return unchanged, skip update
+}
+Trading Platform Implications:
+
+Your platform should also implement staleness checks
+If receiving orders from CRM via API, expect possible rejections during market data gaps
+Coordinate reconnection strategies when WebSocket disconnects
+6. Precision Enforcement
+Quantity and Price Rounding
+All quantities and prices are now rounded to instrument-specific precision:
+
+// Rounding helpers applied:
+quantity = roundToStep(quantity, instrumentConfig.qtyStep)
+price = roundToStep(price, instrumentConfig.tickSize)
+Example Precision Values:
+
+EUR/USD: tickSize = 0.00001 (5 decimals), qtyStep = 0.01
+BTC/USD: tickSize = 0.01 (2 decimals), qtyStep = 0.001
+S&P 500: tickSize = 0.25, qtyStep = 1
+Trading Platform Action:
+
+Expect rounded values from CRM
+Ensure your system uses same rounding logic to prevent mismatches
+7. Webhook Payload Changes
+Position Created Webhook
+New Fields Added:
+
+{
+  "event": "position.created",
+  "data": {
+    "id": "...",
+    "symbol": "EUR/USD",
+    "quantity": "1.00",
+    "contractMultiplier": "100000",  // NEW
+    "marginMode": "isolated",         // NEW
+    "marginUsed": "1000.00",         // NEW
+    "fees": "50.00",                 // Now includes open fees
+    "unrealizedPnl": "0.00"          // Now net of fees
+  }
+}
+Position Closed Webhook
+Enhanced Transaction Data:
+
+{
+  "event": "position.closed",
+  "data": {
+    "id": "...",
+    "realizedPnl": "150.00",  // Net P&L after fees
+    "reference": "Position EUR/USD closed (Gross: $175.00, Fees: $25.00)"  // NEW
+  }
+}
+8. Shared Database Synchronization
+Position Table Updates
+The trading platform should expect these fields in the shared positions table:
+
+SELECT 
+  id,
+  symbol,
+  quantity,
+  contractMultiplier,  -- NEW: Use for P&L calculations
+  marginMode,          -- NEW: isolated or cross
+  marginUsed,          -- NEW: Margin allocated
+  fees,                -- UPDATED: Tracks all fees paid
+  unrealizedPnl,       -- UPDATED: Net of fees
+  realizedPnl          -- UPDATED: Net of fees
+FROM positions;
+Critical: When calculating P&L on your side, always multiply by contractMultiplier:
+
+-- Trading platform P&L query should use:
+SELECT 
+  (current_price - open_price) * quantity * contract_multiplier AS gross_pnl,
+  gross_pnl - fees AS net_pnl
+FROM positions;
+9. Testing Scenarios
+Recommended Test Cases for Trading Platform Team:
+Test 1: Margin-Based Order (New Flow)
+POST /api/orders
+{
+  "symbol": "EUR/USD",
+  "margin": "1000",
+  "leverage": "100",
+  "type": "market",
+  "side": "buy"
+}
+Expected: CRM calculates quantity, stores position with contractMultiplier
+
+Test 2: Stale Market Data Rejection
+// If EUR/USD market data is >5 seconds old:
+POST /api/orders
+{
+  "symbol": "EUR/USD",
+  "quantity": "1.0",
+  "leverage": "100"
+}
+Expected: 400 Bad Request - "Market data is stale"
+
+Test 3: P&L with Contract Multiplier
+Open BTC/USD at $50,000
+Current price: $51,000
+Quantity: 0.5
+Contract Multiplier: 1
+Expected Gross P&L: ($51,000 - $50,000) × 0.5 × 1 = $500
+Expected Net P&L: $500 - fees
+10. Action Items for Trading Platform Team
+High Priority
+✅ Update P&L calculations to include contractMultiplier from positions table
+✅ Add support for margin field in order placement (optional but recommended)
+✅ Implement fee deduction in P&L displays (gross vs net)
+✅ Handle stale data rejections gracefully in order flow
+Medium Priority
+✅ Update webhook handlers to process new fields: contractMultiplier, marginMode, marginUsed
+✅ Coordinate staleness thresholds - both systems should use 5-second threshold
+✅ Test precision rounding - ensure quantities/prices match CRM rounding
+Low Priority
+✅ Update reporting dashboards to show gross P&L, fees, and net P&L separately
+✅ Document margin mode (isolated vs cross) for future implementation
+11. Backward Compatibility
+Still Supported
+Quantity-based orders: Legacy quantity field still works
+Existing positions: Old positions without contractMultiplier default to "1"
+All existing webhooks: No breaking changes to webhook structure, only additions
+Migration Path
+Trading platform can adopt changes incrementally:
+
+Phase 1: Update P&L calculations with contractMultiplier (critical)
+Phase 2: Add staleness protection (important)
+Phase 3: Support margin-based orders (enhancement)
+12. Contact & Support
+For technical questions about these changes:
+
+Review CRM integration docs: TRADING_PLATFORM_INTEGRATION.md
+Database schema: Check shared PostgreSQL positions table
+API documentation: /api/orders endpoint accepts both margin and quantity
+Summary: The CRM now properly handles leverage with contract multipliers, deducts fees from P&L, and protects against stale market data. The trading platform should update P&L calculations and handle new position fields to maintain synchronization.
