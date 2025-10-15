@@ -13,6 +13,7 @@ import { TradingChart } from "@/components/TradingChart";
 import { OrderTicket } from "@/components/OrderTicket";
 import { PositionsTable } from "@/components/PositionsTable";
 import { OrdersTable } from "@/components/OrdersTable";
+import { TradesTable } from "@/components/TradesTable";
 import { useWebSocketContext } from "@/contexts/WebSocketContext";
 import {
   LayoutDashboard,
@@ -234,13 +235,7 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
                         value="history"
                         className="flex-1 px-6 pb-6 mt-0"
                       >
-                        <div className="flex h-full items-center justify-center rounded-md border border-dashed">
-                          <div className="text-center">
-                            <p className="text-sm text-muted-foreground">
-                              Trade history will appear here
-                            </p>
-                          </div>
-                        </div>
+                        <TradesTable />
                       </TabsContent>
                     </Tabs>
                   </Card>

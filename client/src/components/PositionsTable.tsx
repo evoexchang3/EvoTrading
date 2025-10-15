@@ -63,34 +63,9 @@ export function PositionsTable({ positions }: PositionsTableProps) {
     queryKey: ["/api/trading/positions"],
   });
 
-  const mockPositions: Position[] = positions || fetchedPositions.length > 0 ? fetchedPositions : [
-    {
-      id: "1",
-      symbol: "EURUSD",
-      side: "buy",
-      volume: 0.10,
-      openPrice: 1.08432,
-      currentPrice: 1.08545,
-      takeProfit: 1.08750,
-      stopLoss: 1.08200,
-      profit: 113.00,
-      swap: -2.50,
-      commission: 0.00,
-    },
-    {
-      id: "2",
-      symbol: "BTCUSD",
-      side: "sell",
-      volume: 0.01,
-      openPrice: 43500.00,
-      currentPrice: 43250.50,
-      profit: 24.95,
-      swap: 0.00,
-      commission: 5.00,
-    },
-  ];
+  const displayPositions: Position[] = positions || fetchedPositions;
 
-  if (mockPositions.length === 0) {
+  if (displayPositions.length === 0) {
     return (
       <div className="flex h-48 items-center justify-center rounded-md border border-dashed">
         <div className="text-center">
@@ -116,7 +91,7 @@ export function PositionsTable({ positions }: PositionsTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {mockPositions.map((position) => (
+          {displayPositions.map((position) => (
             <TableRow key={position.id} data-testid={`position-row-${position.id}`}>
               <TableCell className="font-medium">{position.symbol}</TableCell>
               <TableCell>

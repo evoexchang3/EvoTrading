@@ -11,7 +11,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -34,6 +34,10 @@ export function OrdersTable({ orders }: OrdersTableProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  const { data: fetchedOrders = [] } = useQuery<Order[]>({
+    queryKey: ["/api/trading/orders"],
+  });
+
   const cancelOrderMutation = useMutation({
     mutationFn: async (orderId: string) => {
       return await apiRequest("DELETE", `/api/trading/order/${orderId}`, {});
@@ -54,20 +58,9 @@ export function OrdersTable({ orders }: OrdersTableProps) {
     },
   });
 
-  const mockOrders: Order[] = orders || [
-    {
-      id: "1",
-      symbol: "GBPUSD",
-      type: "limit",
-      side: "buy",
-      volume: 0.05,
-      price: 1.26000,
-      status: "pending",
-      createdAt: new Date().toISOString(),
-    },
-  ];
+  const displayOrders: Order[] = orders || fetchedOrders;
 
-  if (mockOrders.length === 0) {
+  if (displayOrders.length === 0) {
     return (
       <div className="flex h-48 items-center justify-center rounded-md border border-dashed">
         <div className="text-center">
@@ -93,7 +86,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {mockOrders.map((order) => (
+          {displayOrders.map((order) => (
             <TableRow key={order.id} data-testid={`order-row-${order.id}`}>
               <TableCell className="font-medium">{order.symbol}</TableCell>
               <TableCell>
