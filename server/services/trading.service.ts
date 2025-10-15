@@ -176,14 +176,17 @@ export class TradingService {
           type: orderData.type,
           side: orderData.side,
           quantity: quantity.toString(),
-          margin: orderData.margin?.toString(),
           price: currentPrice.toString(),
-          openPrice: currentPrice.toString(),
           takeProfit: orderData.takeProfit?.toString(),
           stopLoss: orderData.stopLoss?.toString(),
           status: 'filled',
+          filledQuantity: quantity.toString(),
+          avgFillPrice: currentPrice.toString(),
+          filledAt: new Date(),
           leverage: leverage.toString(),
           commission: openFee.toString(),
+          spread: symbol.spread,
+          fees: openFee.toString(),
         })
         .returning();
 
@@ -225,12 +228,12 @@ export class TradingService {
           type: orderData.type,
           side: orderData.side,
           quantity: quantity.toString(),
-          margin: orderData.margin?.toString(),
           price: orderData.price?.toString(),
           takeProfit: orderData.takeProfit?.toString(),
           stopLoss: orderData.stopLoss?.toString(),
           leverage: leverage.toString(),
           status: 'pending',
+          spread: symbol.spread,
         })
         .returning();
 
