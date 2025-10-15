@@ -105,10 +105,10 @@ export function OrdersTable({ orders }: OrdersTableProps) {
                 </Badge>
               </TableCell>
               <TableCell className="font-mono tabular-nums">
-                {order.volume.toFixed(2)}
+                {Number(order.volume).toFixed(2)}
               </TableCell>
               <TableCell className="font-mono tabular-nums">
-                {order.price?.toFixed(5) || "-"}
+                {order.price != null ? Number(order.price).toFixed(5) : "-"}
               </TableCell>
               <TableCell>
                 <StatusBadge status={order.status} />

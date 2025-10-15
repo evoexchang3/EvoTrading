@@ -76,9 +76,9 @@ export function TradesTable({ trades }: TradesTableProps) {
                   {trade.side.toUpperCase()}
                 </Badge>
               </TableCell>
-              <TableCell>{trade.volume.toFixed(2)}</TableCell>
-              <TableCell>{trade.openPrice.toFixed(5)}</TableCell>
-              <TableCell>{trade.closePrice.toFixed(5)}</TableCell>
+              <TableCell>{Number(trade.volume).toFixed(2)}</TableCell>
+              <TableCell>{Number(trade.openPrice).toFixed(5)}</TableCell>
+              <TableCell>{Number(trade.closePrice).toFixed(5)}</TableCell>
               <TableCell className="text-muted-foreground">
                 {format(new Date(trade.openedAt), "MMM dd, HH:mm")}
               </TableCell>
@@ -88,11 +88,11 @@ export function TradesTable({ trades }: TradesTableProps) {
               <TableCell className="text-right">
                 <span
                   className={
-                    trade.profit >= 0 ? "text-emerald-600" : "text-rose-600"
+                    Number(trade.profit) >= 0 ? "text-emerald-600" : "text-rose-600"
                   }
                   data-testid={`trade-profit-${trade.id}`}
                 >
-                  {trade.profit >= 0 ? "+" : ""}${trade.profit.toFixed(2)}
+                  {Number(trade.profit) >= 0 ? "+" : ""}${Number(trade.profit).toFixed(2)}
                 </span>
               </TableCell>
             </TableRow>
