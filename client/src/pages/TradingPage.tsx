@@ -14,6 +14,7 @@ import { OrderTicket } from "@/components/OrderTicket";
 import { PositionsTable } from "@/components/PositionsTable";
 import { OrdersTable } from "@/components/OrdersTable";
 import { TradesTable } from "@/components/TradesTable";
+import { AccountInfoBar } from "@/components/AccountInfoBar";
 import { useWebSocketContext } from "@/contexts/WebSocketContext";
 import {
   LayoutDashboard,
@@ -131,6 +132,9 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
           </Button>
         </div>
       </div>
+
+      {/* Account Info Bar */}
+      <AccountInfoBar />
 
       {/* Main Trading Layout */}
       <div className="flex-1 overflow-hidden">

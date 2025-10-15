@@ -11,7 +11,23 @@ export class TradingService {
       .where(eq(accounts.clientId, clientId))
       .limit(1);
 
-    return account;
+    if (!account) {
+      return null;
+    }
+
+    // Calculate total unrealized P/L from open positions
+    const pnlResult = await db.execute(sql`
+      SELECT COALESCE(SUM(COALESCE(unrealized_pnl, 0)), 0) as total_pnl
+      FROM positions 
+      WHERE account_id = ${account.id} AND status = 'open'
+    `);
+    
+    const totalPnl = pnlResult.rows[0]?.total_pnl || '0';
+
+    return {
+      ...account,
+      totalPnl,
+    };
   }
 
   static async getPositions(accountId: string) {
