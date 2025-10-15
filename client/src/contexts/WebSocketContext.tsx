@@ -7,8 +7,15 @@ interface WebSocketMessage {
   timestamp?: number;
 }
 
+interface PriceData {
+  bid: number;
+  ask: number;
+  timestamp: string; // ISO timestamp when price was received
+  [key: string]: any;
+}
+
 interface WebSocketContextValue {
-  prices: Record<string, any>;
+  prices: Record<string, PriceData>;
   isConnected: boolean;
   subscribe: (symbols: string[]) => void;
   unsubscribe: (symbols: string[]) => void;
@@ -18,7 +25,7 @@ const WebSocketContext = createContext<WebSocketContextValue | null>(null);
 
 export function WebSocketProvider({ children }: { children: ReactNode }) {
   const ws = useRef<WebSocket | null>(null);
-  const [prices, setPrices] = useState<Record<string, any>>({});
+  const [prices, setPrices] = useState<Record<string, PriceData>>({});
   const [isConnected, setIsConnected] = useState(false);
   const subscribedSymbols = useRef<Set<string>>(new Set());
 
@@ -37,9 +44,13 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
         const message: WebSocketMessage = JSON.parse(event.data);
 
         if (message.type === 'price' && message.symbol && message.data) {
+          // Attach timestamp when price is received
           setPrices(prev => ({
             ...prev,
-            [message.symbol!]: message.data,
+            [message.symbol!]: {
+              ...message.data,
+              timestamp: new Date().toISOString(), // Real timestamp when data arrived
+            },
           }));
         }
       } catch (error) {

@@ -45,7 +45,9 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
   });
 
   const { prices, subscribe } = useWebSocketContext();
-  const currentPrice = prices[selectedSymbol]?.bid || prices[selectedSymbol]?.ask || 0;
+  const priceData = prices[selectedSymbol];
+  const currentPrice = priceData?.bid || priceData?.ask || 0;
+  const priceTimestamp = priceData?.timestamp;
 
   useEffect(() => {
     subscribe([selectedSymbol]);
@@ -186,6 +188,7 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
                       <OrderTicket
                         symbol={selectedSymbol}
                         currentPrice={currentPrice}
+                        priceTimestamp={priceTimestamp}
                       />
                     </div>
                   </ResizablePanel>

@@ -346,7 +346,37 @@ export function registerRoutes(app: Express): Server {
       const orderData = placeOrderSchema.parse(req.body);
       const account = await TradingService.getAccount(req.clientId!);
       
-      const { price: currentPrice, timestamp: quoteTimestamp } = await MarketService.getCurrentPriceWithTimestamp(orderData.symbol);
+      // Use frontend-provided live WebSocket price if available and recent
+      let currentPrice: number;
+      let quoteTimestamp: Date;
+      let useFrontendPrice = false;
+      
+      if (orderData.currentPrice && orderData.priceTimestamp) {
+        // Frontend provided live price with timestamp - validate it
+        const frontendTimestamp = new Date(orderData.priceTimestamp);
+        const now = Date.now();
+        
+        // Validate timestamp and check staleness (4.5s margin to account for clock skew and processing)
+        const isValidTimestamp = !isNaN(frontendTimestamp.getTime());
+        const isNotFuture = frontendTimestamp.getTime() <= now;
+        const age = now - frontendTimestamp.getTime();
+        const isFresh = age < 4500; // 4.5s margin before TradingService 5s threshold
+        
+        if (isValidTimestamp && isNotFuture && isFresh) {
+          // Valid frontend price - use it
+          currentPrice = orderData.currentPrice;
+          quoteTimestamp = frontendTimestamp;
+          useFrontendPrice = true;
+        }
+      }
+      
+      if (!useFrontendPrice) {
+        // Fallback to REST API (invalid/stale frontend data or not provided)
+        const quote = await MarketService.getCurrentPriceWithTimestamp(orderData.symbol);
+        currentPrice = quote.price;
+        quoteTimestamp = quote.timestamp;
+      }
+      
       const result = await TradingService.placeOrder(account.id, orderData, currentPrice, quoteTimestamp);
 
       await AuditService.log({

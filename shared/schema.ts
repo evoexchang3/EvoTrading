@@ -361,6 +361,9 @@ export const placeOrderSchema = z.object({
   stopPrice: z.number().positive().optional(),
   takeProfit: z.number().positive().optional(),
   stopLoss: z.number().positive().optional(),
+  // Frontend-provided live WebSocket price (optional, fallback to REST API)
+  currentPrice: z.number().positive().optional(),
+  priceTimestamp: z.string().optional(), // ISO timestamp string
 }).refine(
   (data) => data.volume !== undefined || data.margin !== undefined,
   { message: "Either volume or margin must be provided" }

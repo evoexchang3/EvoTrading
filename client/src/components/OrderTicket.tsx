@@ -30,9 +30,10 @@ import { cn } from "@/lib/utils";
 type OrderTicketProps = {
   symbol: string;
   currentPrice?: number;
+  priceTimestamp?: string;
 };
 
-export function OrderTicket({ symbol, currentPrice = 1.08545 }: OrderTicketProps) {
+export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: OrderTicketProps) {
   const [side, setSide] = useState<"buy" | "sell">("buy");
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -77,6 +78,11 @@ export function OrderTicket({ symbol, currentPrice = 1.08545 }: OrderTicketProps
       const payload = {
         ...data,
         volume: parseFloat(data.volume.toString()),
+        // Include live WebSocket price and timestamp ONLY if available
+        ...(currentPrice && priceTimestamp ? {
+          currentPrice: currentPrice,
+          priceTimestamp: priceTimestamp,
+        } : {}),
       };
       return await apiRequest("POST", "/api/trading/order", payload);
     },
