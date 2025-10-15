@@ -292,8 +292,8 @@ export const insertSymbolSchema = createInsertSchema(symbols).omit({
 export const insertOrderSchema = createInsertSchema(orders).omit({
   id: true,
   createdAt: true,
-  updatedAt: true,
-  closedAt: true,
+  filledAt: true,
+  cancelledAt: true,
 });
 
 export const insertPositionSchema = createInsertSchema(positions).omit({
