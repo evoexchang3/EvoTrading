@@ -35,6 +35,7 @@ export class MarketService {
           ask: parseFloat(response.data.close) + 0.00002,
           change: parseFloat(response.data.change || 0),
           changePercent: parseFloat(response.data.percent_change || 0),
+          timestamp: new Date(response.data.datetime || Date.now()),
         };
       }
     } catch (error) {
@@ -48,6 +49,7 @@ export class MarketService {
       ask: 1.08545,
       change: 0.00012,
       changePercent: 0.11,
+      timestamp: new Date(),
     };
   }
 
@@ -127,5 +129,10 @@ export class MarketService {
   static async getCurrentPrice(symbol: string): Promise<number> {
     const quote = await this.getQuote(symbol);
     return quote.bid;
+  }
+
+  static async getCurrentPriceWithTimestamp(symbol: string): Promise<{ price: number; timestamp: Date }> {
+    const quote = await this.getQuote(symbol);
+    return { price: quote.bid, timestamp: quote.timestamp };
   }
 }

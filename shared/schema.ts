@@ -117,6 +117,8 @@ export const orders = pgTable("orders", {
   commission: decimal("commission", { precision: 18, scale: 2 }).default('0'),
   swap: decimal("swap", { precision: 18, scale: 2 }).default('0'),
   profit: decimal("profit", { precision: 18, scale: 2 }).default('0'),
+  leverage: decimal("leverage", { precision: 10, scale: 2 }).default('1'),
+  margin: decimal("margin", { precision: 18, scale: 2 }),
   expiresAt: timestamp("expires_at"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
@@ -139,6 +141,22 @@ export const positions = pgTable("positions", {
   swap: decimal("swap", { precision: 18, scale: 2 }).default('0'),
   profit: decimal("profit", { precision: 18, scale: 2 }).default('0'),
   marginRequired: decimal("margin_required", { precision: 18, scale: 2 }),
+  contractMultiplier: decimal("contract_multiplier", { precision: 18, scale: 2 }).default('1'),
+  marginMode: text("margin_mode").default('isolated'),
+  marginUsed: decimal("margin_used", { precision: 18, scale: 2 }).default('0'),
+  leverage: decimal("leverage", { precision: 10, scale: 2 }).default('1'),
+  spread: decimal("spread", { precision: 18, scale: 8 }).default('0'),
+  fees: decimal("fees", { precision: 18, scale: 2 }).default('0'),
+  unrealizedPnl: decimal("unrealized_pnl", { precision: 18, scale: 8 }).default('0'),
+  realizedPnl: decimal("realized_pnl", { precision: 18, scale: 8 }).default('0'),
+  quantity: decimal("quantity", { precision: 18, scale: 8 }).notNull(),
+  closePrice: decimal("close_price", { precision: 18, scale: 8 }),
+  status: text("status").default('open'),
+  openedAt: timestamp("opened_at").defaultNow(),
+  closedAt: timestamp("closed_at"),
+  subaccountId: varchar("subaccount_id"),
+  initiatorType: text("initiator_type").default('client'),
+  initiatorId: varchar("initiator_id"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -231,6 +249,20 @@ export const sessions = pgTable("sessions", {
   userAgent: text("user_agent"),
   expiresAt: timestamp("expires_at").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Users (CRM admin users)
+export const users = pgTable("users", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  password: text("password").notNull(),
+  name: text("name").notNull(),
+  roleId: varchar("role_id"),
+  teamId: varchar("team_id"),
+  isActive: boolean("is_active").notNull().default(true),
+  mustResetPassword: boolean("must_reset_password").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 // User Preferences
@@ -348,12 +380,16 @@ export const placeOrderSchema = z.object({
   symbol: z.string(),
   type: z.enum(['market', 'limit', 'stop', 'stop_limit']),
   side: z.enum(['buy', 'sell']),
-  volume: z.number().positive(),
+  volume: z.number().positive().optional(),
+  margin: z.number().positive().optional(),
   price: z.number().positive().optional(),
   stopPrice: z.number().positive().optional(),
   takeProfit: z.number().positive().optional(),
   stopLoss: z.number().positive().optional(),
-});
+}).refine(
+  (data) => data.volume !== undefined || data.margin !== undefined,
+  { message: "Either volume or margin must be provided" }
+);
 
 export const modifyOrderSchema = z.object({
   takeProfit: z.number().positive().optional(),

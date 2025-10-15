@@ -1,7 +1,7 @@
 import axios from 'axios';
 import crypto from 'crypto';
 import { db } from './db';
-import { ssoTokens, clients } from '@shared/schema';
+import { ssoTokens, clients, users } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import type { Express } from 'express';
 
@@ -37,7 +37,7 @@ export function setupCRMIntegration(app: Express) {
 
       await db.insert(ssoTokens).values({
         token,
-        userId,
+        clientId: userId,
         adminId,
         reason,
         ipAddress: req.ip,
@@ -84,8 +84,8 @@ export function setupCRMIntegration(app: Express) {
 
       // Generate access token
       const { AuthService } = await import('./services/auth.service');
-      const accessToken = AuthService.generateAccessToken(ssoToken.userId);
-      const refreshToken = AuthService.generateRefreshToken(ssoToken.userId);
+      const accessToken = AuthService.generateAccessToken(ssoToken.clientId);
+      const refreshToken = AuthService.generateRefreshToken(ssoToken.clientId);
 
       // Redirect to dashboard with tokens
       res.redirect(`/dashboard?accessToken=${accessToken}&refreshToken=${refreshToken}`);

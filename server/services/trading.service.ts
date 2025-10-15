@@ -31,6 +31,8 @@ export class TradingService {
         swap,
         COALESCE(profit, unrealized_pnl) as profit,
         margin_required as "marginRequired",
+        COALESCE(contract_multiplier, 1) as "contractMultiplier",
+        COALESCE(fees, 0) as fees,
         COALESCE(created_at, opened_at) as "createdAt"
       FROM positions
       WHERE account_id = ${accountId}
@@ -56,7 +58,7 @@ export class TradingService {
       .orderBy(trades.closedAt);
   }
 
-  static async placeOrder(accountId: string, orderData: PlaceOrderRequest, currentPrice: number) {
+  static async placeOrder(accountId: string, orderData: PlaceOrderRequest, currentPrice: number, quoteTimestamp?: Date) {
     const account = await db
       .select()
       .from(accounts)
@@ -78,10 +80,34 @@ export class TradingService {
       throw new Error('Symbol not found');
     }
 
-    // Calculate margin required
+    // Check market data staleness (5 second threshold)
+    if (quoteTimestamp) {
+      const quoteAge = Date.now() - quoteTimestamp.getTime();
+      if (quoteAge > 5000) {
+        throw new Error(`Cannot place order: Market data for ${orderData.symbol} is stale (age: ${quoteAge}ms > 5000ms threshold)`);
+      }
+    }
+
+    // Calculate volume and margin
     const contractSize = parseFloat(symbol.contractSize || '100000');
+    const contractMultiplier = contractSize;
     const leverage = account.leverage || 1;
-    const marginRequired = (orderData.volume * contractSize * currentPrice) / leverage;
+    
+    let volume: number;
+    let marginRequired: number;
+    
+    if (orderData.margin) {
+      // Margin-based order: Calculate volume from margin
+      const positionSize = orderData.margin * leverage;
+      volume = positionSize / (currentPrice * contractMultiplier);
+      marginRequired = orderData.margin;
+    } else if (orderData.volume) {
+      // Volume-based order: Calculate margin from volume
+      volume = orderData.volume;
+      marginRequired = (volume * contractSize * currentPrice) / leverage;
+    } else {
+      throw new Error('Either volume or margin must be provided');
+    }
 
     const freeMargin = parseFloat(account.freeMargin || account.balance || '0');
     if (marginRequired > freeMargin) {
@@ -90,6 +116,10 @@ export class TradingService {
 
     // For market orders, create position immediately
     if (orderData.type === 'market') {
+      // Calculate 0.05% opening fee
+      const positionValue = volume * currentPrice * contractMultiplier;
+      const openFee = positionValue * 0.0005; // 0.05% fee
+      
       const [order] = await db
         .insert(orders)
         .values({
@@ -97,13 +127,15 @@ export class TradingService {
           symbol: orderData.symbol,
           type: orderData.type,
           side: orderData.side,
-          volume: orderData.volume.toString(),
+          volume: volume.toString(),
+          margin: orderData.margin?.toString(),
           price: currentPrice.toString(),
           openPrice: currentPrice.toString(),
           takeProfit: orderData.takeProfit?.toString(),
           stopLoss: orderData.stopLoss?.toString(),
           status: 'filled',
-          commission: (orderData.volume * parseFloat(symbol.commission || '0')).toString(),
+          leverage: leverage.toString(),
+          commission: openFee.toString(),
         })
         .returning();
 
@@ -114,14 +146,21 @@ export class TradingService {
           orderId: order.id,
           symbol: orderData.symbol,
           side: orderData.side,
-          volume: orderData.volume.toString(),
+          volume: volume.toString(),
+          quantity: volume.toString(),
           openPrice: currentPrice.toString(),
           currentPrice: currentPrice.toString(),
           takeProfit: orderData.takeProfit?.toString(),
           stopLoss: orderData.stopLoss?.toString(),
           commission: order.commission,
+          fees: openFee.toString(),
           marginRequired: marginRequired.toString(),
-          profit: '0',
+          contractMultiplier: contractMultiplier.toString(),
+          marginMode: 'isolated',
+          marginUsed: marginRequired.toString(),
+          leverage: leverage.toString(),
+          profit: (-openFee).toString(),
+          unrealizedPnl: (-openFee).toString(),
         })
         .returning();
 
@@ -164,21 +203,31 @@ export class TradingService {
 
     const currentPrice = parseFloat(position.currentPrice || position.openPrice);
     const openPrice = parseFloat(position.openPrice);
-    const volume = parseFloat(position.volume);
+    const volume = parseFloat(position.volume || position.quantity);
 
-    // Calculate profit
+    // Calculate profit with contract multiplier
     const [symbol] = await db
       .select()
       .from(symbols)
       .where(eq(symbols.symbol, position.symbol))
       .limit(1);
 
-    const contractSize = parseFloat(symbol?.contractSize || '100000');
+    const contractMultiplier = parseFloat(position.contractMultiplier || symbol?.contractSize || '100000');
     const priceDiff = position.side === 'buy' 
       ? currentPrice - openPrice 
       : openPrice - currentPrice;
-    const profit = priceDiff * volume * contractSize;
-    const totalProfit = profit - parseFloat(position.commission || '0') - parseFloat(position.swap || '0');
+    
+    // Gross P&L with contract multiplier
+    const grossProfit = priceDiff * volume * contractMultiplier;
+    
+    // Calculate closing fee (0.05%)
+    const closePositionValue = volume * currentPrice * contractMultiplier;
+    const closeFee = closePositionValue * 0.0005; // 0.05% fee
+    
+    // Net P&L after all fees
+    const openFees = parseFloat(position.fees || position.commission || '0');
+    const totalFees = openFees + closeFee + parseFloat(position.swap || '0');
+    const totalProfit = grossProfit - totalFees;
 
     // Create trade record
     await db.insert(trades).values({
@@ -192,7 +241,7 @@ export class TradingService {
       closePrice: currentPrice.toString(),
       takeProfit: position.takeProfit,
       stopLoss: position.stopLoss,
-      commission: position.commission,
+      commission: totalFees.toString(),
       swap: position.swap,
       profit: totalProfit.toString(),
       closedBy: 'manual',
@@ -231,7 +280,7 @@ export class TradingService {
 
     for (const position of openPositions) {
       const openPrice = parseFloat(position.openPrice);
-      const volume = parseFloat(position.volume);
+      const volume = parseFloat(position.volume || position.quantity);
 
       const [symbolData] = await db
         .select()
@@ -239,18 +288,24 @@ export class TradingService {
         .where(eq(symbols.symbol, symbol))
         .limit(1);
 
-      const contractSize = parseFloat(symbolData?.contractSize || '100000');
+      const contractMultiplier = parseFloat(position.contractMultiplier || symbolData?.contractSize || '100000');
       const priceDiff = position.side === 'buy'
         ? currentPrice - openPrice
         : openPrice - currentPrice;
-      const profit = priceDiff * volume * contractSize;
-      const totalProfit = profit - parseFloat(position.commission || '0') - parseFloat(position.swap || '0');
+      
+      // Gross P&L with contract multiplier
+      const grossProfit = priceDiff * volume * contractMultiplier;
+      
+      // Net P&L after fees
+      const totalFees = parseFloat(position.fees || position.commission || '0') + parseFloat(position.swap || '0');
+      const unrealizedPnl = grossProfit - totalFees;
 
       await db
         .update(positions)
         .set({
           currentPrice: currentPrice.toString(),
-          profit: totalProfit.toString(),
+          profit: unrealizedPnl.toString(),
+          unrealizedPnl: unrealizedPnl.toString(),
         })
         .where(eq(positions.id, position.id));
 

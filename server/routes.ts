@@ -346,8 +346,8 @@ export function registerRoutes(app: Express): Server {
       const orderData = placeOrderSchema.parse(req.body);
       const account = await TradingService.getAccount(req.clientId!);
       
-      const currentPrice = await MarketService.getCurrentPrice(orderData.symbol);
-      const result = await TradingService.placeOrder(account.id, orderData, currentPrice);
+      const { price: currentPrice, timestamp: quoteTimestamp } = await MarketService.getCurrentPriceWithTimestamp(orderData.symbol);
+      const result = await TradingService.placeOrder(account.id, orderData, currentPrice, quoteTimestamp);
 
       await AuditService.log({
         userId: req.userId,
