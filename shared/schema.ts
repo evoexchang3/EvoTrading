@@ -107,7 +107,6 @@ export const orders = pgTable("orders", {
   side: orderSideEnum("side").notNull(),
   quantity: decimal("quantity", { precision: 10, scale: 2 }).notNull(),
   price: decimal("price", { precision: 18, scale: 8 }),
-  stopPrice: decimal("stop_price", { precision: 18, scale: 8 }),
   takeProfit: decimal("take_profit", { precision: 18, scale: 8 }),
   stopLoss: decimal("stop_loss", { precision: 18, scale: 8 }),
   filledQuantity: decimal("filled_quantity", { precision: 10, scale: 2 }).default('0'),
