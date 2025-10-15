@@ -42,13 +42,25 @@ export class TradingService {
   }
 
   static async getOrders(accountId: string) {
-    return await db
-      .select()
-      .from(orders)
-      .where(and(
-        eq(orders.accountId, accountId),
-        eq(orders.status, 'pending')
-      ));
+    // Use raw SQL to match actual database schema (quantity not volume)
+    const result = await db.execute(sql`
+      SELECT 
+        id,
+        account_id as "accountId",
+        symbol,
+        type,
+        side,
+        quantity as volume,
+        price,
+        stop_loss as "stopLoss",
+        take_profit as "takeProfit",
+        status,
+        created_at as "createdAt"
+      FROM orders
+      WHERE account_id = ${accountId} AND status = 'pending'
+      ORDER BY created_at DESC
+    `);
+    return result.rows;
   }
 
   static async getTrades(accountId: string) {
