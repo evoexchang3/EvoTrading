@@ -136,25 +136,25 @@ export class TradingService {
       }
     }
 
-    // Calculate volume and margin
+    // Calculate quantity and margin
     const contractSize = parseFloat(symbol.contractSize || '100000');
     const contractMultiplier = contractSize;
     const leverage = account.leverage || 1;
     
-    let volume: number;
+    let quantity: number;
     let marginRequired: number;
     
     if (orderData.margin) {
-      // Margin-based order: Calculate volume from margin
+      // Margin-based order: Calculate quantity from margin
       const positionSize = orderData.margin * leverage;
-      volume = positionSize / (currentPrice * contractMultiplier);
+      quantity = positionSize / (currentPrice * contractMultiplier);
       marginRequired = orderData.margin;
-    } else if (orderData.volume) {
-      // Volume-based order: Calculate margin from volume
-      volume = orderData.volume;
-      marginRequired = (volume * contractSize * currentPrice) / leverage;
+    } else if (orderData.quantity) {
+      // Quantity-based order: Calculate margin from quantity
+      quantity = orderData.quantity;
+      marginRequired = (quantity * contractSize * currentPrice) / leverage;
     } else {
-      throw new Error('Either volume or margin must be provided');
+      throw new Error('Either quantity or margin must be provided');
     }
 
     const freeMargin = parseFloat(account.freeMargin || account.balance || '0');
@@ -165,7 +165,7 @@ export class TradingService {
     // For market orders, create position immediately
     if (orderData.type === 'market') {
       // Calculate 0.05% opening fee
-      const positionValue = volume * currentPrice * contractMultiplier;
+      const positionValue = quantity * currentPrice * contractMultiplier;
       const openFee = positionValue * 0.0005; // 0.05% fee
       
       const [order] = await db
@@ -175,7 +175,7 @@ export class TradingService {
           symbol: orderData.symbol,
           type: orderData.type,
           side: orderData.side,
-          volume: volume.toString(),
+          quantity: quantity.toString(),
           margin: orderData.margin?.toString(),
           price: currentPrice.toString(),
           openPrice: currentPrice.toString(),
@@ -194,8 +194,7 @@ export class TradingService {
           orderId: order.id,
           symbol: orderData.symbol,
           side: orderData.side,
-          volume: volume.toString(),
-          quantity: volume.toString(),
+          quantity: quantity.toString(),
           openPrice: currentPrice.toString(),
           currentPrice: currentPrice.toString(),
           takeProfit: orderData.takeProfit?.toString(),
@@ -225,7 +224,7 @@ export class TradingService {
           symbol: orderData.symbol,
           type: orderData.type,
           side: orderData.side,
-          volume: volume.toString(),
+          quantity: quantity.toString(),
           margin: orderData.margin?.toString(),
           price: orderData.price?.toString(),
           stopPrice: orderData.stopPrice?.toString(),
