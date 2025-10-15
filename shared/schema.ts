@@ -357,7 +357,6 @@ export const placeOrderSchema = z.object({
   quantity: z.number().positive().optional(),
   margin: z.number().positive().optional(),
   price: z.number().positive().optional(),
-  stopPrice: z.number().positive().optional(),
   takeProfit: z.number().positive().optional(),
   stopLoss: z.number().positive().optional(),
   // Frontend-provided live WebSocket price (optional, fallback to REST API)
