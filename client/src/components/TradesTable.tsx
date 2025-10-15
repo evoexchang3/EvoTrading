@@ -33,35 +33,8 @@ export function TradesTable({ trades }: TradesTableProps) {
     queryKey: ["/api/trading/trades"],
   });
 
-  // Calculate profit if database has 0
-  const displayTrades: Trade[] = (trades || fetchedTrades).map(trade => {
-    const storedProfit = Number(trade.profit) || 0;
-    
-    // If profit is 0 but we have open and close prices, calculate it
-    if (storedProfit === 0 && trade.openPrice && trade.closePrice && Number(trade.closePrice) > 0) {
-      const volume = Number(trade.volume);
-      const openPrice = Number(trade.openPrice);
-      const closePrice = Number(trade.closePrice);
-      
-      // P&L calculation: (price difference * volume * pip value)
-      // For forex standard lot (100,000 units), each pip is worth $10
-      // For mini lot (10,000), each pip is worth $1
-      // We'll assume volume is in lots and use pip value calculation
-      const priceDifference = trade.side === 'buy' 
-        ? (closePrice - openPrice) 
-        : (openPrice - closePrice);
-      
-      // Calculate profit: price difference * volume * contract size
-      const calculatedProfit = priceDifference * volume * 10000;
-      
-      return {
-        ...trade,
-        profit: calculatedProfit
-      };
-    }
-    
-    return trade;
-  });
+  // Use CRM-calculated profit directly (Option 1 from CRM recommendations)
+  const displayTrades: Trade[] = trades || fetchedTrades;
 
   if (displayTrades.length === 0) {
     return (

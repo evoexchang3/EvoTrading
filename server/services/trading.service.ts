@@ -65,6 +65,7 @@ export class TradingService {
 
   static async getTrades(accountId: string) {
     // Query closed positions from positions table (CRM stores closed positions here, not in separate trades table)
+    // Use CRM-calculated realized_pnl (Option 1 from CRM recommendations)
     const result = await db.execute(sql`
       SELECT 
         id,
@@ -78,7 +79,8 @@ export class TradingService {
         stop_loss as "stopLoss",
         commission,
         swap,
-        COALESCE(profit, realized_pnl, unrealized_pnl) as profit,
+        COALESCE(realized_pnl, profit, unrealized_pnl) as profit,
+        COALESCE(fees, 0) as fees,
         opened_at as "openedAt",
         closed_at as "closedAt"
       FROM positions
