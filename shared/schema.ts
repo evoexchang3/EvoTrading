@@ -105,12 +105,12 @@ export const orders = pgTable("orders", {
   symbol: text("symbol").notNull(),
   type: orderTypeEnum("type").notNull(),
   side: orderSideEnum("side").notNull(),
-  volume: decimal("volume", { precision: 10, scale: 2 }).notNull(),
+  quantity: decimal("quantity", { precision: 10, scale: 2 }).notNull(),
   price: decimal("price", { precision: 18, scale: 8 }),
   stopPrice: decimal("stop_price", { precision: 18, scale: 8 }),
   takeProfit: decimal("take_profit", { precision: 18, scale: 8 }),
   stopLoss: decimal("stop_loss", { precision: 18, scale: 8 }),
-  filledVolume: decimal("filled_volume", { precision: 10, scale: 2 }).default('0'),
+  filledQuantity: decimal("filled_quantity", { precision: 10, scale: 2 }).default('0'),
   status: orderStatusEnum("status").default('pending'),
   openPrice: decimal("open_price", { precision: 18, scale: 8 }),
   closePrice: decimal("close_price", { precision: 18, scale: 8 }),
@@ -355,7 +355,7 @@ export const placeOrderSchema = z.object({
   symbol: z.string(),
   type: z.enum(['market', 'limit', 'stop', 'stop_limit']),
   side: z.enum(['buy', 'sell']),
-  volume: z.number().positive().optional(),
+  quantity: z.number().positive().optional(),
   margin: z.number().positive().optional(),
   price: z.number().positive().optional(),
   stopPrice: z.number().positive().optional(),
@@ -365,8 +365,8 @@ export const placeOrderSchema = z.object({
   currentPrice: z.number().positive().optional(),
   priceTimestamp: z.string().optional(), // ISO timestamp string
 }).refine(
-  (data) => data.volume !== undefined || data.margin !== undefined,
-  { message: "Either volume or margin must be provided" }
+  (data) => data.quantity !== undefined || data.margin !== undefined,
+  { message: "Either quantity or margin must be provided" }
 );
 
 export const modifyOrderSchema = z.object({
