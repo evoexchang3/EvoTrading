@@ -219,14 +219,14 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
 
                       <TabsContent
                         value="positions"
-                        className="flex-1 px-6 pb-6 mt-0"
+                        className="flex-1 px-6 pb-6 mt-0 overflow-auto"
                       >
                         <PositionsTable />
                       </TabsContent>
 
                       <TabsContent
                         value="orders"
-                        className="flex-1 px-6 pb-6 mt-0"
+                        className="flex-1 px-6 pb-6 mt-0 overflow-auto"
                       >
                         <OrdersTable />
                       </TabsContent>
