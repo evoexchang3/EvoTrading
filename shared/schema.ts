@@ -21,6 +21,17 @@ export const transactionTypeEnum = pgEnum('transaction_type', ['deposit', 'withd
 export const transactionStatusEnum = pgEnum('transaction_status', ['pending', 'approved', 'rejected', 'processing', 'completed']);
 export const kycStatusEnum = pgEnum('kyc_status', ['pending', 'approved', 'rejected', 'under_review']);
 export const clientStatusEnum = pgEnum('client_status', ['new', 'active', 'inactive', 'suspended']);
+export const auditActionEnum = pgEnum('audit_action', [
+  'login', 'logout',
+  'client_create', 'client_edit', 'client_delete',
+  'trade_create', 'trade_edit', 'trade_close', 'trade_delete',
+  'balance_adjust',
+  'role_create', 'role_edit', 'role_delete',
+  'permission_change',
+  'import', 'export',
+  'impersonation',
+  'api_key_create', 'api_key_revoke', 'api_key_use'
+]);
 
 // Clients table (CRM structure)
 export const clients = pgTable("clients", {
@@ -200,7 +211,7 @@ export const kycDocuments = pgTable("kyc_documents", {
 export const auditLogs = pgTable("audit_logs", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   userId: varchar("user_id"), // Maps to CRM's user_id column (can be client or user id)
-  action: text("action").notNull(),
+  action: auditActionEnum("action").notNull(),
   targetType: text("target_type"), // Maps to CRM's target_type column
   targetId: varchar("target_id"), // Maps to CRM's target_id column
   details: jsonb("details"),
