@@ -177,11 +177,13 @@ export class TradingService {
           symbol: orderData.symbol,
           type: orderData.type,
           side: orderData.side,
-          volume: orderData.volume.toString(),
+          volume: volume.toString(),
+          margin: orderData.margin?.toString(),
           price: orderData.price?.toString(),
           stopPrice: orderData.stopPrice?.toString(),
           takeProfit: orderData.takeProfit?.toString(),
           stopLoss: orderData.stopLoss?.toString(),
+          leverage: leverage.toString(),
           status: 'pending',
         })
         .returning();

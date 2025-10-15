@@ -7,7 +7,7 @@ import type { Express } from 'express';
 
 const CRM_BASE_URL = process.env.CRM_BASE_URL;
 const CRM_SERVICE_TOKEN = process.env.CRM_SERVICE_TOKEN;
-const WEBHOOK_SECRET = process.env.SITE_WEBHOOK_SECRET || 'default-webhook-secret';
+const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || process.env.SITE_WEBHOOK_SECRET || 'default-webhook-secret';
 
 // SSO Impersonation endpoint
 export function setupCRMIntegration(app: Express) {
