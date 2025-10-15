@@ -25,7 +25,7 @@ export function registerRoutes(app: Express): Server {
 
       await AuditService.log({
         clientId: client.id,
-        action: "register",
+        action: "client_create",
         entity: "client",
         entityId: client.id,
         ipAddress: req.ip,
@@ -381,7 +381,7 @@ export function registerRoutes(app: Express): Server {
 
       await AuditService.log({
         userId: req.userId,
-        action: "place_order",
+        action: "trade_create",
         entity: "order",
         entityId: result.order.id,
         details: orderData,
@@ -402,7 +402,7 @@ export function registerRoutes(app: Express): Server {
 
       await AuditService.log({
         userId: req.userId,
-        action: "close_position",
+        action: "trade_close",
         entity: "position",
         entityId: positionId,
         details: result,
@@ -472,16 +472,6 @@ export function registerRoutes(app: Express): Server {
         status: 'pending',
       }).returning();
 
-      await AuditService.log({
-        userId: req.userId,
-        action: "request_deposit",
-        entity: "transaction",
-        entityId: transaction.id,
-        details: data,
-        ipAddress: req.ip,
-        userAgent: req.headers['user-agent'],
-      });
-
       res.json(transaction);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
@@ -506,16 +496,6 @@ export function registerRoutes(app: Express): Server {
         status: 'pending',
       }).returning();
 
-      await AuditService.log({
-        userId: req.userId,
-        action: "request_withdrawal",
-        entity: "transaction",
-        entityId: transaction.id,
-        details: data,
-        ipAddress: req.ip,
-        userAgent: req.headers['user-agent'],
-      });
-
       res.json(transaction);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
@@ -533,16 +513,6 @@ export function registerRoutes(app: Express): Server {
         fileName,
         status: 'pending',
       }).returning();
-
-      await AuditService.log({
-        userId: req.userId,
-        action: "upload_kyc",
-        entity: "kyc_document",
-        entityId: document.id,
-        details: { documentType, fileName },
-        ipAddress: req.ip,
-        userAgent: req.headers['user-agent'],
-      });
 
       res.json(document);
     } catch (error: any) {
