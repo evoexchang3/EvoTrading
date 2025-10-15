@@ -56,28 +56,28 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
       symbol,
       type: "market",
       side,
-      volume: 0.01,
+      quantity: 0.01,
       // Don't set price for market orders (undefined passes validation)
     },
   });
 
-  const volume = form.watch("volume");
+  const quantity = form.watch("quantity");
 
   const marginRequired = useMemo(() => {
-    if (!symbolData || !account || !volume) return 0;
+    if (!symbolData || !account || !quantity) return 0;
     
     const contractSize = parseFloat(symbolData.contractSize || "100000");
     const leverage = account.leverage || 100;
     const price = currentPrice || 1;
     
-    return (volume * contractSize * price) / leverage;
-  }, [symbolData, account, volume, currentPrice]);
+    return (quantity * contractSize * price) / leverage;
+  }, [symbolData, account, quantity, currentPrice]);
 
   const orderMutation = useMutation({
     mutationFn: async (data: PlaceOrderRequest) => {
       const payload = {
         ...data,
-        volume: parseFloat((data.volume || 0.01).toString()),
+        quantity: parseFloat((data.quantity || 0.01).toString()),
         // Include live WebSocket price and timestamp ONLY if available
         ...(currentPrice && priceTimestamp ? {
           currentPrice: currentPrice,
@@ -108,10 +108,10 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
     orderMutation.mutate({ ...data, side });
   };
 
-  const adjustVolume = (delta: number) => {
-    const currentVolume = form.getValues("volume") || 0.01;
-    const newVolume = Math.max(0.01, currentVolume + delta);
-    form.setValue("volume", parseFloat(newVolume.toFixed(2)));
+  const adjustQuantity = (delta: number) => {
+    const currentQuantity = form.getValues("quantity") || 0.01;
+    const newQuantity = Math.max(0.01, currentQuantity + delta);
+    form.setValue("quantity", parseFloat(newQuantity.toFixed(2)));
   };
 
   return (
@@ -165,7 +165,7 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
 
             <FormField
               control={form.control}
-              name="volume"
+              name="quantity"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-xs uppercase tracking-wide text-muted-foreground">
@@ -176,7 +176,7 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
                       type="button"
                       size="icon"
                       variant="outline"
-                      onClick={() => adjustVolume(-0.01)}
+                      onClick={() => adjustQuantity(-0.01)}
                       disabled={orderMutation.isPending}
                       data-testid="button-decrease-volume"
                       className="h-10 w-10"
@@ -199,7 +199,7 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
                       type="button"
                       size="icon"
                       variant="outline"
-                      onClick={() => adjustVolume(0.01)}
+                      onClick={() => adjustQuantity(0.01)}
                       disabled={orderMutation.isPending}
                       data-testid="button-increase-volume"
                       className="h-10 w-10"
