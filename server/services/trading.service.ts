@@ -1,5 +1,5 @@
 import { db } from '../db';
-import { accounts, orders, positions, trades, symbols } from '@shared/schema';
+import { accounts, orders, positions, symbols } from '@shared/schema';
 import { eq, and, sql } from 'drizzle-orm';
 import type { PlaceOrderRequest } from '@shared/schema';
 
@@ -16,6 +16,7 @@ export class TradingService {
 
   static async getPositions(accountId: string) {
     // Use raw SQL to avoid schema mismatch issues
+    // Only return open positions (status='open')
     const result = await db.execute(sql`
       SELECT 
         id,
@@ -35,7 +36,7 @@ export class TradingService {
         COALESCE(fees, 0) as fees,
         COALESCE(created_at, opened_at) as "createdAt"
       FROM positions
-      WHERE account_id = ${accountId}
+      WHERE account_id = ${accountId} AND status = 'open'
     `);
     return result.rows;
   }
@@ -51,11 +52,28 @@ export class TradingService {
   }
 
   static async getTrades(accountId: string) {
-    return await db
-      .select()
-      .from(trades)
-      .where(eq(trades.accountId, accountId))
-      .orderBy(trades.closedAt);
+    // Query closed positions from positions table (CRM stores closed positions here, not in separate trades table)
+    const result = await db.execute(sql`
+      SELECT 
+        id,
+        account_id as "accountId",
+        symbol,
+        side,
+        COALESCE(volume, quantity) as volume,
+        open_price as "openPrice",
+        close_price as "closePrice",
+        take_profit as "takeProfit",
+        stop_loss as "stopLoss",
+        commission,
+        swap,
+        COALESCE(profit, realized_pnl, unrealized_pnl) as profit,
+        opened_at as "openedAt",
+        closed_at as "closedAt"
+      FROM positions
+      WHERE account_id = ${accountId} AND status = 'closed'
+      ORDER BY closed_at DESC
+    `);
+    return result.rows;
   }
 
   static async placeOrder(accountId: string, orderData: PlaceOrderRequest, currentPrice: number, quoteTimestamp?: Date) {
@@ -231,26 +249,6 @@ export class TradingService {
     const totalFees = openFees + closeFee + parseFloat(position.swap || '0');
     const totalProfit = grossProfit - totalFees;
 
-    // Create trade record
-    await db.insert(trades).values({
-      accountId: position.accountId,
-      positionId: position.id,
-      orderId: position.orderId,
-      symbol: position.symbol,
-      side: position.side,
-      volume: position.volume,
-      openPrice: position.openPrice,
-      closePrice: currentPrice.toString(),
-      takeProfit: position.takeProfit,
-      stopLoss: position.stopLoss,
-      commission: totalFees.toString(),
-      swap: position.swap,
-      profit: totalProfit.toString(),
-      closedBy: 'manual',
-      openedAt: position.createdAt,
-      closedAt: new Date(),
-    });
-
     // Update account balance
     const [account] = await db
       .select()
@@ -265,8 +263,18 @@ export class TradingService {
       })
       .where(eq(accounts.id, position.accountId));
 
-    // Delete position
-    await db.delete(positions).where(eq(positions.id, positionId));
+    // Update position to closed status (CRM stores closed positions in positions table)
+    await db
+      .update(positions)
+      .set({
+        status: 'closed',
+        closePrice: currentPrice.toString(),
+        profit: totalProfit.toString(),
+        realizedPnl: totalProfit.toString(),
+        commission: totalFees.toString(),
+        closedAt: new Date(),
+      })
+      .where(eq(positions.id, positionId));
 
     // Update account margin
     await this.updateAccountMargin(position.accountId);
@@ -275,10 +283,14 @@ export class TradingService {
   }
 
   static async updatePositionPrices(symbol: string, currentPrice: number) {
+    // Only update open positions (not closed positions)
     const openPositions = await db
       .select()
       .from(positions)
-      .where(eq(positions.symbol, symbol));
+      .where(and(
+        eq(positions.symbol, symbol),
+        eq(positions.status, 'open')
+      ));
 
     for (const position of openPositions) {
       const openPrice = parseFloat(position.openPrice);
@@ -331,10 +343,14 @@ export class TradingService {
       .where(eq(accounts.id, accountId))
       .limit(1);
 
+    // Only process open positions for margin calculation
     const openPositions = await db
       .select()
       .from(positions)
-      .where(eq(positions.accountId, accountId));
+      .where(and(
+        eq(positions.accountId, accountId),
+        eq(positions.status, 'open')
+      ));
 
     let usedMargin = 0;
     let totalProfit = 0;
@@ -353,7 +369,7 @@ export class TradingService {
       .update(accounts)
       .set({
         equity: equity.toString(),
-        usedMargin: usedMargin.toString(),
+        margin: usedMargin.toString(),
         freeMargin: freeMargin.toString(),
         marginLevel: marginLevel.toString(),
       })

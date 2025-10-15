@@ -161,26 +161,8 @@ export const positions = pgTable("positions", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// Trade history
-export const trades = pgTable("trades", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  accountId: varchar("account_id").references(() => accounts.id).notNull(),
-  positionId: varchar("position_id").references(() => positions.id),
-  orderId: varchar("order_id").references(() => orders.id),
-  symbol: text("symbol").notNull(),
-  side: orderSideEnum("side").notNull(),
-  volume: decimal("volume", { precision: 10, scale: 2 }).notNull(),
-  openPrice: decimal("open_price", { precision: 18, scale: 8 }).notNull(),
-  closePrice: decimal("close_price", { precision: 18, scale: 8 }),
-  takeProfit: decimal("take_profit", { precision: 18, scale: 8 }),
-  stopLoss: decimal("stop_loss", { precision: 18, scale: 8 }),
-  commission: decimal("commission", { precision: 18, scale: 2 }).default('0'),
-  swap: decimal("swap", { precision: 18, scale: 2 }).default('0'),
-  profit: decimal("profit", { precision: 18, scale: 2 }).default('0'),
-  closedBy: text("closed_by"), // manual, tp, sl, margin_call
-  openedAt: timestamp("opened_at").notNull(),
-  closedAt: timestamp("closed_at"),
-});
+// Note: CRM database stores both open and closed positions in the positions table
+// using a 'status' field. No separate trades table is used.
 
 // Deposits & Withdrawals
 export const transactions = pgTable("transactions", {
@@ -308,10 +290,6 @@ export const insertPositionSchema = createInsertSchema(positions).omit({
   updatedAt: true,
 });
 
-export const insertTradeSchema = createInsertSchema(trades).omit({
-  id: true,
-});
-
 export const insertTransactionSchema = createInsertSchema(transactions).omit({
   id: true,
   createdAt: true,
@@ -345,9 +323,6 @@ export type InsertOrder = z.infer<typeof insertOrderSchema>;
 
 export type Position = typeof positions.$inferSelect;
 export type InsertPosition = z.infer<typeof insertPositionSchema>;
-
-export type Trade = typeof trades.$inferSelect;
-export type InsertTrade = z.infer<typeof insertTradeSchema>;
 
 export type Transaction = typeof transactions.$inferSelect;
 export type InsertTransaction = z.infer<typeof insertTransactionSchema>;
