@@ -227,7 +227,6 @@ export class TradingService {
           quantity: quantity.toString(),
           margin: orderData.margin?.toString(),
           price: orderData.price?.toString(),
-          stopPrice: orderData.stopPrice?.toString(),
           takeProfit: orderData.takeProfit?.toString(),
           stopLoss: orderData.stopLoss?.toString(),
           leverage: leverage.toString(),
