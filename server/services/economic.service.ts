@@ -79,15 +79,17 @@ export class EconomicService {
     }
 
     const from = startDate || new Date().toISOString().split('T')[0];
-    const to = endDate || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    const to = endDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
     
-    const url = `${EODHD_BASE_URL}/economic-events?api_token=${EODHD_API_KEY}&fmt=json&from=${from}&to=${to}&limit=1000`;
+    // Note: limit parameter is not documented in EODHD API, removed it
+    const url = `${EODHD_BASE_URL}/economic-events?api_token=${EODHD_API_KEY}&fmt=json&from=${from}&to=${to}`;
 
     try {
       const response = await fetch(url);
       
       if (!response.ok) {
-        console.error(`EODHD API error: ${response.status} ${response.statusText}`);
+        const errorText = await response.text();
+        console.error(`EODHD API error: ${response.status} ${response.statusText}`, errorText);
         return [];
       }
 

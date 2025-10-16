@@ -103,7 +103,7 @@ export class NewsService {
         url: article.url,
         sentiment: article.sentiment?.toLowerCase() || 'neutral',
         symbols: article.entities?.map(e => e.symbol).filter(Boolean) as string[] || [],
-        category: this.deriveCategory(article.entities || []),
+        category: this.deriveCategory(article.entities || [], article.title, article.description || ''),
         cachedAt: new Date(),
       }));
     } catch (error) {
@@ -112,9 +112,11 @@ export class NewsService {
     }
   }
 
-  private deriveCategory(entities: Array<{ symbol?: string; name?: string }>): string {
+  private deriveCategory(entities: Array<{ symbol?: string; name?: string }>, title: string = '', description: string = ''): string {
     const symbols = entities.map(e => e.symbol).filter(Boolean);
+    const text = `${title} ${description}`.toUpperCase();
     
+    // Check symbols first
     const forexPairs = ['EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCAD', 'USDCHF', 'EURGBP', 'EURJPY', 'GBPJPY'];
     const cryptoSymbols = ['BTC-USD', 'ETH-USD', 'XRP-USD', 'ADA-USD', 'SOL-USD', 'BTC', 'ETH', 'XRP', 'ADA', 'SOL', 'DOGE', 'MATIC', 'DOT', 'AVAX', 'LINK'];
     const commoditySymbols = ['XAUUSD', 'XAGUSD', 'USOIL', 'UKOIL', 'GOLD', 'SILVER', 'OIL', 'CRUDE'];
@@ -135,6 +137,22 @@ export class NewsService {
       }
     }
     
+    // Check title and description for keywords if no symbol match
+    const forexKeywords = ['FOREX', 'CURRENCY', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'EXCHANGE RATE', 'FX MARKET', 'DOLLAR', 'EURO', 'POUND', 'YEN', 'CENTRAL BANK'];
+    const cryptoKeywords = ['BITCOIN', 'CRYPTOCURRENCY', 'CRYPTO', 'ETHEREUM', 'BLOCKCHAIN', 'NFT', 'DEFI', 'ALTCOIN', 'BTC', 'ETH'];
+    const commodityKeywords = ['GOLD', 'SILVER', 'OIL', 'CRUDE', 'COMMODITY', 'COMMODITIES', 'PRECIOUS METALS', 'ENERGY', 'BRENT', 'WTI'];
+    
+    if (cryptoKeywords.some(keyword => text.includes(keyword))) {
+      return 'crypto';
+    }
+    if (commodityKeywords.some(keyword => text.includes(keyword))) {
+      return 'commodities';
+    }
+    if (forexKeywords.some(keyword => text.includes(keyword))) {
+      return 'forex';
+    }
+    
+    // Default to general if no clear category
     return 'general';
   }
 
