@@ -7,6 +7,8 @@ import {
   User,
   LogOut,
   Settings,
+  Calculator,
+  GraduationCap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -31,6 +33,20 @@ const navigation = [
   { name: "Trading", href: "/trading", icon: TrendingUp },
   { name: "Deposits", href: "/deposits", icon: Wallet },
   { name: "Withdrawals", href: "/withdrawals", icon: FileText },
+];
+
+const toolsNavigation = [
+  { name: "Economic Calendar", href: "/tools/economic-calendar" },
+  { name: "Position Calculator", href: "/tools/position-calculator" },
+  { name: "Pip Calculator", href: "/tools/pip-calculator" },
+  { name: "Trading Sessions", href: "/tools/sessions" },
+  { name: "Market News", href: "/tools/news" },
+];
+
+const educationNavigation = [
+  { name: "Beginner Course", href: "/learn/beginner" },
+  { name: "Advanced Course", href: "/learn/advanced" },
+  { name: "Glossary", href: "/learn/glossary" },
 ];
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
@@ -72,6 +88,62 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               </span>
             </Link>
           ))}
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <span
+                className={cn(
+                  "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2 cursor-pointer",
+                  location.startsWith("/tools")
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+                data-testid="link-tools"
+              >
+                <Calculator className="h-4 w-4" />
+                Tools
+              </span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {toolsNavigation.map((item) => (
+                <DropdownMenuItem 
+                  key={item.name} 
+                  onClick={() => setLocation(item.href)}
+                  data-testid={`menu-tool-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {item.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <span
+                className={cn(
+                  "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2 cursor-pointer",
+                  location.startsWith("/learn")
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+                data-testid="link-learn"
+              >
+                <GraduationCap className="h-4 w-4" />
+                Learn
+              </span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {educationNavigation.map((item) => (
+                <DropdownMenuItem 
+                  key={item.name} 
+                  onClick={() => setLocation(item.href)}
+                  data-testid={`menu-learn-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {item.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="flex items-center gap-2">

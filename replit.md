@@ -12,6 +12,17 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### October 16, 2025 - Comprehensive Informational Pages & Trading Tools
+- **Added 20 New Pages**: Comprehensive informational pages for customer information, market education, trading tools, and education hub
+- **Customer Information Pages (4)**: Account types, payment methods, verification process, and trading advice - all informational content with no CRM exposure
+- **Market Information Pages (4)**: Technical analysis, fundamental analysis, trading signals, and market heatmap educational content
+- **Trading Tools (5 - Authenticated)**: Economic calendar, position size calculator, pip calculator, trading sessions indicator, and market news feed
+- **Education Hub (3 - Authenticated)**: Beginner course, advanced course, and comprehensive trading glossary
+- **Company Pages (1)**: Spreads and commission rate table
+- **Updated Navigation**: LandingLayout footer reorganized with Information, Customer, Company, and Support sections
+- **Dashboard Navigation**: Added Tools and Learn dropdown menus for authenticated users
+- **All pages include proper data-testid attributes** for automated testing compliance
+
 ### October 14, 2025 - Critical Fixes
 - **Fixed WebSocket Symbol Format**: Backend now converts Twelve Data format (EUR/USD) to database format (EURUSD) for proper price broadcast
 - **Added /api/account Endpoint**: Created endpoint alias for frontend to fetch account balance, equity, margin, and leverage
@@ -36,6 +47,17 @@ Preferred communication style: Simple, everyday language.
 - Custom financial components (PriceDisplay, ProfitLossDisplay, StatusBadge)
 - Professional trading interface components (TradingChart, OrderTicket, Watchlist)
 - Responsive layouts supporting desktop-first financial workflows
+
+**Page Structure:**
+- **Public Pages** (LandingLayout):
+  - Home, About, Contact, FAQ, Partners
+  - Customer Info: Account Types, Payment Methods, Verification, Trading Advice
+  - Market Info: Technical Analysis, Fundamental Analysis, Trading Signals, Market Heatmap
+  - Company: Rates, Legal (Terms, Privacy, AML, Risk, Cookies)
+- **Authenticated Pages** (DashboardLayout/ProtectedRoute):
+  - Dashboard, Trading, Deposits, Withdrawals, Profile, Settings, KYC
+  - Tools: Economic Calendar, Position Calculator, Pip Calculator, Trading Sessions, News
+  - Education: Beginner Course, Advanced Course, Glossary
 
 **State Management Strategy:**
 - TanStack Query handles all server state and caching

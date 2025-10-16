@@ -107,7 +107,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
       {/* Footer */}
       <footer className="border-t bg-muted/30">
         <div className="container mx-auto px-4 py-12">
-          <div className="grid gap-8 md:grid-cols-4">
+          <div className="grid gap-8 md:grid-cols-5">
             {/* Company Info */}
             <div className="space-y-4">
               <div className="flex items-center gap-2">
@@ -119,9 +119,79 @@ export function LandingLayout({ children }: LandingLayoutProps) {
               </p>
             </div>
 
-            {/* Quick Links */}
+            {/* Market Information */}
             <div>
-              <h3 className="mb-4 text-sm font-semibold">Quick Links</h3>
+              <h3 className="mb-4 text-sm font-semibold">Information</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/info/technical-analysis">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-technical-analysis">
+                      Technical Analysis
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/info/fundamental-analysis">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-fundamental-analysis">
+                      Fundamental Analysis
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/info/trading-signals">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-trading-signals">
+                      Trading Signals
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/info/market-heatmap">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-market-heatmap">
+                      Market Heatmap
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Customer */}
+            <div>
+              <h3 className="mb-4 text-sm font-semibold">Customer</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/customer/account-types">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-account-types">
+                      Account Types
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/customer/payment-methods">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-payment-methods">
+                      Payment Methods
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/customer/verification">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-verification">
+                      Verification
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/customer/advice">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-advice">
+                      Trading Advice
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h3 className="mb-4 text-sm font-semibold">Company</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <Link href="/about">
@@ -131,79 +201,37 @@ export function LandingLayout({ children }: LandingLayoutProps) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq">
-                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-faq">
-                      FAQ
+                  <Link href="/contact">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-contact">
+                      Contact
                     </span>
                   </Link>
                 </li>
-                <li>
-                  <Link href="/education">
-                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-education">
-                      Education
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/partners">
-                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-partners">
-                      Partners & Affiliates
-                    </span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Legal */}
-            <div>
-              <h3 className="mb-4 text-sm font-semibold">Legal</h3>
-              <ul className="space-y-2 text-sm">
                 <li>
                   <Link href="/legal/terms">
-                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-terms">
-                      Terms & Conditions
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-legal">
+                      Legal
                     </span>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/legal/privacy">
-                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-privacy">
-                      Privacy Policy
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal/aml">
-                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-aml">
-                      AML/KYC Policy
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal/risk">
-                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-risk">
-                      Risk Disclosure
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal/cookies">
-                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-cookies">
-                      Cookie Policy
+                  <Link href="/company/rates">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-rates">
+                      Rate Table
                     </span>
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Contact */}
+            {/* Support */}
             <div>
-              <h3 className="mb-4 text-sm font-semibold">Contact</h3>
+              <h3 className="mb-4 text-sm font-semibold">Support</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <Link href="/contact">
-                    <span className="hover:text-foreground cursor-pointer" data-testid="footer-link-contact">
-                      Contact Us
+                  <Link href="/faq">
+                    <span className="hover:text-foreground cursor-pointer" data-testid="footer-link-faq">
+                      FAQ
                     </span>
                   </Link>
                 </li>
