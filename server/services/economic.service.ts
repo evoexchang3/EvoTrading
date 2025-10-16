@@ -9,16 +9,14 @@ const CACHE_DURATION_HOURS = 24;
 interface EODHDEconomicEvent {
   date: string;
   country: string;
-  event: string;
-  type?: string;
+  type: string; // This is the event name (e.g., "CPI", "NFP")
   period?: string;
-  actual?: string | null;
-  previous?: string | null;
-  forecast?: string | null;
-  change?: string | null;
-  change_percentage?: string | null;
-  importance?: string;
-  comparison?: string;
+  actual?: number | string | null;
+  previous?: number | string | null;
+  estimate?: number | string | null;
+  change?: number | string | null;
+  change_percentage?: number | string | null;
+  comparison?: string | null;
   currency?: string;
 }
 
@@ -102,22 +100,22 @@ export class EconomicService {
 
       // Filter out events with missing required fields
       const validEvents = data.filter(event => 
-        event.date && event.country && event.event
+        event.date && event.country && event.type
       );
 
       console.log(`Received ${data.length} events, ${validEvents.length} valid events from EODHD`);
 
       return validEvents.map(event => ({
         id: '',
-        eventId: `eodhd_${event.date}_${event.country}_${event.event.replace(/\s/g, '_')}`,
+        eventId: `eodhd_${event.date}_${event.country}_${event.type.replace(/\s/g, '_')}`,
         datetime: new Date(event.date),
         country: event.country,
         currency: event.currency || this.getCurrencyFromCountry(event.country),
-        event: event.event,
-        impact: event.importance?.toLowerCase() || 'medium',
-        forecast: event.forecast || null,
-        previous: event.previous || null,
-        actual: event.actual || null,
+        event: event.type, // EODHD uses 'type' field for event name
+        impact: 'medium', // EODHD doesn't provide importance/impact in this endpoint
+        forecast: event.estimate?.toString() || null,
+        previous: event.previous?.toString() || null,
+        actual: event.actual?.toString() || null,
         source: 'eodhd',
         cachedAt: new Date(),
       }));
