@@ -1,159 +1,525 @@
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, CheckCircle2 } from "lucide-react";
+import { BookOpen, CheckCircle2, Award, Download, TrendingUp, Clock, Target, FileText, Play, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useState } from "react";
 
 export default function BeginnerCoursePage() {
+  const [courseProgress] = useState(35);
+
   const modules = [
     {
       title: "Module 1: Trading Basics",
+      description: "Foundation knowledge of forex markets, currency pairs, and trading fundamentals",
       duration: "30 mins",
-      status: "available",
+      status: "completed",
+      progress: 100,
       lessons: [
-        "What is Forex Trading?",
-        "Understanding Currency Pairs",
-        "How the Forex Market Works",
-        "Market Participants and Liquidity",
-        "Trading Sessions and Market Hours"
-      ]
+        { title: "What is Forex Trading?", duration: "5 mins", completed: true },
+        { title: "Understanding Currency Pairs", duration: "6 mins", completed: true },
+        { title: "How the Forex Market Works", duration: "7 mins", completed: true },
+        { title: "Market Participants and Liquidity", duration: "6 mins", completed: true },
+        { title: "Trading Sessions and Market Hours", duration: "6 mins", completed: true }
+      ],
+      quiz: {
+        questions: 10,
+        passingScore: 70,
+        timeLimit: "15 mins",
+        attempts: 3
+      }
     },
     {
       title: "Module 2: Essential Concepts",
+      description: "Core trading concepts including pips, lots, leverage, margin, and order types",
       duration: "45 mins",
-      status: "available",
+      status: "in-progress",
+      progress: 60,
       lessons: [
-        "Pips, Points, and Lots Explained",
-        "Bid, Ask, and Spread",
-        "Leverage and Margin",
-        "Long vs Short Positions",
-        "Order Types (Market, Limit, Stop)"
-      ]
+        { title: "Pips, Points, and Lots Explained", duration: "8 mins", completed: true },
+        { title: "Bid, Ask, and Spread", duration: "7 mins", completed: true },
+        { title: "Leverage and Margin", duration: "10 mins", completed: true },
+        { title: "Long vs Short Positions", duration: "8 mins", completed: false },
+        { title: "Order Types (Market, Limit, Stop)", duration: "12 mins", completed: false }
+      ],
+      quiz: {
+        questions: 15,
+        passingScore: 70,
+        timeLimit: "20 mins",
+        attempts: 3
+      }
     },
     {
       title: "Module 3: Chart Reading",
+      description: "Learn to read price charts, identify patterns, and understand market structure",
       duration: "60 mins",
-      status: "available",
+      status: "locked",
+      progress: 0,
       lessons: [
-        "Understanding Price Charts",
-        "Candlestick Patterns Basics",
-        "Support and Resistance",
-        "Trend Identification",
-        "Timeframe Selection"
-      ]
+        { title: "Understanding Price Charts", duration: "10 mins", completed: false },
+        { title: "Candlestick Patterns Basics", duration: "15 mins", completed: false },
+        { title: "Support and Resistance", duration: "12 mins", completed: false },
+        { title: "Trend Identification", duration: "13 mins", completed: false },
+        { title: "Timeframe Selection", duration: "10 mins", completed: false }
+      ],
+      quiz: {
+        questions: 12,
+        passingScore: 75,
+        timeLimit: "20 mins",
+        attempts: 3
+      }
     },
     {
       title: "Module 4: Risk Management",
+      description: "Essential risk management principles to protect your trading capital",
       duration: "45 mins",
-      status: "available",
+      status: "locked",
+      progress: 0,
       lessons: [
-        "Why Risk Management Matters",
-        "Position Sizing Fundamentals",
-        "Setting Stop Losses",
-        "Risk-Reward Ratios",
-        "Managing Multiple Positions"
-      ]
+        { title: "Why Risk Management Matters", duration: "8 mins", completed: false },
+        { title: "Position Sizing Fundamentals", duration: "10 mins", completed: false },
+        { title: "Setting Stop Losses", duration: "9 mins", completed: false },
+        { title: "Risk-Reward Ratios", duration: "10 mins", completed: false },
+        { title: "Managing Multiple Positions", duration: "8 mins", completed: false }
+      ],
+      quiz: {
+        questions: 12,
+        passingScore: 80,
+        timeLimit: "20 mins",
+        attempts: 3
+      }
     },
     {
       title: "Module 5: Basic Strategies",
+      description: "Simple yet effective trading strategies for beginners",
       duration: "60 mins",
-      status: "available",
+      status: "locked",
+      progress: 0,
       lessons: [
-        "Trend Following Strategy",
-        "Support/Resistance Trading",
-        "Moving Average Crossovers",
-        "Simple Breakout Trading",
-        "When to Avoid Trading"
-      ]
+        { title: "Trend Following Strategy", duration: "12 mins", completed: false },
+        { title: "Support/Resistance Trading", duration: "12 mins", completed: false },
+        { title: "Moving Average Crossovers", duration: "14 mins", completed: false },
+        { title: "Simple Breakout Trading", duration: "12 mins", completed: false },
+        { title: "When to Avoid Trading", duration: "10 mins", completed: false }
+      ],
+      quiz: {
+        questions: 15,
+        passingScore: 75,
+        timeLimit: "25 mins",
+        attempts: 3
+      }
     },
     {
       title: "Module 6: Trading Psychology",
+      description: "Master the mental aspects of trading for consistent performance",
       duration: "30 mins",
-      status: "available",
+      status: "locked",
+      progress: 0,
       lessons: [
-        "Emotional Control in Trading",
-        "Dealing with Losses",
-        "Avoiding Revenge Trading",
-        "Building Discipline",
-        "Creating a Trading Routine"
-      ]
+        { title: "Emotional Control in Trading", duration: "6 mins", completed: false },
+        { title: "Dealing with Losses", duration: "6 mins", completed: false },
+        { title: "Avoiding Revenge Trading", duration: "6 mins", completed: false },
+        { title: "Building Discipline", duration: "6 mins", completed: false },
+        { title: "Creating a Trading Routine", duration: "6 mins", completed: false }
+      ],
+      quiz: {
+        questions: 10,
+        passingScore: 75,
+        timeLimit: "15 mins",
+        attempts: 3
+      }
     }
   ];
+
+  const downloadableResources = [
+    { title: "Forex Trading Basics Cheat Sheet", type: "PDF", size: "2.1 MB" },
+    { title: "Currency Pairs Quick Reference", type: "PDF", size: "1.5 MB" },
+    { title: "Position Size Calculator Template", type: "Excel", size: "0.8 MB" },
+    { title: "Risk Management Checklist", type: "PDF", size: "1.2 MB" },
+    { title: "Chart Patterns Visual Guide", type: "PDF", size: "3.4 MB" },
+    { title: "Trading Psychology Workbook", type: "PDF", size: "2.8 MB" },
+    { title: "Beginner Trading Plan Template", type: "Word", size: "0.5 MB" },
+    { title: "Market Sessions Time Zone Chart", type: "PDF", size: "1.1 MB" }
+  ];
+
+  const faqs = [
+    {
+      question: "How long does it take to complete the Beginner Course?",
+      answer: "The total course duration is 4.5 hours of video content. However, most students complete the course within 1-2 weeks when studying at a comfortable pace. We recommend spending 30-60 minutes per day to absorb the material properly. You have lifetime access, so you can learn at your own pace and revisit lessons anytime."
+    },
+    {
+      question: "Do I need any prior trading experience to start this course?",
+      answer: "No prior trading experience is required. This course is specifically designed for complete beginners. We start with the absolute basics and gradually build your knowledge. All you need is a computer or mobile device, internet connection, and a willingness to learn. We explain every concept from the ground up."
+    },
+    {
+      question: "What happens if I fail a module quiz?",
+      answer: "Each module quiz allows 3 attempts. If you don't pass on the first try, review the lesson materials and try again. You need 70-80% to pass (varies by module). If you exhaust all attempts, you can request a quiz reset after 24 hours. The quizzes are designed to reinforce learning, not to penalize you."
+    },
+    {
+      question: "Will I receive a certificate after completing the course?",
+      answer: "Yes! Upon successfully completing all 6 modules and passing all quizzes with the minimum required score, you'll receive a 'Certified Forex Trading Beginner' certificate. The certificate is digital, shareable on LinkedIn, and demonstrates your foundational knowledge of forex trading to potential employers or clients."
+    },
+    {
+      question: "Can I practice trading while taking this course?",
+      answer: "Absolutely! We strongly encourage you to open a demo trading account and practice what you learn in each module. Demo accounts use virtual money, so there's no financial risk. Hands-on practice alongside the course material significantly accelerates your learning and builds confidence before trading with real money."
+    },
+    {
+      question: "How are the downloadable resources different from the video lessons?",
+      answer: "The downloadable resources complement the video lessons by providing quick-reference materials, templates, and worksheets. While videos teach concepts in depth, the PDFs and templates are designed for quick consultation during actual trading, helping you apply what you've learned without rewatching entire lessons."
+    },
+    {
+      question: "What should I study after completing the Beginner Course?",
+      answer: "After completing the Beginner Course, we recommend practicing with a demo account for at least 1-2 months to solidify your skills. Then, progress to our Advanced Trading Course to learn professional strategies, institutional concepts, and systematic trading approaches. You can also explore our specialized courses on technical analysis and risk management."
+    }
+  ];
+
+  const learningPath = {
+    current: "Beginner Course",
+    next: [
+      { title: "Advanced Trading Course", description: "Master professional strategies and institutional concepts", estimated: "3-4 weeks" },
+      { title: "Technical Analysis Mastery", description: "Deep dive into chart patterns and indicators", estimated: "2-3 weeks" },
+      { title: "Risk Management Pro", description: "Advanced position sizing and portfolio management", estimated: "1-2 weeks" }
+    ]
+  };
+
+  const completedLessons = modules.reduce((sum, module) => 
+    sum + module.lessons.filter(l => l.completed).length, 0
+  );
+  const totalLessons = modules.reduce((sum, module) => sum + module.lessons.length, 0);
 
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
+            <Badge className="mb-2" data-testid="badge-course-level">Beginner Level</Badge>
             <h1 className="text-3xl font-bold">Beginner Trading Course</h1>
             <p className="text-muted-foreground">Master the fundamentals of forex trading</p>
           </div>
           <BookOpen className="w-8 h-8 text-muted-foreground" />
         </div>
 
-        <Card>
+        {/* Progress Overview */}
+        <Card data-testid="card-progress-overview">
+          <CardHeader>
+            <CardTitle>Your Progress</CardTitle>
+            <CardDescription>Track your learning journey</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Course Completion</span>
+                <span className="font-semibold" data-testid="text-course-progress">{courseProgress}%</span>
+              </div>
+              <Progress value={courseProgress} className="h-2" data-testid="progress-course" />
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-4">
+              <div className="p-4 bg-muted rounded-lg">
+                <div className="flex items-center gap-2 mb-1">
+                  <CheckCircle2 className="w-4 h-4 text-primary" />
+                  <p className="text-sm text-muted-foreground">Lessons Completed</p>
+                </div>
+                <p className="text-2xl font-bold" data-testid="text-lessons-completed">{completedLessons}/{totalLessons}</p>
+              </div>
+              <div className="p-4 bg-muted rounded-lg">
+                <div className="flex items-center gap-2 mb-1">
+                  <Target className="w-4 h-4 text-primary" />
+                  <p className="text-sm text-muted-foreground">Modules Passed</p>
+                </div>
+                <p className="text-2xl font-bold" data-testid="text-modules-passed">1/6</p>
+              </div>
+              <div className="p-4 bg-muted rounded-lg">
+                <div className="flex items-center gap-2 mb-1">
+                  <Clock className="w-4 h-4 text-primary" />
+                  <p className="text-sm text-muted-foreground">Time Invested</p>
+                </div>
+                <p className="text-2xl font-bold" data-testid="text-time-invested">1.6 hrs</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Course Overview */}
+        <Card data-testid="card-course-overview">
           <CardHeader>
             <CardTitle>Course Overview</CardTitle>
             <CardDescription>A comprehensive introduction to forex trading for beginners</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-3 gap-6 mb-6">
+            <div className="grid md:grid-cols-4 gap-4 mb-6">
               <div className="p-4 bg-muted rounded-lg">
                 <p className="text-sm text-muted-foreground mb-1">Total Duration</p>
-                <p className="text-2xl font-bold">4.5 hours</p>
+                <p className="text-2xl font-bold" data-testid="text-total-duration">4.5 hours</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
                 <p className="text-sm text-muted-foreground mb-1">Modules</p>
-                <p className="text-2xl font-bold">6</p>
+                <p className="text-2xl font-bold" data-testid="text-total-modules">6</p>
+              </div>
+              <div className="p-4 bg-muted rounded-lg">
+                <p className="text-sm text-muted-foreground mb-1">Lessons</p>
+                <p className="text-2xl font-bold" data-testid="text-total-lessons">{totalLessons}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
                 <p className="text-sm text-muted-foreground mb-1">Level</p>
-                <p className="text-2xl font-bold">Beginner</p>
+                <p className="text-2xl font-bold" data-testid="text-course-level">Beginner</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
               This course covers everything you need to know to start trading forex. From basic concepts to practical strategies, 
-              you'll learn at your own pace with clear explanations and real-world examples.
+              you'll learn at your own pace with clear explanations and real-world examples. Each module includes video lessons, 
+              practical exercises, and a quiz to test your knowledge.
             </p>
           </CardContent>
         </Card>
 
+        {/* Course Modules */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Course Modules</h2>
           {modules.map((module, index) => (
             <Card key={index} data-testid={`card-module-${index}`}>
               <CardHeader>
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
-                        {index + 1}
+                <div className="flex items-start justify-between gap-4 flex-wrap">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-2 flex-wrap">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 ${
+                        module.status === 'completed' ? 'bg-primary text-primary-foreground' :
+                        module.status === 'in-progress' ? 'bg-primary/20 text-primary' :
+                        'bg-muted text-muted-foreground'
+                      }`}>
+                        {module.status === 'completed' ? <CheckCircle2 className="w-5 h-5" /> : index + 1}
                       </div>
-                      <CardTitle className="text-xl">{module.title}</CardTitle>
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className="text-xl mb-1">{module.title}</CardTitle>
+                        <CardDescription className="flex items-center gap-4 flex-wrap">
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {module.duration}
+                          </span>
+                          <Badge variant="outline">{module.lessons.length} lessons</Badge>
+                          {module.status === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />Locked</Badge>}
+                          {module.status === 'in-progress' && <Badge variant="default">In Progress</Badge>}
+                          {module.status === 'completed' && <Badge className="bg-green-600">Completed</Badge>}
+                        </CardDescription>
+                      </div>
                     </div>
-                    <CardDescription className="flex items-center gap-4">
-                      <span>{module.duration}</span>
-                      <Badge variant="outline">{module.lessons.length} lessons</Badge>
-                    </CardDescription>
+                    <p className="text-sm text-muted-foreground mb-3">{module.description}</p>
+                    {module.progress > 0 && (
+                      <div className="space-y-1">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-muted-foreground">Progress</span>
+                          <span className="font-semibold">{module.progress}%</span>
+                        </div>
+                        <Progress value={module.progress} className="h-1.5" />
+                      </div>
+                    )}
                   </div>
-                  <CheckCircle2 className="w-6 h-6 text-muted-foreground" />
+                  <Button 
+                    size="sm" 
+                    data-testid={`button-module-${index}`}
+                    disabled={module.status === 'locked'}
+                  >
+                    {module.status === 'completed' ? 'Review' : 
+                     module.status === 'in-progress' ? 'Continue' : 
+                     'Start'}
+                  </Button>
                 </div>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {module.lessons.map((lesson, lessonIndex) => (
-                    <li key={lessonIndex} className="flex items-center gap-3 text-sm hover-elevate p-2 rounded cursor-pointer">
-                      <div className="w-6 h-6 rounded-full border-2 border-muted-foreground/20 flex items-center justify-center flex-shrink-0">
-                        <span className="text-xs text-muted-foreground">{lessonIndex + 1}</span>
-                      </div>
-                      <span>{lesson}</span>
-                    </li>
-                  ))}
-                </ul>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-3 text-sm">Lessons</h4>
+                  <ul className="space-y-2">
+                    {module.lessons.map((lesson, lessonIndex) => (
+                      <li 
+                        key={lessonIndex} 
+                        className="flex items-center gap-3 text-sm hover-elevate p-2 rounded cursor-pointer"
+                        data-testid={`lesson-${index}-${lessonIndex}`}
+                      >
+                        {lesson.completed ? (
+                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                        ) : (
+                          <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/20 flex items-center justify-center flex-shrink-0">
+                            <Play className="w-3 h-3 text-muted-foreground" />
+                          </div>
+                        )}
+                        <span className={lesson.completed ? 'text-muted-foreground' : ''}>{lesson.title}</span>
+                        <span className="text-xs text-muted-foreground ml-auto">{lesson.duration}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-semibold mb-2 text-sm flex items-center gap-2">
+                    <Target className="w-4 h-4" />
+                    Module Quiz
+                  </h4>
+                  <div className="grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
+                    <div>
+                      <span className="font-medium">Questions:</span> {module.quiz.questions}
+                    </div>
+                    <div>
+                      <span className="font-medium">Passing Score:</span> {module.quiz.passingScore}%
+                    </div>
+                    <div>
+                      <span className="font-medium">Time Limit:</span> {module.quiz.timeLimit}
+                    </div>
+                    <div>
+                      <span className="font-medium">Attempts:</span> {module.quiz.attempts}
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
+        {/* Certificate Information */}
+        <Card data-testid="card-certificate">
+          <CardHeader>
+            <div className="flex items-center gap-3">
+              <Award className="w-6 h-6 text-primary" />
+              <div>
+                <CardTitle>Course Certificate</CardTitle>
+                <CardDescription>Earn your certification upon completion</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Upon successful completion of this course, you'll receive a verified digital certificate that demonstrates 
+              your foundational knowledge of forex trading.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3">Requirements</h4>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Complete all 6 modules (30 lessons)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Pass all module quizzes with 70%+ score</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Complete the final course assessment (80% required)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Total study time: minimum 4.5 hours</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3">Certificate Benefits</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <span>Shareable on LinkedIn and social media</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <span>Verifiable certificate ID for employers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <span>Download PDF or print physical copy</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <TrendingUp className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <span>Lifetime access to certificate records</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 p-4 bg-primary/10 rounded-lg">
+              <Award className="w-8 h-8 text-primary flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-sm">Certified Forex Trading Beginner</p>
+                <p className="text-xs text-muted-foreground">Official certification from our trading academy</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Downloadable Resources */}
+        <Card data-testid="card-resources">
+          <CardHeader>
+            <div className="flex items-center gap-3">
+              <Download className="w-6 h-6 text-primary" />
+              <div>
+                <CardTitle>Downloadable Resources</CardTitle>
+                <CardDescription>Study materials and templates to support your learning</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {downloadableResources.map((resource, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  className="justify-between h-auto p-4"
+                  data-testid={`button-download-${index}`}
+                >
+                  <div className="flex items-center gap-3 text-left">
+                    <FileText className="w-5 h-5 text-primary flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-sm">{resource.title}</p>
+                      <p className="text-xs text-muted-foreground">{resource.type} • {resource.size}</p>
+                    </div>
+                  </div>
+                  <Download className="w-4 h-4 flex-shrink-0 ml-2" />
+                </Button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Learning Path */}
+        <Card data-testid="card-learning-path">
+          <CardHeader>
+            <CardTitle>Your Learning Path</CardTitle>
+            <CardDescription>Recommended courses after completing this one</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center gap-3 p-3 bg-primary/10 rounded-lg">
+              <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-sm">{learningPath.current}</p>
+                <p className="text-xs text-muted-foreground">Current course - 35% complete</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              {learningPath.next.map((course, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-center gap-3 p-3 border rounded-lg hover-elevate cursor-pointer"
+                  data-testid={`learning-path-${index}`}
+                >
+                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0 font-semibold">
+                    {index + 2}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-sm">{course.title}</p>
+                    <p className="text-xs text-muted-foreground">{course.description}</p>
+                  </div>
+                  <Badge variant="outline" className="flex-shrink-0">{course.estimated}</Badge>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* What You'll Learn */}
         <div className="bg-muted rounded-lg p-6">
           <h3 className="text-xl font-bold mb-4">What You'll Learn</h3>
           <div className="grid md:grid-cols-2 gap-4 text-sm">
@@ -181,8 +547,38 @@ export default function BeginnerCoursePage() {
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
               <span>Develop discipline and emotional control in trading</span>
             </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+              <span>Use leverage and margin safely and effectively</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+              <span>Create a sustainable trading routine and plan</span>
+            </div>
           </div>
         </div>
+
+        {/* FAQs */}
+        <Card data-testid="card-faqs">
+          <CardHeader>
+            <CardTitle>Frequently Asked Questions</CardTitle>
+            <CardDescription>Common questions about the Beginner Trading Course</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`faq-${index}`} data-testid={`faq-${index}`}>
+                  <AccordionTrigger className="text-left">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CardContent>
+        </Card>
       </div>
     </DashboardLayout>
   );
