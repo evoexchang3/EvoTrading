@@ -60,6 +60,11 @@ import GlossaryPage from "@/pages/learn/GlossaryPage";
 
 // Company Pages
 import RatesPage from "@/pages/company/RatesPage";
+import RegulatoryPage from "@/pages/company/RegulatoryPage";
+import SafetyOfFundsPage from "@/pages/company/SafetyOfFundsPage";
+import ComplaintsPage from "@/pages/company/ComplaintsPage";
+import PlatformStatusPage from "@/pages/company/PlatformStatusPage";
+import SecurityPageCompany from "@/pages/company/SecurityPage";
 
 function AppRoutes() {
   return (
@@ -95,6 +100,11 @@ function AppRoutes() {
 
       {/* Company Pages */}
       <Route path="/company/rates" component={RatesPage} />
+      <Route path="/company/regulatory" component={RegulatoryPage} />
+      <Route path="/company/safety-of-funds" component={SafetyOfFundsPage} />
+      <Route path="/company/complaints" component={ComplaintsPage} />
+      <Route path="/company/platform-status" component={PlatformStatusPage} />
+      <Route path="/company/security" component={SecurityPageCompany} />
 
       {/* Auth Routes */}
       <Route path="/login" component={LoginPage} />

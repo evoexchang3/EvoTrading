@@ -224,6 +224,48 @@ export function LandingLayout({ children }: LandingLayoutProps) {
               </ul>
             </div>
 
+            {/* Trust & Security */}
+            <div>
+              <h3 className="mb-4 text-sm font-semibold">Trust & Security</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/company/regulatory">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-regulatory">
+                      Regulatory & Licenses
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/company/safety-of-funds">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-safety-of-funds">
+                      Safety of Funds
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/company/security">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-security">
+                      Security & Data Protection
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/company/platform-status">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-platform-status">
+                      Platform Status
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/company/complaints">
+                    <span className="text-muted-foreground hover:text-foreground cursor-pointer" data-testid="footer-link-complaints">
+                      Complaints & Disputes
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
             {/* Support */}
             <div>
               <h3 className="mb-4 text-sm font-semibold">Support</h3>
