@@ -272,6 +272,51 @@ export const userPreferences = pgTable("user_preferences", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+// Course Progress (for tracking user learning progress)
+export const courseProgress = pgTable("course_progress", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  clientId: varchar("client_id").references(() => clients.id).notNull(),
+  courseId: text("course_id").notNull(), // 'beginner' or 'advanced'
+  moduleId: text("module_id").notNull(),
+  lessonId: text("lesson_id"),
+  completed: boolean("completed").notNull().default(false),
+  quizScore: integer("quiz_score"), // 0-100
+  lastAccessedAt: timestamp("last_accessed_at").notNull().defaultNow(),
+  completedAt: timestamp("completed_at"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+// Economic Events (cached calendar data from FMP API)
+export const economicEvents = pgTable("economic_events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  eventId: text("event_id").notNull(), // External API event ID
+  datetime: timestamp("datetime").notNull(),
+  country: text("country").notNull(),
+  currency: text("currency"), // USD, EUR, GBP, etc.
+  event: text("event").notNull(), // Event name (NFP, CPI, etc.)
+  impact: text("impact"), // high, medium, low
+  forecast: text("forecast"),
+  previous: text("previous"),
+  actual: text("actual"),
+  source: text("source").default('fmp'), // fmp, other
+  cachedAt: timestamp("cached_at").notNull().defaultNow(),
+});
+
+// News Articles (cached news from Marketaux API)
+export const newsArticles = pgTable("news_articles", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  newsId: text("news_id").notNull().unique(), // External API news ID
+  publishedAt: timestamp("published_at").notNull(),
+  title: text("title").notNull(),
+  summary: text("summary"),
+  source: text("source").notNull(),
+  url: text("url").notNull(),
+  sentiment: text("sentiment"), // positive, neutral, negative
+  symbols: text("symbols").array().default(sql`ARRAY[]::text[]`), // Related symbols
+  category: text("category"), // forex, markets, general
+  cachedAt: timestamp("cached_at").notNull().defaultNow(),
+});
+
 // Insert schemas
 export const insertClientSchema = createInsertSchema(clients).omit({
   id: true,
@@ -320,6 +365,22 @@ export const insertAuditLogSchema = createInsertSchema(auditLogs).omit({
   createdAt: true,
 });
 
+export const insertCourseProgressSchema = createInsertSchema(courseProgress).omit({
+  id: true,
+  createdAt: true,
+  completedAt: true,
+});
+
+export const insertEconomicEventSchema = createInsertSchema(economicEvents).omit({
+  id: true,
+  cachedAt: true,
+});
+
+export const insertNewsArticleSchema = createInsertSchema(newsArticles).omit({
+  id: true,
+  cachedAt: true,
+});
+
 // Types
 export type Client = typeof clients.$inferSelect;
 export type InsertClient = z.infer<typeof insertClientSchema>;
@@ -348,6 +409,15 @@ export type InsertAuditLog = z.infer<typeof insertAuditLogSchema>;
 export type SsoToken = typeof ssoTokens.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
 export type UserPreference = typeof userPreferences.$inferSelect;
+
+export type CourseProgress = typeof courseProgress.$inferSelect;
+export type InsertCourseProgress = z.infer<typeof insertCourseProgressSchema>;
+
+export type EconomicEvent = typeof economicEvents.$inferSelect;
+export type InsertEconomicEvent = z.infer<typeof insertEconomicEventSchema>;
+
+export type NewsArticle = typeof newsArticles.$inferSelect;
+export type InsertNewsArticle = z.infer<typeof insertNewsArticleSchema>;
 
 // API Request/Response schemas
 export const registerSchema = z.object({
