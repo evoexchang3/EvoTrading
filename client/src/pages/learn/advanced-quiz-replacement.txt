@@ -1,0 +1,217 @@
+                  <div className="border-t pt-6">
+                    <h3 className="font-semibold text-lg mb-4">Lesson Quiz</h3>
+                    <div className="space-y-4">
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">1. What does "Break of Structure" (BOS) indicate in an uptrend?</p>
+                        <div className="space-y-2">
+                          {['a', 'b', 'c', 'd'].map((option) => {
+                            const isCorrect = option === 'b';
+                            const isSelected = quizAnswers['q1'] === option;
+                            const showResult = quizSubmitted && isSelected;
+                            return (
+                              <label 
+                                key={option}
+                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                                  !quizSubmitted ? 'hover-elevate' : ''
+                                } ${
+                                  showResult && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
+                                  showResult && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
+                                }`}
+                              >
+                                <input 
+                                  type="radio" 
+                                  name="q1" 
+                                  value={option} 
+                                  className="w-4 h-4" 
+                                  checked={isSelected}
+                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q1: e.target.value})}
+                                  disabled={quizSubmitted}
+                                />
+                                <span className="text-sm">
+                                  {option === 'a' && 'Price is about to reverse downward'}
+                                  {option === 'b' && 'Trend continuation - price breaks above previous higher high'}
+                                  {option === 'c' && 'Market is entering consolidation phase'}
+                                  {option === 'd' && 'No clear signal - neutral market'}
+                                  {showResult && isCorrect && ' ✓'}
+                                  {showResult && !isCorrect && ' ✗'}
+                                </span>
+                              </label>
+                            );
+                          })}
+                        </div>
+                        {quizSubmitted && quizAnswers['q1'] !== 'b' && (
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Trend continuation - price breaks above previous higher high</p>
+                        )}
+                      </div>
+                      
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">2. What does a pin bar candlestick pattern indicate?</p>
+                        <div className="space-y-2">
+                          {['a', 'b', 'c', 'd'].map((option) => {
+                            const isCorrect = option === 'c';
+                            const isSelected = quizAnswers['q2'] === option;
+                            const showResult = quizSubmitted && isSelected;
+                            return (
+                              <label 
+                                key={option}
+                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                                  !quizSubmitted ? 'hover-elevate' : ''
+                                } ${
+                                  showResult && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
+                                  showResult && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
+                                }`}
+                              >
+                                <input 
+                                  type="radio" 
+                                  name="q2" 
+                                  value={option} 
+                                  className="w-4 h-4"
+                                  checked={isSelected}
+                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q2: e.target.value})}
+                                  disabled={quizSubmitted}
+                                />
+                                <span className="text-sm">
+                                  {option === 'a' && 'Market indecision and consolidation'}
+                                  {option === 'b' && 'Strong trend continuation signal'}
+                                  {option === 'c' && 'Strong rejection at a price level (long wick, small body)'}
+                                  {option === 'd' && 'Breakout is imminent'}
+                                  {showResult && isCorrect && ' ✓'}
+                                  {showResult && !isCorrect && ' ✗'}
+                                </span>
+                              </label>
+                            );
+                          })}
+                        </div>
+                        {quizSubmitted && quizAnswers['q2'] !== 'c' && (
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Strong rejection at a price level (long wick, small body)</p>
+                        )}
+                      </div>
+                      
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">3. What is the professional approach to trading with the trend?</p>
+                        <div className="space-y-2">
+                          {['a', 'b', 'c', 'd'].map((option) => {
+                            const isCorrect = option === 'b';
+                            const isSelected = quizAnswers['q3'] === option;
+                            const showResult = quizSubmitted && isSelected;
+                            return (
+                              <label 
+                                key={option}
+                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                                  !quizSubmitted ? 'hover-elevate' : ''
+                                } ${
+                                  showResult && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
+                                  showResult && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
+                                }`}
+                              >
+                                <input 
+                                  type="radio" 
+                                  name="q3" 
+                                  value={option} 
+                                  className="w-4 h-4"
+                                  checked={isSelected}
+                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q3: e.target.value})}
+                                  disabled={quizSubmitted}
+                                />
+                                <span className="text-sm">
+                                  {option === 'a' && 'Always trade against the trend for better risk/reward'}
+                                  {option === 'b' && 'Identify trend on higher timeframe, enter on lower timeframe pullbacks'}
+                                  {option === 'c' && 'Only use M1 charts for fastest entries'}
+                                  {option === 'd' && 'Ignore timeframes and trade all signals equally'}
+                                  {showResult && isCorrect && ' ✓'}
+                                  {showResult && !isCorrect && ' ✗'}
+                                </span>
+                              </label>
+                            );
+                          })}
+                        </div>
+                        {quizSubmitted && quizAnswers['q3'] !== 'b' && (
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Identify trend on higher timeframe, enter on lower timeframe pullbacks</p>
+                        )}
+                      </div>
+                      
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">4. According to the lesson, why should you never trade candlestick patterns in isolation?</p>
+                        <div className="space-y-2">
+                          {['a', 'b', 'c', 'd'].map((option) => {
+                            const isCorrect = option === 'b';
+                            const isSelected = quizAnswers['q4'] === option;
+                            const showResult = quizSubmitted && isSelected;
+                            return (
+                              <label 
+                                key={option}
+                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                                  !quizSubmitted ? 'hover-elevate' : ''
+                                } ${
+                                  showResult && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
+                                  showResult && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
+                                }`}
+                              >
+                                <input 
+                                  type="radio" 
+                                  name="q4" 
+                                  value={option} 
+                                  className="w-4 h-4"
+                                  checked={isSelected}
+                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q4: e.target.value})}
+                                  disabled={quizSubmitted}
+                                />
+                                <span className="text-sm">
+                                  {option === 'a' && 'Candlestick patterns are unreliable and should be avoided'}
+                                  {option === 'b' && 'Context matters - consider trend, support/resistance, and confluence'}
+                                  {option === 'c' && 'You need at least 5 indicators to confirm any pattern'}
+                                  {option === 'd' && 'Patterns only work on 1-hour charts or higher'}
+                                  {showResult && isCorrect && ' ✓'}
+                                  {showResult && !isCorrect && ' ✗'}
+                                </span>
+                              </label>
+                            );
+                          })}
+                        </div>
+                        {quizSubmitted && quizAnswers['q4'] !== 'b' && (
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Context matters - consider trend, support/resistance, and confluence</p>
+                        )}
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3 mt-4">
+                      {!quizSubmitted ? (
+                        <Button 
+                          onClick={() => {
+                            if (Object.keys(quizAnswers).length === 4) {
+                              setQuizSubmitted(true);
+                            } else {
+                              toast({
+                                title: "Incomplete Quiz",
+                                description: "Please answer all questions before submitting.",
+                                variant: "destructive"
+                              });
+                            }
+                          }}
+                          data-testid="button-submit-quiz"
+                        >
+                          Submit Quiz
+                        </Button>
+                      ) : (
+                        <>
+                          <Button 
+                            onClick={() => {
+                              setQuizAnswers({});
+                              setQuizSubmitted(false);
+                            }}
+                            variant="outline"
+                            data-testid="button-reset-quiz"
+                          >
+                            <Target className="w-4 h-4 mr-2" />
+                            Try Again
+                          </Button>
+                          <Alert className="flex-1">
+                            <CheckCircle2 className="w-4 h-4" />
+                            <AlertDescription>
+                              Quiz submitted! Review your answers and try again if needed.
+                            </AlertDescription>
+                          </Alert>
+                        </>
+                      )}
+                    </div>
+                  </div>

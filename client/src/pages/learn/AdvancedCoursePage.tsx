@@ -18,6 +18,8 @@ const COURSE_ID = "advanced-trading";
 export default function AdvancedCoursePage() {
   const { toast } = useToast();
   const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
+  const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
+  const [quizSubmitted, setQuizSubmitted] = useState(false);
   
   const { data: progressData = [] } = useQuery<CourseProgress[]>({
     queryKey: ['/api/course-progress', COURSE_ID],
@@ -457,6 +459,8 @@ export default function AdvancedCoursePage() {
                         data-testid={`lesson-${index}-${lessonIndex}`}
                         onClick={() => {
                           if (moduleStatus !== 'locked') {
+                            setQuizAnswers({});
+                            setQuizSubmitted(false);
                             setSelectedLesson({ 
                               moduleId: module.id, 
                               moduleIndex: index,
@@ -905,98 +909,212 @@ export default function AdvancedCoursePage() {
                       <div className="p-4 border rounded-lg">
                         <p className="font-medium mb-3">1. What does "Break of Structure" (BOS) indicate in an uptrend?</p>
                         <div className="space-y-2">
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q1" value="a" className="w-4 h-4" />
-                            <span className="text-sm">Price is about to reverse downward</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
-                            <input type="radio" name="q1" value="b" className="w-4 h-4" />
-                            <span className="text-sm">Trend continuation - price breaks above previous higher high ✓</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q1" value="c" className="w-4 h-4" />
-                            <span className="text-sm">Market is entering consolidation phase</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q1" value="d" className="w-4 h-4" />
-                            <span className="text-sm">No clear signal - neutral market</span>
-                          </label>
+                          {['a', 'b', 'c', 'd'].map((option) => {
+                            const isCorrect = option === 'b';
+                            const isSelected = quizAnswers['q1'] === option;
+                            return (
+                              <label 
+                                key={option}
+                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                                  !quizSubmitted ? 'hover-elevate' : ''
+                                } ${
+                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
+                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
+                                }`}
+                              >
+                                <input 
+                                  type="radio" 
+                                  name="q1" 
+                                  value={option} 
+                                  className="w-4 h-4" 
+                                  checked={isSelected}
+                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q1: e.target.value})}
+                                  disabled={quizSubmitted}
+                                />
+                                <span className="text-sm">
+                                  {option === 'a' && 'Price is about to reverse downward'}
+                                  {option === 'b' && 'Trend continuation - price breaks above previous higher high'}
+                                  {option === 'c' && 'Market is entering consolidation phase'}
+                                  {option === 'd' && 'No clear signal - neutral market'}
+                                  {quizSubmitted && isCorrect && ' ✓'}
+                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
+                                </span>
+                              </label>
+                            );
+                          })}
                         </div>
+                        {quizSubmitted && quizAnswers['q1'] !== 'b' && (
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Trend continuation - price breaks above previous higher high</p>
+                        )}
                       </div>
                       
                       <div className="p-4 border rounded-lg">
                         <p className="font-medium mb-3">2. What does a pin bar candlestick pattern indicate?</p>
                         <div className="space-y-2">
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q2" value="a" className="w-4 h-4" />
-                            <span className="text-sm">Market indecision and consolidation</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q2" value="b" className="w-4 h-4" />
-                            <span className="text-sm">Strong trend continuation signal</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
-                            <input type="radio" name="q2" value="c" className="w-4 h-4" />
-                            <span className="text-sm">Strong rejection at a price level (long wick, small body) ✓</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q2" value="d" className="w-4 h-4" />
-                            <span className="text-sm">Breakout is imminent</span>
-                          </label>
+                          {['a', 'b', 'c', 'd'].map((option) => {
+                            const isCorrect = option === 'c';
+                            const isSelected = quizAnswers['q2'] === option;
+                            return (
+                              <label 
+                                key={option}
+                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                                  !quizSubmitted ? 'hover-elevate' : ''
+                                } ${
+                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
+                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
+                                }`}
+                              >
+                                <input 
+                                  type="radio" 
+                                  name="q2" 
+                                  value={option} 
+                                  className="w-4 h-4"
+                                  checked={isSelected}
+                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q2: e.target.value})}
+                                  disabled={quizSubmitted}
+                                />
+                                <span className="text-sm">
+                                  {option === 'a' && 'Market indecision and consolidation'}
+                                  {option === 'b' && 'Strong trend continuation signal'}
+                                  {option === 'c' && 'Strong rejection at a price level (long wick, small body)'}
+                                  {option === 'd' && 'Breakout is imminent'}
+                                  {quizSubmitted && isCorrect && ' ✓'}
+                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
+                                </span>
+                              </label>
+                            );
+                          })}
                         </div>
+                        {quizSubmitted && quizAnswers['q2'] !== 'c' && (
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Strong rejection at a price level (long wick, small body)</p>
+                        )}
                       </div>
                       
                       <div className="p-4 border rounded-lg">
                         <p className="font-medium mb-3">3. What is the professional approach to trading with the trend?</p>
                         <div className="space-y-2">
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q3" value="a" className="w-4 h-4" />
-                            <span className="text-sm">Always trade against the trend for better risk/reward</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
-                            <input type="radio" name="q3" value="b" className="w-4 h-4" />
-                            <span className="text-sm">Identify trend on higher timeframe, enter on lower timeframe pullbacks ✓</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q3" value="c" className="w-4 h-4" />
-                            <span className="text-sm">Only use M1 charts for fastest entries</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q3" value="d" className="w-4 h-4" />
-                            <span className="text-sm">Ignore timeframes and trade all signals equally</span>
-                          </label>
+                          {['a', 'b', 'c', 'd'].map((option) => {
+                            const isCorrect = option === 'b';
+                            const isSelected = quizAnswers['q3'] === option;
+                            return (
+                              <label 
+                                key={option}
+                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                                  !quizSubmitted ? 'hover-elevate' : ''
+                                } ${
+                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
+                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
+                                }`}
+                              >
+                                <input 
+                                  type="radio" 
+                                  name="q3" 
+                                  value={option} 
+                                  className="w-4 h-4"
+                                  checked={isSelected}
+                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q3: e.target.value})}
+                                  disabled={quizSubmitted}
+                                />
+                                <span className="text-sm">
+                                  {option === 'a' && 'Always trade against the trend for better risk/reward'}
+                                  {option === 'b' && 'Identify trend on higher timeframe, enter on lower timeframe pullbacks'}
+                                  {option === 'c' && 'Only use M1 charts for fastest entries'}
+                                  {option === 'd' && 'Ignore timeframes and trade all signals equally'}
+                                  {quizSubmitted && isCorrect && ' ✓'}
+                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
+                                </span>
+                              </label>
+                            );
+                          })}
                         </div>
+                        {quizSubmitted && quizAnswers['q3'] !== 'b' && (
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Identify trend on higher timeframe, enter on lower timeframe pullbacks</p>
+                        )}
                       </div>
                       
                       <div className="p-4 border rounded-lg">
                         <p className="font-medium mb-3">4. According to the lesson, why should you never trade candlestick patterns in isolation?</p>
                         <div className="space-y-2">
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q4" value="a" className="w-4 h-4" />
-                            <span className="text-sm">Candlestick patterns are unreliable and should be avoided</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
-                            <input type="radio" name="q4" value="b" className="w-4 h-4" />
-                            <span className="text-sm">Context matters - consider trend, support/resistance, and confluence ✓</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q4" value="c" className="w-4 h-4" />
-                            <span className="text-sm">You need at least 5 indicators to confirm any pattern</span>
-                          </label>
-                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
-                            <input type="radio" name="q4" value="d" className="w-4 h-4" />
-                            <span className="text-sm">Patterns only work on 1-hour charts or higher</span>
-                          </label>
+                          {['a', 'b', 'c', 'd'].map((option) => {
+                            const isCorrect = option === 'b';
+                            const isSelected = quizAnswers['q4'] === option;
+                            return (
+                              <label 
+                                key={option}
+                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                                  !quizSubmitted ? 'hover-elevate' : ''
+                                } ${
+                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
+                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
+                                }`}
+                              >
+                                <input 
+                                  type="radio" 
+                                  name="q4" 
+                                  value={option} 
+                                  className="w-4 h-4"
+                                  checked={isSelected}
+                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q4: e.target.value})}
+                                  disabled={quizSubmitted}
+                                />
+                                <span className="text-sm">
+                                  {option === 'a' && 'Candlestick patterns are unreliable and should be avoided'}
+                                  {option === 'b' && 'Context matters - consider trend, support/resistance, and confluence'}
+                                  {option === 'c' && 'You need at least 5 indicators to confirm any pattern'}
+                                  {option === 'd' && 'Patterns only work on 1-hour charts or higher'}
+                                  {quizSubmitted && isCorrect && ' ✓'}
+                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
+                                </span>
+                              </label>
+                            );
+                          })}
                         </div>
+                        {quizSubmitted && quizAnswers['q4'] !== 'b' && (
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Context matters - consider trend, support/resistance, and confluence</p>
+                        )}
                       </div>
                     </div>
                     
-                    <Alert className="mt-4">
-                      <HelpCircle className="w-4 h-4" />
-                      <AlertDescription>
-                        The correct answers are highlighted in green. Study the explanations carefully to master advanced price action concepts.
-                      </AlertDescription>
-                    </Alert>
+                    <div className="flex gap-3 mt-4">
+                      {!quizSubmitted ? (
+                        <Button 
+                          onClick={() => {
+                            if (Object.keys(quizAnswers).length === 4) {
+                              setQuizSubmitted(true);
+                            } else {
+                              toast({
+                                title: "Incomplete Quiz",
+                                description: "Please answer all questions before submitting.",
+                                variant: "destructive"
+                              });
+                            }
+                          }}
+                          data-testid="button-submit-quiz"
+                        >
+                          Submit Quiz
+                        </Button>
+                      ) : (
+                        <>
+                          <Button 
+                            onClick={() => {
+                              setQuizAnswers({});
+                              setQuizSubmitted(false);
+                            }}
+                            variant="outline"
+                            data-testid="button-reset-quiz"
+                          >
+                            <Target className="w-4 h-4 mr-2" />
+                            Try Again
+                          </Button>
+                          <Alert className="flex-1">
+                            <CheckCircle2 className="w-4 h-4" />
+                            <AlertDescription>
+                              Quiz submitted! Review your answers and try again if needed.
+                            </AlertDescription>
+                          </Alert>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
                 
