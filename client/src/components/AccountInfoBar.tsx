@@ -3,12 +3,14 @@ import { cn } from "@/lib/utils";
 
 type AccountInfo = {
   balance: string;
+  realBalance: string;
+  demoBalance: string;
+  bonusBalance: string;
   equity: string;
   margin: string;
   freeMargin: string;
   marginLevel: string;
   leverage: number;
-  bonusBalance: string;
   totalPnl: string;
 };
 
@@ -18,8 +20,10 @@ export function AccountInfoBar() {
     refetchInterval: 2000, // Real-time updates every 2 seconds
   });
 
+  const realBalance = parseFloat(account?.realBalance || "0");
+  const demoBalance = parseFloat(account?.demoBalance || "0");
+  const bonusBalance = parseFloat(account?.bonusBalance || "0");
   const balance = parseFloat(account?.balance || "0");
-  const credit = parseFloat(account?.bonusBalance || "0");
   const margin = parseFloat(account?.margin || "0");
   const equity = parseFloat(account?.equity || "0");
   const marginLevel = parseFloat(account?.marginLevel || "0");
@@ -36,24 +40,34 @@ export function AccountInfoBar() {
   return (
     <div className="border-b bg-card">
       <div className="px-4 py-2">
-        <div className="grid grid-cols-7 gap-4 items-center">
-          {/* Balance */}
+        <div className="grid grid-cols-8 gap-4 items-center">
+          {/* Real Balance */}
           <div>
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium mb-0.5">
-              Balance
+              Real
             </div>
-            <div className="font-mono text-sm font-semibold tabular-nums" data-testid="info-balance">
-              {formatCurrency(balance)} USD
+            <div className="font-mono text-sm font-semibold tabular-nums" data-testid="info-real-balance">
+              {formatCurrency(realBalance)} USD
             </div>
           </div>
 
-          {/* Credit */}
+          {/* Demo Balance */}
           <div>
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium mb-0.5">
-              Credit
+              Demo
             </div>
-            <div className="font-mono text-sm font-semibold tabular-nums" data-testid="info-credit">
-              {formatCurrency(credit)} USD
+            <div className="font-mono text-sm font-semibold tabular-nums" data-testid="info-demo-balance">
+              {formatCurrency(demoBalance)} USD
+            </div>
+          </div>
+
+          {/* Bonus Balance */}
+          <div>
+            <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium mb-0.5">
+              Bonus
+            </div>
+            <div className="font-mono text-sm font-semibold tabular-nums" data-testid="info-bonus-balance">
+              {formatCurrency(bonusBalance)} USD
             </div>
           </div>
 
