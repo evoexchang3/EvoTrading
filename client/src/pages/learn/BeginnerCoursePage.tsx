@@ -66,6 +66,30 @@ export default function BeginnerCoursePage() {
     return Math.round((completed / totalLessons) * 100);
   };
 
+  const isModuleUnlocked = (moduleIndex: number) => {
+    if (moduleIndex === 0) return true;
+    const previousModule = modules[moduleIndex - 1];
+    const previousModuleProgress = getModuleProgress(previousModule.id, previousModule.lessons.length);
+    return previousModuleProgress === 100;
+  };
+
+  const getModuleStatus = (moduleIndex: number, moduleId: string, totalLessons: number) => {
+    const progress = getModuleProgress(moduleId, totalLessons);
+    if (!isModuleUnlocked(moduleIndex)) return 'locked';
+    if (progress === 100) return 'completed';
+    if (progress > 0) return 'in-progress';
+    return 'unlocked';
+  };
+
+  const getFirstIncompleteLesson = (moduleId: string, lessons: any[]) => {
+    for (const lesson of lessons) {
+      if (!getLessonProgress(moduleId, lesson.id)) {
+        return lesson;
+      }
+    }
+    return null;
+  };
+
 
   const modules = [
     {
@@ -330,7 +354,8 @@ export default function BeginnerCoursePage() {
           <h2 className="text-2xl font-bold">Course Modules</h2>
           {modules.map((module, index) => {
             const moduleProgress = getModuleProgress(module.id, module.lessons.length);
-            const moduleStatus = moduleProgress === 100 ? 'completed' : moduleProgress > 0 ? 'in-progress' : 'locked';
+            const moduleStatus = getModuleStatus(index, module.id, module.lessons.length);
+            const firstIncomplete = getFirstIncompleteLesson(module.id, module.lessons);
             
             return (
             <Card key={index} data-testid={`card-module-${index}`}>
@@ -374,6 +399,17 @@ export default function BeginnerCoursePage() {
                     size="sm" 
                     data-testid={`button-module-${index}`}
                     disabled={moduleStatus === 'locked'}
+                    onClick={() => {
+                      if (firstIncomplete) {
+                        setSelectedLesson({
+                          moduleId: module.id,
+                          moduleIndex: index,
+                          lessonId: firstIncomplete.id,
+                          lessonIndex: module.lessons.findIndex(l => l.id === firstIncomplete.id),
+                          title: firstIncomplete.title
+                        });
+                      }
+                    }}
                   >
                     {moduleStatus === 'completed' ? 'Review' : 
                      moduleStatus === 'in-progress' ? 'Continue' : 
@@ -390,15 +426,19 @@ export default function BeginnerCoursePage() {
                       return (
                       <li 
                         key={lessonIndex} 
-                        className="flex items-center gap-3 text-sm hover-elevate p-2 rounded cursor-pointer"
+                        className={`flex items-center gap-3 text-sm p-2 rounded ${moduleStatus !== 'locked' ? 'hover-elevate cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
                         data-testid={`lesson-${index}-${lessonIndex}`}
-                        onClick={() => setSelectedLesson({ 
-                          moduleId: module.id, 
-                          moduleIndex: index,
-                          lessonId: lesson.id, 
-                          lessonIndex, 
-                          title: lesson.title 
-                        })}
+                        onClick={() => {
+                          if (moduleStatus !== 'locked') {
+                            setSelectedLesson({ 
+                              moduleId: module.id, 
+                              moduleIndex: index,
+                              lessonId: lesson.id, 
+                              lessonIndex, 
+                              title: lesson.title 
+                            });
+                          }
+                        }}
                       >
                         {isCompleted ? (
                           <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />

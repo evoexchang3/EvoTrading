@@ -293,6 +293,7 @@ export default function NewsPage() {
               <SelectItem value="crypto">Crypto</SelectItem>
               <SelectItem value="commodities">Commodities</SelectItem>
               <SelectItem value="stocks">Stocks</SelectItem>
+              <SelectItem value="general">General</SelectItem>
             </SelectContent>
           </Select>
 

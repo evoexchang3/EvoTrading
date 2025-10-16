@@ -75,8 +75,13 @@ export class NewsService {
       return [];
     }
 
-    const forexSymbols = ['EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCAD', 'USDCHF'];
-    const url = `${MARKETAUX_BASE_URL}/news/all?api_token=${MARKETAUX_API_KEY}&symbols=${forexSymbols.join(',')}&filter_entities=true&language=en&limit=50`;
+    const allSymbols = [
+      'EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCAD', 'USDCHF',
+      'BTC-USD', 'ETH-USD', 'XRP-USD', 'ADA-USD', 'SOL-USD',
+      'XAUUSD', 'XAGUSD', 'USOIL', 'UKOIL',
+      'SPY', 'QQQ', 'DIA', 'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA'
+    ];
+    const url = `${MARKETAUX_BASE_URL}/news/all?api_token=${MARKETAUX_API_KEY}&symbols=${allSymbols.join(',')}&filter_entities=true&language=en&limit=50`;
 
     try {
       const response = await fetch(url);
@@ -98,13 +103,39 @@ export class NewsService {
         url: article.url,
         sentiment: article.sentiment?.toLowerCase() || 'neutral',
         symbols: article.entities?.map(e => e.symbol).filter(Boolean) as string[] || [],
-        category: 'forex',
+        category: this.deriveCategory(article.entities || []),
         cachedAt: new Date(),
       }));
     } catch (error) {
       console.error("Failed to fetch news from Marketaux:", error);
       return [];
     }
+  }
+
+  private deriveCategory(entities: Array<{ symbol?: string; name?: string }>): string {
+    const symbols = entities.map(e => e.symbol).filter(Boolean);
+    
+    const forexPairs = ['EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCAD', 'USDCHF', 'EURGBP', 'EURJPY', 'GBPJPY'];
+    const cryptoSymbols = ['BTC-USD', 'ETH-USD', 'XRP-USD', 'ADA-USD', 'SOL-USD', 'BTC', 'ETH', 'XRP', 'ADA', 'SOL', 'DOGE', 'MATIC', 'DOT', 'AVAX', 'LINK'];
+    const commoditySymbols = ['XAUUSD', 'XAGUSD', 'USOIL', 'UKOIL', 'GOLD', 'SILVER', 'OIL', 'CRUDE'];
+    const stockSymbols = ['SPY', 'QQQ', 'DIA', 'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'META', 'NVDA', 'AMD', 'NFLX', 'BABA'];
+    
+    for (const symbol of symbols) {
+      if (cryptoSymbols.some(c => symbol?.toUpperCase().includes(c))) {
+        return 'crypto';
+      }
+      if (commoditySymbols.some(c => symbol?.toUpperCase().includes(c))) {
+        return 'commodities';
+      }
+      if (stockSymbols.some(s => symbol?.toUpperCase() === s)) {
+        return 'stocks';
+      }
+      if (forexPairs.some(f => symbol?.toUpperCase() === f)) {
+        return 'forex';
+      }
+    }
+    
+    return 'general';
   }
 
   private async cacheNews(articles: NewsArticle[]): Promise<void> {

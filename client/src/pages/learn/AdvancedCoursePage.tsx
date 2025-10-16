@@ -54,8 +54,6 @@ export default function AdvancedCoursePage() {
       title: "Module 1: Advanced Technical Analysis",
       description: "Deep dive into Elliott Wave Theory, harmonic patterns, and advanced Fibonacci techniques",
       duration: "90 mins",
-      status: "in-progress",
-      progress: 45,
       lessons: [
         { id: "lesson-adv-1-1", title: "Elliott Wave Theory", duration: "20 mins" },
         { id: "lesson-adv-1-2", title: "Harmonic Patterns (Gartley, Butterfly, Bat)", duration: "22 mins" },
@@ -75,8 +73,6 @@ export default function AdvancedCoursePage() {
       title: "Module 2: Market Structure",
       description: "Understand institutional order flow, smart money concepts, and supply/demand zones",
       duration: "75 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
         { id: "lesson-adv-2-1", title: "Order Flow and Market Makers", duration: "18 mins" },
         { id: "lesson-adv-2-2", title: "Smart Money Concepts", duration: "16 mins" },
@@ -96,8 +92,6 @@ export default function AdvancedCoursePage() {
       title: "Module 3: Advanced Risk Management",
       description: "Portfolio-level risk management, correlation analysis, and position optimization",
       duration: "60 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
         { id: "lesson-adv-3-1", title: "Portfolio Risk Management", duration: "15 mins" },
         { id: "lesson-adv-3-2", title: "Correlation-Based Position Sizing", duration: "12 mins" },
@@ -117,8 +111,6 @@ export default function AdvancedCoursePage() {
       title: "Module 4: Trading Systems",
       description: "Design, backtest, and optimize professional trading systems",
       duration: "90 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
         { id: "lesson-adv-4-1", title: "Designing a Trading System", duration: "20 mins" },
         { id: "lesson-adv-4-2", title: "Backtesting Methodologies", duration: "22 mins" },
@@ -138,8 +130,6 @@ export default function AdvancedCoursePage() {
       title: "Module 5: Advanced Strategies",
       description: "Master scalping, swing trading, carry trades, and event-driven strategies",
       duration: "120 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
         { id: "lesson-adv-5-1", title: "Scalping Techniques and Execution", duration: "25 mins" },
         { id: "lesson-adv-5-2", title: "Swing Trading Advanced Patterns", duration: "25 mins" },
@@ -159,8 +149,6 @@ export default function AdvancedCoursePage() {
       title: "Module 6: Professional Trading",
       description: "Build a trading business, optimize performance, and scale your capital",
       duration: "60 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
         { id: "lesson-adv-6-1", title: "Building a Trading Business", duration: "15 mins" },
         { id: "lesson-adv-6-2", title: "Performance Analysis and Journaling", duration: "12 mins" },
@@ -240,10 +228,7 @@ export default function AdvancedCoursePage() {
     ) !== undefined;
   };
 
-  const getModuleProgress = (moduleId: string) => {
-    const module = modules.find(m => m.id === moduleId);
-    if (!module) return 0;
-    
+  const getModuleProgress = (moduleId: string, totalLessons: number) => {
     const completedCount = progressData.filter(p => 
       p.courseId === COURSE_ID && 
       p.moduleId === moduleId && 
@@ -251,7 +236,31 @@ export default function AdvancedCoursePage() {
       p.completed
     ).length;
     
-    return module.lessons.length > 0 ? Math.round((completedCount / module.lessons.length) * 100) : 0;
+    return totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
+  };
+
+  const isModuleUnlocked = (moduleIndex: number) => {
+    if (moduleIndex === 0) return true;
+    const previousModule = modules[moduleIndex - 1];
+    const previousModuleProgress = getModuleProgress(previousModule.id, previousModule.lessons.length);
+    return previousModuleProgress === 100;
+  };
+
+  const getModuleStatus = (moduleIndex: number, moduleId: string, totalLessons: number) => {
+    const progress = getModuleProgress(moduleId, totalLessons);
+    if (!isModuleUnlocked(moduleIndex)) return 'locked';
+    if (progress === 100) return 'completed';
+    if (progress > 0) return 'in-progress';
+    return 'unlocked';
+  };
+
+  const getFirstIncompleteLesson = (moduleId: string, lessons: any[]) => {
+    for (const lesson of lessons) {
+      if (!getLessonProgress(moduleId, lesson.id)) {
+        return lesson;
+      }
+    }
+    return null;
   };
 
   const courseProgress = useMemo(() => {
@@ -370,18 +379,23 @@ export default function AdvancedCoursePage() {
         {/* Course Modules */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Course Modules</h2>
-          {modules.map((module, index) => (
+          {modules.map((module, index) => {
+            const moduleProgress = getModuleProgress(module.id, module.lessons.length);
+            const moduleStatus = getModuleStatus(index, module.id, module.lessons.length);
+            const firstIncomplete = getFirstIncompleteLesson(module.id, module.lessons);
+            
+            return (
             <Card key={index} data-testid={`card-module-${index}`}>
               <CardHeader>
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2 flex-wrap">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 ${
-                        module.status === 'completed' ? 'bg-primary text-primary-foreground' :
-                        module.status === 'in-progress' ? 'bg-primary/20 text-primary' :
+                        moduleStatus === 'completed' ? 'bg-primary text-primary-foreground' :
+                        moduleStatus === 'in-progress' ? 'bg-primary/20 text-primary' :
                         'bg-muted text-muted-foreground'
                       }`}>
-                        {module.status === 'completed' ? <CheckCircle2 className="w-5 h-5" /> : index + 1}
+                        {moduleStatus === 'completed' ? <CheckCircle2 className="w-5 h-5" /> : index + 1}
                       </div>
                       <div className="flex-1 min-w-0">
                         <CardTitle className="text-xl mb-1">{module.title}</CardTitle>
@@ -391,30 +405,41 @@ export default function AdvancedCoursePage() {
                             {module.duration}
                           </span>
                           <Badge variant="outline">{module.lessons.length} lessons</Badge>
-                          {module.status === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />Locked</Badge>}
-                          {module.status === 'in-progress' && <Badge variant="default">In Progress</Badge>}
-                          {module.status === 'completed' && <Badge className="bg-green-600">Completed</Badge>}
+                          {moduleStatus === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />Locked</Badge>}
+                          {moduleStatus === 'in-progress' && <Badge variant="default">In Progress</Badge>}
+                          {moduleStatus === 'completed' && <Badge className="bg-green-600">Completed</Badge>}
                         </CardDescription>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{module.description}</p>
-                    {module.progress > 0 && (
+                    {moduleProgress > 0 && (
                       <div className="space-y-1">
                         <div className="flex items-center justify-between text-sm">
                           <span className="text-muted-foreground">Progress</span>
-                          <span className="font-semibold">{module.progress}%</span>
+                          <span className="font-semibold">{moduleProgress}%</span>
                         </div>
-                        <Progress value={module.progress} className="h-1.5" />
+                        <Progress value={moduleProgress} className="h-1.5" />
                       </div>
                     )}
                   </div>
                   <Button 
                     size="sm" 
                     data-testid={`button-module-${index}`}
-                    disabled={module.status === 'locked'}
+                    disabled={moduleStatus === 'locked'}
+                    onClick={() => {
+                      if (firstIncomplete) {
+                        setSelectedLesson({
+                          moduleId: module.id,
+                          moduleIndex: index,
+                          lessonId: firstIncomplete.id,
+                          lessonIndex: module.lessons.findIndex(l => l.id === firstIncomplete.id),
+                          title: firstIncomplete.title
+                        });
+                      }
+                    }}
                   >
-                    {module.status === 'completed' ? 'Review' : 
-                     module.status === 'in-progress' ? 'Continue' : 
+                    {moduleStatus === 'completed' ? 'Review' : 
+                     moduleStatus === 'in-progress' ? 'Continue' : 
                      'Start'}
                   </Button>
                 </div>
@@ -428,15 +453,19 @@ export default function AdvancedCoursePage() {
                       return (
                       <li 
                         key={lessonIndex} 
-                        className="flex items-center gap-3 text-sm hover-elevate p-2 rounded cursor-pointer"
+                        className={`flex items-center gap-3 text-sm p-2 rounded ${moduleStatus !== 'locked' ? 'hover-elevate cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
                         data-testid={`lesson-${index}-${lessonIndex}`}
-                        onClick={() => setSelectedLesson({ 
-                          moduleId: module.id, 
-                          moduleIndex: index,
-                          lessonId: lesson.id, 
-                          lessonIndex, 
-                          title: lesson.title 
-                        })}
+                        onClick={() => {
+                          if (moduleStatus !== 'locked') {
+                            setSelectedLesson({ 
+                              moduleId: module.id, 
+                              moduleIndex: index,
+                              lessonId: lesson.id, 
+                              lessonIndex, 
+                              title: lesson.title 
+                            });
+                          }
+                        }}
                       >
                         {isCompleted ? (
                           <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
@@ -475,7 +504,8 @@ export default function AdvancedCoursePage() {
                 </div>
               </CardContent>
             </Card>
-          ))}
+          );
+          })}
         </div>
 
         {/* Certificate Information */}
