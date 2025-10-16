@@ -1,10 +1,11 @@
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, CheckCircle2, Award, Download, TrendingUp, Clock, Target, FileText, Play, Lock } from "lucide-react";
+import { BookOpen, CheckCircle2, Award, Download, TrendingUp, Clock, Target, FileText, Play, Lock, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
@@ -15,13 +16,14 @@ const COURSE_ID = "beginner-trading";
 
 export default function BeginnerCoursePage() {
   const { toast } = useToast();
+  const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
   
   const { data: progressData = [] } = useQuery<CourseProgress[]>({
     queryKey: ['/api/course-progress', COURSE_ID],
     queryFn: async () => {
       const res = await fetch(`/api/course-progress/${COURSE_ID}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
       });
       if (!res.ok) return [];
@@ -390,7 +392,13 @@ export default function BeginnerCoursePage() {
                         key={lessonIndex} 
                         className="flex items-center gap-3 text-sm hover-elevate p-2 rounded cursor-pointer"
                         data-testid={`lesson-${index}-${lessonIndex}`}
-                        onClick={() => saveProgressMutation.mutate({ moduleId: module.id, lessonId: lesson.id, completed: !isCompleted })}
+                        onClick={() => setSelectedLesson({ 
+                          moduleId: module.id, 
+                          moduleIndex: index,
+                          lessonId: lesson.id, 
+                          lessonIndex, 
+                          title: lesson.title 
+                        })}
                       >
                         {isCompleted ? (
                           <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
@@ -637,6 +645,167 @@ export default function BeginnerCoursePage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Lesson Viewer Dialog */}
+      <Dialog open={selectedLesson !== null} onOpenChange={(open) => !open && setSelectedLesson(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          {selectedLesson && (() => {
+            const module = modules[selectedLesson.moduleIndex];
+            const lesson = module.lessons[selectedLesson.lessonIndex];
+            const isCompleted = getLessonProgress(selectedLesson.moduleId, selectedLesson.lessonId);
+            
+            const handlePrevious = () => {
+              if (selectedLesson.lessonIndex > 0) {
+                const prevLesson = module.lessons[selectedLesson.lessonIndex - 1];
+                setSelectedLesson({
+                  moduleId: selectedLesson.moduleId,
+                  moduleIndex: selectedLesson.moduleIndex,
+                  lessonId: prevLesson.id,
+                  lessonIndex: selectedLesson.lessonIndex - 1,
+                  title: prevLesson.title
+                });
+              } else if (selectedLesson.moduleIndex > 0) {
+                const prevModule = modules[selectedLesson.moduleIndex - 1];
+                const lastLesson = prevModule.lessons[prevModule.lessons.length - 1];
+                setSelectedLesson({
+                  moduleId: prevModule.id,
+                  moduleIndex: selectedLesson.moduleIndex - 1,
+                  lessonId: lastLesson.id,
+                  lessonIndex: prevModule.lessons.length - 1,
+                  title: lastLesson.title
+                });
+              }
+            };
+            
+            const handleNext = () => {
+              if (selectedLesson.lessonIndex < module.lessons.length - 1) {
+                const nextLesson = module.lessons[selectedLesson.lessonIndex + 1];
+                setSelectedLesson({
+                  moduleId: selectedLesson.moduleId,
+                  moduleIndex: selectedLesson.moduleIndex,
+                  lessonId: nextLesson.id,
+                  lessonIndex: selectedLesson.lessonIndex + 1,
+                  title: nextLesson.title
+                });
+              } else if (selectedLesson.moduleIndex < modules.length - 1) {
+                const nextModule = modules[selectedLesson.moduleIndex + 1];
+                const firstLesson = nextModule.lessons[0];
+                setSelectedLesson({
+                  moduleId: nextModule.id,
+                  moduleIndex: selectedLesson.moduleIndex + 1,
+                  lessonId: firstLesson.id,
+                  lessonIndex: 0,
+                  title: firstLesson.title
+                });
+              }
+            };
+            
+            const toggleComplete = () => {
+              saveProgressMutation.mutate({ 
+                moduleId: selectedLesson.moduleId, 
+                lessonId: selectedLesson.lessonId, 
+                completed: !isCompleted 
+              });
+            };
+            
+            const hasPrevious = selectedLesson.moduleIndex > 0 || selectedLesson.lessonIndex > 0;
+            const hasNext = selectedLesson.moduleIndex < modules.length - 1 || selectedLesson.lessonIndex < module.lessons.length - 1;
+            
+            return (
+              <>
+                <DialogHeader>
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <DialogTitle className="text-2xl mb-2">{lesson.title}</DialogTitle>
+                      <DialogDescription className="flex items-center gap-4 flex-wrap">
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {lesson.duration}
+                        </span>
+                        <Badge variant="outline">Module {selectedLesson.moduleIndex + 1} • Lesson {selectedLesson.lessonIndex + 1}</Badge>
+                        {isCompleted && <Badge className="bg-green-600">Completed</Badge>}
+                      </DialogDescription>
+                    </div>
+                    <Button 
+                      variant={isCompleted ? "outline" : "default"}
+                      size="sm"
+                      onClick={toggleComplete}
+                      data-testid="button-mark-complete"
+                    >
+                      {isCompleted ? (
+                        <>
+                          <CheckCircle2 className="w-4 h-4 mr-2" />
+                          Completed
+                        </>
+                      ) : (
+                        "Mark as Complete"
+                      )}
+                    </Button>
+                  </div>
+                </DialogHeader>
+                
+                <div className="space-y-6 mt-6">
+                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                    <div className="text-center">
+                      <Play className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+                      <p className="text-sm text-muted-foreground">Video content placeholder</p>
+                      <p className="text-xs text-muted-foreground mt-1">Lesson video will be displayed here</p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold text-lg mb-3">Lesson Overview</h3>
+                    <p className="text-muted-foreground">
+                      This lesson covers important concepts in forex trading. You'll learn practical strategies 
+                      and techniques that you can apply immediately in your trading journey.
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold text-lg mb-3">Key Takeaways</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span>Understand core concepts and terminology</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span>Learn practical application strategies</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span>Practice with real-world examples</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between mt-6 pt-6 border-t">
+                  <Button
+                    variant="outline"
+                    onClick={handlePrevious}
+                    disabled={!hasPrevious}
+                    data-testid="button-previous-lesson"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    Previous Lesson
+                  </Button>
+                  
+                  <Button
+                    variant="outline"
+                    onClick={handleNext}
+                    disabled={!hasNext}
+                    data-testid="button-next-lesson"
+                  >
+                    Next Lesson
+                    <ChevronRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+              </>
+            );
+          })()}
+        </DialogContent>
+      </Dialog>
     </DashboardLayout>
   );
 }
