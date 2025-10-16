@@ -700,8 +700,8 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Economic Calendar routes
-  app.get("/api/economic-calendar", authenticateToken, async (req: AuthRequest, res) => {
+  // Economic Calendar routes (public - informational data)
+  app.get("/api/economic-calendar", async (req, res) => {
     try {
       const { startDate, endDate, currency, impact } = req.query;
       
@@ -719,8 +719,8 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // News routes
-  app.get("/api/news", authenticateToken, async (req: AuthRequest, res) => {
+  // News routes (public - informational data)
+  app.get("/api/news", async (req, res) => {
     try {
       const { category, sentiment, limit } = req.query;
       
