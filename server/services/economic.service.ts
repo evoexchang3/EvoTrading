@@ -100,7 +100,14 @@ export class EconomicService {
 
       const data: EODHDEconomicEvent[] = await response.json();
 
-      return data.map(event => ({
+      // Filter out events with missing required fields
+      const validEvents = data.filter(event => 
+        event.date && event.country && event.event
+      );
+
+      console.log(`Received ${data.length} events, ${validEvents.length} valid events from EODHD`);
+
+      return validEvents.map(event => ({
         id: '',
         eventId: `eodhd_${event.date}_${event.country}_${event.event.replace(/\s/g, '_')}`,
         datetime: new Date(event.date),
