@@ -1002,6 +1002,14 @@ export default function BeginnerCoursePage() {
                           onClick={() => {
                             if (Object.keys(quizAnswers).length === 3) {
                               setQuizSubmitted(true);
+                              // Auto-mark lesson as complete when quiz is submitted
+                              if (!isCompleted) {
+                                saveProgressMutation.mutate({ 
+                                  moduleId: selectedLesson.moduleId, 
+                                  lessonId: selectedLesson.lessonId, 
+                                  completed: true 
+                                });
+                              }
                             } else {
                               toast({
                                 title: "Incomplete Quiz",
