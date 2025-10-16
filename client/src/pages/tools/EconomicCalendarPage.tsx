@@ -7,11 +7,45 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
+
+interface EconomicEvent {
+  id: string;
+  datetime: string;
+  currency: string;
+  event: string;
+  impact: string;
+  forecast: string | null;
+  previous: string | null;
+  actual: string | null;
+}
 
 export default function EconomicCalendarPage() {
-  const [filter, setFilter] = useState("all");
+  const [currencyFilter, setCurrencyFilter] = useState("all");
+  const [impactFilter, setImpactFilter] = useState("all");
 
-  const events = [
+  const { data: events = [], isLoading } = useQuery<EconomicEvent[]>({
+    queryKey: ['/api/economic-calendar', currencyFilter, impactFilter],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (currencyFilter && currencyFilter !== 'all') params.append('currency', currencyFilter);
+      if (impactFilter && impactFilter !== 'all') params.append('impact', impactFilter);
+      
+      const url = `/api/economic-calendar${params.toString() ? '?' + params.toString() : ''}`;
+      const res = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      
+      if (!res.ok) throw new Error('Failed to fetch economic calendar');
+      return res.json();
+    },
+    refetchInterval: 1000 * 60 * 30, // Refetch every 30 minutes
+  });
+
+  const mockEvents = [
     {
       time: "09:30",
       currency: "USD",
@@ -241,9 +275,6 @@ export default function EconomicCalendarPage() {
     }
   };
 
-  const filteredEvents = filter === "all" 
-    ? events 
-    : events.filter(e => e.impact === filter);
 
   return (
     <DashboardLayout>
@@ -287,12 +318,29 @@ export default function EconomicCalendarPage() {
 
         {/* Calendar Filter and Events */}
         <div className="flex gap-4 items-center">
-          <Select value={filter} onValueChange={setFilter}>
-            <SelectTrigger className="w-[200px]" data-testid="select-impact-filter">
-              <SelectValue placeholder="Filter by impact" />
+          <Select value={currencyFilter} onValueChange={setCurrencyFilter}>
+            <SelectTrigger className="w-[150px]" data-testid="select-currency-filter">
+              <SelectValue placeholder="Currency" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Events</SelectItem>
+              <SelectItem value="all">All Currencies</SelectItem>
+              <SelectItem value="USD">USD</SelectItem>
+              <SelectItem value="EUR">EUR</SelectItem>
+              <SelectItem value="GBP">GBP</SelectItem>
+              <SelectItem value="JPY">JPY</SelectItem>
+              <SelectItem value="AUD">AUD</SelectItem>
+              <SelectItem value="CAD">CAD</SelectItem>
+              <SelectItem value="CHF">CHF</SelectItem>
+              <SelectItem value="NZD">NZD</SelectItem>
+            </SelectContent>
+          </Select>
+          
+          <Select value={impactFilter} onValueChange={setImpactFilter}>
+            <SelectTrigger className="w-[150px]" data-testid="select-impact-filter">
+              <SelectValue placeholder="Impact" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Impact</SelectItem>
               <SelectItem value="high">High Impact</SelectItem>
               <SelectItem value="medium">Medium Impact</SelectItem>
               <SelectItem value="low">Low Impact</SelectItem>
@@ -322,52 +370,67 @@ export default function EconomicCalendarPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Today's Economic Events</CardTitle>
-            <CardDescription>All times in your local timezone • Click event for detailed analysis</CardDescription>
+            <CardTitle>Economic Events</CardTitle>
+            <CardDescription>
+              {isLoading ? "Loading events..." : `Showing ${events.length} ${events.length === 1 ? 'event' : 'events'} • All times in UTC`}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {filteredEvents.map((event, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-center gap-4 p-4 rounded-lg border hover-elevate"
-                  data-testid={`event-${index}`}
-                >
-                  <div className="flex items-center gap-2 min-w-[80px]">
-                    <Clock className="w-4 h-4 text-muted-foreground" />
-                    <span className="font-mono font-semibold">{event.time}</span>
-                  </div>
-                  
-                  <Badge variant="outline" className="font-mono min-w-[50px] justify-center">
-                    {event.currency}
-                  </Badge>
-                  
-                  <div className="flex-1">
-                    <p className="font-semibold">{event.event}</p>
-                  </div>
-                  
-                  <Badge variant={getImpactColor(event.impact)} className="gap-1 min-w-[100px] justify-center">
-                    {getImpactIcon(event.impact)}
-                    {event.impact}
-                  </Badge>
-                  
-                  <div className="grid grid-cols-3 gap-4 min-w-[300px] text-sm">
-                    <div>
-                      <p className="text-muted-foreground text-xs">Forecast</p>
-                      <p className="font-semibold">{event.forecast}</p>
+            {isLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="text-muted-foreground">Loading economic calendar...</div>
+              </div>
+            ) : events.length === 0 ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="text-muted-foreground">No events found for the selected filters</div>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {events.map((event, index) => (
+                  <div 
+                    key={event.id || index} 
+                    className="flex items-center gap-4 p-4 rounded-lg border hover-elevate"
+                    data-testid={`event-${index}`}
+                  >
+                    <div className="flex items-center gap-2 min-w-[120px]">
+                      <Clock className="w-4 h-4 text-muted-foreground" />
+                      <span className="font-mono font-semibold text-sm">
+                        {format(new Date(event.datetime), 'MMM dd HH:mm')}
+                      </span>
                     </div>
-                    <div>
-                      <p className="text-muted-foreground text-xs">Previous</p>
-                      <p className="font-semibold">{event.previous}</p>
+                    
+                    <Badge variant="outline" className="font-mono min-w-[50px] justify-center">
+                      {event.currency}
+                    </Badge>
+                    
+                    <div className="flex-1">
+                      <p className="font-semibold">{event.event}</p>
+                      <p className="text-xs text-muted-foreground">{event.country}</p>
                     </div>
-                    <div>
-                      <p className="text-muted-foreground text-xs">Actual</p>
-                      <p className="font-semibold">{event.actual || "-"}</p>
+                    
+                    <Badge variant={getImpactColor(event.impact || 'low')} className="gap-1 min-w-[100px] justify-center">
+                      {getImpactIcon(event.impact || 'low')}
+                      {event.impact || 'low'}
+                    </Badge>
+                    
+                    <div className="grid grid-cols-3 gap-4 min-w-[300px] text-sm">
+                      <div>
+                        <p className="text-muted-foreground text-xs">Forecast</p>
+                        <p className="font-semibold">{event.forecast || "-"}</p>
+                      </div>
+                      <div>
+                        <p className="text-muted-foreground text-xs">Previous</p>
+                        <p className="font-semibold">{event.previous || "-"}</p>
+                      </div>
+                      <div>
+                        <p className="text-muted-foreground text-xs">Actual</p>
+                        <p className="font-semibold">{event.actual || "-"}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </CardContent>
         </Card>
 

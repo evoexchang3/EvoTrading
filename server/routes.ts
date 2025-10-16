@@ -6,6 +6,9 @@ import { AuthService } from "./services/auth.service";
 import { TradingService } from "./services/trading.service";
 import { MarketService } from "./services/market.service";
 import { AuditService } from "./services/audit.service";
+import { economicService } from "./services/economic.service";
+import { newsService } from "./services/news.service";
+import { courseService } from "./services/course.service";
 import { authenticateToken, type AuthRequest } from "./middleware/auth.middleware";
 import { 
   registerSchema, 
@@ -614,6 +617,86 @@ export function registerRoutes(app: Express): Server {
       res.json(updatedPrefs);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Economic Calendar routes
+  app.get("/api/economic-calendar", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const { startDate, endDate, currency, impact } = req.query;
+      
+      const events = await economicService.getEconomicCalendar(
+        startDate as string,
+        endDate as string,
+        currency as string,
+        impact as string
+      );
+
+      res.json(events);
+    } catch (error: any) {
+      console.error("Economic calendar error:", error);
+      res.status(500).json({ message: "Failed to fetch economic calendar" });
+    }
+  });
+
+  // News routes
+  app.get("/api/news", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const { category, sentiment, limit } = req.query;
+      
+      const news = await newsService.getForexNews(
+        category as string,
+        sentiment as string,
+        limit ? parseInt(limit as string) : 20
+      );
+
+      res.json(news);
+    } catch (error: any) {
+      console.error("News fetch error:", error);
+      res.status(500).json({ message: "Failed to fetch news" });
+    }
+  });
+
+  // Course Progress routes
+  app.get("/api/course-progress/:courseId", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const { courseId } = req.params;
+      const progress = await courseService.getUserProgress(req.clientId!, courseId);
+      res.json(progress);
+    } catch (error: any) {
+      console.error("Course progress fetch error:", error);
+      res.status(500).json({ message: "Failed to fetch course progress" });
+    }
+  });
+
+  app.post("/api/course-progress", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const { courseId, moduleId, lessonId, completed, quizScore } = req.body;
+      
+      const progress = await courseService.saveProgress({
+        clientId: req.clientId!,
+        courseId,
+        moduleId,
+        lessonId,
+        completed,
+        quizScore,
+      });
+
+      res.json(progress);
+    } catch (error: any) {
+      console.error("Course progress save error:", error);
+      res.status(500).json({ message: "Failed to save course progress" });
+    }
+  });
+
+  app.get("/api/course-completion/:courseId", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const { courseId } = req.params;
+      const completion = await courseService.getCourseCompletion(req.clientId!, courseId);
+      res.json(completion);
+    } catch (error: any) {
+      console.error("Course completion fetch error:", error);
+      res.status(500).json({ message: "Failed to fetch course completion" });
     }
   });
 

@@ -12,6 +12,28 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### October 16, 2025 - Phase 3: Real API Data Integration
+- **Database Schema**: Added 3 new tables for live data caching:
+  - `course_progress`: Tracks user progress through beginner/advanced courses (clientId, courseId, moduleId, lessonId, completed, quizScore)
+  - `economic_events`: Caches economic calendar from Financial Modeling Prep API (24hr TTL)
+  - `news_articles`: Caches forex news from Marketaux API (6hr TTL)
+- **Backend Services**: Created 3 new service classes with intelligent caching:
+  - `EconomicService`: Fetches economic calendar from FMP API, filters by currency/impact with SQL-level filtering
+  - `NewsService`: Fetches forex news from Marketaux API, filters by category/sentiment with SQL-level filtering
+  - `CourseService`: Manages user course progress with proper null handling using `isNull()` for module-level progress
+- **API Endpoints**: Added 6 new authenticated routes:
+  - `GET /api/economic-calendar?currency=USD&impact=high` - Economic calendar with filters
+  - `GET /api/news?category=forex&sentiment=positive&limit=20` - Forex news with sentiment
+  - `GET /api/course-progress/:courseId` - User progress for specific course
+  - `POST /api/course-progress` - Save lesson/module completion
+  - `GET /api/course-completion/:courseId` - Overall course completion stats
+- **Frontend Updates**: 
+  - Economic Calendar page now fetches live FMP data with real-time currency/impact filtering
+  - Custom queryFn converts filter state to query parameters for proper backend filtering
+  - Loading states and empty states for better UX
+- **API Keys**: Integrated FMP_API_KEY (250 req/day) and MARKETAUX_API_KEY (100 req/day) via Replit Secrets
+- **Performance Optimizations**: SQL-level filtering in services prevents loading entire tables into memory
+
 ### October 16, 2025 - Phase 2: Comprehensive Page Enhancement & Trust Pages
 - **Enhanced All 20 Existing Pages to 10x Detail**: All informational pages now include comprehensive FAQs (5-7 Q&As each), detailed guides, real examples, comparison tables, step-by-step instructions, pro tips, and downloadable resources
 - **Customer Information Pages (4 - Enhanced)**: Account types, payment methods, verification process, and trading advice now include detailed comparisons, timelines, checklists, real data, and risk warnings
