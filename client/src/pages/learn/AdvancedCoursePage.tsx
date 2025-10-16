@@ -48,35 +48,6 @@ export default function AdvancedCoursePage() {
     }
   });
 
-  const getLessonProgress = (moduleId: string, lessonId: string) => {
-    return progressData.find(p => 
-      p.courseId === COURSE_ID && 
-      p.moduleId === moduleId && 
-      p.lessonId === lessonId &&
-      p.completed
-    ) !== undefined;
-  };
-
-  const getModuleProgress = (moduleId: string) => {
-    const moduleProgressItems = progressData.filter(p => 
-      p.courseId === COURSE_ID && 
-      p.moduleId === moduleId && 
-      p.lessonId !== null &&
-      p.completed
-    );
-    return moduleProgressItems.length;
-  };
-
-  const courseProgress = useMemo(() => {
-    const totalLessons = modules.reduce((acc, mod) => acc + mod.lessons.length, 0);
-    const completedLessons = progressData.filter(p => 
-      p.courseId === COURSE_ID && 
-      p.lessonId !== null && 
-      p.completed
-    ).length;
-    return totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
-  }, [progressData]);
-
   const modules = [
     {
       id: "module-adv-1",
@@ -260,9 +231,44 @@ export default function AdvancedCoursePage() {
     ]
   };
 
-  const completedLessons = modules.reduce((sum, module) => 
-    sum + module.lessons.filter(l => l.completed).length, 0
-  );
+  const getLessonProgress = (moduleId: string, lessonId: string) => {
+    return progressData.find(p => 
+      p.courseId === COURSE_ID && 
+      p.moduleId === moduleId && 
+      p.lessonId === lessonId &&
+      p.completed
+    ) !== undefined;
+  };
+
+  const getModuleProgress = (moduleId: string) => {
+    const module = modules.find(m => m.id === moduleId);
+    if (!module) return 0;
+    
+    const completedCount = progressData.filter(p => 
+      p.courseId === COURSE_ID && 
+      p.moduleId === moduleId && 
+      p.lessonId !== null &&
+      p.completed
+    ).length;
+    
+    return module.lessons.length > 0 ? Math.round((completedCount / module.lessons.length) * 100) : 0;
+  };
+
+  const courseProgress = useMemo(() => {
+    const totalLessons = modules.reduce((acc, mod) => acc + mod.lessons.length, 0);
+    const completedLessons = progressData.filter(p => 
+      p.courseId === COURSE_ID && 
+      p.lessonId !== null && 
+      p.completed
+    ).length;
+    return totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+  }, [progressData]);
+
+  const completedLessons = progressData.filter(p => 
+    p.courseId === COURSE_ID && 
+    p.lessonId !== null && 
+    p.completed
+  ).length;
   const totalLessons = modules.reduce((sum, module) => sum + module.lessons.length, 0);
 
   return (
