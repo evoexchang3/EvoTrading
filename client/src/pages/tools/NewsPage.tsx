@@ -26,7 +26,7 @@ export default function NewsPage() {
       const url = `/api/news${params.toString() ? '?' + params.toString() : ''}`;
       const res = await fetch(url, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
       });
       

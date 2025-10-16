@@ -35,7 +35,7 @@ export default function EconomicCalendarPage() {
       const url = `/api/economic-calendar${params.toString() ? '?' + params.toString() : ''}`;
       const res = await fetch(url, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
       });
       
