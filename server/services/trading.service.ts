@@ -2,6 +2,7 @@ import { db } from '../db';
 import { accounts, orders, positions, symbols } from '@shared/schema';
 import { eq, and, sql } from 'drizzle-orm';
 import type { PlaceOrderRequest } from '@shared/schema';
+import { sendWebhook } from '../crm';
 
 export class TradingService {
   static async getAccount(clientId: string) {
@@ -217,6 +218,39 @@ export class TradingService {
       // Update account margin
       await this.updateAccountMargin(accountId);
 
+      // Send webhooks for order and position events
+      await sendWebhook('order.placed', {
+        orderId: order.id,
+        accountId,
+        symbol: orderData.symbol,
+        type: orderData.type,
+        side: orderData.side,
+        quantity: quantity.toString(),
+        price: currentPrice.toString(),
+        status: 'filled',
+        timestamp: new Date().toISOString()
+      });
+
+      await sendWebhook('order.executed', {
+        orderId: order.id,
+        accountId,
+        symbol: orderData.symbol,
+        executedPrice: currentPrice.toString(),
+        executedQuantity: quantity.toString(),
+        timestamp: new Date().toISOString()
+      });
+
+      await sendWebhook('position.opened', {
+        positionId: position.id,
+        accountId,
+        symbol: orderData.symbol,
+        side: orderData.side,
+        quantity: quantity.toString(),
+        openPrice: currentPrice.toString(),
+        marginRequired: marginRequired.toString(),
+        timestamp: new Date().toISOString()
+      });
+
       return { order, position };
     } else {
       // For pending orders
@@ -236,6 +270,19 @@ export class TradingService {
           spread: symbol.spread,
         })
         .returning();
+
+      // Send webhook for pending order
+      await sendWebhook('order.placed', {
+        orderId: order.id,
+        accountId,
+        symbol: orderData.symbol,
+        type: orderData.type,
+        side: orderData.side,
+        quantity: quantity.toString(),
+        price: orderData.price?.toString(),
+        status: 'pending',
+        timestamp: new Date().toISOString()
+      });
 
       return { order };
     }
@@ -309,6 +356,19 @@ export class TradingService {
 
     // Update account margin
     await this.updateAccountMargin(position.accountId);
+
+    // Send webhook for position closed
+    await sendWebhook('position.closed', {
+      positionId: position.id,
+      accountId: position.accountId,
+      symbol: position.symbol,
+      side: position.side,
+      quantity: volume.toString(),
+      openPrice: openPrice.toString(),
+      closePrice: currentPrice.toString(),
+      realizedPnl: totalProfit.toString(),
+      timestamp: new Date().toISOString()
+    });
 
     return { profit: totalProfit };
   }

@@ -44,6 +44,7 @@ export default function DepositsPage() {
     resolver: zodResolver(createTransactionSchema),
     defaultValues: {
       type: "deposit",
+      fundType: "real",
       amount: 0,
       method: "bank_transfer",
       notes: "",
@@ -137,6 +138,32 @@ export default function DepositsPage() {
                           disabled={depositMutation.isPending}
                         />
                       </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="fundType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Fund Type</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        disabled={depositMutation.isPending}
+                      >
+                        <FormControl>
+                          <SelectTrigger data-testid="select-fund-type">
+                            <SelectValue placeholder="Select fund type" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="real">Real Funds (Withdrawable)</SelectItem>
+                          <SelectItem value="demo">Demo Funds (Practice)</SelectItem>
+                          <SelectItem value="bonus">Bonus Funds (Non-withdrawable)</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}

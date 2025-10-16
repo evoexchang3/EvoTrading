@@ -19,6 +19,7 @@ export const orderSideEnum = pgEnum('order_side', ['buy', 'sell']);
 export const orderStatusEnum = pgEnum('order_status', ['pending', 'filled', 'partial', 'cancelled', 'rejected']);
 export const transactionTypeEnum = pgEnum('transaction_type', ['deposit', 'withdrawal']);
 export const transactionStatusEnum = pgEnum('transaction_status', ['pending', 'approved', 'rejected', 'processing', 'completed']);
+export const fundTypeEnum = pgEnum('fund_type', ['real', 'demo', 'bonus']);
 export const kycStatusEnum = pgEnum('kyc_status', ['pending', 'approved', 'rejected', 'under_review']);
 export const clientStatusEnum = pgEnum('client_status', ['new', 'active', 'inactive', 'suspended']);
 export const auditActionEnum = pgEnum('audit_action', [
@@ -63,6 +64,9 @@ export const accounts = pgTable("accounts", {
   accountNumber: text("account_number").notNull().unique(),
   currency: text("currency").notNull().default('USD'),
   balance: decimal("balance", { precision: 18, scale: 2 }).notNull().default('0'),
+  realBalance: decimal("real_balance", { precision: 18, scale: 2 }).notNull().default('0'),
+  demoBalance: decimal("demo_balance", { precision: 18, scale: 2 }).notNull().default('0'),
+  bonusBalance: decimal("bonus_balance", { precision: 18, scale: 2 }).notNull().default('0'),
   equity: decimal("equity", { precision: 18, scale: 2 }).notNull().default('0'),
   margin: decimal("margin", { precision: 18, scale: 2 }).notNull().default('0'),
   freeMargin: decimal("free_margin", { precision: 18, scale: 2 }).notNull().default('0'),
@@ -181,6 +185,7 @@ export const transactions = pgTable("transactions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   accountId: varchar("account_id").references(() => accounts.id).notNull(),
   type: transactionTypeEnum("type").notNull(),
+  fundType: fundTypeEnum("fund_type").notNull().default('real'),
   amount: decimal("amount", { precision: 18, scale: 2 }).notNull(),
   currency: text("currency").default('USD'),
   status: transactionStatusEnum("status").default('pending'),
@@ -458,6 +463,7 @@ export const modifyOrderSchema = z.object({
 
 export const createTransactionSchema = z.object({
   type: z.enum(['deposit', 'withdrawal']),
+  fundType: z.enum(['real', 'demo', 'bonus']).default('real'),
   amount: z.number().positive(),
   method: z.string().optional(),
   notes: z.string().optional(),

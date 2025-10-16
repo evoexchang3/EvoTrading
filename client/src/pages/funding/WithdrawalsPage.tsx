@@ -44,6 +44,7 @@ export default function WithdrawalsPage() {
     resolver: zodResolver(createTransactionSchema),
     defaultValues: {
       type: "withdrawal",
+      fundType: "real",
       amount: 0,
       method: "bank_transfer",
       notes: "",
@@ -130,6 +131,31 @@ export default function WithdrawalsPage() {
                           disabled={withdrawalMutation.isPending}
                         />
                       </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="fundType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Fund Type</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        disabled={withdrawalMutation.isPending}
+                      >
+                        <FormControl>
+                          <SelectTrigger data-testid="select-fund-type">
+                            <SelectValue placeholder="Select fund type" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="real">Real Funds</SelectItem>
+                          <SelectItem value="demo">Demo Funds</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}

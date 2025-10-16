@@ -466,14 +466,49 @@ export function registerRoutes(app: Express): Server {
       const data = createTransactionSchema.parse(req.body);
       const account = await TradingService.getAccount(req.clientId!);
 
+      if (!account) {
+        return res.status(404).json({ message: "Account not found" });
+      }
+
+      const fundType = data.fundType || 'real';
       const [transaction] = await db.insert(transactions).values({
         accountId: account.id,
         type: 'deposit',
+        fundType,
         amount: data.amount.toString(),
         method: data.method,
         notes: data.notes,
-        status: 'pending',
+        status: 'completed',
+        processedAt: new Date(),
       }).returning();
+
+      // Update the appropriate balance field
+      const updateData: any = {};
+      if (fundType === 'real') {
+        updateData.realBalance = (parseFloat(account.realBalance || '0') + data.amount).toString();
+      } else if (fundType === 'demo') {
+        updateData.demoBalance = (parseFloat(account.demoBalance || '0') + data.amount).toString();
+      } else if (fundType === 'bonus') {
+        updateData.bonusBalance = (parseFloat(account.bonusBalance || '0') + data.amount).toString();
+      }
+      
+      // Update total balance
+      const newRealBalance = fundType === 'real' ? parseFloat(updateData.realBalance) : parseFloat(account.realBalance || '0');
+      const newDemoBalance = fundType === 'demo' ? parseFloat(updateData.demoBalance) : parseFloat(account.demoBalance || '0');
+      const newBonusBalance = fundType === 'bonus' ? parseFloat(updateData.bonusBalance) : parseFloat(account.bonusBalance || '0');
+      updateData.balance = (newRealBalance + newDemoBalance + newBonusBalance).toString();
+
+      await db.update(accounts).set(updateData).where(eq(accounts.id, account.id));
+
+      // Send webhook for deposit completion
+      const { sendWebhook } = await import('./crm');
+      await sendWebhook('deposit.completed', {
+        accountId: account.id,
+        fundType,
+        amount: data.amount.toString(),
+        transactionId: transaction.id,
+        completedAt: new Date().toISOString()
+      });
 
       res.json(transaction);
     } catch (error: any) {
@@ -486,18 +521,63 @@ export function registerRoutes(app: Express): Server {
       const data = createTransactionSchema.parse(req.body);
       const account = await TradingService.getAccount(req.clientId!);
 
-      if (parseFloat(account.balance) < data.amount) {
-        return res.status(400).json({ message: "Insufficient balance" });
+      if (!account) {
+        return res.status(404).json({ message: "Account not found" });
+      }
+
+      // Check balance based on fund type
+      const fundType = data.fundType || 'real';
+      let availableBalance = 0;
+      
+      if (fundType === 'real') {
+        availableBalance = parseFloat(account.realBalance || '0');
+      } else if (fundType === 'demo') {
+        availableBalance = parseFloat(account.demoBalance || '0');
+      } else if (fundType === 'bonus') {
+        // Bonus funds are non-withdrawable
+        return res.status(400).json({ message: "Bonus funds cannot be withdrawn" });
+      }
+
+      if (availableBalance < data.amount) {
+        return res.status(400).json({ message: `Insufficient ${fundType} balance` });
       }
 
       const [transaction] = await db.insert(transactions).values({
         accountId: account.id,
         type: 'withdrawal',
+        fundType,
         amount: data.amount.toString(),
         method: data.method,
         notes: data.notes,
-        status: 'pending',
+        status: 'completed',
+        processedAt: new Date(),
       }).returning();
+
+      // Update the appropriate balance field
+      const updateData: any = {};
+      if (fundType === 'real') {
+        updateData.realBalance = (parseFloat(account.realBalance || '0') - data.amount).toString();
+      } else if (fundType === 'demo') {
+        updateData.demoBalance = (parseFloat(account.demoBalance || '0') - data.amount).toString();
+      }
+      
+      // Update total balance
+      const newRealBalance = fundType === 'real' ? parseFloat(updateData.realBalance) : parseFloat(account.realBalance || '0');
+      const newDemoBalance = fundType === 'demo' ? parseFloat(updateData.demoBalance) : parseFloat(account.demoBalance || '0');
+      const newBonusBalance = parseFloat(account.bonusBalance || '0');
+      updateData.balance = (newRealBalance + newDemoBalance + newBonusBalance).toString();
+
+      await db.update(accounts).set(updateData).where(eq(accounts.id, account.id));
+
+      // Send webhook for withdrawal completion
+      const { sendWebhook } = await import('./crm');
+      await sendWebhook('withdrawal.completed', {
+        accountId: account.id,
+        fundType,
+        amount: data.amount.toString(),
+        transactionId: transaction.id,
+        completedAt: new Date().toISOString()
+      });
 
       res.json(transaction);
     } catch (error: any) {
