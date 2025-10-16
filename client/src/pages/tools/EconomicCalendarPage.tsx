@@ -13,6 +13,7 @@ import { format } from "date-fns";
 interface EconomicEvent {
   id: string;
   datetime: string;
+  country: string;
   currency: string;
   event: string;
   impact: string;

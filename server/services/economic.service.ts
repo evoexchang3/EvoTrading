@@ -3,7 +3,9 @@ import { economicEvents, type EconomicEvent, type InsertEconomicEvent } from "@s
 import { eq, gte, and } from "drizzle-orm";
 
 const EODHD_API_KEY = process.env.EODHD_API_KEY;
+const FMP_API_KEY = process.env.FMP_API_KEY;
 const EODHD_BASE_URL = "https://eodhd.com/api";
+const FMP_BASE_URL = "https://financialmodelingprep.com/api/v3";
 const CACHE_DURATION_HOURS = 24;
 
 interface EODHDEconomicEvent {
@@ -20,6 +22,19 @@ interface EODHDEconomicEvent {
   importance?: string;
   comparison?: string;
   currency?: string;
+}
+
+interface FMPEconomicEvent {
+  date: string;
+  country: string;
+  event: string;
+  currency?: string;
+  actual?: string | number | null;
+  previous?: string | number | null;
+  estimate?: string | number | null;
+  change?: string | number | null;
+  changePercentage?: string | number | null;
+  impact?: string;
 }
 
 export class EconomicService {
@@ -73,15 +88,32 @@ export class EconomicService {
   }
 
   private async fetchFromAPI(startDate?: string, endDate?: string): Promise<EconomicEvent[]> {
-    if (!EODHD_API_KEY) {
-      console.warn("EODHD_API_KEY not configured, returning empty calendar");
-      return [];
-    }
-
     const from = startDate || new Date().toISOString().split('T')[0];
     const to = endDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    
-    // Note: limit parameter is not documented in EODHD API, removed it
+
+    // Try EODHD first
+    if (EODHD_API_KEY) {
+      const eodhd = await this.fetchFromEODHD(from, to);
+      if (eodhd.length > 0) {
+        console.log(`Fetched ${eodhd.length} events from EODHD`);
+        return eodhd;
+      }
+    }
+
+    // Fallback to FMP
+    if (FMP_API_KEY) {
+      const fmp = await this.fetchFromFMP(from, to);
+      if (fmp.length > 0) {
+        console.log(`Fetched ${fmp.length} events from FMP`);
+        return fmp;
+      }
+    }
+
+    console.warn("No API keys configured or both APIs failed, returning empty calendar");
+    return [];
+  }
+
+  private async fetchFromEODHD(from: string, to: string): Promise<EconomicEvent[]> {
     const url = `${EODHD_BASE_URL}/economic-events?api_token=${EODHD_API_KEY}&fmt=json&from=${from}&to=${to}`;
 
     try {
@@ -111,6 +143,40 @@ export class EconomicService {
       }));
     } catch (error) {
       console.error("Failed to fetch economic calendar from EODHD:", error);
+      return [];
+    }
+  }
+
+  private async fetchFromFMP(from: string, to: string): Promise<EconomicEvent[]> {
+    const url = `${FMP_BASE_URL}/economic_calendar?apikey=${FMP_API_KEY}&from=${from}&to=${to}`;
+
+    try {
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`FMP API error: ${response.status} ${response.statusText}`, errorText);
+        return [];
+      }
+
+      const data: FMPEconomicEvent[] = await response.json();
+
+      return data.map(event => ({
+        id: '',
+        eventId: `fmp_${event.date}_${event.country}_${event.event.replace(/\s/g, '_')}`,
+        datetime: new Date(event.date),
+        country: event.country,
+        currency: event.currency || this.getCurrencyFromCountry(event.country),
+        event: event.event,
+        impact: event.impact?.toLowerCase() || 'medium',
+        forecast: event.estimate?.toString() || null,
+        previous: event.previous?.toString() || null,
+        actual: event.actual?.toString() || null,
+        source: 'fmp',
+        cachedAt: new Date(),
+      }));
+    } catch (error) {
+      console.error("Failed to fetch economic calendar from FMP:", error);
       return [];
     }
   }
