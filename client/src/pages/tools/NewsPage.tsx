@@ -1,15 +1,40 @@
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Newspaper, ExternalLink, TrendingUp, HelpCircle, BookOpen, Target, AlertTriangle, Zap, Download, Bell } from "lucide-react";
+import { Newspaper, ExternalLink, TrendingUp, HelpCircle, BookOpen, Target, AlertTriangle, Zap, Download, Bell, ThumbsUp, ThumbsDown, Minus as MinusIcon } from "lucide-react";
 import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useQuery } from "@tanstack/react-query";
+import { type NewsArticle } from "@shared/schema";
+import { format } from "date-fns";
 
 export default function NewsPage() {
-  const [category, setCategory] = useState("all");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [sentimentFilter, setSentimentFilter] = useState("all");
+
+  const { data: news = [], isLoading } = useQuery<NewsArticle[]>({
+    queryKey: ['/api/news', categoryFilter, sentimentFilter],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (categoryFilter && categoryFilter !== 'all') params.append('category', categoryFilter);
+      if (sentimentFilter && sentimentFilter !== 'all') params.append('sentiment', sentimentFilter);
+      params.append('limit', '20');
+      
+      const url = `/api/news${params.toString() ? '?' + params.toString() : ''}`;
+      const res = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      
+      if (!res.ok) throw new Error('Failed to fetch news');
+      return res.json();
+    },
+    refetchInterval: 1000 * 60 * 30, // Refetch every 30 minutes
+  });
 
   const newsItems = [
     {
@@ -190,20 +215,30 @@ export default function NewsPage() {
     }
   ];
 
-  const categories = {
-    all: "All News",
-    "central-banks": "Central Banks",
-    "economic-data": "Economic Data",
-    commodities: "Commodities",
-    crypto: "Cryptocurrency"
+  const getSentimentIcon = (sentiment: string | null) => {
+    switch (sentiment?.toLowerCase()) {
+      case 'positive':
+      case 'bullish':
+        return <ThumbsUp className="w-3 h-3" />;
+      case 'negative':
+      case 'bearish':
+        return <ThumbsDown className="w-3 h-3" />;
+      default:
+        return <MinusIcon className="w-3 h-3" />;
+    }
   };
 
-  const filteredNews = category === "all" 
-    ? newsItems 
-    : newsItems.filter(item => item.category === category);
-
-  const getImpactColor = (impact: string) => {
-    return impact === "high" ? "destructive" : "default";
+  const getSentimentColor = (sentiment: string | null) => {
+    switch (sentiment?.toLowerCase()) {
+      case 'positive':
+      case 'bullish':
+        return "default";
+      case 'negative':
+      case 'bearish':
+        return "destructive";
+      default:
+        return "secondary";
+    }
   };
 
   return (
@@ -248,22 +283,34 @@ export default function NewsPage() {
 
         {/* News Filter */}
         <div className="flex gap-4 items-center">
-          <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="w-[200px]" data-testid="select-news-category">
-              <SelectValue />
+          <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+            <SelectTrigger className="w-[180px]" data-testid="select-news-category">
+              <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
-              {Object.entries(categories).map(([key, label]) => (
-                <SelectItem key={key} value={key}>
-                  {label}
-                </SelectItem>
-              ))}
+              <SelectItem value="all">All Categories</SelectItem>
+              <SelectItem value="forex">Forex</SelectItem>
+              <SelectItem value="crypto">Crypto</SelectItem>
+              <SelectItem value="commodities">Commodities</SelectItem>
+              <SelectItem value="stocks">Stocks</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <Select value={sentimentFilter} onValueChange={setSentimentFilter}>
+            <SelectTrigger className="w-[180px]" data-testid="select-news-sentiment">
+              <SelectValue placeholder="Sentiment" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Sentiment</SelectItem>
+              <SelectItem value="positive">Positive</SelectItem>
+              <SelectItem value="negative">Negative</SelectItem>
+              <SelectItem value="neutral">Neutral</SelectItem>
             </SelectContent>
           </Select>
 
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <TrendingUp className="w-4 h-4" />
-            <span>Auto-refresh every 5 minutes</span>
+            <span>Auto-refresh every 30 min</span>
           </div>
 
           <Button variant="outline" className="ml-auto gap-2" data-testid="button-news-alerts">
@@ -273,38 +320,71 @@ export default function NewsPage() {
         </div>
 
         {/* News Feed */}
-        <div className="space-y-4">
-          {filteredNews.map((news, index) => (
-            <Card key={index} className="hover-elevate" data-testid={`card-news-${index}`}>
-              <CardHeader>
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant={getImpactColor(news.impact)}>
-                        {news.impact} impact
-                      </Badge>
-                      <Badge variant="outline">{categories[news.category as keyof typeof categories]}</Badge>
-                      <span className="text-sm text-muted-foreground">{news.time}</span>
+        <Card>
+          <CardHeader>
+            <CardTitle>Latest Market News</CardTitle>
+            <CardDescription>
+              {isLoading ? "Loading news..." : `Showing ${news.length} ${news.length === 1 ? 'article' : 'articles'}`}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {isLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="text-muted-foreground">Loading market news...</div>
+              </div>
+            ) : news.length === 0 ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="text-muted-foreground">No news articles found for the selected filters</div>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {news.map((article, index) => (
+                  <div key={article.id || index} className="p-4 rounded-lg border hover-elevate" data-testid={`card-news-${index}`}>
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          {article.sentiment && (
+                            <Badge variant={getSentimentColor(article.sentiment)} className="gap-1">
+                              {getSentimentIcon(article.sentiment)}
+                              {article.sentiment}
+                            </Badge>
+                          )}
+                          {article.category && (
+                            <Badge variant="outline">{article.category}</Badge>
+                          )}
+                          <span className="text-xs text-muted-foreground">
+                            {format(new Date(article.publishedAt), 'MMM dd, HH:mm')}
+                          </span>
+                        </div>
+                        <h3 className="font-semibold text-lg mb-1">{article.title}</h3>
+                        <p className="text-sm text-muted-foreground">{article.source}</p>
+                      </div>
+                      <a 
+                        href={article.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-shrink-0"
+                        data-testid={`link-news-${index}`}
+                      >
+                        <ExternalLink className="w-5 h-5 text-muted-foreground hover:text-foreground transition-colors" />
+                      </a>
                     </div>
-                    <CardTitle className="text-xl mb-2">{news.title}</CardTitle>
-                    <CardDescription className="flex items-center gap-2">
-                      <span>{news.source}</span>
-                    </CardDescription>
+                    {article.summary && (
+                      <p className="text-sm text-muted-foreground mb-2">{article.summary}</p>
+                    )}
+                    {article.symbols && article.symbols.length > 0 && (
+                      <div className="flex gap-1 flex-wrap">
+                        {article.symbols.map((symbol, i) => (
+                          <Badge key={i} variant="secondary" className="text-xs">{symbol}</Badge>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm mb-3">{news.summary}</p>
-                <Alert>
-                  <AlertDescription className="text-sm">
-                    <strong className="text-primary">Trading Implication:</strong> {news.tradingImplication}
-                  </AlertDescription>
-                </Alert>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
 
         {/* News Interpretation Guide */}
         <Card data-testid="card-news-interpretation">

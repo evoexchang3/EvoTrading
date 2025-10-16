@@ -5,24 +5,78 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { queryClient, apiRequest } from "@/lib/queryClient";
+import { type CourseProgress } from "@shared/schema";
+import { useToast } from "@/hooks/use-toast";
+
+const COURSE_ID = "beginner-trading";
 
 export default function BeginnerCoursePage() {
-  const [courseProgress] = useState(35);
+  const { toast } = useToast();
+  
+  const { data: progressData = [] } = useQuery<CourseProgress[]>({
+    queryKey: ['/api/course-progress', COURSE_ID],
+    queryFn: async () => {
+      const res = await fetch(`/api/course-progress/${COURSE_ID}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      if (!res.ok) return [];
+      return res.json();
+    }
+  });
+
+  const saveProgressMutation = useMutation({
+    mutationFn: async (data: { moduleId: string; lessonId?: string; completed: boolean }) => {
+      return apiRequest('/api/course-progress', 'POST', {
+        courseId: COURSE_ID,
+        ...data
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/course-progress', COURSE_ID] });
+      toast({
+        title: "Progress Saved",
+        description: "Your course progress has been updated."
+      });
+    }
+  });
+
+  const getLessonProgress = (moduleId: string, lessonId: string) => {
+    return progressData.find(p => 
+      p.courseId === COURSE_ID && 
+      p.moduleId === moduleId && 
+      p.lessonId === lessonId &&
+      p.completed
+    ) !== undefined;
+  };
+
+  const getModuleProgress = (moduleId: string, totalLessons: number) => {
+    const completed = progressData.filter(p => 
+      p.courseId === COURSE_ID && 
+      p.moduleId === moduleId && 
+      p.lessonId && 
+      p.completed
+    ).length;
+    return Math.round((completed / totalLessons) * 100);
+  };
+
 
   const modules = [
     {
+      id: "module-1",
       title: "Module 1: Trading Basics",
       description: "Foundation knowledge of forex markets, currency pairs, and trading fundamentals",
       duration: "30 mins",
-      status: "completed",
-      progress: 100,
       lessons: [
-        { title: "What is Forex Trading?", duration: "5 mins", completed: true },
-        { title: "Understanding Currency Pairs", duration: "6 mins", completed: true },
-        { title: "How the Forex Market Works", duration: "7 mins", completed: true },
-        { title: "Market Participants and Liquidity", duration: "6 mins", completed: true },
-        { title: "Trading Sessions and Market Hours", duration: "6 mins", completed: true }
+        { id: "lesson-1-1", title: "What is Forex Trading?", duration: "5 mins" },
+        { id: "lesson-1-2", title: "Understanding Currency Pairs", duration: "6 mins" },
+        { id: "lesson-1-3", title: "How the Forex Market Works", duration: "7 mins" },
+        { id: "lesson-1-4", title: "Market Participants and Liquidity", duration: "6 mins" },
+        { id: "lesson-1-5", title: "Trading Sessions and Market Hours", duration: "6 mins" }
       ],
       quiz: {
         questions: 10,
@@ -32,17 +86,16 @@ export default function BeginnerCoursePage() {
       }
     },
     {
+      id: "module-2",
       title: "Module 2: Essential Concepts",
       description: "Core trading concepts including pips, lots, leverage, margin, and order types",
       duration: "45 mins",
-      status: "in-progress",
-      progress: 60,
       lessons: [
-        { title: "Pips, Points, and Lots Explained", duration: "8 mins", completed: true },
-        { title: "Bid, Ask, and Spread", duration: "7 mins", completed: true },
-        { title: "Leverage and Margin", duration: "10 mins", completed: true },
-        { title: "Long vs Short Positions", duration: "8 mins", completed: false },
-        { title: "Order Types (Market, Limit, Stop)", duration: "12 mins", completed: false }
+        { id: "lesson-2-1", title: "Pips, Points, and Lots Explained", duration: "8 mins" },
+        { id: "lesson-2-2", title: "Bid, Ask, and Spread", duration: "7 mins" },
+        { id: "lesson-2-3", title: "Leverage and Margin", duration: "10 mins" },
+        { id: "lesson-2-4", title: "Long vs Short Positions", duration: "8 mins" },
+        { id: "lesson-2-5", title: "Order Types (Market, Limit, Stop)", duration: "12 mins" }
       ],
       quiz: {
         questions: 15,
@@ -52,17 +105,16 @@ export default function BeginnerCoursePage() {
       }
     },
     {
+      id: "module-3",
       title: "Module 3: Chart Reading",
       description: "Learn to read price charts, identify patterns, and understand market structure",
       duration: "60 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
-        { title: "Understanding Price Charts", duration: "10 mins", completed: false },
-        { title: "Candlestick Patterns Basics", duration: "15 mins", completed: false },
-        { title: "Support and Resistance", duration: "12 mins", completed: false },
-        { title: "Trend Identification", duration: "13 mins", completed: false },
-        { title: "Timeframe Selection", duration: "10 mins", completed: false }
+        { id: "lesson-3-1", title: "Understanding Price Charts", duration: "10 mins" },
+        { id: "lesson-3-2", title: "Candlestick Patterns Basics", duration: "15 mins" },
+        { id: "lesson-3-3", title: "Support and Resistance", duration: "12 mins" },
+        { id: "lesson-3-4", title: "Trend Identification", duration: "13 mins" },
+        { id: "lesson-3-5", title: "Timeframe Selection", duration: "10 mins" }
       ],
       quiz: {
         questions: 12,
@@ -72,17 +124,16 @@ export default function BeginnerCoursePage() {
       }
     },
     {
+      id: "module-4",
       title: "Module 4: Risk Management",
       description: "Essential risk management principles to protect your trading capital",
       duration: "45 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
-        { title: "Why Risk Management Matters", duration: "8 mins", completed: false },
-        { title: "Position Sizing Fundamentals", duration: "10 mins", completed: false },
-        { title: "Setting Stop Losses", duration: "9 mins", completed: false },
-        { title: "Risk-Reward Ratios", duration: "10 mins", completed: false },
-        { title: "Managing Multiple Positions", duration: "8 mins", completed: false }
+        { id: "lesson-4-1", title: "Why Risk Management Matters", duration: "8 mins" },
+        { id: "lesson-4-2", title: "Position Sizing Fundamentals", duration: "10 mins" },
+        { id: "lesson-4-3", title: "Setting Stop Losses", duration: "9 mins" },
+        { id: "lesson-4-4", title: "Risk-Reward Ratios", duration: "10 mins" },
+        { id: "lesson-4-5", title: "Managing Multiple Positions", duration: "8 mins" }
       ],
       quiz: {
         questions: 12,
@@ -92,17 +143,16 @@ export default function BeginnerCoursePage() {
       }
     },
     {
+      id: "module-5",
       title: "Module 5: Basic Strategies",
       description: "Simple yet effective trading strategies for beginners",
       duration: "60 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
-        { title: "Trend Following Strategy", duration: "12 mins", completed: false },
-        { title: "Support/Resistance Trading", duration: "12 mins", completed: false },
-        { title: "Moving Average Crossovers", duration: "14 mins", completed: false },
-        { title: "Simple Breakout Trading", duration: "12 mins", completed: false },
-        { title: "When to Avoid Trading", duration: "10 mins", completed: false }
+        { id: "lesson-5-1", title: "Trend Following Strategy", duration: "12 mins" },
+        { id: "lesson-5-2", title: "Support/Resistance Trading", duration: "12 mins" },
+        { id: "lesson-5-3", title: "Moving Average Crossovers", duration: "14 mins" },
+        { id: "lesson-5-4", title: "Simple Breakout Trading", duration: "12 mins" },
+        { id: "lesson-5-5", title: "When to Avoid Trading", duration: "10 mins" }
       ],
       quiz: {
         questions: 15,
@@ -112,17 +162,16 @@ export default function BeginnerCoursePage() {
       }
     },
     {
+      id: "module-6",
       title: "Module 6: Trading Psychology",
       description: "Master the mental aspects of trading for consistent performance",
       duration: "30 mins",
-      status: "locked",
-      progress: 0,
       lessons: [
-        { title: "Emotional Control in Trading", duration: "6 mins", completed: false },
-        { title: "Dealing with Losses", duration: "6 mins", completed: false },
-        { title: "Avoiding Revenge Trading", duration: "6 mins", completed: false },
-        { title: "Building Discipline", duration: "6 mins", completed: false },
-        { title: "Creating a Trading Routine", duration: "6 mins", completed: false }
+        { id: "lesson-6-1", title: "Emotional Control in Trading", duration: "6 mins" },
+        { id: "lesson-6-2", title: "Dealing with Losses", duration: "6 mins" },
+        { id: "lesson-6-3", title: "Avoiding Revenge Trading", duration: "6 mins" },
+        { id: "lesson-6-4", title: "Building Discipline", duration: "6 mins" },
+        { id: "lesson-6-5", title: "Creating a Trading Routine", duration: "6 mins" }
       ],
       quiz: {
         questions: 10,
@@ -184,10 +233,9 @@ export default function BeginnerCoursePage() {
     ]
   };
 
-  const completedLessons = modules.reduce((sum, module) => 
-    sum + module.lessons.filter(l => l.completed).length, 0
-  );
   const totalLessons = modules.reduce((sum, module) => sum + module.lessons.length, 0);
+  const completedLessons = progressData.filter(p => p.lessonId && p.completed).length;
+  const overallProgress = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
 
   return (
     <DashboardLayout>
@@ -211,9 +259,9 @@ export default function BeginnerCoursePage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Course Completion</span>
-                <span className="font-semibold" data-testid="text-course-progress">{courseProgress}%</span>
+                <span className="font-semibold" data-testid="text-course-progress">{overallProgress}%</span>
               </div>
-              <Progress value={courseProgress} className="h-2" data-testid="progress-course" />
+              <Progress value={overallProgress} className="h-2" data-testid="progress-course" />
             </div>
 
             <div className="grid sm:grid-cols-3 gap-4">
@@ -278,18 +326,22 @@ export default function BeginnerCoursePage() {
         {/* Course Modules */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Course Modules</h2>
-          {modules.map((module, index) => (
+          {modules.map((module, index) => {
+            const moduleProgress = getModuleProgress(module.id, module.lessons.length);
+            const moduleStatus = moduleProgress === 100 ? 'completed' : moduleProgress > 0 ? 'in-progress' : 'locked';
+            
+            return (
             <Card key={index} data-testid={`card-module-${index}`}>
               <CardHeader>
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2 flex-wrap">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 ${
-                        module.status === 'completed' ? 'bg-primary text-primary-foreground' :
-                        module.status === 'in-progress' ? 'bg-primary/20 text-primary' :
+                        moduleStatus === 'completed' ? 'bg-primary text-primary-foreground' :
+                        moduleStatus === 'in-progress' ? 'bg-primary/20 text-primary' :
                         'bg-muted text-muted-foreground'
                       }`}>
-                        {module.status === 'completed' ? <CheckCircle2 className="w-5 h-5" /> : index + 1}
+                        {moduleStatus === 'completed' ? <CheckCircle2 className="w-5 h-5" /> : index + 1}
                       </div>
                       <div className="flex-1 min-w-0">
                         <CardTitle className="text-xl mb-1">{module.title}</CardTitle>
@@ -299,30 +351,30 @@ export default function BeginnerCoursePage() {
                             {module.duration}
                           </span>
                           <Badge variant="outline">{module.lessons.length} lessons</Badge>
-                          {module.status === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />Locked</Badge>}
-                          {module.status === 'in-progress' && <Badge variant="default">In Progress</Badge>}
-                          {module.status === 'completed' && <Badge className="bg-green-600">Completed</Badge>}
+                          {moduleStatus === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />Locked</Badge>}
+                          {moduleStatus === 'in-progress' && <Badge variant="default">In Progress</Badge>}
+                          {moduleStatus === 'completed' && <Badge className="bg-green-600">Completed</Badge>}
                         </CardDescription>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{module.description}</p>
-                    {module.progress > 0 && (
+                    {moduleProgress > 0 && (
                       <div className="space-y-1">
                         <div className="flex items-center justify-between text-sm">
                           <span className="text-muted-foreground">Progress</span>
-                          <span className="font-semibold">{module.progress}%</span>
+                          <span className="font-semibold">{moduleProgress}%</span>
                         </div>
-                        <Progress value={module.progress} className="h-1.5" />
+                        <Progress value={moduleProgress} className="h-1.5" />
                       </div>
                     )}
                   </div>
                   <Button 
                     size="sm" 
                     data-testid={`button-module-${index}`}
-                    disabled={module.status === 'locked'}
+                    disabled={moduleStatus === 'locked'}
                   >
-                    {module.status === 'completed' ? 'Review' : 
-                     module.status === 'in-progress' ? 'Continue' : 
+                    {moduleStatus === 'completed' ? 'Review' : 
+                     moduleStatus === 'in-progress' ? 'Continue' : 
                      'Start'}
                   </Button>
                 </div>
@@ -331,23 +383,27 @@ export default function BeginnerCoursePage() {
                 <div>
                   <h4 className="font-semibold mb-3 text-sm">Lessons</h4>
                   <ul className="space-y-2">
-                    {module.lessons.map((lesson, lessonIndex) => (
+                    {module.lessons.map((lesson, lessonIndex) => {
+                      const isCompleted = getLessonProgress(module.id, lesson.id);
+                      return (
                       <li 
                         key={lessonIndex} 
                         className="flex items-center gap-3 text-sm hover-elevate p-2 rounded cursor-pointer"
                         data-testid={`lesson-${index}-${lessonIndex}`}
+                        onClick={() => saveProgressMutation.mutate({ moduleId: module.id, lessonId: lesson.id, completed: !isCompleted })}
                       >
-                        {lesson.completed ? (
+                        {isCompleted ? (
                           <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                         ) : (
                           <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/20 flex items-center justify-center flex-shrink-0">
                             <Play className="w-3 h-3 text-muted-foreground" />
                           </div>
                         )}
-                        <span className={lesson.completed ? 'text-muted-foreground' : ''}>{lesson.title}</span>
+                        <span className={isCompleted ? 'text-muted-foreground' : ''}>{lesson.title}</span>
                         <span className="text-xs text-muted-foreground ml-auto">{lesson.duration}</span>
                       </li>
-                    ))}
+                      );
+                    })}
                   </ul>
                 </div>
 
@@ -373,7 +429,8 @@ export default function BeginnerCoursePage() {
                 </div>
               </CardContent>
             </Card>
-          ))}
+          );
+          })}
         </div>
 
         {/* Certificate Information */}
