@@ -533,6 +533,13 @@ export default function BeginnerCoursePage() {
                   variant="outline"
                   className="justify-between h-auto p-4"
                   data-testid={`button-download-${index}`}
+                  onClick={() => {
+                    toast({
+                      title: "Resources Locked",
+                      description: "Complete all course modules to unlock downloadable resources.",
+                      variant: "default"
+                    });
+                  }}
                 >
                   <div className="flex items-center gap-3 text-left">
                     <FileText className="w-5 h-5 text-primary flex-shrink-0" />
