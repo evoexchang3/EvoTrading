@@ -41,7 +41,7 @@ export default function BeginnerCoursePage() {
 
   const saveProgressMutation = useMutation({
     mutationFn: async (data: { moduleId: string; lessonId?: string; completed: boolean }) => {
-      return apiRequest('/api/course-progress', 'POST', {
+      return apiRequest('POST', '/api/course-progress', {
         courseId: COURSE_ID,
         ...data
       });
