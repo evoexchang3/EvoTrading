@@ -40,5 +40,34 @@ Preferred communication style: Simple, everyday language.
 - **Twelve Data API:** For real-time quotes and historical OHLCV data (Forex, Crypto, Commodities). Configured via `TWELVEDATA_API_KEY`.
 **CRM Integration:**
 - External CRM system for administrative functions. Uses an SSO impersonation endpoint, webhook events, and a service API for data synchronization. Authenticated via `CRM_SERVICE_TOKEN`.
+- **Webhook Events:** The platform sends real-time webhook notifications to the CRM for key events:
+  - Trading: `order.placed`, `order.executed`, `position.opened`, `position.closed`
+  - Funding: `deposit.completed`, `withdrawal.completed`
 **Database Service:**
 - **Neon or Supabase PostgreSQL:** For persistent data storage. Connection via `DATABASE_URL`.
+
+## Recent Changes (October 2025)
+
+### Webhook Integration
+- Implemented comprehensive webhook notifications for all trading and funding events
+- All webhooks are properly awaited and include relevant data (account IDs, amounts, timestamps)
+- Webhook events: order.placed, order.executed, position.opened, position.closed, deposit.completed, withdrawal.completed
+
+### Balance Type System
+- Added support for three distinct balance types: Real, Demo, and Bonus
+- Schema changes:
+  - Added `realBalance`, `demoBalance`, `bonusBalance` fields to accounts table
+  - Added `fundType` enum ('real', 'demo', 'bonus') to transactions table
+- Deposit/Withdrawal flows:
+  - Users can select fund type when depositing or withdrawing
+  - Bonus funds are non-withdrawable
+  - Transactions auto-complete and update the correct balance fields
+  - Total balance is automatically synchronized (real + demo + bonus)
+- UI Updates:
+  - AccountInfoBar displays Real/Demo/Bonus balances separately
+  - Fund type selectors on deposit and withdrawal pages
+- All balance updates trigger appropriate webhook notifications
+
+### Demo Account
+- Email: demo@test.com
+- Password: demo1234
