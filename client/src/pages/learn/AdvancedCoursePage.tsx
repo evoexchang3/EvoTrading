@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { type CourseProgress } from "@shared/schema";
@@ -20,6 +20,11 @@ export default function AdvancedCoursePage() {
   const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
+  
+  useEffect(() => {
+    setQuizAnswers({});
+    setQuizSubmitted(false);
+  }, [selectedLesson?.lessonId]);
   
   const { data: progressData = [] } = useQuery<CourseProgress[]>({
     queryKey: ['/api/course-progress', COURSE_ID],
