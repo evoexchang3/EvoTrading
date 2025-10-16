@@ -1,6 +1,6 @@
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, CheckCircle2, Award, Download, TrendingUp, Clock, Target, FileText, Play, Lock, AlertTriangle, ChevronLeft, ChevronRight } from "lucide-react";
+import { GraduationCap, CheckCircle2, Award, Download, TrendingUp, Clock, Target, FileText, Lock, AlertTriangle, ChevronLeft, ChevronRight, HelpCircle, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -471,7 +471,7 @@ export default function AdvancedCoursePage() {
                           <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                         ) : (
                           <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/20 flex items-center justify-center flex-shrink-0">
-                            <Play className="w-3 h-3 text-muted-foreground" />
+                            <BookOpen className="w-3 h-3 text-muted-foreground" />
                           </div>
                         )}
                         <span className={isCompleted ? 'text-muted-foreground' : ''}>{lesson.title}</span>
@@ -835,38 +835,168 @@ export default function AdvancedCoursePage() {
                 </DialogHeader>
                 
                 <div className="space-y-6 mt-6">
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <Play className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                      <p className="text-sm text-muted-foreground">Video content placeholder</p>
-                      <p className="text-xs text-muted-foreground mt-1">Lesson video will be displayed here</p>
+                  <div className="prose prose-sm max-w-none dark:prose-invert">
+                    <h3 className="font-semibold text-lg mb-3">Introduction to Advanced Price Action</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Price action trading is a pure form of technical analysis that focuses solely on price movements without relying on lagging indicators. 
+                      Professional traders use price action to understand market psychology, identify high-probability setups, and execute with precision.
+                    </p>
+                    
+                    <h3 className="font-semibold text-lg mb-3 mt-6">Understanding Market Structure</h3>
+                    <p className="text-muted-foreground mb-4">
+                      The foundation of price action trading is recognizing market structure: higher highs (HH), higher lows (HL), lower highs (LH), and lower lows (LL). 
+                      These patterns reveal whether the market is trending, consolidating, or reversing.
+                    </p>
+                    
+                    <div className="bg-muted p-4 rounded-lg my-4">
+                      <h4 className="font-semibold mb-2">Key Concept: Break of Structure (BOS)</h4>
+                      <p className="text-sm text-muted-foreground">
+                        A Break of Structure occurs when price breaks a significant swing point. In an uptrend, BOS is confirmed when price breaks above 
+                        the previous higher high. This signals trend continuation and provides entry opportunities on pullbacks.
+                      </p>
                     </div>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-semibold text-lg mb-3">Lesson Overview</h3>
+                    
+                    <h3 className="font-semibold text-lg mb-3 mt-6">Advanced Candlestick Patterns</h3>
+                    <ul className="space-y-2 mb-4">
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Pin Bar (Rejection Candle):</strong> Long wick with small body indicates strong rejection at a level</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Engulfing Pattern:</strong> Larger candle completely engulfs previous candle, signals reversal</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Inside Bar:</strong> Consolidation pattern where candle is contained within previous candle's range</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Doji:</strong> Indecision candle with equal open and close, signals potential reversal at extremes</span>
+                      </li>
+                    </ul>
+                    
+                    <div className="bg-primary/10 border-l-4 border-primary p-4 rounded my-4">
+                      <h4 className="font-semibold mb-2 flex items-center gap-2">
+                        <AlertTriangle className="w-5 h-5" />
+                        Professional Trading Rule
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Never trade a candlestick pattern in isolation. Always consider the broader market context: trend direction, 
+                        key support/resistance levels, and confluence with other technical factors. Context is everything in price action trading.
+                      </p>
+                    </div>
+                    
+                    <h3 className="font-semibold text-lg mb-3 mt-6">Trading the Trend</h3>
+                    <p className="text-muted-foreground mb-3">
+                      The phrase "the trend is your friend" exists for a reason. Professional traders identify the trend on higher timeframes (H4, Daily) 
+                      and execute entries on lower timeframes (M15, H1) in the direction of the trend. This multi-timeframe approach dramatically 
+                      improves win rates.
+                    </p>
                     <p className="text-muted-foreground">
-                      This advanced lesson covers sophisticated trading concepts and professional-grade strategies. 
-                      Master these techniques to elevate your trading to an institutional level.
+                      <strong>Entry Strategy:</strong> Wait for a pullback to a key level (previous structure, Fibonacci 50-61.8%, or moving average), 
+                      then look for a bullish price action signal (pin bar, engulfing) to enter long in an uptrend.
                     </p>
                   </div>
                   
-                  <div>
-                    <h3 className="font-semibold text-lg mb-3">Key Takeaways</h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>Master advanced techniques and institutional strategies</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>Apply professional-grade analysis methods</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>Implement systematic trading approaches</span>
-                      </li>
-                    </ul>
+                  <div className="border-t pt-6">
+                    <h3 className="font-semibold text-lg mb-4">Lesson Quiz</h3>
+                    <div className="space-y-4">
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">1. What does "Break of Structure" (BOS) indicate in an uptrend?</p>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q1" value="a" className="w-4 h-4" />
+                            <span className="text-sm">Price is about to reverse downward</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
+                            <input type="radio" name="q1" value="b" className="w-4 h-4" />
+                            <span className="text-sm">Trend continuation - price breaks above previous higher high ✓</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q1" value="c" className="w-4 h-4" />
+                            <span className="text-sm">Market is entering consolidation phase</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q1" value="d" className="w-4 h-4" />
+                            <span className="text-sm">No clear signal - neutral market</span>
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">2. What does a pin bar candlestick pattern indicate?</p>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q2" value="a" className="w-4 h-4" />
+                            <span className="text-sm">Market indecision and consolidation</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q2" value="b" className="w-4 h-4" />
+                            <span className="text-sm">Strong trend continuation signal</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
+                            <input type="radio" name="q2" value="c" className="w-4 h-4" />
+                            <span className="text-sm">Strong rejection at a price level (long wick, small body) ✓</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q2" value="d" className="w-4 h-4" />
+                            <span className="text-sm">Breakout is imminent</span>
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">3. What is the professional approach to trading with the trend?</p>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q3" value="a" className="w-4 h-4" />
+                            <span className="text-sm">Always trade against the trend for better risk/reward</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
+                            <input type="radio" name="q3" value="b" className="w-4 h-4" />
+                            <span className="text-sm">Identify trend on higher timeframe, enter on lower timeframe pullbacks ✓</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q3" value="c" className="w-4 h-4" />
+                            <span className="text-sm">Only use M1 charts for fastest entries</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q3" value="d" className="w-4 h-4" />
+                            <span className="text-sm">Ignore timeframes and trade all signals equally</span>
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">4. According to the lesson, why should you never trade candlestick patterns in isolation?</p>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q4" value="a" className="w-4 h-4" />
+                            <span className="text-sm">Candlestick patterns are unreliable and should be avoided</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
+                            <input type="radio" name="q4" value="b" className="w-4 h-4" />
+                            <span className="text-sm">Context matters - consider trend, support/resistance, and confluence ✓</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q4" value="c" className="w-4 h-4" />
+                            <span className="text-sm">You need at least 5 indicators to confirm any pattern</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q4" value="d" className="w-4 h-4" />
+                            <span className="text-sm">Patterns only work on 1-hour charts or higher</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <Alert className="mt-4">
+                      <HelpCircle className="w-4 h-4" />
+                      <AlertDescription>
+                        The correct answers are highlighted in green. Study the explanations carefully to master advanced price action concepts.
+                      </AlertDescription>
+                    </Alert>
                   </div>
                 </div>
                 

@@ -1,11 +1,12 @@
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, CheckCircle2, Award, Download, TrendingUp, Clock, Target, FileText, Play, Lock, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { BookOpen, CheckCircle2, Award, Download, TrendingUp, Clock, Target, FileText, Lock, ChevronLeft, ChevronRight, X, AlertTriangle, HelpCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useState, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
@@ -444,7 +445,7 @@ export default function BeginnerCoursePage() {
                           <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                         ) : (
                           <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/20 flex items-center justify-center flex-shrink-0">
-                            <Play className="w-3 h-3 text-muted-foreground" />
+                            <BookOpen className="w-3 h-3 text-muted-foreground" />
                           </div>
                         )}
                         <span className={isCompleted ? 'text-muted-foreground' : ''}>{lesson.title}</span>
@@ -792,38 +793,146 @@ export default function BeginnerCoursePage() {
                 </DialogHeader>
                 
                 <div className="space-y-6 mt-6">
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <Play className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                      <p className="text-sm text-muted-foreground">Video content placeholder</p>
-                      <p className="text-xs text-muted-foreground mt-1">Lesson video will be displayed here</p>
+                  <div className="prose prose-sm max-w-none dark:prose-invert">
+                    <h3 className="font-semibold text-lg mb-3">Introduction</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Forex trading, also known as foreign exchange or FX trading, is the act of buying and selling currencies with the aim of making a profit. 
+                      The forex market is the largest financial market in the world, with a daily trading volume exceeding $6 trillion.
+                    </p>
+                    
+                    <h3 className="font-semibold text-lg mb-3 mt-6">How the Forex Market Works</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Unlike stock markets, the forex market operates 24 hours a day, 5 days a week, across major financial centers worldwide. 
+                      This continuous operation allows traders to respond to global economic events in real-time.
+                    </p>
+                    
+                    <div className="bg-muted p-4 rounded-lg my-4">
+                      <h4 className="font-semibold mb-2">Key Concept: Currency Pairs</h4>
+                      <p className="text-sm text-muted-foreground">
+                        In forex, currencies are always traded in pairs (e.g., EUR/USD). The first currency is the "base currency" and the second is the "quote currency". 
+                        If EUR/USD = 1.1000, it means 1 Euro equals 1.10 US Dollars.
+                      </p>
                     </div>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-semibold text-lg mb-3">Lesson Overview</h3>
+                    
+                    <h3 className="font-semibold text-lg mb-3 mt-6">Who Trades Forex?</h3>
+                    <ul className="space-y-2 mb-4">
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Central Banks:</strong> Manage currency reserves and stabilize exchange rates</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Commercial Banks:</strong> Facilitate international trade and investment</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Hedge Funds & Investment Firms:</strong> Seek profit through currency speculation</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Corporations:</strong> Hedge against currency risk in international operations</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Retail Traders:</strong> Individual traders like you, seeking to profit from currency movements</span>
+                      </li>
+                    </ul>
+                    
+                    <div className="bg-primary/10 border-l-4 border-primary p-4 rounded my-4">
+                      <h4 className="font-semibold mb-2 flex items-center gap-2">
+                        <AlertTriangle className="w-5 h-5" />
+                        Important Risk Warning
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Forex trading involves substantial risk. Leverage can magnify both gains and losses. 
+                        Never trade with money you cannot afford to lose, and always use proper risk management.
+                      </p>
+                    </div>
+                    
+                    <h3 className="font-semibold text-lg mb-3 mt-6">Summary</h3>
                     <p className="text-muted-foreground">
-                      This lesson covers important concepts in forex trading. You'll learn practical strategies 
-                      and techniques that you can apply immediately in your trading journey.
+                      Forex trading is the simultaneous buying of one currency and selling of another. The market operates 24/5, 
+                      providing opportunities for traders worldwide. Understanding the basics of how currencies are quoted and who participates 
+                      in the market is your first step toward becoming a successful forex trader.
                     </p>
                   </div>
                   
-                  <div>
-                    <h3 className="font-semibold text-lg mb-3">Key Takeaways</h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>Understand core concepts and terminology</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>Learn practical application strategies</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>Practice with real-world examples</span>
-                      </li>
-                    </ul>
+                  <div className="border-t pt-6">
+                    <h3 className="font-semibold text-lg mb-4">Lesson Quiz</h3>
+                    <div className="space-y-4">
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">1. What is the approximate daily trading volume of the forex market?</p>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q1" value="a" className="w-4 h-4" />
+                            <span className="text-sm">$600 million</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q1" value="b" className="w-4 h-4" />
+                            <span className="text-sm">$60 billion</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
+                            <input type="radio" name="q1" value="c" className="w-4 h-4" />
+                            <span className="text-sm">Over $6 trillion ✓</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q1" value="d" className="w-4 h-4" />
+                            <span className="text-sm">$600 billion</span>
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">2. In the currency pair EUR/USD = 1.1000, which currency is the base currency?</p>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
+                            <input type="radio" name="q2" value="a" className="w-4 h-4" />
+                            <span className="text-sm">EUR (Euro) ✓</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q2" value="b" className="w-4 h-4" />
+                            <span className="text-sm">USD (US Dollar)</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q2" value="c" className="w-4 h-4" />
+                            <span className="text-sm">Both equally</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q2" value="d" className="w-4 h-4" />
+                            <span className="text-sm">Neither</span>
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <div className="p-4 border rounded-lg">
+                        <p className="font-medium mb-3">3. When is the forex market open for trading?</p>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q3" value="a" className="w-4 h-4" />
+                            <span className="text-sm">Only during New York business hours</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer bg-green-500/10 border border-green-500/20">
+                            <input type="radio" name="q3" value="b" className="w-4 h-4" />
+                            <span className="text-sm">24 hours a day, 5 days a week ✓</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q3" value="c" className="w-4 h-4" />
+                            <span className="text-sm">24 hours a day, 7 days a week</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 rounded hover-elevate cursor-pointer">
+                            <input type="radio" name="q3" value="d" className="w-4 h-4" />
+                            <span className="text-sm">9 AM to 5 PM EST only</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <Alert className="mt-4">
+                      <HelpCircle className="w-4 h-4" />
+                      <AlertDescription>
+                        The correct answers are highlighted in green. Review them to reinforce your understanding before moving to the next lesson.
+                      </AlertDescription>
+                    </Alert>
                   </div>
                 </div>
                 
