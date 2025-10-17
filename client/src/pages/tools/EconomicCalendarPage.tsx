@@ -1,7 +1,7 @@
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, TrendingUp, TrendingDown, Minus, HelpCircle, BookOpen, Target, AlertTriangle, Zap, Download, Activity } from "lucide-react";
+import { Calendar, Clock, TrendingUp, TrendingDown, Minus, HelpCircle, BookOpen, Target, AlertTriangle, Zap, Activity } from "lucide-react";
 import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -26,6 +26,22 @@ export default function EconomicCalendarPage() {
   const [currencyFilter, setCurrencyFilter] = useState("all");
   const [impactFilter, setImpactFilter] = useState("all");
 
+  // Fetch all events (without filters) for stats calculation
+  const { data: allEvents = [] } = useQuery<EconomicEvent[]>({
+    queryKey: ['/api/economic-calendar'],
+    queryFn: async () => {
+      const res = await fetch('/api/economic-calendar', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
+      if (!res.ok) throw new Error('Failed to fetch economic calendar');
+      return res.json();
+    },
+    refetchInterval: 1000 * 60 * 30,
+  });
+
+  // Fetch filtered events for display
   const { data: events = [], isLoading } = useQuery<EconomicEvent[]>({
     queryKey: ['/api/economic-calendar', currencyFilter, impactFilter],
     queryFn: async () => {
@@ -43,65 +59,26 @@ export default function EconomicCalendarPage() {
       if (!res.ok) throw new Error('Failed to fetch economic calendar');
       return res.json();
     },
-    refetchInterval: 1000 * 60 * 30, // Refetch every 30 minutes
+    refetchInterval: 1000 * 60 * 30,
   });
 
-  const mockEvents = [
-    {
-      time: "09:30",
-      currency: "USD",
-      event: "Non-Farm Payrolls",
-      impact: "high",
-      forecast: "185K",
-      previous: "209K",
-      actual: null
-    },
-    {
-      time: "10:00",
-      currency: "EUR",
-      event: "ECB Interest Rate Decision",
-      impact: "high",
-      forecast: "4.50%",
-      previous: "4.50%",
-      actual: null
-    },
-    {
-      time: "13:30",
-      currency: "GBP",
-      event: "GDP Growth Rate",
-      impact: "medium",
-      forecast: "0.2%",
-      previous: "0.1%",
-      actual: null
-    },
-    {
-      time: "14:00",
-      currency: "USD",
-      event: "Consumer Confidence Index",
-      impact: "medium",
-      forecast: "102.5",
-      previous: "101.3",
-      actual: null
-    },
-    {
-      time: "15:00",
-      currency: "CAD",
-      event: "Employment Change",
-      impact: "medium",
-      forecast: "22K",
-      previous: "18K",
-      actual: null
-    },
-    {
-      time: "16:00",
-      currency: "JPY",
-      event: "BOJ Policy Statement",
-      impact: "high",
-      forecast: "-",
-      previous: "-",
-      actual: null
-    }
-  ];
+  // Calculate stats from all events
+  const stats = {
+    highImpactToday: allEvents.filter(e => {
+      const eventDate = new Date(e.datetime);
+      const today = new Date();
+      return e.impact === 'high' && 
+             eventDate.toDateString() === today.toDateString();
+    }).length,
+    uniqueCurrencies: new Set(allEvents.map(e => e.currency)).size,
+    upcomingIn24h: allEvents.filter(e => {
+      const eventDate = new Date(e.datetime);
+      const now = new Date();
+      const in24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+      return eventDate >= now && eventDate <= in24h;
+    }).length,
+    totalEvents: allEvents.length
+  };
 
   const keyIndicators = [
     {
@@ -293,26 +270,26 @@ export default function EconomicCalendarPage() {
         <div className="grid sm:grid-cols-4 gap-4">
           <Card data-testid="card-stat-high-impact">
             <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-destructive mb-1">6</div>
+              <div className="text-3xl font-bold text-destructive mb-1">{stats.highImpactToday}</div>
               <p className="text-sm text-muted-foreground">High Impact Today</p>
             </CardContent>
           </Card>
           <Card data-testid="card-stat-currencies">
             <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-primary mb-1">8</div>
+              <div className="text-3xl font-bold text-primary mb-1">{stats.uniqueCurrencies}</div>
               <p className="text-sm text-muted-foreground">Currencies Tracked</p>
-            </CardContent>
-          </Card>
-          <Card data-testid="card-stat-auto-update">
-            <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-primary mb-1">Real-time</div>
-              <p className="text-sm text-muted-foreground">Auto Updates</p>
             </CardContent>
           </Card>
           <Card data-testid="card-stat-upcoming">
             <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-primary mb-1">24hrs</div>
-              <p className="text-sm text-muted-foreground">Advance Notice</p>
+              <div className="text-3xl font-bold text-primary mb-1">{stats.upcomingIn24h}</div>
+              <p className="text-sm text-muted-foreground">Upcoming in 24h</p>
+            </CardContent>
+          </Card>
+          <Card data-testid="card-stat-total">
+            <CardContent className="pt-6">
+              <div className="text-3xl font-bold text-primary mb-1">{stats.totalEvents}</div>
+              <p className="text-sm text-muted-foreground">Total Events</p>
             </CardContent>
           </Card>
         </div>
@@ -348,7 +325,7 @@ export default function EconomicCalendarPage() {
             </SelectContent>
           </Select>
           
-          <div className="flex gap-2">
+          <div className="flex gap-2 ml-auto">
             <Badge variant="destructive" className="gap-1" data-testid="badge-high-impact">
               <TrendingUp className="w-3 h-3" />
               High Impact
@@ -362,11 +339,6 @@ export default function EconomicCalendarPage() {
               Low Impact
             </Badge>
           </div>
-
-          <Button variant="outline" className="ml-auto gap-2" data-testid="button-export-calendar">
-            <Download className="w-4 h-4" />
-            Export to CSV
-          </Button>
         </div>
 
         <Card>
