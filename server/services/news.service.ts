@@ -89,20 +89,35 @@ export class NewsService {
       return [];
     }
 
-    // Use entity_types to get diverse market news (Marketaux Pro feature)
-    const url = `${MARKETAUX_BASE_URL}/news/all?api_token=${MARKETAUX_API_KEY}&entity_types=equity,cryptocurrency,currency,commodity,index&must_have_entities=true&language=en&limit=50`;
-
     try {
-      const response = await fetch(url);
-      
-      if (!response.ok) {
-        console.error(`Marketaux API error: ${response.status} ${response.statusText}`);
-        return [];
+      // Make parallel API calls for each category to ensure balanced coverage
+      const [stocksData, cryptoData, forexData, commoditiesData] = await Promise.all([
+        this.fetchCategoryNews('equity', 15),
+        this.fetchCategoryNews('cryptocurrency', 10),
+        this.fetchCategoryNews('currency', 10),
+        this.fetchCategoryNews('commodity', 10),
+      ]);
+
+      // Combine all articles
+      const allArticles = [
+        ...stocksData.map(a => ({ ...a, forcedCategory: 'stocks' as const })),
+        ...cryptoData.map(a => ({ ...a, forcedCategory: 'crypto' as const })),
+        ...forexData.map(a => ({ ...a, forcedCategory: 'forex' as const })),
+        ...commoditiesData.map(a => ({ ...a, forcedCategory: 'commodities' as const })),
+      ];
+
+      // Deduplicate by newsId
+      const uniqueArticles = new Map<string, typeof allArticles[0]>();
+      for (const article of allArticles) {
+        if (!uniqueArticles.has(article.uuid)) {
+          uniqueArticles.set(article.uuid, article);
+        }
       }
 
-      const data: MarketauxResponse = await response.json();
+      console.log(`Fetched news: ${stocksData.length} stocks, ${cryptoData.length} crypto, ${forexData.length} forex, ${commoditiesData.length} commodities (${uniqueArticles.size} unique)`);
 
-      return data.data.map(article => ({
+      // Convert to NewsArticle format
+      return Array.from(uniqueArticles.values()).map(article => ({
         id: '',
         newsId: article.uuid,
         publishedAt: new Date(article.published_at),
@@ -112,11 +127,30 @@ export class NewsService {
         url: article.url,
         sentiment: this.calculateSentiment(article.entities),
         symbols: article.entities.map(e => e.symbol).filter(Boolean),
-        category: this.deriveCategoryFromEntities(article.entities, article.title, article.description || ''),
+        category: article.forcedCategory, // Use forced category for guaranteed distribution
         cachedAt: new Date(),
       }));
     } catch (error) {
       console.error("Failed to fetch news from Marketaux:", error);
+      return [];
+    }
+  }
+
+  private async fetchCategoryNews(entityType: string, limit: number): Promise<MarketauxArticle[]> {
+    const url = `${MARKETAUX_BASE_URL}/news/all?api_token=${MARKETAUX_API_KEY}&entity_types=${entityType}&must_have_entities=true&language=en&limit=${limit}`;
+
+    try {
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        console.error(`Marketaux API error for ${entityType}: ${response.status} ${response.statusText}`);
+        return [];
+      }
+
+      const data: MarketauxResponse = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error(`Failed to fetch ${entityType} news from Marketaux:`, error);
       return [];
     }
   }
