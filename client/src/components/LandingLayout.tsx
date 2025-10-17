@@ -1,7 +1,8 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { TrendingUp, Globe } from "lucide-react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -65,25 +66,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-2">
-            {/* Language Selector */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" data-testid="button-language">
-                  <Globe className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {languages.map((lang) => (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    data-testid={`menu-lang-${lang.code}`}
-                  >
-                    {lang.name}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
+            <LanguageSwitcher />
             <ThemeToggle />
 
             {/* Auth Buttons */}
