@@ -50,15 +50,23 @@ Preferred communication style: Simple, everyday language.
 
 ### Marketaux Pro Integration (October 17, 2025)
 - **News Service Upgrade:** Leveraged Marketaux Pro plan features for enhanced news coverage
-  - Replaced restrictive symbol-based filtering with `entity_types` parameter (equity, cryptocurrency, currency, commodity, index)
+  - Replaced restrictive symbol-based filtering with `entity_types` parameter (equity, cryptocurrency, currency)
   - Implemented real sentiment analysis using Marketaux's entity sentiment scores (-1 to +1 scale)
   - Sentiment classification: positive (>0.1), negative (<-0.1), neutral (-0.1 to 0.1)
   - Improved category derivation using entity type metadata instead of keyword matching
   - Increased article diversity from 3 to 50+ articles with better category distribution
 - **Entity Data:** Each article now includes rich entity metadata (200,000+ tracked entities)
-  - Entity types: equity, cryptocurrency, currency, commodity, index
+  - Entity types: equity, cryptocurrency, currency, index, etf, mutualfund (note: `commodity` is NOT a valid type)
   - Per-entity sentiment scores and match scores
   - Highlighted text snippets with individual sentiment analysis
+- **Parallel Category Fetching (Latest):** Implemented parallel API calls for balanced news distribution
+  - Stocks: `entity_types=equity` (15 articles, 33%)
+  - Crypto: `entity_types=cryptocurrency` (10 articles, 22%)
+  - Forex: `entity_types=currency` (10 articles, 22%)
+  - Commodities: `symbols=XAUUSD,XAGUSD,USOIL,...` (10 articles, 22%) - uses symbol-based filtering since Marketaux lacks commodity entity type
+  - UUID-based deduplication prevents duplicate articles across categories
+  - Forced category assignment ensures accurate filtering on frontend
+  - Total: 45 unique articles with balanced distribution across all 4 categories
 
 ### Economic Calendar Enhancements (October 17, 2025)
 - **Impact Classification System:** Added manual high-impact event lookup table
