@@ -22,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/hooks/useLanguage";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -32,6 +33,7 @@ import { SEO } from "@/components/SEO";
 export default function LoginPage() {
   const [, setLocation] = useLocation();
   const { login } = useAuth();
+  const { t } = useLanguage();
   const { toast } = useToast();
 
   const form = useForm<LoginRequest>({
@@ -48,15 +50,15 @@ export default function LoginPage() {
     },
     onSuccess: () => {
       toast({
-        title: "Welcome back!",
-        description: "Successfully logged in",
+        title: t('auth.login.success.title'),
+        description: t('auth.login.success.description'),
       });
       setLocation("/dashboard");
     },
     onError: (error: any) => {
       toast({
-        title: "Login failed",
-        description: error.message || "Invalid credentials",
+        title: t('auth.login.error.title'),
+        description: error.message || t('auth.login.error.description'),
         variant: "destructive",
       });
     },
@@ -77,10 +79,10 @@ export default function LoginPage() {
         <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-semibold">
-            Sign in to Trading Platform
+            {t('auth.login.title')}
           </CardTitle>
           <CardDescription>
-            Enter your credentials to access your account
+            {t('auth.login.description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -91,13 +93,13 @@ export default function LoginPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('auth.login.email')}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         type="email"
                         data-testid="input-email"
-                        placeholder="Enter your email"
+                        placeholder={t('auth.login.emailPlaceholder')}
                         disabled={loginMutation.isPending}
                       />
                     </FormControl>
@@ -110,13 +112,13 @@ export default function LoginPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t('auth.login.password')}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         type="password"
                         data-testid="input-password"
-                        placeholder="Enter your password"
+                        placeholder={t('auth.login.passwordPlaceholder')}
                         disabled={loginMutation.isPending}
                       />
                     </FormControl>
@@ -133,10 +135,10 @@ export default function LoginPage() {
                 {loginMutation.isPending ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Signing in...
+                    {t('common.loading')}
                   </>
                 ) : (
-                  "Sign in"
+                  t('auth.login.submitButton')
                 )}
               </Button>
             </form>
@@ -146,14 +148,17 @@ export default function LoginPage() {
           <div className="flex w-full items-center justify-between text-sm">
             <Link href="/forgot-password">
               <span className="text-primary hover:underline cursor-pointer" data-testid="link-forgot-password">
-                Forgot password?
+                {t('auth.login.forgotPassword')}
               </span>
             </Link>
-            <Link href="/register">
-              <span className="text-primary hover:underline cursor-pointer" data-testid="link-register">
-                Create account
-              </span>
-            </Link>
+            <div className="text-sm text-muted-foreground">
+              {t('auth.login.noAccount')}{' '}
+              <Link href="/register">
+                <span className="text-primary hover:underline cursor-pointer" data-testid="link-register">
+                  {t('auth.login.registerLink')}
+                </span>
+              </Link>
+            </div>
           </div>
         </CardFooter>
       </Card>

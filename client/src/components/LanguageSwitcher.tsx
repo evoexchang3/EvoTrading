@@ -26,14 +26,13 @@ export function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[160px]">
-        {Object.entries(languageNames).map(([code, { native, flag }]) => (
+        {Object.entries(languageNames).map(([code, { native }]) => (
           <DropdownMenuItem
             key={code}
             onClick={() => setLanguage(code as Language)}
             data-testid={`language-option-${code}`}
             className={language === code ? "bg-accent" : ""}
           >
-            <span className="mr-2">{flag}</span>
             <span>{native}</span>
           </DropdownMenuItem>
         ))}

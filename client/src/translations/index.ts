@@ -36,15 +36,15 @@ export const loadTranslations = async (language: Language): Promise<TranslationK
 };
 
 // Language metadata for UI display
-export const languageNames: Record<Language, { native: string; flag: string; rtl?: boolean }> = {
-  'en': { native: 'English', flag: '🇬🇧' },
-  'zh-CN': { native: '简体中文', flag: '🇨🇳' },
-  'ja': { native: '日本語', flag: '🇯🇵' },
-  'de': { native: 'Deutsch', flag: '🇩🇪' },
-  'fr': { native: 'Français', flag: '🇫🇷' },
-  'es': { native: 'Español', flag: '🇪🇸' },
-  'ar': { native: 'العربية', flag: '🇸🇦', rtl: true },
-  'ru': { native: 'Русский', flag: '🇷🇺' },
+export const languageNames: Record<Language, { native: string; rtl?: boolean }> = {
+  'en': { native: 'English' },
+  'zh-CN': { native: '简体中文' },
+  'ja': { native: '日本語' },
+  'de': { native: 'Deutsch' },
+  'fr': { native: 'Français' },
+  'es': { native: 'Español' },
+  'ar': { native: 'العربية', rtl: true },
+  'ru': { native: 'Русский' },
 };
 
 export const validLanguages: Language[] = ['en', 'zh-CN', 'ja', 'de', 'fr', 'es', 'ar', 'ru'];

@@ -116,6 +116,32 @@ Preferred communication style: Simple, everyday language.
   - Fund type selectors on deposit and withdrawal pages
 - All balance updates trigger appropriate webhook notifications
 
+### Internationalization (i18n) Implementation (October 17, 2025)
+- **Custom Context-Based i18n System:** Zero-dependency translation infrastructure
+  - LanguageContext with React Context API for global language state
+  - useLanguage hook for accessing translations via `t()` function
+  - Lazy loading with code splitting prevents bundle size increase
+  - Browser language detection on first visit
+  - Persistent language preference in localStorage
+- **Comprehensive Translation Coverage:**
+  - Master English translation file with 10,000+ words covering entire platform
+  - 8 Tier 1 languages: English, Chinese Simplified, Japanese, German, French, Spanish, Arabic, Russian
+  - Accurate financial and trading terminology across all languages
+  - Translation key structure: `{section}.{page}.{component}.{element}`
+- **Language Support Features:**
+  - Currency and number formatting per locale
+  - Pluralization support for dynamic content
+  - RTL (Right-to-Left) support for Arabic
+  - Variable interpolation for dynamic strings (e.g., `{{name}}`, `{{amount}}`)
+- **UI Components:**
+  - LanguageSwitcher dropdown with native language names
+  - Integrated into both DashboardLayout and LandingLayout headers
+  - Displays 8 languages: English, 简体中文, 日本語, Deutsch, Français, Español, العربية, Русский
+- **Migration Status:**
+  - Core infrastructure: ✅ Complete
+  - LoginPage: ✅ Fully translated
+  - Remaining pages: In progress (HomePage, DashboardPage, Trading tools, etc.)
+
 ### Demo Account
 - Email: demo@test.com
 - Password: demo1234
