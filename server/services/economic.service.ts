@@ -120,9 +120,103 @@ export class EconomicService {
     const from = startDate || new Date().toISOString().split('T')[0];
     const to = endDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
-    const events = await this.fetchFromEODHD(from, to);
-    console.log(`Fetched ${events.length} events from EODHD economic calendar`);
-    return events;
+    // Fetch events for major trading currencies in parallel
+    // This ensures better distribution across USD, EUR, GBP, JPY, AUD, CAD, CHF, NZD
+    const targetCountries = [
+      'US',  // USD
+      'GB',  // GBP
+      'EU',  // EUR (Eurozone aggregate)
+      'DE',  // EUR (Germany - often has EU data)
+      'JP',  // JPY
+      'AU',  // AUD
+      'CA',  // CAD
+      'CH',  // CHF
+      'NZ',  // NZD
+    ];
+
+    const [countryEvents, genericEvents] = await Promise.all([
+      // Parallel fetch for each target country
+      Promise.all(
+        targetCountries.map(country => this.fetchFromEODHDByCountry(from, to, country))
+      ),
+      // Also fetch generic endpoint as fallback for other countries
+      this.fetchFromEODHD(from, to)
+    ]);
+
+    // Flatten country-specific events
+    const allCountryEvents = countryEvents.flat();
+    
+    // Merge and deduplicate by eventId
+    const eventMap = new Map<string, EconomicEvent>();
+    
+    // Add country-specific events first (higher priority)
+    for (const event of allCountryEvents) {
+      eventMap.set(event.eventId, event);
+    }
+    
+    // Add generic events (don't override existing)
+    for (const event of genericEvents) {
+      if (!eventMap.has(event.eventId)) {
+        eventMap.set(event.eventId, event);
+      }
+    }
+
+    const uniqueEvents = Array.from(eventMap.values());
+    
+    // Log currency distribution for debugging
+    const currencyCount: Record<string, number> = {};
+    uniqueEvents.forEach(e => {
+      currencyCount[e.currency] = (currencyCount[e.currency] || 0) + 1;
+    });
+    
+    console.log(`Fetched ${uniqueEvents.length} unique events from EODHD`);
+    console.log('Currency distribution:', Object.entries(currencyCount)
+      .sort((a, b) => b[1] - a[1])
+      .map(([curr, count]) => `${curr}: ${count}`)
+      .join(', '));
+
+    return uniqueEvents;
+  }
+
+  private async fetchFromEODHDByCountry(from: string, to: string, country: string): Promise<EconomicEvent[]> {
+    const url = `${EODHD_BASE_URL}/economic-events?api_token=${EODHD_API_KEY}&fmt=json&from=${from}&to=${to}&country=${country}`;
+
+    try {
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        console.warn(`EODHD API error for ${country}: ${response.status}`);
+        return [];
+      }
+
+      const data: EODHDEconomicEvent[] = await response.json();
+
+      if (!data || data.length === 0) {
+        return [];
+      }
+
+      const validEvents = data.filter(event => 
+        event.date && event.country && event.type
+      );
+
+      return validEvents.map(event => ({
+        id: '',
+        eventId: `eodhd_${event.date}_${event.country}_${event.type.replace(/\s/g, '_')}`,
+        datetime: new Date(event.date),
+        country: event.country,
+        currency: event.currency || this.getCurrencyFromCountry(event.country),
+        event: event.type,
+        impact: this.classifyImpact(event.type),
+        forecast: event.estimate?.toString() || null,
+        previous: event.previous?.toString() || null,
+        actual: event.actual?.toString() || null,
+        source: 'eodhd',
+        cachedAt: new Date(),
+      }));
+    } catch (error) {
+      console.warn(`Failed to fetch ${country} events:`, error);
+      return [];
+    }
   }
 
   private async fetchFromEODHD(from: string, to: string): Promise<EconomicEvent[]> {
@@ -221,27 +315,107 @@ export class EconomicService {
     return 'low';
   }
 
-  private getCurrencyFromCountry(country: string): string {
-    const countryToCurrency: Record<string, string> = {
-      'United States': 'USD',
-      'USA': 'USD',
-      'US': 'USD',
-      'Eurozone': 'EUR',
-      'Germany': 'EUR',
-      'France': 'EUR',
-      'Italy': 'EUR',
-      'Spain': 'EUR',
-      'United Kingdom': 'GBP',
-      'UK': 'GBP',
-      'Japan': 'JPY',
-      'Switzerland': 'CHF',
-      'Canada': 'CAD',
-      'Australia': 'AUD',
-      'New Zealand': 'NZD',
-      'China': 'CNY',
-    };
+  // Comprehensive country-to-currency mapping for all major trading nations and regions
+  private readonly COUNTRY_TO_CURRENCY: Record<string, string> = {
+    // North America
+    'US': 'USD', 'USA': 'USD', 'United States': 'USD',
+    'CA': 'CAD', 'Canada': 'CAD',
+    'MX': 'MXN', 'Mexico': 'MXN',
+    
+    // Europe - Eurozone
+    'EU': 'EUR', 'Eurozone': 'EUR', 'Euro Area': 'EUR',
+    'DE': 'EUR', 'Germany': 'EUR',
+    'FR': 'EUR', 'France': 'EUR',
+    'IT': 'EUR', 'Italy': 'EUR',
+    'ES': 'EUR', 'Spain': 'EUR',
+    'NL': 'EUR', 'Netherlands': 'EUR',
+    'BE': 'EUR', 'Belgium': 'EUR',
+    'AT': 'EUR', 'Austria': 'EUR',
+    'PT': 'EUR', 'Portugal': 'EUR',
+    'IE': 'EUR', 'Ireland': 'EUR',
+    'FI': 'EUR', 'Finland': 'EUR',
+    'GR': 'EUR', 'Greece': 'EUR',
+    'SK': 'EUR', 'Slovakia': 'EUR',
+    'SI': 'EUR', 'Slovenia': 'EUR',
+    'LU': 'EUR', 'Luxembourg': 'EUR',
+    'LV': 'EUR', 'Latvia': 'EUR',
+    'LT': 'EUR', 'Lithuania': 'EUR',
+    'EE': 'EUR', 'Estonia': 'EUR',
+    'CY': 'EUR', 'Cyprus': 'EUR',
+    'MT': 'EUR', 'Malta': 'EUR',
+    
+    // Europe - Non-Eurozone
+    'UK': 'GBP', 'GB': 'GBP', 'United Kingdom': 'GBP',
+    'CH': 'CHF', 'Switzerland': 'CHF',
+    'NO': 'NOK', 'Norway': 'NOK',
+    'SE': 'SEK', 'Sweden': 'SEK',
+    'DK': 'DKK', 'Denmark': 'DKK',
+    'PL': 'PLN', 'Poland': 'PLN',
+    'CZ': 'CZK', 'Czech Republic': 'CZK',
+    'HU': 'HUF', 'Hungary': 'HUF',
+    'RO': 'RON', 'Romania': 'RON',
+    'BG': 'BGN', 'Bulgaria': 'BGN',
+    'HR': 'HRK', 'Croatia': 'HRK',
+    'IS': 'ISK', 'Iceland': 'ISK',
+    'RU': 'RUB', 'Russia': 'RUB',
+    'TR': 'TRY', 'Turkey': 'TRY',
+    'UA': 'UAH', 'Ukraine': 'UAH',
+    
+    // Asia-Pacific
+    'JP': 'JPY', 'Japan': 'JPY',
+    'CN': 'CNY', 'China': 'CNY',
+    'AU': 'AUD', 'Australia': 'AUD',
+    'NZ': 'NZD', 'New Zealand': 'NZD',
+    'HK': 'HKD', 'Hong Kong': 'HKD',
+    'SG': 'SGD', 'Singapore': 'SGD',
+    'KR': 'KRW', 'South Korea': 'KRW',
+    'IN': 'INR', 'India': 'INR',
+    'ID': 'IDR', 'Indonesia': 'IDR',
+    'MY': 'MYR', 'Malaysia': 'MYR',
+    'TH': 'THB', 'Thailand': 'THB',
+    'PH': 'PHP', 'Philippines': 'PHP',
+    'VN': 'VND', 'Vietnam': 'VND',
+    'TW': 'TWD', 'Taiwan': 'TWD',
+    'PK': 'PKR', 'Pakistan': 'PKR',
+    'BD': 'BDT', 'Bangladesh': 'BDT',
+    
+    // Middle East
+    'SA': 'SAR', 'Saudi Arabia': 'SAR',
+    'AE': 'AED', 'United Arab Emirates': 'AED', 'UAE': 'AED',
+    'IL': 'ILS', 'Israel': 'ILS',
+    'QA': 'QAR', 'Qatar': 'QAR',
+    'KW': 'KWD', 'Kuwait': 'KWD',
+    'BH': 'BHD', 'Bahrain': 'BHD',
+    'OM': 'OMR', 'Oman': 'OMR',
+    'JO': 'JOD', 'Jordan': 'JOD',
+    'LB': 'LBP', 'Lebanon': 'LBP',
+    
+    // Africa
+    'ZA': 'ZAR', 'South Africa': 'ZAR',
+    'EG': 'EGP', 'Egypt': 'EGP',
+    'NG': 'NGN', 'Nigeria': 'NGN',
+    'KE': 'KES', 'Kenya': 'KES',
+    'MA': 'MAD', 'Morocco': 'MAD',
+    'TN': 'TND', 'Tunisia': 'TND',
+    'GH': 'GHS', 'Ghana': 'GHS',
+    
+    // Latin America
+    'BR': 'BRL', 'Brazil': 'BRL',
+    'AR': 'ARS', 'Argentina': 'ARS',
+    'CL': 'CLP', 'Chile': 'CLP',
+    'CO': 'COP', 'Colombia': 'COP',
+    'PE': 'PEN', 'Peru': 'PEN',
+    'VE': 'VES', 'Venezuela': 'VES',
+    'UY': 'UYU', 'Uruguay': 'UYU',
+    'PY': 'PYG', 'Paraguay': 'PYG',
+    
+    // Other
+    'MO': 'MOP', 'Macau': 'MOP',
+    'ST': 'STN', 'Sao Tome and Principe': 'STN',
+  };
 
-    return countryToCurrency[country] || 'USD';
+  private getCurrencyFromCountry(country: string): string {
+    return this.COUNTRY_TO_CURRENCY[country] || 'USD';
   }
 }
 
