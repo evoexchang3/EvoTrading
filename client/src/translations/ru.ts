@@ -248,4 +248,10 @@ export const ru = {
   'error.unauthorized': 'У вас нет доступа к этому ресурсу',
   'error.notFound': 'Ресурс не найден',
   'error.serverError': 'Ошибка сервера. Пожалуйста, попробуйте позже.',
+  'tools.positionCalculator.title': 'Калькулятор позиции',
+  'tools.pipCalculator.title': 'Калькулятор пипсов',
+  'tools.tradingSessions.title': 'Торговые сессии',
+  'tools.education.beginnerCourse': 'Курс для начинающих',
+  'tools.education.advancedCourse': 'Продвинутый курс',
+  'tools.education.glossary': 'Глоссарий',
 };

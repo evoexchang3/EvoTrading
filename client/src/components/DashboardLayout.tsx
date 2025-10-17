@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/hooks/useLanguage";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -29,30 +30,32 @@ type DashboardLayoutProps = {
   children: React.ReactNode;
 };
 
-const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Trading", href: "/trading", icon: TrendingUp },
-  { name: "Deposits", href: "/deposits", icon: Wallet },
-  { name: "Withdrawals", href: "/withdrawals", icon: FileText },
-];
-
-const toolsNavigation = [
-  { name: "Economic Calendar", href: "/tools/economic-calendar" },
-  { name: "Position Calculator", href: "/tools/position-calculator" },
-  { name: "Pip Calculator", href: "/tools/pip-calculator" },
-  { name: "Trading Sessions", href: "/tools/sessions" },
-  { name: "Market News", href: "/tools/news" },
-];
-
-const educationNavigation = [
-  { name: "Beginner Course", href: "/learn/beginner" },
-  { name: "Advanced Course", href: "/learn/advanced" },
-  { name: "Glossary", href: "/learn/glossary" },
-];
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [location, setLocation] = useLocation();
   const { user, logout } = useAuth();
+  const { t } = useLanguage();
+
+  const navigation = [
+    { name: t('nav.dashboard'), href: "/dashboard", icon: LayoutDashboard },
+    { name: t('nav.trading'), href: "/trading", icon: TrendingUp },
+    { name: t('nav.deposits'), href: "/deposits", icon: Wallet },
+    { name: t('nav.withdrawals'), href: "/withdrawals", icon: FileText },
+  ];
+
+  const toolsNavigation = [
+    { name: t('tools.economicCalendar.title'), href: "/tools/economic-calendar", testId: "economic-calendar" },
+    { name: t('tools.positionCalculator.title'), href: "/tools/position-calculator", testId: "position-calculator" },
+    { name: t('tools.pipCalculator.title'), href: "/tools/pip-calculator", testId: "pip-calculator" },
+    { name: t('tools.tradingSessions.title'), href: "/tools/sessions", testId: "trading-sessions" },
+    { name: t('tools.news.title'), href: "/tools/news", testId: "market-news" },
+  ];
+
+  const educationNavigation = [
+    { name: t('tools.education.beginnerCourse'), href: "/learn/beginner", testId: "beginner-course" },
+    { name: t('tools.education.advancedCourse'), href: "/learn/advanced", testId: "advanced-course" },
+    { name: t('tools.education.glossary'), href: "/learn/glossary", testId: "glossary" },
+  ];
 
   const initials = user?.firstName && user?.lastName
     ? `${user.firstName[0]}${user.lastName[0]}`
@@ -102,7 +105,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 data-testid="link-tools"
               >
                 <Calculator className="h-4 w-4" />
-                Tools
+                {t('nav.tools')}
               </span>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -130,7 +133,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 data-testid="link-learn"
               >
                 <GraduationCap className="h-4 w-4" />
-                Learn
+                {t('nav.education')}
               </span>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -174,16 +177,16 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => setLocation("/profile")} data-testid="menu-profile">
                 <User className="mr-2 h-4 w-4" />
-                Profile
+                {t('nav.profile')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setLocation("/settings")} data-testid="menu-settings">
                 <Settings className="mr-2 h-4 w-4" />
-                Settings
+                {t('nav.settings')}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout} data-testid="menu-logout">
                 <LogOut className="mr-2 h-4 w-4" />
-                Log out
+                {t('nav.logout')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

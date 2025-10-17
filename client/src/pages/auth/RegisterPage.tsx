@@ -23,19 +23,20 @@ import { Link, useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 import { Loader2 } from "lucide-react";
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
 
 export default function RegisterPage() {
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
   const { toast } = useToast();
 
   const form = useForm<RegisterRequest>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       email: "",
-      username: "",
       password: "",
       firstName: "",
       lastName: "",
@@ -48,15 +49,15 @@ export default function RegisterPage() {
     },
     onSuccess: () => {
       toast({
-        title: "Account created!",
-        description: "Please check your email to verify your account",
+        title: t('common.success'),
+        description: t('auth.register.description'),
       });
       setLocation("/login");
     },
     onError: (error: any) => {
       toast({
-        title: "Registration failed",
-        description: error.message || "An error occurred",
+        title: t('common.error'),
+        description: error.message || t('error.serverError'),
         variant: "destructive",
       });
     },
@@ -77,10 +78,10 @@ export default function RegisterPage() {
         <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-semibold">
-            Create your account
+            {t('auth.register.title')}
           </CardTitle>
           <CardDescription>
-            Start trading with professional tools
+            {t('auth.register.description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -92,12 +93,12 @@ export default function RegisterPage() {
                   name="firstName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>First Name</FormLabel>
+                      <FormLabel>{t('auth.register.firstName')}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           data-testid="input-firstname"
-                          placeholder="John"
+                          placeholder={t('auth.register.firstNamePlaceholder')}
                           disabled={registerMutation.isPending}
                         />
                       </FormControl>
@@ -110,12 +111,12 @@ export default function RegisterPage() {
                   name="lastName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Last Name</FormLabel>
+                      <FormLabel>{t('auth.register.lastName')}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           data-testid="input-lastname"
-                          placeholder="Doe"
+                          placeholder={t('auth.register.lastNamePlaceholder')}
                           disabled={registerMutation.isPending}
                         />
                       </FormControl>
@@ -129,31 +130,13 @@ export default function RegisterPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('auth.register.email')}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         type="email"
                         data-testid="input-email"
-                        placeholder="john@example.com"
-                        disabled={registerMutation.isPending}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        data-testid="input-username"
-                        placeholder="johndoe"
+                        placeholder={t('auth.register.emailPlaceholder')}
                         disabled={registerMutation.isPending}
                       />
                     </FormControl>
@@ -166,13 +149,13 @@ export default function RegisterPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t('auth.register.password')}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         type="password"
                         data-testid="input-password"
-                        placeholder="••••••••"
+                        placeholder={t('auth.register.passwordPlaceholder')}
                         disabled={registerMutation.isPending}
                       />
                     </FormControl>
@@ -189,10 +172,10 @@ export default function RegisterPage() {
                 {registerMutation.isPending ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Creating account...
+                    {t('common.loading')}
                   </>
                 ) : (
-                  "Create account"
+                  t('auth.register.submitButton')
                 )}
               </Button>
             </form>
@@ -200,10 +183,10 @@ export default function RegisterPage() {
         </CardContent>
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
-            Already have an account?{" "}
+            {t('auth.register.hasAccount')}{" "}
             <Link href="/login">
               <span className="text-primary hover:underline cursor-pointer" data-testid="link-login">
-                Sign in
+                {t('auth.register.loginLink')}
               </span>
             </Link>
           </p>

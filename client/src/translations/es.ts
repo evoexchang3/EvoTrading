@@ -248,4 +248,10 @@ export const es = {
   'error.unauthorized': 'No estás autorizado para acceder a este recurso',
   'error.notFound': 'Recurso no encontrado',
   'error.serverError': 'Error del servidor. Por favor intenta de nuevo más tarde.',
+  'tools.positionCalculator.title': 'Calculadora de posición',
+  'tools.pipCalculator.title': 'Calculadora de pip',
+  'tools.tradingSessions.title': 'Sesiones de trading',
+  'tools.education.beginnerCourse': 'Curso para principiantes',
+  'tools.education.advancedCourse': 'Curso avanzado',
+  'tools.education.glossary': 'Glosario',
 };

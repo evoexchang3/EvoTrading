@@ -248,4 +248,10 @@ export const ar = {
   'error.unauthorized': 'أنت غير مصرح لك بالوصول إلى هذا المورد',
   'error.notFound': 'المورد غير موجود',
   'error.serverError': 'خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.',
+  'tools.positionCalculator.title': 'حاسبة المركز',
+  'tools.pipCalculator.title': 'حاسبة النقاط',
+  'tools.tradingSessions.title': 'جلسات التداول',
+  'tools.education.beginnerCourse': 'دورة المبتدئين',
+  'tools.education.advancedCourse': 'دورة متقدمة',
+  'tools.education.glossary': 'المصطلحات',
 };

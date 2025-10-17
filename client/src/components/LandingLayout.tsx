@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useLanguage } from "@/hooks/useLanguage";
 import { TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -15,22 +16,17 @@ interface LandingLayoutProps {
   children: React.ReactNode;
 }
 
-const mainNavigation = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "FAQ", href: "/faq" },
-  { name: "Education", href: "/education" },
-  { name: "Contact", href: "/contact" },
-];
-
-const languages = [
-  { code: "en", name: "English" },
-  { code: "de", name: "Deutsch" },
-  { code: "cs", name: "Čeština" },
-];
-
 export function LandingLayout({ children }: LandingLayoutProps) {
   const [location] = useLocation();
+  const { t } = useLanguage();
+
+  const mainNavigation = [
+    { name: t('nav.home'), href: "/", testId: "link-home" },
+    { name: t('nav.about'), href: "/about", testId: "link-about" },
+    { name: t('nav.faq'), href: "/faq", testId: "link-faq" },
+    { name: t('nav.education'), href: "/education", testId: "link-education" },
+    { name: t('nav.contact'), href: "/contact", testId: "link-contact" },
+  ];
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -48,7 +44,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {mainNavigation.map((item) => (
-              <Link key={item.name} href={item.href}>
+              <Link key={item.href} href={item.href}>
                 <span
                   className={cn(
                     "rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2 cursor-pointer",
@@ -56,7 +52,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
                       ? "bg-accent text-accent-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   )}
-                  data-testid={`link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  data-testid={item.testId}
                 >
                   {item.name}
                 </span>
@@ -72,12 +68,12 @@ export function LandingLayout({ children }: LandingLayoutProps) {
             {/* Auth Buttons */}
             <Link href="/login">
               <Button variant="ghost" size="sm" data-testid="button-login">
-                Login
+                {t('nav.login')}
               </Button>
             </Link>
             <Link href="/register">
               <Button size="sm" data-testid="button-register">
-                Create Account
+                {t('nav.register')}
               </Button>
             </Link>
           </div>

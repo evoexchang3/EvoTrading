@@ -277,4 +277,12 @@ export const en = {
   'error.unauthorized': 'You are not authorized to access this resource',
   'error.notFound': 'Resource not found',
   'error.serverError': 'Server error. Please try again later.',
+  
+  // Tools & Education
+  'tools.positionCalculator.title': 'Position Calculator',
+  'tools.pipCalculator.title': 'Pip Calculator',
+  'tools.tradingSessions.title': 'Trading Sessions',
+  'tools.education.beginnerCourse': 'Beginner Course',
+  'tools.education.advancedCourse': 'Advanced Course',
+  'tools.education.glossary': 'Glossary',
 };

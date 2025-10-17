@@ -277,4 +277,10 @@ export const ja = {
   'error.unauthorized': 'このリソースにアクセスする権限がありません',
   'error.notFound': 'リソースが見つかりません',
   'error.serverError': 'サーバーエラー。後でもう一度お試しください。',
+  'tools.positionCalculator.title': 'ポジション計算機',
+  'tools.pipCalculator.title': 'ピップ計算機',
+  'tools.tradingSessions.title': '取引セッション',
+  'tools.education.beginnerCourse': '初級コース',
+  'tools.education.advancedCourse': '上級コース',
+  'tools.education.glossary': '用語集',
 };
