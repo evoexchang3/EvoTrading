@@ -4,70 +4,85 @@ import { Check, HelpCircle, ArrowRight, Shield, Zap, TrendingUp } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function AccountTypesPage() {
+  const { t } = useLanguage();
+  
   const accountTypes = [
     {
-      name: "Standard Account",
-      description: "Perfect for beginners and retail traders",
-      minDeposit: "$100",
-      leverage: "1:100",
-      spreads: "1.2 pips",
+      name: t('customer.accountTypes.standard.name'),
+      description: t('customer.accountTypes.standard.description'),
+      minDeposit: t('customer.accountTypes.standard.minDeposit'),
+      leverage: t('customer.accountTypes.standard.leverage'),
+      spreads: t('customer.accountTypes.standard.spreads'),
       features: [
-        "Minimum deposit: $100",
-        "Leverage up to 1:100",
-        "Access to all instruments",
-        "Standard spreads from 1.2 pips",
-        "24/5 customer support",
-        "Free educational resources",
-        "No commission on forex trades",
-        "Mobile and web trading platforms"
+        t('customer.accountTypes.standard.feature1'),
+        t('customer.accountTypes.standard.feature2'),
+        t('customer.accountTypes.standard.feature3'),
+        t('customer.accountTypes.standard.feature4'),
+        t('customer.accountTypes.standard.feature5'),
+        t('customer.accountTypes.standard.feature6'),
+        t('customer.accountTypes.standard.feature7'),
+        t('customer.accountTypes.standard.feature8')
       ],
-      ideal: ["New traders", "Small capital investors", "Learning to trade"],
+      ideal: [
+        t('customer.accountTypes.standard.ideal1'),
+        t('customer.accountTypes.standard.ideal2'),
+        t('customer.accountTypes.standard.ideal3')
+      ],
       popular: false,
       color: "blue"
     },
     {
-      name: "Professional Account",
-      description: "For experienced traders with higher volume",
-      minDeposit: "$5,000",
-      leverage: "1:500",
-      spreads: "0.8 pips",
+      name: t('customer.accountTypes.professional.name'),
+      description: t('customer.accountTypes.professional.description'),
+      minDeposit: t('customer.accountTypes.professional.minDeposit'),
+      leverage: t('customer.accountTypes.professional.leverage'),
+      spreads: t('customer.accountTypes.professional.spreads'),
       features: [
-        "Minimum deposit: $5,000",
-        "Leverage up to 1:500",
-        "Reduced spreads from 0.8 pips",
-        "Priority customer support",
-        "Advanced trading tools",
-        "Dedicated account manager",
-        "Premium market analysis",
-        "Faster withdrawal processing",
-        "Access to trading signals"
+        t('customer.accountTypes.professional.feature1'),
+        t('customer.accountTypes.professional.feature2'),
+        t('customer.accountTypes.professional.feature3'),
+        t('customer.accountTypes.professional.feature4'),
+        t('customer.accountTypes.professional.feature5'),
+        t('customer.accountTypes.professional.feature6'),
+        t('customer.accountTypes.professional.feature7'),
+        t('customer.accountTypes.professional.feature8'),
+        t('customer.accountTypes.professional.feature9')
       ],
-      ideal: ["Experienced traders", "Active day traders", "Medium capital investors"],
+      ideal: [
+        t('customer.accountTypes.professional.ideal1'),
+        t('customer.accountTypes.professional.ideal2'),
+        t('customer.accountTypes.professional.ideal3')
+      ],
       popular: true,
       color: "primary"
     },
     {
-      name: "VIP Account",
-      description: "Premium service for institutional clients",
-      minDeposit: "$50,000",
-      leverage: "1:500",
-      spreads: "0.3 pips",
+      name: t('customer.accountTypes.vip.name'),
+      description: t('customer.accountTypes.vip.description'),
+      minDeposit: t('customer.accountTypes.vip.minDeposit'),
+      leverage: t('customer.accountTypes.vip.leverage'),
+      spreads: t('customer.accountTypes.vip.spreads'),
       features: [
-        "Minimum deposit: $50,000",
-        "Leverage up to 1:500",
-        "Tightest spreads from 0.3 pips",
-        "24/7 priority support",
-        "Custom trading solutions",
-        "Personal relationship manager",
-        "Exclusive market insights",
-        "Institutional-grade execution",
-        "Custom leverage options",
-        "Bespoke trading strategies",
-        "Direct market access options"
+        t('customer.accountTypes.vip.feature1'),
+        t('customer.accountTypes.vip.feature2'),
+        t('customer.accountTypes.vip.feature3'),
+        t('customer.accountTypes.vip.feature4'),
+        t('customer.accountTypes.vip.feature5'),
+        t('customer.accountTypes.vip.feature6'),
+        t('customer.accountTypes.vip.feature7'),
+        t('customer.accountTypes.vip.feature8'),
+        t('customer.accountTypes.vip.feature9'),
+        t('customer.accountTypes.vip.feature10'),
+        t('customer.accountTypes.vip.feature11')
       ],
-      ideal: ["High net worth individuals", "Institutional traders", "Fund managers"],
+      ideal: [
+        t('customer.accountTypes.vip.ideal1'),
+        t('customer.accountTypes.vip.ideal2'),
+        t('customer.accountTypes.vip.ideal3')
+      ],
       popular: false,
       color: "amber"
     }
@@ -75,28 +90,28 @@ export default function AccountTypesPage() {
 
   const faqs = [
     {
-      question: "Can I upgrade my account type later?",
-      answer: "Yes, you can upgrade your account type at any time by meeting the minimum deposit requirement of the higher tier. Contact our support team to initiate an upgrade, and your account will be transitioned within 24 hours."
+      question: t('customer.accountTypes.faq.upgrade.question'),
+      answer: t('customer.accountTypes.faq.upgrade.answer')
     },
     {
-      question: "What's the difference in execution speed between account types?",
-      answer: "All account types benefit from the same ultra-fast execution speeds (average 0.05 seconds). However, Professional and VIP accounts receive priority order routing during high volatility periods, ensuring optimal fills even in fast-moving markets."
+      question: t('customer.accountTypes.faq.executionSpeed.question'),
+      answer: t('customer.accountTypes.faq.executionSpeed.answer')
     },
     {
-      question: "Are there any hidden fees or commissions?",
-      answer: "No hidden fees. Standard accounts have no commission on forex trades (spreads only). Professional accounts have a small commission structure ($3.50 per lot) but tighter spreads. VIP accounts have custom fee structures based on volume. All fees are disclosed upfront."
+      question: t('customer.accountTypes.faq.fees.question'),
+      answer: t('customer.accountTypes.faq.fees.answer')
     },
     {
-      question: "Can I have multiple account types?",
-      answer: "Yes, you can open multiple trading accounts under the same client profile. Many traders maintain a Standard account for testing strategies and a Professional or VIP account for active trading. Each account operates independently with separate balances."
+      question: t('customer.accountTypes.faq.multipleAccounts.question'),
+      answer: t('customer.accountTypes.faq.multipleAccounts.answer')
     },
     {
-      question: "What happens if my balance falls below the minimum deposit?",
-      answer: "Your account remains active even if your balance falls below the minimum deposit due to trading losses. However, if you withdraw funds that bring your balance below the minimum, your account may be downgraded to a lower tier. You can upgrade again by depositing the required amount."
+      question: t('customer.accountTypes.faq.minBalance.question'),
+      answer: t('customer.accountTypes.faq.minBalance.answer')
     },
     {
-      question: "Do Professional and VIP accounts require trading experience verification?",
-      answer: "Professional accounts require at least 12 months of trading experience or equivalent financial market experience. VIP accounts require demonstrated trading experience and undergo an enhanced due diligence process. Both require additional documentation during the application process."
+      question: t('customer.accountTypes.faq.verification.question'),
+      answer: t('customer.accountTypes.faq.verification.answer')
     }
   ];
 
@@ -106,28 +121,28 @@ export default function AccountTypesPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-account-types">Customer Information</Badge>
-            <h1 className="text-4xl font-bold mb-4">Choose Your Account Type</h1>
+            <Badge className="mb-4" data-testid="badge-account-types">{t('customer.accountTypes.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('customer.accountTypes.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Select the account that matches your trading experience and goals. All accounts include access to our full range of instruments, trading platforms, and educational resources. Upgrade anytime as your trading evolves.
+              {t('customer.accountTypes.subtitle')}
             </p>
           </div>
 
           {/* Who This Is For */}
           <div className="bg-muted rounded-lg p-6 mb-12">
-            <h2 className="text-xl font-semibold mb-4">👥 Who This Page Is For</h2>
+            <h2 className="text-xl font-semibold mb-4">{t('customer.accountTypes.whoFor.title')}</h2>
             <div className="grid sm:grid-cols-3 gap-4 text-sm">
               <div>
-                <p className="font-medium mb-1">New Traders</p>
-                <p className="text-muted-foreground">Learn which account to start with</p>
+                <p className="font-medium mb-1">{t('customer.accountTypes.whoFor.newTraders.title')}</p>
+                <p className="text-muted-foreground">{t('customer.accountTypes.whoFor.newTraders.description')}</p>
               </div>
               <div>
-                <p className="font-medium mb-1">Existing Clients</p>
-                <p className="text-muted-foreground">Evaluate upgrade opportunities</p>
+                <p className="font-medium mb-1">{t('customer.accountTypes.whoFor.existingClients.title')}</p>
+                <p className="text-muted-foreground">{t('customer.accountTypes.whoFor.existingClients.description')}</p>
               </div>
               <div>
-                <p className="font-medium mb-1">Institutional Investors</p>
-                <p className="text-muted-foreground">Explore premium account features</p>
+                <p className="font-medium mb-1">{t('customer.accountTypes.whoFor.institutional.title')}</p>
+                <p className="text-muted-foreground">{t('customer.accountTypes.whoFor.institutional.description')}</p>
               </div>
             </div>
           </div>
@@ -142,7 +157,7 @@ export default function AccountTypesPage() {
               >
                 {account.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
+                    <Badge className="bg-primary text-primary-foreground">{t('customer.accountTypes.mostPopular')}</Badge>
                   </div>
                 )}
                 <CardHeader>
@@ -150,12 +165,12 @@ export default function AccountTypesPage() {
                   <CardDescription className="text-base">{account.description}</CardDescription>
                   <div className="pt-4">
                     <div className="text-3xl font-bold">{account.minDeposit}</div>
-                    <p className="text-sm text-muted-foreground">minimum deposit</p>
+                    <p className="text-sm text-muted-foreground">{t('customer.accountTypes.standard.minDepositLabel')}</p>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-sm">Key Features</h4>
+                    <h4 className="font-semibold text-sm">{t('customer.accountTypes.keyFeatures')}</h4>
                     <ul className="space-y-2">
                       {account.features.slice(0, 6).map((feature, index) => (
                         <li key={index} className="flex items-start gap-2">
@@ -167,7 +182,7 @@ export default function AccountTypesPage() {
                   </div>
                   
                   <div className="border-t pt-4">
-                    <h4 className="font-semibold text-sm mb-2">Ideal For</h4>
+                    <h4 className="font-semibold text-sm mb-2">{t('customer.accountTypes.idealFor')}</h4>
                     <div className="flex flex-wrap gap-2">
                       {account.ideal.map((type, index) => (
                         <Badge key={index} variant="outline" className="text-xs">
@@ -178,7 +193,7 @@ export default function AccountTypesPage() {
                   </div>
 
                   <Button className="w-full" variant={account.popular ? "default" : "outline"} data-testid={`button-open-${account.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                    Open {account.name}
+                    {t('customer.accountTypes.openAccount', { accountName: account.name })}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
@@ -189,80 +204,80 @@ export default function AccountTypesPage() {
           {/* Detailed Comparison Table */}
           <Card className="mb-12">
             <CardHeader>
-              <CardTitle>Complete Feature Comparison</CardTitle>
-              <CardDescription>See all features and limits across account types</CardDescription>
+              <CardTitle>{t('customer.accountTypes.comparison.title')}</CardTitle>
+              <CardDescription>{t('customer.accountTypes.comparison.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3 px-4 font-semibold">Feature</th>
-                      <th className="text-center py-3 px-4 font-semibold">Standard</th>
-                      <th className="text-center py-3 px-4 font-semibold">Professional</th>
-                      <th className="text-center py-3 px-4 font-semibold">VIP</th>
+                      <th className="text-left py-3 px-4 font-semibold">{t('customer.accountTypes.comparison.feature')}</th>
+                      <th className="text-center py-3 px-4 font-semibold">{t('customer.accountTypes.comparison.standard')}</th>
+                      <th className="text-center py-3 px-4 font-semibold">{t('customer.accountTypes.comparison.professional')}</th>
+                      <th className="text-center py-3 px-4 font-semibold">{t('customer.accountTypes.comparison.vip')}</th>
                     </tr>
                   </thead>
                   <tbody className="text-sm">
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Minimum Deposit</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.minDeposit')}</td>
                       <td className="text-center py-3 px-4">$100</td>
                       <td className="text-center py-3 px-4">$5,000</td>
                       <td className="text-center py-3 px-4">$50,000</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Maximum Leverage</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.maxLeverage')}</td>
                       <td className="text-center py-3 px-4">1:100</td>
                       <td className="text-center py-3 px-4">1:500</td>
                       <td className="text-center py-3 px-4">1:500</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">EUR/USD Spreads From</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.eurusdSpreads')}</td>
                       <td className="text-center py-3 px-4">1.2 pips</td>
                       <td className="text-center py-3 px-4">0.8 pips</td>
                       <td className="text-center py-3 px-4">0.3 pips</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Commission (per lot)</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.commission')}</td>
                       <td className="text-center py-3 px-4">$0</td>
                       <td className="text-center py-3 px-4">$3.50</td>
                       <td className="text-center py-3 px-4">Custom</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Execution Speed (avg)</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.executionSpeed')}</td>
                       <td className="text-center py-3 px-4">0.05s</td>
                       <td className="text-center py-3 px-4">0.05s</td>
                       <td className="text-center py-3 px-4">0.05s</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Account Manager</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.accountManager')}</td>
                       <td className="text-center py-3 px-4">-</td>
                       <td className="text-center py-3 px-4"><Check className="w-5 h-5 mx-auto text-primary" /></td>
                       <td className="text-center py-3 px-4"><Check className="w-5 h-5 mx-auto text-primary" /></td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Trading Signals</td>
-                      <td className="text-center py-3 px-4">Basic</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.tradingSignals')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.tradingSignals.basic')}</td>
                       <td className="text-center py-3 px-4"><Check className="w-5 h-5 mx-auto text-primary" /></td>
                       <td className="text-center py-3 px-4"><Check className="w-5 h-5 mx-auto text-primary" /></td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Withdrawal Processing</td>
-                      <td className="text-center py-3 px-4">24-48 hours</td>
-                      <td className="text-center py-3 px-4">12-24 hours</td>
-                      <td className="text-center py-3 px-4">Same day</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.withdrawalProcessing')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.withdrawalProcessing.standard')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.withdrawalProcessing.professional')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.withdrawalProcessing.vip')}</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Market Research</td>
-                      <td className="text-center py-3 px-4">Daily</td>
-                      <td className="text-center py-3 px-4">Daily + Weekly</td>
-                      <td className="text-center py-3 px-4">Premium + Exclusive</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.marketResearch')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.marketResearch.standard')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.marketResearch.professional')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.marketResearch.vip')}</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 px-4 font-medium">Customer Support</td>
-                      <td className="text-center py-3 px-4">24/5</td>
-                      <td className="text-center py-3 px-4">24/5 Priority</td>
-                      <td className="text-center py-3 px-4">24/7 Dedicated</td>
+                      <td className="py-3 px-4 font-medium">{t('customer.accountTypes.comparison.customerSupport')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.customerSupport.standard')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.customerSupport.professional')}</td>
+                      <td className="text-center py-3 px-4">{t('customer.accountTypes.comparison.customerSupport.vip')}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -273,41 +288,41 @@ export default function AccountTypesPage() {
           {/* Account Selector Guide */}
           <Card className="mb-12">
             <CardHeader>
-              <CardTitle>🎯 Quick Account Selector</CardTitle>
-              <CardDescription>Answer these questions to find your ideal account type</CardDescription>
+              <CardTitle>{t('customer.accountTypes.selector.title')}</CardTitle>
+              <CardDescription>{t('customer.accountTypes.selector.description')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="p-4 border rounded-lg">
                   <Shield className="w-8 h-8 text-blue-500 mb-3" />
-                  <h3 className="font-semibold mb-2">Starting Capital</h3>
-                  <p className="text-sm text-muted-foreground mb-3">How much can you deposit?</p>
+                  <h3 className="font-semibold mb-2">{t('customer.accountTypes.selector.capital.title')}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{t('customer.accountTypes.selector.capital.description')}</p>
                   <div className="space-y-2 text-sm">
-                    <p>• $100-$4,999 → <strong>Standard</strong></p>
-                    <p>• $5,000-$49,999 → <strong>Professional</strong></p>
-                    <p>• $50,000+ → <strong>VIP</strong></p>
+                    <p>• {t('customer.accountTypes.selector.capital.range1')}</p>
+                    <p>• {t('customer.accountTypes.selector.capital.range2')}</p>
+                    <p>• {t('customer.accountTypes.selector.capital.range3')}</p>
                   </div>
                 </div>
 
                 <div className="p-4 border rounded-lg">
                   <Zap className="w-8 h-8 text-amber-500 mb-3" />
-                  <h3 className="font-semibold mb-2">Trading Experience</h3>
-                  <p className="text-sm text-muted-foreground mb-3">How long have you traded?</p>
+                  <h3 className="font-semibold mb-2">{t('customer.accountTypes.selector.experience.title')}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{t('customer.accountTypes.selector.experience.description')}</p>
                   <div className="space-y-2 text-sm">
-                    <p>• Beginner → <strong>Standard</strong></p>
-                    <p>• 1+ years → <strong>Professional</strong></p>
-                    <p>• 5+ years → <strong>VIP</strong></p>
+                    <p>• {t('customer.accountTypes.selector.experience.beginner')}</p>
+                    <p>• {t('customer.accountTypes.selector.experience.intermediate')}</p>
+                    <p>• {t('customer.accountTypes.selector.experience.advanced')}</p>
                   </div>
                 </div>
 
                 <div className="p-4 border rounded-lg">
                   <TrendingUp className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="font-semibold mb-2">Trading Volume</h3>
-                  <p className="text-sm text-muted-foreground mb-3">Monthly trading volume?</p>
+                  <h3 className="font-semibold mb-2">{t('customer.accountTypes.selector.volume.title')}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{t('customer.accountTypes.selector.volume.description')}</p>
                   <div className="space-y-2 text-sm">
-                    <p>• &lt;10 lots → <strong>Standard</strong></p>
-                    <p>• 10-100 lots → <strong>Professional</strong></p>
-                    <p>• 100+ lots → <strong>VIP</strong></p>
+                    <p>• {t('customer.accountTypes.selector.volume.low')}</p>
+                    <p>• {t('customer.accountTypes.selector.volume.medium')}</p>
+                    <p>• {t('customer.accountTypes.selector.volume.high')}</p>
                   </div>
                 </div>
               </div>
@@ -338,23 +353,23 @@ export default function AccountTypesPage() {
 
           {/* Next Steps CTA */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('customer.accountTypes.cta.title')}</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Open your account in minutes. All account types require identity verification for security and regulatory compliance.
+              {t('customer.accountTypes.cta.description')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" data-testid="button-open-account">
-                Open Account Now
+                {t('customer.accountTypes.cta.openAccount')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               <Button size="lg" variant="outline" data-testid="button-verification-guide">
-                View Verification Guide
+                {t('customer.accountTypes.cta.verificationGuide')}
               </Button>
             </div>
             <div className="mt-6 flex flex-wrap gap-6 justify-center text-sm text-muted-foreground">
-              <span>✓ Account opens in 5 minutes</span>
-              <span>✓ No hidden fees</span>
-              <span>✓ Free to upgrade anytime</span>
+              <span>✓ {t('customer.accountTypes.cta.opensIn5Min')}</span>
+              <span>✓ {t('customer.accountTypes.cta.noHiddenFees')}</span>
+              <span>✓ {t('customer.accountTypes.cta.freeUpgrade')}</span>
             </div>
           </div>
         </div>

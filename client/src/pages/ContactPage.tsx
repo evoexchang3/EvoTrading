@@ -12,18 +12,21 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { SEO } from "@/components/SEO";
-
-const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(20, "Message must be at least 20 characters"),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
+  
+  const contactSchema = z.object({
+    name: z.string().min(2, t('contact.form.name.error')),
+    email: z.string().email(t('contact.form.email.error')),
+    subject: z.string().min(5, t('contact.form.subject.error')),
+    message: z.string().min(20, t('contact.form.message.error')),
+  });
+
+  type ContactFormData = z.infer<typeof contactSchema>;
+  
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -42,15 +45,15 @@ export default function ContactPage() {
     },
     onSuccess: () => {
       toast({
-        title: "Message sent successfully",
-        description: "We'll get back to you as soon as possible.",
+        title: t('contact.toast.success.title'),
+        description: t('contact.toast.success.description'),
       });
       form.reset();
     },
     onError: () => {
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
+        title: t('contact.toast.error.title'),
+        description: t('contact.toast.error.description'),
         variant: "destructive",
       });
     },
@@ -63,19 +66,19 @@ export default function ContactPage() {
   return (
     <LandingLayout>
       <SEO
-        title="Contact Us - Get in Touch"
-        description="Contact our 24/7 support team. We're here to help with any questions about trading, accounts, or our platform."
-        keywords="contact trading platform, customer support, trading help, broker contact"
+        title={t('contact.seo.title')}
+        description={t('contact.seo.description')}
+        keywords={t('contact.seo.keywords')}
       />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold" data-testid="text-contact-title">
-              Get in Touch
+              {t('contact.hero.title')}
             </h1>
             <p className="text-xl text-muted-foreground">
-              Have questions? We're here to help. Reach out to our support team 24/7.
+              {t('contact.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -89,19 +92,19 @@ export default function ContactPage() {
             <div>
               <Card className="hover-elevate transition-all">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Send us a Message</CardTitle>
+                  <CardTitle className="text-2xl">{t('contact.form.title')}</CardTitle>
                   <CardDescription>
-                    Fill out the form below and we'll respond within 24 hours.
+                    {t('contact.form.description')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
+                      <Label htmlFor="name">{t('contact.form.name.label')}</Label>
                       <Input
                         id="name"
                         {...form.register("name")}
-                        placeholder="John Doe"
+                        placeholder={t('contact.form.name.placeholder')}
                         disabled={contactMutation.isPending}
                         data-testid="input-name"
                       />
@@ -111,12 +114,12 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email">{t('contact.form.email.label')}</Label>
                       <Input
                         id="email"
                         type="email"
                         {...form.register("email")}
-                        placeholder="john@example.com"
+                        placeholder={t('contact.form.email.placeholder')}
                         disabled={contactMutation.isPending}
                         data-testid="input-email"
                       />
@@ -126,11 +129,11 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="subject">Subject</Label>
+                      <Label htmlFor="subject">{t('contact.form.subject.label')}</Label>
                       <Input
                         id="subject"
                         {...form.register("subject")}
-                        placeholder="How can we help?"
+                        placeholder={t('contact.form.subject.placeholder')}
                         disabled={contactMutation.isPending}
                         data-testid="input-subject"
                       />
@@ -140,11 +143,11 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
+                      <Label htmlFor="message">{t('contact.form.message.label')}</Label>
                       <Textarea
                         id="message"
                         {...form.register("message")}
-                        placeholder="Tell us more about your inquiry..."
+                        placeholder={t('contact.form.message.placeholder')}
                         rows={6}
                         disabled={contactMutation.isPending}
                         data-testid="input-message"
@@ -163,10 +166,10 @@ export default function ContactPage() {
                       {contactMutation.isPending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Sending...
+                          {t('contact.form.submitting')}
                         </>
                       ) : (
-                        "Send Message"
+                        t('contact.form.submitButton')
                       )}
                     </Button>
                   </form>
@@ -182,9 +185,9 @@ export default function ContactPage() {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <CardTitle>Email Support</CardTitle>
+                    <CardTitle>{t('contact.info.emailSupport.title')}</CardTitle>
                     <CardDescription className="text-base mt-1">
-                      support@tradingplatform.com
+                      {t('contact.info.emailSupport.value')}
                     </CardDescription>
                   </div>
                 </CardHeader>
@@ -196,9 +199,9 @@ export default function ContactPage() {
                     <Clock className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <CardTitle>Support Hours</CardTitle>
+                    <CardTitle>{t('contact.info.supportHours.title')}</CardTitle>
                     <CardDescription className="text-base mt-1">
-                      24/7 - We're always here to help
+                      {t('contact.info.supportHours.value')}
                     </CardDescription>
                   </div>
                 </CardHeader>
@@ -210,11 +213,11 @@ export default function ContactPage() {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <CardTitle>Office Address</CardTitle>
+                    <CardTitle>{t('contact.info.officeAddress.title')}</CardTitle>
                     <CardDescription className="text-base mt-1">
-                      123 Trading Street, Financial District
+                      {t('contact.info.officeAddress.line1')}
                       <br />
-                      London, UK
+                      {t('contact.info.officeAddress.line2')}
                     </CardDescription>
                   </div>
                 </CardHeader>
@@ -226,9 +229,9 @@ export default function ContactPage() {
                     <MessageSquare className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <CardTitle>Live Chat</CardTitle>
+                    <CardTitle>{t('contact.info.liveChat.title')}</CardTitle>
                     <CardDescription className="text-base mt-1">
-                      Chat support coming soon
+                      {t('contact.info.liveChat.value')}
                     </CardDescription>
                   </div>
                 </CardHeader>

@@ -6,103 +6,106 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function FAQPage() {
+  const { t } = useLanguage();
+
   const faqCategories = [
     {
-      category: "Account & Registration",
+      category: t('faq.category.accountRegistration'),
       questions: [
         {
-          question: "How do I create an account?",
-          answer: "Click the 'Create Account' button in the top right corner, fill out the registration form with your details, and verify your email address. The process takes less than 5 minutes.",
+          question: t('faq.accountRegistration.createAccount.question'),
+          answer: t('faq.accountRegistration.createAccount.answer'),
         },
         {
-          question: "What documents do I need for KYC verification?",
-          answer: "You'll need a government-issued ID (passport, driver's license, or national ID card) and proof of address (utility bill or bank statement) not older than 3 months.",
+          question: t('faq.accountRegistration.kycDocuments.question'),
+          answer: t('faq.accountRegistration.kycDocuments.answer'),
         },
         {
-          question: "Can I have multiple accounts?",
-          answer: "No, each person is allowed only one account per platform to comply with regulatory requirements and prevent abuse.",
+          question: t('faq.accountRegistration.multipleAccounts.question'),
+          answer: t('faq.accountRegistration.multipleAccounts.answer'),
         },
       ],
     },
     {
-      category: "Deposits & Withdrawals",
+      category: t('faq.category.depositsWithdrawals'),
       questions: [
         {
-          question: "What deposit methods are available?",
-          answer: "We accept bank transfers, credit/debit cards, and various cryptocurrencies. Minimum deposit is $100 for most methods.",
+          question: t('faq.depositsWithdrawals.depositMethods.question'),
+          answer: t('faq.depositsWithdrawals.depositMethods.answer'),
         },
         {
-          question: "How long do withdrawals take?",
-          answer: "Crypto withdrawals are processed within 1-2 hours. Bank transfers take 1-3 business days depending on your bank and location.",
+          question: t('faq.depositsWithdrawals.withdrawalTime.question'),
+          answer: t('faq.depositsWithdrawals.withdrawalTime.answer'),
         },
         {
-          question: "Are there any withdrawal fees?",
-          answer: "We don't charge withdrawal fees, but your bank or payment provider may apply their own fees. Crypto withdrawals have network fees.",
+          question: t('faq.depositsWithdrawals.withdrawalFees.question'),
+          answer: t('faq.depositsWithdrawals.withdrawalFees.answer'),
         },
         {
-          question: "What is the minimum withdrawal amount?",
-          answer: "The minimum withdrawal is $50 for bank transfers and varies for cryptocurrencies based on network fees.",
+          question: t('faq.depositsWithdrawals.minimumWithdrawal.question'),
+          answer: t('faq.depositsWithdrawals.minimumWithdrawal.answer'),
         },
       ],
     },
     {
-      category: "Trading",
+      category: t('faq.category.trading'),
       questions: [
         {
-          question: "What markets can I trade?",
-          answer: "We offer forex (50+ currency pairs), cryptocurrencies (100+ assets), commodities (gold, silver, oil), and major stock indices.",
+          question: t('faq.trading.markets.question'),
+          answer: t('faq.trading.markets.answer'),
         },
         {
-          question: "What are the trading hours?",
-          answer: "Forex markets are available 24/5 (Sunday evening to Friday evening). Crypto markets are open 24/7. Other markets follow their respective exchange hours.",
+          question: t('faq.trading.hours.question'),
+          answer: t('faq.trading.hours.answer'),
         },
         {
-          question: "What is leverage and how does it work?",
-          answer: "Leverage allows you to control a larger position with a smaller amount of capital. For example, 1:100 leverage means $1,000 can control a $100,000 position. Higher leverage increases both potential profits and losses.",
+          question: t('faq.trading.leverage.question'),
+          answer: t('faq.trading.leverage.answer'),
         },
         {
-          question: "What are the spreads and commissions?",
-          answer: "Spreads start from 0.1 pips for major forex pairs. We offer competitive, transparent pricing with no hidden fees. Check our fee schedule for detailed information.",
+          question: t('faq.trading.spreadsCommissions.question'),
+          answer: t('faq.trading.spreadsCommissions.answer'),
         },
       ],
     },
     {
-      category: "Security & Safety",
+      category: t('faq.category.securitySafety'),
       questions: [
         {
-          question: "How is my money protected?",
-          answer: "Client funds are kept in segregated accounts separate from company operating funds. We use bank-level encryption and are fully regulated and licensed.",
+          question: t('faq.securitySafety.moneyProtection.question'),
+          answer: t('faq.securitySafety.moneyProtection.answer'),
         },
         {
-          question: "Do you offer two-factor authentication (2FA)?",
-          answer: "Yes, we strongly recommend enabling 2FA for additional account security. You can enable it in your security settings.",
+          question: t('faq.securitySafety.twoFactor.question'),
+          answer: t('faq.securitySafety.twoFactor.answer'),
         },
         {
-          question: "What happens if I forget my password?",
-          answer: "Click 'Forgot Password' on the login page, enter your email, and follow the instructions sent to your inbox to reset your password.",
+          question: t('faq.securitySafety.forgotPassword.question'),
+          answer: t('faq.securitySafety.forgotPassword.answer'),
         },
         {
-          question: "Is my personal data secure?",
-          answer: "Yes, we use industry-standard encryption and comply with GDPR and other privacy regulations. We never share your data with third parties without your consent.",
+          question: t('faq.securitySafety.dataPrivacy.question'),
+          answer: t('faq.securitySafety.dataPrivacy.answer'),
         },
       ],
     },
     {
-      category: "Platform & Technical",
+      category: t('faq.category.platformTechnical'),
       questions: [
         {
-          question: "Do you have a mobile app?",
-          answer: "Yes, our platform is fully responsive and works on mobile browsers. Native iOS and Android apps are coming soon.",
+          question: t('faq.platformTechnical.mobileApp.question'),
+          answer: t('faq.platformTechnical.mobileApp.answer'),
         },
         {
-          question: "What if I experience technical issues?",
-          answer: "Contact our 24/7 support team via live chat, email, or phone. We also have a comprehensive help center with troubleshooting guides.",
+          question: t('faq.platformTechnical.technicalIssues.question'),
+          answer: t('faq.platformTechnical.technicalIssues.answer'),
         },
         {
-          question: "Can I use automated trading strategies?",
-          answer: "Yes, our platform supports automated trading through our API. Advanced users can implement algorithmic trading strategies.",
+          question: t('faq.platformTechnical.automatedTrading.question'),
+          answer: t('faq.platformTechnical.automatedTrading.answer'),
         },
       ],
     },
@@ -111,19 +114,19 @@ export default function FAQPage() {
   return (
     <LandingLayout>
       <SEO
-        title="FAQ - Frequently Asked Questions"
-        description="Find answers to common questions about our trading platform, accounts, deposits, withdrawals, trading, and security."
-        keywords="trading faq, broker questions, trading help, platform support"
+        title={t('faq.seo.title')}
+        description={t('faq.seo.description')}
+        keywords={t('faq.seo.keywords')}
       />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold" data-testid="text-faq-title">
-              Frequently Asked Questions
+              {t('faq.hero.title')}
             </h1>
             <p className="text-xl text-muted-foreground">
-              Find answers to common questions about our platform, trading, and services.
+              {t('faq.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -166,15 +169,15 @@ export default function FAQPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-3xl font-bold" data-testid="text-contact-cta-title">
-              Still Have Questions?
+              {t('faq.cta.title')}
             </h2>
             <p className="text-lg text-muted-foreground">
-              Our support team is available 24/7 to help you with any questions or concerns.
+              {t('faq.cta.description')}
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-4">
               <a href="/contact" className="inline-block">
                 <button className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover-elevate active-elevate-2 min-h-9 px-4 py-2" data-testid="button-contact-us">
-                  Contact Support
+                  {t('faq.cta.button')}
                 </button>
               </a>
             </div>

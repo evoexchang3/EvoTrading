@@ -5,126 +5,129 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function VerificationPage() {
+  const { t } = useLanguage();
+  
   const steps = [
     {
       number: 1,
-      title: "Personal Information",
-      description: "Provide your full name, date of birth, address, and contact details",
+      title: t('customer.verification.step1.title'),
+      description: t('customer.verification.step1.description'),
       icon: FileText,
-      time: "2-3 minutes",
-      details: "Enter your legal name exactly as it appears on your ID. Provide current residential address and contact information."
+      time: t('customer.verification.step1.time'),
+      details: t('customer.verification.step1.details')
     },
     {
       number: 2,
-      title: "Identity Verification",
-      description: "Upload a clear photo of your government-issued ID",
+      title: t('customer.verification.step2.title'),
+      description: t('customer.verification.step2.description'),
       icon: Camera,
-      time: "5 minutes",
-      details: "Accepted: Passport, driver's license, or national ID card. Ensure all text is readable and photo is clear."
+      time: t('customer.verification.step2.time'),
+      details: t('customer.verification.step2.details')
     },
     {
       number: 3,
-      title: "Proof of Address",
-      description: "Submit a recent utility bill, bank statement, or government document",
+      title: t('customer.verification.step3.title'),
+      description: t('customer.verification.step3.description'),
       icon: FileText,
-      time: "5 minutes",
-      details: "Document must show your name and current address, dated within the last 3 months."
+      time: t('customer.verification.step3.time'),
+      details: t('customer.verification.step3.details')
     },
     {
       number: 4,
-      title: "Review & Approval",
-      description: "Our compliance team reviews your documents",
+      title: t('customer.verification.step4.title'),
+      description: t('customer.verification.step4.description'),
       icon: CheckCircle2,
-      time: "24-48 hours",
-      details: "We verify all documents for authenticity and accuracy. You'll receive email confirmation once approved."
+      time: t('customer.verification.step4.time'),
+      details: t('customer.verification.step4.details')
     }
   ];
 
   const requirements = {
     identityDocuments: [
-      { name: "Passport (bio-data page)", accepted: true, note: "Most commonly accepted" },
-      { name: "National ID card (both sides)", accepted: true, note: "Must be valid" },
-      { name: "Driver's license (both sides)", accepted: true, note: "Government-issued only" },
-      { name: "Military ID", accepted: true, note: "Active military only" }
+      { name: t('customer.verification.identityDocs.passport'), accepted: true, note: t('customer.verification.identityDocs.passport.note') },
+      { name: t('customer.verification.identityDocs.nationalId'), accepted: true, note: t('customer.verification.identityDocs.nationalId.note') },
+      { name: t('customer.verification.identityDocs.driversLicense'), accepted: true, note: t('customer.verification.identityDocs.driversLicense.note') },
+      { name: t('customer.verification.identityDocs.militaryId'), accepted: true, note: t('customer.verification.identityDocs.militaryId.note') }
     ],
     proofOfAddress: [
-      { name: "Utility bill (electricity, water, gas)", accepted: true, note: "Last 3 months" },
-      { name: "Bank statement", accepted: true, note: "Last 3 months" },
-      { name: "Government correspondence", accepted: true, note: "Tax office, council" },
-      { name: "Credit card statement", accepted: true, note: "Last 3 months" },
-      { name: "Rental agreement", accepted: true, note: "Signed and current" },
-      { name: "Mortgage statement", accepted: true, note: "Last 3 months" }
+      { name: t('customer.verification.addressDocs.utility'), accepted: true, note: t('customer.verification.addressDocs.utility.note') },
+      { name: t('customer.verification.addressDocs.bank'), accepted: true, note: t('customer.verification.addressDocs.bank.note') },
+      { name: t('customer.verification.addressDocs.government'), accepted: true, note: t('customer.verification.addressDocs.government.note') },
+      { name: t('customer.verification.addressDocs.creditCard'), accepted: true, note: t('customer.verification.addressDocs.creditCard.note') },
+      { name: t('customer.verification.addressDocs.rental'), accepted: true, note: t('customer.verification.addressDocs.rental.note') },
+      { name: t('customer.verification.addressDocs.mortgage'), accepted: true, note: t('customer.verification.addressDocs.mortgage.note') }
     ],
     photoGuidelines: [
-      "Document must be in color (no black & white)",
-      "All four corners of the document must be visible",
-      "Text and photo must be clearly readable",
-      "No glare or shadows covering information",
-      "File format: JPG, PNG, or PDF only",
-      "Maximum file size: 10MB per document",
-      "Minimum resolution: 300 DPI recommended",
-      "No screenshots or photocopies (original photos only)"
+      t('customer.verification.photoGuidelines.1'),
+      t('customer.verification.photoGuidelines.2'),
+      t('customer.verification.photoGuidelines.3'),
+      t('customer.verification.photoGuidelines.4'),
+      t('customer.verification.photoGuidelines.5'),
+      t('customer.verification.photoGuidelines.6'),
+      t('customer.verification.photoGuidelines.7'),
+      t('customer.verification.photoGuidelines.8')
     ]
   };
 
   const commonIssues = [
     {
-      issue: "Document Expired",
-      solution: "Ensure your ID is current and not expired. Renew your ID if necessary before submitting.",
-      prevention: "Check expiration dates before uploading"
+      issue: t('customer.verification.commonIssues.expired.issue'),
+      solution: t('customer.verification.commonIssues.expired.solution'),
+      prevention: t('customer.verification.commonIssues.expired.prevention')
     },
     {
-      issue: "Poor Image Quality",
-      solution: "Retake photos in good lighting. Avoid glare, shadows, and blur. Use a high-resolution camera.",
-      prevention: "Take photos in natural daylight against a dark background"
+      issue: t('customer.verification.commonIssues.poorQuality.issue'),
+      solution: t('customer.verification.commonIssues.poorQuality.solution'),
+      prevention: t('customer.verification.commonIssues.poorQuality.prevention')
     },
     {
-      issue: "Address Mismatch",
-      solution: "Ensure the address on your proof of address document exactly matches the address you provided during registration.",
-      prevention: "Double-check your registration address before uploading documents"
+      issue: t('customer.verification.commonIssues.addressMismatch.issue'),
+      solution: t('customer.verification.commonIssues.addressMismatch.solution'),
+      prevention: t('customer.verification.commonIssues.addressMismatch.prevention')
     },
     {
-      issue: "Document Too Old",
-      solution: "Proof of address must be dated within the last 3 months. Submit a more recent document.",
-      prevention: "Check the document date before uploading"
+      issue: t('customer.verification.commonIssues.tooOld.issue'),
+      solution: t('customer.verification.commonIssues.tooOld.solution'),
+      prevention: t('customer.verification.commonIssues.tooOld.prevention')
     },
     {
-      issue: "Missing Pages",
-      solution: "Upload both sides of ID cards and driver's licenses. Include all relevant pages of bank statements.",
-      prevention: "Review the upload checklist before submitting"
+      issue: t('customer.verification.commonIssues.missingPages.issue'),
+      solution: t('customer.verification.commonIssues.missingPages.solution'),
+      prevention: t('customer.verification.commonIssues.missingPages.prevention')
     }
   ];
 
   const faqs = [
     {
-      question: "Why is account verification required?",
-      answer: "Account verification (KYC - Know Your Customer) is a legal requirement for all financial service providers. It prevents money laundering, fraud, and identity theft. Verification also protects your account by ensuring only you can withdraw funds. Additionally, it allows us to comply with international financial regulations and maintain our licenses."
+      question: t('customer.verification.faq.required.question'),
+      answer: t('customer.verification.faq.required.answer')
     },
     {
-      question: "How long does the verification process take?",
-      answer: "Most verifications are completed within 24-48 hours during business days. Simple cases may be approved in as little as 2-4 hours. Complex cases requiring additional documentation can take up to 5 business days. VIP account applications may require enhanced due diligence taking 3-7 business days. You'll receive email notifications at each stage."
+      question: t('customer.verification.faq.howLong.question'),
+      answer: t('customer.verification.faq.howLong.answer')
     },
     {
-      question: "Can I trade before my account is verified?",
-      answer: "Yes, you can deposit funds and start trading before verification is complete. However, you cannot withdraw funds until your account is fully verified. We recommend completing verification immediately after registration to avoid withdrawal delays. Some features like higher leverage and increased limits also require verified status."
+      question: t('customer.verification.faq.tradeBeforeVerify.question'),
+      answer: t('customer.verification.faq.tradeBeforeVerify.answer')
     },
     {
-      question: "What if my documents are rejected?",
-      answer: "If documents are rejected, you'll receive an email explaining the specific reasons. Common reasons include poor image quality, expired documents, or address mismatches. You can immediately resubmit corrected documents. Our support team is available 24/5 to help you resolve any verification issues. Most rejections are resolved within 24 hours of resubmission."
+      question: t('customer.verification.faq.rejected.question'),
+      answer: t('customer.verification.faq.rejected.answer')
     },
     {
-      question: "Is my personal information secure?",
-      answer: "Absolutely. All documents are transmitted using bank-grade 256-bit SSL encryption. We store documents in secure, encrypted servers with restricted access. Our systems are regularly audited for security compliance. We comply with GDPR, CCPA, and other data protection regulations. Your information is never shared with third parties except as required by law or regulation."
+      question: t('customer.verification.faq.secure.question'),
+      answer: t('customer.verification.faq.secure.answer')
     },
     {
-      question: "Do I need to verify again if I change my address?",
-      answer: "Yes, if you change your residential address, you must update your account information and provide new proof of address. This ensures accurate records and compliance. The process is the same as initial verification: upload a recent utility bill or bank statement showing your new address. Updates are typically processed within 24 hours."
+      question: t('customer.verification.faq.changeAddress.question'),
+      answer: t('customer.verification.faq.changeAddress.answer')
     },
     {
-      question: "Can someone else verify the account on my behalf?",
-      answer: "No, you must verify your own account using your own documents. Third-party verification is not permitted due to regulatory requirements. For corporate accounts, authorized signatories and beneficial owners must provide their own documentation. We may require additional corporate documentation including certificates of incorporation and board resolutions."
+      question: t('customer.verification.faq.thirdParty.question'),
+      answer: t('customer.verification.faq.thirdParty.answer')
     }
   ];
 
@@ -134,16 +137,16 @@ export default function VerificationPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-verification">Customer Information</Badge>
-            <h1 className="text-4xl font-bold mb-4">Account Verification (KYC)</h1>
+            <Badge className="mb-4" data-testid="badge-verification">{t('customer.verification.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('customer.verification.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Know Your Customer (KYC) verification is a simple, secure process that protects your account and ensures compliance with financial regulations. Most accounts are verified within 24-48 hours.
+              {t('customer.verification.subtitle')}
             </p>
           </div>
 
           {/* Timeline Progress */}
           <div className="bg-muted rounded-lg p-6 mb-12">
-            <h2 className="text-xl font-semibold mb-6 text-center">Verification Timeline</h2>
+            <h2 className="text-xl font-semibold mb-6 text-center">{t('customer.verification.timeline.title')}</h2>
             <div className="flex justify-between items-center max-w-4xl mx-auto">
               {steps.map((step, index) => (
                 <div key={step.number} className="flex items-center">
@@ -164,7 +167,7 @@ export default function VerificationPage() {
 
           {/* Detailed Steps */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Verification Process Details</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('customer.verification.processDetails.title')}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {steps.map((step) => {
                 const Icon = step.icon;
@@ -184,7 +187,7 @@ export default function VerificationPage() {
                       <p className="text-sm text-muted-foreground mb-3">{step.details}</p>
                       <div className="flex items-center gap-2 text-sm font-medium text-primary">
                         <Clock className="w-4 h-4" />
-                        <span>Estimated time: {step.time}</span>
+                        <span>{t('customer.verification.estimatedTime', { time: step.time })}</span>
                       </div>
                     </CardContent>
                   </Card>
@@ -199,7 +202,7 @@ export default function VerificationPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <FileCheck className="w-5 h-5 text-primary" />
-                  <CardTitle>Accepted Identity Documents</CardTitle>
+                  <CardTitle>{t('customer.verification.identityDocs.title')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
@@ -221,7 +224,7 @@ export default function VerificationPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <FileCheck className="w-5 h-5 text-primary" />
-                  <CardTitle>Accepted Proof of Address</CardTitle>
+                  <CardTitle>{t('customer.verification.addressDocs.title')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
@@ -239,7 +242,7 @@ export default function VerificationPage() {
                 <Alert className="mt-4">
                   <AlertTriangle className="h-4 w-4" />
                   <AlertDescription className="text-sm">
-                    All proof of address documents must be dated within the last 3 months
+                    {t('customer.verification.addressDocs.dateRequirement')}
                   </AlertDescription>
                 </Alert>
               </CardContent>
@@ -251,9 +254,9 @@ export default function VerificationPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Camera className="w-5 h-5 text-primary" />
-                <CardTitle>Document Photo Upload Guidelines</CardTitle>
+                <CardTitle>{t('customer.verification.photoGuidelines.title')}</CardTitle>
               </div>
-              <CardDescription>Follow these guidelines to ensure quick approval</CardDescription>
+              <CardDescription>{t('customer.verification.photoGuidelines.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="grid sm:grid-cols-2 gap-3">
@@ -268,14 +271,14 @@ export default function VerificationPage() {
               <div className="mt-6 p-4 bg-primary/5 rounded-lg">
                 <h4 className="font-semibold mb-2 flex items-center gap-2">
                   <Shield className="w-4 h-4 text-primary" />
-                  Pro Tips for Perfect Document Photos
+                  {t('customer.verification.photoGuidelines.proTips.title')}
                 </h4>
                 <ul className="text-sm space-y-1 text-muted-foreground">
-                  <li>• Use your phone camera in a well-lit room (natural daylight is best)</li>
-                  <li>• Place the document on a dark, contrasting surface</li>
-                  <li>• Hold the camera directly above the document, parallel to it</li>
-                  <li>• Ensure all corners are visible with a small margin around the edges</li>
-                  <li>• Review the photo before uploading - zoom in to check text clarity</li>
+                  <li>• {t('customer.verification.photoGuidelines.proTips.1')}</li>
+                  <li>• {t('customer.verification.photoGuidelines.proTips.2')}</li>
+                  <li>• {t('customer.verification.photoGuidelines.proTips.3')}</li>
+                  <li>• {t('customer.verification.photoGuidelines.proTips.4')}</li>
+                  <li>• {t('customer.verification.photoGuidelines.proTips.5')}</li>
                 </ul>
               </div>
             </CardContent>
@@ -286,9 +289,9 @@ export default function VerificationPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-amber-500" />
-                <CardTitle>Common Verification Issues & Solutions</CardTitle>
+                <CardTitle>{t('customer.verification.commonIssues.title')}</CardTitle>
               </div>
-              <CardDescription>Avoid delays by preventing these common mistakes</CardDescription>
+              <CardDescription>{t('customer.verification.commonIssues.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -296,10 +299,10 @@ export default function VerificationPage() {
                   <div key={index} className="border-l-4 border-amber-500 pl-4 py-2">
                     <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">{item.issue}</h4>
                     <p className="text-sm text-muted-foreground mb-2">
-                      <strong>Solution:</strong> {item.solution}
+                      <strong>{t('customer.verification.commonIssues.solution')}</strong> {item.solution}
                     </p>
                     <p className="text-sm text-primary">
-                      <strong>Prevention:</strong> {item.prevention}
+                      <strong>{t('customer.verification.commonIssues.prevention')}</strong> {item.prevention}
                     </p>
                   </div>
                 ))}
@@ -312,11 +315,11 @@ export default function VerificationPage() {
             <Card>
               <CardHeader>
                 <Shield className="w-8 h-8 text-primary mb-2" />
-                <CardTitle className="text-lg">Regulatory Compliance</CardTitle>
+                <CardTitle className="text-lg">{t('customer.verification.whyVerify.regulatory.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Financial regulations require us to verify the identity of all clients to prevent money laundering, terrorist financing, and fraud. We're licensed and regulated in multiple jurisdictions.
+                  {t('customer.verification.whyVerify.regulatory.description')}
                 </p>
               </CardContent>
             </Card>
@@ -324,11 +327,11 @@ export default function VerificationPage() {
             <Card>
               <CardHeader>
                 <Shield className="w-8 h-8 text-primary mb-2" />
-                <CardTitle className="text-lg">Account Security</CardTitle>
+                <CardTitle className="text-lg">{t('customer.verification.whyVerify.security.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Verification protects your account from unauthorized access and ensures only you can withdraw funds. It's an essential security measure that safeguards your assets and personal information.
+                  {t('customer.verification.whyVerify.security.description')}
                 </p>
               </CardContent>
             </Card>
@@ -336,11 +339,11 @@ export default function VerificationPage() {
             <Card>
               <CardHeader>
                 <TrendingUp className="w-8 h-8 text-primary mb-2" />
-                <CardTitle className="text-lg">Enhanced Features</CardTitle>
+                <CardTitle className="text-lg">{t('customer.verification.whyVerify.features.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Verified accounts enjoy higher deposit limits, faster withdrawals, access to premium features, increased leverage options, and eligibility for promotional offers and bonuses.
+                  {t('customer.verification.whyVerify.features.description')}
                 </p>
               </CardContent>
             </Card>
@@ -370,23 +373,23 @@ export default function VerificationPage() {
 
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Start Your Verification Now</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('customer.verification.cta.title')}</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Complete your KYC verification in less than 15 minutes. Have your ID and proof of address ready, and you'll be approved within 24-48 hours.
+              {t('customer.verification.cta.description')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" data-testid="button-start-verification">
-                Begin Verification
+                {t('customer.verification.cta.beginVerification')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               <Button size="lg" variant="outline" data-testid="button-contact-support">
-                Contact Support
+                {t('customer.verification.cta.contactSupport')}
               </Button>
             </div>
             <div className="mt-6 flex flex-wrap gap-6 justify-center text-sm text-muted-foreground">
-              <span>✓ Secure & encrypted</span>
-              <span>✓ 24-48 hour approval</span>
-              <span>✓ No hidden requirements</span>
+              <span>✓ {t('customer.verification.cta.secureEncrypted')}</span>
+              <span>✓ {t('customer.verification.cta.approval24h')}</span>
+              <span>✓ {t('customer.verification.cta.noHiddenRequirements')}</span>
             </div>
           </div>
         </div>

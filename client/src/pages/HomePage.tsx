@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/useLanguage";
 import { 
   TrendingUp, 
   Shield, 
@@ -16,56 +17,58 @@ import {
 } from "lucide-react";
 
 export default function HomePage() {
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: Zap,
-      title: "Fast Execution",
-      description: "Lightning-fast trade execution with minimal latency and slippage protection.",
+      title: t('home.features.fastExecution.title'),
+      description: t('home.features.fastExecution.description'),
     },
     {
       icon: Shield,
-      title: "Secure & Regulated",
-      description: "Fully regulated platform with bank-level security and compliance.",
+      title: t('home.features.secure.title'),
+      description: t('home.features.secure.description'),
     },
     {
       icon: Clock,
-      title: "24/7 Trading",
-      description: "Trade forex, crypto, and commodities around the clock, any day of the year.",
+      title: t('home.features.24/7Trading.title'),
+      description: t('home.features.24/7Trading.description'),
     },
     {
       icon: DollarSign,
-      title: "Transparent Fees",
-      description: "Clear, competitive pricing with no hidden fees or surprise charges.",
+      title: t('home.features.transparentFees.title'),
+      description: t('home.features.transparentFees.description'),
     },
     {
       icon: BarChart3,
-      title: "Advanced Tools",
-      description: "Professional charting, technical analysis, and risk management tools.",
+      title: t('home.features.advancedTools.title'),
+      description: t('home.features.advancedTools.description'),
     },
     {
       icon: Globe2,
-      title: "Global Markets",
-      description: "Access to forex, cryptocurrencies, commodities, and indices worldwide.",
+      title: t('home.features.globalMarkets.title'),
+      description: t('home.features.globalMarkets.description'),
     },
   ];
 
   const benefits = [
-    "Institutional-grade trading infrastructure",
-    "Multi-language support (EN, DE, CZ)",
-    "Dedicated customer support 24/7",
-    "Educational resources and trading academy",
-    "Mobile and desktop platforms",
-    "Secure wallet and instant withdrawals",
+    t('home.benefits.infrastructure'),
+    t('home.benefits.multiLanguage'),
+    t('home.benefits.support'),
+    t('home.benefits.education'),
+    t('home.benefits.platforms'),
+    t('home.benefits.security'),
   ];
 
   return (
     <LandingLayout>
       <SEO
-        title="Trade Global Markets with Confidence"
-        description="Professional trading platform for forex, cryptocurrencies, and commodities. Regulated, secure, and trusted by traders worldwide."
+        title={t('home.hero.title')}
+        description={t('home.hero.subtitle')}
         keywords="forex trading, crypto trading, commodities trading, online trading platform, regulated broker"
         ogTitle="Trading Platform - Professional Forex, Crypto & Commodities Trading"
-        ogDescription="Join thousands of traders worldwide. Trade forex, crypto, and commodities with our secure, regulated platform."
+        ogDescription={t('home.hero.subtitle')}
       />
       {/* Hero Section */}
       <section className="relative overflow-hidden">
@@ -75,21 +78,20 @@ export default function HomePage() {
         <div className="container relative mx-auto px-4 py-20 md:py-32">
           <div className="mx-auto max-w-4xl text-center space-y-8">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight" data-testid="text-hero-title">
-              Trade Global Markets with Confidence
+              {t('home.hero.title')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-hero-subtitle">
-              Professional trading platform for forex, cryptocurrencies, and commodities. 
-              Regulated, secure, and trusted by traders worldwide.
+              {t('home.hero.subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/register">
                 <Button size="lg" className="text-base" data-testid="button-hero-register">
-                  Create Free Account
+                  {t('home.hero.registerButton')}
                 </Button>
               </Link>
               <Link href="/login">
                 <Button size="lg" variant="outline" className="text-base" data-testid="button-hero-login">
-                  Login to Platform
+                  {t('home.hero.loginButton')}
                 </Button>
               </Link>
             </div>
@@ -98,15 +100,15 @@ export default function HomePage() {
             <div className="flex flex-wrap justify-center items-center gap-6 pt-8 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Lock className="h-4 w-4 text-green-500" />
-                <span>SSL Secured</span>
+                <span>{t('home.hero.sslSecured')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-green-500" />
-                <span>Regulated & Licensed</span>
+                <span>{t('home.hero.regulated')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
-                <span>AML/KYC Compliant</span>
+                <span>{t('home.hero.compliant')}</span>
               </div>
             </div>
           </div>
@@ -118,10 +120,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-features-title">
-              Why Choose Our Platform
+              {t('home.features.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Built for traders who demand speed, security, and transparency in every trade.
+              {t('home.features.subtitle')}
             </p>
           </div>
 
@@ -151,11 +153,10 @@ export default function HomePage() {
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6" data-testid="text-benefits-title">
-                Built for Professional Traders
+                {t('home.benefits.title')}
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Our platform combines cutting-edge technology with comprehensive market access, 
-                giving you everything you need to trade successfully.
+                {t('home.benefits.subtitle')}
               </p>
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
@@ -171,25 +172,25 @@ export default function HomePage() {
               <Card className="hover-elevate transition-all">
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-4xl font-bold text-primary">50+</CardTitle>
-                  <CardDescription>Currency Pairs</CardDescription>
+                  <CardDescription>{t('home.stats.currencyPairs')}</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="hover-elevate transition-all">
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-4xl font-bold text-primary">100+</CardTitle>
-                  <CardDescription>Crypto Assets</CardDescription>
+                  <CardDescription>{t('home.stats.cryptoAssets')}</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="hover-elevate transition-all">
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-4xl font-bold text-primary">24/7</CardTitle>
-                  <CardDescription>Customer Support</CardDescription>
+                  <CardDescription>{t('home.stats.customerSupport')}</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="hover-elevate transition-all">
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-4xl font-bold text-primary">0.01s</CardTitle>
-                  <CardDescription>Avg. Execution Time</CardDescription>
+                  <CardDescription>{t('home.stats.avgExecutionTime')}</CardDescription>
                 </CardHeader>
               </Card>
             </div>
@@ -201,21 +202,20 @@ export default function HomePage() {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-cta-title">
-            Ready to Start Trading?
+            {t('home.cta.title')}
           </h2>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Join thousands of traders who trust our platform for their trading needs. 
-            Create your account in minutes and start trading today.
+            {t('home.cta.subtitle')}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/register">
               <Button size="lg" variant="secondary" className="text-base" data-testid="button-cta-register">
-                Create Free Account
+                {t('home.cta.button')}
               </Button>
             </Link>
             <Link href="/education">
               <Button size="lg" variant="outline" className="text-base border-primary-foreground/20 bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground" data-testid="button-cta-learn">
-                Learn More
+                {t('home.cta.learnMore')}
               </Button>
             </Link>
           </div>

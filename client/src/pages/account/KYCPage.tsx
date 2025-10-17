@@ -14,9 +14,11 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 import { Upload, FileText, Loader2 } from "lucide-react";
 
 export default function KYCPage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -32,8 +34,8 @@ export default function KYCPage() {
     },
     onSuccess: () => {
       toast({
-        title: "Document uploaded",
-        description: "Your document has been submitted for review",
+        title: t("kyc.toast.uploaded.title"),
+        description: t("kyc.toast.uploaded.description"),
       });
       queryClient.invalidateQueries({ queryKey: ["/api/kyc/documents"] });
       setSelectedFile(null);
@@ -41,7 +43,7 @@ export default function KYCPage() {
     },
     onError: (error: any) => {
       toast({
-        title: "Upload failed",
+        title: t("kyc.toast.uploadFailed.title"),
         description: error.message,
         variant: "destructive",
       });
@@ -57,8 +59,8 @@ export default function KYCPage() {
   const handleUpload = () => {
     if (!selectedFile || !documentType) {
       toast({
-        title: "Missing information",
-        description: "Please select a document type and file",
+        title: t("kyc.toast.missingInfo.title"),
+        description: t("kyc.toast.missingInfo.description"),
         variant: "destructive",
       });
       return;
@@ -88,37 +90,37 @@ export default function KYCPage() {
   return (
     <div className="container max-w-4xl py-6 space-y-6">
       <div>
-        <h1 className="text-3xl font-semibold">KYC Verification</h1>
+        <h1 className="text-3xl font-semibold">{t("kyc.title")}</h1>
         <p className="text-muted-foreground">
-          Upload your documents for account verification
+          {t("kyc.description")}
         </p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Upload Document</CardTitle>
+          <CardTitle>{t("kyc.uploadDocument.title")}</CardTitle>
           <CardDescription>
-            Please upload clear, legible copies of your identification documents
+            {t("kyc.uploadDocument.description")}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label>Document Type</Label>
+            <Label>{t("kyc.documentType.label")}</Label>
             <Select value={documentType} onValueChange={setDocumentType}>
               <SelectTrigger data-testid="select-document-type">
-                <SelectValue placeholder="Select document type" />
+                <SelectValue placeholder={t("kyc.documentType.placeholder")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="passport">Passport</SelectItem>
-                <SelectItem value="id_card">ID Card</SelectItem>
-                <SelectItem value="drivers_license">Driver's License</SelectItem>
-                <SelectItem value="proof_address">Proof of Address</SelectItem>
+                <SelectItem value="passport">{t("kyc.documentType.passport")}</SelectItem>
+                <SelectItem value="id_card">{t("kyc.documentType.idCard")}</SelectItem>
+                <SelectItem value="drivers_license">{t("kyc.documentType.driversLicense")}</SelectItem>
+                <SelectItem value="proof_address">{t("kyc.documentType.proofAddress")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="space-y-2">
-            <Label>Document File</Label>
+            <Label>{t("kyc.documentFile.label")}</Label>
             <div className="flex items-center gap-2">
               <Input
                 type="file"
@@ -135,18 +137,18 @@ export default function KYCPage() {
                 {uploadMutation.isPending ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Uploading...
+                    {t("kyc.uploading")}
                   </>
                 ) : (
                   <>
                     <Upload className="mr-2 h-4 w-4" />
-                    Upload
+                    {t("kyc.uploadButton")}
                   </>
                 )}
               </Button>
             </div>
             <p className="text-xs text-muted-foreground">
-              Accepted formats: PDF, JPG, PNG (Max 10MB)
+              {t("kyc.documentFile.formats")}
             </p>
           </div>
 
@@ -166,7 +168,7 @@ export default function KYCPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Uploaded Documents</CardTitle>
+          <CardTitle>{t("kyc.uploadedDocuments.title")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -193,7 +195,7 @@ export default function KYCPage() {
             ))}
             {documents.length === 0 && (
               <div className="text-center py-8 text-sm text-muted-foreground">
-                No documents uploaded yet
+                {t("kyc.noDocuments")}
               </div>
             )}
           </div>

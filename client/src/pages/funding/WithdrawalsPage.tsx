@@ -33,9 +33,11 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 import { Loader2, Plus } from "lucide-react";
 
 export default function WithdrawalsPage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [showForm, setShowForm] = useState(false);
@@ -57,8 +59,8 @@ export default function WithdrawalsPage() {
     },
     onSuccess: () => {
       toast({
-        title: "Withdrawal request submitted",
-        description: "Your withdrawal request has been submitted for processing",
+        title: t("withdrawals.toast.success.title"),
+        description: t("withdrawals.toast.success.description"),
       });
       queryClient.invalidateQueries({ queryKey: ["/api/funding/history"] });
       form.reset();
@@ -66,7 +68,7 @@ export default function WithdrawalsPage() {
     },
     onError: (error: any) => {
       toast({
-        title: "Failed to submit withdrawal",
+        title: t("withdrawals.toast.error.title"),
         description: error.message,
         variant: "destructive",
       });
@@ -93,21 +95,21 @@ export default function WithdrawalsPage() {
     <div className="container max-w-7xl py-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-semibold">Withdrawals</h1>
-          <p className="text-muted-foreground">Withdraw funds from your account</p>
+          <h1 className="text-3xl font-semibold">{t("withdrawals.title")}</h1>
+          <p className="text-muted-foreground">{t("withdrawals.description")}</p>
         </div>
         <Button onClick={() => setShowForm(!showForm)} data-testid="button-new-withdrawal">
           <Plus className="mr-2 h-4 w-4" />
-          New Withdrawal
+          {t("withdrawals.newWithdrawal")}
         </Button>
       </div>
 
       {showForm && (
         <Card>
           <CardHeader>
-            <CardTitle>Create Withdrawal Request</CardTitle>
+            <CardTitle>{t("withdrawals.form.title")}</CardTitle>
             <CardDescription>
-              Submit a withdrawal request to transfer funds from your account
+              {t("withdrawals.form.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -118,7 +120,7 @@ export default function WithdrawalsPage() {
                   name="amount"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Amount (USD)</FormLabel>
+                      <FormLabel>{t("withdrawals.form.amount")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -126,7 +128,7 @@ export default function WithdrawalsPage() {
                           step="0.01"
                           min="1"
                           data-testid="input-withdrawal-amount"
-                          placeholder="1000.00"
+                          placeholder={t("withdrawals.form.amountPlaceholder")}
                           onChange={(e) => field.onChange(parseFloat(e.target.value))}
                           disabled={withdrawalMutation.isPending}
                         />
@@ -140,7 +142,7 @@ export default function WithdrawalsPage() {
                   name="fundType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Fund Type</FormLabel>
+                      <FormLabel>{t("withdrawals.form.fundType")}</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -148,12 +150,12 @@ export default function WithdrawalsPage() {
                       >
                         <FormControl>
                           <SelectTrigger data-testid="select-fund-type">
-                            <SelectValue placeholder="Select fund type" />
+                            <SelectValue placeholder={t("withdrawals.form.fundTypePlaceholder")} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="real">Real Funds</SelectItem>
-                          <SelectItem value="demo">Demo Funds</SelectItem>
+                          <SelectItem value="real">{t("withdrawals.form.fundType.real")}</SelectItem>
+                          <SelectItem value="demo">{t("withdrawals.form.fundType.demo")}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -165,7 +167,7 @@ export default function WithdrawalsPage() {
                   name="method"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Withdrawal Method</FormLabel>
+                      <FormLabel>{t("withdrawals.form.method")}</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -173,12 +175,12 @@ export default function WithdrawalsPage() {
                       >
                         <FormControl>
                           <SelectTrigger data-testid="select-withdrawal-method">
-                            <SelectValue placeholder="Select withdrawal method" />
+                            <SelectValue placeholder={t("withdrawals.form.methodPlaceholder")} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="bank_transfer">Bank Transfer</SelectItem>
-                          <SelectItem value="crypto">Cryptocurrency</SelectItem>
+                          <SelectItem value="bank_transfer">{t("withdrawals.form.method.bankTransfer")}</SelectItem>
+                          <SelectItem value="crypto">{t("withdrawals.form.method.crypto")}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -190,12 +192,12 @@ export default function WithdrawalsPage() {
                   name="notes"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Bank Details / Wallet Address</FormLabel>
+                      <FormLabel>{t("withdrawals.form.notes")}</FormLabel>
                       <FormControl>
                         <Textarea
                           {...field}
                           data-testid="input-withdrawal-notes"
-                          placeholder="Enter your bank account details or crypto wallet address..."
+                          placeholder={t("withdrawals.form.notesPlaceholder")}
                           disabled={withdrawalMutation.isPending}
                         />
                       </FormControl>
@@ -212,10 +214,10 @@ export default function WithdrawalsPage() {
                     {withdrawalMutation.isPending ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Submitting...
+                        {t("withdrawals.form.submitting")}
                       </>
                     ) : (
-                      "Submit Request"
+                      t("withdrawals.form.submit")
                     )}
                   </Button>
                   <Button
@@ -224,7 +226,7 @@ export default function WithdrawalsPage() {
                     onClick={() => setShowForm(false)}
                     disabled={withdrawalMutation.isPending}
                   >
-                    Cancel
+                    {t("withdrawals.form.cancel")}
                   </Button>
                 </div>
               </form>
@@ -235,18 +237,18 @@ export default function WithdrawalsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Withdrawal History</CardTitle>
+          <CardTitle>{t("withdrawals.history.title")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="rounded-md border">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Method</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Processed</TableHead>
+                  <TableHead>{t("withdrawals.history.date")}</TableHead>
+                  <TableHead>{t("withdrawals.history.amount")}</TableHead>
+                  <TableHead>{t("withdrawals.history.method")}</TableHead>
+                  <TableHead>{t("withdrawals.history.status")}</TableHead>
+                  <TableHead>{t("withdrawals.history.processed")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

@@ -17,6 +17,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const profileSchema = z.object({
   firstName: z.string().optional(),
@@ -30,6 +31,7 @@ type ProfileFormData = z.infer<typeof profileSchema>;
 export default function ProfilePage() {
   const { user, setUser } = useAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const form = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
@@ -48,13 +50,13 @@ export default function ProfilePage() {
     onSuccess: (data) => {
       setUser(data.user);
       toast({
-        title: "Profile updated",
-        description: "Your profile has been updated successfully",
+        title: t('profile.toast.success.title'),
+        description: t('profile.toast.success.description'),
       });
     },
     onError: (error: any) => {
       toast({
-        title: "Update failed",
+        title: t('profile.toast.error.title'),
         description: error.message,
         variant: "destructive",
       });
@@ -68,15 +70,15 @@ export default function ProfilePage() {
   return (
     <div className="container max-w-4xl py-6 space-y-6">
       <div>
-        <h1 className="text-3xl font-semibold">Profile Settings</h1>
-        <p className="text-muted-foreground">Manage your account information</p>
+        <h1 className="text-3xl font-semibold">{t('profile.title')}</h1>
+        <p className="text-muted-foreground">{t('profile.description')}</p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Personal Information</CardTitle>
+          <CardTitle>{t('profile.personalInfo.title')}</CardTitle>
           <CardDescription>
-            Update your personal details and contact information
+            {t('profile.personalInfo.description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -88,12 +90,12 @@ export default function ProfilePage() {
                   name="firstName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>First Name</FormLabel>
+                      <FormLabel>{t('profile.firstName')}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           data-testid="input-firstname"
-                          placeholder="John"
+                          placeholder={t('profile.firstNamePlaceholder')}
                           disabled={updateProfileMutation.isPending}
                         />
                       </FormControl>
@@ -106,12 +108,12 @@ export default function ProfilePage() {
                   name="lastName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Last Name</FormLabel>
+                      <FormLabel>{t('profile.lastName')}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           data-testid="input-lastname"
-                          placeholder="Doe"
+                          placeholder={t('profile.lastNamePlaceholder')}
                           disabled={updateProfileMutation.isPending}
                         />
                       </FormControl>
@@ -125,7 +127,7 @@ export default function ProfilePage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('profile.email')}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -143,12 +145,12 @@ export default function ProfilePage() {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
+                    <FormLabel>{t('profile.phoneNumber')}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         data-testid="input-phone"
-                        placeholder="+1 (555) 000-0000"
+                        placeholder={t('profile.phoneNumberPlaceholder')}
                         disabled={updateProfileMutation.isPending}
                       />
                     </FormControl>
@@ -164,10 +166,10 @@ export default function ProfilePage() {
                 {updateProfileMutation.isPending ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Saving...
+                    {t('profile.saving')}
                   </>
                 ) : (
-                  "Save Changes"
+                  t('profile.saveChanges')
                 )}
               </Button>
             </form>
@@ -177,43 +179,43 @@ export default function ProfilePage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Account Information</CardTitle>
+          <CardTitle>{t('profile.accountInfo.title')}</CardTitle>
           <CardDescription>
-            Your account details and verification status
+            {t('profile.accountInfo.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                Username
+                {t('profile.username')}
               </div>
               <div className="font-medium" data-testid="text-username">
-                {user?.username || "N/A"}
+                {user?.username || t('profile.na')}
               </div>
             </div>
             <div>
               <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                Account ID
+                {t('profile.accountId')}
               </div>
               <div className="font-mono text-sm" data-testid="text-account-id">
-                {user?.id?.substring(0, 8) || "N/A"}...
+                {user?.id?.substring(0, 8) || t('profile.na')}...
               </div>
             </div>
             <div>
               <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                Email Verified
+                {t('profile.emailVerified')}
               </div>
               <div className={user?.emailVerified ? "text-chart-1" : "text-chart-4"}>
-                {user?.emailVerified ? "Yes" : "No"}
+                {user?.emailVerified ? t('common.yes') : t('common.no')}
               </div>
             </div>
             <div>
               <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                2FA Enabled
+                {t('profile.twoFactorEnabled')}
               </div>
               <div className={user?.twoFactorEnabled ? "text-chart-1" : "text-muted-foreground"}>
-                {user?.twoFactorEnabled ? "Yes" : "No"}
+                {user?.twoFactorEnabled ? t('common.yes') : t('common.no')}
               </div>
             </div>
           </div>

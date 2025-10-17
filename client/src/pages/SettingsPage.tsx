@@ -28,6 +28,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Loader2, DollarSign, Bell, Layout, TrendingUp } from "lucide-react";
 import type { UserPreference } from "@shared/schema";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const settingsSchema = z.object({
   displayCurrency: z.string(),
@@ -43,6 +44,7 @@ const settingsSchema = z.object({
 type SettingsFormData = z.infer<typeof settingsSchema>;
 
 export default function SettingsPage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("general");
 
@@ -87,14 +89,14 @@ export default function SettingsPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/preferences"] });
       toast({
-        title: "Settings saved",
-        description: "Your preferences have been updated successfully.",
+        title: t("settings.toast.success.title"),
+        description: t("settings.toast.success.description"),
       });
     },
     onError: (error: any) => {
       toast({
-        title: "Error saving settings",
-        description: error.message || "Failed to save preferences",
+        title: t("settings.toast.error.title"),
+        description: error.message || t("settings.toast.error.description"),
         variant: "destructive",
       });
     },
@@ -120,9 +122,9 @@ export default function SettingsPage() {
   return (
     <div className="flex h-full flex-col gap-6 p-6 max-w-5xl mx-auto">
       <div>
-        <h1 className="text-3xl font-bold">Settings</h1>
+        <h1 className="text-3xl font-bold">{t("settings.title")}</h1>
         <p className="text-muted-foreground mt-1">
-          Manage your account preferences and trading settings
+          {t("settings.description")}
         </p>
       </div>
 
@@ -130,19 +132,19 @@ export default function SettingsPage() {
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="general" data-testid="tab-general">
             <Layout className="h-4 w-4 mr-2" />
-            General
+            {t("settings.tabs.general")}
           </TabsTrigger>
           <TabsTrigger value="trading" data-testid="tab-trading">
             <TrendingUp className="h-4 w-4 mr-2" />
-            Trading
+            {t("settings.tabs.trading")}
           </TabsTrigger>
           <TabsTrigger value="display" data-testid="tab-display">
             <DollarSign className="h-4 w-4 mr-2" />
-            Display
+            {t("settings.tabs.display")}
           </TabsTrigger>
           <TabsTrigger value="notifications" data-testid="tab-notifications">
             <Bell className="h-4 w-4 mr-2" />
-            Notifications
+            {t("settings.tabs.notifications")}
           </TabsTrigger>
         </TabsList>
 
@@ -151,9 +153,9 @@ export default function SettingsPage() {
             <TabsContent value="general" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Appearance</CardTitle>
+                  <CardTitle>{t("settings.appearance.title")}</CardTitle>
                   <CardDescription>
-                    Customize how the platform looks and feels
+                    {t("settings.appearance.description")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -162,24 +164,24 @@ export default function SettingsPage() {
                     name="theme"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Theme</FormLabel>
+                        <FormLabel>{t("settings.appearance.theme")}</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger data-testid="select-theme">
-                              <SelectValue placeholder="Select a theme" />
+                              <SelectValue placeholder={t("settings.appearance.themePlaceholder")} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="dark">Dark</SelectItem>
-                            <SelectItem value="light">Light</SelectItem>
-                            <SelectItem value="system">System</SelectItem>
+                            <SelectItem value="dark">{t("settings.appearance.theme.dark")}</SelectItem>
+                            <SelectItem value="light">{t("settings.appearance.theme.light")}</SelectItem>
+                            <SelectItem value="system">{t("settings.appearance.theme.system")}</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormDescription>
-                          Choose your preferred color scheme
+                          {t("settings.appearance.themeDescription")}
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -192,9 +194,9 @@ export default function SettingsPage() {
             <TabsContent value="trading" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Trading Defaults</CardTitle>
+                  <CardTitle>{t("settings.tradingDefaults.title")}</CardTitle>
                   <CardDescription>
-                    Set your preferred trading parameters
+                    {t("settings.tradingDefaults.description")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -203,20 +205,20 @@ export default function SettingsPage() {
                     name="defaultLotSize"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Default Lot Size</FormLabel>
+                        <FormLabel>{t("settings.tradingDefaults.defaultLotSize")}</FormLabel>
                         <FormControl>
                           <Input
                             type="number"
                             step="0.01"
                             min="0.01"
                             max="100"
-                            placeholder="0.01"
+                            placeholder={t("settings.tradingDefaults.defaultLotSizePlaceholder")}
                             {...field}
                             data-testid="input-lot-size"
                           />
                         </FormControl>
                         <FormDescription>
-                          Default lot size when placing orders
+                          {t("settings.tradingDefaults.defaultLotSizeDescription")}
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -229,9 +231,9 @@ export default function SettingsPage() {
             <TabsContent value="display" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Currency Display</CardTitle>
+                  <CardTitle>{t("settings.currencyDisplay.title")}</CardTitle>
                   <CardDescription>
-                    Choose how balances and P/L are displayed
+                    {t("settings.currencyDisplay.description")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -240,25 +242,25 @@ export default function SettingsPage() {
                     name="displayCurrency"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Display Currency</FormLabel>
+                        <FormLabel>{t("settings.currencyDisplay.displayCurrency")}</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger data-testid="select-currency">
-                              <SelectValue placeholder="Select currency" />
+                              <SelectValue placeholder={t("settings.currencyDisplay.displayCurrencyPlaceholder")} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="USD">USD ($)</SelectItem>
-                            <SelectItem value="EUR">EUR (€)</SelectItem>
-                            <SelectItem value="GBP">GBP (£)</SelectItem>
-                            <SelectItem value="JPY">JPY (¥)</SelectItem>
+                            <SelectItem value="USD">{t("settings.currencyDisplay.usd")}</SelectItem>
+                            <SelectItem value="EUR">{t("settings.currencyDisplay.eur")}</SelectItem>
+                            <SelectItem value="GBP">{t("settings.currencyDisplay.gbp")}</SelectItem>
+                            <SelectItem value="JPY">{t("settings.currencyDisplay.jpy")}</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormDescription>
-                          All trades are executed in USD. This setting only affects visual display.
+                          {t("settings.currencyDisplay.displayCurrencyDescription")}
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -271,9 +273,9 @@ export default function SettingsPage() {
             <TabsContent value="notifications" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Notification Preferences</CardTitle>
+                  <CardTitle>{t("settings.notificationPreferences.title")}</CardTitle>
                   <CardDescription>
-                    Manage your trading alerts and notifications
+                    {t("settings.notificationPreferences.description")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -283,9 +285,9 @@ export default function SettingsPage() {
                     render={({ field }) => (
                       <FormItem className="flex items-center justify-between rounded-lg border p-4">
                         <div className="space-y-0.5">
-                          <FormLabel className="text-base">Trade Notifications</FormLabel>
+                          <FormLabel className="text-base">{t("settings.notificationPreferences.tradeNotifications")}</FormLabel>
                           <FormDescription>
-                            Get notified when your orders are filled or closed
+                            {t("settings.notificationPreferences.tradeNotificationsDescription")}
                           </FormDescription>
                         </div>
                         <FormControl>
@@ -305,9 +307,9 @@ export default function SettingsPage() {
                     render={({ field }) => (
                       <FormItem className="flex items-center justify-between rounded-lg border p-4">
                         <div className="space-y-0.5">
-                          <FormLabel className="text-base">Funding Notifications</FormLabel>
+                          <FormLabel className="text-base">{t("settings.notificationPreferences.fundingNotifications")}</FormLabel>
                           <FormDescription>
-                            Get notified about deposits and withdrawals
+                            {t("settings.notificationPreferences.fundingNotificationsDescription")}
                           </FormDescription>
                         </div>
                         <FormControl>
@@ -327,9 +329,9 @@ export default function SettingsPage() {
                     render={({ field }) => (
                       <FormItem className="flex items-center justify-between rounded-lg border p-4">
                         <div className="space-y-0.5">
-                          <FormLabel className="text-base">Margin Alerts</FormLabel>
+                          <FormLabel className="text-base">{t("settings.notificationPreferences.marginAlerts")}</FormLabel>
                           <FormDescription>
-                            Get alerted when margin level is below 150%
+                            {t("settings.notificationPreferences.marginAlertsDescription")}
                           </FormDescription>
                         </div>
                         <FormControl>
@@ -354,7 +356,7 @@ export default function SettingsPage() {
                 disabled={updatePreferencesMutation.isPending}
                 data-testid="button-reset"
               >
-                Reset
+                {t("settings.buttons.reset")}
               </Button>
               <Button
                 type="submit"
@@ -364,10 +366,10 @@ export default function SettingsPage() {
                 {updatePreferencesMutation.isPending ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Saving...
+                    {t("settings.buttons.saving")}
                   </>
                 ) : (
-                  "Save Changes"
+                  t("settings.buttons.saveChanges")
                 )}
               </Button>
             </div>

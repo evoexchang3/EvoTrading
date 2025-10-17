@@ -2,48 +2,50 @@ import { LandingLayout } from "@/components/LandingLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, TrendingUp, Users, Globe2, Award, Target } from "lucide-react";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function AboutPage() {
+  const { t } = useLanguage();
+  
   const values = [
     {
       icon: Shield,
-      title: "Security First",
-      description: "We prioritize the security of your funds and data with bank-level encryption and compliance.",
+      title: t("about.values.security.title"),
+      description: t("about.values.security.description"),
     },
     {
       icon: TrendingUp,
-      title: "Transparency",
-      description: "Clear pricing, no hidden fees, and full disclosure of all trading conditions.",
+      title: t("about.values.transparency.title"),
+      description: t("about.values.transparency.description"),
     },
     {
       icon: Users,
-      title: "Client Success",
-      description: "Your trading success is our success. We provide tools and support to help you achieve your goals.",
+      title: t("about.values.clientSuccess.title"),
+      description: t("about.values.clientSuccess.description"),
     },
     {
       icon: Globe2,
-      title: "Global Access",
-      description: "Trade global markets 24/7 from anywhere in the world with our reliable platform.",
+      title: t("about.values.globalAccess.title"),
+      description: t("about.values.globalAccess.description"),
     },
   ];
 
   return (
     <LandingLayout>
       <SEO
-        title="About Us"
-        description="Learn about our professional trading platform. We provide traders worldwide with access to forex, cryptocurrencies, and commodities markets."
-        keywords="about trading platform, regulated broker, trading company, forex broker"
+        title={t("about.seo.title")}
+        description={t("about.seo.description")}
+        keywords={t("about.seo.keywords")}
       />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold" data-testid="text-about-title">
-              About Our Platform
+              {t("about.hero.title")}
             </h1>
             <p className="text-xl text-muted-foreground">
-              A professional trading platform built for traders who demand excellence, 
-              security, and transparency in every trade.
+              {t("about.hero.subtitle")}
             </p>
           </div>
         </div>
@@ -55,17 +57,13 @@ export default function AboutPage() {
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6" data-testid="text-mission-title">
-                Our Mission
+                {t("about.mission.title")}
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                We are dedicated to providing traders worldwide with access to professional-grade 
-                trading tools and markets. Our mission is to democratize trading by offering 
-                institutional-quality infrastructure to retail traders.
+                {t("about.mission.paragraph1")}
               </p>
               <p className="text-lg text-muted-foreground">
-                Founded by experienced traders and technologists, we understand the challenges 
-                traders face. We've built a platform that addresses these challenges with 
-                cutting-edge technology, comprehensive education, and unwavering support.
+                {t("about.mission.paragraph2")}
               </p>
             </div>
             <div className="grid gap-4">
@@ -75,8 +73,8 @@ export default function AboutPage() {
                     <Award className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <CardTitle>Regulated & Licensed</CardTitle>
-                    <CardDescription>Fully compliant with international financial regulations</CardDescription>
+                    <CardTitle>{t("about.mission.regulated.title")}</CardTitle>
+                    <CardDescription>{t("about.mission.regulated.description")}</CardDescription>
                   </div>
                 </CardHeader>
               </Card>
@@ -86,8 +84,8 @@ export default function AboutPage() {
                     <Target className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <CardTitle>Client-Focused</CardTitle>
-                    <CardDescription>Your success drives everything we do</CardDescription>
+                    <CardTitle>{t("about.mission.clientFocused.title")}</CardTitle>
+                    <CardDescription>{t("about.mission.clientFocused.description")}</CardDescription>
                   </div>
                 </CardHeader>
               </Card>
@@ -101,10 +99,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-values-title">
-              Our Core Values
+              {t("about.values.title")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              The principles that guide every decision we make and every feature we build.
+              {t("about.values.subtitle")}
             </p>
           </div>
 
@@ -133,46 +131,43 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-services-title">
-              What We Offer
+              {t("about.services.title")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive trading services across multiple asset classes.
+              {t("about.services.subtitle")}
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
             <Card className="hover-elevate transition-all">
               <CardHeader>
-                <CardTitle className="text-xl">Forex Trading</CardTitle>
+                <CardTitle className="text-xl">{t("about.services.forex.title")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Trade 50+ currency pairs with tight spreads and deep liquidity. 
-                  Access major, minor, and exotic pairs 24/5.
+                  {t("about.services.forex.description")}
                 </CardDescription>
               </CardContent>
             </Card>
 
             <Card className="hover-elevate transition-all">
               <CardHeader>
-                <CardTitle className="text-xl">Cryptocurrency</CardTitle>
+                <CardTitle className="text-xl">{t("about.services.crypto.title")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Trade 100+ cryptocurrencies including Bitcoin, Ethereum, and altcoins. 
-                  24/7 trading with competitive fees.
+                  {t("about.services.crypto.description")}
                 </CardDescription>
               </CardContent>
             </Card>
 
             <Card className="hover-elevate transition-all">
               <CardHeader>
-                <CardTitle className="text-xl">Commodities & Indices</CardTitle>
+                <CardTitle className="text-xl">{t("about.services.commodities.title")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Access gold, silver, oil, and major stock indices. 
-                  Diversify your portfolio with alternative assets.
+                  {t("about.services.commodities.description")}
                 </CardDescription>
               </CardContent>
             </Card>
@@ -185,18 +180,16 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-team-title">
-              Leadership Team
+              {t("about.team.title")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our team combines decades of experience in finance, technology, and trading.
+              {t("about.team.subtitle")}
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
             <p className="text-center text-muted-foreground">
-              Led by industry veterans with backgrounds from top financial institutions and technology companies, 
-              our leadership team is committed to building the most reliable and user-friendly trading platform 
-              in the industry. We're traders ourselves, and we build the platform we wish existed when we started.
+              {t("about.team.description")}
             </p>
           </div>
         </div>

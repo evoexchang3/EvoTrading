@@ -33,9 +33,11 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 import { Loader2, Plus } from "lucide-react";
 
 export default function DepositsPage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [showForm, setShowForm] = useState(false);
@@ -57,8 +59,8 @@ export default function DepositsPage() {
     },
     onSuccess: () => {
       toast({
-        title: "Deposit request submitted",
-        description: "Your deposit request has been submitted for processing",
+        title: t("deposits.toast.success.title"),
+        description: t("deposits.toast.success.description"),
       });
       queryClient.invalidateQueries({ queryKey: ["/api/funding/history"] });
       form.reset();
@@ -66,7 +68,7 @@ export default function DepositsPage() {
     },
     onError: (error: any) => {
       toast({
-        title: "Failed to submit deposit",
+        title: t("deposits.toast.error.title"),
         description: error.message,
         variant: "destructive",
       });
@@ -100,21 +102,21 @@ export default function DepositsPage() {
     <div className="container max-w-7xl py-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-semibold">Deposits</h1>
-          <p className="text-muted-foreground">Fund your trading account</p>
+          <h1 className="text-3xl font-semibold">{t("deposits.title")}</h1>
+          <p className="text-muted-foreground">{t("deposits.description")}</p>
         </div>
         <Button onClick={() => setShowForm(!showForm)} data-testid="button-new-deposit">
           <Plus className="mr-2 h-4 w-4" />
-          New Deposit
+          {t("deposits.newDeposit")}
         </Button>
       </div>
 
       {showForm && (
         <Card>
           <CardHeader>
-            <CardTitle>Create Deposit Request</CardTitle>
+            <CardTitle>{t("deposits.form.title")}</CardTitle>
             <CardDescription>
-              Submit a deposit request to add funds to your account
+              {t("deposits.form.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -125,7 +127,7 @@ export default function DepositsPage() {
                   name="amount"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Amount (USD)</FormLabel>
+                      <FormLabel>{t("deposits.form.amount")}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -133,7 +135,7 @@ export default function DepositsPage() {
                           step="0.01"
                           min="1"
                           data-testid="input-deposit-amount"
-                          placeholder="1000.00"
+                          placeholder={t("deposits.form.amountPlaceholder")}
                           onChange={(e) => field.onChange(parseFloat(e.target.value))}
                           disabled={depositMutation.isPending}
                         />
@@ -147,7 +149,7 @@ export default function DepositsPage() {
                   name="fundType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Fund Type</FormLabel>
+                      <FormLabel>{t("deposits.form.fundType")}</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -155,13 +157,13 @@ export default function DepositsPage() {
                       >
                         <FormControl>
                           <SelectTrigger data-testid="select-fund-type">
-                            <SelectValue placeholder="Select fund type" />
+                            <SelectValue placeholder={t("deposits.form.fundTypePlaceholder")} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="real">Real Funds (Withdrawable)</SelectItem>
-                          <SelectItem value="demo">Demo Funds (Practice)</SelectItem>
-                          <SelectItem value="bonus">Bonus Funds (Non-withdrawable)</SelectItem>
+                          <SelectItem value="real">{t("deposits.form.fundType.real")}</SelectItem>
+                          <SelectItem value="demo">{t("deposits.form.fundType.demo")}</SelectItem>
+                          <SelectItem value="bonus">{t("deposits.form.fundType.bonus")}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -173,7 +175,7 @@ export default function DepositsPage() {
                   name="method"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Payment Method</FormLabel>
+                      <FormLabel>{t("deposits.form.method")}</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -181,13 +183,13 @@ export default function DepositsPage() {
                       >
                         <FormControl>
                           <SelectTrigger data-testid="select-payment-method">
-                            <SelectValue placeholder="Select payment method" />
+                            <SelectValue placeholder={t("deposits.form.methodPlaceholder")} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="bank_transfer">Bank Transfer</SelectItem>
-                          <SelectItem value="credit_card">Credit Card</SelectItem>
-                          <SelectItem value="crypto">Cryptocurrency</SelectItem>
+                          <SelectItem value="bank_transfer">{t("deposits.form.method.bankTransfer")}</SelectItem>
+                          <SelectItem value="credit_card">{t("deposits.form.method.creditCard")}</SelectItem>
+                          <SelectItem value="crypto">{t("deposits.form.method.crypto")}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -199,12 +201,12 @@ export default function DepositsPage() {
                   name="notes"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Notes (Optional)</FormLabel>
+                      <FormLabel>{t("deposits.form.notes")}</FormLabel>
                       <FormControl>
                         <Textarea
                           {...field}
                           data-testid="input-deposit-notes"
-                          placeholder="Additional information..."
+                          placeholder={t("deposits.form.notesPlaceholder")}
                           disabled={depositMutation.isPending}
                         />
                       </FormControl>
@@ -221,10 +223,10 @@ export default function DepositsPage() {
                     {depositMutation.isPending ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Submitting...
+                        {t("deposits.form.submitting")}
                       </>
                     ) : (
-                      "Submit Request"
+                      t("deposits.form.submit")
                     )}
                   </Button>
                   <Button
@@ -233,7 +235,7 @@ export default function DepositsPage() {
                     onClick={() => setShowForm(false)}
                     disabled={depositMutation.isPending}
                   >
-                    Cancel
+                    {t("deposits.form.cancel")}
                   </Button>
                 </div>
               </form>
@@ -244,18 +246,18 @@ export default function DepositsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Deposit History</CardTitle>
+          <CardTitle>{t("deposits.history.title")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="rounded-md border">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Method</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Processed</TableHead>
+                  <TableHead>{t("deposits.history.date")}</TableHead>
+                  <TableHead>{t("deposits.history.amount")}</TableHead>
+                  <TableHead>{t("deposits.history.method")}</TableHead>
+                  <TableHead>{t("deposits.history.status")}</TableHead>
+                  <TableHead>{t("deposits.history.processed")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

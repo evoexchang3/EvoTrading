@@ -16,6 +16,7 @@ import { OrdersTable } from "@/components/OrdersTable";
 import { TradesTable } from "@/components/TradesTable";
 import { AccountInfoBar } from "@/components/AccountInfoBar";
 import { useWebSocketContext } from "@/contexts/WebSocketContext";
+import { useLanguage } from "@/hooks/useLanguage";
 import {
   LayoutDashboard,
   PanelLeft,
@@ -37,6 +38,7 @@ type TradingPageProps = {
 };
 
 export default function TradingPage({ symbol: initialSymbol }: TradingPageProps) {
+  const { t } = useLanguage();
   const [selectedSymbol, setSelectedSymbol] = useState(initialSymbol || "EURUSD");
   const [panelVisibility, setPanelVisibility] = useState<PanelVisibility>({
     watchlist: true,
@@ -81,11 +83,11 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
               className="h-8"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Dashboard
+              {t('trading.toolbar.backToDashboard')}
             </Button>
           </Link>
           <div className="h-4 w-px bg-border" />
-          <h1 className="text-lg font-semibold" data-testid="text-trading-platform">Trading Platform</h1>
+          <h1 className="text-lg font-semibold" data-testid="text-trading-platform">{t('trading.title')}</h1>
           <div className="h-4 w-px bg-border" />
           <span className="text-sm text-muted-foreground" data-testid="text-current-symbol">{selectedSymbol}</span>
         </div>
@@ -99,7 +101,7 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
             className="h-8"
           >
             <PanelLeft className="h-4 w-4 mr-2" />
-            Watchlist
+            {t('trading.toolbar.watchlist')}
           </Button>
           <Button
             size="sm"
@@ -109,7 +111,7 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
             className="h-8"
           >
             <PanelRight className="h-4 w-4 mr-2" />
-            Order Ticket
+            {t('trading.toolbar.orderTicket')}
           </Button>
           <Button
             size="sm"
@@ -119,7 +121,7 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
             className="h-8"
           >
             <PanelBottom className="h-4 w-4 mr-2" />
-            Positions
+            {t('trading.toolbar.positions')}
           </Button>
           <div className="h-4 w-px bg-border mx-1" />
           <Button
@@ -130,7 +132,7 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
             className="h-8"
           >
             <Maximize2 className="h-4 w-4 mr-2" />
-            Reset Layout
+            {t('trading.toolbar.resetLayout')}
           </Button>
         </div>
       </div>
@@ -213,13 +215,13 @@ export default function TradingPage({ symbol: initialSymbol }: TradingPageProps)
                       <div className="px-6 pt-4 pb-2 flex-shrink-0">
                         <TabsList data-testid="tabs-positions-orders">
                           <TabsTrigger value="positions" data-testid="tab-positions">
-                            Positions
+                            {t('trading.tabs.positions')}
                           </TabsTrigger>
                           <TabsTrigger value="orders" data-testid="tab-orders">
-                            Orders
+                            {t('trading.tabs.orders')}
                           </TabsTrigger>
                           <TabsTrigger value="history" data-testid="tab-history">
-                            History
+                            {t('trading.tabs.history')}
                           </TabsTrigger>
                         </TabsList>
                       </div>

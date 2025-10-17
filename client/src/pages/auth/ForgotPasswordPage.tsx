@@ -25,6 +25,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, ArrowLeft } from "lucide-react";
 import { LandingLayout } from "@/components/LandingLayout";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -33,6 +34,7 @@ const forgotPasswordSchema = z.object({
 type ForgotPasswordRequest = z.infer<typeof forgotPasswordSchema>;
 
 export default function ForgotPasswordPage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
 
   const form = useForm<ForgotPasswordRequest>({
@@ -48,15 +50,15 @@ export default function ForgotPasswordPage() {
     },
     onSuccess: () => {
       toast({
-        title: "Email sent",
-        description: "Check your email for password reset instructions",
+        title: t('auth.forgotPassword.success.title'),
+        description: t('auth.forgotPassword.success.description'),
       });
       form.reset();
     },
     onError: (error: any) => {
       toast({
-        title: "Error",
-        description: error.message || "Failed to send reset email",
+        title: t('auth.forgotPassword.error.title'),
+        description: error.message || t('auth.forgotPassword.error.description'),
         variant: "destructive",
       });
     },
@@ -72,10 +74,10 @@ export default function ForgotPasswordPage() {
         <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-semibold">
-            Reset your password
+            {t('auth.forgotPassword.title')}
           </CardTitle>
           <CardDescription>
-            Enter your email address and we'll send you instructions
+            {t('auth.forgotPassword.description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -86,13 +88,13 @@ export default function ForgotPasswordPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('auth.forgotPassword.email')}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         type="email"
                         data-testid="input-email"
-                        placeholder="john@example.com"
+                        placeholder={t('auth.forgotPassword.emailPlaceholder')}
                         disabled={forgotPasswordMutation.isPending}
                       />
                     </FormControl>
@@ -109,10 +111,10 @@ export default function ForgotPasswordPage() {
                 {forgotPasswordMutation.isPending ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Sending...
+                    {t('auth.forgotPassword.sending')}
                   </>
                 ) : (
-                  "Send reset instructions"
+                  t('auth.forgotPassword.submitButton')
                 )}
               </Button>
             </form>
@@ -122,7 +124,7 @@ export default function ForgotPasswordPage() {
           <Link href="/login">
             <span className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary cursor-pointer" data-testid="link-back-to-login">
               <ArrowLeft className="h-4 w-4" />
-              Back to login
+              {t('auth.forgotPassword.backToLogin')}
             </span>
           </Link>
         </CardFooter>

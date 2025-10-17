@@ -4,92 +4,94 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { BookOpen, TrendingUp, Shield, BarChart3, Lightbulb, GraduationCap } from "lucide-react";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function EducationPage() {
+  const { t } = useLanguage();
+
   const topics = [
     {
       icon: BookOpen,
-      title: "Trading Basics",
-      description: "Understanding Markets",
-      content: "Learn the fundamentals of financial markets, how they work, and the basics of trading different asset classes including forex, crypto, and commodities.",
+      title: t('education.topics.tradingBasics.title'),
+      description: t('education.topics.tradingBasics.description'),
+      content: t('education.topics.tradingBasics.content'),
     },
     {
       icon: TrendingUp,
-      title: "Technical Analysis",
-      description: "Chart Patterns & Indicators",
-      content: "Master chart patterns, technical indicators, and price action analysis to identify trading opportunities and make informed decisions.",
+      title: t('education.topics.technicalAnalysis.title'),
+      description: t('education.topics.technicalAnalysis.description'),
+      content: t('education.topics.technicalAnalysis.content'),
     },
     {
       icon: Shield,
-      title: "Risk Management",
-      description: "Protect Your Capital",
-      content: "Learn essential risk management techniques including position sizing, stop-loss strategies, and portfolio diversification to protect your trading capital.",
+      title: t('education.topics.riskManagement.title'),
+      description: t('education.topics.riskManagement.description'),
+      content: t('education.topics.riskManagement.content'),
     },
     {
       icon: BarChart3,
-      title: "Trading Strategies",
-      description: "Develop Your Edge",
-      content: "Explore various trading strategies from day trading to swing trading, and learn how to develop a strategy that fits your goals and risk tolerance.",
+      title: t('education.topics.tradingStrategies.title'),
+      description: t('education.topics.tradingStrategies.description'),
+      content: t('education.topics.tradingStrategies.content'),
     },
     {
       icon: Lightbulb,
-      title: "Market Psychology",
-      description: "Trading Mindset",
-      content: "Understand the psychological aspects of trading, emotional control, and how to develop the mental discipline required for consistent success.",
+      title: t('education.topics.marketPsychology.title'),
+      description: t('education.topics.marketPsychology.description'),
+      content: t('education.topics.marketPsychology.content'),
     },
     {
       icon: GraduationCap,
-      title: "Advanced Concepts",
-      description: "Professional Techniques",
-      content: "Dive into advanced topics including algorithmic trading, options strategies, and institutional trading methods for experienced traders.",
+      title: t('education.topics.advancedConcepts.title'),
+      description: t('education.topics.advancedConcepts.description'),
+      content: t('education.topics.advancedConcepts.content'),
     },
   ];
 
   const resources = [
     {
-      title: "Forex Trading Guide",
-      description: "Complete guide to forex trading covering currency pairs, pips, lots, and leverage.",
-      level: "Beginner",
+      title: t('education.resources.forexGuide.title'),
+      description: t('education.resources.forexGuide.description'),
+      level: t('education.resources.forexGuide.level'),
     },
     {
-      title: "Cryptocurrency Fundamentals",
-      description: "Understanding blockchain technology, crypto markets, and digital asset trading.",
-      level: "Beginner",
+      title: t('education.resources.cryptoFundamentals.title'),
+      description: t('education.resources.cryptoFundamentals.description'),
+      level: t('education.resources.cryptoFundamentals.level'),
     },
     {
-      title: "Technical Analysis Masterclass",
-      description: "In-depth course on chart patterns, indicators, and technical trading strategies.",
-      level: "Intermediate",
+      title: t('education.resources.technicalMasterclass.title'),
+      description: t('education.resources.technicalMasterclass.description'),
+      level: t('education.resources.technicalMasterclass.level'),
     },
     {
-      title: "Risk Management Essentials",
-      description: "Protecting your capital with proper risk management and position sizing.",
-      level: "Beginner",
+      title: t('education.resources.riskEssentials.title'),
+      description: t('education.resources.riskEssentials.description'),
+      level: t('education.resources.riskEssentials.level'),
     },
     {
-      title: "Algorithmic Trading",
-      description: "Introduction to automated trading systems and strategy development.",
-      level: "Advanced",
+      title: t('education.resources.algoTrading.title'),
+      description: t('education.resources.algoTrading.description'),
+      level: t('education.resources.algoTrading.level'),
     },
   ];
 
   return (
     <LandingLayout>
       <SEO
-        title="Trading Education & Learning Center"
-        description="Learn trading from basics to advanced strategies. Free educational resources, guides, and tutorials for forex, crypto, and commodities trading."
-        keywords="trading education, learn forex, crypto trading course, trading strategies, technical analysis"
+        title={t('education.seo.title')}
+        description={t('education.seo.description')}
+        keywords={t('education.seo.keywords')}
       />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold" data-testid="text-education-title">
-              Trading Education Center
+              {t('education.hero.title')}
             </h1>
             <p className="text-xl text-muted-foreground">
-              Learn from comprehensive guides, tutorials, and courses designed to help you 
-              become a successful trader, regardless of your experience level.
+              {t('education.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -100,10 +102,10 @@ export default function EducationPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-topics-title">
-              What You'll Learn
+              {t('education.topics.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive education covering every aspect of trading from basics to advanced strategies.
+              {t('education.topics.subtitle')}
             </p>
           </div>
 
@@ -133,10 +135,10 @@ export default function EducationPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-resources-title">
-              Educational Resources
+              {t('education.resources.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Structured learning materials for traders at every level.
+              {t('education.resources.subtitle')}
             </p>
           </div>
 
@@ -172,30 +174,30 @@ export default function EducationPage() {
               <div className="inline-flex mx-auto p-4 rounded-full bg-primary-foreground/10">
                 <GraduationCap className="h-8 w-8" />
               </div>
-              <CardTitle className="text-3xl md:text-4xl">Trading Academy Coming Soon</CardTitle>
+              <CardTitle className="text-3xl md:text-4xl">{t('education.academy.title')}</CardTitle>
               <CardDescription className="text-lg opacity-90 text-primary-foreground">
-                Our comprehensive Trading Academy is currently in development and will feature:
+                {t('education.academy.subtitle')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
                 <div className="text-center space-y-2">
-                  <h3 className="font-semibold">Video Courses</h3>
-                  <p className="text-sm opacity-90">Step-by-step video tutorials</p>
+                  <h3 className="font-semibold">{t('education.academy.videoCourses.title')}</h3>
+                  <p className="text-sm opacity-90">{t('education.academy.videoCourses.description')}</p>
                 </div>
                 <div className="text-center space-y-2">
-                  <h3 className="font-semibold">Live Webinars</h3>
-                  <p className="text-sm opacity-90">Interactive sessions with experts</p>
+                  <h3 className="font-semibold">{t('education.academy.liveWebinars.title')}</h3>
+                  <p className="text-sm opacity-90">{t('education.academy.liveWebinars.description')}</p>
                 </div>
                 <div className="text-center space-y-2">
-                  <h3 className="font-semibold">Certifications</h3>
-                  <p className="text-sm opacity-90">Earn trading certificates</p>
+                  <h3 className="font-semibold">{t('education.academy.certifications.title')}</h3>
+                  <p className="text-sm opacity-90">{t('education.academy.certifications.description')}</p>
                 </div>
               </div>
               <div className="text-center pt-4">
                 <Link href="/register">
                   <Button variant="secondary" size="lg" data-testid="button-get-started">
-                    Get Started with Trading
+                    {t('education.academy.button')}
                   </Button>
                 </Link>
               </div>
@@ -209,15 +211,15 @@ export default function EducationPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-3xl font-bold" data-testid="text-cta-title">
-              Ready to Apply Your Knowledge?
+              {t('education.cta.title')}
             </h2>
             <p className="text-lg text-muted-foreground">
-              Open a free account and start trading with the skills you've learned.
+              {t('education.cta.subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-4">
               <Link href="/register">
                 <Button size="lg" data-testid="button-create-account">
-                  Create Free Account
+                  {t('education.cta.button')}
                 </Button>
               </Link>
             </div>

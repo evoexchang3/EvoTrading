@@ -7,9 +7,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { AlertTriangle, TrendingUp, TrendingDown, Activity, Wallet, Link as LinkIcon } from "lucide-react";
 import { Link } from "wouter";
 import { formatCurrency } from "@/lib/currencyUtils";
+import { useLanguage } from "@/hooks/useLanguage";
 import type { Client, Account } from "@shared/schema";
 
 export default function DashboardPage() {
+  const { t } = useLanguage();
   const { data: client, isLoading: clientLoading } = useQuery<Client>({
     queryKey: ["/api/auth/me"],
   });
@@ -27,9 +29,9 @@ export default function DashboardPage() {
 
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return "Good morning";
-    if (hour < 18) return "Good afternoon";
-    return "Good evening";
+    if (hour < 12) return t('dashboard.greeting.morning');
+    if (hour < 18) return t('dashboard.greeting.afternoon');
+    return t('dashboard.greeting.evening');
   };
 
   const marginLevel = account ? parseFloat(account.marginLevel || '0') : 0;
@@ -55,7 +57,7 @@ export default function DashboardPage() {
               {getGreeting()}, {client?.firstName}
             </h1>
             <p className="text-muted-foreground mt-1">
-              Welcome back to your trading platform. Here's your portfolio overview.
+              {t('dashboard.welcome')}
             </p>
           </>
         )}
@@ -66,7 +68,7 @@ export default function DashboardPage() {
         <Alert className="border-chart-4 bg-chart-4/10">
           <AlertTriangle className="h-4 w-4 text-chart-4" />
           <AlertDescription className="text-chart-4">
-            Warning: Your margin level is {marginLevel.toFixed(2)}% - below 150%. Please close positions or add funds to avoid liquidation.
+            {t('dashboard.margin.warning', { marginLevel: marginLevel.toFixed(2) })}
           </AlertDescription>
         </Alert>
       )}
@@ -76,7 +78,7 @@ export default function DashboardPage() {
         {/* Balance Card */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Balance</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.balance.title')}</CardTitle>
             <Wallet className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -88,7 +90,7 @@ export default function DashboardPage() {
                   {formatCurrency(balance, displayCurrency)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Account #{account?.accountNumber || 'N/A'}
+                  {t('dashboard.balance.account', { accountNumber: account?.accountNumber || 'N/A' })}
                 </p>
               </>
             )}
@@ -98,7 +100,7 @@ export default function DashboardPage() {
         {/* Equity Card */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Equity</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.equity.title')}</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -121,7 +123,7 @@ export default function DashboardPage() {
         {/* Margin Card */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Margin Used</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.margin.used')}</CardTitle>
             <AlertTriangle className={`h-4 w-4 ${showMarginWarning ? 'text-chart-4' : 'text-muted-foreground'}`} />
           </CardHeader>
           <CardContent>
@@ -133,7 +135,7 @@ export default function DashboardPage() {
                   {formatCurrency(margin, displayCurrency)}
                 </div>
                 <p className={`text-xs mt-1 ${showMarginWarning ? 'text-chart-4 font-medium' : 'text-muted-foreground'}`}>
-                  Level: {marginLevel > 0 ? marginLevel.toFixed(2) : 'N/A'}%
+                  {t('dashboard.margin.level', { marginLevel: marginLevel > 0 ? marginLevel.toFixed(2) : 'N/A' })}
                 </p>
               </>
             )}
@@ -143,7 +145,7 @@ export default function DashboardPage() {
         {/* Free Margin Card */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Free Margin</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.freeMargin.title')}</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -155,7 +157,7 @@ export default function DashboardPage() {
                   {formatCurrency(freeMargin, displayCurrency)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Available to trade
+                  {t('dashboard.freeMargin.available')}
                 </p>
               </>
             )}
@@ -167,16 +169,16 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="hover-elevate transition-all">
           <CardHeader>
-            <CardTitle className="text-lg">Start Trading</CardTitle>
+            <CardTitle className="text-lg">{t('dashboard.quickActions.startTrading.title')}</CardTitle>
             <CardDescription>
-              Access the full trading platform with advanced charts and tools
+              {t('dashboard.quickActions.startTrading.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Link href="/trading">
               <Button className="w-full" data-testid="button-start-trading">
                 <LinkIcon className="mr-2 h-4 w-4" />
-                Go to Trading Platform
+                {t('dashboard.quickActions.startTrading.button')}
               </Button>
             </Link>
           </CardContent>
@@ -184,16 +186,16 @@ export default function DashboardPage() {
 
         <Card className="hover-elevate transition-all">
           <CardHeader>
-            <CardTitle className="text-lg">Fund Account</CardTitle>
+            <CardTitle className="text-lg">{t('dashboard.quickActions.fundAccount.title')}</CardTitle>
             <CardDescription>
-              Deposit funds to increase your trading capacity
+              {t('dashboard.quickActions.fundAccount.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Link href="/deposits">
               <Button variant="outline" className="w-full" data-testid="button-deposit">
                 <Wallet className="mr-2 h-4 w-4" />
-                Make a Deposit
+                {t('dashboard.quickActions.fundAccount.button')}
               </Button>
             </Link>
           </CardContent>
@@ -201,16 +203,16 @@ export default function DashboardPage() {
 
         <Card className="hover-elevate transition-all">
           <CardHeader>
-            <CardTitle className="text-lg">Withdrawals</CardTitle>
+            <CardTitle className="text-lg">{t('dashboard.quickActions.withdrawals.title')}</CardTitle>
             <CardDescription>
-              Request a withdrawal from your trading account
+              {t('dashboard.quickActions.withdrawals.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Link href="/withdrawals">
               <Button variant="outline" className="w-full" data-testid="button-withdraw">
                 <TrendingDown className="mr-2 h-4 w-4" />
-                Withdraw Funds
+                {t('dashboard.quickActions.withdrawals.button')}
               </Button>
             </Link>
           </CardContent>
@@ -220,14 +222,14 @@ export default function DashboardPage() {
       {/* Recent Activity Placeholder */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
+          <CardTitle>{t('dashboard.recentActivity.title')}</CardTitle>
           <CardDescription>
-            Your latest trades and account activity
+            {t('dashboard.recentActivity.description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex h-32 items-center justify-center rounded-md border border-dashed">
-            <p className="text-sm text-muted-foreground">No recent activity</p>
+            <p className="text-sm text-muted-foreground">{t('dashboard.recentActivity.noActivity')}</p>
           </div>
         </CardContent>
       </Card>
