@@ -21,6 +21,47 @@ interface EODHDEconomicEvent {
 }
 
 export class EconomicService {
+  // High-impact events classification (manually curated)
+  private readonly HIGH_IMPACT_EVENTS = new Set([
+    // Employment
+    'Non-Farm Payrolls', 'NFP', 'Nonfarm Payrolls', 'Employment Change', 'Unemployment Rate',
+    'ADP Employment Change', 'ADP Nonfarm Employment Change', 'Initial Jobless Claims',
+    
+    // Inflation
+    'Consumer Price Index', 'CPI', 'Core CPI', 'Producer Price Index', 'PPI', 'Core PPI',
+    'Personal Consumption Expenditures', 'PCE Price Index', 'Core PCE Price Index',
+    'Inflation Rate', 'Core Inflation Rate',
+    
+    // Central Bank & Monetary Policy
+    'FOMC Statement', 'FOMC Economic Projections', 'Federal Funds Rate', 'Interest Rate Decision',
+    'Monetary Policy Statement', 'ECB Press Conference', 'ECB Interest Rate Decision',
+    'BoE Interest Rate Decision', 'BoJ Interest Rate Decision', 'RBA Interest Rate Decision',
+    'RBNZ Interest Rate Decision', 'SNB Interest Rate Decision', 'BoC Interest Rate Decision',
+    'Fed Chair Powell Speaks', 'ECB President Lagarde Speaks', 'BoE Governor Bailey Speaks',
+    
+    // GDP
+    'GDP', 'Gross Domestic Product', 'GDP Growth Rate', 'Preliminary GDP', 'Final GDP',
+    'GDP Annualized', 'GDP QoQ', 'GDP YoY',
+    
+    // Retail & Consumer
+    'Retail Sales', 'Core Retail Sales', 'Consumer Confidence', 'Consumer Sentiment',
+    'Michigan Consumer Sentiment',
+    
+    // Manufacturing & Business
+    'PMI', 'Manufacturing PMI', 'Services PMI', 'Composite PMI', 'ISM Manufacturing PMI',
+    'ISM Services PMI', 'ISM Non-Manufacturing PMI', 'Industrial Production',
+    
+    // Trade
+    'Trade Balance', 'Balance of Trade', 'Current Account',
+  ]);
+
+  private readonly MEDIUM_IMPACT_EVENTS = new Set([
+    'Building Permits', 'Housing Starts', 'Existing Home Sales', 'New Home Sales',
+    'Durable Goods Orders', 'Factory Orders', 'Business Confidence', 'ZEW Economic Sentiment',
+    'IFO Business Climate', 'Tankan Survey', 'Capacity Utilization', 'Chicago PMI',
+    'Construction Spending', 'Wholesale Inventories', 'Continuing Jobless Claims',
+  ]);
+
   async getEconomicCalendar(
     startDate?: string,
     endDate?: string,
@@ -112,7 +153,7 @@ export class EconomicService {
         country: event.country,
         currency: event.currency || this.getCurrencyFromCountry(event.country),
         event: event.type, // EODHD uses 'type' field for event name
-        impact: 'medium', // EODHD doesn't provide importance/impact in this endpoint
+        impact: this.classifyImpact(event.type),
         forecast: event.estimate?.toString() || null,
         previous: event.previous?.toString() || null,
         actual: event.actual?.toString() || null,
@@ -148,6 +189,36 @@ export class EconomicService {
     } catch (error) {
       console.error("Failed to cache economic events:", error);
     }
+  }
+
+  private classifyImpact(eventName: string): string {
+    // Try exact match first
+    if (this.HIGH_IMPACT_EVENTS.has(eventName)) {
+      return 'high';
+    }
+    if (this.MEDIUM_IMPACT_EVENTS.has(eventName)) {
+      return 'medium';
+    }
+    
+    // Try partial matching for events with country prefixes (e.g., "US CPI", "UK GDP")
+    const eventNameUpper = eventName.toUpperCase();
+    
+    for (const highImpactEvent of this.HIGH_IMPACT_EVENTS) {
+      const highImpactUpper = highImpactEvent.toUpperCase();
+      if (eventNameUpper.includes(highImpactUpper) || highImpactUpper.includes(eventNameUpper)) {
+        return 'high';
+      }
+    }
+    
+    for (const mediumImpactEvent of this.MEDIUM_IMPACT_EVENTS) {
+      const mediumImpactUpper = mediumImpactEvent.toUpperCase();
+      if (eventNameUpper.includes(mediumImpactUpper) || mediumImpactUpper.includes(eventNameUpper)) {
+        return 'medium';
+      }
+    }
+    
+    // Default to low if not classified
+    return 'low';
   }
 
   private getCurrencyFromCountry(country: string): string {
