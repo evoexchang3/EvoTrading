@@ -75,21 +75,26 @@ Preferred communication style: Simple, everyday language.
   - Low-impact: All other events (default)
   - Partial matching for country-prefixed events (e.g., "US CPI", "UK GDP")
   - Impact filters now functional with accurate classification
-- **UI Improvements (Latest):**
+- **Comprehensive Currency Mapping & Multi-Country Fetching (Latest):**
+  - Comprehensive country-to-currency mapping table covering 100+ countries
+  - Includes G20, Eurozone (25 members), major emerging markets, APAC hubs, Middle East, Latin America, Africa
+  - Parallel API fetching for top 8 trading currencies (USD, EUR, GBP, JPY, AUD, CAD, CHF, NZD)
+  - Smart deduplication by eventId prevents duplicate events across countries
+  - **Result:** 170 unique events across 17 currencies (vs previous 50 events, 2 currencies)
+  - Currency distribution: EUR (53), USD (47), JPY (17), CAD (13), AUD (9), NZD (9), plus emerging markets (BRL, INR, RUB, etc.)
+  - All currency and impact filters now fully functional with accurate data
+- **UI Improvements:**
   - Removed hardcoded mock data and placeholder stats
   - Real-time stats calculation from actual EODHD data:
     - High Impact Today: Dynamic count of high-impact events occurring today
-    - Currencies Tracked: Unique currencies in dataset (typically 2: USD, GBP)
+    - Currencies Tracked: Unique currencies in dataset (now 17+ currencies)
     - Upcoming in 24h: Events in next 24 hours
-    - Total Events: Complete dataset size (typically ~50 events/week)
+    - Total Events: Complete dataset size (170 events/week)
   - Dual query system: All events for stats + filtered events for display
   - Responsive layout: Stack vertically on mobile, horizontal on desktop
   - Event names use word-break to prevent overflow
   - Forecast/Previous/Actual grid responsive with truncation
   - Proper min-width constraints and flex wrapping
-- **Data Limitations:**
-  - EODHD API primarily provides US economic events (49 USD vs 1 GBP typical)
-  - Limited international currency coverage (EUR, JPY, AUD events are sparse)
 
 ### Webhook Integration
 - Implemented comprehensive webhook notifications for all trading and funding events
