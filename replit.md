@@ -75,11 +75,21 @@ Preferred communication style: Simple, everyday language.
   - Low-impact: All other events (default)
   - Partial matching for country-prefixed events (e.g., "US CPI", "UK GDP")
   - Impact filters now functional with accurate classification
-- **UI Improvements:**
+- **UI Improvements (Latest):**
+  - Removed hardcoded mock data and placeholder stats
+  - Real-time stats calculation from actual EODHD data:
+    - High Impact Today: Dynamic count of high-impact events occurring today
+    - Currencies Tracked: Unique currencies in dataset (typically 2: USD, GBP)
+    - Upcoming in 24h: Events in next 24 hours
+    - Total Events: Complete dataset size (typically ~50 events/week)
+  - Dual query system: All events for stats + filtered events for display
   - Responsive layout: Stack vertically on mobile, horizontal on desktop
   - Event names use word-break to prevent overflow
   - Forecast/Previous/Actual grid responsive with truncation
   - Proper min-width constraints and flex wrapping
+- **Data Limitations:**
+  - EODHD API primarily provides US economic events (49 USD vs 1 GBP typical)
+  - Limited international currency coverage (EUR, JPY, AUD events are sparse)
 
 ### Webhook Integration
 - Implemented comprehensive webhook notifications for all trading and funding events
