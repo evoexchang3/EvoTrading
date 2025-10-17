@@ -6,6 +6,23 @@ const MARKETAUX_API_KEY = process.env.MARKETAUX_API_KEY;
 const MARKETAUX_BASE_URL = "https://api.marketaux.com/v1";
 const CACHE_DURATION_HOURS = 6;
 
+interface MarketauxEntity {
+  symbol: string;
+  name: string;
+  exchange?: string | null;
+  exchange_long?: string | null;
+  country: string;
+  type: string; // equity, cryptocurrency, currency, commodity, index
+  industry?: string;
+  match_score: number;
+  sentiment_score: number;
+  highlights?: Array<{
+    highlight: string;
+    sentiment: number;
+    highlighted_in: string;
+  }>;
+}
+
 interface MarketauxArticle {
   uuid: string;
   title: string;
@@ -13,11 +30,8 @@ interface MarketauxArticle {
   url: string;
   published_at: string;
   source: string;
-  sentiment?: string;
-  entities?: Array<{
-    symbol?: string;
-    name?: string;
-  }>;
+  image_url?: string;
+  entities: MarketauxEntity[];
 }
 
 interface MarketauxResponse {
@@ -75,13 +89,8 @@ export class NewsService {
       return [];
     }
 
-    const allSymbols = [
-      'EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCAD', 'USDCHF',
-      'BTC-USD', 'ETH-USD', 'XRP-USD', 'ADA-USD', 'SOL-USD',
-      'XAUUSD', 'XAGUSD', 'USOIL', 'UKOIL',
-      'SPY', 'QQQ', 'DIA', 'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA'
-    ];
-    const url = `${MARKETAUX_BASE_URL}/news/all?api_token=${MARKETAUX_API_KEY}&symbols=${allSymbols.join(',')}&filter_entities=true&language=en&limit=50`;
+    // Use entity_types to get diverse market news (Marketaux Pro feature)
+    const url = `${MARKETAUX_BASE_URL}/news/all?api_token=${MARKETAUX_API_KEY}&entity_types=equity,cryptocurrency,currency,commodity,index&must_have_entities=true&language=en&limit=50`;
 
     try {
       const response = await fetch(url);
@@ -101,9 +110,9 @@ export class NewsService {
         summary: article.description || null,
         source: article.source,
         url: article.url,
-        sentiment: article.sentiment?.toLowerCase() || 'neutral',
-        symbols: article.entities?.map(e => e.symbol).filter(Boolean) as string[] || [],
-        category: this.deriveCategory(article.entities || [], article.title, article.description || ''),
+        sentiment: this.calculateSentiment(article.entities),
+        symbols: article.entities.map(e => e.symbol).filter(Boolean),
+        category: this.deriveCategoryFromEntities(article.entities, article.title, article.description || ''),
         cachedAt: new Date(),
       }));
     } catch (error) {
@@ -112,47 +121,47 @@ export class NewsService {
     }
   }
 
-  private deriveCategory(entities: Array<{ symbol?: string; name?: string }>, title: string = '', description: string = ''): string {
-    const symbols = entities.map(e => e.symbol).filter(Boolean);
-    const text = `${title} ${description}`.toUpperCase();
+  private calculateSentiment(entities: MarketauxEntity[]): string {
+    if (!entities || entities.length === 0) return 'neutral';
     
-    // Check symbols first
-    const forexPairs = ['EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCAD', 'USDCHF', 'EURGBP', 'EURJPY', 'GBPJPY'];
-    const cryptoSymbols = ['BTC-USD', 'ETH-USD', 'XRP-USD', 'ADA-USD', 'SOL-USD', 'BTC', 'ETH', 'XRP', 'ADA', 'SOL', 'DOGE', 'MATIC', 'DOT', 'AVAX', 'LINK'];
-    const commoditySymbols = ['XAUUSD', 'XAGUSD', 'USOIL', 'UKOIL', 'GOLD', 'SILVER', 'OIL', 'CRUDE'];
-    const stockSymbols = ['SPY', 'QQQ', 'DIA', 'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'META', 'NVDA', 'AMD', 'NFLX', 'BABA'];
+    // Calculate average sentiment from all entities
+    const avgSentiment = entities.reduce((sum, entity) => sum + entity.sentiment_score, 0) / entities.length;
     
-    for (const symbol of symbols) {
-      if (cryptoSymbols.some(c => symbol?.toUpperCase().includes(c))) {
-        return 'crypto';
-      }
-      if (commoditySymbols.some(c => symbol?.toUpperCase().includes(c))) {
-        return 'commodities';
-      }
-      if (stockSymbols.some(s => symbol?.toUpperCase() === s)) {
-        return 'stocks';
-      }
-      if (forexPairs.some(f => symbol?.toUpperCase() === f)) {
-        return 'forex';
+    // Classify based on sentiment score (-1 to +1 scale)
+    if (avgSentiment > 0.1) return 'positive';
+    if (avgSentiment < -0.1) return 'negative';
+    return 'neutral';
+  }
+
+  private deriveCategoryFromEntities(entities: MarketauxEntity[], title: string = '', description: string = ''): string {
+    if (!entities || entities.length === 0) return 'general';
+    
+    // Count entity types to determine dominant category
+    const typeCounts: Record<string, number> = {};
+    
+    for (const entity of entities) {
+      const type = entity.type?.toLowerCase();
+      if (type) {
+        typeCounts[type] = (typeCounts[type] || 0) + 1;
       }
     }
     
-    // Check title and description for keywords if no symbol match
-    const forexKeywords = ['FOREX', 'CURRENCY', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'EXCHANGE RATE', 'FX MARKET', 'DOLLAR', 'EURO', 'POUND', 'YEN', 'CENTRAL BANK'];
+    // Map entity types to our categories
+    if (typeCounts['cryptocurrency'] > 0) return 'crypto';
+    if (typeCounts['currency'] > 0) return 'forex';
+    if (typeCounts['commodity'] > 0) return 'commodities';
+    if (typeCounts['equity'] > 0 || typeCounts['index'] > 0) return 'stocks';
+    
+    // Fallback to keyword matching
+    const text = `${title} ${description}`.toUpperCase();
+    const forexKeywords = ['FOREX', 'CURRENCY', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'EXCHANGE RATE', 'FX MARKET', 'DOLLAR', 'EURO', 'POUND', 'YEN'];
     const cryptoKeywords = ['BITCOIN', 'CRYPTOCURRENCY', 'CRYPTO', 'ETHEREUM', 'BLOCKCHAIN', 'NFT', 'DEFI', 'ALTCOIN', 'BTC', 'ETH'];
     const commodityKeywords = ['GOLD', 'SILVER', 'OIL', 'CRUDE', 'COMMODITY', 'COMMODITIES', 'PRECIOUS METALS', 'ENERGY', 'BRENT', 'WTI'];
     
-    if (cryptoKeywords.some(keyword => text.includes(keyword))) {
-      return 'crypto';
-    }
-    if (commodityKeywords.some(keyword => text.includes(keyword))) {
-      return 'commodities';
-    }
-    if (forexKeywords.some(keyword => text.includes(keyword))) {
-      return 'forex';
-    }
+    if (cryptoKeywords.some(keyword => text.includes(keyword))) return 'crypto';
+    if (commodityKeywords.some(keyword => text.includes(keyword))) return 'commodities';
+    if (forexKeywords.some(keyword => text.includes(keyword))) return 'forex';
     
-    // Default to general if no clear category
     return 'general';
   }
 
