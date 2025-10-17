@@ -48,6 +48,31 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (October 2025)
 
+### Marketaux Pro Integration (October 17, 2025)
+- **News Service Upgrade:** Leveraged Marketaux Pro plan features for enhanced news coverage
+  - Replaced restrictive symbol-based filtering with `entity_types` parameter (equity, cryptocurrency, currency, commodity, index)
+  - Implemented real sentiment analysis using Marketaux's entity sentiment scores (-1 to +1 scale)
+  - Sentiment classification: positive (>0.1), negative (<-0.1), neutral (-0.1 to 0.1)
+  - Improved category derivation using entity type metadata instead of keyword matching
+  - Increased article diversity from 3 to 50+ articles with better category distribution
+- **Entity Data:** Each article now includes rich entity metadata (200,000+ tracked entities)
+  - Entity types: equity, cryptocurrency, currency, commodity, index
+  - Per-entity sentiment scores and match scores
+  - Highlighted text snippets with individual sentiment analysis
+
+### Economic Calendar Enhancements (October 17, 2025)
+- **Impact Classification System:** Added manual high-impact event lookup table
+  - High-impact events: NFP, CPI, GDP, FOMC, ECB decisions, interest rate announcements (50+ event types)
+  - Medium-impact events: Housing data, PMI, business confidence, jobless claims (15+ event types)
+  - Low-impact: All other events (default)
+  - Partial matching for country-prefixed events (e.g., "US CPI", "UK GDP")
+  - Impact filters now functional with accurate classification
+- **UI Improvements:**
+  - Responsive layout: Stack vertically on mobile, horizontal on desktop
+  - Event names use word-break to prevent overflow
+  - Forecast/Previous/Actual grid responsive with truncation
+  - Proper min-width constraints and flex wrapping
+
 ### Webhook Integration
 - Implemented comprehensive webhook notifications for all trading and funding events
 - All webhooks are properly awaited and include relevant data (account IDs, amounts, timestamps)

@@ -203,14 +203,14 @@ export class EconomicService {
     // Try partial matching for events with country prefixes (e.g., "US CPI", "UK GDP")
     const eventNameUpper = eventName.toUpperCase();
     
-    for (const highImpactEvent of this.HIGH_IMPACT_EVENTS) {
+    for (const highImpactEvent of Array.from(this.HIGH_IMPACT_EVENTS)) {
       const highImpactUpper = highImpactEvent.toUpperCase();
       if (eventNameUpper.includes(highImpactUpper) || highImpactUpper.includes(eventNameUpper)) {
         return 'high';
       }
     }
     
-    for (const mediumImpactEvent of this.MEDIUM_IMPACT_EVENTS) {
+    for (const mediumImpactEvent of Array.from(this.MEDIUM_IMPACT_EVENTS)) {
       const mediumImpactUpper = mediumImpactEvent.toUpperCase();
       if (eventNameUpper.includes(mediumImpactUpper) || mediumImpactUpper.includes(eventNameUpper)) {
         return 'medium';
