@@ -390,7 +390,7 @@ export default function EconomicCalendarPage() {
                 {events.map((event, index) => (
                   <div 
                     key={event.id || index} 
-                    className="flex items-center gap-4 p-4 rounded-lg border hover-elevate"
+                    className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 p-4 rounded-lg border hover-elevate"
                     data-testid={`event-${index}`}
                   >
                     <div className="flex items-center gap-2 min-w-[120px]">
@@ -400,32 +400,32 @@ export default function EconomicCalendarPage() {
                       </span>
                     </div>
                     
-                    <Badge variant="outline" className="font-mono min-w-[50px] justify-center">
+                    <Badge variant="outline" className="font-mono w-fit min-w-[50px] justify-center">
                       {event.currency}
                     </Badge>
                     
-                    <div className="flex-1">
-                      <p className="font-semibold">{event.event}</p>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold break-words">{event.event}</p>
                       <p className="text-xs text-muted-foreground">{event.country}</p>
                     </div>
                     
-                    <Badge variant={getImpactColor(event.impact || 'low')} className="gap-1 min-w-[100px] justify-center">
+                    <Badge variant={getImpactColor(event.impact || 'low')} className="gap-1 w-fit min-w-[100px] justify-center">
                       {getImpactIcon(event.impact || 'low')}
                       {event.impact || 'low'}
                     </Badge>
                     
-                    <div className="grid grid-cols-3 gap-4 min-w-[300px] text-sm">
+                    <div className="grid grid-cols-3 gap-2 md:gap-4 w-full md:w-auto md:min-w-[300px] text-sm">
                       <div>
                         <p className="text-muted-foreground text-xs">Forecast</p>
-                        <p className="font-semibold">{event.forecast || "-"}</p>
+                        <p className="font-semibold truncate">{event.forecast || "-"}</p>
                       </div>
                       <div>
                         <p className="text-muted-foreground text-xs">Previous</p>
-                        <p className="font-semibold">{event.previous || "-"}</p>
+                        <p className="font-semibold truncate">{event.previous || "-"}</p>
                       </div>
                       <div>
                         <p className="text-muted-foreground text-xs">Actual</p>
-                        <p className="font-semibold">{event.actual || "-"}</p>
+                        <p className="font-semibold truncate">{event.actual || "-"}</p>
                       </div>
                     </div>
                   </div>
