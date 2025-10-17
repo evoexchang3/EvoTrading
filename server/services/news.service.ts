@@ -91,11 +91,12 @@ export class NewsService {
 
     try {
       // Make parallel API calls for each category to ensure balanced coverage
+      // Note: Marketaux doesn't have 'commodity' as entity_type, so we query by symbols
       const [stocksData, cryptoData, forexData, commoditiesData] = await Promise.all([
         this.fetchCategoryNews('equity', 15),
         this.fetchCategoryNews('cryptocurrency', 10),
         this.fetchCategoryNews('currency', 10),
-        this.fetchCategoryNews('commodity', 10),
+        this.fetchCommodityNews(10), // Special handler for commodities
       ]);
 
       // Combine all articles
@@ -151,6 +152,27 @@ export class NewsService {
       return data.data;
     } catch (error) {
       console.error(`Failed to fetch ${entityType} news from Marketaux:`, error);
+      return [];
+    }
+  }
+
+  private async fetchCommodityNews(limit: number): Promise<MarketauxArticle[]> {
+    // Marketaux doesn't have 'commodity' entity type, so we query by commodity symbols
+    const commoditySymbols = ['XAUUSD', 'XAGUSD', 'USOIL', 'UKOIL', 'GC', 'SI', 'CL'];
+    const url = `${MARKETAUX_BASE_URL}/news/all?api_token=${MARKETAUX_API_KEY}&symbols=${commoditySymbols.join(',')}&filter_entities=true&language=en&limit=${limit}`;
+
+    try {
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        console.error(`Marketaux API error for commodities: ${response.status} ${response.statusText}`);
+        return [];
+      }
+
+      const data: MarketauxResponse = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error(`Failed to fetch commodity news from Marketaux:`, error);
       return [];
     }
   }
