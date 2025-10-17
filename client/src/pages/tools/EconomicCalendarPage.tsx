@@ -538,36 +538,6 @@ export default function EconomicCalendarPage() {
           </CardContent>
         </Card>
 
-        {/* Export & Save Functionality */}
-        <Card data-testid="card-export-functionality">
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <Download className="w-5 h-5 text-primary" />
-              <CardTitle>Export & Save Features</CardTitle>
-            </div>
-            <CardDescription>Never miss an important economic event</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="p-4 border rounded-lg">
-                <h3 className="font-semibold mb-2">📅 Calendar Export</h3>
-                <p className="text-sm text-muted-foreground mb-3">Export events to Google Calendar, Outlook, or iCal with automatic reminders 15 minutes before release</p>
-                <Button variant="outline" size="sm" data-testid="button-sync-calendar">Sync to Calendar</Button>
-              </div>
-              <div className="p-4 border rounded-lg">
-                <h3 className="font-semibold mb-2">📊 CSV Download</h3>
-                <p className="text-sm text-muted-foreground mb-3">Download full week/month event data as CSV for analysis in Excel or custom trading journal</p>
-                <Button variant="outline" size="sm" data-testid="button-download-csv">Download CSV</Button>
-              </div>
-              <div className="p-4 border rounded-lg">
-                <h3 className="font-semibold mb-2">🔔 Custom Alerts</h3>
-                <p className="text-sm text-muted-foreground mb-3">Set SMS/email alerts for specific events (NFP, Fed) or impact levels (High only). Filter by currency</p>
-                <Button variant="outline" size="sm" data-testid="button-setup-alerts">Setup Alerts</Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* FAQ Section */}
         <Card data-testid="card-faq">
           <CardHeader>
