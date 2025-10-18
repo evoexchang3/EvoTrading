@@ -1825,9 +1825,13 @@ export const en = {
 
   // News Page - Additional keys
   'tools.news.stats.highImpactToday': 'High Impact Today',
+  'tools.news.stats.highImpactCount': '3',
   'tools.news.stats.autoRefreshRate': 'Auto-Refresh Rate',
+  'tools.news.stats.refreshRateValue': '5min',
   'tools.news.stats.trustedSources': 'Trusted Sources',
+  'tools.news.stats.sourcesCount': '12+',
   'tools.news.stats.newsCategories': 'News Categories',
+  'tools.news.stats.categoriesCount': '5',
   'tools.news.filter.general': 'General',
   'tools.news.filter.allSentiment': 'All Sentiment',
   'tools.news.autoRefresh': 'Auto-refresh every 30 min',

@@ -202,25 +202,25 @@ export default function NewsPage() {
         <div className="grid sm:grid-cols-4 gap-4">
           <Card data-testid="card-stat-high-impact-news">
             <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-destructive mb-1">3</div>
+              <div className="text-3xl font-bold text-destructive mb-1">{t('tools.news.stats.highImpactCount')}</div>
               <p className="text-sm text-muted-foreground">{t('tools.news.stats.highImpactToday')}</p>
             </CardContent>
           </Card>
           <Card data-testid="card-stat-update-frequency">
             <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-primary mb-1">5min</div>
+              <div className="text-3xl font-bold text-primary mb-1">{t('tools.news.stats.refreshRateValue')}</div>
               <p className="text-sm text-muted-foreground">{t('tools.news.stats.autoRefreshRate')}</p>
             </CardContent>
           </Card>
           <Card data-testid="card-stat-sources">
             <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-primary mb-1">12+</div>
+              <div className="text-3xl font-bold text-primary mb-1">{t('tools.news.stats.sourcesCount')}</div>
               <p className="text-sm text-muted-foreground">{t('tools.news.stats.trustedSources')}</p>
             </CardContent>
           </Card>
           <Card data-testid="card-stat-categories">
             <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-primary mb-1">5</div>
+              <div className="text-3xl font-bold text-primary mb-1">{t('tools.news.stats.categoriesCount')}</div>
               <p className="text-sm text-muted-foreground">{t('tools.news.stats.newsCategories')}</p>
             </CardContent>
           </Card>

@@ -1,7 +1,7 @@
 Missing Translation Keys for fr
 ==================================================
 
-Total Missing: 3017 keys
+Total Missing: 3021 keys
 Coverage: 27.7%
 
 
@@ -2438,7 +2438,7 @@ MARKETINFO (624 keys)
   marketInfo.tradingSignals.warning.label
   marketInfo.tradingSignals.warning.text
 
-TOOLS (592 keys)
+TOOLS (596 keys)
 --------------------------------------------------
   tools.economicCalendar.categories.centralBank.event1
   tools.economicCalendar.categories.centralBank.event2
@@ -2642,8 +2642,12 @@ TOOLS (592 keys)
   tools.news.proTips.title
   tools.news.setupAlerts
   tools.news.stats.autoRefreshRate
+  tools.news.stats.categoriesCount
+  tools.news.stats.highImpactCount
   tools.news.stats.highImpactToday
   tools.news.stats.newsCategories
+  tools.news.stats.refreshRateValue
+  tools.news.stats.sourcesCount
   tools.news.stats.trustedSources
   tools.news.strategies.confluence.execution
   tools.news.strategies.confluence.name
