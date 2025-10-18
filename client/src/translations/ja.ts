@@ -313,6 +313,8 @@ export const ja = {
   'deposits.fundType.demo': 'デモ口座',
   'deposits.fundType.bonus': 'ボーナス資金',
   'deposits.submit': '今すぐ入金',
+  'deposits.form.fundTypePlaceholder': '資金タイプを選択',
+  'deposits.form.methodPlaceholder': '支払い方法を選択',
   
   // Withdrawals
   'withdrawals.title': '出金',
@@ -342,7 +344,20 @@ export const ja = {
   'withdrawals.method.title': '出金方法',
   'withdrawals.fundType.title': '資金タイプ',
   'withdrawals.submit': '出金リクエスト',
-  
+  'withdrawals.form.amount': 'withdrawals.form.amount' === 'withdrawals.form.notes' ? '金額（USD）',
+' : '金額（USD）',
+  'withdrawals.form.amountPlaceholder': 'withdrawals.form.amountPlaceholder' === 'withdrawals.form.notes' ? '1000.00',
+' : '1000.00',
+  'withdrawals.form.fundType': 'withdrawals.form.fundType' === 'withdrawals.form.notes' ? '資金タイプ',
+' : '資金タイプ',
+  'withdrawals.form.fundTypePlaceholder': 'withdrawals.form.fundTypePlaceholder' === 'withdrawals.form.notes' ? '資金タイプを選択',
+' : '資金タイプを選択',
+  'withdrawals.form.method': 'withdrawals.form.method' === 'withdrawals.form.notes' ? '出金方法',
+' : '出金方法',
+  'withdrawals.form.methodPlaceholder': 'withdrawals.form.methodPlaceholder' === 'withdrawals.form.notes' ? '出金方法を選択',
+' : '出金方法を選択',
+  'withdrawals.form.notes': 'withdrawals.form.notes' === 'withdrawals.form.notes' ? '銀行詳細/ウォレットアドレス',
+' : '銀行詳細/ウォレットアドレス',  
   // Account Types
   'account.types.title': '口座タイプ',
   'account.types.description': '取引スタイルに合った口座を選択',

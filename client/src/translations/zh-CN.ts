@@ -313,6 +313,8 @@ export const zhCN = {
   'deposits.fundType.demo': '模拟账户',
   'deposits.fundType.bonus': '赠金',
   'deposits.submit': '立即存款',
+  'deposits.form.fundTypePlaceholder': '选择资金类型',
+  'deposits.form.methodPlaceholder': '选择支付方式',
   
   // Withdrawals
   'withdrawals.title': '提款',
@@ -342,6 +344,13 @@ export const zhCN = {
   'withdrawals.method.title': '提款方式',
   'withdrawals.fundType.title': '资金类型',
   'withdrawals.submit': '请求提款',
+  'withdrawals.form.amount': '金额（美元）',
+  'withdrawals.form.amountPlaceholder': '1000.00',
+  'withdrawals.form.fundType': '资金类型',
+  'withdrawals.form.fundTypePlaceholder': '选择资金类型',
+  'withdrawals.form.method': '提款方式',
+  'withdrawals.form.methodPlaceholder': '选择提款方式',
+  'withdrawals.form.notes': '银行详情/钱包地址',
   
   // Account Types
   'account.types.title': '账户类型',
@@ -1207,4 +1216,10 @@ export const zhCN = {
   'customer.tradingAdvice.cta.winRate': '68%平均胜率',
   'customer.tradingAdvice.cta.riskReward': '1:2.4风险/回报比',
   'customer.tradingAdvice.cta.transparency': '完全透明',
+  'customer.paymentMethods.cta.viewAccountTypes': '查看账户类型',
+  'customer.verification.timeline.title': '验证时间表',
+  'customer.verification.step1.description': '提供您的全名、出生日期、地址和联系方式',
+  'customer.verification.step2.description': '上传政府签发身份证件的清晰照片',
+  'customer.verification.step3.description': '提交近期的水电费账单、银行对账单或政府文件',
+  'customer.verification.step4.description': '我们的合规团队审核您的文件',
 };

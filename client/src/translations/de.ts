@@ -313,6 +313,8 @@ export const de = {
   'deposits.fundType.demo': 'Demokonto',
   'deposits.fundType.bonus': 'Bonusguthaben',
   'deposits.submit': 'Jetzt einzahlen',
+  'deposits.form.fundTypePlaceholder': 'Guthabenart auswählen',
+  'deposits.form.methodPlaceholder': 'Zahlungsmethode auswählen',
   
   // Withdrawals
   'withdrawals.title': 'Auszahlung',
@@ -342,7 +344,20 @@ export const de = {
   'withdrawals.method.title': 'Auszahlungsmethode',
   'withdrawals.fundType.title': 'Fondstyp',
   'withdrawals.submit': 'Auszahlung anfordern',
-  
+  'withdrawals.form.amount': 'withdrawals.form.amount' === 'withdrawals.form.notes' ? 'Betrag (USD)',
+' : 'Betrag (USD)',
+  'withdrawals.form.amountPlaceholder': 'withdrawals.form.amountPlaceholder' === 'withdrawals.form.notes' ? '1000.00',
+' : '1000.00',
+  'withdrawals.form.fundType': 'withdrawals.form.fundType' === 'withdrawals.form.notes' ? 'Guthabenart',
+' : 'Guthabenart',
+  'withdrawals.form.fundTypePlaceholder': 'withdrawals.form.fundTypePlaceholder' === 'withdrawals.form.notes' ? 'Guthabenart auswählen',
+' : 'Guthabenart auswählen',
+  'withdrawals.form.method': 'withdrawals.form.method' === 'withdrawals.form.notes' ? 'Auszahlungsmethode',
+' : 'Auszahlungsmethode',
+  'withdrawals.form.methodPlaceholder': 'withdrawals.form.methodPlaceholder' === 'withdrawals.form.notes' ? 'Auszahlungsmethode auswählen',
+' : 'Auszahlungsmethode auswählen',
+  'withdrawals.form.notes': 'withdrawals.form.notes' === 'withdrawals.form.notes' ? 'Bankdaten/Wallet-Adresse',
+' : 'Bankdaten/Wallet-Adresse',  
   // Account Types
   'account.types.title': 'Kontotypen',
   'account.types.description': 'Wählen Sie das Konto, das zu Ihrem Handelsstil passt',
@@ -1306,8 +1321,4 @@ export const de = {
   'customer.tradingAdvice.faq.receiveSignals.answer': 'Signale werden über mehrere Kanäle zugestellt: Push-Benachrichtigungen in der Handelsplattform, E-Mail-Benachrichtigungen an Ihre registrierte Adresse, SMS-Textnachrichten (Opt-in erforderlich) und über unsere Mobile App. Sie können anpassen, welche Signale Sie erhalten und über welche Kanäle. VIP-Mitglieder erhalten vorrangige Zustellung vor allgemeiner Freigabe.',
   'customer.tradingAdvice.faq.webinarType.question': 'Sind die Webinare live oder vorab aufgezeichnet?',
   'customer.tradingAdvice.faq.webinarType.answer': 'Wir bieten beides an. Live-Webinare finden wöchentlich statt und beinhalten Frage-und-Antwort-Sitzungen, bei denen Sie Fragen direkt an unsere Analysten stellen können. Alle Live-Sitzungen werden aufgezeichnet und zu unserer Bibliothek von über 100 Bildungsvideos hinzugefügt. Professional- und VIP-Mitglieder können auf alle Aufzeichnungen on-demand zugreifen. Die Themen reichen von Grundlagen für Anfänger bis zu fortgeschrittenen Strategien.',
-  'customer.tradingAdvice.faq.signalFails.question': 'Was ist, wenn ein Signal nicht funktioniert?',
-  'customer.tradingAdvice.faq.signalFails.answer': 'Nicht alle Signale werden profitabel sein - das ist die Natur des Handels. Jedes Signal enthält Stop-Loss-Niveaus, um potenzielle Verluste zu begrenzen. Unsere Gewinnrate von 65-72% bedeutet, dass 28-35% der Signale den Stop-Loss erreichen. Der Schlüssel ist unser Risiko-Ertrags-Verhältnis (1:2+), was bedeutet, dass Gewinner normalerweise Verlierer überwiegen. Wir verfolgen und veröffentlichen alle Signalergebnisse zur Transparenz.',
-  'customer.tradingAdvice.faq.requestAnalysis.question': 'Kann ich Analysen zu bestimmten Instrumenten anfordern?',
-  'customer.tradingAdvice.faq.requestAnalysis.answer': 'Professional- und VIP-Kontoinhaber können Analysen zu bestimmten Instrumenten anfordern. Reichen Sie Anfragen über Ihr Konto-Dashboard ein, und unser Team wird sie in kommende Berichte aufnehmen (vorbehaltlich Verfügbarkeit). VIP-Mitglieder erhalten Priorität für benutzerdefinierte Analyseanfragen und können 1-zu-1-Sitzungen mit unseren Senior-Analysten planen.',
 };
