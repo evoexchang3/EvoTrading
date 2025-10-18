@@ -38,63 +38,6 @@ export default function NewsPage() {
     refetchInterval: 1000 * 60 * 30, // Refetch every 30 minutes
   });
 
-  const newsItems = [
-    {
-      title: "Federal Reserve Signals Potential Rate Cuts in 2024",
-      source: "Reuters",
-      category: "central-banks",
-      time: "2 hours ago",
-      impact: "high",
-      summary: "Fed Chair Jerome Powell indicated the central bank may consider lowering interest rates if inflation continues its downward trend, sending USD lower across major pairs.",
-      tradingImplication: "Bearish USD: Sell USD/JPY target 148.00, USD/CHF target 0.8500. Long Gold (XAU/USD) target $2,100. Risk: If jobs data stays strong, Fed may delay cuts - reversal likely."
-    },
-    {
-      title: "ECB Maintains Hawkish Stance Despite Slowing Growth",
-      source: "Bloomberg",
-      category: "central-banks",
-      time: "4 hours ago",
-      impact: "high",
-      summary: "European Central Bank keeps rates unchanged but signals vigilance on inflation, supporting EUR strength against commodity currencies.",
-      tradingImplication: "Bullish EUR: Buy EUR/AUD target 1.6800, EUR/NZD target 1.8200. Avoid EUR/USD (mixed signals with Fed dovish). Take profit if ECB hints at cuts in Q2."
-    },
-    {
-      title: "Gold Reaches New Yearly High on Safe Haven Demand",
-      source: "Financial Times",
-      category: "commodities",
-      time: "5 hours ago",
-      impact: "medium",
-      summary: "XAU/USD breaks through $2,050 resistance as geopolitical tensions and dovish Fed expectations drive investors to safe haven assets.",
-      tradingImplication: "Bullish Gold: Buy XAU/USD on pullback to $2,045 support, target $2,100, stop $2,030. Correlates with USD weakness - if DXY drops, gold rises. Watch US yields."
-    },
-    {
-      title: "US Jobless Claims Fall Below Expectations",
-      source: "MarketWatch",
-      category: "economic-data",
-      time: "6 hours ago",
-      impact: "medium",
-      summary: "Initial jobless claims drop to 201K, beating forecast of 215K, indicating continued labor market strength and complicating Fed rate cut timeline.",
-      tradingImplication: "Mixed USD: Short-term bullish (strong jobs), long-term bearish (delays cuts = slows economy). Trade: Wait for NFP Friday - if also strong, buy USD. If weak, ignore claims."
-    },
-    {
-      title: "Bitcoin Surges Past $45,000 on ETF Approval Hopes",
-      source: "CoinDesk",
-      category: "crypto",
-      time: "7 hours ago",
-      impact: "high",
-      summary: "BTC/USD rallies 8% as institutional investors anticipate spot Bitcoin ETF approvals, with analysts projecting further upside to $50K.",
-      tradingImplication: "Bullish BTC: Buy BTC/USD target $48K, stop $43K (tight - volatile). If ETF approved, rally to $55K. If rejected, drop to $38K. High risk/reward. Use 50% normal position size."
-    },
-    {
-      title: "Oil Prices Decline on Demand Concerns",
-      source: "Reuters",
-      category: "commodities",
-      time: "8 hours ago",
-      impact: "medium",
-      summary: "WTI crude falls 2.3% to $78.50 amid worries about Chinese economic slowdown and potential increase in OPEC+ production quotas.",
-      tradingImplication: "Bearish Oil: Sell WTI at $79.00, target $75.00. Affects CAD (oil-linked) - short CAD/JPY. Watch for OPEC emergency meeting - can reverse trend instantly if cut production."
-    }
-  ];
-
   const newsInterpretation = [
     {
       newsType: t('tools.news.interpretation.centralBanks.type'),

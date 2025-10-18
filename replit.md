@@ -116,19 +116,15 @@ Preferred communication style: Simple, everyday language.
   - Fund type selectors on deposit and withdrawal pages
 - All balance updates trigger appropriate webhook notifications
 
-### Internationalization (i18n) Implementation (October 17, 2025)
+### Internationalization (i18n) Implementation (October 17-18, 2025)
 - **Custom Context-Based i18n System:** Zero-dependency translation infrastructure
   - LanguageContext with React Context API for global language state
   - useLanguage hook for accessing translations via `t()` function
   - Lazy loading with code splitting prevents bundle size increase
   - Browser language detection on first visit
   - Persistent language preference in localStorage
-- **Comprehensive Translation Coverage:**
-  - Master English translation file with 10,000+ words covering entire platform
+- **Language Support:**
   - 8 Tier 1 languages: English, Chinese Simplified, Japanese, German, French, Spanish, Arabic, Russian
-  - Accurate financial and trading terminology across all languages
-  - Translation key structure: `{section}.{page}.{component}.{element}`
-- **Language Support Features:**
   - Currency and number formatting per locale
   - Pluralization support for dynamic content
   - RTL (Right-to-Left) support for Arabic
@@ -137,23 +133,31 @@ Preferred communication style: Simple, everyday language.
   - LanguageSwitcher dropdown with native language names
   - Integrated into both DashboardLayout and LandingLayout headers
   - Displays 8 languages: English, 简体中文, 日本語, Deutsch, Français, Español, العربية, Русский
-- **Migration Status:**
-  - Core infrastructure: ✅ Complete
-  - **Priority 1 Pages (8/8):** ✅ DashboardPage, TradingPage, DepositsPage, WithdrawalsPage, ProfilePage, SettingsPage, KYCPage, ForgotPasswordPage
-  - **Priority 2 Pages (10/10):** ✅ HomePage, AboutPage, FAQPage, EducationPage, ContactPage, PartnersPage, AccountTypesPage, PaymentMethodsPage, VerificationPage, TradingAdvicePage
-  - **Priority 3 Pages (12/12):** ⏳ Tools (5), Education (3), Market Info (4) - Pending migration
-  - **Priority 4 Pages (11/11):** ⏳ Company (6), Legal (5) - Pending migration
-  - **Total Progress:** 18/41 pages (44%) fully translated across all 8 languages
-- **Translation Coverage:**
-  - ~1,200+ translation keys fully translated across all 8 languages
-  - All customer.* namespace (499 keys) complete in all languages
-  - Zero untranslated key strings in Priority 1 & 2 pages
-  - Total translations: ~9,600+ (1,200 keys × 8 languages)
-- **Compliance & Quality Fixes (October 17, 2025):**
-  - Fixed test ID stability: Navigation now uses fixed identifiers instead of translated labels
-  - Completed proper translations: All tools and education menu items properly localized in all 8 languages
-  - Removed flag emojis: Using language codes in LanguageSwitcher per platform guidelines
-  - Accurate financial terminology: All translations verified for trading/financial accuracy
+- **Migration Status (October 18, 2025):**
+  - **Core infrastructure:** ✅ Complete
+  - **All 41 pages:** ✅ Migrated to use useLanguage() hook - no hardcoded strings
+  - **Priority 1-4 Pages (41/41):** ✅ All pages use t() function for all UI text
+  - **Critical fixes completed:**
+    - ✅ Error messages now use translation keys (t('tools.economicCalendar.errors.fetchFailed'))
+    - ✅ Event lists refactored from .split(', ') to array-based translations (event1, event2, event3)
+    - ✅ Test ID stability: Navigation uses fixed identifiers instead of translated labels
+- **Translation Coverage (October 18, 2025):**
+  - **English (en.ts):** 4,144 complete translation keys (100% coverage)
+  - **Non-English languages (zh-CN, ja, de, fr, es, ar, ru):** ~1,153 keys each (27-31% coverage)
+  - **Missing:** ~3,017-3,023 keys per language (~21,119 total translations)
+  - **Validation tooling:** scripts/check-translations.js generates missing key manifests
+  - **Section breakdown (missing keys per language):**
+    - COMPANY: 883 keys (Regulatory, Safety, Complaints, Platform Status, etc.)
+    - EDUCATION: 613 keys (Beginner Course, Advanced Course, Glossary)
+    - MARKETINFO: 624 keys (Technical Analysis, Fundamental Analysis, Trading Signals, Heatmap)
+    - TOOLS: 592 keys (Economic Calendar extended, News advanced, Calculators)
+    - LEGAL: 296 keys (Terms, Privacy, Risk Disclosure, AML, Cookies)
+    - CUSTOMER: 6 keys, WITHDRAWALS: 7 keys, DEPOSITS: 2 keys
+- **Next Steps for Complete Internationalization:**
+  - Use phased translation pipeline: ~200 key batches per section
+  - Priority order: CUSTOMER/WITHDRAWALS/DEPOSITS → LEGAL → TOOLS → EDUCATION → MARKETINFO → COMPANY
+  - Run `npm run node scripts/check-translations.js` to generate updated manifests
+  - Add translations systematically to maintain professional financial terminology quality
 
 ### Demo Account
 - Email: demo@test.com
