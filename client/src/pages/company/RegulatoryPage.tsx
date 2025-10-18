@@ -17,34 +17,37 @@ import {
   ExternalLink,
   HelpCircle
 } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function RegulatoryPage() {
+  const { t } = useLanguage();
+
   const stats = [
     {
-      label: "Jurisdictions",
-      value: "8",
-      description: "Operating licenses worldwide",
+      label: t('company.regulatory.stats.jurisdictions.label'),
+      value: t('company.regulatory.stats.jurisdictions.value'),
+      description: t('company.regulatory.stats.jurisdictions.description'),
       icon: Globe,
       testId: "stat-jurisdictions"
     },
     {
-      label: "Years Operating",
-      value: "15+",
-      description: "Established track record",
+      label: t('company.regulatory.stats.years.label'),
+      value: t('company.regulatory.stats.years.value'),
+      description: t('company.regulatory.stats.years.description'),
       icon: Award,
       testId: "stat-years"
     },
     {
-      label: "Regulators",
-      value: "6",
-      description: "Major financial authorities",
+      label: t('company.regulatory.stats.regulators.label'),
+      value: t('company.regulatory.stats.regulators.value'),
+      description: t('company.regulatory.stats.regulators.description'),
       icon: Building,
       testId: "stat-regulators"
     },
     {
-      label: "Compliance Score",
-      value: "98.5%",
-      description: "Annual audit rating",
+      label: t('company.regulatory.stats.compliance.label'),
+      value: t('company.regulatory.stats.compliance.value'),
+      description: t('company.regulatory.stats.compliance.description'),
       icon: CheckCircle,
       testId: "stat-compliance"
     }
@@ -52,195 +55,195 @@ export default function RegulatoryPage() {
 
   const regulatoryBodies = [
     {
-      name: "Financial Conduct Authority (FCA)",
-      country: "United Kingdom",
-      license: "FRN 742681",
-      type: "Full Authorization",
-      description: "Authorized and regulated by the UK's premier financial regulator, ensuring the highest standards of client protection and market conduct.",
+      name: t('company.regulatory.fca.name'),
+      country: t('company.regulatory.fca.country'),
+      license: t('company.regulatory.fca.license'),
+      type: t('company.regulatory.fca.type'),
+      description: t('company.regulatory.fca.description'),
       requirements: [
-        "Segregated client funds in UK banks",
-        "£1 million minimum capital requirement",
-        "Quarterly regulatory reporting",
-        "FSCS protection up to £85,000 per client"
+        t('company.regulatory.fca.req1'),
+        t('company.regulatory.fca.req2'),
+        t('company.regulatory.fca.req3'),
+        t('company.regulatory.fca.req4')
       ]
     },
     {
-      name: "Cyprus Securities and Exchange Commission (CySEC)",
-      country: "Cyprus (EU)",
-      license: "License No. 247/14",
-      type: "MiFID II Compliant",
-      description: "Licensed under European MiFID II framework, allowing passporting rights across all EU member states with harmonized investor protection.",
+      name: t('company.regulatory.cysec.name'),
+      country: t('company.regulatory.cysec.country'),
+      license: t('company.regulatory.cysec.license'),
+      type: t('company.regulatory.cysec.type'),
+      description: t('company.regulatory.cysec.description'),
       requirements: [
-        "ICF protection up to €20,000 per client",
-        "€730,000 minimum capital requirement",
-        "Compliance with MiFID II directive",
-        "Annual external audits by Big 4 firms"
+        t('company.regulatory.cysec.req1'),
+        t('company.regulatory.cysec.req2'),
+        t('company.regulatory.cysec.req3'),
+        t('company.regulatory.cysec.req4')
       ]
     },
     {
-      name: "Australian Securities and Investments Commission (ASIC)",
-      country: "Australia",
-      license: "AFSL 428901",
-      type: "Market Maker License",
-      description: "Holds Australian Financial Services License with full authority to provide derivatives and leveraged products to retail and wholesale clients.",
+      name: t('company.regulatory.asic.name'),
+      country: t('company.regulatory.asic.country'),
+      license: t('company.regulatory.asic.license'),
+      type: t('company.regulatory.asic.type'),
+      description: t('company.regulatory.asic.description'),
       requirements: [
-        "Segregated accounts with Tier-1 Australian banks",
-        "Negative balance protection for retail clients",
-        "Product intervention orders compliance",
-        "External dispute resolution via AFCA"
+        t('company.regulatory.asic.req1'),
+        t('company.regulatory.asic.req2'),
+        t('company.regulatory.asic.req3'),
+        t('company.regulatory.asic.req4')
       ]
     },
     {
-      name: "Financial Sector Conduct Authority (FSCA)",
-      country: "South Africa",
-      license: "FSP No. 48896",
-      type: "Category I FSP",
-      description: "Licensed to provide over-the-counter derivatives and foreign exchange services under South Africa's stringent financial services framework.",
+      name: t('company.regulatory.fsca.name'),
+      country: t('company.regulatory.fsca.country'),
+      license: t('company.regulatory.fsca.license'),
+      type: t('company.regulatory.fsca.type'),
+      description: t('company.regulatory.fsca.description'),
       requirements: [
-        "Minimum capital: 500,000 ZAR",
-        "Quarterly compliance officer reports",
-        "Ombud for Financial Services Providers access",
-        "Segregated client accounts mandatory"
+        t('company.regulatory.fsca.req1'),
+        t('company.regulatory.fsca.req2'),
+        t('company.regulatory.fsca.req3'),
+        t('company.regulatory.fsca.req4')
       ]
     },
     {
-      name: "Financial Services Authority (FSA)",
-      country: "Seychelles",
-      license: "SD089",
-      type: "Securities Dealer License",
-      description: "International securities dealer license for serving clients in Asia-Pacific and emerging markets with flexible leverage options.",
+      name: t('company.regulatory.fsa.name'),
+      country: t('company.regulatory.fsa.country'),
+      license: t('company.regulatory.fsa.license'),
+      type: t('company.regulatory.fsa.type'),
+      description: t('company.regulatory.fsa.description'),
       requirements: [
-        "Minimum capital: $50,000 USD",
-        "Annual external audit requirement",
-        "Client fund segregation at regulated banks",
-        "Professional Indemnity Insurance coverage"
+        t('company.regulatory.fsa.req1'),
+        t('company.regulatory.fsa.req2'),
+        t('company.regulatory.fsa.req3'),
+        t('company.regulatory.fsa.req4')
       ]
     },
     {
-      name: "Dubai Financial Services Authority (DFSA)",
-      country: "United Arab Emirates",
-      license: "F004822",
-      type: "Category 3C License",
-      description: "Licensed in Dubai International Financial Centre (DIFC) for providing dealing services in investments to retail and professional clients.",
+      name: t('company.regulatory.dfsa.name'),
+      country: t('company.regulatory.dfsa.country'),
+      license: t('company.regulatory.dfsa.license'),
+      type: t('company.regulatory.dfsa.type'),
+      description: t('company.regulatory.dfsa.description'),
       requirements: [
-        "Base capital: $500,000 USD",
-        "DFSA Client Money Rules compliance",
-        "Risk management framework approval",
-        "Quarterly regulatory returns"
+        t('company.regulatory.dfsa.req1'),
+        t('company.regulatory.dfsa.req2'),
+        t('company.regulatory.dfsa.req3'),
+        t('company.regulatory.dfsa.req4')
       ]
     }
   ];
 
   const complianceFramework = [
     {
-      title: "Anti-Money Laundering (AML)",
-      description: "Comprehensive AML procedures in line with FATF recommendations",
+      title: t('company.regulatory.compliance.aml.title'),
+      description: t('company.regulatory.compliance.aml.description'),
       measures: [
-        "Enhanced Due Diligence (EDD) for high-risk clients",
-        "Ongoing transaction monitoring and suspicious activity reporting",
-        "Source of funds and source of wealth verification",
-        "Regular staff training on AML/CFT procedures",
-        "Annual independent AML audit by external firm"
+        t('company.regulatory.compliance.aml.measure1'),
+        t('company.regulatory.compliance.aml.measure2'),
+        t('company.regulatory.compliance.aml.measure3'),
+        t('company.regulatory.compliance.aml.measure4'),
+        t('company.regulatory.compliance.aml.measure5')
       ]
     },
     {
-      title: "Know Your Customer (KYC)",
-      description: "Rigorous client identification and verification processes",
+      title: t('company.regulatory.compliance.kyc.title'),
+      description: t('company.regulatory.compliance.kyc.description'),
       measures: [
-        "Government-issued ID verification (passport, driver's license)",
-        "Proof of address verification (utility bill, bank statement <3 months)",
-        "Biometric verification for high-value accounts",
-        "Politically Exposed Persons (PEP) screening",
-        "Beneficial ownership identification for corporate accounts"
+        t('company.regulatory.compliance.kyc.measure1'),
+        t('company.regulatory.compliance.kyc.measure2'),
+        t('company.regulatory.compliance.kyc.measure3'),
+        t('company.regulatory.compliance.kyc.measure4'),
+        t('company.regulatory.compliance.kyc.measure5')
       ]
     },
     {
-      title: "Data Protection & Privacy",
-      description: "Full compliance with GDPR, DPA 2018, and international privacy laws",
+      title: t('company.regulatory.compliance.privacy.title'),
+      description: t('company.regulatory.compliance.privacy.description'),
       measures: [
-        "Data Protection Officer (DPO) appointed and contactable",
-        "Client data encrypted at rest (AES-256) and in transit (TLS 1.3)",
-        "Right to access, rectification, and erasure honored within 30 days",
-        "Data retention policy: 7 years for financial records, 5 years for KYC",
-        "Annual Data Protection Impact Assessments (DPIA)"
+        t('company.regulatory.compliance.privacy.measure1'),
+        t('company.regulatory.compliance.privacy.measure2'),
+        t('company.regulatory.compliance.privacy.measure3'),
+        t('company.regulatory.compliance.privacy.measure4'),
+        t('company.regulatory.compliance.privacy.measure5')
       ]
     },
     {
-      title: "Best Execution Policy",
-      description: "Commitment to obtaining the best possible results for client orders",
+      title: t('company.regulatory.compliance.execution.title'),
+      description: t('company.regulatory.compliance.execution.description'),
       measures: [
-        "Multi-venue execution across 15+ liquidity providers",
-        "Price, cost, speed, and likelihood of execution considered",
-        "Annual best execution reports published on website",
-        "Client order priority: Client orders filled before proprietary trading",
-        "No last look rejections on retail client orders"
+        t('company.regulatory.compliance.execution.measure1'),
+        t('company.regulatory.compliance.execution.measure2'),
+        t('company.regulatory.compliance.execution.measure3'),
+        t('company.regulatory.compliance.execution.measure4'),
+        t('company.regulatory.compliance.execution.measure5')
       ]
     }
   ];
 
   const auditReporting = [
     {
-      type: "External Financial Audit",
-      frequency: "Annual",
-      auditor: "KPMG International",
-      lastCompleted: "March 2025",
-      nextDue: "March 2026",
-      scope: "Full financial statements, internal controls, and regulatory capital adequacy"
+      type: t('company.regulatory.audit.financial.type'),
+      frequency: t('company.regulatory.audit.financial.frequency'),
+      auditor: t('company.regulatory.audit.financial.auditor'),
+      lastCompleted: t('company.regulatory.audit.financial.lastCompleted'),
+      nextDue: t('company.regulatory.audit.financial.nextDue'),
+      scope: t('company.regulatory.audit.financial.scope')
     },
     {
-      type: "Regulatory Compliance Audit",
-      frequency: "Quarterly",
-      auditor: "Internal Compliance Team + External Consultant",
-      lastCompleted: "January 2025",
-      nextDue: "April 2025",
-      scope: "AML/KYC procedures, client fund segregation, best execution, complaints handling"
+      type: t('company.regulatory.audit.compliance.type'),
+      frequency: t('company.regulatory.audit.compliance.frequency'),
+      auditor: t('company.regulatory.audit.compliance.auditor'),
+      lastCompleted: t('company.regulatory.audit.compliance.lastCompleted'),
+      nextDue: t('company.regulatory.audit.compliance.nextDue'),
+      scope: t('company.regulatory.audit.compliance.scope')
     },
     {
-      type: "Information Security Audit (ISO 27001)",
-      frequency: "Bi-Annual",
-      auditor: "BSI Group",
-      lastCompleted: "September 2024",
-      nextDue: "September 2025",
-      scope: "Cybersecurity controls, data protection, incident response, business continuity"
+      type: t('company.regulatory.audit.security.type'),
+      frequency: t('company.regulatory.audit.security.frequency'),
+      auditor: t('company.regulatory.audit.security.auditor'),
+      lastCompleted: t('company.regulatory.audit.security.lastCompleted'),
+      nextDue: t('company.regulatory.audit.security.nextDue'),
+      scope: t('company.regulatory.audit.security.scope')
     },
     {
-      type: "Penetration Testing",
-      frequency: "Quarterly",
-      auditor: "Certified Ethical Hackers (CEH)",
-      lastCompleted: "January 2025",
-      nextDue: "April 2025",
-      scope: "Trading platform, mobile apps, API endpoints, internal network infrastructure"
+      type: t('company.regulatory.audit.penetration.type'),
+      frequency: t('company.regulatory.audit.penetration.frequency'),
+      auditor: t('company.regulatory.audit.penetration.auditor'),
+      lastCompleted: t('company.regulatory.audit.penetration.lastCompleted'),
+      nextDue: t('company.regulatory.audit.penetration.nextDue'),
+      scope: t('company.regulatory.audit.penetration.scope')
     }
   ];
 
   const faqs = [
     {
-      question: "Why is regulation important when choosing a forex broker?",
-      answer: "Regulation provides critical client protections: segregated funds (your money kept separate from broker's), compensation schemes (insurance if broker fails), dispute resolution mechanisms, and oversight by government authorities. Regulated brokers must maintain minimum capital reserves, submit to regular audits, and follow strict conduct rules. Unregulated brokers can freeze accounts, manipulate prices, or disappear with client funds without recourse."
+      question: t('company.regulatory.faq.q1.question'),
+      answer: t('company.regulatory.faq.q1.answer')
     },
     {
-      question: "What does it mean to be FCA or CySEC regulated?",
-      answer: "FCA (UK) regulation is considered the gold standard, requiring brokers to hold £1M+ capital, segregate client funds in UK banks, and provide FSCS protection up to £85,000. CySEC (Cyprus) regulation offers EU-wide MiFID II protections, including ICF compensation up to €20,000, segregated accounts, and negative balance protection for retail clients. Both regulators conduct regular audits and can revoke licenses for non-compliance."
+      question: t('company.regulatory.faq.q2.question'),
+      answer: t('company.regulatory.faq.q2.answer')
     },
     {
-      question: "How can I verify your regulatory licenses are legitimate?",
-      answer: "You can independently verify all our licenses: FCA Register (register.fca.org.uk, search FRN 742681), CySEC Register (cysec.gov.cy, License 247/14), ASIC Register (connectonline.asic.gov.au, AFSL 428901). Each regulator maintains a public database. We also publish our license certificates and annual compliance reports in the 'Legal Documents' section of our website. Never trust a broker that refuses to provide verifiable license numbers."
+      question: t('company.regulatory.faq.q3.question'),
+      answer: t('company.regulatory.faq.q3.answer')
     },
     {
-      question: "Which regulatory jurisdiction protects me best as a client?",
-      answer: "Depends on your location and trading style: UK (FCA) offers the strongest retail protections with FSCS insurance and strict leverage limits (1:30). EU (CySEC) provides MiFID II harmonized protections across Europe. Australia (ASIC) offers negative balance protection and AFCA dispute resolution. Offshore licenses (Seychelles, Mauritius) allow higher leverage but weaker protections. Choose the entity that regulates in your country of residence for maximum protection."
+      question: t('company.regulatory.faq.q4.question'),
+      answer: t('company.regulatory.faq.q4.answer')
     },
     {
-      question: "What happens to my funds if the broker goes bankrupt?",
-      answer: "With FCA regulation, the Financial Services Compensation Scheme (FSCS) protects up to £85,000 per client. CySEC clients get Investor Compensation Fund (ICF) coverage up to €20,000. ASIC doesn't have a compensation scheme but requires segregated accounts with Australian banks. Your funds are kept separate from company assets, so in bankruptcy, client money is returned first before creditors. This is why choosing a regulated broker is critical."
+      question: t('company.regulatory.faq.q5.question'),
+      answer: t('company.regulatory.faq.q5.answer')
     },
     {
-      question: "Do you have to follow different rules for professional vs retail clients?",
-      answer: "Yes, under MiFID II and FCA rules. Retail clients receive maximum protection: leverage limits (1:30 forex, 1:20 indices), negative balance protection, 50% margin close-out rule, and stricter marketing restrictions. Professional clients (€500K portfolio, high trade volume, or financial sector experience) get higher leverage but fewer protections. Clients must opt-in and meet strict criteria to be classified as professional."
+      question: t('company.regulatory.faq.q6.question'),
+      answer: t('company.regulatory.faq.q6.answer')
     },
     {
-      question: "How often are you audited and by whom?",
-      answer: "We undergo multiple audits annually: Financial audit by KPMG (annual), compliance audit (quarterly by internal team + external consultants), ISO 27001 security audit by BSI Group (bi-annual), and penetration testing (quarterly). Regulators also conduct surprise inspections. All audit reports (excluding sensitive security details) are summarized in our annual compliance report, published each April on our website."
+      question: t('company.regulatory.faq.q7.question'),
+      answer: t('company.regulatory.faq.q7.answer')
     }
   ];
 
@@ -250,10 +253,10 @@ export default function RegulatoryPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-regulatory">Trust & Compliance</Badge>
-            <h1 className="text-4xl font-bold mb-4">Regulatory & Licenses</h1>
+            <Badge className="mb-4" data-testid="badge-regulatory">{t('company.regulatory.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('company.regulatory.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              We operate under the oversight of six major financial regulators across eight jurisdictions, ensuring the highest standards of client protection, fund security, and regulatory compliance.
+              {t('company.regulatory.description')}
             </p>
           </div>
 
@@ -277,13 +280,13 @@ export default function RegulatoryPage() {
           <Alert className="mb-12" data-testid="alert-regulation-notice">
             <Info className="h-4 w-4" />
             <AlertDescription>
-              <strong>Important:</strong> Different group entities operate under different licenses. Your regulatory protection depends on which entity you open an account with, typically determined by your country of residence. Always verify which regulated entity serves your jurisdiction.
+              <strong>{t('company.regulatory.alert.important')}</strong> {t('company.regulatory.alert.message')}
             </AlertDescription>
           </Alert>
 
           {/* Regulatory Bodies */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Our Regulatory Licenses</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.regulatory.licenses.title')}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {regulatoryBodies.map((regulator, index) => (
                 <Card key={index} data-testid={`card-regulator-${index}`}>
@@ -308,7 +311,7 @@ export default function RegulatoryPage() {
                   <CardContent>
                     <p className="text-sm text-muted-foreground mb-4">{regulator.description}</p>
                     <div className="space-y-2">
-                      <h4 className="font-semibold text-sm">Key Requirements:</h4>
+                      <h4 className="font-semibold text-sm">{t('company.regulatory.licenses.keyRequirements')}</h4>
                       <ul className="space-y-1">
                         {regulator.requirements.map((req, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-sm">
@@ -326,7 +329,7 @@ export default function RegulatoryPage() {
 
           {/* Compliance Framework */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Compliance Framework</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.regulatory.compliance.title')}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {complianceFramework.map((framework, index) => (
                 <Card key={index} data-testid={`card-compliance-${index}`}>
@@ -357,10 +360,10 @@ export default function RegulatoryPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-primary" />
-                Audit & Reporting Transparency
+                {t('company.regulatory.audit.title')}
               </CardTitle>
               <CardDescription>
-                We maintain the highest standards of accountability through regular independent audits and transparent reporting
+                {t('company.regulatory.audit.description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -376,11 +379,11 @@ export default function RegulatoryPage() {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4 text-sm">
                       <div>
-                        <span className="text-muted-foreground">Last Completed:</span>
+                        <span className="text-muted-foreground">{t('company.regulatory.audit.lastCompleted')}</span>
                         <span className="ml-2 font-medium">{audit.lastCompleted}</span>
                       </div>
                       <div>
-                        <span className="text-muted-foreground">Next Due:</span>
+                        <span className="text-muted-foreground">{t('company.regulatory.audit.nextDue')}</span>
                         <span className="ml-2 font-medium">{audit.nextDue}</span>
                       </div>
                     </div>
@@ -395,13 +398,13 @@ export default function RegulatoryPage() {
           <Alert className="mb-12 border-amber-500/50" data-testid="alert-warning">
             <AlertTriangle className="h-4 w-4 text-amber-500" />
             <AlertDescription>
-              <strong>Beware of Clone Firms:</strong> Fraudsters sometimes impersonate regulated brokers. Always verify our license numbers directly on regulator websites, never through links we provide. Check the FCA Warning List for known scams.
+              <strong>{t('company.regulatory.warning.title')}</strong> {t('company.regulatory.warning.message')}
             </AlertDescription>
           </Alert>
 
           {/* FAQ Section */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.regulatory.faq.title')}</h2>
             <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>

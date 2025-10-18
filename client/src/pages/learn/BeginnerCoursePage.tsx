@@ -12,10 +12,12 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { type CourseProgress } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const COURSE_ID = "beginner-trading";
 
 export default function BeginnerCoursePage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
@@ -49,8 +51,8 @@ export default function BeginnerCoursePage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/course-progress', COURSE_ID] });
       toast({
-        title: "Progress Saved",
-        description: "Your course progress has been updated."
+        title: t('education.beginnerCourse.progress.saved'),
+        description: t('education.beginnerCourse.progress.savedDescription')
       });
     }
   });
@@ -102,15 +104,15 @@ export default function BeginnerCoursePage() {
   const modules = [
     {
       id: "module-1",
-      title: "Module 1: Trading Basics",
-      description: "Foundation knowledge of forex markets, currency pairs, and trading fundamentals",
-      duration: "30 mins",
+      title: t('education.beginnerCourse.module1.title'),
+      description: t('education.beginnerCourse.module1.description'),
+      duration: t('education.beginnerCourse.module1.duration'),
       lessons: [
-        { id: "lesson-1-1", title: "What is Forex Trading?", duration: "5 mins" },
-        { id: "lesson-1-2", title: "Understanding Currency Pairs", duration: "6 mins" },
-        { id: "lesson-1-3", title: "How the Forex Market Works", duration: "7 mins" },
-        { id: "lesson-1-4", title: "Market Participants and Liquidity", duration: "6 mins" },
-        { id: "lesson-1-5", title: "Trading Sessions and Market Hours", duration: "6 mins" }
+        { id: "lesson-1-1", title: t('education.beginnerCourse.module1.lesson1'), duration: "5 mins" },
+        { id: "lesson-1-2", title: t('education.beginnerCourse.module1.lesson2'), duration: "6 mins" },
+        { id: "lesson-1-3", title: t('education.beginnerCourse.module1.lesson3'), duration: "7 mins" },
+        { id: "lesson-1-4", title: t('education.beginnerCourse.module1.lesson4'), duration: "6 mins" },
+        { id: "lesson-1-5", title: t('education.beginnerCourse.module1.lesson5'), duration: "6 mins" }
       ],
       quiz: {
         questions: 10,
@@ -121,15 +123,15 @@ export default function BeginnerCoursePage() {
     },
     {
       id: "module-2",
-      title: "Module 2: Essential Concepts",
-      description: "Core trading concepts including pips, lots, leverage, margin, and order types",
-      duration: "45 mins",
+      title: t('education.beginnerCourse.module2.title'),
+      description: t('education.beginnerCourse.module2.description'),
+      duration: t('education.beginnerCourse.module2.duration'),
       lessons: [
-        { id: "lesson-2-1", title: "Pips, Points, and Lots Explained", duration: "8 mins" },
-        { id: "lesson-2-2", title: "Bid, Ask, and Spread", duration: "7 mins" },
-        { id: "lesson-2-3", title: "Leverage and Margin", duration: "10 mins" },
-        { id: "lesson-2-4", title: "Long vs Short Positions", duration: "8 mins" },
-        { id: "lesson-2-5", title: "Order Types (Market, Limit, Stop)", duration: "12 mins" }
+        { id: "lesson-2-1", title: t('education.beginnerCourse.module2.lesson1'), duration: "8 mins" },
+        { id: "lesson-2-2", title: t('education.beginnerCourse.module2.lesson2'), duration: "7 mins" },
+        { id: "lesson-2-3", title: t('education.beginnerCourse.module2.lesson3'), duration: "10 mins" },
+        { id: "lesson-2-4", title: t('education.beginnerCourse.module2.lesson4'), duration: "8 mins" },
+        { id: "lesson-2-5", title: t('education.beginnerCourse.module2.lesson5'), duration: "12 mins" }
       ],
       quiz: {
         questions: 15,
@@ -140,15 +142,15 @@ export default function BeginnerCoursePage() {
     },
     {
       id: "module-3",
-      title: "Module 3: Chart Reading",
-      description: "Learn to read price charts, identify patterns, and understand market structure",
-      duration: "60 mins",
+      title: t('education.beginnerCourse.module3.title'),
+      description: t('education.beginnerCourse.module3.description'),
+      duration: t('education.beginnerCourse.module3.duration'),
       lessons: [
-        { id: "lesson-3-1", title: "Understanding Price Charts", duration: "10 mins" },
-        { id: "lesson-3-2", title: "Candlestick Patterns Basics", duration: "15 mins" },
-        { id: "lesson-3-3", title: "Support and Resistance", duration: "12 mins" },
-        { id: "lesson-3-4", title: "Trend Identification", duration: "13 mins" },
-        { id: "lesson-3-5", title: "Timeframe Selection", duration: "10 mins" }
+        { id: "lesson-3-1", title: t('education.beginnerCourse.module3.lesson1'), duration: "10 mins" },
+        { id: "lesson-3-2", title: t('education.beginnerCourse.module3.lesson2'), duration: "15 mins" },
+        { id: "lesson-3-3", title: t('education.beginnerCourse.module3.lesson3'), duration: "12 mins" },
+        { id: "lesson-3-4", title: t('education.beginnerCourse.module3.lesson4'), duration: "13 mins" },
+        { id: "lesson-3-5", title: t('education.beginnerCourse.module3.lesson5'), duration: "10 mins" }
       ],
       quiz: {
         questions: 12,
@@ -159,15 +161,15 @@ export default function BeginnerCoursePage() {
     },
     {
       id: "module-4",
-      title: "Module 4: Risk Management",
-      description: "Essential risk management principles to protect your trading capital",
-      duration: "45 mins",
+      title: t('education.beginnerCourse.module4.title'),
+      description: t('education.beginnerCourse.module4.description'),
+      duration: t('education.beginnerCourse.module4.duration'),
       lessons: [
-        { id: "lesson-4-1", title: "Why Risk Management Matters", duration: "8 mins" },
-        { id: "lesson-4-2", title: "Position Sizing Fundamentals", duration: "10 mins" },
-        { id: "lesson-4-3", title: "Setting Stop Losses", duration: "9 mins" },
-        { id: "lesson-4-4", title: "Risk-Reward Ratios", duration: "10 mins" },
-        { id: "lesson-4-5", title: "Managing Multiple Positions", duration: "8 mins" }
+        { id: "lesson-4-1", title: t('education.beginnerCourse.module4.lesson1'), duration: "8 mins" },
+        { id: "lesson-4-2", title: t('education.beginnerCourse.module4.lesson2'), duration: "10 mins" },
+        { id: "lesson-4-3", title: t('education.beginnerCourse.module4.lesson3'), duration: "9 mins" },
+        { id: "lesson-4-4", title: t('education.beginnerCourse.module4.lesson4'), duration: "10 mins" },
+        { id: "lesson-4-5", title: t('education.beginnerCourse.module4.lesson5'), duration: "8 mins" }
       ],
       quiz: {
         questions: 12,
@@ -178,15 +180,15 @@ export default function BeginnerCoursePage() {
     },
     {
       id: "module-5",
-      title: "Module 5: Basic Strategies",
-      description: "Simple yet effective trading strategies for beginners",
-      duration: "60 mins",
+      title: t('education.beginnerCourse.module5.title'),
+      description: t('education.beginnerCourse.module5.description'),
+      duration: t('education.beginnerCourse.module5.duration'),
       lessons: [
-        { id: "lesson-5-1", title: "Trend Following Strategy", duration: "12 mins" },
-        { id: "lesson-5-2", title: "Support/Resistance Trading", duration: "12 mins" },
-        { id: "lesson-5-3", title: "Moving Average Crossovers", duration: "14 mins" },
-        { id: "lesson-5-4", title: "Simple Breakout Trading", duration: "12 mins" },
-        { id: "lesson-5-5", title: "When to Avoid Trading", duration: "10 mins" }
+        { id: "lesson-5-1", title: t('education.beginnerCourse.module5.lesson1'), duration: "12 mins" },
+        { id: "lesson-5-2", title: t('education.beginnerCourse.module5.lesson2'), duration: "12 mins" },
+        { id: "lesson-5-3", title: t('education.beginnerCourse.module5.lesson3'), duration: "14 mins" },
+        { id: "lesson-5-4", title: t('education.beginnerCourse.module5.lesson4'), duration: "12 mins" },
+        { id: "lesson-5-5", title: t('education.beginnerCourse.module5.lesson5'), duration: "10 mins" }
       ],
       quiz: {
         questions: 15,
@@ -197,15 +199,15 @@ export default function BeginnerCoursePage() {
     },
     {
       id: "module-6",
-      title: "Module 6: Trading Psychology",
-      description: "Master the mental aspects of trading for consistent performance",
-      duration: "30 mins",
+      title: t('education.beginnerCourse.module6.title'),
+      description: t('education.beginnerCourse.module6.description'),
+      duration: t('education.beginnerCourse.module6.duration'),
       lessons: [
-        { id: "lesson-6-1", title: "Emotional Control in Trading", duration: "6 mins" },
-        { id: "lesson-6-2", title: "Dealing with Losses", duration: "6 mins" },
-        { id: "lesson-6-3", title: "Avoiding Revenge Trading", duration: "6 mins" },
-        { id: "lesson-6-4", title: "Building Discipline", duration: "6 mins" },
-        { id: "lesson-6-5", title: "Creating a Trading Routine", duration: "6 mins" }
+        { id: "lesson-6-1", title: t('education.beginnerCourse.module6.lesson1'), duration: "6 mins" },
+        { id: "lesson-6-2", title: t('education.beginnerCourse.module6.lesson2'), duration: "6 mins" },
+        { id: "lesson-6-3", title: t('education.beginnerCourse.module6.lesson3'), duration: "6 mins" },
+        { id: "lesson-6-4", title: t('education.beginnerCourse.module6.lesson4'), duration: "6 mins" },
+        { id: "lesson-6-5", title: t('education.beginnerCourse.module6.lesson5'), duration: "6 mins" }
       ],
       quiz: {
         questions: 10,
@@ -217,53 +219,53 @@ export default function BeginnerCoursePage() {
   ];
 
   const downloadableResources = [
-    { title: "Forex Trading Basics Cheat Sheet", type: "PDF", size: "2.1 MB" },
-    { title: "Currency Pairs Quick Reference", type: "PDF", size: "1.5 MB" },
-    { title: "Position Size Calculator Template", type: "Excel", size: "0.8 MB" },
-    { title: "Risk Management Checklist", type: "PDF", size: "1.2 MB" },
-    { title: "Chart Patterns Visual Guide", type: "PDF", size: "3.4 MB" },
-    { title: "Trading Psychology Workbook", type: "PDF", size: "2.8 MB" },
-    { title: "Beginner Trading Plan Template", type: "Word", size: "0.5 MB" },
-    { title: "Market Sessions Time Zone Chart", type: "PDF", size: "1.1 MB" }
+    { title: t('education.beginnerCourse.resources.resource1'), type: "PDF", size: "2.1 MB" },
+    { title: t('education.beginnerCourse.resources.resource2'), type: "PDF", size: "1.5 MB" },
+    { title: t('education.beginnerCourse.resources.resource3'), type: "Excel", size: "0.8 MB" },
+    { title: t('education.beginnerCourse.resources.resource4'), type: "PDF", size: "1.2 MB" },
+    { title: t('education.beginnerCourse.resources.resource5'), type: "PDF", size: "3.4 MB" },
+    { title: t('education.beginnerCourse.resources.resource6'), type: "PDF", size: "2.8 MB" },
+    { title: t('education.beginnerCourse.resources.resource7'), type: "Word", size: "0.5 MB" },
+    { title: t('education.beginnerCourse.resources.resource8'), type: "PDF", size: "1.1 MB" }
   ];
 
   const faqs = [
     {
-      question: "How long does it take to complete the Beginner Course?",
-      answer: "The total course duration is 4.5 hours of video content. However, most students complete the course within 1-2 weeks when studying at a comfortable pace. We recommend spending 30-60 minutes per day to absorb the material properly. You have lifetime access, so you can learn at your own pace and revisit lessons anytime."
+      question: t('education.beginnerCourse.faq.q1.question'),
+      answer: t('education.beginnerCourse.faq.q1.answer')
     },
     {
-      question: "Do I need any prior trading experience to start this course?",
-      answer: "No prior trading experience is required. This course is specifically designed for complete beginners. We start with the absolute basics and gradually build your knowledge. All you need is a computer or mobile device, internet connection, and a willingness to learn. We explain every concept from the ground up."
+      question: t('education.beginnerCourse.faq.q2.question'),
+      answer: t('education.beginnerCourse.faq.q2.answer')
     },
     {
-      question: "What happens if I fail a module quiz?",
-      answer: "Each module quiz allows 3 attempts. If you don't pass on the first try, review the lesson materials and try again. You need 70-80% to pass (varies by module). If you exhaust all attempts, you can request a quiz reset after 24 hours. The quizzes are designed to reinforce learning, not to penalize you."
+      question: t('education.beginnerCourse.faq.q3.question'),
+      answer: t('education.beginnerCourse.faq.q3.answer')
     },
     {
-      question: "Will I receive a certificate after completing the course?",
-      answer: "Yes! Upon successfully completing all 6 modules and passing all quizzes with the minimum required score, you'll receive a 'Certified Forex Trading Beginner' certificate. The certificate is digital, shareable on LinkedIn, and demonstrates your foundational knowledge of forex trading to potential employers or clients."
+      question: t('education.beginnerCourse.faq.q4.question'),
+      answer: t('education.beginnerCourse.faq.q4.answer')
     },
     {
-      question: "Can I practice trading while taking this course?",
-      answer: "Absolutely! We strongly encourage you to open a demo trading account and practice what you learn in each module. Demo accounts use virtual money, so there's no financial risk. Hands-on practice alongside the course material significantly accelerates your learning and builds confidence before trading with real money."
+      question: t('education.beginnerCourse.faq.q5.question'),
+      answer: t('education.beginnerCourse.faq.q5.answer')
     },
     {
-      question: "How are the downloadable resources different from the video lessons?",
-      answer: "The downloadable resources complement the video lessons by providing quick-reference materials, templates, and worksheets. While videos teach concepts in depth, the PDFs and templates are designed for quick consultation during actual trading, helping you apply what you've learned without rewatching entire lessons."
+      question: t('education.beginnerCourse.faq.q6.question'),
+      answer: t('education.beginnerCourse.faq.q6.answer')
     },
     {
-      question: "What should I study after completing the Beginner Course?",
-      answer: "After completing the Beginner Course, we recommend practicing with a demo account for at least 1-2 months to solidify your skills. Then, progress to our Advanced Trading Course to learn professional strategies, institutional concepts, and systematic trading approaches. You can also explore our specialized courses on technical analysis and risk management."
+      question: t('education.beginnerCourse.faq.q7.question'),
+      answer: t('education.beginnerCourse.faq.q7.answer')
     }
   ];
 
   const learningPath = {
-    current: "Beginner Course",
+    current: t('education.beginnerCourse.learningPath.current'),
     next: [
-      { title: "Advanced Trading Course", description: "Master professional strategies and institutional concepts", estimated: "3-4 weeks" },
-      { title: "Technical Analysis Mastery", description: "Deep dive into chart patterns and indicators", estimated: "2-3 weeks" },
-      { title: "Risk Management Pro", description: "Advanced position sizing and portfolio management", estimated: "1-2 weeks" }
+      { title: t('education.beginnerCourse.learningPath.next1.title'), description: t('education.beginnerCourse.learningPath.next1.description'), estimated: t('education.beginnerCourse.learningPath.next1.estimated') },
+      { title: t('education.beginnerCourse.learningPath.next2.title'), description: t('education.beginnerCourse.learningPath.next2.description'), estimated: t('education.beginnerCourse.learningPath.next2.estimated') },
+      { title: t('education.beginnerCourse.learningPath.next3.title'), description: t('education.beginnerCourse.learningPath.next3.description'), estimated: t('education.beginnerCourse.learningPath.next3.estimated') }
     ]
   };
 
@@ -276,9 +278,9 @@ export default function BeginnerCoursePage() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
-            <Badge className="mb-2" data-testid="badge-course-level">Beginner Level</Badge>
-            <h1 className="text-3xl font-bold">Beginner Trading Course</h1>
-            <p className="text-muted-foreground">Master the fundamentals of forex trading</p>
+            <Badge className="mb-2" data-testid="badge-course-level">{t('education.beginnerCourse.badge')}</Badge>
+            <h1 className="text-3xl font-bold">{t('education.beginnerCourse.title')}</h1>
+            <p className="text-muted-foreground">{t('education.beginnerCourse.subtitle')}</p>
           </div>
           <BookOpen className="w-8 h-8 text-muted-foreground" />
         </div>
@@ -286,13 +288,13 @@ export default function BeginnerCoursePage() {
         {/* Progress Overview */}
         <Card data-testid="card-progress-overview">
           <CardHeader>
-            <CardTitle>Your Progress</CardTitle>
-            <CardDescription>Track your learning journey</CardDescription>
+            <CardTitle>{t('education.beginnerCourse.progress.title')}</CardTitle>
+            <CardDescription>{t('education.beginnerCourse.progress.description')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Course Completion</span>
+                <span className="text-muted-foreground">{t('education.beginnerCourse.progress.courseCompletion')}</span>
                 <span className="font-semibold" data-testid="text-course-progress">{overallProgress}%</span>
               </div>
               <Progress value={overallProgress} className="h-2" data-testid="progress-course" />
@@ -302,21 +304,21 @@ export default function BeginnerCoursePage() {
               <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <CheckCircle2 className="w-4 h-4 text-primary" />
-                  <p className="text-sm text-muted-foreground">Lessons Completed</p>
+                  <p className="text-sm text-muted-foreground">{t('education.beginnerCourse.progress.lessonsCompleted')}</p>
                 </div>
                 <p className="text-2xl font-bold" data-testid="text-lessons-completed">{completedLessons}/{totalLessons}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <Target className="w-4 h-4 text-primary" />
-                  <p className="text-sm text-muted-foreground">Modules Passed</p>
+                  <p className="text-sm text-muted-foreground">{t('education.beginnerCourse.progress.modulesPassed')}</p>
                 </div>
                 <p className="text-2xl font-bold" data-testid="text-modules-passed">1/6</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <Clock className="w-4 h-4 text-primary" />
-                  <p className="text-sm text-muted-foreground">Time Invested</p>
+                  <p className="text-sm text-muted-foreground">{t('education.beginnerCourse.progress.timeInvested')}</p>
                 </div>
                 <p className="text-2xl font-bold" data-testid="text-time-invested">1.6 hrs</p>
               </div>
@@ -327,39 +329,37 @@ export default function BeginnerCoursePage() {
         {/* Course Overview */}
         <Card data-testid="card-course-overview">
           <CardHeader>
-            <CardTitle>Course Overview</CardTitle>
-            <CardDescription>A comprehensive introduction to forex trading for beginners</CardDescription>
+            <CardTitle>{t('education.beginnerCourse.overview.title')}</CardTitle>
+            <CardDescription>{t('education.beginnerCourse.overview.description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-4 gap-4 mb-6">
               <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Total Duration</p>
-                <p className="text-2xl font-bold" data-testid="text-total-duration">4.5 hours</p>
+                <p className="text-sm text-muted-foreground mb-1">{t('education.beginnerCourse.overview.totalDuration')}</p>
+                <p className="text-2xl font-bold" data-testid="text-total-duration">{t('education.beginnerCourse.overview.durationValue')}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Modules</p>
-                <p className="text-2xl font-bold" data-testid="text-total-modules">6</p>
+                <p className="text-sm text-muted-foreground mb-1">{t('education.beginnerCourse.overview.modules')}</p>
+                <p className="text-2xl font-bold" data-testid="text-total-modules">{t('education.beginnerCourse.overview.modulesValue')}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Lessons</p>
+                <p className="text-sm text-muted-foreground mb-1">{t('education.beginnerCourse.overview.lessons')}</p>
                 <p className="text-2xl font-bold" data-testid="text-total-lessons">{totalLessons}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Level</p>
-                <p className="text-2xl font-bold" data-testid="text-course-level">Beginner</p>
+                <p className="text-sm text-muted-foreground mb-1">{t('education.beginnerCourse.overview.level')}</p>
+                <p className="text-2xl font-bold" data-testid="text-course-level">{t('education.beginnerCourse.overview.levelValue')}</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              This course covers everything you need to know to start trading forex. From basic concepts to practical strategies, 
-              you'll learn at your own pace with clear explanations and real-world examples. Each module includes video lessons, 
-              practical exercises, and a quiz to test your knowledge.
+              {t('education.beginnerCourse.overview.descriptionText')}
             </p>
           </CardContent>
         </Card>
 
         {/* Course Modules */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold">Course Modules</h2>
+          <h2 className="text-2xl font-bold">{t('education.beginnerCourse.modules.title')}</h2>
           {modules.map((module, index) => {
             const moduleProgress = getModuleProgress(module.id, module.lessons.length);
             const moduleStatus = getModuleStatus(index, module.id, module.lessons.length);
@@ -385,10 +385,10 @@ export default function BeginnerCoursePage() {
                             <Clock className="w-3 h-3" />
                             {module.duration}
                           </span>
-                          <Badge variant="outline">{module.lessons.length} lessons</Badge>
-                          {moduleStatus === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />Locked</Badge>}
-                          {moduleStatus === 'in-progress' && <Badge variant="default">In Progress</Badge>}
-                          {moduleStatus === 'completed' && <Badge className="bg-green-600">Completed</Badge>}
+                          <Badge variant="outline">{module.lessons.length} {t('education.beginnerCourse.modules.lessons')}</Badge>
+                          {moduleStatus === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />{t('education.beginnerCourse.modules.locked')}</Badge>}
+                          {moduleStatus === 'in-progress' && <Badge variant="default">{t('education.beginnerCourse.modules.inProgress')}</Badge>}
+                          {moduleStatus === 'completed' && <Badge className="bg-green-600">{t('education.beginnerCourse.modules.completed')}</Badge>}
                         </CardDescription>
                       </div>
                     </div>
@@ -396,7 +396,7 @@ export default function BeginnerCoursePage() {
                     {moduleProgress > 0 && (
                       <div className="space-y-1">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">Progress</span>
+                          <span className="text-muted-foreground">{t('education.beginnerCourse.modules.progress')}</span>
                           <span className="font-semibold">{moduleProgress}%</span>
                         </div>
                         <Progress value={moduleProgress} className="h-1.5" />
@@ -419,15 +419,15 @@ export default function BeginnerCoursePage() {
                       }
                     }}
                   >
-                    {moduleStatus === 'completed' ? 'Review' : 
-                     moduleStatus === 'in-progress' ? 'Continue' : 
-                     'Start'}
+                    {moduleStatus === 'completed' ? t('education.beginnerCourse.modules.review') : 
+                     moduleStatus === 'in-progress' ? t('education.beginnerCourse.modules.continue') : 
+                     t('education.beginnerCourse.modules.start')}
                   </Button>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-3 text-sm">Lessons</h4>
+                  <h4 className="font-semibold mb-3 text-sm">{t('education.beginnerCourse.modules.lessonsSection')}</h4>
                   <ul className="space-y-2">
                     {module.lessons.map((lesson, lessonIndex) => {
                       const isCompleted = getLessonProgress(module.id, lesson.id);
@@ -468,20 +468,20 @@ export default function BeginnerCoursePage() {
                 <div className="p-4 bg-muted rounded-lg">
                   <h4 className="font-semibold mb-2 text-sm flex items-center gap-2">
                     <Target className="w-4 h-4" />
-                    Module Quiz
+                    {t('education.beginnerCourse.modules.moduleQuiz')}
                   </h4>
                   <div className="grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
                     <div>
-                      <span className="font-medium">Questions:</span> {module.quiz.questions}
+                      <span className="font-medium">{t('education.beginnerCourse.modules.questions')}</span> {module.quiz.questions}
                     </div>
                     <div>
-                      <span className="font-medium">Passing Score:</span> {module.quiz.passingScore}%
+                      <span className="font-medium">{t('education.beginnerCourse.modules.passingScore')}</span> {module.quiz.passingScore}%
                     </div>
                     <div>
-                      <span className="font-medium">Time Limit:</span> {module.quiz.timeLimit}
+                      <span className="font-medium">{t('education.beginnerCourse.modules.timeLimit')}</span> {module.quiz.timeLimit}
                     </div>
                     <div>
-                      <span className="font-medium">Attempts:</span> {module.quiz.attempts}
+                      <span className="font-medium">{t('education.beginnerCourse.modules.attempts')}</span> {module.quiz.attempts}
                     </div>
                   </div>
                 </div>
@@ -497,58 +497,57 @@ export default function BeginnerCoursePage() {
             <div className="flex items-center gap-3">
               <Award className="w-6 h-6 text-primary" />
               <div>
-                <CardTitle>Course Certificate</CardTitle>
-                <CardDescription>Earn your certification upon completion</CardDescription>
+                <CardTitle>{t('education.beginnerCourse.certificate.title')}</CardTitle>
+                <CardDescription>{t('education.beginnerCourse.certificate.description')}</CardDescription>
               </div>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              Upon successful completion of this course, you'll receive a verified digital certificate that demonstrates 
-              your foundational knowledge of forex trading.
+              {t('education.beginnerCourse.certificate.intro')}
             </p>
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold mb-3">Requirements</h4>
+                <h4 className="font-semibold mb-3">{t('education.beginnerCourse.certificate.requirementsTitle')}</h4>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Complete all 6 modules (30 lessons)</span>
+                    <span>{t('education.beginnerCourse.certificate.requirement1')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Pass all module quizzes with 70%+ score</span>
+                    <span>{t('education.beginnerCourse.certificate.requirement2')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Complete the final course assessment (80% required)</span>
+                    <span>{t('education.beginnerCourse.certificate.requirement3')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Total study time: minimum 4.5 hours</span>
+                    <span>{t('education.beginnerCourse.certificate.requirement4')}</span>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-3">Certificate Benefits</h4>
+                <h4 className="font-semibold mb-3">{t('education.beginnerCourse.certificate.benefitsTitle')}</h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                    <span>Shareable on LinkedIn and social media</span>
+                    <span>{t('education.beginnerCourse.certificate.benefit1')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                    <span>Verifiable certificate ID for employers</span>
+                    <span>{t('education.beginnerCourse.certificate.benefit2')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                    <span>Download PDF or print physical copy</span>
+                    <span>{t('education.beginnerCourse.certificate.benefit3')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                    <span>Lifetime access to certificate records</span>
+                    <span>{t('education.beginnerCourse.certificate.benefit4')}</span>
                   </li>
                 </ul>
               </div>
@@ -557,8 +556,8 @@ export default function BeginnerCoursePage() {
             <div className="flex items-center gap-4 p-4 bg-primary/10 rounded-lg">
               <Award className="w-8 h-8 text-primary flex-shrink-0" />
               <div>
-                <p className="font-semibold text-sm">Certified Forex Trading Beginner</p>
-                <p className="text-xs text-muted-foreground">Official certification from our trading academy</p>
+                <p className="font-semibold text-sm">{t('education.beginnerCourse.certificate.name')}</p>
+                <p className="text-xs text-muted-foreground">{t('education.beginnerCourse.certificate.academy')}</p>
               </div>
             </div>
           </CardContent>
@@ -570,8 +569,8 @@ export default function BeginnerCoursePage() {
             <div className="flex items-center gap-3">
               <Download className="w-6 h-6 text-primary" />
               <div>
-                <CardTitle>Downloadable Resources</CardTitle>
-                <CardDescription>Study materials and templates to support your learning</CardDescription>
+                <CardTitle>{t('education.beginnerCourse.resources.title')}</CardTitle>
+                <CardDescription>{t('education.beginnerCourse.resources.description')}</CardDescription>
               </div>
             </div>
           </CardHeader>
@@ -585,8 +584,8 @@ export default function BeginnerCoursePage() {
                   data-testid={`button-download-${index}`}
                   onClick={() => {
                     toast({
-                      title: "Resources Locked",
-                      description: "Complete all course modules to unlock downloadable resources.",
+                      title: t('education.beginnerCourse.resources.locked'),
+                      description: t('education.beginnerCourse.resources.lockedDescription'),
                       variant: "default"
                     });
                   }}
@@ -608,15 +607,15 @@ export default function BeginnerCoursePage() {
         {/* Learning Path */}
         <Card data-testid="card-learning-path">
           <CardHeader>
-            <CardTitle>Your Learning Path</CardTitle>
-            <CardDescription>Recommended courses after completing this one</CardDescription>
+            <CardTitle>{t('education.beginnerCourse.learningPath.title')}</CardTitle>
+            <CardDescription>{t('education.beginnerCourse.learningPath.description')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center gap-3 p-3 bg-primary/10 rounded-lg">
               <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
               <div>
                 <p className="font-semibold text-sm">{learningPath.current}</p>
-                <p className="text-xs text-muted-foreground">Current course - 35% complete</p>
+                <p className="text-xs text-muted-foreground">{t('education.beginnerCourse.learningPath.currentProgress')}</p>
               </div>
             </div>
 
@@ -643,39 +642,39 @@ export default function BeginnerCoursePage() {
 
         {/* What You'll Learn */}
         <div className="bg-muted rounded-lg p-6">
-          <h3 className="text-xl font-bold mb-4">What You'll Learn</h3>
+          <h3 className="text-xl font-bold mb-4">{t('education.beginnerCourse.whatYouLearn.title')}</h3>
           <div className="grid md:grid-cols-2 gap-4 text-sm">
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span>Understand how the forex market works and who trades it</span>
+              <span>{t('education.beginnerCourse.whatYouLearn.item1')}</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span>Read and interpret price charts and candlestick patterns</span>
+              <span>{t('education.beginnerCourse.whatYouLearn.item2')}</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span>Calculate position sizes and manage risk properly</span>
+              <span>{t('education.beginnerCourse.whatYouLearn.item3')}</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span>Execute trades using different order types</span>
+              <span>{t('education.beginnerCourse.whatYouLearn.item4')}</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span>Identify trends and trade with the momentum</span>
+              <span>{t('education.beginnerCourse.whatYouLearn.item5')}</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span>Develop discipline and emotional control in trading</span>
+              <span>{t('education.beginnerCourse.whatYouLearn.item6')}</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span>Use leverage and margin safely and effectively</span>
+              <span>{t('education.beginnerCourse.whatYouLearn.item7')}</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span>Create a sustainable trading routine and plan</span>
+              <span>{t('education.beginnerCourse.whatYouLearn.item8')}</span>
             </div>
           </div>
         </div>
@@ -683,8 +682,8 @@ export default function BeginnerCoursePage() {
         {/* FAQs */}
         <Card data-testid="card-faqs">
           <CardHeader>
-            <CardTitle>Frequently Asked Questions</CardTitle>
-            <CardDescription>Common questions about the Beginner Trading Course</CardDescription>
+            <CardTitle>{t('education.beginnerCourse.faq.title')}</CardTitle>
+            <CardDescription>{t('education.beginnerCourse.faq.description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible className="w-full">
@@ -779,8 +778,8 @@ export default function BeginnerCoursePage() {
                           <Clock className="w-3 h-3" />
                           {lesson.duration}
                         </span>
-                        <Badge variant="outline">Module {selectedLesson.moduleIndex + 1} • Lesson {selectedLesson.lessonIndex + 1}</Badge>
-                        {isCompleted && <Badge className="bg-green-600">Completed</Badge>}
+                        <Badge variant="outline">{t('education.beginnerCourse.lesson.module')} {selectedLesson.moduleIndex + 1} • {t('education.beginnerCourse.lesson.lesson')} {selectedLesson.lessonIndex + 1}</Badge>
+                        {isCompleted && <Badge className="bg-green-600">{t('education.beginnerCourse.lesson.completed')}</Badge>}
                       </DialogDescription>
                     </div>
                     <Button 
@@ -792,10 +791,10 @@ export default function BeginnerCoursePage() {
                       {isCompleted ? (
                         <>
                           <CheckCircle2 className="w-4 h-4 mr-2" />
-                          Completed
+                          {t('education.beginnerCourse.lesson.completed')}
                         </>
                       ) : (
-                        "Mark as Complete"
+                        t('education.beginnerCourse.lesson.markComplete')
                       )}
                     </Button>
                   </div>
@@ -803,74 +802,68 @@ export default function BeginnerCoursePage() {
                 
                 <div className="space-y-6 mt-6">
                   <div className="prose prose-sm max-w-none dark:prose-invert">
-                    <h3 className="font-semibold text-lg mb-3">Introduction</h3>
+                    <h3 className="font-semibold text-lg mb-3">{t('education.beginnerCourse.lesson.introduction')}</h3>
                     <p className="text-muted-foreground mb-4">
-                      Forex trading, also known as foreign exchange or FX trading, is the act of buying and selling currencies with the aim of making a profit. 
-                      The forex market is the largest financial market in the world, with a daily trading volume exceeding $6 trillion.
+                      {t('education.beginnerCourse.lesson.intro.text')}
                     </p>
                     
-                    <h3 className="font-semibold text-lg mb-3 mt-6">How the Forex Market Works</h3>
+                    <h3 className="font-semibold text-lg mb-3 mt-6">{t('education.beginnerCourse.lesson.howMarketWorks')}</h3>
                     <p className="text-muted-foreground mb-4">
-                      Unlike stock markets, the forex market operates 24 hours a day, 5 days a week, across major financial centers worldwide. 
-                      This continuous operation allows traders to respond to global economic events in real-time.
+                      {t('education.beginnerCourse.lesson.marketWorks.text')}
                     </p>
                     
                     <div className="bg-muted p-4 rounded-lg my-4">
-                      <h4 className="font-semibold mb-2">Key Concept: Currency Pairs</h4>
+                      <h4 className="font-semibold mb-2">{t('education.beginnerCourse.lesson.keyConcept.title')}</h4>
                       <p className="text-sm text-muted-foreground">
-                        In forex, currencies are always traded in pairs (e.g., EUR/USD). The first currency is the "base currency" and the second is the "quote currency". 
-                        If EUR/USD = 1.1000, it means 1 Euro equals 1.10 US Dollars.
+                        {t('education.beginnerCourse.lesson.keyConcept.text')}
                       </p>
                     </div>
                     
-                    <h3 className="font-semibold text-lg mb-3 mt-6">Who Trades Forex?</h3>
+                    <h3 className="font-semibold text-lg mb-3 mt-6">{t('education.beginnerCourse.lesson.whoTrades')}</h3>
                     <ul className="space-y-2 mb-4">
                       <li className="flex items-start gap-2 text-sm">
                         <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Central Banks:</strong> Manage currency reserves and stabilize exchange rates</span>
+                        <span>{t('education.beginnerCourse.lesson.centralBanks')}</span>
                       </li>
                       <li className="flex items-start gap-2 text-sm">
                         <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Commercial Banks:</strong> Facilitate international trade and investment</span>
+                        <span>{t('education.beginnerCourse.lesson.commercialBanks')}</span>
                       </li>
                       <li className="flex items-start gap-2 text-sm">
                         <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Hedge Funds & Investment Firms:</strong> Seek profit through currency speculation</span>
+                        <span>{t('education.beginnerCourse.lesson.hedgeFunds')}</span>
                       </li>
                       <li className="flex items-start gap-2 text-sm">
                         <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Corporations:</strong> Hedge against currency risk in international operations</span>
+                        <span>{t('education.beginnerCourse.lesson.corporations')}</span>
                       </li>
                       <li className="flex items-start gap-2 text-sm">
                         <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Retail Traders:</strong> Individual traders like you, seeking to profit from currency movements</span>
+                        <span>{t('education.beginnerCourse.lesson.retailTraders')}</span>
                       </li>
                     </ul>
                     
                     <div className="bg-primary/10 border-l-4 border-primary p-4 rounded my-4">
                       <h4 className="font-semibold mb-2 flex items-center gap-2">
                         <AlertTriangle className="w-5 h-5" />
-                        Important Risk Warning
+                        {t('education.beginnerCourse.lesson.riskWarning')}
                       </h4>
                       <p className="text-sm text-muted-foreground">
-                        Forex trading involves substantial risk. Leverage can magnify both gains and losses. 
-                        Never trade with money you cannot afford to lose, and always use proper risk management.
+                        {t('education.beginnerCourse.lesson.riskWarning.text')}
                       </p>
                     </div>
                     
-                    <h3 className="font-semibold text-lg mb-3 mt-6">Summary</h3>
+                    <h3 className="font-semibold text-lg mb-3 mt-6">{t('education.beginnerCourse.lesson.summary')}</h3>
                     <p className="text-muted-foreground">
-                      Forex trading is the simultaneous buying of one currency and selling of another. The market operates 24/5, 
-                      providing opportunities for traders worldwide. Understanding the basics of how currencies are quoted and who participates 
-                      in the market is your first step toward becoming a successful forex trader.
+                      {t('education.beginnerCourse.lesson.summary.text')}
                     </p>
                   </div>
                   
                   <div className="border-t pt-6">
-                    <h3 className="font-semibold text-lg mb-4">Lesson Quiz</h3>
+                    <h3 className="font-semibold text-lg mb-4">{t('education.beginnerCourse.lesson.quiz')}</h3>
                     <div className="space-y-4">
                       <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">1. What is the approximate daily trading volume of the forex market?</p>
+                        <p className="font-medium mb-3">{t('education.beginnerCourse.quiz.q1.question')}</p>
                         <div className="space-y-2">
                           {['a', 'b', 'c', 'd'].map((option) => {
                             const isCorrect = option === 'c';
@@ -895,10 +888,10 @@ export default function BeginnerCoursePage() {
                                   disabled={quizSubmitted}
                                 />
                                 <span className="text-sm">
-                                  {option === 'a' && '$600 million'}
-                                  {option === 'b' && '$60 billion'}
-                                  {option === 'c' && 'Over $6 trillion'}
-                                  {option === 'd' && '$600 billion'}
+                                  {option === 'a' && t('education.beginnerCourse.quiz.q1.a')}
+                                  {option === 'b' && t('education.beginnerCourse.quiz.q1.b')}
+                                  {option === 'c' && t('education.beginnerCourse.quiz.q1.c')}
+                                  {option === 'd' && t('education.beginnerCourse.quiz.q1.d')}
                                   {quizSubmitted && isCorrect && ' ✓'}
                                   {quizSubmitted && isSelected && !isCorrect && ' ✗'}
                                 </span>
@@ -907,12 +900,12 @@ export default function BeginnerCoursePage() {
                           })}
                         </div>
                         {quizSubmitted && quizAnswers['q1'] !== 'c' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Over $6 trillion</p>
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">{t('education.beginnerCourse.quiz.correctAnswer')} {t('education.beginnerCourse.quiz.q1.c')}</p>
                         )}
                       </div>
                       
                       <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">2. In the currency pair EUR/USD = 1.1000, which currency is the base currency?</p>
+                        <p className="font-medium mb-3">{t('education.beginnerCourse.quiz.q2.question')}</p>
                         <div className="space-y-2">
                           {['a', 'b', 'c', 'd'].map((option) => {
                             const isCorrect = option === 'a';
@@ -937,10 +930,10 @@ export default function BeginnerCoursePage() {
                                   disabled={quizSubmitted}
                                 />
                                 <span className="text-sm">
-                                  {option === 'a' && 'EUR (Euro)'}
-                                  {option === 'b' && 'USD (US Dollar)'}
-                                  {option === 'c' && 'Both equally'}
-                                  {option === 'd' && 'Neither'}
+                                  {option === 'a' && t('education.beginnerCourse.quiz.q2.a')}
+                                  {option === 'b' && t('education.beginnerCourse.quiz.q2.b')}
+                                  {option === 'c' && t('education.beginnerCourse.quiz.q2.c')}
+                                  {option === 'd' && t('education.beginnerCourse.quiz.q2.d')}
                                   {quizSubmitted && isCorrect && ' ✓'}
                                   {quizSubmitted && isSelected && !isCorrect && ' ✗'}
                                 </span>
@@ -949,12 +942,12 @@ export default function BeginnerCoursePage() {
                           })}
                         </div>
                         {quizSubmitted && quizAnswers['q2'] !== 'a' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: EUR (Euro)</p>
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">{t('education.beginnerCourse.quiz.correctAnswer')} {t('education.beginnerCourse.quiz.q2.a')}</p>
                         )}
                       </div>
                       
                       <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">3. When is the forex market open for trading?</p>
+                        <p className="font-medium mb-3">{t('education.beginnerCourse.quiz.q3.question')}</p>
                         <div className="space-y-2">
                           {['a', 'b', 'c', 'd'].map((option) => {
                             const isCorrect = option === 'b';
@@ -979,10 +972,10 @@ export default function BeginnerCoursePage() {
                                   disabled={quizSubmitted}
                                 />
                                 <span className="text-sm">
-                                  {option === 'a' && 'Only during New York business hours'}
-                                  {option === 'b' && '24 hours a day, 5 days a week'}
-                                  {option === 'c' && '24 hours a day, 7 days a week'}
-                                  {option === 'd' && '9 AM to 5 PM EST only'}
+                                  {option === 'a' && t('education.beginnerCourse.quiz.q3.a')}
+                                  {option === 'b' && t('education.beginnerCourse.quiz.q3.b')}
+                                  {option === 'c' && t('education.beginnerCourse.quiz.q3.c')}
+                                  {option === 'd' && t('education.beginnerCourse.quiz.q3.d')}
                                   {quizSubmitted && isCorrect && ' ✓'}
                                   {quizSubmitted && isSelected && !isCorrect && ' ✗'}
                                 </span>
@@ -991,7 +984,7 @@ export default function BeginnerCoursePage() {
                           })}
                         </div>
                         {quizSubmitted && quizAnswers['q3'] !== 'b' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: 24 hours a day, 5 days a week</p>
+                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">{t('education.beginnerCourse.quiz.correctAnswer')} {t('education.beginnerCourse.quiz.q3.b')}</p>
                         )}
                       </div>
                     </div>
@@ -1012,15 +1005,15 @@ export default function BeginnerCoursePage() {
                               }
                             } else {
                               toast({
-                                title: "Incomplete Quiz",
-                                description: "Please answer all questions before submitting.",
+                                title: t('education.beginnerCourse.quiz.incomplete'),
+                                description: t('education.beginnerCourse.quiz.incompleteDescription'),
                                 variant: "destructive"
                               });
                             }
                           }}
                           data-testid="button-submit-quiz"
                         >
-                          Submit Quiz
+                          {t('education.beginnerCourse.quiz.submit')}
                         </Button>
                       ) : (
                         <>
@@ -1033,12 +1026,12 @@ export default function BeginnerCoursePage() {
                             data-testid="button-reset-quiz"
                           >
                             <Target className="w-4 h-4 mr-2" />
-                            Try Again
+                            {t('education.beginnerCourse.quiz.tryAgain')}
                           </Button>
                           <Alert className="flex-1">
                             <CheckCircle2 className="w-4 h-4" />
                             <AlertDescription>
-                              Quiz submitted! Review your answers and try again if needed.
+                              {t('education.beginnerCourse.quiz.submitted')}
                             </AlertDescription>
                           </Alert>
                         </>
@@ -1055,7 +1048,7 @@ export default function BeginnerCoursePage() {
                     data-testid="button-previous-lesson"
                   >
                     <ChevronLeft className="w-4 h-4 mr-2" />
-                    Previous Lesson
+                    {t('education.beginnerCourse.lesson.previousLesson')}
                   </Button>
                   
                   <Button
@@ -1064,7 +1057,7 @@ export default function BeginnerCoursePage() {
                     disabled={!hasNext}
                     data-testid="button-next-lesson"
                   >
-                    Next Lesson
+                    {t('education.beginnerCourse.lesson.nextLesson')}
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>

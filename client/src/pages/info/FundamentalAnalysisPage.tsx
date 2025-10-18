@@ -5,142 +5,145 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function FundamentalAnalysisPage() {
+  const { t } = useLanguage();
+
   const factors = [
     {
-      title: "Economic Indicators",
+      title: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.title'),
       icon: TrendingUp,
-      description: "Key data releases that drive currency valuations",
+      description: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.description'),
       indicators: [
         {
-          name: "Interest Rates (Central Bank Rates)",
-          impact: "Higher rates attract foreign investment → Currency strengthens",
-          frequency: "Monthly/Quarterly",
-          importance: "Highest - Directly set by central banks"
+          name: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.interestRates.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.interestRates.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.interestRates.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.interestRates.importance')
         },
         {
-          name: "GDP Growth (Gross Domestic Product)",
-          impact: "Strong growth signals healthy economy → Supports currency strength",
-          frequency: "Quarterly",
-          importance: "High - Overall economic health indicator"
+          name: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.gdp.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.gdp.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.gdp.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.gdp.importance')
         },
         {
-          name: "Employment Data (NFP, Unemployment Rate)",
-          impact: "Low unemployment = economic strength → Positive for currency",
-          frequency: "Monthly",
-          importance: "Very High - Directly impacts central bank policy"
+          name: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.employment.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.employment.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.employment.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.employment.importance')
         },
         {
-          name: "Inflation (CPI, PPI)",
-          impact: "Moderate inflation (2-3%) healthy; too high forces rate hikes",
-          frequency: "Monthly",
-          importance: "Very High - Key driver of rate decisions"
+          name: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.inflation.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.inflation.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.inflation.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.inflation.importance')
         },
         {
-          name: "Trade Balance",
-          impact: "Surplus (exports > imports) strengthens currency",
-          frequency: "Monthly",
-          importance: "Medium-High - Shows demand for currency"
+          name: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.tradeBalance.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.tradeBalance.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.tradeBalance.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.tradeBalance.importance')
         },
         {
-          name: "Retail Sales",
-          impact: "Strong sales = consumer confidence → Currency positive",
-          frequency: "Monthly",
-          importance: "Medium - Leading indicator of economic health"
+          name: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.retailSales.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.retailSales.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.retailSales.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.economicIndicators.retailSales.importance')
         }
       ]
     },
     {
-      title: "Central Bank Policy",
+      title: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.title'),
       icon: Building2,
-      description: "Monetary policy decisions that directly impact currencies",
+      description: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.description'),
       indicators: [
         {
-          name: "Interest Rate Decisions",
-          impact: "Rate hikes strengthen currency; cuts weaken it (carry trade effect)",
-          frequency: "6-8 meetings per year",
-          importance: "Highest - Most direct FX impact"
+          name: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.rateDecisions.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.rateDecisions.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.rateDecisions.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.rateDecisions.importance')
         },
         {
-          name: "Quantitative Easing (QE) / Tightening (QT)",
-          impact: "QE increases money supply → Weakens currency; QT does opposite",
-          frequency: "Program-based",
-          importance: "Very High - Long-term structural impact"
+          name: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.qe.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.qe.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.qe.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.qe.importance')
         },
         {
-          name: "Forward Guidance",
-          impact: "Central bank hints about future policy → Market reprices expectations",
-          frequency: "Each meeting",
-          importance: "High - Shapes market expectations"
+          name: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.forwardGuidance.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.forwardGuidance.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.forwardGuidance.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.forwardGuidance.importance')
         },
         {
-          name: "Meeting Minutes & Speeches",
-          impact: "Reveals central bank thinking → Hints at future policy bias (hawkish/dovish)",
-          frequency: "Weekly (speeches)",
-          importance: "Medium-High - Fine-tunes expectations"
+          name: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.meetingMinutes.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.meetingMinutes.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.meetingMinutes.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.centralBankPolicy.meetingMinutes.importance')
         }
       ]
     },
     {
-      title: "Geopolitical Events",
+      title: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.title'),
       icon: Globe,
-      description: "Political and global events affecting market sentiment",
+      description: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.description'),
       indicators: [
         {
-          name: "Elections & Political Stability",
-          impact: "Uncertainty weakens currency; stable government strengthens it",
-          frequency: "Event-driven",
-          importance: "High during election periods"
+          name: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.elections.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.elections.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.elections.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.elections.importance')
         },
         {
-          name: "Trade Relations & Tariffs",
-          impact: "Trade wars weaken both currencies; agreements strengthen them",
-          frequency: "Ongoing/negotiation",
-          importance: "High - Impacts economic outlook"
+          name: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.trade.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.trade.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.trade.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.trade.importance')
         },
         {
-          name: "Military Conflicts & Wars",
-          impact: "Wars drive safe-haven flows → USD, JPY, CHF gain",
-          frequency: "Event-driven",
-          importance: "Highest during crises"
+          name: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.conflicts.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.conflicts.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.conflicts.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.conflicts.importance')
         },
         {
-          name: "Brexit-style Policy Shifts",
-          impact: "Major structural changes create volatility and trend shifts",
-          frequency: "Rare but impactful",
-          importance: "Extreme when occurring"
+          name: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.brexit.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.brexit.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.brexit.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.brexit.importance')
         }
       ]
     },
     {
-      title: "Market Sentiment & Risk Appetite",
+      title: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.title'),
       icon: DollarSign,
-      description: "Collective trader psychology and risk appetite",
+      description: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.description'),
       indicators: [
         {
-          name: "Risk-On Sentiment",
-          impact: "Investors favor higher-yielding currencies → AUD, NZD, EM currencies gain",
-          frequency: "Daily shifts",
-          importance: "High - Drives short-term flows"
+          name: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOn.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOn.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOn.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOn.importance')
         },
         {
-          name: "Risk-Off Sentiment",
-          impact: "Flight to safety → USD, JPY, CHF strengthen",
-          frequency: "Crisis-driven",
-          importance: "Very High during volatility"
+          name: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOff.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOff.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOff.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOff.importance')
         },
         {
-          name: "Commodity Prices (Oil, Gold, Copper)",
-          impact: "Oil affects CAD/NOK; Gold affects AUD/ZAR; impacts commodity currencies",
-          frequency: "Continuous",
-          importance: "High for commodity exporters"
+          name: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.commodityPrices.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.commodityPrices.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.commodityPrices.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.commodityPrices.importance')
         },
         {
-          name: "Stock Market Performance",
-          impact: "Strong equities correlate with risk currencies gaining (AUD, NZD, GBP)",
-          frequency: "Continuous",
-          importance: "Medium-High - Risk appetite gauge"
+          name: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.stockMarket.name'),
+          impact: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.stockMarket.impact'),
+          frequency: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.stockMarket.frequency'),
+          importance: t('marketInfo.fundamentalAnalysis.factors.marketSentiment.stockMarket.importance')
         }
       ]
     }
@@ -148,98 +151,98 @@ export default function FundamentalAnalysisPage() {
 
   const economicCalendar = [
     {
-      event: "Non-Farm Payrolls (NFP)",
-      country: "USD",
-      impact: "Highest",
-      typical: "1st Friday of month",
-      tradingTip: "Avoid trading 30min before/after; or trade breakout with 50+ pip stops"
+      event: t('marketInfo.fundamentalAnalysis.economicCalendar.nfp.event'),
+      country: t('marketInfo.fundamentalAnalysis.economicCalendar.nfp.country'),
+      impact: t('marketInfo.fundamentalAnalysis.economicCalendar.nfp.impact'),
+      typical: t('marketInfo.fundamentalAnalysis.economicCalendar.nfp.typical'),
+      tradingTip: t('marketInfo.fundamentalAnalysis.economicCalendar.nfp.tradingTip')
     },
     {
-      event: "Federal Reserve Rate Decision",
-      country: "USD",
-      impact: "Highest",
-      typical: "8 meetings/year",
-      tradingTip: "Wait for press conference; volatility can exceed 100 pips"
+      event: t('marketInfo.fundamentalAnalysis.economicCalendar.fed.event'),
+      country: t('marketInfo.fundamentalAnalysis.economicCalendar.fed.country'),
+      impact: t('marketInfo.fundamentalAnalysis.economicCalendar.fed.impact'),
+      typical: t('marketInfo.fundamentalAnalysis.economicCalendar.fed.typical'),
+      tradingTip: t('marketInfo.fundamentalAnalysis.economicCalendar.fed.tradingTip')
     },
     {
-      event: "ECB Rate Decision",
-      country: "EUR",
-      impact: "Highest",
-      typical: "8 meetings/year",
-      tradingTip: "Similar to Fed; Draghi/Lagarde speeches critical"
+      event: t('marketInfo.fundamentalAnalysis.economicCalendar.ecb.event'),
+      country: t('marketInfo.fundamentalAnalysis.economicCalendar.ecb.country'),
+      impact: t('marketInfo.fundamentalAnalysis.economicCalendar.ecb.impact'),
+      typical: t('marketInfo.fundamentalAnalysis.economicCalendar.ecb.typical'),
+      tradingTip: t('marketInfo.fundamentalAnalysis.economicCalendar.ecb.tradingTip')
     },
     {
-      event: "UK CPI Inflation",
-      country: "GBP",
-      impact: "High",
-      typical: "Mid-month",
-      tradingTip: "Directly impacts BOE rate expectations; 30-50 pip moves"
+      event: t('marketInfo.fundamentalAnalysis.economicCalendar.ukCpi.event'),
+      country: t('marketInfo.fundamentalAnalysis.economicCalendar.ukCpi.country'),
+      impact: t('marketInfo.fundamentalAnalysis.economicCalendar.ukCpi.impact'),
+      typical: t('marketInfo.fundamentalAnalysis.economicCalendar.ukCpi.typical'),
+      tradingTip: t('marketInfo.fundamentalAnalysis.economicCalendar.ukCpi.tradingTip')
     },
     {
-      event: "China GDP",
-      country: "CNY/AUD",
-      impact: "High",
-      typical: "Quarterly",
-      tradingTip: "Affects AUD heavily (China's largest trading partner)"
+      event: t('marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.event'),
+      country: t('marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.country'),
+      impact: t('marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.impact'),
+      typical: t('marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.typical'),
+      tradingTip: t('marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.tradingTip')
     }
   ];
 
   const correlations = [
     {
-      pair: "AUD/USD vs Gold",
-      relationship: "Positive (70%)",
-      reason: "Australia is major gold exporter"
+      pair: t('marketInfo.fundamentalAnalysis.correlations.audGold.pair'),
+      relationship: t('marketInfo.fundamentalAnalysis.correlations.audGold.relationship'),
+      reason: t('marketInfo.fundamentalAnalysis.correlations.audGold.reason')
     },
     {
-      pair: "USD/CAD vs Oil",
-      relationship: "Negative (80%)",
-      reason: "Canada exports oil; USD/CAD falls when oil rises"
+      pair: t('marketInfo.fundamentalAnalysis.correlations.usdCadOil.pair'),
+      relationship: t('marketInfo.fundamentalAnalysis.correlations.usdCadOil.relationship'),
+      reason: t('marketInfo.fundamentalAnalysis.correlations.usdCadOil.reason')
     },
     {
-      pair: "EUR/USD vs DXY",
-      relationship: "Negative (95%)",
-      reason: "EUR is 57% of Dollar Index"
+      pair: t('marketInfo.fundamentalAnalysis.correlations.eurDxy.pair'),
+      relationship: t('marketInfo.fundamentalAnalysis.correlations.eurDxy.relationship'),
+      reason: t('marketInfo.fundamentalAnalysis.correlations.eurDxy.reason')
     },
     {
-      pair: "NZD/USD vs Dairy Prices",
-      relationship: "Positive (65%)",
-      reason: "New Zealand's main export is dairy"
+      pair: t('marketInfo.fundamentalAnalysis.correlations.nzdDairy.pair'),
+      relationship: t('marketInfo.fundamentalAnalysis.correlations.nzdDairy.relationship'),
+      reason: t('marketInfo.fundamentalAnalysis.correlations.nzdDairy.reason')
     },
     {
-      pair: "USD/JPY vs US Yields",
-      relationship: "Positive (85%)",
-      reason: "Higher yields attract capital to USD"
+      pair: t('marketInfo.fundamentalAnalysis.correlations.usdJpyYields.pair'),
+      relationship: t('marketInfo.fundamentalAnalysis.correlations.usdJpyYields.relationship'),
+      reason: t('marketInfo.fundamentalAnalysis.correlations.usdJpyYields.reason')
     }
   ];
 
   const faqs = [
     {
-      question: "How does fundamental analysis differ from technical analysis?",
-      answer: "Fundamental analysis examines economic factors, central bank policies, and geopolitical events to determine intrinsic currency value and long-term trends. Technical analysis uses price charts and patterns for timing entries/exits. Most professional traders combine both: fundamentals for direction and bias, technicals for precise entry/exit timing. For example, if Fed raises rates (fundamental), you'd look for bullish USD setups on charts (technical)."
+      question: t('marketInfo.fundamentalAnalysis.faq.q1.question'),
+      answer: t('marketInfo.fundamentalAnalysis.faq.q1.answer')
     },
     {
-      question: "Which economic indicators have the biggest impact on forex?",
-      answer: "The top 3 are: 1) Interest rate decisions (highest impact - directly set by central banks), 2) Employment data like NFP (very high - influences rate policy), 3) Inflation (CPI/PPI - determines if rates need to change). These often cause 50-150 pip moves within minutes. GDP, retail sales, and PMI data are secondary but still important for medium-term trends."
+      question: t('marketInfo.fundamentalAnalysis.faq.q2.question'),
+      answer: t('marketInfo.fundamentalAnalysis.faq.q2.answer')
     },
     {
-      question: "How do I trade around major news releases?",
-      answer: "Three approaches: 1) Avoid trading - Close positions 30min before high-impact news and wait for volatility to settle. 2) Breakout trading - Wait for initial spike to establish direction, then trade the continuation with tight stops. 3) Fade the spike - Counter-trade emotional moves after 30-60 minutes. Beginners should avoid trading during news; it requires experience and wider stops (50+ pips)."
+      question: t('marketInfo.fundamentalAnalysis.faq.q3.question'),
+      answer: t('marketInfo.fundamentalAnalysis.faq.q3.answer')
     },
     {
-      question: "What is 'priced in' and how does it affect trading?",
-      answer: "'Priced in' means the market has already adjusted prices based on expectations. If everyone expects a Fed rate hike and it happens, there may be no USD rally (buy the rumor, sell the fact). The key is surprises: if expected +0.25% but get +0.50%, expect big moves. Check market expectations (consensus forecasts) before news and trade the deviation from expectations, not the absolute number."
+      question: t('marketInfo.fundamentalAnalysis.faq.q4.question'),
+      answer: t('marketInfo.fundamentalAnalysis.faq.q4.answer')
     },
     {
-      question: "How do central bank policies affect currency pairs?",
-      answer: "Central banks control interest rates, which drive currency value through carry trade. Higher rates attract foreign investment → stronger currency. Divergent policies create trends: if Fed raises rates while ECB holds, USD/EUR strengthens. Key terms: Hawkish (favors rate hikes) = bullish currency; Dovish (favors rate cuts) = bearish currency. Follow central bank meeting calendars and speeches closely."
+      question: t('marketInfo.fundamentalAnalysis.faq.q5.question'),
+      answer: t('marketInfo.fundamentalAnalysis.faq.q5.answer')
     },
     {
-      question: "Can I trade forex based purely on fundamentals?",
-      answer: "Yes, but it's challenging for short-term traders. Fundamental themes (like Fed hiking cycle) play out over weeks/months, not hours. Position traders use fundamentals successfully with multi-week trades. For day traders, fundamentals provide directional bias, but you still need technical analysis for entries. Recommended: Use fundamentals to determine which side to trade, technicals for timing."
+      question: t('marketInfo.fundamentalAnalysis.faq.q6.question'),
+      answer: t('marketInfo.fundamentalAnalysis.faq.q6.answer')
     },
     {
-      question: "How do commodity prices affect forex pairs?",
-      answer: "Commodity currencies (CAD, AUD, NZD, NOK) correlate with commodity prices because exports drive their economies. USD/CAD falls ~80% of time when oil rises (Canada exports oil). AUD/USD rises with gold and iron ore prices. NZD/USD follows dairy prices. Trade these correlations: if oil spikes, consider shorting USD/CAD. Check commodity charts before trading commodity currencies."
+      question: t('marketInfo.fundamentalAnalysis.faq.q7.question'),
+      answer: t('marketInfo.fundamentalAnalysis.faq.q7.answer')
     }
   ];
 
@@ -249,10 +252,10 @@ export default function FundamentalAnalysisPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-fundamental-analysis">Market Education</Badge>
-            <h1 className="text-4xl font-bold mb-4">Fundamental Analysis Guide</h1>
+            <Badge className="mb-4" data-testid="badge-fundamental-analysis">{t('marketInfo.fundamentalAnalysis.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('marketInfo.fundamentalAnalysis.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Master the economic factors, central bank policies, and geopolitical events that drive long-term currency movements. Learn how professional traders analyze macroeconomic data to identify high-probability trade opportunities.
+              {t('marketInfo.fundamentalAnalysis.description')}
             </p>
           </div>
 
@@ -260,26 +263,26 @@ export default function FundamentalAnalysisPage() {
           <div className="grid sm:grid-cols-4 gap-4 mb-12">
             <Card data-testid="card-stat-indicators">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">20+</div>
-                <p className="text-sm text-muted-foreground">Key Indicators</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.fundamentalAnalysis.stats.indicators')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.fundamentalAnalysis.stats.indicatorsLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-banks">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">8</div>
-                <p className="text-sm text-muted-foreground">Major Central Banks</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.fundamentalAnalysis.stats.centralBanks')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.fundamentalAnalysis.stats.centralBanksLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-events">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">50+</div>
-                <p className="text-sm text-muted-foreground">Monthly Events</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.fundamentalAnalysis.stats.monthlyEvents')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.fundamentalAnalysis.stats.monthlyEventsLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-impact">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">150+</div>
-                <p className="text-sm text-muted-foreground">Pips per Major News</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.fundamentalAnalysis.stats.pipsPerNews')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.fundamentalAnalysis.stats.pipsPerNewsLabel')}</p>
               </CardContent>
             </Card>
           </div>
@@ -310,7 +313,7 @@ export default function FundamentalAnalysisPage() {
                             <Badge variant="outline" className="ml-2">{indicator.importance}</Badge>
                           </div>
                           <p className="text-sm text-muted-foreground mb-2">{indicator.impact}</p>
-                          <p className="text-xs text-primary font-medium">Frequency: {indicator.frequency}</p>
+                          <p className="text-xs text-primary font-medium">{t('marketInfo.fundamentalAnalysis.frequencyLabel')} {indicator.frequency}</p>
                         </div>
                       ))}
                     </div>
@@ -325,9 +328,9 @@ export default function FundamentalAnalysisPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-primary" />
-                <CardTitle>High-Impact Economic Events</CardTitle>
+                <CardTitle>{t('marketInfo.fundamentalAnalysis.economicCalendar.title')}</CardTitle>
               </div>
-              <CardDescription>Key events that move markets - plan your trades around these</CardDescription>
+              <CardDescription>{t('marketInfo.fundamentalAnalysis.economicCalendar.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -341,13 +344,13 @@ export default function FundamentalAnalysisPage() {
                       <div className="flex gap-2 items-center">
                         <Badge>{event.country}</Badge>
                         <Badge variant={event.impact === "Highest" ? "destructive" : "default"}>
-                          {event.impact} Impact
+                          {event.impact} {t('marketInfo.fundamentalAnalysis.economicCalendar.impactLabel')}
                         </Badge>
                       </div>
                     </div>
                     <Alert className="mt-2">
                       <AlertDescription className="text-sm">
-                        <strong>Trading Tip:</strong> {event.tradingTip}
+                        <strong>{t('marketInfo.fundamentalAnalysis.economicCalendar.tradingTipLabel')}</strong> {event.tradingTip}
                       </AlertDescription>
                     </Alert>
                   </div>
@@ -359,8 +362,8 @@ export default function FundamentalAnalysisPage() {
           {/* Correlations */}
           <Card className="mb-12">
             <CardHeader>
-              <CardTitle>Currency-Commodity Correlations</CardTitle>
-              <CardDescription>How commodities and other assets influence forex pairs</CardDescription>
+              <CardTitle>{t('marketInfo.fundamentalAnalysis.correlations.title')}</CardTitle>
+              <CardDescription>{t('marketInfo.fundamentalAnalysis.correlations.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -385,33 +388,33 @@ export default function FundamentalAnalysisPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-primary" />
-                  <CardTitle>Fundamental Trading Workflow</CardTitle>
+                  <CardTitle>{t('marketInfo.fundamentalAnalysis.workflow.title')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">1</div>
-                  <p><strong>Check economic calendar:</strong> Identify high-impact events for the week</p>
+                  <p><strong>{t('marketInfo.fundamentalAnalysis.workflow.step1')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">2</div>
-                  <p><strong>Analyze central bank stance:</strong> Determine if hawkish or dovish bias</p>
+                  <p><strong>{t('marketInfo.fundamentalAnalysis.workflow.step2')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">3</div>
-                  <p><strong>Compare interest rate differentials:</strong> Higher yielding currency favored</p>
+                  <p><strong>{t('marketInfo.fundamentalAnalysis.workflow.step3')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">4</div>
-                  <p><strong>Assess geopolitical risks:</strong> Wars, elections, trade tensions</p>
+                  <p><strong>{t('marketInfo.fundamentalAnalysis.workflow.step4')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">5</div>
-                  <p><strong>Determine market sentiment:</strong> Risk-on (high-yield) vs risk-off (safe-haven)</p>
+                  <p><strong>{t('marketInfo.fundamentalAnalysis.workflow.step5')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">6</div>
-                  <p><strong>Use technicals for entry:</strong> Fundamentals = direction, technicals = timing</p>
+                  <p><strong>{t('marketInfo.fundamentalAnalysis.workflow.step6')}</strong></p>
                 </div>
               </CardContent>
             </Card>
@@ -420,25 +423,25 @@ export default function FundamentalAnalysisPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <AlertTriangle className="w-5 h-5 text-amber-500" />
-                  <CardTitle>Common Fundamental Mistakes</CardTitle>
+                  <CardTitle>{t('marketInfo.fundamentalAnalysis.mistakes.title')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4 text-sm">
                 <div>
-                  <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">Trading the number, not the expectation</h4>
-                  <p className="text-muted-foreground">Markets react to surprises, not absolute values. Check consensus forecasts first.</p>
+                  <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">{t('marketInfo.fundamentalAnalysis.mistakes.tradingNumber.title')}</h4>
+                  <p className="text-muted-foreground">{t('marketInfo.fundamentalAnalysis.mistakes.tradingNumber.description')}</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">Ignoring central bank divergence</h4>
-                  <p className="text-muted-foreground">Rate differentials create multi-month trends. Follow both central banks in a pair.</p>
+                  <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">{t('marketInfo.fundamentalAnalysis.mistakes.ignoringDivergence.title')}</h4>
+                  <p className="text-muted-foreground">{t('marketInfo.fundamentalAnalysis.mistakes.ignoringDivergence.description')}</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">Holding through high-impact news</h4>
-                  <p className="text-muted-foreground">News can reverse trends instantly. Close positions or use very wide stops (100+ pips).</p>
+                  <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">{t('marketInfo.fundamentalAnalysis.mistakes.holdingThroughNews.title')}</h4>
+                  <p className="text-muted-foreground">{t('marketInfo.fundamentalAnalysis.mistakes.holdingThroughNews.description')}</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">Overlooking 'priced in' effect</h4>
-                  <p className="text-muted-foreground">Expected news often causes "buy rumor, sell fact." Trade the surprise, not the headline.</p>
+                  <h4 className="font-semibold text-amber-600 dark:text-amber-500 mb-1">{t('marketInfo.fundamentalAnalysis.mistakes.pricedIn.title')}</h4>
+                  <p className="text-muted-foreground">{t('marketInfo.fundamentalAnalysis.mistakes.pricedIn.description')}</p>
                 </div>
               </CardContent>
             </Card>
@@ -449,7 +452,7 @@ export default function FundamentalAnalysisPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
-                <CardTitle>Frequently Asked Questions</CardTitle>
+                <CardTitle>{t('marketInfo.fundamentalAnalysis.faq.title')}</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
@@ -468,17 +471,17 @@ export default function FundamentalAnalysisPage() {
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Stay Ahead with Economic Calendar</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('marketInfo.fundamentalAnalysis.cta.title')}</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Access our integrated economic calendar with real-time alerts for high-impact events. Never miss a major news release that could affect your trades.
+              {t('marketInfo.fundamentalAnalysis.cta.description')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" data-testid="button-economic-calendar">
-                View Economic Calendar
+                {t('marketInfo.fundamentalAnalysis.cta.button')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               <Button size="lg" variant="outline" data-testid="button-market-news">
-                Latest Market News
+                {t('marketInfo.fundamentalAnalysis.cta.learnMore')}
               </Button>
             </div>
           </div>

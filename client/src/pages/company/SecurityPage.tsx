@@ -20,34 +20,37 @@ import {
   Database,
   ShieldCheck
 } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function SecurityPage() {
+  const { t } = useLanguage();
+
   const stats = [
     {
-      label: "Encryption Level",
-      value: "AES-256",
-      description: "Military-grade encryption",
+      label: t('company.security.stats.encryption.label'),
+      value: t('company.security.stats.encryption.value'),
+      description: t('company.security.stats.encryption.description'),
       icon: Lock,
       testId: "stat-encryption"
     },
     {
-      label: "2FA Users",
-      value: "87%",
-      description: "Clients using 2FA",
+      label: t('company.security.stats.2fa.label'),
+      value: t('company.security.stats.2fa.value'),
+      description: t('company.security.stats.2fa.description'),
       icon: Smartphone,
       testId: "stat-2fa"
     },
     {
-      label: "Security Audits",
-      value: "4/year",
-      description: "Independent assessments",
+      label: t('company.security.stats.audits.label'),
+      value: t('company.security.stats.audits.value'),
+      description: t('company.security.stats.audits.description'),
       icon: FileCheck,
       testId: "stat-audits"
     },
     {
-      label: "Data Centers",
-      value: "5",
-      description: "Geo-redundant locations",
+      label: t('company.security.stats.dataCenters.label'),
+      value: t('company.security.stats.dataCenters.value'),
+      description: t('company.security.stats.dataCenters.description'),
       icon: Server,
       testId: "stat-datacenters"
     }
@@ -55,94 +58,94 @@ export default function SecurityPage() {
 
   const securityMeasures = [
     {
-      title: "SSL/TLS Encryption",
+      title: t('company.security.measures.sslTls.title'),
       icon: Lock,
-      description: "All data transmitted between your device and our servers is protected by industry-standard encryption",
+      description: t('company.security.measures.sslTls.description'),
       details: [
         {
-          feature: "TLS 1.3 Protocol",
-          description: "Latest encryption standard for all web and API connections, protecting data in transit from interception"
+          feature: t('company.security.measures.sslTls.tls13.feature'),
+          description: t('company.security.measures.sslTls.tls13.description')
         },
         {
-          feature: "Perfect Forward Secrecy (PFS)",
-          description: "Session keys cannot be compromised even if long-term keys are exposed in the future"
+          feature: t('company.security.measures.sslTls.pfs.feature'),
+          description: t('company.security.measures.sslTls.pfs.description')
         },
         {
-          feature: "Certificate Pinning",
-          description: "Mobile apps verify server identity to prevent man-in-the-middle attacks"
+          feature: t('company.security.measures.sslTls.certPinning.feature'),
+          description: t('company.security.measures.sslTls.certPinning.description')
         },
         {
-          feature: "HSTS Enabled",
-          description: "HTTP Strict Transport Security forces encrypted connections, preventing downgrade attacks"
+          feature: t('company.security.measures.sslTls.hsts.feature'),
+          description: t('company.security.measures.sslTls.hsts.description')
         }
       ]
     },
     {
-      title: "Two-Factor Authentication (2FA)",
+      title: t('company.security.measures.twoFactor.title'),
       icon: Smartphone,
-      description: "Add an extra layer of security beyond passwords to protect your account from unauthorized access",
+      description: t('company.security.measures.twoFactor.description'),
       details: [
         {
-          feature: "App-Based Authenticators",
-          description: "Support for Google Authenticator, Authy, and Microsoft Authenticator (TOTP-based, more secure than SMS)"
+          feature: t('company.security.measures.twoFactor.appBased.feature'),
+          description: t('company.security.measures.twoFactor.appBased.description')
         },
         {
-          feature: "SMS Backup Codes",
-          description: "Receive one-time codes via SMS as a fallback (available but app-based is recommended)"
+          feature: t('company.security.measures.twoFactor.smsCodes.feature'),
+          description: t('company.security.measures.twoFactor.smsCodes.description')
         },
         {
-          feature: "Hardware Security Keys",
-          description: "YubiKey and FIDO2-compliant devices supported for maximum protection against phishing"
+          feature: t('company.security.measures.twoFactor.hardwareKeys.feature'),
+          description: t('company.security.measures.twoFactor.hardwareKeys.description')
         },
         {
-          feature: "Biometric Login (Mobile)",
-          description: "Face ID and fingerprint authentication on mobile apps for convenient yet secure access"
+          feature: t('company.security.measures.twoFactor.biometric.feature'),
+          description: t('company.security.measures.twoFactor.biometric.description')
         }
       ]
     },
     {
-      title: "Data Encryption at Rest",
+      title: t('company.security.measures.dataEncryption.title'),
       icon: Database,
-      description: "Your sensitive data is encrypted even when stored on our servers, protecting against database breaches",
+      description: t('company.security.measures.dataEncryption.description'),
       details: [
         {
-          feature: "AES-256 Encryption",
-          description: "All client data, including personal information and trading history, encrypted using military-grade AES-256"
+          feature: t('company.security.measures.dataEncryption.aes256.feature'),
+          description: t('company.security.measures.dataEncryption.aes256.description')
         },
         {
-          feature: "Encrypted Database Fields",
-          description: "Sensitive fields (e.g., ID numbers, addresses, bank details) individually encrypted with unique keys"
+          feature: t('company.security.measures.dataEncryption.fields.feature'),
+          description: t('company.security.measures.dataEncryption.fields.description')
         },
         {
-          feature: "Key Management System (KMS)",
-          description: "Encryption keys stored separately from data using AWS KMS with automatic rotation every 90 days"
+          feature: t('company.security.measures.dataEncryption.kms.feature'),
+          description: t('company.security.measures.dataEncryption.kms.description')
         },
         {
-          feature: "Encrypted Backups",
-          description: "All database backups encrypted before storage and geographically distributed across secure facilities"
+          feature: t('company.security.measures.dataEncryption.backups.feature'),
+          description: t('company.security.measures.dataEncryption.backups.description')
         }
       ]
     },
     {
-      title: "Advanced Threat Protection",
+      title: t('company.security.measures.threatProtection.title'),
       icon: Shield,
-      description: "Multi-layered security infrastructure to detect and prevent cyber attacks in real-time",
+      description: t('company.security.measures.threatProtection.description'),
       details: [
         {
-          feature: "Web Application Firewall (WAF)",
-          description: "Cloudflare Enterprise WAF blocks SQL injection, XSS, and other OWASP Top 10 attacks"
+          feature: t('company.security.measures.threatProtection.waf.feature'),
+          description: t('company.security.measures.threatProtection.waf.description')
         },
         {
-          feature: "DDoS Mitigation",
-          description: "Automatic detection and mitigation of distributed denial-of-service attacks up to 100 Gbps"
+          feature: t('company.security.measures.threatProtection.ddos.feature'),
+          description: t('company.security.measures.threatProtection.ddos.description')
         },
         {
-          feature: "Intrusion Detection System (IDS)",
-          description: "24/7 monitoring for suspicious network activity with automated blocking of malicious IPs"
+          feature: t('company.security.measures.threatProtection.ids.feature'),
+          description: t('company.security.measures.threatProtection.ids.description')
         },
         {
-          feature: "Rate Limiting & Anti-Bot",
-          description: "API rate limits, CAPTCHA challenges, and behavioral analysis to prevent automated attacks"
+          feature: t('company.security.measures.threatProtection.rateLimit.feature'),
+          description: t('company.security.measures.threatProtection.rateLimit.description')
         }
       ]
     }
@@ -150,139 +153,139 @@ export default function SecurityPage() {
 
   const dataProtection = [
     {
-      title: "GDPR Compliance (EU)",
-      description: "Full compliance with European General Data Protection Regulation",
+      title: t('company.security.dataProtection.gdpr.title'),
+      description: t('company.security.dataProtection.gdpr.description'),
       measures: [
-        "Data Protection Officer (DPO) appointed: dpo@example-broker.com",
-        "Right to access your data within 30 days of request",
-        "Right to rectification, erasure ('right to be forgotten'), and data portability",
-        "Privacy by design: minimal data collection, purpose limitation, storage limitation",
-        "Data Processing Agreements (DPA) with all third-party processors",
-        "Annual Data Protection Impact Assessments (DPIA) for high-risk processing",
-        "Breach notification to authorities within 72 hours if required"
+        t('company.security.dataProtection.gdpr.measure1'),
+        t('company.security.dataProtection.gdpr.measure2'),
+        t('company.security.dataProtection.gdpr.measure3'),
+        t('company.security.dataProtection.gdpr.measure4'),
+        t('company.security.dataProtection.gdpr.measure5'),
+        t('company.security.dataProtection.gdpr.measure6'),
+        t('company.security.dataProtection.gdpr.measure7')
       ]
     },
     {
-      title: "Data Handling & Retention",
-      description: "Strict policies governing how your data is collected, used, and retained",
+      title: t('company.security.dataProtection.handling.title'),
+      description: t('company.security.dataProtection.handling.description'),
       measures: [
-        "Data minimization: Only collect data necessary for service provision and regulatory compliance",
-        "Purpose limitation: Data used only for stated purposes (trading, compliance, customer service)",
-        "Retention policy: Financial records 7 years (regulatory), KYC documents 5 years, marketing data until consent withdrawn",
-        "Secure deletion: Data permanently deleted (not just archived) after retention period using DOD 5220.22-M standard",
-        "Cross-border transfers: EU-US Data Privacy Framework certified for transatlantic data flows",
-        "Third-party sharing: Only with explicit consent or regulatory requirement (never sold to marketers)"
+        t('company.security.dataProtection.handling.measure1'),
+        t('company.security.dataProtection.handling.measure2'),
+        t('company.security.dataProtection.handling.measure3'),
+        t('company.security.dataProtection.handling.measure4'),
+        t('company.security.dataProtection.handling.measure5'),
+        t('company.security.dataProtection.handling.measure6')
       ]
     },
     {
-      title: "Privacy & Access Controls",
-      description: "Who can access your data and how it's protected internally",
+      title: t('company.security.dataProtection.privacy.title'),
+      description: t('company.security.dataProtection.privacy.description'),
       measures: [
-        "Role-Based Access Control (RBAC): Employees see only data needed for their role",
-        "Principle of Least Privilege: Default deny, access granted only when necessary",
-        "Multi-Factor Authentication (MFA) for all employee accounts",
-        "Access logging and audit trails: All data access recorded and reviewed quarterly",
-        "Background checks and NDA for all employees with data access",
-        "Annual security awareness training for all staff"
+        t('company.security.dataProtection.privacy.measure1'),
+        t('company.security.dataProtection.privacy.measure2'),
+        t('company.security.dataProtection.privacy.measure3'),
+        t('company.security.dataProtection.privacy.measure4'),
+        t('company.security.dataProtection.privacy.measure5'),
+        t('company.security.dataProtection.privacy.measure6')
       ]
     }
   ];
 
   const userResponsibilities = [
     {
-      practice: "Use Strong, Unique Passwords",
-      description: "Create complex passwords with 12+ characters, mixing uppercase, lowercase, numbers, and symbols. Never reuse passwords across sites.",
+      practice: t('company.security.userPractices.passwords.title'),
+      description: t('company.security.userPractices.passwords.description'),
       tips: [
-        "Use a password manager (e.g., Bitwarden, 1Password) to generate and store unique passwords",
-        "Avoid personal information (names, birthdays) in passwords",
-        "Change password immediately if you suspect compromise",
-        "Never share your password with anyone, including support staff (we'll never ask for it)"
+        t('company.security.userPractices.passwords.tip1'),
+        t('company.security.userPractices.passwords.tip2'),
+        t('company.security.userPractices.passwords.tip3'),
+        t('company.security.userPractices.passwords.tip4')
       ]
     },
     {
-      practice: "Enable Two-Factor Authentication (2FA)",
-      description: "Always enable 2FA on your trading account. App-based authenticators (Google Authenticator, Authy) are more secure than SMS.",
+      practice: t('company.security.userPractices.enable2fa.title'),
+      description: t('company.security.userPractices.enable2fa.description'),
       tips: [
-        "Set up 2FA immediately after account creation",
-        "Save backup codes in a secure location (offline, not in email)",
-        "If changing phones, disable 2FA on old device and re-enable on new one",
-        "Avoid SMS 2FA if possible due to SIM-swapping attacks"
+        t('company.security.userPractices.enable2fa.tip1'),
+        t('company.security.userPractices.enable2fa.tip2'),
+        t('company.security.userPractices.enable2fa.tip3'),
+        t('company.security.userPractices.enable2fa.tip4')
       ]
     },
     {
-      practice: "Beware of Phishing Attempts",
-      description: "Be vigilant against fake emails, SMS, or calls pretending to be from us. We'll never ask for your password or 2FA codes.",
+      practice: t('company.security.userPractices.phishing.title'),
+      description: t('company.security.userPractices.phishing.description'),
       tips: [
-        "Check sender email address carefully (genuine emails only from @example-broker.com)",
-        "Hover over links before clicking to verify destination URL",
-        "Don't click links in unsolicited emails - go directly to our website instead",
-        "Report suspicious emails to security@example-broker.com",
-        "We'll never ask for passwords, 2FA codes, or remote access to your device"
+        t('company.security.userPractices.phishing.tip1'),
+        t('company.security.userPractices.phishing.tip2'),
+        t('company.security.userPractices.phishing.tip3'),
+        t('company.security.userPractices.phishing.tip4'),
+        t('company.security.userPractices.phishing.tip5')
       ]
     },
     {
-      practice: "Secure Your Devices",
-      description: "Keep your computer, phone, and tablet secure as they're gateways to your trading account.",
+      practice: t('company.security.userPractices.devices.title'),
+      description: t('company.security.userPractices.devices.description'),
       tips: [
-        "Keep operating systems and browsers updated with latest security patches",
-        "Use antivirus/anti-malware software on all devices",
-        "Avoid public Wi-Fi for trading; use VPN if necessary",
-        "Enable device encryption (FileVault on Mac, BitLocker on Windows)",
-        "Lock devices when not in use and use biometric authentication when available"
+        t('company.security.userPractices.devices.tip1'),
+        t('company.security.userPractices.devices.tip2'),
+        t('company.security.userPractices.devices.tip3'),
+        t('company.security.userPractices.devices.tip4'),
+        t('company.security.userPractices.devices.tip5')
       ]
     },
     {
-      practice: "Monitor Account Activity",
-      description: "Regularly review your account for any unauthorized activity or suspicious transactions.",
+      practice: t('company.security.userPractices.monitoring.title'),
+      description: t('company.security.userPractices.monitoring.description'),
       tips: [
-        "Enable email/SMS notifications for logins, trades, and withdrawals",
-        "Check 'Recent Activity' in your account dashboard weekly",
-        "Review trade history and transaction records monthly",
-        "Report any unrecognized activity immediately to security@example-broker.com",
-        "Set up withdrawal whitelist (only allow withdrawals to pre-approved bank accounts)"
+        t('company.security.userPractices.monitoring.tip1'),
+        t('company.security.userPractices.monitoring.tip2'),
+        t('company.security.userPractices.monitoring.tip3'),
+        t('company.security.userPractices.monitoring.tip4'),
+        t('company.security.userPractices.monitoring.tip5')
       ]
     },
     {
-      practice: "Be Cautious with Third-Party Apps",
-      description: "Only use trusted trading bots, signals, or tools. Never give third parties your login credentials.",
+      practice: t('company.security.userPractices.thirdParty.title'),
+      description: t('company.security.userPractices.thirdParty.description'),
       tips: [
-        "Use API keys instead of passwords for third-party integrations",
-        "Review and revoke API access regularly (Settings > API Management)",
-        "Set read-only permissions on API keys when full access isn't needed",
-        "Avoid 'account management' services that ask for your password",
-        "Research third-party vendors thoroughly before granting access"
+        t('company.security.userPractices.thirdParty.tip1'),
+        t('company.security.userPractices.thirdParty.tip2'),
+        t('company.security.userPractices.thirdParty.tip3'),
+        t('company.security.userPractices.thirdParty.tip4'),
+        t('company.security.userPractices.thirdParty.tip5')
       ]
     }
   ];
 
   const faqs = [
     {
-      question: "How secure is my money on your platform?",
-      answer: "Your funds are protected through multiple layers: 1) Segregated accounts at Tier-1 banks (your money never mixes with company funds), 2) AES-256 encryption for all data at rest and TLS 1.3 for data in transit, 3) Two-factor authentication (2FA) to prevent unauthorized account access, 4) Regular security audits by independent firms (KPMG, BSI Group), 5) Statutory compensation schemes (FSCS, ICF) up to regulatory limits if the broker fails. Additionally, we're ISO 27001 certified for information security management, demonstrating compliance with international security standards."
+      question: t('company.security.faq.q1.question'),
+      answer: t('company.security.faq.q1.answer')
     },
     {
-      question: "What should I do if I suspect my account has been hacked?",
-      answer: "Take immediate action: 1) Change your password immediately via 'Forgot Password' (don't log in with potentially compromised credentials), 2) Contact our security team at security@example-broker.com or call +44 20 7946 0961, 3) We'll temporarily freeze your account to prevent unauthorized trades/withdrawals, 4) Review recent account activity and report any suspicious trades or transactions, 5) Enable 2FA if not already active, 6) Check your email account security (hackers may have accessed your email first). We'll investigate, reverse any fraudulent transactions, and restore your account. If funds were withdrawn, we'll work with banks and law enforcement to recover them."
+      question: t('company.security.faq.q2.question'),
+      answer: t('company.security.faq.q2.answer')
     },
     {
-      question: "Is two-factor authentication (2FA) really necessary?",
-      answer: "Absolutely. 2FA reduces account takeover risk by over 99%. Even if someone steals your password (via phishing, data breach, keylogger), they can't access your account without the second factor (authenticator app code, hardware key). We strongly recommend app-based 2FA (Google Authenticator, Authy) over SMS because SIM-swapping attacks can intercept SMS codes. For high-value accounts ($50K+), consider hardware security keys (YubiKey) for maximum protection. 87% of our clients use 2FA, and accounts without 2FA are 40x more likely to be compromised."
+      question: t('company.security.faq.q3.question'),
+      answer: t('company.security.faq.q3.answer')
     },
     {
-      question: "How do I spot a phishing attempt?",
-      answer: "Red flags include: 1) Sender email not from @example-broker.com (e.g., @examp1e-broker.com with a '1'), 2) Urgent language pressuring immediate action ('Your account will be closed!'), 3) Requests for passwords, 2FA codes, or remote access, 4) Suspicious links (hover to see real URL before clicking), 5) Generic greetings ('Dear Customer' instead of your name), 6) Poor grammar or spelling errors. We will NEVER ask for your password or 2FA codes via email, phone, or chat. When in doubt, don't click links - go directly to our website by typing the URL. Report suspicious emails to security@example-broker.com."
+      question: t('company.security.faq.q4.question'),
+      answer: t('company.security.faq.q4.answer')
     },
     {
-      question: "What happens to my data if I close my account?",
-      answer: "Your data is retained according to regulatory and legal requirements: Financial transaction records are kept for 7 years (required by FCA/AML regulations), KYC/identity documents for 5 years after account closure, Marketing communications deleted immediately upon account closure or consent withdrawal. After retention periods expire, data is securely deleted using DOD 5220.22-M erasure standards (data overwritten multiple times, unrecoverable). You can request a copy of your data before closure (data portability right under GDPR). Note: We cannot delete data still required for regulatory compliance, ongoing investigations, or legal disputes."
+      question: t('company.security.faq.q5.question'),
+      answer: t('company.security.faq.q5.answer')
     },
     {
-      question: "Do you share my data with third parties?",
-      answer: "We share data only when necessary and with your consent or legal obligation: 1) Service providers (payment processors, ID verification, cloud hosting) under strict Data Processing Agreements (GDPR-compliant), 2) Regulators (FCA, CySEC, ASIC) when required by law, 3) Law enforcement with valid court orders or for fraud investigation, 4) Credit reference agencies for creditworthiness checks (professional accounts only). We NEVER sell your data to marketers or unrelated third parties. All sharing is logged and auditable. You can request a 'data sharing report' showing who accessed your data in the last 12 months (contact dpo@example-broker.com)."
+      question: t('company.security.faq.q6.question'),
+      answer: t('company.security.faq.q6.answer')
     },
     {
-      question: "How often do you conduct security audits?",
-      answer: "We undergo multiple independent security assessments annually: 1) ISO 27001 audit by BSI Group (bi-annual) covering information security management systems, 2) Penetration testing by certified ethical hackers (quarterly) attempting to breach our systems, 3) Vulnerability scanning (monthly) using automated tools to identify security weaknesses, 4) Code security reviews (before every major release) checking for vulnerabilities like SQL injection, XSS, 5) Third-party security assessments by KPMG (annual) as part of financial audit. All critical vulnerabilities are patched within 24 hours. Audit summaries (non-sensitive parts) are published in our annual compliance report."
+      question: t('company.security.faq.q7.question'),
+      answer: t('company.security.faq.q7.answer')
     }
   ];
 
@@ -292,10 +295,10 @@ export default function SecurityPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-security">Trust & Compliance</Badge>
-            <h1 className="text-4xl font-bold mb-4">Security & Data Protection</h1>
+            <Badge className="mb-4" data-testid="badge-security">{t('company.security.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('company.security.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Your security is our top priority. We employ military-grade encryption, multi-factor authentication, and regular security audits to protect your data and funds. We're fully compliant with GDPR and international data protection standards.
+              {t('company.security.description')}
             </p>
           </div>
 
@@ -319,13 +322,13 @@ export default function SecurityPage() {
           <Alert className="mb-12" data-testid="alert-security-notice">
             <ShieldCheck className="h-4 w-4" />
             <AlertDescription>
-              <strong>Security Certified:</strong> We are ISO 27001 certified and undergo quarterly penetration testing by independent security firms. Your data is protected by bank-level security measures.
+              <strong>{t('company.security.notice.title')}</strong> {t('company.security.notice.message')}
             </AlertDescription>
           </Alert>
 
           {/* Security Measures */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Security Measures</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.security.measures.title')}</h2>
             <div className="space-y-6">
               {securityMeasures.map((measure, index) => (
                 <Card key={index} data-testid={`card-measure-${index}`}>
@@ -355,7 +358,7 @@ export default function SecurityPage() {
 
           {/* Data Protection Compliance */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Data Protection Compliance</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.security.dataProtection.title')}</h2>
             <div className="space-y-6">
               {dataProtection.map((section, index) => (
                 <Card key={index} data-testid={`card-protection-${index}`}>
@@ -383,9 +386,9 @@ export default function SecurityPage() {
 
           {/* User Security Practices */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Your Security Responsibilities</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.security.userPractices.title')}</h2>
             <p className="text-muted-foreground mb-6">
-              While we provide robust security infrastructure, your actions play a crucial role in protecting your account. Follow these best practices to maintain maximum security.
+              {t('company.security.userPractices.description')}
             </p>
             <div className="space-y-6">
               {userResponsibilities.map((practice, index) => (
@@ -419,14 +422,14 @@ export default function SecurityPage() {
             <AlertTriangle className="h-4 w-4 text-amber-500" />
             <AlertDescription>
               <div className="flex items-center justify-between">
-                <span><strong>Report Security Issues:</strong> If you discover a security vulnerability or suspect unauthorized account access, contact us immediately at security@example-broker.com or call +44 20 7946 0961.</span>
+                <span><strong>{t('company.security.reportAlert.title')}</strong> {t('company.security.reportAlert.message')}</span>
               </div>
             </AlertDescription>
           </Alert>
 
           {/* FAQ Section */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.security.faq.title')}</h2>
             <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>

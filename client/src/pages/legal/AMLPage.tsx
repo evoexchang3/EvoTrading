@@ -1,151 +1,150 @@
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function AMLPage() {
+  const { t } = useLanguage();
+
   return (
     <LandingLayout>
       <SEO
-        title="AML / KYC Policy"
-        description="Our Anti-Money Laundering and Know Your Customer policy. Learn about our compliance procedures and verification requirements."
-        keywords="AML policy, KYC policy, anti-money laundering, compliance, identity verification"
+        title={t('legal.aml.seo.title')}
+        description={t('legal.aml.seo.description')}
+        keywords={t('legal.aml.seo.keywords')}
       />
       <div className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl font-bold mb-8" data-testid="text-aml-title">
-              AML / KYC Policy
+              {t('legal.aml.title')}
             </h1>
             <div className="prose prose-slate dark:prose-invert max-w-none">
               <p className="text-lg text-muted-foreground mb-8">
-                Last updated: January 2025
+                {t('legal.aml.lastUpdated')}
               </p>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section1.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  Our Anti-Money Laundering (AML) and Know Your Customer (KYC) Policy outlines our commitment 
-                  to preventing financial crime and ensuring compliance with international regulations.
+                  {t('legal.aml.section1.content')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">2. Regulatory Compliance</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section2.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  We comply with:
+                  {t('legal.aml.section2.intro')}
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Financial Action Task Force (FATF) recommendations</li>
-                  <li>EU Anti-Money Laundering Directives</li>
-                  <li>Local financial regulations in operating jurisdictions</li>
-                  <li>International sanctions and embargo requirements</li>
+                  <li>{t('legal.aml.section2.compliance1')}</li>
+                  <li>{t('legal.aml.section2.compliance2')}</li>
+                  <li>{t('legal.aml.section2.compliance3')}</li>
+                  <li>{t('legal.aml.section2.compliance4')}</li>
                 </ul>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">3. Know Your Customer (KYC)</h2>
-                <h3 className="text-xl font-semibold mb-3">Identity Verification</h3>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section3.title')}</h2>
+                <h3 className="text-xl font-semibold mb-3">{t('legal.aml.section3.identityVerification.title')}</h3>
                 <p className="text-muted-foreground mb-4">
-                  All clients must provide:
+                  {t('legal.aml.section3.identityVerification.intro')}
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Government-issued photo ID (passport, driver's license, or national ID)</li>
-                  <li>Proof of residential address (utility bill, bank statement, or government document)</li>
-                  <li>Selfie verification for enhanced security</li>
+                  <li>{t('legal.aml.section3.identityVerification.requirement1')}</li>
+                  <li>{t('legal.aml.section3.identityVerification.requirement2')}</li>
+                  <li>{t('legal.aml.section3.identityVerification.requirement3')}</li>
                 </ul>
 
-                <h3 className="text-xl font-semibold mb-3 mt-6">Enhanced Due Diligence</h3>
+                <h3 className="text-xl font-semibold mb-3 mt-6">{t('legal.aml.section3.enhancedDueDiligence.title')}</h3>
                 <p className="text-muted-foreground mb-4">
-                  Additional verification may be required for:
+                  {t('legal.aml.section3.enhancedDueDiligence.intro')}
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>High-value transactions</li>
-                  <li>Politically Exposed Persons (PEPs)</li>
-                  <li>High-risk jurisdictions</li>
-                  <li>Corporate or institutional accounts</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">4. Transaction Monitoring</h2>
-                <p className="text-muted-foreground mb-4">
-                  We monitor all transactions for suspicious activity including:
-                </p>
-                <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Unusual transaction patterns</li>
-                  <li>Structuring or splitting of transactions</li>
-                  <li>Transactions involving high-risk jurisdictions</li>
-                  <li>Rapid movement of funds</li>
+                  <li>{t('legal.aml.section3.enhancedDueDiligence.requirement1')}</li>
+                  <li>{t('legal.aml.section3.enhancedDueDiligence.requirement2')}</li>
+                  <li>{t('legal.aml.section3.enhancedDueDiligence.requirement3')}</li>
+                  <li>{t('legal.aml.section3.enhancedDueDiligence.requirement4')}</li>
                 </ul>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">5. Suspicious Activity Reporting</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section4.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  We are required to report suspicious activities to relevant authorities. We maintain 
-                  confidentiality of such reports as required by law.
-                </p>
-              </section>
-
-              <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">6. Source of Funds</h2>
-                <p className="text-muted-foreground mb-4">
-                  We may request documentation to verify the source of funds for:
+                  {t('legal.aml.section4.intro')}
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Large deposits or withdrawals</li>
-                  <li>First-time deposits above certain thresholds</li>
-                  <li>Unusual account activity</li>
+                  <li>{t('legal.aml.section4.activity1')}</li>
+                  <li>{t('legal.aml.section4.activity2')}</li>
+                  <li>{t('legal.aml.section4.activity3')}</li>
+                  <li>{t('legal.aml.section4.activity4')}</li>
                 </ul>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">7. Sanctions Screening</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section5.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  All clients are screened against:
+                  {t('legal.aml.section5.content')}
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section6.title')}</h2>
+                <p className="text-muted-foreground mb-4">
+                  {t('legal.aml.section6.intro')}
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>UN, EU, US, and UK sanctions lists</li>
-                  <li>PEP databases</li>
-                  <li>Adverse media screening</li>
-                  <li>Watchlists and enforcement lists</li>
+                  <li>{t('legal.aml.section6.requirement1')}</li>
+                  <li>{t('legal.aml.section6.requirement2')}</li>
+                  <li>{t('legal.aml.section6.requirement3')}</li>
                 </ul>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">8. Record Keeping</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section7.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  We maintain records of:
+                  {t('legal.aml.section7.intro')}
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Client identification documents for 7 years after relationship ends</li>
-                  <li>Transaction records for 7 years</li>
-                  <li>Correspondence and due diligence records</li>
-                  <li>AML/CFT training and policy updates</li>
+                  <li>{t('legal.aml.section7.screening1')}</li>
+                  <li>{t('legal.aml.section7.screening2')}</li>
+                  <li>{t('legal.aml.section7.screening3')}</li>
+                  <li>{t('legal.aml.section7.screening4')}</li>
                 </ul>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">9. Prohibited Jurisdictions</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section8.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  We do not accept clients from jurisdictions subject to comprehensive sanctions or 
-                  identified as high-risk for money laundering.
+                  {t('legal.aml.section8.intro')}
+                </p>
+                <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
+                  <li>{t('legal.aml.section8.record1')}</li>
+                  <li>{t('legal.aml.section8.record2')}</li>
+                  <li>{t('legal.aml.section8.record3')}</li>
+                  <li>{t('legal.aml.section8.record4')}</li>
+                </ul>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section9.title')}</h2>
+                <p className="text-muted-foreground mb-4">
+                  {t('legal.aml.section9.content')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">10. Staff Training</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section10.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  All staff receive regular AML/KYC training to ensure compliance and effective 
-                  implementation of our policies.
+                  {t('legal.aml.section10.content')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">11. Contact</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.aml.section11.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  For AML/KYC related questions, contact our compliance team at:
+                  {t('legal.aml.section11.content')}
                   <br />
-                  <strong>compliance@tradingplatform.com</strong>
+                  <strong>{t('legal.aml.section11.email')}</strong>
                 </p>
               </section>
             </div>

@@ -18,200 +18,203 @@ import {
   TrendingDown,
   FileCheck
 } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function SafetyOfFundsPage() {
+  const { t } = useLanguage();
+
   const stats = [
     {
-      label: "Segregated Accounts",
-      value: "100%",
-      description: "All client funds separated",
+      label: t('company.safetyOfFunds.stats.segregated.label'),
+      value: t('company.safetyOfFunds.stats.segregated.value'),
+      description: t('company.safetyOfFunds.stats.segregated.description'),
       icon: Lock,
       testId: "stat-segregated"
     },
     {
-      label: "Insurance Coverage",
-      value: "£5M",
-      description: "Professional indemnity",
+      label: t('company.safetyOfFunds.stats.insurance.label'),
+      value: t('company.safetyOfFunds.stats.insurance.value'),
+      description: t('company.safetyOfFunds.stats.insurance.description'),
       icon: Shield,
       testId: "stat-insurance"
     },
     {
-      label: "Tier-1 Banks",
-      value: "12",
-      description: "Global banking partners",
+      label: t('company.safetyOfFunds.stats.banks.label'),
+      value: t('company.safetyOfFunds.stats.banks.value'),
+      description: t('company.safetyOfFunds.stats.banks.description'),
       icon: Building2,
       testId: "stat-banks"
     },
     {
-      label: "Client Protection",
-      value: "£85K",
-      description: "FSCS max compensation",
+      label: t('company.safetyOfFunds.stats.protection.label'),
+      value: t('company.safetyOfFunds.stats.protection.value'),
+      description: t('company.safetyOfFunds.stats.protection.description'),
       icon: ShieldCheck,
       testId: "stat-protection"
     }
   ];
 
   const segregationDetails = {
-    overview: "We maintain strict segregation of client funds from company operational funds, ensuring your money is protected at all times. Client funds are held in designated segregated accounts at major Tier-1 banks and never used for company operations, hedging, or any other business activities.",
+    overview: t('company.safetyOfFunds.segregation.overview'),
     process: [
       {
-        step: "Deposit Received",
-        description: "When you deposit funds, they are immediately identified as client money and must be segregated within 1 business day (UK) or by close of next business day (EU)."
+        step: t('company.safetyOfFunds.segregation.process.step1.step'),
+        description: t('company.safetyOfFunds.segregation.process.step1.description')
       },
       {
-        step: "Segregated Account Transfer",
-        description: "Funds are transferred to designated client money accounts at our partner banks. These accounts are clearly titled 'Client Segregated Funds' and cannot be used for any company purposes."
+        step: t('company.safetyOfFunds.segregation.process.step2.step'),
+        description: t('company.safetyOfFunds.segregation.process.step2.description')
       },
       {
-        step: "Daily Reconciliation",
-        description: "Our finance team performs daily reconciliation to ensure 100% of client funds are properly segregated. Any discrepancies trigger immediate investigation and resolution within 24 hours."
+        step: t('company.safetyOfFunds.segregation.process.step3.step'),
+        description: t('company.safetyOfFunds.segregation.process.step3.description')
       },
       {
-        step: "Regular Audits",
-        description: "External auditors verify segregation compliance quarterly. Regulatory authorities can request segregation reports at any time and conduct surprise audits."
+        step: t('company.safetyOfFunds.segregation.process.step4.step'),
+        description: t('company.safetyOfFunds.segregation.process.step4.description')
       }
     ],
     banks: [
       {
-        name: "Barclays Bank PLC",
-        country: "United Kingdom",
-        accountType: "Client Segregated Account (FCA Compliant)",
-        tier: "Tier-1",
-        protection: "FSCS Protected up to £85,000 per client"
+        name: t('company.safetyOfFunds.segregation.bank1.name'),
+        country: t('company.safetyOfFunds.segregation.bank1.country'),
+        accountType: t('company.safetyOfFunds.segregation.bank1.accountType'),
+        tier: t('company.safetyOfFunds.segregation.bank1.tier'),
+        protection: t('company.safetyOfFunds.segregation.bank1.protection')
       },
       {
-        name: "Deutsche Bank AG",
-        country: "Germany",
-        accountType: "Client Money Account (MiFID II Compliant)",
-        tier: "Tier-1",
-        protection: "EdB Protection up to €100,000"
+        name: t('company.safetyOfFunds.segregation.bank2.name'),
+        country: t('company.safetyOfFunds.segregation.bank2.country'),
+        accountType: t('company.safetyOfFunds.segregation.bank2.accountType'),
+        tier: t('company.safetyOfFunds.segregation.bank2.tier'),
+        protection: t('company.safetyOfFunds.segregation.bank2.protection')
       },
       {
-        name: "National Australia Bank (NAB)",
-        country: "Australia",
-        accountType: "Trust Account (ASIC Regulated)",
-        tier: "Tier-1",
-        protection: "Australian Government Guarantee up to AUD $250,000"
+        name: t('company.safetyOfFunds.segregation.bank3.name'),
+        country: t('company.safetyOfFunds.segregation.bank3.country'),
+        accountType: t('company.safetyOfFunds.segregation.bank3.accountType'),
+        tier: t('company.safetyOfFunds.segregation.bank3.tier'),
+        protection: t('company.safetyOfFunds.segregation.bank3.protection')
       },
       {
-        name: "Standard Chartered Bank",
-        country: "Singapore",
-        accountType: "Segregated Client Fund Account",
-        tier: "Tier-1",
-        protection: "MAS Regulated Segregation"
+        name: t('company.safetyOfFunds.segregation.bank4.name'),
+        country: t('company.safetyOfFunds.segregation.bank4.country'),
+        accountType: t('company.safetyOfFunds.segregation.bank4.accountType'),
+        tier: t('company.safetyOfFunds.segregation.bank4.tier'),
+        protection: t('company.safetyOfFunds.segregation.bank4.protection')
       }
     ]
   };
 
   const compensationSchemes = [
     {
-      scheme: "Financial Services Compensation Scheme (FSCS)",
-      jurisdiction: "United Kingdom (FCA)",
-      coverage: "Up to £85,000 per client",
-      description: "UK clients benefit from FSCS protection if we become insolvent. The FSCS is the UK's statutory deposit insurance and investors compensation scheme, funded by levies on regulated financial firms.",
+      scheme: t('company.safetyOfFunds.compensation.fscs.scheme'),
+      jurisdiction: t('company.safetyOfFunds.compensation.fscs.jurisdiction'),
+      coverage: t('company.safetyOfFunds.compensation.fscs.coverage'),
+      description: t('company.safetyOfFunds.compensation.fscs.description'),
       eligibility: [
-        "Individuals and small businesses",
-        "Must be an eligible claimant under FCA rules",
-        "Covers deposits, investments, and insurance claims",
-        "Claim must be submitted within 6 years of firm default"
+        t('company.safetyOfFunds.compensation.fscs.eligibility1'),
+        t('company.safetyOfFunds.compensation.fscs.eligibility2'),
+        t('company.safetyOfFunds.compensation.fscs.eligibility3'),
+        t('company.safetyOfFunds.compensation.fscs.eligibility4')
       ],
-      claimProcess: "Automatic notification by FSCS → Claim form submitted → Verification (typically 3 months) → Compensation paid"
+      claimProcess: t('company.safetyOfFunds.compensation.fscs.claimProcess')
     },
     {
-      scheme: "Investor Compensation Fund (ICF)",
-      jurisdiction: "Cyprus (CySEC) / EU",
-      coverage: "Up to €20,000 per client",
-      description: "EU/EEA clients under our CySEC entity are protected by the Investor Compensation Fund. This is a harmonized EU-wide scheme ensuring minimum protection levels across all member states.",
+      scheme: t('company.safetyOfFunds.compensation.icf.scheme'),
+      jurisdiction: t('company.safetyOfFunds.compensation.icf.jurisdiction'),
+      coverage: t('company.safetyOfFunds.compensation.icf.coverage'),
+      description: t('company.safetyOfFunds.compensation.icf.description'),
       eligibility: [
-        "Retail and professional clients",
-        "EU/EEA residents trading with CySEC entity",
-        "Covers inability to return client funds or assets",
-        "Excludes claims from money laundering or fraud by client"
+        t('company.safetyOfFunds.compensation.icf.eligibility1'),
+        t('company.safetyOfFunds.compensation.icf.eligibility2'),
+        t('company.safetyOfFunds.compensation.icf.eligibility3'),
+        t('company.safetyOfFunds.compensation.icf.eligibility4')
       ],
-      claimProcess: "CySEC declares broker default → ICF notifies eligible clients → 5-month claim period → Assessment and payment within 9 months"
+      claimProcess: t('company.safetyOfFunds.compensation.icf.claimProcess')
     },
     {
-      scheme: "Australian Financial Complaints Authority (AFCA)",
-      jurisdiction: "Australia (ASIC)",
-      coverage: "Up to AUD $1,085,000 (investments)",
-      description: "While ASIC doesn't provide a compensation scheme, AFCA offers free dispute resolution. Claims above compensation limits may be pursued through liquidators or legal action.",
+      scheme: t('company.safetyOfFunds.compensation.afca.scheme'),
+      jurisdiction: t('company.safetyOfFunds.compensation.afca.jurisdiction'),
+      coverage: t('company.safetyOfFunds.compensation.afca.coverage'),
+      description: t('company.safetyOfFunds.compensation.afca.description'),
       eligibility: [
-        "Australian residents or entities",
-        "Complaints about financial services",
-        "Must first attempt resolution with broker",
-        "Claim within 6 years of issue or 2 years of discovering it"
+        t('company.safetyOfFunds.compensation.afca.eligibility1'),
+        t('company.safetyOfFunds.compensation.afca.eligibility2'),
+        t('company.safetyOfFunds.compensation.afca.eligibility3'),
+        t('company.safetyOfFunds.compensation.afca.eligibility4')
       ],
-      claimProcess: "File complaint with AFCA → Broker response period (30 days) → AFCA investigation → Binding determination issued"
+      claimProcess: t('company.safetyOfFunds.compensation.afca.claimProcess')
     }
   ];
 
   const negativeBalanceProtection = {
-    overview: "We provide Negative Balance Protection (NBP) to all retail clients, ensuring you never lose more than your account balance. If extreme market volatility causes your account to go negative, we will reset it to zero at no cost to you.",
+    overview: t('company.safetyOfFunds.nbp.overview'),
     coverage: [
       {
-        clientType: "Retail Clients (FCA, CySEC, ASIC)",
-        protection: "Full negative balance protection (mandatory under regulation)",
-        details: "If your account balance goes below zero due to market movements, we absorb the loss and reset your account to $0. You will never owe us money."
+        clientType: t('company.safetyOfFunds.nbp.retail.clientType'),
+        protection: t('company.safetyOfFunds.nbp.retail.protection'),
+        details: t('company.safetyOfFunds.nbp.retail.details')
       },
       {
-        clientType: "Professional Clients (Elective Pro Status)",
-        protection: "No negative balance protection (regulatory exclusion)",
-        details: "Professional clients who opt-in sacrifice negative balance protection in exchange for higher leverage. You may be liable for negative balances and must sign acknowledgment."
+        clientType: t('company.safetyOfFunds.nbp.professional.clientType'),
+        protection: t('company.safetyOfFunds.nbp.professional.protection'),
+        details: t('company.safetyOfFunds.nbp.professional.details')
       },
       {
-        clientType: "Institutional Clients",
-        protection: "Negotiated terms based on credit agreement",
-        details: "Institutional accounts operate under bespoke credit agreements with customized margin and liability terms."
+        clientType: t('company.safetyOfFunds.nbp.institutional.clientType'),
+        protection: t('company.safetyOfFunds.nbp.institutional.protection'),
+        details: t('company.safetyOfFunds.nbp.institutional.details')
       }
     ],
     conditions: [
-      "NBP applies only to market-related losses during normal trading",
-      "Does not cover negative balances from non-market fees (e.g., overnight financing, withdrawal fees)",
-      "Client must not have engaged in abusive trading practices (bonus arbitrage, scalping errors, etc.)",
-      "NBP reset processed within 24 hours of negative balance detection"
+      t('company.safetyOfFunds.nbp.condition1'),
+      t('company.safetyOfFunds.nbp.condition2'),
+      t('company.safetyOfFunds.nbp.condition3'),
+      t('company.safetyOfFunds.nbp.condition4')
     ],
     examples: [
       {
-        scenario: "Swiss Franc Flash Crash (Jan 2015 equivalent)",
-        situation: "Client has $5,000 account, holding EUR/CHF position. Market gaps 2000 pips on SNB announcement.",
-        outcome: "Without NBP: Client owes $12,000. With NBP: Account reset to $0, client owes nothing."
+        scenario: t('company.safetyOfFunds.nbp.example1.scenario'),
+        situation: t('company.safetyOfFunds.nbp.example1.situation'),
+        outcome: t('company.safetyOfFunds.nbp.example1.outcome')
       },
       {
-        scenario: "Weekend Gap on News Event",
-        situation: "Client holds $2,000 position over weekend. Market opens 500 pips against them on Monday due to unexpected election result.",
-        outcome: "Account goes to -$800. NBP triggers, balance reset to $0 within 24 hours."
+        scenario: t('company.safetyOfFunds.nbp.example2.scenario'),
+        situation: t('company.safetyOfFunds.nbp.example2.situation'),
+        outcome: t('company.safetyOfFunds.nbp.example2.outcome')
       }
     ]
   };
 
   const faqs = [
     {
-      question: "How do I know my funds are actually segregated?",
-      answer: "We are legally required to segregate client funds and face severe penalties (license revocation, fines, criminal charges) for non-compliance. You can verify through: 1) Our quarterly segregation reports published on our website, 2) External audit reports by KPMG confirming segregation compliance, 3) Direct confirmation from regulators (FCA, CySEC) that segregation is verified during inspections. Additionally, our bank partners (Barclays, Deutsche Bank, NAB) provide confirmation that accounts are designated as 'Client Segregated Funds'."
+      question: t('company.safetyOfFunds.faq.q1.question'),
+      answer: t('company.safetyOfFunds.faq.q1.answer')
     },
     {
-      question: "What happens to my money if the broker goes bankrupt?",
-      answer: "If we become insolvent, your segregated funds are protected through a 'statutory trust' (UK) or equivalent legal structure. Client money is not considered company assets and cannot be used to pay creditors. The process: 1) Regulator appoints a Special Administrator, 2) Client funds are identified and frozen, 3) Clients are contacted to claim funds, 4) Funds are returned directly from segregated accounts (typically within 3-6 months). If there's a shortfall due to fraud or mismanagement, compensation schemes (FSCS, ICF) cover up to their limits."
+      question: t('company.safetyOfFunds.faq.q2.question'),
+      answer: t('company.safetyOfFunds.faq.q2.answer')
     },
     {
-      question: "Is FSCS protection automatic or do I need to apply?",
-      answer: "FSCS protection is automatic for all eligible clients of FCA-regulated firms. You don't need to register or pay anything. If we fail, the FSCS will automatically contact you using our client records. However, you must: 1) Trade with the UK entity (verify your account is under FRN 742681), 2) Be an eligible claimant (individuals, small businesses qualify; large corporates may not), 3) Submit a claim within 6 years if not auto-contacted. Keep records of your account statements as proof of funds."
+      question: t('company.safetyOfFunds.faq.q3.question'),
+      answer: t('company.safetyOfFunds.faq.q3.answer')
     },
     {
-      question: "What's the difference between segregation and compensation schemes?",
-      answer: "Segregation is the first line of defense: your money is kept separate from company money in protected bank accounts. If the broker fails, segregated funds should be returned in full (no compensation needed). Compensation schemes (FSCS, ICF) are the second line of defense: they cover shortfalls if segregated funds are missing due to fraud, theft, or mismanagement. Think of segregation as preventing the problem, compensation schemes as insurance if prevention fails. Best case: segregation works, you get 100% back. Worst case: segregation failed, compensation scheme covers up to their limit (£85K FSCS, €20K ICF)."
+      question: t('company.safetyOfFunds.faq.q4.question'),
+      answer: t('company.safetyOfFunds.faq.q4.answer')
     },
     {
-      question: "Does negative balance protection mean I can't lose money trading?",
-      answer: "No, you can still lose your entire account balance through normal trading losses. Negative Balance Protection (NBP) only prevents you from owing money beyond your deposited amount. Example: You deposit $1,000 and lose it all → You lose $1,000 (NBP doesn't help). You deposit $1,000, market gaps, account goes to -$500 → NBP resets to $0, you lose $1,000 but don't owe the extra $500. NBP protects from debt, not from losing your capital. Always trade responsibly with money you can afford to lose."
+      question: t('company.safetyOfFunds.faq.q5.question'),
+      answer: t('company.safetyOfFunds.faq.q5.answer')
     },
     {
-      question: "Why do some brokers offer higher compensation than others?",
-      answer: "Compensation depends on which regulator oversees the entity you trade with, not the broker's choice. FCA (UK) offers £85,000 via FSCS, CySEC (Cyprus/EU) offers €20,000 via ICF, ASIC (Australia) has no compensation scheme but strong segregation laws. Many brokers operate multiple entities under different regulators. Check which entity holds your account: UK residents typically get FCA protection, EU residents get CySEC protection, etc. Some brokers also buy additional private insurance (we carry £5M professional indemnity), but this is not the same as statutory compensation schemes."
+      question: t('company.safetyOfFunds.faq.q6.question'),
+      answer: t('company.safetyOfFunds.faq.q6.answer')
     },
     {
-      question: "Can the broker use my segregated funds for anything?",
-      answer: "Absolutely not. Segregated funds cannot be used for: company operations, paying creditors, hedging broker positions, earning interest for the company, or any other business purpose. The only permitted uses are: 1) Facilitating your trades (margin requirements), 2) Processing your withdrawals, 3) Paying charges you authorized (e.g., swap fees, commissions). Any unauthorized use is a criminal offense and grounds for immediate license revocation. Regulators audit this monthly, and external auditors verify quarterly. If you suspect misuse, report immediately to the regulator (FCA, CySEC, ASIC)."
+      question: t('company.safetyOfFunds.faq.q7.question'),
+      answer: t('company.safetyOfFunds.faq.q7.answer')
     }
   ];
 
@@ -221,10 +224,10 @@ export default function SafetyOfFundsPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-safety">Trust & Compliance</Badge>
-            <h1 className="text-4xl font-bold mb-4">Safety of Funds</h1>
+            <Badge className="mb-4" data-testid="badge-safety">{t('company.safetyOfFunds.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('company.safetyOfFunds.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Your funds are protected through strict segregation, Tier-1 banking partners, statutory compensation schemes, and negative balance protection. We prioritize the security of your capital above all else.
+              {t('company.safetyOfFunds.description')}
             </p>
           </div>
 
@@ -248,25 +251,25 @@ export default function SafetyOfFundsPage() {
           <Alert className="mb-12" data-testid="alert-segregation-notice">
             <Info className="h-4 w-4" />
             <AlertDescription>
-              <strong>Client Money Protection:</strong> All client funds are held in segregated accounts at Tier-1 banks, separate from company operational funds. Your money is protected by statutory compensation schemes up to regulatory limits.
+              <strong>{t('company.safetyOfFunds.alert.title')}</strong> {t('company.safetyOfFunds.alert.message')}
             </AlertDescription>
           </Alert>
 
           {/* Segregation Explanation */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Client Fund Segregation</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.safetyOfFunds.segregation.title')}</h2>
             <Card className="mb-6" data-testid="card-segregation-overview">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Lock className="w-5 h-5 text-primary" />
-                  How Your Funds Are Protected
+                  {t('company.safetyOfFunds.segregation.subtitle')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-6">{segregationDetails.overview}</p>
                 
                 <div className="space-y-4">
-                  <h3 className="font-semibold">Segregation Process:</h3>
+                  <h3 className="font-semibold">{t('company.safetyOfFunds.segregation.processTitle')}</h3>
                   {segregationDetails.process.map((item, index) => (
                     <div key={index} className="flex gap-4" data-testid={`segregation-step-${index}`}>
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
@@ -283,7 +286,7 @@ export default function SafetyOfFundsPage() {
             </Card>
 
             {/* Bank Partners */}
-            <h3 className="text-xl font-bold mb-4">Our Banking Partners</h3>
+            <h3 className="text-xl font-bold mb-4">{t('company.safetyOfFunds.segregation.bankPartnersTitle')}</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {segregationDetails.banks.map((bank, index) => (
                 <Card key={index} data-testid={`card-bank-${index}`}>
@@ -298,11 +301,11 @@ export default function SafetyOfFundsPage() {
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="text-sm">
-                      <span className="text-muted-foreground">Account Type:</span>
+                      <span className="text-muted-foreground">{t('company.safetyOfFunds.segregation.accountTypeLabel')}</span>
                       <p className="font-medium">{bank.accountType}</p>
                     </div>
                     <div className="text-sm">
-                      <span className="text-muted-foreground">Protection:</span>
+                      <span className="text-muted-foreground">{t('company.safetyOfFunds.segregation.protectionLabel')}</span>
                       <p className="font-medium">{bank.protection}</p>
                     </div>
                   </CardContent>
@@ -313,7 +316,7 @@ export default function SafetyOfFundsPage() {
 
           {/* Compensation Schemes */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Compensation Schemes</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.safetyOfFunds.compensation.title')}</h2>
             <div className="space-y-6">
               {compensationSchemes.map((scheme, index) => (
                 <Card key={index} data-testid={`card-compensation-${index}`}>
@@ -330,7 +333,7 @@ export default function SafetyOfFundsPage() {
                     <p className="text-sm text-muted-foreground">{scheme.description}</p>
                     
                     <div>
-                      <h4 className="font-semibold text-sm mb-2">Eligibility Requirements:</h4>
+                      <h4 className="font-semibold text-sm mb-2">{t('company.safetyOfFunds.compensation.eligibilityTitle')}</h4>
                       <ul className="space-y-1">
                         {scheme.eligibility.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-sm">
@@ -343,7 +346,7 @@ export default function SafetyOfFundsPage() {
 
                     <div className="bg-muted rounded-lg p-3">
                       <p className="text-sm">
-                        <span className="font-semibold">Claim Process: </span>
+                        <span className="font-semibold">{t('company.safetyOfFunds.compensation.claimProcessLabel')} </span>
                         {scheme.claimProcess}
                       </p>
                     </div>
@@ -355,26 +358,26 @@ export default function SafetyOfFundsPage() {
 
           {/* Negative Balance Protection */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Negative Balance Protection</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.safetyOfFunds.nbp.title')}</h2>
             <Card className="mb-6" data-testid="card-nbp-overview">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <TrendingDown className="w-5 h-5 text-primary" />
-                  You'll Never Owe Us Money
+                  {t('company.safetyOfFunds.nbp.subtitle')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <p className="text-muted-foreground">{negativeBalanceProtection.overview}</p>
 
                 <div>
-                  <h3 className="font-semibold mb-4">Protection by Client Type:</h3>
+                  <h3 className="font-semibold mb-4">{t('company.safetyOfFunds.nbp.coverageTitle')}</h3>
                   <div className="space-y-3">
                     {negativeBalanceProtection.coverage.map((item, index) => (
                       <div key={index} className="border rounded-lg p-4" data-testid={`nbp-coverage-${index}`}>
                         <div className="flex items-center justify-between mb-2">
                           <h4 className="font-semibold">{item.clientType}</h4>
                           <Badge variant={item.protection.includes('Full') ? 'default' : 'outline'}>
-                            {item.protection.includes('Full') ? 'Protected' : 'Not Protected'}
+                            {item.protection.includes('Full') ? t('company.safetyOfFunds.nbp.protectedBadge') : t('company.safetyOfFunds.nbp.notProtectedBadge')}
                           </Badge>
                         </div>
                         <p className="text-sm text-muted-foreground">{item.details}</p>
@@ -384,7 +387,7 @@ export default function SafetyOfFundsPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold mb-3">Important Conditions:</h3>
+                  <h3 className="font-semibold mb-3">{t('company.safetyOfFunds.nbp.conditionsTitle')}</h3>
                   <ul className="space-y-2">
                     {negativeBalanceProtection.conditions.map((condition, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-sm">
@@ -396,14 +399,14 @@ export default function SafetyOfFundsPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold mb-3">Real-World Examples:</h3>
+                  <h3 className="font-semibold mb-3">{t('company.safetyOfFunds.nbp.examplesTitle')}</h3>
                   <div className="space-y-3">
                     {negativeBalanceProtection.examples.map((example, idx) => (
                       <div key={idx} className="bg-muted rounded-lg p-4">
                         <h4 className="font-semibold text-sm mb-2">{example.scenario}</h4>
                         <p className="text-sm text-muted-foreground mb-2">{example.situation}</p>
                         <p className="text-sm">
-                          <span className="font-semibold">Outcome: </span>
+                          <span className="font-semibold">{t('company.safetyOfFunds.nbp.outcomeLabel')} </span>
                           {example.outcome}
                         </p>
                       </div>
@@ -418,13 +421,13 @@ export default function SafetyOfFundsPage() {
           <Alert className="mb-12 border-amber-500/50" data-testid="alert-warning">
             <AlertTriangle className="h-4 w-4 text-amber-500" />
             <AlertDescription>
-              <strong>Important:</strong> While we provide multiple layers of fund protection, no investment is risk-free. You can lose your entire trading capital through market losses. Negative balance protection prevents debt, not capital loss. Never trade with money you cannot afford to lose.
+              <strong>{t('company.safetyOfFunds.warning.title')}</strong> {t('company.safetyOfFunds.warning.message')}
             </AlertDescription>
           </Alert>
 
           {/* FAQ Section */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.safetyOfFunds.faq.title')}</h2>
             <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>

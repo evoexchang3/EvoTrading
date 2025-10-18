@@ -18,10 +18,11 @@ import {
   ArrowRight
 } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 type InstrumentData = {
   symbol: string;
-  name: string;
+  nameKey: string;
   standard: string;
   ecn: string;
   vip: string;
@@ -33,13 +34,14 @@ type InstrumentData = {
 };
 
 export default function RatesPage() {
+  const { t } = useLanguage();
   const [selectedAccountType, setSelectedAccountType] = useState<string>("all");
   const [selectedSession, setSelectedSession] = useState<string>("all");
 
   const forexInstruments: InstrumentData[] = [
     { 
       symbol: "EUR/USD", 
-      name: "Euro vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.EURUSD",
       standard: "0.8", 
       ecn: "0.5", 
       vip: "0.3", 
@@ -51,7 +53,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "GBP/USD", 
-      name: "British Pound vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.GBPUSD",
       standard: "1.2", 
       ecn: "0.9", 
       vip: "0.6", 
@@ -63,7 +65,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "USD/JPY", 
-      name: "US Dollar vs Japanese Yen", 
+      nameKey: "company.rates.instrumentNames.USDJPY",
       standard: "0.9", 
       ecn: "0.6", 
       vip: "0.4", 
@@ -75,7 +77,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "AUD/USD", 
-      name: "Australian Dollar vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.AUDUSD",
       standard: "1.0", 
       ecn: "0.7", 
       vip: "0.5", 
@@ -87,7 +89,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "USD/CAD", 
-      name: "US Dollar vs Canadian Dollar", 
+      nameKey: "company.rates.instrumentNames.USDCAD",
       standard: "1.3", 
       ecn: "1.0", 
       vip: "0.7", 
@@ -99,7 +101,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "USD/CHF", 
-      name: "US Dollar vs Swiss Franc", 
+      nameKey: "company.rates.instrumentNames.USDCHF",
       standard: "1.1", 
       ecn: "0.8", 
       vip: "0.6", 
@@ -111,7 +113,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "NZD/USD", 
-      name: "New Zealand Dollar vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.NZDUSD",
       standard: "1.4", 
       ecn: "1.1", 
       vip: "0.8", 
@@ -123,7 +125,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "EUR/GBP", 
-      name: "Euro vs British Pound", 
+      nameKey: "company.rates.instrumentNames.EURGBP",
       standard: "1.5", 
       ecn: "1.2", 
       vip: "0.9", 
@@ -135,7 +137,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "EUR/JPY", 
-      name: "Euro vs Japanese Yen", 
+      nameKey: "company.rates.instrumentNames.EURJPY",
       standard: "1.3", 
       ecn: "1.0", 
       vip: "0.7", 
@@ -147,7 +149,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "GBP/JPY", 
-      name: "British Pound vs Japanese Yen", 
+      nameKey: "company.rates.instrumentNames.GBPJPY",
       standard: "2.0", 
       ecn: "1.6", 
       vip: "1.2", 
@@ -162,7 +164,7 @@ export default function RatesPage() {
   const commodityInstruments: InstrumentData[] = [
     { 
       symbol: "XAUUSD", 
-      name: "Gold vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.XAUUSD",
       standard: "0.30", 
       ecn: "0.20", 
       vip: "0.15", 
@@ -174,7 +176,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "XAGUSD", 
-      name: "Silver vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.XAGUSD",
       standard: "0.025", 
       ecn: "0.018", 
       vip: "0.012", 
@@ -186,7 +188,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "WTI", 
-      name: "Crude Oil (WTI)", 
+      nameKey: "company.rates.instrumentNames.WTI",
       standard: "0.04", 
       ecn: "0.03", 
       vip: "0.02", 
@@ -198,7 +200,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "BRENT", 
-      name: "Brent Crude Oil", 
+      nameKey: "company.rates.instrumentNames.BRENT",
       standard: "0.05", 
       ecn: "0.04", 
       vip: "0.03", 
@@ -210,7 +212,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "NATGAS", 
-      name: "Natural Gas", 
+      nameKey: "company.rates.instrumentNames.NATGAS",
       standard: "0.008", 
       ecn: "0.006", 
       vip: "0.004", 
@@ -225,7 +227,7 @@ export default function RatesPage() {
   const indicesInstruments: InstrumentData[] = [
     { 
       symbol: "US30", 
-      name: "Dow Jones Industrial Average", 
+      nameKey: "company.rates.instrumentNames.US30",
       standard: "2.5", 
       ecn: "1.8", 
       vip: "1.2", 
@@ -237,7 +239,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "SPX500", 
-      name: "S&P 500 Index", 
+      nameKey: "company.rates.instrumentNames.SPX500",
       standard: "0.6", 
       ecn: "0.4", 
       vip: "0.3", 
@@ -249,7 +251,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "NAS100", 
-      name: "NASDAQ 100 Index", 
+      nameKey: "company.rates.instrumentNames.NAS100",
       standard: "1.5", 
       ecn: "1.0", 
       vip: "0.7", 
@@ -261,7 +263,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "UK100", 
-      name: "FTSE 100 Index", 
+      nameKey: "company.rates.instrumentNames.UK100",
       standard: "1.2", 
       ecn: "0.9", 
       vip: "0.6", 
@@ -273,7 +275,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "GER40", 
-      name: "DAX 40 Index", 
+      nameKey: "company.rates.instrumentNames.GER40",
       standard: "1.0", 
       ecn: "0.7", 
       vip: "0.5", 
@@ -285,7 +287,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "JPN225", 
-      name: "Nikkei 225 Index", 
+      nameKey: "company.rates.instrumentNames.JPN225",
       standard: "8.0", 
       ecn: "6.0", 
       vip: "4.0", 
@@ -300,7 +302,7 @@ export default function RatesPage() {
   const cryptoInstruments: InstrumentData[] = [
     { 
       symbol: "BTCUSD", 
-      name: "Bitcoin vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.BTCUSD",
       standard: "25", 
       ecn: "18", 
       vip: "12", 
@@ -312,7 +314,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "ETHUSD", 
-      name: "Ethereum vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.ETHUSD",
       standard: "1.50", 
       ecn: "1.10", 
       vip: "0.80", 
@@ -324,7 +326,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "XRPUSD", 
-      name: "Ripple vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.XRPUSD",
       standard: "0.002", 
       ecn: "0.0015", 
       vip: "0.001", 
@@ -336,7 +338,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "LTCUSD", 
-      name: "Litecoin vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.LTCUSD",
       standard: "0.35", 
       ecn: "0.25", 
       vip: "0.18", 
@@ -348,7 +350,7 @@ export default function RatesPage() {
     },
     { 
       symbol: "ADAUSD", 
-      name: "Cardano vs US Dollar", 
+      nameKey: "company.rates.instrumentNames.ADAUSD",
       standard: "0.003", 
       ecn: "0.002", 
       vip: "0.0015", 
@@ -366,11 +368,11 @@ export default function RatesPage() {
         <table className="w-full">
           <thead>
             <tr className="border-b">
-              <th className="text-left py-3 px-4 font-semibold">Instrument</th>
-              <th className="text-center py-3 px-4 font-semibold">Standard</th>
-              <th className="text-center py-3 px-4 font-semibold">ECN</th>
-              <th className="text-center py-3 px-4 font-semibold">VIP</th>
-              <th className="text-center py-3 px-4 font-semibold">Commission</th>
+              <th className="text-left py-3 px-4 font-semibold">{t('company.rates.table.instrument')}</th>
+              <th className="text-center py-3 px-4 font-semibold">{t('company.rates.table.standard')}</th>
+              <th className="text-center py-3 px-4 font-semibold">{t('company.rates.table.ecn')}</th>
+              <th className="text-center py-3 px-4 font-semibold">{t('company.rates.table.vip')}</th>
+              <th className="text-center py-3 px-4 font-semibold">{t('company.rates.table.commission')}</th>
             </tr>
           </thead>
           <tbody>
@@ -385,7 +387,7 @@ export default function RatesPage() {
                     <div className="font-semibold" data-testid={`text-symbol-${item.symbol.toLowerCase()}`}>
                       {item.symbol}
                     </div>
-                    <div className="text-xs text-muted-foreground">{item.name}</div>
+                    <div className="text-xs text-muted-foreground">{t(item.nameKey)}</div>
                   </div>
                 </td>
                 <td className="text-center py-3 px-4" data-testid={`text-standard-${item.symbol.toLowerCase()}`}>
@@ -414,27 +416,27 @@ export default function RatesPage() {
         <table className="w-full">
           <thead>
             <tr className="border-b">
-              <th className="text-left py-3 px-4 font-semibold">Instrument</th>
+              <th className="text-left py-3 px-4 font-semibold">{t('company.rates.table.instrument')}</th>
               <th className="text-center py-3 px-4 font-semibold">
                 <div className="flex items-center justify-center gap-1">
                   <Clock className="w-4 h-4" />
-                  Asian
+                  {t('company.rates.table.asian')}
                 </div>
-                <div className="text-xs font-normal text-muted-foreground">12am-9am GMT</div>
+                <div className="text-xs font-normal text-muted-foreground">{t('company.rates.table.asianTime')}</div>
               </th>
               <th className="text-center py-3 px-4 font-semibold">
                 <div className="flex items-center justify-center gap-1">
                   <Clock className="w-4 h-4" />
-                  London
+                  {t('company.rates.table.london')}
                 </div>
-                <div className="text-xs font-normal text-muted-foreground">8am-5pm GMT</div>
+                <div className="text-xs font-normal text-muted-foreground">{t('company.rates.table.londonTime')}</div>
               </th>
               <th className="text-center py-3 px-4 font-semibold">
                 <div className="flex items-center justify-center gap-1">
                   <Clock className="w-4 h-4" />
-                  New York
+                  {t('company.rates.table.newYork')}
                 </div>
-                <div className="text-xs font-normal text-muted-foreground">1pm-10pm GMT</div>
+                <div className="text-xs font-normal text-muted-foreground">{t('company.rates.table.newYorkTime')}</div>
               </th>
             </tr>
           </thead>
@@ -448,7 +450,7 @@ export default function RatesPage() {
                 <td className="py-3 px-4">
                   <div>
                     <div className="font-semibold">{item.symbol}</div>
-                    <div className="text-xs text-muted-foreground">{item.name}</div>
+                    <div className="text-xs text-muted-foreground">{t(item.nameKey)}</div>
                   </div>
                 </td>
                 <td className="text-center py-3 px-4" data-testid={`text-asian-${item.symbol.toLowerCase()}`}>
@@ -470,59 +472,59 @@ export default function RatesPage() {
 
   const faqs = [
     {
-      question: "What's the difference between spreads and commissions?",
-      answer: "Spreads are the difference between the buy and sell price of an instrument, measured in pips or points. This is built into the price you see. Commissions are separate fees charged per trade, typically per lot. Standard accounts have no commission but slightly wider spreads, while ECN accounts have tighter spreads but charge a small commission ($3.50-$10 per lot depending on instrument). VIP accounts have custom pricing tailored to trading volume."
+      questionKey: "company.rates.faq.q1.question",
+      answerKey: "company.rates.faq.q1.answer"
     },
     {
-      question: "Why do spreads vary between trading sessions?",
-      answer: "Spreads fluctuate based on market liquidity. During major session overlaps (London-NY: 1pm-5pm GMT), spreads are typically tightest due to high trading volume. Asian session spreads tend to be wider for EUR/USD and GBP/USD due to lower liquidity, but narrower for JPY pairs and Asian indices. The most liquid session for each instrument generally offers the best spreads."
+      questionKey: "company.rates.faq.q2.question",
+      answerKey: "company.rates.faq.q2.answer"
     },
     {
-      question: "Are there any hidden fees I should know about?",
-      answer: "No hidden fees. All costs are transparent: spreads (shown in real-time on platform), commissions (if applicable to account type), swap rates (overnight financing charges displayed per instrument), withdrawal fees ($0 for e-wallets/crypto, $25 for wire transfers), and an inactivity fee ($15/month after 6 months of no trading). There are no deposit fees, platform fees, or account maintenance charges."
+      questionKey: "company.rates.faq.q3.question",
+      answerKey: "company.rates.faq.q3.answer"
     },
     {
-      question: "How do swap rates (overnight fees) work?",
-      answer: "Swap rates are interest charges or credits applied when holding positions overnight (past 5pm EST). They're based on the interest rate differential between the two currencies in a pair, plus our small markup. Swap rates can be positive (you earn) or negative (you pay). They're calculated daily and triple on Wednesdays to account for weekends. View current swap rates for each instrument in the trading platform's contract specifications."
+      questionKey: "company.rates.faq.q4.question",
+      answerKey: "company.rates.faq.q4.answer"
     },
     {
-      question: "Can I get better spreads than what's shown here?",
-      answer: "Yes, in several ways: (1) Upgrade to ECN or VIP account for significantly tighter spreads, (2) Trade during peak liquidity sessions (London-NY overlap), (3) High-volume traders can negotiate custom VIP pricing with dedicated account managers, (4) Our institutional clients receive the tightest possible spreads with direct market access. Contact support to discuss volume-based discounts."
+      questionKey: "company.rates.faq.q5.question",
+      answerKey: "company.rates.faq.q5.answer"
     },
     {
-      question: "Why are your rates competitive compared to other brokers?",
-      answer: "We maintain competitive rates through: (1) Direct partnerships with top-tier liquidity providers, giving us access to institutional pricing, (2) Advanced technology infrastructure that reduces operating costs, (3) High trading volumes allowing better rates from liquidity providers, (4) Transparent fee structure with no hidden markups. Unlike many brokers, we don't profit from client losses—we earn from spreads/commissions, so we want you to succeed and trade more."
+      questionKey: "company.rates.faq.q6.question",
+      answerKey: "company.rates.faq.q6.answer"
     },
     {
-      question: "What happens to spreads during news events or high volatility?",
-      answer: "Spreads can widen significantly during major news releases (NFP, central bank decisions, etc.) and periods of extreme volatility due to reduced liquidity and increased risk. This is standard across all brokers. We recommend avoiding trading during major news if you're sensitive to wider spreads, or use limit orders instead of market orders. Spreads typically return to normal within minutes after the event. VIP clients receive preferential treatment even during volatile periods."
+      questionKey: "company.rates.faq.q7.question",
+      answerKey: "company.rates.faq.q7.answer"
     }
   ];
 
   const competitiveHighlights = [
     {
       icon: Zap,
-      title: "Ultra-Low Spreads",
-      description: "Starting from 0.3 pips on EUR/USD for VIP accounts",
-      badge: "Industry Leading"
+      titleKey: "company.rates.highlights.ultraLow.title",
+      descriptionKey: "company.rates.highlights.ultraLow.description",
+      badgeKey: "company.rates.highlights.ultraLow.badge"
     },
     {
       icon: Shield,
-      title: "No Hidden Fees",
-      description: "100% transparent pricing with no surprise charges",
-      badge: "Transparent"
+      titleKey: "company.rates.highlights.noHidden.title",
+      descriptionKey: "company.rates.highlights.noHidden.description",
+      badgeKey: "company.rates.highlights.noHidden.badge"
     },
     {
       icon: Globe,
-      title: "20+ Liquidity Providers",
-      description: "Institutional-grade pricing from top-tier banks",
-      badge: "Premium Access"
+      titleKey: "company.rates.highlights.liquidity.title",
+      descriptionKey: "company.rates.highlights.liquidity.description",
+      badgeKey: "company.rates.highlights.liquidity.badge"
     },
     {
       icon: Award,
-      title: "Volume Discounts",
-      description: "Better rates for high-volume traders automatically applied",
-      badge: "Rewarding"
+      titleKey: "company.rates.highlights.volume.title",
+      descriptionKey: "company.rates.highlights.volume.description",
+      badgeKey: "company.rates.highlights.volume.badge"
     }
   ];
 
@@ -531,17 +533,17 @@ export default function RatesPage() {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-rates-page">Pricing Information</Badge>
-            <h1 className="text-4xl font-bold mb-4">Spreads, Commissions & Fees</h1>
+            <Badge className="mb-4" data-testid="badge-rates-page">{t('company.rates.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('company.rates.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Transparent, competitive pricing across all instruments. Compare rates by account type and trading session to find the best value for your trading strategy.
+              {t('company.rates.description')}
             </p>
           </div>
 
           <Alert className="mb-8" data-testid="alert-pricing-info">
             <Info className="h-4 w-4" />
             <AlertDescription>
-              Spreads shown are typical during normal market conditions. Live spreads may vary based on market volatility and liquidity. All spreads and commissions are displayed in real-time on our trading platform.
+              {t('company.rates.alert')}
             </AlertDescription>
           </Alert>
 
@@ -555,10 +557,10 @@ export default function RatesPage() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-1">
-                        <h3 className="font-semibold text-sm">{highlight.title}</h3>
-                        <Badge variant="outline" className="text-xs">{highlight.badge}</Badge>
+                        <h3 className="font-semibold text-sm">{t(highlight.titleKey)}</h3>
+                        <Badge variant="outline" className="text-xs">{t(highlight.badgeKey)}</Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground">{highlight.description}</p>
+                      <p className="text-xs text-muted-foreground">{t(highlight.descriptionKey)}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -569,10 +571,10 @@ export default function RatesPage() {
           <Tabs defaultValue="account-comparison" className="mb-12">
             <TabsList className="grid w-full grid-cols-2 mb-8" data-testid="tabs-comparison-type">
               <TabsTrigger value="account-comparison" data-testid="tab-account-comparison">
-                By Account Type
+                {t('company.rates.tabs.accountComparison')}
               </TabsTrigger>
               <TabsTrigger value="session-comparison" data-testid="tab-session-comparison">
-                By Trading Session
+                {t('company.rates.tabs.sessionComparison')}
               </TabsTrigger>
             </TabsList>
 
@@ -580,27 +582,27 @@ export default function RatesPage() {
               <div className="mb-8">
                 <Card className="bg-muted/50">
                   <CardHeader>
-                    <CardTitle className="text-lg">Account Type Comparison</CardTitle>
+                    <CardTitle className="text-lg">{t('company.rates.accountComparison.title')}</CardTitle>
                     <CardDescription>
-                      Compare spreads and commissions across Standard, ECN, and VIP account types
+                      {t('company.rates.accountComparison.description')}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="grid sm:grid-cols-3 gap-4">
                       <div className="space-y-1">
-                        <div className="font-semibold">Standard Account</div>
-                        <div className="text-sm text-muted-foreground">No commission, standard spreads</div>
-                        <div className="text-xs text-muted-foreground">Min deposit: $100</div>
+                        <div className="font-semibold">{t('company.rates.accountComparison.standard.title')}</div>
+                        <div className="text-sm text-muted-foreground">{t('company.rates.accountComparison.standard.description')}</div>
+                        <div className="text-xs text-muted-foreground">{t('company.rates.accountComparison.standard.minDeposit')}</div>
                       </div>
                       <div className="space-y-1">
-                        <div className="font-semibold">ECN Account</div>
-                        <div className="text-sm text-muted-foreground">Low commission, tight spreads</div>
-                        <div className="text-xs text-muted-foreground">Min deposit: $5,000</div>
+                        <div className="font-semibold">{t('company.rates.accountComparison.ecn.title')}</div>
+                        <div className="text-sm text-muted-foreground">{t('company.rates.accountComparison.ecn.description')}</div>
+                        <div className="text-xs text-muted-foreground">{t('company.rates.accountComparison.ecn.minDeposit')}</div>
                       </div>
                       <div className="space-y-1">
-                        <div className="font-semibold">VIP Account</div>
-                        <div className="text-sm text-muted-foreground">Custom pricing, best spreads</div>
-                        <div className="text-xs text-muted-foreground">Min deposit: $50,000</div>
+                        <div className="font-semibold">{t('company.rates.accountComparison.vip.title')}</div>
+                        <div className="text-sm text-muted-foreground">{t('company.rates.accountComparison.vip.description')}</div>
+                        <div className="text-xs text-muted-foreground">{t('company.rates.accountComparison.vip.minDeposit')}</div>
                       </div>
                     </div>
                   </CardContent>
@@ -610,16 +612,16 @@ export default function RatesPage() {
               <Tabs defaultValue="forex" className="w-full">
                 <TabsList className="grid w-full grid-cols-4 mb-6" data-testid="tabs-instrument-type">
                   <TabsTrigger value="forex" data-testid="tab-forex">
-                    Forex <Badge variant="outline" className="ml-1">10</Badge>
+                    {t('company.rates.instruments.forex')} <Badge variant="outline" className="ml-1">10</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="commodities" data-testid="tab-commodities">
-                    Commodities <Badge variant="outline" className="ml-1">5</Badge>
+                    {t('company.rates.instruments.commodities')} <Badge variant="outline" className="ml-1">5</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="indices" data-testid="tab-indices">
-                    Indices <Badge variant="outline" className="ml-1">6</Badge>
+                    {t('company.rates.instruments.indices')} <Badge variant="outline" className="ml-1">6</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="crypto" data-testid="tab-crypto">
-                    Crypto <Badge variant="outline" className="ml-1">5</Badge>
+                    {t('company.rates.instruments.crypto')} <Badge variant="outline" className="ml-1">5</Badge>
                   </TabsTrigger>
                 </TabsList>
 
@@ -629,8 +631,8 @@ export default function RatesPage() {
                       <div className="flex items-center gap-3">
                         <TrendingUp className="w-6 h-6 text-primary" />
                         <div>
-                          <CardTitle>Forex Spreads</CardTitle>
-                          <CardDescription>Major, minor, and cross currency pairs</CardDescription>
+                          <CardTitle>{t('company.rates.forex.title')}</CardTitle>
+                          <CardDescription>{t('company.rates.forex.description')}</CardDescription>
                         </div>
                       </div>
                     </CardHeader>
@@ -646,8 +648,8 @@ export default function RatesPage() {
                       <div className="flex items-center gap-3">
                         <DollarSign className="w-6 h-6 text-primary" />
                         <div>
-                          <CardTitle>Commodity Spreads</CardTitle>
-                          <CardDescription>Precious metals and energy products</CardDescription>
+                          <CardTitle>{t('company.rates.commodities.title')}</CardTitle>
+                          <CardDescription>{t('company.rates.commodities.description')}</CardDescription>
                         </div>
                       </div>
                     </CardHeader>
@@ -663,8 +665,8 @@ export default function RatesPage() {
                       <div className="flex items-center gap-3">
                         <TrendingUp className="w-6 h-6 text-primary" />
                         <div>
-                          <CardTitle>Index CFD Spreads</CardTitle>
-                          <CardDescription>Global stock market indices</CardDescription>
+                          <CardTitle>{t('company.rates.indices.title')}</CardTitle>
+                          <CardDescription>{t('company.rates.indices.description')}</CardDescription>
                         </div>
                       </div>
                     </CardHeader>
@@ -680,8 +682,8 @@ export default function RatesPage() {
                       <div className="flex items-center gap-3">
                         <DollarSign className="w-6 h-6 text-primary" />
                         <div>
-                          <CardTitle>Cryptocurrency Spreads</CardTitle>
-                          <CardDescription>Digital currencies vs US Dollar</CardDescription>
+                          <CardTitle>{t('company.rates.crypto.title')}</CardTitle>
+                          <CardDescription>{t('company.rates.crypto.description')}</CardDescription>
                         </div>
                       </div>
                     </CardHeader>
@@ -697,9 +699,9 @@ export default function RatesPage() {
               <div className="mb-8">
                 <Card className="bg-muted/50">
                   <CardHeader>
-                    <CardTitle className="text-lg">Trading Session Impact</CardTitle>
+                    <CardTitle className="text-lg">{t('company.rates.sessionComparison.title')}</CardTitle>
                     <CardDescription>
-                      Spreads vary by session based on market liquidity. Trade during peak hours for tightest spreads.
+                      {t('company.rates.sessionComparison.description')}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -707,26 +709,26 @@ export default function RatesPage() {
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4 text-primary" />
-                          <div className="font-semibold">Asian Session</div>
+                          <div className="font-semibold">{t('company.rates.sessionComparison.asian.title')}</div>
                         </div>
-                        <div className="text-sm text-muted-foreground">12:00am - 9:00am GMT</div>
-                        <div className="text-xs text-muted-foreground">Best for JPY, AUD, NZD pairs</div>
+                        <div className="text-sm text-muted-foreground">{t('company.rates.sessionComparison.asian.time')}</div>
+                        <div className="text-xs text-muted-foreground">{t('company.rates.sessionComparison.asian.description')}</div>
                       </div>
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4 text-primary" />
-                          <div className="font-semibold">London Session</div>
+                          <div className="font-semibold">{t('company.rates.sessionComparison.london.title')}</div>
                         </div>
-                        <div className="text-sm text-muted-foreground">8:00am - 5:00pm GMT</div>
-                        <div className="text-xs text-muted-foreground">Highest liquidity for EUR, GBP</div>
+                        <div className="text-sm text-muted-foreground">{t('company.rates.sessionComparison.london.time')}</div>
+                        <div className="text-xs text-muted-foreground">{t('company.rates.sessionComparison.london.description')}</div>
                       </div>
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4 text-primary" />
-                          <div className="font-semibold">New York Session</div>
+                          <div className="font-semibold">{t('company.rates.sessionComparison.newYork.title')}</div>
                         </div>
-                        <div className="text-sm text-muted-foreground">1:00pm - 10:00pm GMT</div>
-                        <div className="text-xs text-muted-foreground">Peak overlap: 1pm-5pm GMT</div>
+                        <div className="text-sm text-muted-foreground">{t('company.rates.sessionComparison.newYork.time')}</div>
+                        <div className="text-xs text-muted-foreground">{t('company.rates.sessionComparison.newYork.description')}</div>
                       </div>
                     </div>
                   </CardContent>
@@ -736,24 +738,24 @@ export default function RatesPage() {
               <Tabs defaultValue="forex" className="w-full">
                 <TabsList className="grid w-full grid-cols-4 mb-6" data-testid="tabs-session-instrument-type">
                   <TabsTrigger value="forex" data-testid="tab-session-forex">
-                    Forex <Badge variant="outline" className="ml-1">10</Badge>
+                    {t('company.rates.instruments.forex')} <Badge variant="outline" className="ml-1">10</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="commodities" data-testid="tab-session-commodities">
-                    Commodities <Badge variant="outline" className="ml-1">5</Badge>
+                    {t('company.rates.instruments.commodities')} <Badge variant="outline" className="ml-1">5</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="indices" data-testid="tab-session-indices">
-                    Indices <Badge variant="outline" className="ml-1">6</Badge>
+                    {t('company.rates.instruments.indices')} <Badge variant="outline" className="ml-1">6</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="crypto" data-testid="tab-session-crypto">
-                    Crypto <Badge variant="outline" className="ml-1">5</Badge>
+                    {t('company.rates.instruments.crypto')} <Badge variant="outline" className="ml-1">5</Badge>
                   </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="forex" data-testid="content-session-forex">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Forex Spreads by Session</CardTitle>
-                      <CardDescription>Average spreads (ECN account) across different trading sessions</CardDescription>
+                      <CardTitle>{t('company.rates.session.forex.title')}</CardTitle>
+                      <CardDescription>{t('company.rates.session.forex.description')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       {renderSessionTable(forexInstruments, "forex")}
@@ -764,8 +766,8 @@ export default function RatesPage() {
                 <TabsContent value="commodities" data-testid="content-session-commodities">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Commodity Spreads by Session</CardTitle>
-                      <CardDescription>Average spreads (ECN account) across different trading sessions</CardDescription>
+                      <CardTitle>{t('company.rates.session.commodities.title')}</CardTitle>
+                      <CardDescription>{t('company.rates.session.commodities.description')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       {renderSessionTable(commodityInstruments, "commodities")}
@@ -776,8 +778,8 @@ export default function RatesPage() {
                 <TabsContent value="indices" data-testid="content-session-indices">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Index Spreads by Session</CardTitle>
-                      <CardDescription>Average spreads (ECN account) across different trading sessions</CardDescription>
+                      <CardTitle>{t('company.rates.session.indices.title')}</CardTitle>
+                      <CardDescription>{t('company.rates.session.indices.description')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       {renderSessionTable(indicesInstruments, "indices")}
@@ -788,8 +790,8 @@ export default function RatesPage() {
                 <TabsContent value="crypto" data-testid="content-session-crypto">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Crypto Spreads by Session</CardTitle>
-                      <CardDescription>Average spreads (ECN account) across different trading sessions</CardDescription>
+                      <CardTitle>{t('company.rates.session.crypto.title')}</CardTitle>
+                      <CardDescription>{t('company.rates.session.crypto.description')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       {renderSessionTable(cryptoInstruments, "crypto")}
@@ -802,8 +804,8 @@ export default function RatesPage() {
 
           <Card className="mb-12">
             <CardHeader>
-              <CardTitle>All Fees & Charges Explained</CardTitle>
-              <CardDescription>Complete breakdown of all trading costs</CardDescription>
+              <CardTitle>{t('company.rates.allFees.title')}</CardTitle>
+              <CardDescription>{t('company.rates.allFees.description')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
@@ -811,9 +813,9 @@ export default function RatesPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Spreads</h3>
+                      <h3 className="font-semibold mb-2">{t('company.rates.allFees.spreads.title')}</h3>
                       <p className="text-sm text-muted-foreground">
-                        The difference between buy and sell price. Variable based on market conditions, account type, and trading session. Tightest during London-NY overlap (1pm-5pm GMT).
+                        {t('company.rates.allFees.spreads.description')}
                       </p>
                     </div>
                   </div>
@@ -822,9 +824,9 @@ export default function RatesPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Commissions</h3>
+                      <h3 className="font-semibold mb-2">{t('company.rates.allFees.commissions.title')}</h3>
                       <p className="text-sm text-muted-foreground">
-                        Standard: $0 on all instruments. ECN: $3.50 (forex), $5 (commodities), $8 (indices), $10 (crypto) per lot. VIP: Custom rates based on volume.
+                        {t('company.rates.allFees.commissions.description')}
                       </p>
                     </div>
                   </div>
@@ -833,9 +835,9 @@ export default function RatesPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Swap Rates (Overnight Fees)</h3>
+                      <h3 className="font-semibold mb-2">{t('company.rates.allFees.swapRates.title')}</h3>
                       <p className="text-sm text-muted-foreground">
-                        Interest charged/credited for positions held past 5pm EST. Based on interbank rates + our markup. Can be positive or negative. Triple swap on Wednesdays for weekend.
+                        {t('company.rates.allFees.swapRates.description')}
                       </p>
                     </div>
                   </div>
@@ -844,9 +846,9 @@ export default function RatesPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Deposit Fees</h3>
+                      <h3 className="font-semibold mb-2">{t('company.rates.allFees.depositFees.title')}</h3>
                       <p className="text-sm text-muted-foreground">
-                        Zero fees for all deposit methods (credit/debit cards, bank transfer, e-wallets, cryptocurrency). We cover all processing costs.
+                        {t('company.rates.allFees.depositFees.description')}
                       </p>
                     </div>
                   </div>
@@ -855,9 +857,9 @@ export default function RatesPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Withdrawal Fees</h3>
+                      <h3 className="font-semibold mb-2">{t('company.rates.allFees.withdrawalFees.title')}</h3>
                       <p className="text-sm text-muted-foreground">
-                        E-wallets & crypto: Free. Bank wire transfers: $25. Processing times: ECN 12-24hrs, VIP same-day, Standard 24-48hrs.
+                        {t('company.rates.allFees.withdrawalFees.description')}
                       </p>
                     </div>
                   </div>
@@ -866,9 +868,9 @@ export default function RatesPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Inactivity Fee</h3>
+                      <h3 className="font-semibold mb-2">{t('company.rates.allFees.inactivityFee.title')}</h3>
                       <p className="text-sm text-muted-foreground">
-                        $15 per month charged after 6 consecutive months of no trading activity. Easily avoided by placing at least one trade every 6 months.
+                        {t('company.rates.allFees.inactivityFee.description')}
                       </p>
                     </div>
                   </div>
@@ -877,9 +879,9 @@ export default function RatesPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Conversion Fees</h3>
+                      <h3 className="font-semibold mb-2">{t('company.rates.allFees.conversionFees.title')}</h3>
                       <p className="text-sm text-muted-foreground">
-                        Free automatic currency conversion for deposits/withdrawals. We use interbank rates with no markup for converting between account currencies.
+                        {t('company.rates.allFees.conversionFees.description')}
                       </p>
                     </div>
                   </div>
@@ -888,9 +890,9 @@ export default function RatesPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Platform & Data Fees</h3>
+                      <h3 className="font-semibold mb-2">{t('company.rates.allFees.platformFees.title')}</h3>
                       <p className="text-sm text-muted-foreground">
-                        Zero platform fees. Free real-time market data for all clients. No monthly subscription or software licensing costs.
+                        {t('company.rates.allFees.platformFees.description')}
                       </p>
                     </div>
                   </div>
@@ -901,18 +903,18 @@ export default function RatesPage() {
 
           <Card className="mb-12">
             <CardHeader>
-              <CardTitle>Frequently Asked Questions</CardTitle>
-              <CardDescription>Common questions about our pricing and fees</CardDescription>
+              <CardTitle>{t('company.rates.faq.title')}</CardTitle>
+              <CardDescription>{t('company.rates.faq.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`} data-testid={`accordion-item-${index}`}>
                     <AccordionTrigger data-testid={`accordion-trigger-${index}`}>
-                      {faq.question}
+                      {t(faq.questionKey)}
                     </AccordionTrigger>
                     <AccordionContent data-testid={`accordion-content-${index}`}>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{t(faq.answerKey)}</p>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -924,7 +926,7 @@ export default function RatesPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Award className="w-6 h-6 text-primary" />
-                Why Our Rates Are Competitive
+                {t('company.rates.competitive.title')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -932,37 +934,37 @@ export default function RatesPage() {
                 <div className="space-y-3">
                   <h3 className="font-semibold flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-primary" />
-                    Institutional-Grade Liquidity
+                    {t('company.rates.competitive.liquidity.title')}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    We partner with 20+ top-tier liquidity providers including major banks and financial institutions, giving us access to the same institutional pricing that large hedge funds receive.
+                    {t('company.rates.competitive.liquidity.description')}
                   </p>
                 </div>
                 <div className="space-y-3">
                   <h3 className="font-semibold flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-primary" />
-                    Advanced Technology Infrastructure
+                    {t('company.rates.competitive.technology.title')}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Our state-of-the-art trading infrastructure with co-located servers reduces latency and operating costs, allowing us to pass savings to clients through tighter spreads.
+                    {t('company.rates.competitive.technology.description')}
                   </p>
                 </div>
                 <div className="space-y-3">
                   <h3 className="font-semibold flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-primary" />
-                    Volume-Based Pricing Power
+                    {t('company.rates.competitive.volume.title')}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Our high trading volumes give us negotiating power with liquidity providers, securing better rates that we pass directly to our clients across all account types.
+                    {t('company.rates.competitive.volume.description')}
                   </p>
                 </div>
                 <div className="space-y-3">
                   <h3 className="font-semibold flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-primary" />
-                    No Conflict of Interest
+                    {t('company.rates.competitive.noConflict.title')}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    We operate on an agency model—we don't trade against you. Our revenue comes from spreads and commissions, so we're incentivized to help you succeed and trade more.
+                    {t('company.rates.competitive.noConflict.description')}
                   </p>
                 </div>
               </div>
@@ -970,11 +972,11 @@ export default function RatesPage() {
               <div className="pt-4 border-t">
                 <div className="flex items-center justify-between gap-4 flex-wrap">
                   <div>
-                    <h4 className="font-semibold mb-1">Ready to experience competitive pricing?</h4>
-                    <p className="text-sm text-muted-foreground">Open an account and start trading with institutional-grade spreads</p>
+                    <h4 className="font-semibold mb-1">{t('company.rates.competitive.cta.title')}</h4>
+                    <p className="text-sm text-muted-foreground">{t('company.rates.competitive.cta.description')}</p>
                   </div>
                   <Button data-testid="button-open-account">
-                    Open Account
+                    {t('company.rates.competitive.cta.button')}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
@@ -985,19 +987,19 @@ export default function RatesPage() {
           <div className="bg-muted rounded-lg p-6">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Info className="w-5 h-5 text-primary" />
-              Important Disclaimers
+              {t('company.rates.disclaimers.title')}
             </h2>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Spreads shown are typical during normal market conditions and may widen significantly during high volatility, low liquidity periods, or major news events</li>
-              <li>• All spreads are variable and subject to change without notice based on market conditions</li>
-              <li>• Commission rates are per side per lot (charged on both opening and closing of positions)</li>
-              <li>• Professional and VIP accounts receive preferential spreads based on trading volume and account balance</li>
-              <li>• Current live spreads for all instruments are displayed in real-time on our trading platform</li>
-              <li>• Swap rates (overnight financing charges) are updated daily based on interbank rates and are subject to change</li>
-              <li>• Cryptocurrency spreads can vary significantly and widen during periods of extreme market volatility</li>
-              <li>• Index CFD spreads are for cash indices; futures contracts may have different spread structures</li>
-              <li>• Session times are approximate and spreads may vary within sessions based on liquidity conditions</li>
-              <li>• All fees and charges are clearly disclosed before executing trades; there are no hidden costs</li>
+              <li>• {t('company.rates.disclaimers.item1')}</li>
+              <li>• {t('company.rates.disclaimers.item2')}</li>
+              <li>• {t('company.rates.disclaimers.item3')}</li>
+              <li>• {t('company.rates.disclaimers.item4')}</li>
+              <li>• {t('company.rates.disclaimers.item5')}</li>
+              <li>• {t('company.rates.disclaimers.item6')}</li>
+              <li>• {t('company.rates.disclaimers.item7')}</li>
+              <li>• {t('company.rates.disclaimers.item8')}</li>
+              <li>• {t('company.rates.disclaimers.item9')}</li>
+              <li>• {t('company.rates.disclaimers.item10')}</li>
             </ul>
           </div>
         </div>

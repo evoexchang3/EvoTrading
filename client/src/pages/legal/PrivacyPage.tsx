@@ -1,143 +1,142 @@
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function PrivacyPage() {
+  const { t } = useLanguage();
+
   return (
     <LandingLayout>
       <SEO
-        title="Privacy Policy"
-        description="Our privacy policy explains how we collect, use, and protect your personal information. GDPR compliant and transparent."
-        keywords="privacy policy, data protection, GDPR, privacy rights, personal data"
+        title={t('legal.privacy.seo.title')}
+        description={t('legal.privacy.seo.description')}
+        keywords={t('legal.privacy.seo.keywords')}
       />
       <div className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl font-bold mb-8" data-testid="text-privacy-title">
-              Privacy Policy
+              {t('legal.privacy.title')}
             </h1>
             <div className="prose prose-slate dark:prose-invert max-w-none">
               <p className="text-lg text-muted-foreground mb-8">
-                Last updated: January 2025
+                {t('legal.privacy.lastUpdated')}
               </p>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section1.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  This Privacy Policy explains how we collect, use, disclose, and safeguard your information 
-                  when you use our trading platform and services.
+                  {t('legal.privacy.section1.content')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">2. Information We Collect</h2>
-                <h3 className="text-xl font-semibold mb-3">Personal Information</h3>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section2.title')}</h2>
+                <h3 className="text-xl font-semibold mb-3">{t('legal.privacy.section2.personalInfo.title')}</h3>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Name, email address, phone number</li>
-                  <li>Date of birth and nationality</li>
-                  <li>Government-issued ID and proof of address</li>
-                  <li>Financial information</li>
+                  <li>{t('legal.privacy.section2.personalInfo.item1')}</li>
+                  <li>{t('legal.privacy.section2.personalInfo.item2')}</li>
+                  <li>{t('legal.privacy.section2.personalInfo.item3')}</li>
+                  <li>{t('legal.privacy.section2.personalInfo.item4')}</li>
                 </ul>
 
-                <h3 className="text-xl font-semibold mb-3 mt-6">Usage Information</h3>
+                <h3 className="text-xl font-semibold mb-3 mt-6">{t('legal.privacy.section2.usageInfo.title')}</h3>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Trading activity and transaction history</li>
-                  <li>Device information and IP address</li>
-                  <li>Browser type and operating system</li>
-                  <li>Pages visited and features used</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">3. How We Use Your Information</h2>
-                <p className="text-muted-foreground mb-4">
-                  We use your information to:
-                </p>
-                <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Provide and maintain our trading services</li>
-                  <li>Process transactions and manage your account</li>
-                  <li>Comply with legal and regulatory requirements</li>
-                  <li>Detect and prevent fraud and abuse</li>
-                  <li>Improve our services and user experience</li>
-                  <li>Send important updates and notifications</li>
+                  <li>{t('legal.privacy.section2.usageInfo.item1')}</li>
+                  <li>{t('legal.privacy.section2.usageInfo.item2')}</li>
+                  <li>{t('legal.privacy.section2.usageInfo.item3')}</li>
+                  <li>{t('legal.privacy.section2.usageInfo.item4')}</li>
                 </ul>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">4. Information Sharing</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section3.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  We may share your information with:
+                  {t('legal.privacy.section3.intro')}
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Service providers who assist in operating our platform</li>
-                  <li>Regulatory authorities and law enforcement when required</li>
-                  <li>Payment processors for transaction processing</li>
-                  <li>Legal advisors and auditors as necessary</li>
-                </ul>
-                <p className="text-muted-foreground mb-4">
-                  We never sell your personal information to third parties.
-                </p>
-              </section>
-
-              <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">5. Data Security</h2>
-                <p className="text-muted-foreground mb-4">
-                  We implement industry-standard security measures including:
-                </p>
-                <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>SSL/TLS encryption for data transmission</li>
-                  <li>Encrypted storage of sensitive information</li>
-                  <li>Regular security audits and updates</li>
-                  <li>Access controls and authentication</li>
-                  <li>24/7 security monitoring</li>
+                  <li>{t('legal.privacy.section3.use1')}</li>
+                  <li>{t('legal.privacy.section3.use2')}</li>
+                  <li>{t('legal.privacy.section3.use3')}</li>
+                  <li>{t('legal.privacy.section3.use4')}</li>
+                  <li>{t('legal.privacy.section3.use5')}</li>
+                  <li>{t('legal.privacy.section3.use6')}</li>
                 </ul>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">6. Your Rights (GDPR)</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section4.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  Under GDPR, you have the right to:
+                  {t('legal.privacy.section4.intro')}
                 </p>
                 <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
-                  <li>Access your personal data</li>
-                  <li>Rectify inaccurate data</li>
-                  <li>Request erasure of your data</li>
-                  <li>Restrict processing of your data</li>
-                  <li>Data portability</li>
-                  <li>Object to processing</li>
-                  <li>Withdraw consent at any time</li>
+                  <li>{t('legal.privacy.section4.share1')}</li>
+                  <li>{t('legal.privacy.section4.share2')}</li>
+                  <li>{t('legal.privacy.section4.share3')}</li>
+                  <li>{t('legal.privacy.section4.share4')}</li>
+                </ul>
+                <p className="text-muted-foreground mb-4">
+                  {t('legal.privacy.section4.noSell')}
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section5.title')}</h2>
+                <p className="text-muted-foreground mb-4">
+                  {t('legal.privacy.section5.intro')}
+                </p>
+                <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
+                  <li>{t('legal.privacy.section5.measure1')}</li>
+                  <li>{t('legal.privacy.section5.measure2')}</li>
+                  <li>{t('legal.privacy.section5.measure3')}</li>
+                  <li>{t('legal.privacy.section5.measure4')}</li>
+                  <li>{t('legal.privacy.section5.measure5')}</li>
                 </ul>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">7. Cookies</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section6.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  We use cookies and similar technologies to enhance your experience. You can control 
-                  cookie preferences through your browser settings. See our Cookie Policy for details.
+                  {t('legal.privacy.section6.intro')}
+                </p>
+                <ul className="list-disc pl-6 text-muted-foreground space-y-2 mb-4">
+                  <li>{t('legal.privacy.section6.right1')}</li>
+                  <li>{t('legal.privacy.section6.right2')}</li>
+                  <li>{t('legal.privacy.section6.right3')}</li>
+                  <li>{t('legal.privacy.section6.right4')}</li>
+                  <li>{t('legal.privacy.section6.right5')}</li>
+                  <li>{t('legal.privacy.section6.right6')}</li>
+                  <li>{t('legal.privacy.section6.right7')}</li>
+                </ul>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section7.title')}</h2>
+                <p className="text-muted-foreground mb-4">
+                  {t('legal.privacy.section7.content')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">8. Data Retention</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section8.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  We retain your information for as long as necessary to provide services and comply with 
-                  legal obligations, typically 7 years after account closure as required by financial regulations.
+                  {t('legal.privacy.section8.content')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">9. International Transfers</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section9.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  Your data may be transferred to and processed in countries outside your residence. 
-                  We ensure appropriate safeguards are in place for such transfers.
+                  {t('legal.privacy.section9.content')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">10. Contact Us</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('legal.privacy.section10.title')}</h2>
                 <p className="text-muted-foreground mb-4">
-                  For privacy-related questions or to exercise your rights, contact our Data Protection Officer at:
+                  {t('legal.privacy.section10.content')}
                   <br />
-                  <strong>privacy@tradingplatform.com</strong>
+                  <strong>{t('legal.privacy.section10.email')}</strong>
                 </p>
               </section>
             </div>

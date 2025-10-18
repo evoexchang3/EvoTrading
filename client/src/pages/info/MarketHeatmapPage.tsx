@@ -5,206 +5,209 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function MarketHeatmapPage() {
+  const { t } = useLanguage();
+
   const heatmapTypes = [
     {
-      title: "Currency Strength Heatmap",
+      title: t('marketInfo.marketHeatmap.types.currencyStrength.title'),
       icon: TrendingUp,
-      description: "Visual representation of relative currency strength across major pairs",
+      description: t('marketInfo.marketHeatmap.types.currencyStrength.description'),
       features: [
-        "Compare 8 major currencies: USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF",
-        "Color coding: Dark Green = strongest (>1%), Red = weakest (<-1%)",
-        "Updated in real-time based on weighted price movements across all pairs",
-        "Helps identify which currencies are trending vs ranging"
+        t('marketInfo.marketHeatmap.types.currencyStrength.feature1'),
+        t('marketInfo.marketHeatmap.types.currencyStrength.feature2'),
+        t('marketInfo.marketHeatmap.types.currencyStrength.feature3'),
+        t('marketInfo.marketHeatmap.types.currencyStrength.feature4')
       ],
-      useCase: "Use to find the strongest vs weakest currency pairs for trending trades. For example, if USD is strongest (+1.5%) and JPY is weakest (-1.2%), consider buying USD/JPY. Avoid pairs where both currencies show similar strength (low relative movement).",
-      updateFrequency: "Real-time (tick-by-tick)",
-      bestTimeframe: "Intraday to swing trading"
+      useCase: t('marketInfo.marketHeatmap.types.currencyStrength.useCase'),
+      updateFrequency: t('marketInfo.marketHeatmap.types.currencyStrength.updateFrequency'),
+      bestTimeframe: t('marketInfo.marketHeatmap.types.currencyStrength.bestTimeframe')
     },
     {
-      title: "Asset Class Performance Heatmap",
+      title: t('marketInfo.marketHeatmap.types.assetClass.title'),
       icon: Grid3x3,
-      description: "Performance comparison across different market sectors and instruments",
+      description: t('marketInfo.marketHeatmap.types.assetClass.description'),
       features: [
-        "Categories: Forex pairs, Commodities (Gold, Oil, Silver), Indices (S&P, FTSE, DAX), Cryptocurrencies",
-        "Sort by daily, weekly, or monthly performance percentage",
-        "Identify which asset classes are in demand (risk-on vs risk-off)",
-        "Spot market correlations and divergences instantly"
+        t('marketInfo.marketHeatmap.types.assetClass.feature1'),
+        t('marketInfo.marketHeatmap.types.assetClass.feature2'),
+        t('marketInfo.marketHeatmap.types.assetClass.feature3'),
+        t('marketInfo.marketHeatmap.types.assetClass.feature4')
       ],
-      useCase: "Determine overall market sentiment. Strong equities + weak safe havens (JPY, CHF) = risk-on environment. Weak equities + strong USD/JPY = risk-off. Trade accordingly: In risk-on, buy AUD/JPY, NZD/JPY. In risk-off, buy USD/JPY, sell commodity currencies.",
-      updateFrequency: "Every 5-15 minutes",
-      bestTimeframe: "Position and swing trading"
+      useCase: t('marketInfo.marketHeatmap.types.assetClass.useCase'),
+      updateFrequency: t('marketInfo.marketHeatmap.types.assetClass.updateFrequency'),
+      bestTimeframe: t('marketInfo.marketHeatmap.types.assetClass.bestTimeframe')
     },
     {
-      title: "Volatility Heatmap",
+      title: t('marketInfo.marketHeatmap.types.volatility.title'),
       icon: TrendingDown,
-      description: "Measure of price volatility across instruments using ATR (Average True Range)",
+      description: t('marketInfo.marketHeatmap.types.volatility.description'),
       features: [
-        "Shows which pairs/assets are moving the most (high volatility) vs consolidating (low volatility)",
-        "Helps with position sizing decisions - reduce size on high volatility instruments",
-        "Identifies low volatility (ranging) markets unsuitable for breakout strategies",
-        "Highlights breakout opportunities when volatility spikes from low levels"
+        t('marketInfo.marketHeatmap.types.volatility.feature1'),
+        t('marketInfo.marketHeatmap.types.volatility.feature2'),
+        t('marketInfo.marketHeatmap.types.volatility.feature3'),
+        t('marketInfo.marketHeatmap.types.volatility.feature4')
       ],
-      useCase: "Trade high volatility pairs for breakouts and momentum strategies. Use low volatility pairs for range trading and mean reversion strategies. Adjust stop loss width based on current volatility levels (wider stops for GBP/JPY, tighter for EUR/CHF).",
-      updateFrequency: "Hourly",
-      bestTimeframe: "All trading styles"
+      useCase: t('marketInfo.marketHeatmap.types.volatility.useCase'),
+      updateFrequency: t('marketInfo.marketHeatmap.types.volatility.updateFrequency'),
+      bestTimeframe: t('marketInfo.marketHeatmap.types.volatility.bestTimeframe')
     },
     {
-      title: "Session-Based Heatmap",
+      title: t('marketInfo.marketHeatmap.types.session.title'),
       icon: Activity,
-      description: "Performance segmented by trading sessions (Tokyo, London, New York)",
+      description: t('marketInfo.marketHeatmap.types.session.description'),
       features: [
-        "Identify which pairs are most active during specific sessions",
-        "Tokyo (Asian): JPY, AUD, NZD pairs most active",
-        "London (European): EUR, GBP pairs dominate volume",
-        "New York (US): USD pairs and commodities (Gold, Oil) most volatile"
+        t('marketInfo.marketHeatmap.types.session.feature1'),
+        t('marketInfo.marketHeatmap.types.session.feature2'),
+        t('marketInfo.marketHeatmap.types.session.feature3'),
+        t('marketInfo.marketHeatmap.types.session.feature4')
       ],
-      useCase: "Trade the most active pairs during your available session. London traders should focus on EUR/GBP, GBP/USD. Tokyo session traders should focus on AUD/JPY, NZD/JPY. Overlaps (London + NY) provide highest liquidity and opportunities.",
-      updateFrequency: "Per session",
-      bestTimeframe: "Day trading and scalping"
+      useCase: t('marketInfo.marketHeatmap.types.session.useCase'),
+      updateFrequency: t('marketInfo.marketHeatmap.types.session.updateFrequency'),
+      bestTimeframe: t('marketInfo.marketHeatmap.types.session.bestTimeframe')
     }
   ];
 
   const interpretation = [
     {
-      scenario: "Strong Green Cluster (Multiple Currencies Up)",
-      meaning: "Widespread bullish sentiment across major pairs",
-      action: "Look for continuation buys on pullbacks. Positive risk-on environment. Consider buying high-yield currencies (AUD, NZD) against safe havens (JPY, CHF).",
-      probability: "Medium-High confidence"
+      scenario: t('marketInfo.marketHeatmap.interpretation.strongGreen.scenario'),
+      meaning: t('marketInfo.marketHeatmap.interpretation.strongGreen.meaning'),
+      action: t('marketInfo.marketHeatmap.interpretation.strongGreen.action'),
+      probability: t('marketInfo.marketHeatmap.interpretation.strongGreen.probability')
     },
     {
-      scenario: "Strong Red Cluster (Widespread Selling)",
-      meaning: "Risk-off sentiment, flight to safety underway",
-      action: "Look for continuation sells on rallies. Buy safe havens (USD, JPY, CHF). Avoid commodity currencies and emerging markets. Reduce position sizes due to volatility.",
-      probability: "High confidence"
+      scenario: t('marketInfo.marketHeatmap.interpretation.strongRed.scenario'),
+      meaning: t('marketInfo.marketHeatmap.interpretation.strongRed.meaning'),
+      action: t('marketInfo.marketHeatmap.interpretation.strongRed.action'),
+      probability: t('marketInfo.marketHeatmap.interpretation.strongRed.probability')
     },
     {
-      scenario: "Mixed Colors (No Clear Pattern)",
-      meaning: "Indecisive market, no dominant trend, choppy consolidation",
-      action: "Reduce position sizes significantly. Focus on range trading strategies at key levels. Wait for clearer directional bias. Avoid breakout trades (high false breakout risk).",
-      probability: "Low-confidence environment"
+      scenario: t('marketInfo.marketHeatmap.interpretation.mixed.scenario'),
+      meaning: t('marketInfo.marketHeatmap.interpretation.mixed.meaning'),
+      action: t('marketInfo.marketHeatmap.interpretation.mixed.action'),
+      probability: t('marketInfo.marketHeatmap.interpretation.mixed.probability')
     },
     {
-      scenario: "Single Currency Green Across All Pairs",
-      meaning: "Strong buying pressure in that specific currency (e.g., USD green across EUR/USD, GBP/USD, AUD/USD)",
-      action: "Trade pairs with that currency on the buy side. Check fundamentals - likely central bank hawkishness, strong data, or safe-haven demand. High-probability trend trades.",
-      probability: "Very High confidence"
+      scenario: t('marketInfo.marketHeatmap.interpretation.single.scenario'),
+      meaning: t('marketInfo.marketHeatmap.interpretation.single.meaning'),
+      action: t('marketInfo.marketHeatmap.interpretation.single.action'),
+      probability: t('marketInfo.marketHeatmap.interpretation.single.probability')
     },
     {
-      scenario: "Sudden Color Shift (Green to Red in <1 hour)",
-      meaning: "Major news event or trend reversal occurring, market repricing rapidly",
-      action: "Check economic calendar for news. If no scheduled news, possible geopolitical event. Reassess open positions immediately. Tighten stops or exit if against new trend. Wait 30min for clarity before new entries.",
-      probability: "High volatility, lower confidence initially"
+      scenario: t('marketInfo.marketHeatmap.interpretation.sudden.scenario'),
+      meaning: t('marketInfo.marketHeatmap.interpretation.sudden.meaning'),
+      action: t('marketInfo.marketHeatmap.interpretation.sudden.action'),
+      probability: t('marketInfo.marketHeatmap.interpretation.sudden.probability')
     },
     {
-      scenario: "Divergence: Heatmap vs Your Chart",
-      meaning: "Currency strength showing bullish but your pair's chart shows bearish structure",
-      action: "Trust the heatmap for broader context but wait for chart confirmation. Heatmap might be early signal of upcoming reversal. Mark levels and wait for price action confirmation before entering.",
-      probability: "Requires confirmation"
+      scenario: t('marketInfo.marketHeatmap.interpretation.divergence.scenario'),
+      meaning: t('marketInfo.marketHeatmap.interpretation.divergence.meaning'),
+      action: t('marketInfo.marketHeatmap.interpretation.divergence.action'),
+      probability: t('marketInfo.marketHeatmap.interpretation.divergence.probability')
     }
   ];
 
   const practicalStrategies = [
     {
-      strategy: "Relative Strength Trading",
-      description: "Identify and trade the strongest vs weakest currencies",
+      strategy: t('marketInfo.marketHeatmap.strategies.relativeStrength.strategy'),
+      description: t('marketInfo.marketHeatmap.strategies.relativeStrength.description'),
       steps: [
-        "Check heatmap at start of session (London open, NY open)",
-        "Identify strongest currency (darkest green) and weakest (darkest red)",
-        "Open chart for that pair (e.g., Strong USD + Weak EUR = USD/EUR buy)",
-        "Wait for pullback to support or EMA on H1/H4 chart",
-        "Enter long with SL below support, TP at recent high",
-        "Risk/Reward minimum 1:2"
+        t('marketInfo.marketHeatmap.strategies.relativeStrength.step1'),
+        t('marketInfo.marketHeatmap.strategies.relativeStrength.step2'),
+        t('marketInfo.marketHeatmap.strategies.relativeStrength.step3'),
+        t('marketInfo.marketHeatmap.strategies.relativeStrength.step4'),
+        t('marketInfo.marketHeatmap.strategies.relativeStrength.step5'),
+        t('marketInfo.marketHeatmap.strategies.relativeStrength.step6')
       ],
-      winRate: "60-70%",
-      riskReward: "1:2 to 1:3"
+      winRate: t('marketInfo.marketHeatmap.strategies.relativeStrength.winRate'),
+      riskReward: t('marketInfo.marketHeatmap.strategies.relativeStrength.riskReward')
     },
     {
-      strategy: "Volatility Breakout Strategy",
-      description: "Trade breakouts when volatility spikes from low levels",
+      strategy: t('marketInfo.marketHeatmap.strategies.volatility.strategy'),
+      description: t('marketInfo.marketHeatmap.strategies.volatility.description'),
       steps: [
-        "Monitor volatility heatmap for pairs showing low ATR (blue/neutral)",
-        "When volatility jumps to high (red/orange), consolidation breaking",
-        "Identify direction of breakout on price chart",
-        "Enter on retest of breakout level or immediate breakout",
-        "SL inside consolidation pattern",
-        "TP at pattern height projected from breakout"
+        t('marketInfo.marketHeatmap.strategies.volatility.step1'),
+        t('marketInfo.marketHeatmap.strategies.volatility.step2'),
+        t('marketInfo.marketHeatmap.strategies.volatility.step3'),
+        t('marketInfo.marketHeatmap.strategies.volatility.step4'),
+        t('marketInfo.marketHeatmap.strategies.volatility.step5'),
+        t('marketInfo.marketHeatmap.strategies.volatility.step6')
       ],
-      winRate: "55-65%",
-      riskReward: "1:2.5 to 1:4"
+      winRate: t('marketInfo.marketHeatmap.strategies.volatility.winRate'),
+      riskReward: t('marketInfo.marketHeatmap.strategies.volatility.riskReward')
     },
     {
-      strategy: "Session Momentum Trading",
-      description: "Trade pairs most active during your session for best liquidity",
+      strategy: t('marketInfo.marketHeatmap.strategies.session.strategy'),
+      description: t('marketInfo.marketHeatmap.strategies.session.description'),
       steps: [
-        "Check session heatmap to see which pairs are moving most",
-        "Focus on top 3 most active pairs during your session",
-        "Use M15-H1 timeframe for entries during active hours",
-        "Trade with momentum (buy strength, sell weakness)",
-        "Exit before session close or when activity drops",
-        "Avoid carrying positions through quiet sessions"
+        t('marketInfo.marketHeatmap.strategies.session.step1'),
+        t('marketInfo.marketHeatmap.strategies.session.step2'),
+        t('marketInfo.marketHeatmap.strategies.session.step3'),
+        t('marketInfo.marketHeatmap.strategies.session.step4'),
+        t('marketInfo.marketHeatmap.strategies.session.step5'),
+        t('marketInfo.marketHeatmap.strategies.session.step6')
       ],
-      winRate: "65-75%",
-      riskReward: "1:1.5 to 1:2"
+      winRate: t('marketInfo.marketHeatmap.strategies.session.winRate'),
+      riskReward: t('marketInfo.marketHeatmap.strategies.session.riskReward')
     }
   ];
 
   const tips = [
     {
-      tip: "Combine Heatmap with Price Action",
-      detail: "Heatmap shows what's moving, but always confirm with chart structure (support/resistance, patterns) before entering"
+      tip: t('marketInfo.marketHeatmap.tips.combine.tip'),
+      detail: t('marketInfo.marketHeatmap.tips.combine.detail')
     },
     {
-      tip: "Check Multiple Timeframes",
-      detail: "Daily heatmap for trend, H4 for swing trades, H1 for day trades. Align your trading with the dominant timeframe strength"
+      tip: t('marketInfo.marketHeatmap.tips.timeframes.tip'),
+      detail: t('marketInfo.marketHeatmap.tips.timeframes.detail')
     },
     {
-      tip: "Avoid 'Neutral' Pairs",
-      detail: "If both currencies show similar strength (both green or both red), pair will likely range. Trade pairs with strong divergence only"
+      tip: t('marketInfo.marketHeatmap.tips.neutral.tip'),
+      detail: t('marketInfo.marketHeatmap.tips.neutral.detail')
     },
     {
-      tip: "Use Heatmap for Market Sentiment",
-      detail: "Safe havens strong (USD, JPY, CHF green) = Risk-off. Commodity currencies strong (AUD, NZD, CAD green) = Risk-on"
+      tip: t('marketInfo.marketHeatmap.tips.sentiment.tip'),
+      detail: t('marketInfo.marketHeatmap.tips.sentiment.detail')
     },
     {
-      tip: "Time Your Entries with Heatmap",
-      detail: "Don't chase strong green after 5 hours of rally. Wait for pullback or trade the opposite on reversal signs"
+      tip: t('marketInfo.marketHeatmap.tips.timing.tip'),
+      detail: t('marketInfo.marketHeatmap.tips.timing.detail')
     },
     {
-      tip: "Monitor Correlation Changes",
-      detail: "Usually correlated pairs (EUR/USD and GBP/USD) diverging? Potential pair trading opportunity or confusion - be cautious"
+      tip: t('marketInfo.marketHeatmap.tips.correlation.tip'),
+      detail: t('marketInfo.marketHeatmap.tips.correlation.detail')
     }
   ];
 
   const faqs = [
     {
-      question: "How often should I check the market heatmap?",
-      answer: "For day traders: Every 30-60 minutes to catch momentum shifts. For swing traders: Once per day at market open to identify weekly bias. For scalpers: Every 5-15 minutes during active sessions. Set alerts for major color changes (green to red shift) to catch reversals early. Always check heatmap before entering any trade to ensure currency momentum aligns with your direction."
+      question: t('marketInfo.marketHeatmap.faq.q1.question'),
+      answer: t('marketInfo.marketHeatmap.faq.q1.answer')
     },
     {
-      question: "Can I rely solely on the heatmap for trading decisions?",
-      answer: "No. Heatmaps show relative strength but don't indicate support/resistance levels, chart patterns, or risk/reward ratios. Use heatmap as a filter to identify which pairs to trade, then analyze charts for precise entries. Best approach: Heatmap identifies the pair (strongest vs weakest) → Chart analysis finds the entry setup → Risk management determines position size."
+      question: t('marketInfo.marketHeatmap.faq.q2.question'),
+      answer: t('marketInfo.marketHeatmap.faq.q2.answer')
     },
     {
-      question: "What causes sudden heatmap color changes?",
-      answer: "Major news events (NFP, Fed decisions, geopolitical shocks), central bank surprises, or technical breakouts. When you see rapid shifts: 1) Check economic calendar for scheduled news, 2) Check news feeds for breaking stories, 3) Review charts for major level breaks. Allow 15-30min for volatility to settle before trading after sudden shifts."
+      question: t('marketInfo.marketHeatmap.faq.q3.question'),
+      answer: t('marketInfo.marketHeatmap.faq.q3.answer')
     },
     {
-      question: "How do I use heatmap for risk management?",
-      answer: "Volatility heatmaps show which pairs are most risky. High volatility (dark red) = wider stops needed (40-60 pips for GBP/JPY). Low volatility (blue) = tighter stops (15-25 pips for EUR/CHF). Also, reduce position size by 50% when trading high volatility pairs to keep dollar risk constant. If overall market shows extreme volatility (all red), reduce trading or stay out completely."
+      question: t('marketInfo.marketHeatmap.faq.q4.question'),
+      answer: t('marketInfo.marketHeatmap.faq.q4.answer')
     },
     {
-      question: "Which heatmap type is best for beginners?",
-      answer: "Start with Currency Strength Heatmap - it's the simplest and most actionable. Shows which currencies are strong/weak in real-time. Trade strongest vs weakest pairs with clear trends. Once comfortable, add Session-Based Heatmap to trade during your available hours. Volatility and Asset Class heatmaps are for intermediate traders who understand correlations and market sentiment."
+      question: t('marketInfo.marketHeatmap.faq.q5.question'),
+      answer: t('marketInfo.marketHeatmap.faq.q5.answer')
     },
     {
-      question: "How do I interpret divergence between heatmap and my chart?",
-      answer: "Example: Heatmap shows USD strong (green) but USD/JPY chart is falling. Possibilities: 1) JPY is even stronger (check JPY vs other pairs), 2) Temporary pullback before resuming up, 3) Early reversal signal. Action: Wait for alignment - either heatmap shifts or chart confirms. Never trade against both heatmap and chart structure; one must support your direction."
+      question: t('marketInfo.marketHeatmap.faq.q6.question'),
+      answer: t('marketInfo.marketHeatmap.faq.q6.answer')
     },
     {
-      question: "Can heatmaps predict market direction?",
-      answer: "No, heatmaps are descriptive (what's happening now), not predictive (what will happen). They show current strength, not future direction. However, persistent strength (USD green for 3+ hours) often continues short-term. Use heatmap to ride existing momentum, not predict reversals. For reversals, wait for price action confirmation (chart patterns, candlesticks) + heatmap color change together."
+      question: t('marketInfo.marketHeatmap.faq.q7.question'),
+      answer: t('marketInfo.marketHeatmap.faq.q7.answer')
     }
   ];
 
@@ -214,10 +217,10 @@ export default function MarketHeatmapPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-market-heatmap">Market Education</Badge>
-            <h1 className="text-4xl font-bold mb-4">Market Heatmap Guide</h1>
+            <Badge className="mb-4" data-testid="badge-market-heatmap">{t('marketInfo.marketHeatmap.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('marketInfo.marketHeatmap.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Learn how to use market heatmaps to quickly visualize performance across multiple instruments, identify currency strength, spot trading opportunities, and manage risk at a glance.
+              {t('marketInfo.marketHeatmap.description')}
             </p>
           </div>
 
@@ -225,26 +228,26 @@ export default function MarketHeatmapPage() {
           <div className="grid sm:grid-cols-4 gap-4 mb-12">
             <Card data-testid="card-stat-currencies">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">8</div>
-                <p className="text-sm text-muted-foreground">Major Currencies</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.marketHeatmap.stats.currencies')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.marketHeatmap.stats.currenciesLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-pairs">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">28+</div>
-                <p className="text-sm text-muted-foreground">Currency Pairs</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.marketHeatmap.stats.pairs')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.marketHeatmap.stats.pairsLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-update">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">Real-Time</div>
-                <p className="text-sm text-muted-foreground">Live Updates</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.marketHeatmap.stats.updates')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.marketHeatmap.stats.updatesLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-sessions">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">3</div>
-                <p className="text-sm text-muted-foreground">Trading Sessions</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.marketHeatmap.stats.sessions')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.marketHeatmap.stats.sessionsLabel')}</p>
               </CardContent>
             </Card>
           </div>
@@ -272,7 +275,7 @@ export default function MarketHeatmapPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div>
-                        <h3 className="font-semibold mb-2 text-sm">Key Features:</h3>
+                        <h3 className="font-semibold mb-2 text-sm">{t('marketInfo.marketHeatmap.interpretation.keyFeatures')}</h3>
                         <ul className="space-y-1">
                           {type.features.map((feature, index) => (
                             <li key={index} className="flex items-start gap-2 text-sm">
@@ -283,7 +286,7 @@ export default function MarketHeatmapPage() {
                         </ul>
                       </div>
                       <div className="p-4 bg-muted rounded-lg">
-                        <h3 className="font-semibold mb-2 text-sm">Practical Use Case:</h3>
+                        <h3 className="font-semibold mb-2 text-sm">{t('marketInfo.marketHeatmap.interpretation.practicalUse')}</h3>
                         <p className="text-sm text-muted-foreground">{type.useCase}</p>
                       </div>
                       <div className="flex items-center gap-2">
@@ -301,9 +304,9 @@ export default function MarketHeatmapPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Eye className="w-5 h-5 text-primary" />
-                <CardTitle>Reading Heatmap Patterns</CardTitle>
+                <CardTitle>{t('marketInfo.marketHeatmap.interpretation.title')}</CardTitle>
               </div>
-              <CardDescription>What different color patterns mean and how to trade them</CardDescription>
+              <CardDescription>{t('marketInfo.marketHeatmap.interpretation.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
@@ -314,11 +317,11 @@ export default function MarketHeatmapPage() {
                       <Badge>{item.probability}</Badge>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">
-                      <strong>Meaning:</strong> {item.meaning}
+                      <strong>{t('marketInfo.marketHeatmap.interpretation.meaning')}</strong> {item.meaning}
                     </p>
                     <Alert>
                       <AlertDescription className="text-sm">
-                        <strong>Trading Action:</strong> {item.action}
+                        <strong>{t('marketInfo.marketHeatmap.interpretation.tradingAction')}</strong> {item.action}
                       </AlertDescription>
                     </Alert>
                   </div>
@@ -332,9 +335,9 @@ export default function MarketHeatmapPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Zap className="w-5 h-5 text-primary" />
-                <CardTitle>Heatmap-Based Trading Strategies</CardTitle>
+                <CardTitle>{t('marketInfo.marketHeatmap.strategies.title')}</CardTitle>
               </div>
-              <CardDescription>Complete strategies using heatmap analysis</CardDescription>
+              <CardDescription>{t('marketInfo.marketHeatmap.strategies.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-8">
@@ -351,7 +354,7 @@ export default function MarketHeatmapPage() {
                       </div>
                     </div>
                     <div className="mt-3 bg-muted rounded-lg p-4">
-                      <h4 className="font-semibold text-sm mb-2">Step-by-Step:</h4>
+                      <h4 className="font-semibold text-sm mb-2">{t('marketInfo.marketHeatmap.strategies.stepByStep')}</h4>
                       <ol className="space-y-2">
                         {strat.steps.map((step, i) => (
                           <li key={i} className="flex gap-3 text-sm">
@@ -370,7 +373,7 @@ export default function MarketHeatmapPage() {
           {/* Pro Tips */}
           <Card className="mb-12">
             <CardHeader>
-              <CardTitle>Professional Tips & Best Practices</CardTitle>
+              <CardTitle>{t('marketInfo.marketHeatmap.tips.title')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -392,7 +395,7 @@ export default function MarketHeatmapPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
-                <CardTitle>Frequently Asked Questions</CardTitle>
+                <CardTitle>{t('marketInfo.marketHeatmap.faq.title')}</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
@@ -411,17 +414,17 @@ export default function MarketHeatmapPage() {
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Access Real-Time Market Heatmaps</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('marketInfo.marketHeatmap.cta.title')}</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Our trading platform includes integrated currency strength, volatility, and session heatmaps updated in real-time to help you identify the best trading opportunities.
+              {t('marketInfo.marketHeatmap.cta.description')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" data-testid="button-view-heatmap">
-                View Live Heatmap
+                {t('marketInfo.marketHeatmap.cta.viewButton')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               <Button size="lg" variant="outline" data-testid="button-start-trading">
-                Start Trading
+                {t('marketInfo.marketHeatmap.cta.tradingButton')}
               </Button>
             </div>
           </div>

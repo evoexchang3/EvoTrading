@@ -19,34 +19,37 @@ import {
   AlertCircle,
   Scale
 } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function ComplaintsPage() {
+  const { t } = useLanguage();
+
   const stats = [
     {
-      label: "Resolution Time",
-      value: "48hrs",
-      description: "Average first response",
+      label: t('company.complaints.stats.resolutionTime.label'),
+      value: t('company.complaints.stats.resolutionTime.value'),
+      description: t('company.complaints.stats.resolutionTime.description'),
       icon: Clock,
       testId: "stat-resolution-time"
     },
     {
-      label: "Success Rate",
-      value: "94%",
-      description: "Resolved satisfactorily",
+      label: t('company.complaints.stats.successRate.label'),
+      value: t('company.complaints.stats.successRate.value'),
+      description: t('company.complaints.stats.successRate.description'),
       icon: TrendingUp,
       testId: "stat-success-rate"
     },
     {
-      label: "Open Channels",
-      value: "5",
-      description: "Ways to reach us",
+      label: t('company.complaints.stats.channels.label'),
+      value: t('company.complaints.stats.channels.value'),
+      description: t('company.complaints.stats.channels.description'),
       icon: MessageSquare,
       testId: "stat-channels"
     },
     {
-      label: "Escalation Levels",
-      value: "4",
-      description: "Fair review process",
+      label: t('company.complaints.stats.levels.label'),
+      value: t('company.complaints.stats.levels.value'),
+      description: t('company.complaints.stats.levels.description'),
       icon: Users,
       testId: "stat-levels"
     }
@@ -54,145 +57,170 @@ export default function ComplaintsPage() {
 
   const resolutionProcess = [
     {
-      level: "Level 1: Customer Support",
-      timeframe: "0-5 business days",
-      description: "Initial complaint submission and first-line resolution attempt",
+      level: t('company.complaints.level1.title'),
+      timeframe: t('company.complaints.level1.timeframe'),
+      description: t('company.complaints.level1.description'),
       icon: MessageSquare,
       steps: [
-        "Submit complaint via email, phone, live chat, or online form",
-        "Receive acknowledgment within 24 hours with case reference number",
-        "Assigned support agent investigates and attempts resolution",
-        "Receive initial response within 48 hours (target)",
-        "Resolution communicated within 5 business days for simple cases"
+        t('company.complaints.level1.step1'),
+        t('company.complaints.level1.step2'),
+        t('company.complaints.level1.step3'),
+        t('company.complaints.level1.step4'),
+        t('company.complaints.level1.step5')
       ],
       contacts: [
-        { method: "Email", detail: "complaints@example-broker.com", available: "24/7" },
-        { method: "Phone", detail: "+44 20 7946 0958 (UK) / +1 888 555 0123 (US)", available: "Mon-Fri 8am-8pm GMT" },
-        { method: "Live Chat", detail: "Available on website/platform", available: "24/5 (Mon-Fri)" },
-        { method: "Online Form", detail: "www.example-broker.com/complaints", available: "24/7" }
+        { method: t('company.complaints.level1.contact1.method'), detail: t('company.complaints.level1.contact1.detail'), available: t('company.complaints.level1.contact1.available') },
+        { method: t('company.complaints.level1.contact2.method'), detail: t('company.complaints.level1.contact2.detail'), available: t('company.complaints.level1.contact2.available') },
+        { method: t('company.complaints.level1.contact3.method'), detail: t('company.complaints.level1.contact3.detail'), available: t('company.complaints.level1.contact3.available') },
+        { method: t('company.complaints.level1.contact4.method'), detail: t('company.complaints.level1.contact4.detail'), available: t('company.complaints.level1.contact4.available') }
       ]
     },
     {
-      level: "Level 2: Customer Relations Manager",
-      timeframe: "5-15 business days",
-      description: "Escalation for unresolved or complex complaints",
+      level: t('company.complaints.level2.title'),
+      timeframe: t('company.complaints.level2.timeframe'),
+      description: t('company.complaints.level2.description'),
       icon: Users,
       steps: [
-        "Request escalation if unsatisfied with Level 1 response",
-        "Case reviewed by Senior Customer Relations Manager",
-        "Independent assessment of complaint and broker's actions",
-        "Additional evidence may be requested from both parties",
-        "Detailed written response provided within 10 business days"
+        t('company.complaints.level2.step1'),
+        t('company.complaints.level2.step2'),
+        t('company.complaints.level2.step3'),
+        t('company.complaints.level2.step4'),
+        t('company.complaints.level2.step5')
       ],
       contacts: [
-        { method: "Email", detail: "escalations@example-broker.com", available: "24/7" },
-        { method: "Direct Phone", detail: "+44 20 7946 0959 (ask for CRM)", available: "Mon-Fri 9am-6pm GMT" },
-        { method: "Written", detail: "Customer Relations Team, 123 Financial St, London EC2V 7QQ", available: "Postal mail" }
+        { method: t('company.complaints.level2.contact1.method'), detail: t('company.complaints.level2.contact1.detail'), available: t('company.complaints.level2.contact1.available') },
+        { method: t('company.complaints.level2.contact2.method'), detail: t('company.complaints.level2.contact2.detail'), available: t('company.complaints.level2.contact2.available') },
+        { method: t('company.complaints.level2.contact3.method'), detail: t('company.complaints.level2.contact3.detail'), available: t('company.complaints.level2.contact3.available') }
       ]
     },
     {
-      level: "Level 3: Compliance Department",
-      timeframe: "15-30 business days",
-      description: "Formal review for regulatory or serious disputes",
+      level: t('company.complaints.level3.title'),
+      timeframe: t('company.complaints.level3.timeframe'),
+      description: t('company.complaints.level3.description'),
       icon: Scale,
       steps: [
-        "Escalate to Compliance if still unresolved or involves regulatory breach",
-        "Head of Compliance personally reviews case",
-        "Full investigation including trade logs, communications, system records",
-        "Assessment against FCA Conduct of Business rules and internal policies",
-        "Final internal decision issued within 8 weeks (UK regulatory requirement)"
+        t('company.complaints.level3.step1'),
+        t('company.complaints.level3.step2'),
+        t('company.complaints.level3.step3'),
+        t('company.complaints.level3.step4'),
+        t('company.complaints.level3.step5')
       ],
       contacts: [
-        { method: "Email", detail: "compliance@example-broker.com", available: "24/7" },
-        { method: "Secure Mail", detail: "Compliance Department via secure client portal", available: "24/7" },
-        { method: "Regulatory Copy", detail: "You may cc your regulator (FCA, CySEC) on correspondence", available: "N/A" }
+        { method: t('company.complaints.level3.contact1.method'), detail: t('company.complaints.level3.contact1.detail'), available: t('company.complaints.level3.contact1.available') },
+        { method: t('company.complaints.level3.contact2.method'), detail: t('company.complaints.level3.contact2.detail'), available: t('company.complaints.level3.contact2.available') },
+        { method: t('company.complaints.level3.contact3.method'), detail: t('company.complaints.level3.contact3.detail'), available: t('company.complaints.level3.contact3.available') }
       ]
     },
     {
-      level: "Level 4: External Ombudsman",
-      timeframe: "30+ business days",
-      description: "Independent external dispute resolution if internal process fails",
+      level: t('company.complaints.level4.title'),
+      timeframe: t('company.complaints.level4.timeframe'),
+      description: t('company.complaints.level4.description'),
       icon: FileText,
       steps: [
-        "After 8 weeks or receiving 'final response letter', escalate to Ombudsman",
-        "Financial Ombudsman Service (UK), CySEC Ombudsman (EU), or AFCA (Australia)",
-        "Submit complaint with all documentation and correspondence",
-        "Ombudsman investigates independently (can take 3-6 months)",
-        "Binding decision issued - broker must comply or face regulatory penalties"
+        t('company.complaints.level4.step1'),
+        t('company.complaints.level4.step2'),
+        t('company.complaints.level4.step3'),
+        t('company.complaints.level4.step4'),
+        t('company.complaints.level4.step5')
       ],
       contacts: [
-        { method: "Financial Ombudsman (UK)", detail: "complaint.info@financial-ombudsman.org.uk / 0800 023 4567", available: "Mon-Fri 8am-8pm, Sat 9am-1pm" },
-        { method: "CySEC Ombudsman (EU)", detail: "www.financialombudsman.gov.cy", available: "Online submission" },
-        { method: "AFCA (Australia)", detail: "info@afca.org.au / 1800 931 678", available: "Mon-Fri 9am-5pm AEST" }
+        { method: t('company.complaints.level4.contact1.method'), detail: t('company.complaints.level4.contact1.detail'), available: t('company.complaints.level4.contact1.available') },
+        { method: t('company.complaints.level4.contact2.method'), detail: t('company.complaints.level4.contact2.detail'), available: t('company.complaints.level4.contact2.available') },
+        { method: t('company.complaints.level4.contact3.method'), detail: t('company.complaints.level4.contact3.detail'), available: t('company.complaints.level4.contact3.available') }
       ]
     }
   ];
 
   const escalationTimeline = [
-    { stage: "Complaint Submitted", days: "Day 0", action: "Acknowledge within 24hrs" },
-    { stage: "Initial Investigation", days: "Days 1-5", action: "Support team resolves or escalates" },
-    { stage: "Manager Review", days: "Days 5-15", action: "If escalated, senior review" },
-    { stage: "Compliance Assessment", days: "Days 15-30", action: "If still unresolved, formal review" },
-    { stage: "Final Response", days: "Day 30-56 (max 8 weeks UK)", action: "Internal final decision issued" },
-    { stage: "Ombudsman Eligible", days: "After 8 weeks or final response", action: "External review available" }
+    { stage: t('company.complaints.timeline.stage1.stage'), days: t('company.complaints.timeline.stage1.days'), action: t('company.complaints.timeline.stage1.action') },
+    { stage: t('company.complaints.timeline.stage2.stage'), days: t('company.complaints.timeline.stage2.days'), action: t('company.complaints.timeline.stage2.action') },
+    { stage: t('company.complaints.timeline.stage3.stage'), days: t('company.complaints.timeline.stage3.days'), action: t('company.complaints.timeline.stage3.action') },
+    { stage: t('company.complaints.timeline.stage4.stage'), days: t('company.complaints.timeline.stage4.days'), action: t('company.complaints.timeline.stage4.action') },
+    { stage: t('company.complaints.timeline.stage5.stage'), days: t('company.complaints.timeline.stage5.days'), action: t('company.complaints.timeline.stage5.action') },
+    { stage: t('company.complaints.timeline.stage6.stage'), days: t('company.complaints.timeline.stage6.days'), action: t('company.complaints.timeline.stage6.action') }
   ];
 
   const complaintCategories = [
     {
-      category: "Trading Disputes",
-      examples: ["Order execution issues", "Slippage complaints", "Stop-loss not triggered", "Platform freezing during trades"],
-      typicalResolution: "Trade log analysis, system review, potential compensation if broker error"
+      category: t('company.complaints.categories.tradingDisputes.category'),
+      examples: [
+        t('company.complaints.categories.tradingDisputes.example1'),
+        t('company.complaints.categories.tradingDisputes.example2'),
+        t('company.complaints.categories.tradingDisputes.example3'),
+        t('company.complaints.categories.tradingDisputes.example4')
+      ],
+      typicalResolution: t('company.complaints.categories.tradingDisputes.resolution')
     },
     {
-      category: "Withdrawal Issues",
-      examples: ["Delayed withdrawals", "Rejected withdrawal requests", "Unexpected fees deducted", "Verification delays"],
-      typicalResolution: "Payment processing review, compliance verification, expedited withdrawal if valid"
+      category: t('company.complaints.categories.withdrawalIssues.category'),
+      examples: [
+        t('company.complaints.categories.withdrawalIssues.example1'),
+        t('company.complaints.categories.withdrawalIssues.example2'),
+        t('company.complaints.categories.withdrawalIssues.example3'),
+        t('company.complaints.categories.withdrawalIssues.example4')
+      ],
+      typicalResolution: t('company.complaints.categories.withdrawalIssues.resolution')
     },
     {
-      category: "Account Access",
-      examples: ["Account locked/suspended", "Login issues", "Platform access denied", "Margin call disputes"],
-      typicalResolution: "Account status review, verification completion, access restoration or explanation"
+      category: t('company.complaints.categories.accountAccess.category'),
+      examples: [
+        t('company.complaints.categories.accountAccess.example1'),
+        t('company.complaints.categories.accountAccess.example2'),
+        t('company.complaints.categories.accountAccess.example3'),
+        t('company.complaints.categories.accountAccess.example4')
+      ],
+      typicalResolution: t('company.complaints.categories.accountAccess.resolution')
     },
     {
-      category: "Fees & Charges",
-      examples: ["Unexpected swap charges", "Commission discrepancies", "Inactivity fees", "Currency conversion disputes"],
-      typicalResolution: "Fee calculation review, refund if incorrect, explanation of charges"
+      category: t('company.complaints.categories.feesCharges.category'),
+      examples: [
+        t('company.complaints.categories.feesCharges.example1'),
+        t('company.complaints.categories.feesCharges.example2'),
+        t('company.complaints.categories.feesCharges.example3'),
+        t('company.complaints.categories.feesCharges.example4')
+      ],
+      typicalResolution: t('company.complaints.categories.feesCharges.resolution')
     },
     {
-      category: "Customer Service",
-      examples: ["Poor communication", "Misleading information", "Unresponsive support", "Rude staff behavior"],
-      typicalResolution: "Staff review, process improvement, apology and service recovery"
+      category: t('company.complaints.categories.customerService.category'),
+      examples: [
+        t('company.complaints.categories.customerService.example1'),
+        t('company.complaints.categories.customerService.example2'),
+        t('company.complaints.categories.customerService.example3'),
+        t('company.complaints.categories.customerService.example4')
+      ],
+      typicalResolution: t('company.complaints.categories.customerService.resolution')
     }
   ];
 
   const faqs = [
     {
-      question: "How do I file a complaint?",
-      answer: "You can file a complaint through multiple channels: 1) Email complaints@example-broker.com with your account number and detailed issue description, 2) Call our complaints hotline +44 20 7946 0958, 3) Use the 'File Complaint' form on our website under Help > Complaints, 4) Live chat (ask to speak to a complaints specialist), or 5) Secure message via your client portal. You'll receive an acknowledgment within 24 hours with a case reference number. Include all relevant details: dates, trade IDs, screenshots, and what resolution you're seeking."
+      question: t('company.complaints.faq.q1.question'),
+      answer: t('company.complaints.faq.q1.answer')
     },
     {
-      question: "How long does the complaint process take?",
-      answer: "Timelines depend on complexity: Simple issues (e.g., withdrawal delays) are often resolved within 48 hours at Level 1. More complex cases (e.g., trading disputes) may take 5-10 business days at Level 2. If escalated to Compliance (Level 3), you'll receive a final response within 8 weeks (UK regulatory requirement). If still unsatisfied, external Ombudsman review typically takes 3-6 months. At each stage, you'll receive updates every 5 business days minimum."
+      question: t('company.complaints.faq.q2.question'),
+      answer: t('company.complaints.faq.q2.answer')
     },
     {
-      question: "What happens if I'm not satisfied with the resolution?",
-      answer: "You have the right to escalate: If unsatisfied with Level 1 (Support), request escalation to Level 2 (Manager). If Level 2 doesn't resolve it, escalate to Level 3 (Compliance). After receiving our 'final response letter' or 8 weeks have passed, you can escalate to the external Ombudsman (Financial Ombudsman Service for UK, CySEC Ombudsman for EU, AFCA for Australia). The Ombudsman's decision is binding on us. You always retain the right to pursue legal action if preferred."
+      question: t('company.complaints.faq.q3.question'),
+      answer: t('company.complaints.faq.q3.answer')
     },
     {
-      question: "Can I get compensation for my complaint?",
-      answer: "Compensation depends on the nature of the complaint and fault determination: If we made an error (e.g., platform failure caused loss, withdrawal wrongly delayed), compensation may include financial remedy, trade reversal, or fee refunds. If the issue was due to market conditions or client error, no compensation is provided but we'll explain why. For service failures (e.g., poor communication), non-financial remedies like apology, process improvement, or goodwill gestures may be offered. The Ombudsman can award up to £415,000 (UK) if they find in your favor."
+      question: t('company.complaints.faq.q4.question'),
+      answer: t('company.complaints.faq.q4.answer')
     },
     {
-      question: "Will filing a complaint affect my account or trading?",
-      answer: "Absolutely not. You have the right to complain without any negative consequences. Your account will not be restricted, closed, or limited in any way for filing a complaint. All trading services remain available as normal. We are prohibited by FCA rules from retaliating against complainants. In fact, filing a complaint often improves service as it highlights issues we can fix. Your complaint is confidential and handled professionally by dedicated teams separate from trading operations."
+      question: t('company.complaints.faq.q5.question'),
+      answer: t('company.complaints.faq.q5.answer')
     },
     {
-      question: "What documentation should I provide with my complaint?",
-      answer: "Provide as much evidence as possible: 1) Account number and personal details, 2) Dates and times of incidents, 3) Trade IDs or transaction references for specific trades, 4) Screenshots of errors, platform issues, or conversations, 5) Email correspondence with support team, 6) Bank statements showing withdrawal delays or incorrect charges, 7) Any previous complaint reference numbers. The more detail you provide initially, the faster we can investigate. If we need additional information, we'll request it."
+      question: t('company.complaints.faq.q6.question'),
+      answer: t('company.complaints.faq.q6.answer')
     },
     {
-      question: "Can I complain to the regulator directly instead of the broker?",
-      answer: "Yes, but regulators (FCA, CySEC, ASIC) typically require you to first attempt resolution with the broker. File your complaint with us and give us 8 weeks to resolve (UK rule). If unresolved, you can then contact the regulator. However, you can immediately contact the regulator if: 1) You suspect fraud or serious misconduct, 2) The broker refuses to accept your complaint, 3) You believe your funds are at risk, or 4) The broker has ceased operations. Regulators may investigate but won't award individual compensation - that's what Ombudsmen do."
+      question: t('company.complaints.faq.q7.question'),
+      answer: t('company.complaints.faq.q7.answer')
     }
   ];
 
@@ -202,10 +230,10 @@ export default function ComplaintsPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-complaints">Trust & Compliance</Badge>
-            <h1 className="text-4xl font-bold mb-4">Complaints & Disputes</h1>
+            <Badge className="mb-4" data-testid="badge-complaints">{t('company.complaints.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('company.complaints.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              We are committed to resolving any issues fairly and efficiently. Our structured complaint process ensures your concerns are heard and addressed at the appropriate level, with access to external dispute resolution if needed.
+              {t('company.complaints.description')}
             </p>
           </div>
 
@@ -229,13 +257,13 @@ export default function ComplaintsPage() {
           <Alert className="mb-12" data-testid="alert-complaints-rights">
             <Info className="h-4 w-4" />
             <AlertDescription>
-              <strong>Your Rights:</strong> You have the right to complain and receive a fair review. Filing a complaint will not affect your account or trading. If unsatisfied with our response, you can escalate to an independent Ombudsman at no cost to you.
+              <strong>{t('company.complaints.alert.title')}</strong> {t('company.complaints.alert.message')}
             </AlertDescription>
           </Alert>
 
           {/* Resolution Process */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Step-by-Step Resolution Process</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.complaints.resolutionProcess.title')}</h2>
             <div className="space-y-6">
               {resolutionProcess.map((level, index) => (
                 <Card key={index} data-testid={`card-level-${index}`}>
@@ -255,7 +283,7 @@ export default function ComplaintsPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h4 className="font-semibold text-sm mb-3">Process Steps:</h4>
+                      <h4 className="font-semibold text-sm mb-3">{t('company.complaints.resolutionProcess.processSteps')}</h4>
                       <div className="space-y-2">
                         {level.steps.map((step, idx) => (
                           <div key={idx} className="flex items-start gap-2">
@@ -267,7 +295,7 @@ export default function ComplaintsPage() {
                     </div>
 
                     <div className="border-t pt-4">
-                      <h4 className="font-semibold text-sm mb-3">Contact Methods:</h4>
+                      <h4 className="font-semibold text-sm mb-3">{t('company.complaints.resolutionProcess.contactMethods')}</h4>
                       <div className="grid sm:grid-cols-2 gap-3">
                         {level.contacts.map((contact, idx) => (
                           <div key={idx} className="bg-muted rounded-lg p-3">
@@ -287,8 +315,8 @@ export default function ComplaintsPage() {
           {/* Escalation Timeline */}
           <Card className="mb-12" data-testid="card-timeline">
             <CardHeader>
-              <CardTitle>Escalation Timeline</CardTitle>
-              <CardDescription>What to expect at each stage of the complaint process</CardDescription>
+              <CardTitle>{t('company.complaints.timeline.title')}</CardTitle>
+              <CardDescription>{t('company.complaints.timeline.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -310,7 +338,7 @@ export default function ComplaintsPage() {
 
           {/* Complaint Categories */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Common Complaint Categories</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.complaints.categories.title')}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {complaintCategories.map((category, index) => (
                 <Card key={index} data-testid={`card-category-${index}`}>
@@ -319,7 +347,7 @@ export default function ComplaintsPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div>
-                      <h4 className="text-sm font-semibold mb-2">Common Examples:</h4>
+                      <h4 className="text-sm font-semibold mb-2">{t('company.complaints.categories.commonExamples')}</h4>
                       <ul className="space-y-1">
                         {category.examples.map((example, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-sm">
@@ -331,7 +359,7 @@ export default function ComplaintsPage() {
                     </div>
                     <div className="bg-muted rounded-lg p-3">
                       <p className="text-sm">
-                        <span className="font-semibold">Typical Resolution: </span>
+                        <span className="font-semibold">{t('company.complaints.categories.typicalResolution')}</span>
                         {category.typicalResolution}
                       </p>
                     </div>
@@ -344,25 +372,25 @@ export default function ComplaintsPage() {
           {/* Contact Card */}
           <Card className="mb-12 bg-primary/5" data-testid="card-contact">
             <CardHeader>
-              <CardTitle>File a Complaint Now</CardTitle>
-              <CardDescription>Choose your preferred contact method to begin the resolution process</CardDescription>
+              <CardTitle>{t('company.complaints.contactCard.title')}</CardTitle>
+              <CardDescription>{t('company.complaints.contactCard.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid sm:grid-cols-3 gap-4">
                 <Button className="h-auto py-4 flex-col" data-testid="button-email-complaint">
                   <Mail className="w-6 h-6 mb-2" />
-                  <span className="font-semibold">Email</span>
-                  <span className="text-xs mt-1">complaints@example-broker.com</span>
+                  <span className="font-semibold">{t('company.complaints.contactCard.email.title')}</span>
+                  <span className="text-xs mt-1">{t('company.complaints.contactCard.email.detail')}</span>
                 </Button>
                 <Button className="h-auto py-4 flex-col" data-testid="button-phone-complaint">
                   <Phone className="w-6 h-6 mb-2" />
-                  <span className="font-semibold">Phone</span>
-                  <span className="text-xs mt-1">+44 20 7946 0958</span>
+                  <span className="font-semibold">{t('company.complaints.contactCard.phone.title')}</span>
+                  <span className="text-xs mt-1">{t('company.complaints.contactCard.phone.detail')}</span>
                 </Button>
                 <Button className="h-auto py-4 flex-col" data-testid="button-form-complaint">
                   <FileText className="w-6 h-6 mb-2" />
-                  <span className="font-semibold">Online Form</span>
-                  <span className="text-xs mt-1">Complete in 2 minutes</span>
+                  <span className="font-semibold">{t('company.complaints.contactCard.form.title')}</span>
+                  <span className="text-xs mt-1">{t('company.complaints.contactCard.form.detail')}</span>
                 </Button>
               </div>
             </CardContent>
@@ -370,7 +398,7 @@ export default function ComplaintsPage() {
 
           {/* FAQ Section */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.complaints.faq.title')}</h2>
             <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>

@@ -5,123 +5,126 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function TechnicalAnalysisPage() {
+  const { t } = useLanguage();
+
   const concepts = [
     {
-      title: "Chart Patterns",
+      title: t('marketInfo.technicalAnalysis.concepts.chartPatterns.title'),
       icon: BarChart3,
-      description: "Visual formations that predict future price movements",
+      description: t('marketInfo.technicalAnalysis.concepts.chartPatterns.description'),
       examples: [
         {
-          name: "Head and Shoulders",
-          type: "Reversal pattern indicating trend change from bullish to bearish",
-          reliability: "High (70-80%)",
-          timeframe: "Works best on H4 and Daily charts"
+          name: t('marketInfo.technicalAnalysis.concepts.chartPatterns.headAndShoulders.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.chartPatterns.headAndShoulders.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.chartPatterns.headAndShoulders.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.chartPatterns.headAndShoulders.timeframe')
         },
         {
-          name: "Double Top/Bottom",
-          type: "Reversal pattern showing strong resistance or support levels",
-          reliability: "High (75-85%)",
-          timeframe: "All timeframes, stronger on higher TF"
+          name: t('marketInfo.technicalAnalysis.concepts.chartPatterns.doubleTopBottom.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.chartPatterns.doubleTopBottom.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.chartPatterns.doubleTopBottom.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.chartPatterns.doubleTopBottom.timeframe')
         },
         {
-          name: "Triangles (Ascending/Descending/Symmetrical)",
-          type: "Continuation patterns indicating consolidation before breakout",
-          reliability: "Medium (65-75%)",
-          timeframe: "H1 to Daily charts"
+          name: t('marketInfo.technicalAnalysis.concepts.chartPatterns.triangles.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.chartPatterns.triangles.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.chartPatterns.triangles.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.chartPatterns.triangles.timeframe')
         },
         {
-          name: "Flags and Pennants",
-          type: "Short-term continuation patterns during strong trends",
-          reliability: "Medium-High (70-80%)",
-          timeframe: "M15 to H4 for quick trades"
+          name: t('marketInfo.technicalAnalysis.concepts.chartPatterns.flags.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.chartPatterns.flags.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.chartPatterns.flags.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.chartPatterns.flags.timeframe')
         },
         {
-          name: "Cup and Handle",
-          type: "Bullish continuation pattern showing accumulation",
-          reliability: "High (75-85%)",
-          timeframe: "Daily to Weekly charts"
+          name: t('marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.timeframe')
         }
       ]
     },
     {
-      title: "Technical Indicators",
+      title: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.title'),
       icon: Activity,
-      description: "Mathematical calculations based on price and volume",
+      description: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.description'),
       examples: [
         {
-          name: "Moving Averages (SMA/EMA)",
-          type: "Smoothed price data showing trend direction and dynamic support/resistance",
-          reliability: "Best in trending markets",
-          timeframe: "Popular: 20, 50, 100, 200 period MAs"
+          name: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.movingAverages.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.movingAverages.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.movingAverages.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.movingAverages.timeframe')
         },
         {
-          name: "RSI (Relative Strength Index)",
-          type: "Momentum oscillator measuring overbought (>70) / oversold (<30) conditions",
-          reliability: "Strong divergence signals",
-          timeframe: "Default 14 periods on any TF"
+          name: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.rsi.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.rsi.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.rsi.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.rsi.timeframe')
         },
         {
-          name: "MACD (Moving Average Convergence Divergence)",
-          type: "Trend-following indicator showing momentum and direction changes via crossovers",
-          reliability: "Excellent for trend confirmation",
-          timeframe: "Settings: 12, 26, 9 on H4/Daily"
+          name: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.macd.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.macd.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.macd.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.macd.timeframe')
         },
         {
-          name: "Bollinger Bands",
-          type: "Volatility indicator showing price extremes and mean reversion opportunities",
-          reliability: "Best in ranging markets",
-          timeframe: "20 period, 2 std deviations"
+          name: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.bollingerBands.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.bollingerBands.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.bollingerBands.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.bollingerBands.timeframe')
         },
         {
-          name: "Stochastic Oscillator",
-          type: "Momentum indicator comparing closing price to price range (overbought/oversold)",
-          reliability: "Strong reversal signals",
-          timeframe: "14, 3, 3 settings typical"
+          name: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.stochastic.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.stochastic.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.stochastic.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.stochastic.timeframe')
         },
         {
-          name: "Fibonacci Retracement",
-          type: "Mathematical levels (23.6%, 38.2%, 50%, 61.8%) for pullback entries",
-          reliability: "Self-fulfilling prophecy effect",
-          timeframe: "Works on all timeframes"
+          name: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.fibonacci.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.fibonacci.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.fibonacci.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.technicalIndicators.fibonacci.timeframe')
         }
       ]
     },
     {
-      title: "Support & Resistance",
+      title: t('marketInfo.technicalAnalysis.concepts.supportResistance.title'),
       icon: TrendingUp,
-      description: "Key price levels where buying or selling pressure concentrates",
+      description: t('marketInfo.technicalAnalysis.concepts.supportResistance.description'),
       examples: [
         {
-          name: "Horizontal Support/Resistance",
-          type: "Previous swing highs/lows where price has reversed multiple times",
-          reliability: "Very high (tested levels)",
-          timeframe: "Stronger on higher timeframes"
+          name: t('marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.timeframe')
         },
         {
-          name: "Trend Lines",
-          type: "Diagonal lines connecting swing highs (resistance) or lows (support)",
-          reliability: "High when touched 3+ times",
-          timeframe: "Draw from H4 upwards"
+          name: t('marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.timeframe')
         },
         {
-          name: "Fibonacci Retracements",
-          type: "Mathematical levels showing potential reversal zones (38.2%, 50%, 61.8%)",
-          reliability: "Medium-High at key levels",
-          timeframe: "All timeframes"
+          name: t('marketInfo.technicalAnalysis.concepts.supportResistance.fibonacciRetracements.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.supportResistance.fibonacciRetracements.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.supportResistance.fibonacciRetracements.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.supportResistance.fibonacciRetracements.timeframe')
         },
         {
-          name: "Pivot Points (Daily/Weekly)",
-          type: "Calculated levels from previous period's high, low, close (PP, R1-R3, S1-S3)",
-          reliability: "High for intraday trading",
-          timeframe: "Daily pivots for day trading"
+          name: t('marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.timeframe')
         },
         {
-          name: "Psychological Levels",
-          type: "Round numbers ending in 00 or 50 (e.g., 1.1000, 1.1050)",
-          reliability: "Medium (self-fulfilling)",
-          timeframe: "All timeframes, major pairs"
+          name: t('marketInfo.technicalAnalysis.concepts.supportResistance.psychological.name'),
+          type: t('marketInfo.technicalAnalysis.concepts.supportResistance.psychological.type'),
+          reliability: t('marketInfo.technicalAnalysis.concepts.supportResistance.psychological.reliability'),
+          timeframe: t('marketInfo.technicalAnalysis.concepts.supportResistance.psychological.timeframe')
         }
       ]
     }
@@ -129,93 +132,93 @@ export default function TechnicalAnalysisPage() {
 
   const tradingStrategies = [
     {
-      name: "Trend Following Strategy",
-      description: "Trade with the dominant trend using MAs and momentum indicators",
-      setup: "Price above 200 EMA + MACD positive + RSI > 50 = Bullish bias",
-      entry: "Buy on pullback to 20/50 EMA with bullish candle confirmation",
-      stopLoss: "Below recent swing low or 1-2 ATR below entry",
-      takeProfit: "Previous high or 2-3x risk distance",
-      winRate: "55-65%",
-      rrRatio: "1:2 to 1:3"
+      name: t('marketInfo.technicalAnalysis.strategies.trendFollowing.name'),
+      description: t('marketInfo.technicalAnalysis.strategies.trendFollowing.description'),
+      setup: t('marketInfo.technicalAnalysis.strategies.trendFollowing.setup'),
+      entry: t('marketInfo.technicalAnalysis.strategies.trendFollowing.entry'),
+      stopLoss: t('marketInfo.technicalAnalysis.strategies.trendFollowing.stopLoss'),
+      takeProfit: t('marketInfo.technicalAnalysis.strategies.trendFollowing.takeProfit'),
+      winRate: t('marketInfo.technicalAnalysis.strategies.trendFollowing.winRate'),
+      rrRatio: t('marketInfo.technicalAnalysis.strategies.trendFollowing.rrRatio')
     },
     {
-      name: "Support/Resistance Bounce",
-      description: "Trade reversals at key horizontal levels",
-      setup: "Price approaching tested S/R level + RSI oversold/overbought",
-      entry: "Bullish/bearish candle rejection at level (pin bar, engulfing)",
-      stopLoss: "Beyond the level (20-30 pips buffer)",
-      takeProfit: "Next S/R level or 1:2 RR minimum",
-      winRate: "60-70%",
-      rrRatio: "1:2 to 1:2.5"
+      name: t('marketInfo.technicalAnalysis.strategies.supportResistanceBounce.name'),
+      description: t('marketInfo.technicalAnalysis.strategies.supportResistanceBounce.description'),
+      setup: t('marketInfo.technicalAnalysis.strategies.supportResistanceBounce.setup'),
+      entry: t('marketInfo.technicalAnalysis.strategies.supportResistanceBounce.entry'),
+      stopLoss: t('marketInfo.technicalAnalysis.strategies.supportResistanceBounce.stopLoss'),
+      takeProfit: t('marketInfo.technicalAnalysis.strategies.supportResistanceBounce.takeProfit'),
+      winRate: t('marketInfo.technicalAnalysis.strategies.supportResistanceBounce.winRate'),
+      rrRatio: t('marketInfo.technicalAnalysis.strategies.supportResistanceBounce.rrRatio')
     },
     {
-      name: "Breakout Strategy",
-      description: "Trade momentum when price breaks consolidation",
-      setup: "Triangle, range, or consolidation pattern + decreasing volume",
-      entry: "Close above/below pattern with volume spike confirmation",
-      stopLoss: "Inside the pattern (false breakout protection)",
-      takeProfit: "Pattern height projected from breakout point",
-      winRate: "50-60%",
-      rrRatio: "1:2.5 to 1:4"
+      name: t('marketInfo.technicalAnalysis.strategies.breakout.name'),
+      description: t('marketInfo.technicalAnalysis.strategies.breakout.description'),
+      setup: t('marketInfo.technicalAnalysis.strategies.breakout.setup'),
+      entry: t('marketInfo.technicalAnalysis.strategies.breakout.entry'),
+      stopLoss: t('marketInfo.technicalAnalysis.strategies.breakout.stopLoss'),
+      takeProfit: t('marketInfo.technicalAnalysis.strategies.breakout.takeProfit'),
+      winRate: t('marketInfo.technicalAnalysis.strategies.breakout.winRate'),
+      rrRatio: t('marketInfo.technicalAnalysis.strategies.breakout.rrRatio')
     }
   ];
 
   const commonMistakes = [
     {
-      mistake: "Over-reliance on a Single Indicator",
-      why: "No indicator is 100% accurate; false signals are common",
-      solution: "Use confluence: Combine 2-3 indicators + price action confirmation"
+      mistake: t('marketInfo.technicalAnalysis.mistakes.singleIndicator.mistake'),
+      why: t('marketInfo.technicalAnalysis.mistakes.singleIndicator.why'),
+      solution: t('marketInfo.technicalAnalysis.mistakes.singleIndicator.solution')
     },
     {
-      mistake: "Trading Against the Trend",
-      why: "Counter-trend trades have lower probability and need perfect timing",
-      solution: "Trade with the trend or wait for clear reversal confirmation (H&S, double top)"
+      mistake: t('marketInfo.technicalAnalysis.mistakes.counterTrend.mistake'),
+      why: t('marketInfo.technicalAnalysis.mistakes.counterTrend.why'),
+      solution: t('marketInfo.technicalAnalysis.mistakes.counterTrend.solution')
     },
     {
-      mistake: "Ignoring Higher Timeframes",
-      why: "Lower timeframe trades can conflict with daily/weekly trend",
-      solution: "Check Daily/H4 trend first, then drop to H1/M15 for entries"
+      mistake: t('marketInfo.technicalAnalysis.mistakes.higherTimeframes.mistake'),
+      why: t('marketInfo.technicalAnalysis.mistakes.higherTimeframes.why'),
+      solution: t('marketInfo.technicalAnalysis.mistakes.higherTimeframes.solution')
     },
     {
-      mistake: "Not Waiting for Confirmation",
-      why: "Early entries before pattern completion lead to losses",
-      solution: "Wait for candle close, volume confirmation, or indicator crossover"
+      mistake: t('marketInfo.technicalAnalysis.mistakes.noConfirmation.mistake'),
+      why: t('marketInfo.technicalAnalysis.mistakes.noConfirmation.why'),
+      solution: t('marketInfo.technicalAnalysis.mistakes.noConfirmation.solution')
     },
     {
-      mistake: "Using Too Many Indicators",
-      why: "Chart clutter causes confusion and contradictory signals",
-      solution: "Maximum 3 indicators: One trend (MA), one momentum (RSI/MACD), one volatility (BB)"
+      mistake: t('marketInfo.technicalAnalysis.mistakes.tooManyIndicators.mistake'),
+      why: t('marketInfo.technicalAnalysis.mistakes.tooManyIndicators.why'),
+      solution: t('marketInfo.technicalAnalysis.mistakes.tooManyIndicators.solution')
     }
   ];
 
   const faqs = [
     {
-      question: "What timeframe is best for technical analysis?",
-      answer: "It depends on your trading style: Scalpers use M1-M15, day traders use M15-H1, swing traders use H4-Daily, and position traders use Daily-Weekly. For beginners, start with H4 and Daily charts for clearer trends and less noise. Always check higher timeframes for context before entering trades on lower timeframes."
+      question: t('marketInfo.technicalAnalysis.faq.q1.question'),
+      answer: t('marketInfo.technicalAnalysis.faq.q1.answer')
     },
     {
-      question: "How many indicators should I use on my chart?",
-      answer: "Less is more. Use 2-3 complementary indicators maximum: one for trend direction (moving average), one for momentum (RSI or MACD), and optionally one for volatility (Bollinger Bands). Too many indicators create conflicting signals and 'analysis paralysis.' Price action alone can be sufficient for experienced traders."
+      question: t('marketInfo.technicalAnalysis.faq.q2.question'),
+      answer: t('marketInfo.technicalAnalysis.faq.q2.answer')
     },
     {
-      question: "Do technical patterns really work in modern markets?",
-      answer: "Yes, but with caveats. Classic patterns work because they represent trader psychology and institutional order flow. Success rates vary: Head & Shoulders (70-80%), Double tops/bottoms (75-85%), Triangles (65-75%). However, patterns work best when combined with volume analysis, market context, and proper risk management. Never rely solely on patterns."
+      question: t('marketInfo.technicalAnalysis.faq.q3.question'),
+      answer: t('marketInfo.technicalAnalysis.faq.q3.answer')
     },
     {
-      question: "What's the difference between SMA and EMA?",
-      answer: "SMA (Simple Moving Average) gives equal weight to all periods and is smoother but slower to react. EMA (Exponential Moving Average) gives more weight to recent prices, making it more responsive to new data. For trend following, 200 SMA is popular. For dynamic support/resistance and quicker signals, 20/50 EMA is preferred. Many traders use both."
+      question: t('marketInfo.technicalAnalysis.faq.q4.question'),
+      answer: t('marketInfo.technicalAnalysis.faq.q4.answer')
     },
     {
-      question: "How do I know if a support/resistance level is strong?",
-      answer: "Strong levels have: 1) Multiple touches (3+ times) historically, 2) Significant reversals at that level, 3) Round numbers (psychological levels like 1.1000), 4) Confluence with Fibonacci levels or pivot points, 5) High timeframe levels (Daily/Weekly stronger than H1). The more factors align, the stronger the level."
+      question: t('marketInfo.technicalAnalysis.faq.q5.question'),
+      answer: t('marketInfo.technicalAnalysis.faq.q5.answer')
     },
     {
-      question: "Can I use technical analysis for fundamental-driven markets?",
-      answer: "Yes, but with caution. Technical analysis works in all markets but can be overridden by strong fundamental events (NFP, Fed decisions, geopolitical shocks). Use technicals for entry/exit timing even on fundamental trades. Avoid trading purely technical setups during high-impact news. Combine both analyses for best results."
+      question: t('marketInfo.technicalAnalysis.faq.q6.question'),
+      answer: t('marketInfo.technicalAnalysis.faq.q6.answer')
     },
     {
-      question: "What's the best indicator for beginners?",
-      answer: "Start with Moving Averages (20/50/200 EMA) and RSI (14 period). MAs show trend direction clearly, and RSI identifies overbought/oversold conditions. These two cover trend and momentum. Once comfortable, add MACD for confirmation. Avoid complex indicators until you master the basics of price action and these fundamental tools."
+      question: t('marketInfo.technicalAnalysis.faq.q7.question'),
+      answer: t('marketInfo.technicalAnalysis.faq.q7.answer')
     }
   ];
 
@@ -225,10 +228,10 @@ export default function TechnicalAnalysisPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-technical-analysis">Market Education</Badge>
-            <h1 className="text-4xl font-bold mb-4">Technical Analysis Guide</h1>
+            <Badge className="mb-4" data-testid="badge-technical-analysis">{t('marketInfo.technicalAnalysis.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('marketInfo.technicalAnalysis.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Master the art of reading price charts, identifying patterns, and using indicators to make informed trading decisions. Learn proven technical analysis strategies used by professional traders.
+              {t('marketInfo.technicalAnalysis.description')}
             </p>
           </div>
 
@@ -236,26 +239,26 @@ export default function TechnicalAnalysisPage() {
           <div className="grid sm:grid-cols-4 gap-4 mb-12">
             <Card data-testid="card-stat-patterns">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">15+</div>
-                <p className="text-sm text-muted-foreground">Chart Patterns</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.technicalAnalysis.stats.patterns')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.technicalAnalysis.stats.patternsLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-indicators">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">10+</div>
-                <p className="text-sm text-muted-foreground">Key Indicators</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.technicalAnalysis.stats.indicators')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.technicalAnalysis.stats.indicatorsLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-strategies">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">3</div>
-                <p className="text-sm text-muted-foreground">Proven Strategies</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.technicalAnalysis.stats.strategies')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.technicalAnalysis.stats.strategiesLabel')}</p>
               </CardContent>
             </Card>
             <Card data-testid="card-stat-accuracy">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">70%+</div>
-                <p className="text-sm text-muted-foreground">Pattern Accuracy</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.technicalAnalysis.stats.accuracy')}</div>
+                <p className="text-sm text-muted-foreground">{t('marketInfo.technicalAnalysis.stats.accuracyLabel')}</p>
               </CardContent>
             </Card>
           </div>
@@ -301,9 +304,9 @@ export default function TechnicalAnalysisPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Target className="w-5 h-5 text-primary" />
-                <CardTitle>Proven Technical Trading Strategies</CardTitle>
+                <CardTitle>{t('marketInfo.technicalAnalysis.strategies.title')}</CardTitle>
               </div>
-              <CardDescription>Complete strategy breakdowns with entry, exit, and risk management</CardDescription>
+              <CardDescription>{t('marketInfo.technicalAnalysis.strategies.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
@@ -312,26 +315,26 @@ export default function TechnicalAnalysisPage() {
                     <div className="flex items-start justify-between mb-2">
                       <h3 className="font-semibold text-lg">{strategy.name}</h3>
                       <div className="flex gap-4 text-sm">
-                        <Badge variant="outline">Win Rate: {strategy.winRate}</Badge>
-                        <Badge variant="outline">R:R: {strategy.rrRatio}</Badge>
+                        <Badge variant="outline">{t('marketInfo.technicalAnalysis.strategies.winRate', { rate: strategy.winRate })}</Badge>
+                        <Badge variant="outline">{t('marketInfo.technicalAnalysis.strategies.rrRatio', { ratio: strategy.rrRatio })}</Badge>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{strategy.description}</p>
                     <div className="grid sm:grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="font-medium mb-1">Setup:</p>
+                        <p className="font-medium mb-1">{t('marketInfo.technicalAnalysis.strategies.setup')}</p>
                         <p className="text-muted-foreground">{strategy.setup}</p>
                       </div>
                       <div>
-                        <p className="font-medium mb-1">Entry:</p>
+                        <p className="font-medium mb-1">{t('marketInfo.technicalAnalysis.strategies.entry')}</p>
                         <p className="text-muted-foreground">{strategy.entry}</p>
                       </div>
                       <div>
-                        <p className="font-medium mb-1">Stop Loss:</p>
+                        <p className="font-medium mb-1">{t('marketInfo.technicalAnalysis.strategies.stopLoss')}</p>
                         <p className="text-muted-foreground">{strategy.stopLoss}</p>
                       </div>
                       <div>
-                        <p className="font-medium mb-1">Take Profit:</p>
+                        <p className="font-medium mb-1">{t('marketInfo.technicalAnalysis.strategies.takeProfit')}</p>
                         <p className="text-muted-foreground">{strategy.takeProfit}</p>
                       </div>
                     </div>
@@ -346,9 +349,9 @@ export default function TechnicalAnalysisPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-amber-500" />
-                <CardTitle>5 Common Technical Analysis Mistakes</CardTitle>
+                <CardTitle>{t('marketInfo.technicalAnalysis.mistakes.title')}</CardTitle>
               </div>
-              <CardDescription>Avoid these pitfalls to improve your trading results</CardDescription>
+              <CardDescription>{t('marketInfo.technicalAnalysis.mistakes.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -358,10 +361,10 @@ export default function TechnicalAnalysisPage() {
                       {index + 1}. {item.mistake}
                     </h4>
                     <p className="text-sm text-muted-foreground mb-2">
-                      <strong>Why it's wrong:</strong> {item.why}
+                      <strong>{t('marketInfo.technicalAnalysis.mistakes.whyWrong')}</strong> {item.why}
                     </p>
                     <p className="text-sm text-primary">
-                      <strong>Solution:</strong> {item.solution}
+                      <strong>{t('marketInfo.technicalAnalysis.mistakes.solution')}</strong> {item.solution}
                     </p>
                   </div>
                 ))}
@@ -375,33 +378,33 @@ export default function TechnicalAnalysisPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-primary" />
-                  <CardTitle>Getting Started with Technical Analysis</CardTitle>
+                  <CardTitle>{t('marketInfo.technicalAnalysis.gettingStarted.title')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">1</div>
-                  <p><strong>Learn to read candlesticks:</strong> Understand bullish/bearish candles, wicks, and bodies</p>
+                  <p><strong>{t('marketInfo.technicalAnalysis.gettingStarted.step1')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">2</div>
-                  <p><strong>Identify the trend:</strong> Use moving averages to determine overall market direction</p>
+                  <p><strong>{t('marketInfo.technicalAnalysis.gettingStarted.step2')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">3</div>
-                  <p><strong>Mark key levels:</strong> Draw support/resistance from swing highs and lows</p>
+                  <p><strong>{t('marketInfo.technicalAnalysis.gettingStarted.step3')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">4</div>
-                  <p><strong>Add 2-3 indicators:</strong> Start with RSI and MACD for confirmation</p>
+                  <p><strong>{t('marketInfo.technicalAnalysis.gettingStarted.step4')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">5</div>
-                  <p><strong>Look for confluence:</strong> Trade only when multiple factors align</p>
+                  <p><strong>{t('marketInfo.technicalAnalysis.gettingStarted.step5')}</strong></p>
                 </div>
                 <div className="flex gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">6</div>
-                  <p><strong>Practice on demo:</strong> Test strategies without risking real money</p>
+                  <p><strong>{t('marketInfo.technicalAnalysis.gettingStarted.step6')}</strong></p>
                 </div>
               </CardContent>
             </Card>
@@ -410,34 +413,34 @@ export default function TechnicalAnalysisPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <LineChart className="w-5 h-5 text-primary" />
-                  <CardTitle>Multi-Timeframe Analysis</CardTitle>
+                  <CardTitle>{t('marketInfo.technicalAnalysis.multiTimeframe.title')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4 text-sm">
                 <Alert>
                   <AlertDescription>
-                    Always analyze multiple timeframes before trading. This prevents taking buy signals on M15 when Daily chart shows strong downtrend.
+                    {t('marketInfo.technicalAnalysis.multiTimeframe.alert')}
                   </AlertDescription>
                 </Alert>
                 <div>
-                  <p className="font-medium mb-2">Recommended Approach:</p>
+                  <p className="font-medium mb-2">{t('marketInfo.technicalAnalysis.multiTimeframe.approach')}</p>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-primary">•</span>
-                      <span><strong>Daily/H4:</strong> Identify overall trend direction</span>
+                      <span><strong>{t('marketInfo.technicalAnalysis.multiTimeframe.daily')}</strong></span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-primary">•</span>
-                      <span><strong>H1:</strong> Find key support/resistance levels</span>
+                      <span><strong>{t('marketInfo.technicalAnalysis.multiTimeframe.h1')}</strong></span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-primary">•</span>
-                      <span><strong>M15/M5:</strong> Fine-tune entry with precise timing</span>
+                      <span><strong>{t('marketInfo.technicalAnalysis.multiTimeframe.m15')}</strong></span>
                     </li>
                   </ul>
                 </div>
                 <p className="text-muted-foreground italic">
-                  Example: Daily shows uptrend → H4 pullback to support → M15 bullish engulfing = High-probability long entry
+                  {t('marketInfo.technicalAnalysis.multiTimeframe.example')}
                 </p>
               </CardContent>
             </Card>
@@ -448,7 +451,7 @@ export default function TechnicalAnalysisPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
-                <CardTitle>Frequently Asked Questions</CardTitle>
+                <CardTitle>{t('marketInfo.technicalAnalysis.faq.title')}</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
@@ -467,17 +470,17 @@ export default function TechnicalAnalysisPage() {
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Ready to Apply Technical Analysis?</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('marketInfo.technicalAnalysis.cta.title')}</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Access our trading platform with advanced charting tools, all major indicators, and drawing tools to practice technical analysis in real-time.
+              {t('marketInfo.technicalAnalysis.cta.description')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" data-testid="button-start-trading">
-                Open Trading Platform
+                {t('marketInfo.technicalAnalysis.cta.button')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-              <Button size="lg" variant="outline" data-testid="button-education">
-                View Full Course
+              <Button size="lg" variant="outline" data-testid="button-learn-more">
+                {t('marketInfo.technicalAnalysis.cta.learnMore')}
               </Button>
             </div>
           </div>

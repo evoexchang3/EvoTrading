@@ -12,10 +12,12 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { type CourseProgress } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const COURSE_ID = "advanced-trading";
 
 export default function AdvancedCoursePage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
@@ -49,8 +51,8 @@ export default function AdvancedCoursePage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/course-progress', COURSE_ID] });
       toast({
-        title: "Progress Saved",
-        description: "Your course progress has been updated."
+        title: t('education.advancedCourse.progress.saved'),
+        description: t('education.advancedCourse.progress.savedDescription')
       });
     }
   });
@@ -58,15 +60,15 @@ export default function AdvancedCoursePage() {
   const modules = [
     {
       id: "module-adv-1",
-      title: "Module 1: Advanced Technical Analysis",
-      description: "Deep dive into Elliott Wave Theory, harmonic patterns, and advanced Fibonacci techniques",
-      duration: "90 mins",
+      title: t('education.advancedCourse.module1.title'),
+      description: t('education.advancedCourse.module1.description'),
+      duration: t('education.advancedCourse.module1.duration'),
       lessons: [
-        { id: "lesson-adv-1-1", title: "Elliott Wave Theory", duration: "20 mins" },
-        { id: "lesson-adv-1-2", title: "Harmonic Patterns (Gartley, Butterfly, Bat)", duration: "22 mins" },
-        { id: "lesson-adv-1-3", title: "Advanced Fibonacci Techniques", duration: "18 mins" },
-        { id: "lesson-adv-1-4", title: "Volume Profile Analysis", duration: "15 mins" },
-        { id: "lesson-adv-1-5", title: "Multi-Timeframe Analysis", duration: "15 mins" }
+        { id: "lesson-adv-1-1", title: t('education.advancedCourse.module1.lesson1'), duration: "20 mins" },
+        { id: "lesson-adv-1-2", title: t('education.advancedCourse.module1.lesson2'), duration: "22 mins" },
+        { id: "lesson-adv-1-3", title: t('education.advancedCourse.module1.lesson3'), duration: "18 mins" },
+        { id: "lesson-adv-1-4", title: t('education.advancedCourse.module1.lesson4'), duration: "15 mins" },
+        { id: "lesson-adv-1-5", title: t('education.advancedCourse.module1.lesson5'), duration: "15 mins" }
       ],
       quiz: {
         questions: 20,
@@ -77,15 +79,15 @@ export default function AdvancedCoursePage() {
     },
     {
       id: "module-adv-2",
-      title: "Module 2: Market Structure",
-      description: "Understand institutional order flow, smart money concepts, and supply/demand zones",
-      duration: "75 mins",
+      title: t('education.advancedCourse.module2.title'),
+      description: t('education.advancedCourse.module2.description'),
+      duration: t('education.advancedCourse.module2.duration'),
       lessons: [
-        { id: "lesson-adv-2-1", title: "Order Flow and Market Makers", duration: "18 mins" },
-        { id: "lesson-adv-2-2", title: "Smart Money Concepts", duration: "16 mins" },
-        { id: "lesson-adv-2-3", title: "Supply and Demand Zones", duration: "15 mins" },
-        { id: "lesson-adv-2-4", title: "Institutional Order Blocks", duration: "14 mins" },
-        { id: "lesson-adv-2-5", title: "Liquidity Sweeps and Stop Hunts", duration: "12 mins" }
+        { id: "lesson-adv-2-1", title: t('education.advancedCourse.module2.lesson1'), duration: "18 mins" },
+        { id: "lesson-adv-2-2", title: t('education.advancedCourse.module2.lesson2'), duration: "16 mins" },
+        { id: "lesson-adv-2-3", title: t('education.advancedCourse.module2.lesson3'), duration: "15 mins" },
+        { id: "lesson-adv-2-4", title: t('education.advancedCourse.module2.lesson4'), duration: "14 mins" },
+        { id: "lesson-adv-2-5", title: t('education.advancedCourse.module2.lesson5'), duration: "12 mins" }
       ],
       quiz: {
         questions: 18,
@@ -96,15 +98,15 @@ export default function AdvancedCoursePage() {
     },
     {
       id: "module-adv-3",
-      title: "Module 3: Advanced Risk Management",
-      description: "Portfolio-level risk management, correlation analysis, and position optimization",
-      duration: "60 mins",
+      title: t('education.advancedCourse.module3.title'),
+      description: t('education.advancedCourse.module3.description'),
+      duration: t('education.advancedCourse.module3.duration'),
       lessons: [
-        { id: "lesson-adv-3-1", title: "Portfolio Risk Management", duration: "15 mins" },
-        { id: "lesson-adv-3-2", title: "Correlation-Based Position Sizing", duration: "12 mins" },
-        { id: "lesson-adv-3-3", title: "Kelly Criterion and Optimal F", duration: "10 mins" },
-        { id: "lesson-adv-3-4", title: "Drawdown Management", duration: "12 mins" },
-        { id: "lesson-adv-3-5", title: "Scaling In and Out of Positions", duration: "11 mins" }
+        { id: "lesson-adv-3-1", title: t('education.advancedCourse.module3.lesson1'), duration: "15 mins" },
+        { id: "lesson-adv-3-2", title: t('education.advancedCourse.module3.lesson2'), duration: "12 mins" },
+        { id: "lesson-adv-3-3", title: t('education.advancedCourse.module3.lesson3'), duration: "10 mins" },
+        { id: "lesson-adv-3-4", title: t('education.advancedCourse.module3.lesson4'), duration: "12 mins" },
+        { id: "lesson-adv-3-5", title: t('education.advancedCourse.module3.lesson5'), duration: "11 mins" }
       ],
       quiz: {
         questions: 15,
@@ -115,15 +117,15 @@ export default function AdvancedCoursePage() {
     },
     {
       id: "module-adv-4",
-      title: "Module 4: Trading Systems",
-      description: "Design, backtest, and optimize professional trading systems",
-      duration: "90 mins",
+      title: t('education.advancedCourse.module4.title'),
+      description: t('education.advancedCourse.module4.description'),
+      duration: t('education.advancedCourse.module4.duration'),
       lessons: [
-        { id: "lesson-adv-4-1", title: "Designing a Trading System", duration: "20 mins" },
-        { id: "lesson-adv-4-2", title: "Backtesting Methodologies", duration: "22 mins" },
-        { id: "lesson-adv-4-3", title: "Forward Testing and Optimization", duration: "18 mins" },
-        { id: "lesson-adv-4-4", title: "System Performance Metrics", duration: "15 mins" },
-        { id: "lesson-adv-4-5", title: "Avoiding Curve Fitting", duration: "15 mins" }
+        { id: "lesson-adv-4-1", title: t('education.advancedCourse.module4.lesson1'), duration: "20 mins" },
+        { id: "lesson-adv-4-2", title: t('education.advancedCourse.module4.lesson2'), duration: "22 mins" },
+        { id: "lesson-adv-4-3", title: t('education.advancedCourse.module4.lesson3'), duration: "18 mins" },
+        { id: "lesson-adv-4-4", title: t('education.advancedCourse.module4.lesson4'), duration: "15 mins" },
+        { id: "lesson-adv-4-5", title: t('education.advancedCourse.module4.lesson5'), duration: "15 mins" }
       ],
       quiz: {
         questions: 20,
@@ -134,15 +136,15 @@ export default function AdvancedCoursePage() {
     },
     {
       id: "module-adv-5",
-      title: "Module 5: Advanced Strategies",
-      description: "Master scalping, swing trading, carry trades, and event-driven strategies",
-      duration: "120 mins",
+      title: t('education.advancedCourse.module5.title'),
+      description: t('education.advancedCourse.module5.description'),
+      duration: t('education.advancedCourse.module5.duration'),
       lessons: [
-        { id: "lesson-adv-5-1", title: "Scalping Techniques and Execution", duration: "25 mins" },
-        { id: "lesson-adv-5-2", title: "Swing Trading Advanced Patterns", duration: "25 mins" },
-        { id: "lesson-adv-5-3", title: "Carry Trade Strategies", duration: "20 mins" },
-        { id: "lesson-adv-5-4", title: "News Trading and Event-Driven Setups", duration: "25 mins" },
-        { id: "lesson-adv-5-5", title: "Hedging and Risk Mitigation", duration: "25 mins" }
+        { id: "lesson-adv-5-1", title: t('education.advancedCourse.module5.lesson1'), duration: "25 mins" },
+        { id: "lesson-adv-5-2", title: t('education.advancedCourse.module5.lesson2'), duration: "25 mins" },
+        { id: "lesson-adv-5-3", title: t('education.advancedCourse.module5.lesson3'), duration: "20 mins" },
+        { id: "lesson-adv-5-4", title: t('education.advancedCourse.module5.lesson4'), duration: "25 mins" },
+        { id: "lesson-adv-5-5", title: t('education.advancedCourse.module5.lesson5'), duration: "25 mins" }
       ],
       quiz: {
         questions: 25,
@@ -153,15 +155,15 @@ export default function AdvancedCoursePage() {
     },
     {
       id: "module-adv-6",
-      title: "Module 6: Professional Trading",
-      description: "Build a trading business, optimize performance, and scale your capital",
-      duration: "60 mins",
+      title: t('education.advancedCourse.module6.title'),
+      description: t('education.advancedCourse.module6.description'),
+      duration: t('education.advancedCourse.module6.duration'),
       lessons: [
-        { id: "lesson-adv-6-1", title: "Building a Trading Business", duration: "15 mins" },
-        { id: "lesson-adv-6-2", title: "Performance Analysis and Journaling", duration: "12 mins" },
-        { id: "lesson-adv-6-3", title: "Tax Optimization for Traders", duration: "10 mins" },
-        { id: "lesson-adv-6-4", title: "Scaling Capital and Prop Firms", duration: "13 mins" },
-        { id: "lesson-adv-6-5", title: "Continuous Improvement Process", duration: "10 mins" }
+        { id: "lesson-adv-6-1", title: t('education.advancedCourse.module6.lesson1'), duration: "15 mins" },
+        { id: "lesson-adv-6-2", title: t('education.advancedCourse.module6.lesson2'), duration: "12 mins" },
+        { id: "lesson-adv-6-3", title: t('education.advancedCourse.module6.lesson3'), duration: "10 mins" },
+        { id: "lesson-adv-6-4", title: t('education.advancedCourse.module6.lesson4'), duration: "13 mins" },
+        { id: "lesson-adv-6-5", title: t('education.advancedCourse.module6.lesson5'), duration: "10 mins" }
       ],
       quiz: {
         questions: 15,
@@ -173,56 +175,56 @@ export default function AdvancedCoursePage() {
   ];
 
   const downloadableResources = [
-    { title: "Elliott Wave Cheat Sheet", type: "PDF", size: "2.8 MB" },
-    { title: "Harmonic Patterns Recognition Guide", type: "PDF", size: "3.2 MB" },
-    { title: "Smart Money Concepts Workbook", type: "PDF", size: "4.1 MB" },
-    { title: "Advanced Risk Calculator", type: "Excel", size: "1.2 MB" },
-    { title: "Trading System Design Template", type: "Excel", size: "1.8 MB" },
-    { title: "Backtesting Spreadsheet", type: "Excel", size: "2.1 MB" },
-    { title: "Performance Metrics Dashboard", type: "Excel", size: "1.5 MB" },
-    { title: "Correlation Matrix Template", type: "Excel", size: "0.9 MB" },
-    { title: "Scalping Strategy Guide", type: "PDF", size: "3.5 MB" },
-    { title: "Professional Trading Journal", type: "Excel", size: "2.3 MB" }
+    { title: t('education.advancedCourse.resources.resource1'), type: "PDF", size: "2.8 MB" },
+    { title: t('education.advancedCourse.resources.resource2'), type: "PDF", size: "3.2 MB" },
+    { title: t('education.advancedCourse.resources.resource3'), type: "PDF", size: "4.1 MB" },
+    { title: t('education.advancedCourse.resources.resource4'), type: "Excel", size: "1.2 MB" },
+    { title: t('education.advancedCourse.resources.resource5'), type: "Excel", size: "1.8 MB" },
+    { title: t('education.advancedCourse.resources.resource6'), type: "Excel", size: "2.1 MB" },
+    { title: t('education.advancedCourse.resources.resource7'), type: "Excel", size: "1.5 MB" },
+    { title: t('education.advancedCourse.resources.resource8'), type: "Excel", size: "0.9 MB" },
+    { title: t('education.advancedCourse.resources.resource9'), type: "PDF", size: "3.5 MB" },
+    { title: t('education.advancedCourse.resources.resource10'), type: "Excel", size: "2.3 MB" }
   ];
 
   const faqs = [
     {
-      question: "What prerequisites do I need before taking this advanced course?",
-      answer: "You should have completed our Beginner Course or have equivalent experience with at least 6-12 months of active trading. You need to be comfortable with basic technical analysis, understand leverage and margin, and have experience executing live trades. Familiarity with common indicators (moving averages, RSI, MACD) is essential."
+      question: t('education.advancedCourse.faq.q1.question'),
+      answer: t('education.advancedCourse.faq.q1.answer')
     },
     {
-      question: "How is the Advanced Course different from the Beginner Course?",
-      answer: "The Advanced Course goes far beyond basics. While the Beginner Course teaches fundamental concepts, this course covers professional institutional strategies, complex market structure analysis, systematic trading approaches, and advanced risk management techniques used by professional traders. The material is significantly more technical and requires solid foundational knowledge."
+      question: t('education.advancedCourse.faq.q2.question'),
+      answer: t('education.advancedCourse.faq.q2.answer')
     },
     {
-      question: "Will I learn automated trading or algorithmic strategies?",
-      answer: "Yes, Module 4 covers trading system design and backtesting, which includes systematic and rule-based approaches. While we don't teach programming, you'll learn how to design quantifiable systems that can be automated. We provide Excel templates for backtesting and system development that don't require coding knowledge."
+      question: t('education.advancedCourse.faq.q3.question'),
+      answer: t('education.advancedCourse.faq.q3.answer')
     },
     {
-      question: "What is the passing score for the Advanced Course certificate?",
-      answer: "Each module requires 80-85% to pass (higher than Beginner Course). The final comprehensive exam requires 85% to earn your 'Certified Advanced Forex Trader' certificate. This ensures you've truly mastered the professional-level concepts and can apply them in real trading scenarios."
+      question: t('education.advancedCourse.faq.q4.question'),
+      answer: t('education.advancedCourse.faq.q4.answer')
     },
     {
-      question: "Can I get help if I'm stuck on complex topics like Elliott Wave?",
-      answer: "Absolutely! Advanced Course students have access to weekly live Q&A sessions with professional traders, a private Discord community, and email support. Complex topics like Elliott Wave, harmonic patterns, and smart money concepts often require discussion and practice, so we provide extensive support resources."
+      question: t('education.advancedCourse.faq.q5.question'),
+      answer: t('education.advancedCourse.faq.q5.answer')
     },
     {
-      question: "How much capital do I need to implement these advanced strategies?",
-      answer: "Strategy capital requirements vary. Scalping can be done with smaller accounts ($1,000-$5,000) while swing trading and carry trades work better with $10,000+. The course teaches you how to adapt strategies to your capital level. Many concepts (like correlation analysis and portfolio management) become more relevant as your capital grows."
+      question: t('education.advancedCourse.faq.q6.question'),
+      answer: t('education.advancedCourse.faq.q6.answer')
     },
     {
-      question: "Will this course help me get funded by a prop firm?",
-      answer: "Yes! Module 6 specifically covers prop firm evaluation, risk parameters prop firms look for, and strategies to pass their challenges. Many of our Advanced Course graduates have successfully obtained funding from firms like FTMO, MyForexFunds, and others. We teach the disciplined, rule-based approach prop firms require."
+      question: t('education.advancedCourse.faq.q7.question'),
+      answer: t('education.advancedCourse.faq.q7.answer')
     }
   ];
 
   const learningPath = {
-    prerequisite: "Beginner Course",
-    current: "Advanced Course",
+    prerequisite: t('education.advancedCourse.learningPath.prerequisite'),
+    current: t('education.advancedCourse.learningPath.current'),
     next: [
-      { title: "Algorithmic Trading Bootcamp", description: "Learn to code and automate your trading strategies", estimated: "4-6 weeks" },
-      { title: "Institutional Order Flow", description: "Advanced market microstructure and execution", estimated: "2-3 weeks" },
-      { title: "Professional Trader Mentorship", description: "1-on-1 guidance from experienced traders", estimated: "12 weeks" }
+      { title: t('education.advancedCourse.learningPath.next1.title'), description: t('education.advancedCourse.learningPath.next1.description'), estimated: t('education.advancedCourse.learningPath.next1.estimated') },
+      { title: t('education.advancedCourse.learningPath.next2.title'), description: t('education.advancedCourse.learningPath.next2.description'), estimated: t('education.advancedCourse.learningPath.next2.estimated') },
+      { title: t('education.advancedCourse.learningPath.next3.title'), description: t('education.advancedCourse.learningPath.next3.description'), estimated: t('education.advancedCourse.learningPath.next3.estimated') }
     ]
   };
 
@@ -292,9 +294,9 @@ export default function AdvancedCoursePage() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
-            <Badge className="mb-2" data-testid="badge-course-level">Advanced Level</Badge>
-            <h1 className="text-3xl font-bold">Advanced Trading Course</h1>
-            <p className="text-muted-foreground">Master professional trading strategies and techniques</p>
+            <Badge className="mb-2" data-testid="badge-course-level">{t('education.advancedCourse.badge')}</Badge>
+            <h1 className="text-3xl font-bold">{t('education.advancedCourse.title')}</h1>
+            <p className="text-muted-foreground">{t('education.advancedCourse.subtitle')}</p>
           </div>
           <GraduationCap className="w-8 h-8 text-muted-foreground" />
         </div>
@@ -303,21 +305,20 @@ export default function AdvancedCoursePage() {
         <Alert data-testid="alert-prerequisites">
           <AlertTriangle className="h-4 w-4" />
           <AlertDescription>
-            <strong>Prerequisites Required:</strong> This course requires completion of the Beginner Course or equivalent trading experience. 
-            You should be comfortable with basic technical analysis, risk management, and have executed live trades.
+            <strong>{t('education.advancedCourse.prerequisites.title')}</strong> {t('education.advancedCourse.prerequisites.description')}
           </AlertDescription>
         </Alert>
 
         {/* Progress Overview */}
         <Card data-testid="card-progress-overview">
           <CardHeader>
-            <CardTitle>Your Progress</CardTitle>
-            <CardDescription>Track your advanced learning journey</CardDescription>
+            <CardTitle>{t('education.advancedCourse.progress.title')}</CardTitle>
+            <CardDescription>{t('education.advancedCourse.progress.description')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Course Completion</span>
+                <span className="text-muted-foreground">{t('education.advancedCourse.progress.courseCompletion')}</span>
                 <span className="font-semibold" data-testid="text-course-progress">{courseProgress}%</span>
               </div>
               <Progress value={courseProgress} className="h-2" data-testid="progress-course" />
@@ -327,21 +328,21 @@ export default function AdvancedCoursePage() {
               <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <CheckCircle2 className="w-4 h-4 text-primary" />
-                  <p className="text-sm text-muted-foreground">Lessons Completed</p>
+                  <p className="text-sm text-muted-foreground">{t('education.advancedCourse.progress.lessonsCompleted')}</p>
                 </div>
                 <p className="text-2xl font-bold" data-testid="text-lessons-completed">{completedLessons}/{totalLessons}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <Target className="w-4 h-4 text-primary" />
-                  <p className="text-sm text-muted-foreground">Modules Passed</p>
+                  <p className="text-sm text-muted-foreground">{t('education.advancedCourse.progress.modulesPassed')}</p>
                 </div>
                 <p className="text-2xl font-bold" data-testid="text-modules-passed">0/6</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <Clock className="w-4 h-4 text-primary" />
-                  <p className="text-sm text-muted-foreground">Time Invested</p>
+                  <p className="text-sm text-muted-foreground">{t('education.advancedCourse.progress.timeInvested')}</p>
                 </div>
                 <p className="text-2xl font-bold" data-testid="text-time-invested">1.3 hrs</p>
               </div>
@@ -352,40 +353,37 @@ export default function AdvancedCoursePage() {
         {/* Course Overview */}
         <Card data-testid="card-course-overview">
           <CardHeader>
-            <CardTitle>Course Overview</CardTitle>
-            <CardDescription>Advanced concepts for experienced traders</CardDescription>
+            <CardTitle>{t('education.advancedCourse.overview.title')}</CardTitle>
+            <CardDescription>{t('education.advancedCourse.overview.description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-4 gap-4 mb-6">
               <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Total Duration</p>
-                <p className="text-2xl font-bold" data-testid="text-total-duration">8.5 hours</p>
+                <p className="text-sm text-muted-foreground mb-1">{t('education.advancedCourse.overview.totalDuration')}</p>
+                <p className="text-2xl font-bold" data-testid="text-total-duration">{t('education.advancedCourse.overview.durationValue')}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Modules</p>
-                <p className="text-2xl font-bold" data-testid="text-total-modules">6</p>
+                <p className="text-sm text-muted-foreground mb-1">{t('education.advancedCourse.overview.modules')}</p>
+                <p className="text-2xl font-bold" data-testid="text-total-modules">{t('education.advancedCourse.overview.modulesValue')}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Lessons</p>
+                <p className="text-sm text-muted-foreground mb-1">{t('education.advancedCourse.overview.lessons')}</p>
                 <p className="text-2xl font-bold" data-testid="text-total-lessons">{totalLessons}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Level</p>
-                <p className="text-2xl font-bold" data-testid="text-course-level">Advanced</p>
+                <p className="text-sm text-muted-foreground mb-1">{t('education.advancedCourse.overview.level')}</p>
+                <p className="text-2xl font-bold" data-testid="text-course-level">{t('education.advancedCourse.overview.levelValue')}</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              Elevate your trading to a professional level with advanced technical analysis, institutional trading concepts, 
-              and systematic approach to the markets. This course covers professional strategies used by institutional traders, 
-              hedge funds, and successful independent traders. Each module includes detailed video lessons, case studies, 
-              and comprehensive quizzes to ensure mastery.
+              {t('education.advancedCourse.overview.descriptionText')}
             </p>
           </CardContent>
         </Card>
 
         {/* Course Modules */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold">Course Modules</h2>
+          <h2 className="text-2xl font-bold">{t('education.advancedCourse.modules.title')}</h2>
           {modules.map((module, index) => {
             const moduleProgress = getModuleProgress(module.id, module.lessons.length);
             const moduleStatus = getModuleStatus(index, module.id, module.lessons.length);
@@ -411,10 +409,10 @@ export default function AdvancedCoursePage() {
                             <Clock className="w-3 h-3" />
                             {module.duration}
                           </span>
-                          <Badge variant="outline">{module.lessons.length} lessons</Badge>
-                          {moduleStatus === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />Locked</Badge>}
-                          {moduleStatus === 'in-progress' && <Badge variant="default">In Progress</Badge>}
-                          {moduleStatus === 'completed' && <Badge className="bg-green-600">Completed</Badge>}
+                          <Badge variant="outline">{module.lessons.length} {t('education.advancedCourse.modules.lessons')}</Badge>
+                          {moduleStatus === 'locked' && <Badge variant="secondary"><Lock className="w-3 h-3 mr-1" />{t('education.advancedCourse.modules.locked')}</Badge>}
+                          {moduleStatus === 'in-progress' && <Badge variant="default">{t('education.advancedCourse.modules.inProgress')}</Badge>}
+                          {moduleStatus === 'completed' && <Badge className="bg-green-600">{t('education.advancedCourse.modules.completed')}</Badge>}
                         </CardDescription>
                       </div>
                     </div>
@@ -422,7 +420,7 @@ export default function AdvancedCoursePage() {
                     {moduleProgress > 0 && (
                       <div className="space-y-1">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">Progress</span>
+                          <span className="text-muted-foreground">{t('education.advancedCourse.modules.progress')}</span>
                           <span className="font-semibold">{moduleProgress}%</span>
                         </div>
                         <Progress value={moduleProgress} className="h-1.5" />
@@ -445,15 +443,15 @@ export default function AdvancedCoursePage() {
                       }
                     }}
                   >
-                    {moduleStatus === 'completed' ? 'Review' : 
-                     moduleStatus === 'in-progress' ? 'Continue' : 
-                     'Start'}
+                    {moduleStatus === 'completed' ? t('education.advancedCourse.modules.review') : 
+                     moduleStatus === 'in-progress' ? t('education.advancedCourse.modules.continue') : 
+                     t('education.advancedCourse.modules.start')}
                   </Button>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-3 text-sm">Lessons</h4>
+                  <h4 className="font-semibold mb-3 text-sm">{t('education.advancedCourse.modules.lessonsSection')}</h4>
                   <ul className="space-y-2">
                     {module.lessons.map((lesson, lessonIndex) => {
                       const isCompleted = getLessonProgress(module.id, lesson.id);
@@ -494,20 +492,20 @@ export default function AdvancedCoursePage() {
                 <div className="p-4 bg-muted rounded-lg">
                   <h4 className="font-semibold mb-2 text-sm flex items-center gap-2">
                     <Target className="w-4 h-4" />
-                    Module Assessment
+                    {t('education.advancedCourse.modules.moduleQuiz')}
                   </h4>
                   <div className="grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
                     <div>
-                      <span className="font-medium">Questions:</span> {module.quiz.questions}
+                      <span className="font-medium">{t('education.advancedCourse.modules.questions')}</span> {module.quiz.questions}
                     </div>
                     <div>
-                      <span className="font-medium">Passing Score:</span> {module.quiz.passingScore}%
+                      <span className="font-medium">{t('education.advancedCourse.modules.passingScore')}</span> {module.quiz.passingScore}%
                     </div>
                     <div>
-                      <span className="font-medium">Time Limit:</span> {module.quiz.timeLimit}
+                      <span className="font-medium">{t('education.advancedCourse.modules.timeLimit')}</span> {module.quiz.timeLimit}
                     </div>
                     <div>
-                      <span className="font-medium">Attempts:</span> {module.quiz.attempts}
+                      <span className="font-medium">{t('education.advancedCourse.modules.attempts')}</span> {module.quiz.attempts}
                     </div>
                   </div>
                 </div>
@@ -604,8 +602,8 @@ export default function AdvancedCoursePage() {
             <div className="flex items-center gap-3">
               <Download className="w-6 h-6 text-primary" />
               <div>
-                <CardTitle>Professional Resources</CardTitle>
-                <CardDescription>Advanced tools, templates, and reference materials</CardDescription>
+                <CardTitle>{t('education.advancedCourse.resources.title')}</CardTitle>
+                <CardDescription>{t('education.advancedCourse.resources.description')}</CardDescription>
               </div>
             </div>
           </CardHeader>
@@ -642,8 +640,8 @@ export default function AdvancedCoursePage() {
         {/* Learning Path */}
         <Card data-testid="card-learning-path">
           <CardHeader>
-            <CardTitle>Your Learning Path</CardTitle>
-            <CardDescription>Professional development roadmap</CardDescription>
+            <CardTitle>{t('education.advancedCourse.learningPath.title')}</CardTitle>
+            <CardDescription>{t('education.advancedCourse.learningPath.description')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center gap-3 p-3 bg-muted rounded-lg opacity-60">
@@ -725,8 +723,8 @@ export default function AdvancedCoursePage() {
         {/* FAQs */}
         <Card data-testid="card-faqs">
           <CardHeader>
-            <CardTitle>Frequently Asked Questions</CardTitle>
-            <CardDescription>Common questions about the Advanced Trading Course</CardDescription>
+            <CardTitle>{t('education.advancedCourse.faq.title')}</CardTitle>
+            <CardDescription>{t('education.advancedCourse.faq.title')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible className="w-full">
@@ -1096,15 +1094,15 @@ export default function AdvancedCoursePage() {
                               }
                             } else {
                               toast({
-                                title: "Incomplete Quiz",
-                                description: "Please answer all questions before submitting.",
+                                title: t('education.advancedCourse.quiz.incompleteQuiz'),
+                                description: t('education.advancedCourse.quiz.answerAll'),
                                 variant: "destructive"
                               });
                             }
                           }}
                           data-testid="button-submit-quiz"
                         >
-                          Submit Quiz
+                          {t('education.advancedCourse.quiz.submitQuiz')}
                         </Button>
                       ) : (
                         <>
@@ -1117,12 +1115,12 @@ export default function AdvancedCoursePage() {
                             data-testid="button-reset-quiz"
                           >
                             <Target className="w-4 h-4 mr-2" />
-                            Try Again
+                            {t('education.advancedCourse.quiz.tryAgain')}
                           </Button>
                           <Alert className="flex-1">
                             <CheckCircle2 className="w-4 h-4" />
                             <AlertDescription>
-                              Quiz submitted! Review your answers and try again if needed.
+                              {t('education.advancedCourse.quiz.quizSubmitted')}
                             </AlertDescription>
                           </Alert>
                         </>
@@ -1139,7 +1137,7 @@ export default function AdvancedCoursePage() {
                     data-testid="button-previous-lesson"
                   >
                     <ChevronLeft className="w-4 h-4 mr-2" />
-                    Previous Lesson
+                    {t('education.advancedCourse.lesson.previousLesson')}
                   </Button>
                   
                   <Button
@@ -1148,7 +1146,7 @@ export default function AdvancedCoursePage() {
                     disabled={!hasNext}
                     data-testid="button-next-lesson"
                   >
-                    Next Lesson
+                    {t('education.advancedCourse.lesson.nextLesson')}
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>

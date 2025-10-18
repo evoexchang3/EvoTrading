@@ -5,173 +5,196 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function TradingSignalsPage() {
+  const { t } = useLanguage();
+
   const signalComponents = [
     {
-      title: "Entry Point",
+      title: t('marketInfo.tradingSignals.components.entryPoint.title'),
       icon: Target,
-      description: "Precise price level to enter the trade",
-      details: "Based on technical analysis, chart patterns, and indicator confluence. Signals specify exact entry price or trigger conditions (e.g., 'Buy above 1.1050'). Professional signals include both market orders and pending orders.",
-      importance: "Critical"
+      description: t('marketInfo.tradingSignals.components.entryPoint.description'),
+      details: t('marketInfo.tradingSignals.components.entryPoint.details'),
+      importance: t('marketInfo.tradingSignals.components.entryPoint.importance')
     },
     {
-      title: "Stop Loss",
+      title: t('marketInfo.tradingSignals.components.stopLoss.title'),
       icon: Shield,
-      description: "Risk management level to limit losses",
-      details: "Placed below support (for buys) or above resistance (for sells). Protects capital if market moves against the position. Typically 20-50 pips depending on volatility and timeframe. Never trade without a stop loss.",
-      importance: "Mandatory"
+      description: t('marketInfo.tradingSignals.components.stopLoss.description'),
+      details: t('marketInfo.tradingSignals.components.stopLoss.details'),
+      importance: t('marketInfo.tradingSignals.components.stopLoss.importance')
     },
     {
-      title: "Take Profit",
+      title: t('marketInfo.tradingSignals.components.takeProfit.title'),
       icon: Target,
-      description: "Target price level to secure profits",
-      details: "Set at key resistance/support levels or using risk-reward ratios. Professional signals often include multiple TP levels (TP1, TP2, TP3) for partial profit taking. Example: Close 50% at TP1, 30% at TP2, let 20% run to TP3.",
-      importance: "Critical"
+      description: t('marketInfo.tradingSignals.components.takeProfit.description'),
+      details: t('marketInfo.tradingSignals.components.takeProfit.details'),
+      importance: t('marketInfo.tradingSignals.components.takeProfit.importance')
     },
     {
-      title: "Risk/Reward Ratio",
+      title: t('marketInfo.tradingSignals.components.riskReward.title'),
       icon: BarChart,
-      description: "Potential profit vs potential loss",
-      details: "Minimum 1:2 ratio recommended (risk $1 to make $2). Professional traders target 1:3 or higher ratios. Crucial for long-term profitability even with 50% win rate. Calculate: (TP - Entry) / (Entry - SL) for longs.",
-      importance: "Essential"
+      description: t('marketInfo.tradingSignals.components.riskReward.description'),
+      details: t('marketInfo.tradingSignals.components.riskReward.details'),
+      importance: t('marketInfo.tradingSignals.components.riskReward.importance')
     }
   ];
 
   const signalTypes = [
     {
-      name: "Technical Signals",
-      description: "Based on chart patterns, indicators, and price action",
-      examples: ["RSI divergence trades", "Moving average crossovers", "Breakout signals", "Support/resistance bounces"],
-      accuracy: "65-75%",
-      bestFor: "Swing and day trading",
-      timeframe: "M15 to Daily"
+      name: t('marketInfo.tradingSignals.types.technical.name'),
+      description: t('marketInfo.tradingSignals.types.technical.description'),
+      examples: [
+        t('marketInfo.tradingSignals.types.technical.example1'),
+        t('marketInfo.tradingSignals.types.technical.example2'),
+        t('marketInfo.tradingSignals.types.technical.example3'),
+        t('marketInfo.tradingSignals.types.technical.example4')
+      ],
+      accuracy: t('marketInfo.tradingSignals.types.technical.accuracy'),
+      bestFor: t('marketInfo.tradingSignals.types.technical.bestFor'),
+      timeframe: t('marketInfo.tradingSignals.types.technical.timeframe')
     },
     {
-      name: "Fundamental Signals",
-      description: "Driven by economic data and news events",
-      examples: ["Interest rate decisions", "NFP trading signals", "Central bank announcements", "GDP release trades"],
-      accuracy: "60-70%",
-      bestFor: "Position trading",
-      timeframe: "H4 to Weekly"
+      name: t('marketInfo.tradingSignals.types.fundamental.name'),
+      description: t('marketInfo.tradingSignals.types.fundamental.description'),
+      examples: [
+        t('marketInfo.tradingSignals.types.fundamental.example1'),
+        t('marketInfo.tradingSignals.types.fundamental.example2'),
+        t('marketInfo.tradingSignals.types.fundamental.example3'),
+        t('marketInfo.tradingSignals.types.fundamental.example4')
+      ],
+      accuracy: t('marketInfo.tradingSignals.types.fundamental.accuracy'),
+      bestFor: t('marketInfo.tradingSignals.types.fundamental.bestFor'),
+      timeframe: t('marketInfo.tradingSignals.types.fundamental.timeframe')
     },
     {
-      name: "Algorithmic Signals",
-      description: "Generated by automated trading systems",
-      examples: ["Machine learning predictions", "Statistical arbitrage", "Multi-indicator algorithms", "Backtested strategies"],
-      accuracy: "55-80% (varies)",
-      bestFor: "All trading styles",
-      timeframe: "All timeframes"
+      name: t('marketInfo.tradingSignals.types.algorithmic.name'),
+      description: t('marketInfo.tradingSignals.types.algorithmic.description'),
+      examples: [
+        t('marketInfo.tradingSignals.types.algorithmic.example1'),
+        t('marketInfo.tradingSignals.types.algorithmic.example2'),
+        t('marketInfo.tradingSignals.types.algorithmic.example3'),
+        t('marketInfo.tradingSignals.types.algorithmic.example4')
+      ],
+      accuracy: t('marketInfo.tradingSignals.types.algorithmic.accuracy'),
+      bestFor: t('marketInfo.tradingSignals.types.algorithmic.bestFor'),
+      timeframe: t('marketInfo.tradingSignals.types.algorithmic.timeframe')
     },
     {
-      name: "Price Action Signals",
-      description: "Pure price movement without indicators",
-      examples: ["Pin bar reversals", "Engulfing patterns", "Inside bars", "Trend line breaks"],
-      accuracy: "70-80%",
-      bestFor: "Experienced traders",
-      timeframe: "H1 to Daily"
+      name: t('marketInfo.tradingSignals.types.priceAction.name'),
+      description: t('marketInfo.tradingSignals.types.priceAction.description'),
+      examples: [
+        t('marketInfo.tradingSignals.types.priceAction.example1'),
+        t('marketInfo.tradingSignals.types.priceAction.example2'),
+        t('marketInfo.tradingSignals.types.priceAction.example3'),
+        t('marketInfo.tradingSignals.types.priceAction.example4')
+      ],
+      accuracy: t('marketInfo.tradingSignals.types.priceAction.accuracy'),
+      bestFor: t('marketInfo.tradingSignals.types.priceAction.bestFor'),
+      timeframe: t('marketInfo.tradingSignals.types.priceAction.timeframe')
     }
   ];
 
   const signalQuality = [
     {
-      factor: "Track Record Transparency",
-      good: "Verified results with win rate, average R:R, drawdown stats",
-      bad: "No historical performance or cherry-picked winners only"
+      factor: t('marketInfo.tradingSignals.quality.trackRecord.factor'),
+      good: t('marketInfo.tradingSignals.quality.trackRecord.good'),
+      bad: t('marketInfo.tradingSignals.quality.trackRecord.bad')
     },
     {
-      factor: "Risk Management",
-      good: "Clear SL/TP levels, position sizing guidance, max 2-3% risk per trade",
-      bad: "No stop loss, 'hold until profit', or risky martingale strategies"
+      factor: t('marketInfo.tradingSignals.quality.riskManagement.factor'),
+      good: t('marketInfo.tradingSignals.quality.riskManagement.good'),
+      bad: t('marketInfo.tradingSignals.quality.riskManagement.bad')
     },
     {
-      factor: "Signal Frequency",
-      good: "Quality over quantity: 3-10 signals per week with high probability",
-      bad: "20+ signals daily (overtrading), inconsistent quality"
+      factor: t('marketInfo.tradingSignals.quality.frequency.factor'),
+      good: t('marketInfo.tradingSignals.quality.frequency.good'),
+      bad: t('marketInfo.tradingSignals.quality.frequency.bad')
     },
     {
-      factor: "Transparency & Timing",
-      good: "Signals sent before market moves, real-time alerts, reasoning provided",
-      bad: "Signals sent after move started, delayed notifications, no rationale"
+      factor: t('marketInfo.tradingSignals.quality.transparency.factor'),
+      good: t('marketInfo.tradingSignals.quality.transparency.good'),
+      bad: t('marketInfo.tradingSignals.quality.transparency.bad')
     },
     {
-      factor: "Realistic Claims",
-      good: "50-70% win rate with 1:2+ R:R, acknowledges losses",
-      bad: "90%+ win rate claims, 'guaranteed profits', no losing trades shown"
+      factor: t('marketInfo.tradingSignals.quality.claims.factor'),
+      good: t('marketInfo.tradingSignals.quality.claims.good'),
+      bad: t('marketInfo.tradingSignals.quality.claims.bad')
     }
   ];
 
   const usingSignals = [
     {
-      step: "1. Verify Signal Quality",
-      action: "Check provider's track record, verify win rate and R:R ratio",
-      tip: "Demand verified results, not screenshots"
+      step: `1. ${t('marketInfo.tradingSignals.using.step1.title')}`,
+      action: t('marketInfo.tradingSignals.using.step1.action'),
+      tip: t('marketInfo.tradingSignals.using.step1.tip')
     },
     {
-      step: "2. Understand the Setup",
-      action: "Read the signal reasoning - why this trade, what's the setup?",
-      tip: "Never blindly follow; learn from each signal"
+      step: `2. ${t('marketInfo.tradingSignals.using.step2.title')}`,
+      action: t('marketInfo.tradingSignals.using.step2.action'),
+      tip: t('marketInfo.tradingSignals.using.step2.tip')
     },
     {
-      step: "3. Check Your Chart",
-      action: "Confirm the setup matches on your platform before entering",
-      tip: "Prices can vary between brokers"
+      step: `3. ${t('marketInfo.tradingSignals.using.step3.title')}`,
+      action: t('marketInfo.tradingSignals.using.step3.action'),
+      tip: t('marketInfo.tradingSignals.using.step3.tip')
     },
     {
-      step: "4. Calculate Position Size",
-      action: "Use 1-2% risk per trade based on SL distance",
-      tip: "Never risk more than 2% on a single signal"
+      step: `4. ${t('marketInfo.tradingSignals.using.step4.title')}`,
+      action: t('marketInfo.tradingSignals.using.step4.action'),
+      tip: t('marketInfo.tradingSignals.using.step4.tip')
     },
     {
-      step: "5. Enter with Confirmation",
-      action: "Wait for signal trigger (price above X, candle close, etc.)",
-      tip: "Premature entry increases risk"
+      step: `5. ${t('marketInfo.tradingSignals.using.step5.title')}`,
+      action: t('marketInfo.tradingSignals.using.step5.action'),
+      tip: t('marketInfo.tradingSignals.using.step5.tip')
     },
     {
-      step: "6. Set SL/TP Immediately",
-      action: "Place stop loss and take profit as soon as trade is open",
-      tip: "Never skip this step"
+      step: `6. ${t('marketInfo.tradingSignals.using.step6.title')}`,
+      action: t('marketInfo.tradingSignals.using.step6.action'),
+      tip: t('marketInfo.tradingSignals.using.step6.tip')
     },
     {
-      step: "7. Manage the Trade",
-      action: "Trail stops, take partial profits at TP1/TP2 if multiple levels",
-      tip: "Stick to the plan, avoid emotional decisions"
+      step: `7. ${t('marketInfo.tradingSignals.using.step7.title')}`,
+      action: t('marketInfo.tradingSignals.using.step7.action'),
+      tip: t('marketInfo.tradingSignals.using.step7.tip')
     },
     {
-      step: "8. Log Results",
-      action: "Track every signal's outcome for performance analysis",
-      tip: "Identify which signal types work best for you"
+      step: `8. ${t('marketInfo.tradingSignals.using.step8.title')}`,
+      action: t('marketInfo.tradingSignals.using.step8.action'),
+      tip: t('marketInfo.tradingSignals.using.step8.tip')
     }
   ];
 
   const faqs = [
     {
-      question: "Are trading signals worth paying for?",
-      answer: "It depends on the provider's track record and your goals. Quality signal services with verified 60%+ win rates and 1:2+ R:R can be worth it for beginners learning trading or busy professionals. However, many free signals exist, and developing your own analysis skills is ultimately more valuable. Never rely 100% on signals - use them as learning tools and always verify setups yourself before entering trades."
+      question: t('marketInfo.tradingSignals.faq.q1.question'),
+      answer: t('marketInfo.tradingSignals.faq.q1.answer')
     },
     {
-      question: "What win rate should I expect from trading signals?",
-      answer: "Realistic expectations: 55-70% win rate for quality signals. With proper risk/reward (1:2 minimum), even 50% win rate is profitable. Beware of services claiming 80-90%+ win rates - they're often manipulated or cherry-picked. Focus on risk/reward ratio over win rate. A 40% win rate with 1:3 R:R (risk $1 to make $3) is more profitable than 70% win rate with 1:1 R:R."
+      question: t('marketInfo.tradingSignals.faq.q2.question'),
+      answer: t('marketInfo.tradingSignals.faq.q2.answer')
     },
     {
-      question: "How do I know if a signal provider is legitimate?",
-      answer: "Check for: 1) Verified track record on third-party platforms (MyFXBook, FX Blue), 2) Transparent performance metrics (win rate, drawdown, average R:R), 3) Realistic claims (no guaranteed profits), 4) Clear risk management (always includes SL), 5) Reasoning behind each signal (not just entry/exit numbers), 6) Consistent signal quality over months, not weeks. Red flags: No track record, delayed signals, no stop losses, 90%+ win rate claims."
+      question: t('marketInfo.tradingSignals.faq.q3.question'),
+      answer: t('marketInfo.tradingSignals.faq.q3.answer')
     },
     {
-      question: "Can I automate trading signals with a robot/EA?",
-      answer: "Yes, but with caution. Some providers offer APIs or Telegram bots for auto-execution. Benefits: Faster execution, no emotional trading. Risks: Technical failures, slippage, broker compatibility issues. Only automate signals from providers with long, verified track records. Always test on demo first for 1-2 months. Keep position sizes small (max 1% risk). Monitor automated trades daily - never 'set and forget.'"
+      question: t('marketInfo.tradingSignals.faq.q4.question'),
+      answer: t('marketInfo.tradingSignals.faq.q4.answer')
     },
     {
-      question: "Should I take every signal from my provider?",
-      answer: "No. Filter signals based on: 1) Your risk tolerance (skip signals with >50 pip SL if you're conservative), 2) Market conditions (avoid ranging market signals during low volatility), 3) Your trading session (skip Tokyo signals if you trade London/NY), 4) Confluence with your own analysis (signal + your confirmation = higher probability). Start with cherry-picking the highest quality setups (strong R:R, clear patterns) until you build confidence."
+      question: t('marketInfo.tradingSignals.faq.q5.question'),
+      answer: t('marketInfo.tradingSignals.faq.q5.answer')
     },
     {
-      question: "What's the difference between free and paid signals?",
-      answer: "Free signals: Often delayed, fewer per week, less detail, may be marketing for paid tiers, inconsistent quality. Paid signals ($50-200/month): Faster delivery, more signals, detailed analysis, multiple TP levels, trade management updates, community support. However, paid ≠ better. Some free providers outperform paid ones. Evaluate based on verified track record, not price. Many paid services offer free trials - use them to test quality before committing."
+      question: t('marketInfo.tradingSignals.faq.q6.question'),
+      answer: t('marketInfo.tradingSignals.faq.q6.answer')
     },
     {
-      question: "How should I manage multiple take profit levels?",
-      answer: "Standard approach: Close 50% at TP1 (secure profits), 30% at TP2 (lock in more gains), let 20% run to TP3 or trail stop (maximize winners). This balances profit-taking with letting winners run. When TP1 hits, move SL to breakeven to make trade risk-free. Alternative: Close 100% at TP1 for beginners (simpler, less stress). Advanced: Trail stop after TP1 instead of fixed TP2/TP3 (can capture larger moves). Choose based on your risk tolerance and trading style."
+      question: t('marketInfo.tradingSignals.faq.q7.question'),
+      answer: t('marketInfo.tradingSignals.faq.q7.answer')
     }
   ];
 
@@ -181,10 +204,10 @@ export default function TradingSignalsPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-trading-signals">Market Education</Badge>
-            <h1 className="text-4xl font-bold mb-4">Trading Signals Explained</h1>
+            <Badge className="mb-4" data-testid="badge-trading-signals">{t('marketInfo.tradingSignals.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('marketInfo.tradingSignals.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Learn how professional trading signals work, their components, evaluation criteria, and how to use them effectively to enhance your trading performance without blindly following.
+              {t('marketInfo.tradingSignals.description')}
             </p>
           </div>
 
@@ -194,8 +217,8 @@ export default function TradingSignalsPage() {
               <div className="flex items-center gap-3">
                 <Bell className="w-6 h-6 text-primary" />
                 <div>
-                  <CardTitle>Example Professional Trading Signal</CardTitle>
-                  <CardDescription>Complete signal format with all critical components</CardDescription>
+                  <CardTitle>{t('marketInfo.tradingSignals.example.title')}</CardTitle>
+                  <CardDescription>{t('marketInfo.tradingSignals.example.description')}</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -203,54 +226,53 @@ export default function TradingSignalsPage() {
               <div className="bg-muted rounded-lg p-6 space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b">
                   <div>
-                    <p className="text-sm text-muted-foreground">Instrument</p>
+                    <p className="text-sm text-muted-foreground">{t('marketInfo.tradingSignals.example.instrument')}</p>
                     <p className="text-2xl font-bold">EUR/USD</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Direction</p>
-                    <p className="text-2xl font-bold text-green-500">BUY</p>
+                    <p className="text-sm text-muted-foreground">{t('marketInfo.tradingSignals.example.direction')}</p>
+                    <p className="text-2xl font-bold text-green-500">{t('marketInfo.tradingSignals.example.buy')}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Timeframe</p>
+                    <p className="text-sm text-muted-foreground">{t('marketInfo.tradingSignals.example.timeframe')}</p>
                     <p className="text-2xl font-bold">H4</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Risk/Reward</p>
+                    <p className="text-sm text-muted-foreground">{t('marketInfo.tradingSignals.example.riskReward')}</p>
                     <p className="text-2xl font-bold text-primary">1:3</p>
                   </div>
                 </div>
                 
                 <div className="grid md:grid-cols-4 gap-4">
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Entry Price</p>
+                    <p className="text-sm text-muted-foreground mb-1">{t('marketInfo.tradingSignals.example.entryPrice')}</p>
                     <p className="text-lg font-semibold">1.1050</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Stop Loss</p>
-                    <p className="text-lg font-semibold text-red-500">1.1000 (-50 pips)</p>
+                    <p className="text-sm text-muted-foreground mb-1">{t('marketInfo.tradingSignals.example.stopLoss')}</p>
+                    <p className="text-lg font-semibold text-red-500">1.1000 {t('marketInfo.tradingSignals.example.stopLossPips')}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Take Profit 1</p>
-                    <p className="text-lg font-semibold text-green-500">1.1100 (+50 pips)</p>
+                    <p className="text-sm text-muted-foreground mb-1">{t('marketInfo.tradingSignals.example.takeProfit1')}</p>
+                    <p className="text-lg font-semibold text-green-500">1.1100 {t('marketInfo.tradingSignals.example.takeProfit1Pips')}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Take Profit 2</p>
-                    <p className="text-lg font-semibold text-green-500">1.1150 (+100 pips)</p>
+                    <p className="text-sm text-muted-foreground mb-1">{t('marketInfo.tradingSignals.example.takeProfit2')}</p>
+                    <p className="text-lg font-semibold text-green-500">1.1150 {t('marketInfo.tradingSignals.example.takeProfit2Pips')}</p>
                   </div>
                 </div>
 
                 <div className="pt-3 border-t">
-                  <p className="text-sm font-medium mb-2">Signal Reasoning:</p>
+                  <p className="text-sm font-medium mb-2">{t('marketInfo.tradingSignals.example.reasoningLabel')}</p>
                   <p className="text-sm text-muted-foreground">
-                    EUR/USD bouncing from major support at 1.1000 (tested 3x in past month). RSI showing bullish divergence on H4. 
-                    Price above 50 EMA. Target resistance at 1.1100 and 1.1150. Close 50% at TP1, trail stop for TP2.
+                    {t('marketInfo.tradingSignals.example.reasoning')}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2 pt-2">
-                  <Badge>Technical Setup</Badge>
-                  <Badge variant="outline">Bullish Divergence</Badge>
-                  <Badge variant="outline">Support Bounce</Badge>
+                  <Badge>{t('marketInfo.tradingSignals.example.tag1')}</Badge>
+                  <Badge variant="outline">{t('marketInfo.tradingSignals.example.tag2')}</Badge>
+                  <Badge variant="outline">{t('marketInfo.tradingSignals.example.tag3')}</Badge>
                 </div>
               </div>
             </CardContent>
@@ -258,7 +280,7 @@ export default function TradingSignalsPage() {
 
           {/* Signal Components */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-center">Essential Signal Components</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">{t('marketInfo.tradingSignals.components.title')}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {signalComponents.map((component) => {
                 const Icon = component.icon;
@@ -292,9 +314,9 @@ export default function TradingSignalsPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Activity className="w-5 h-5 text-primary" />
-                <CardTitle>Types of Trading Signals</CardTitle>
+                <CardTitle>{t('marketInfo.tradingSignals.types.title')}</CardTitle>
               </div>
-              <CardDescription>Different signal methodologies and their characteristics</CardDescription>
+              <CardDescription>{t('marketInfo.tradingSignals.types.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
@@ -309,7 +331,7 @@ export default function TradingSignalsPage() {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4 mt-3">
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">Examples:</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">{t('marketInfo.tradingSignals.types.examples')}</p>
                         <ul className="space-y-1">
                           {type.examples.map((example, i) => (
                             <li key={i} className="text-sm flex items-center gap-1">
@@ -320,9 +342,9 @@ export default function TradingSignalsPage() {
                         </ul>
                       </div>
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">Best For:</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">{t('marketInfo.tradingSignals.types.bestFor')}</p>
                         <p className="text-sm mb-2">{type.bestFor}</p>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">Timeframe:</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">{t('marketInfo.tradingSignals.types.timeframe')}</p>
                         <p className="text-sm">{type.timeframe}</p>
                       </div>
                     </div>
@@ -337,20 +359,20 @@ export default function TradingSignalsPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-primary" />
-                <CardTitle>Evaluating Signal Quality</CardTitle>
+                <CardTitle>{t('marketInfo.tradingSignals.quality.title')}</CardTitle>
               </div>
-              <CardDescription>How to identify high-quality signal providers</CardDescription>
+              <CardDescription>{t('marketInfo.tradingSignals.quality.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {signalQuality.map((item, index) => (
                   <div key={index} className="grid sm:grid-cols-2 gap-4">
                     <div className="p-4 border-l-4 border-green-500 bg-green-50 dark:bg-green-950/20 rounded">
-                      <p className="font-semibold text-green-700 dark:text-green-400 mb-1">✓ {item.factor}</p>
+                      <p className="font-semibold text-green-700 dark:text-green-400 mb-1">{t('marketInfo.tradingSignals.quality.goodLabel')} {item.factor}</p>
                       <p className="text-sm text-green-600 dark:text-green-500">{item.good}</p>
                     </div>
                     <div className="p-4 border-l-4 border-red-500 bg-red-50 dark:bg-red-950/20 rounded">
-                      <p className="font-semibold text-red-700 dark:text-red-400 mb-1">✗ Red Flag</p>
+                      <p className="font-semibold text-red-700 dark:text-red-400 mb-1">{t('marketInfo.tradingSignals.quality.badLabel')}</p>
                       <p className="text-sm text-red-600 dark:text-red-500">{item.bad}</p>
                     </div>
                   </div>
@@ -362,8 +384,8 @@ export default function TradingSignalsPage() {
           {/* Using Signals */}
           <Card className="mb-12">
             <CardHeader>
-              <CardTitle>Step-by-Step: How to Use Trading Signals</CardTitle>
-              <CardDescription>Follow this process for every signal you receive</CardDescription>
+              <CardTitle>{t('marketInfo.tradingSignals.using.title')}</CardTitle>
+              <CardDescription>{t('marketInfo.tradingSignals.using.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -377,7 +399,7 @@ export default function TradingSignalsPage() {
                       <p className="text-sm text-muted-foreground mb-1">{item.action}</p>
                       <Alert className="mt-2">
                         <AlertDescription className="text-sm">
-                          <strong>Pro Tip:</strong> {item.tip}
+                          <strong>{t('marketInfo.tradingSignals.using.proTipLabel')}</strong> {item.tip}
                         </AlertDescription>
                       </Alert>
                     </div>
@@ -392,7 +414,7 @@ export default function TradingSignalsPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
-                <CardTitle>Frequently Asked Questions</CardTitle>
+                <CardTitle>{t('marketInfo.tradingSignals.faq.title')}</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
@@ -413,24 +435,23 @@ export default function TradingSignalsPage() {
           <Alert className="mb-8">
             <AlertTriangle className="w-4 h-4" />
             <AlertDescription>
-              <strong>Important:</strong> Trading signals should be used as learning tools and trade ideas, not blindly followed. 
-              Always verify setups on your charts, understand the reasoning, and manage risk properly. Past performance doesn't guarantee future results.
+              <strong>{t('marketInfo.tradingSignals.warning.label')}</strong> {t('marketInfo.tradingSignals.warning.text')}
             </AlertDescription>
           </Alert>
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Learn to Generate Your Own Signals</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('marketInfo.tradingSignals.cta.title')}</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              While signals can help, developing your own analysis skills leads to long-term trading success. Explore our comprehensive education courses.
+              {t('marketInfo.tradingSignals.cta.description')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" data-testid="button-courses">
-                View Trading Courses
+                {t('marketInfo.tradingSignals.cta.coursesButton')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               <Button size="lg" variant="outline" data-testid="button-start-trading">
-                Start Trading
+                {t('marketInfo.tradingSignals.cta.tradingButton')}
               </Button>
             </div>
           </div>

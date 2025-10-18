@@ -23,34 +23,37 @@ import {
   XCircle,
   MinusCircle
 } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function PlatformStatusPage() {
+  const { t } = useLanguage();
+
   const stats = [
     {
-      label: "Current Uptime",
-      value: "99.97%",
-      description: "Last 30 days",
+      label: t('company.platformStatus.stats.uptime.label'),
+      value: t('company.platformStatus.stats.uptime.value'),
+      description: t('company.platformStatus.stats.uptime.description'),
       icon: TrendingUp,
       testId: "stat-uptime"
     },
     {
-      label: "Monthly Uptime",
-      value: "99.94%",
-      description: "October 2025 average",
+      label: t('company.platformStatus.stats.monthly.label'),
+      value: t('company.platformStatus.stats.monthly.value'),
+      description: t('company.platformStatus.stats.monthly.description'),
       icon: Activity,
       testId: "stat-monthly"
     },
     {
-      label: "Last Incident",
-      value: "23 days",
-      description: "Sept 23, 2025 - 14 min",
+      label: t('company.platformStatus.stats.incident.label'),
+      value: t('company.platformStatus.stats.incident.value'),
+      description: t('company.platformStatus.stats.incident.description'),
       icon: Clock,
       testId: "stat-incident"
     },
     {
-      label: "Next Maintenance",
-      value: "Oct 20",
-      description: "Sat 02:00-04:00 GMT",
+      label: t('company.platformStatus.stats.maintenance.label'),
+      value: t('company.platformStatus.stats.maintenance.value'),
+      description: t('company.platformStatus.stats.maintenance.description'),
       icon: Calendar,
       testId: "stat-maintenance"
     }
@@ -58,175 +61,175 @@ export default function PlatformStatusPage() {
 
   const systemStatus = [
     {
-      service: "Trading Platform (Web)",
+      service: t('company.platformStatus.services.tradingWeb.name'),
       status: "operational",
-      description: "All trading functions operational",
+      description: t('company.platformStatus.services.tradingWeb.description'),
       uptime: "99.98%",
       icon: Activity,
-      lastChecked: "2 minutes ago"
+      lastChecked: t('company.platformStatus.services.lastChecked.2min')
     },
     {
-      service: "Mobile Apps (iOS/Android)",
+      service: t('company.platformStatus.services.mobileApps.name'),
       status: "operational",
-      description: "Mobile trading apps fully functional",
+      description: t('company.platformStatus.services.mobileApps.description'),
       uptime: "99.96%",
       icon: Smartphone,
-      lastChecked: "2 minutes ago"
+      lastChecked: t('company.platformStatus.services.lastChecked.2min')
     },
     {
-      service: "Deposits & Funding",
+      service: t('company.platformStatus.services.deposits.name'),
       status: "operational",
-      description: "All deposit methods accepting transactions",
+      description: t('company.platformStatus.services.deposits.description'),
       uptime: "99.99%",
       icon: Download,
-      lastChecked: "1 minute ago"
+      lastChecked: t('company.platformStatus.services.lastChecked.1min')
     },
     {
-      service: "Withdrawals & Payouts",
+      service: t('company.platformStatus.services.withdrawals.name'),
       status: "operational",
-      description: "Withdrawal processing normal",
+      description: t('company.platformStatus.services.withdrawals.description'),
       uptime: "99.97%",
       icon: Upload,
-      lastChecked: "3 minutes ago"
+      lastChecked: t('company.platformStatus.services.lastChecked.3min')
     },
     {
-      service: "Market Data Feed",
+      service: t('company.platformStatus.services.marketData.name'),
       status: "operational",
-      description: "Real-time price feeds streaming",
+      description: t('company.platformStatus.services.marketData.description'),
       uptime: "99.99%",
       icon: Wifi,
-      lastChecked: "30 seconds ago"
+      lastChecked: t('company.platformStatus.services.lastChecked.30sec')
     },
     {
-      service: "Trading API (REST/WebSocket)",
+      service: t('company.platformStatus.services.api.name'),
       status: "operational",
-      description: "API endpoints responding normally",
+      description: t('company.platformStatus.services.api.description'),
       uptime: "99.95%",
       icon: Code,
-      lastChecked: "1 minute ago"
+      lastChecked: t('company.platformStatus.services.lastChecked.1min')
     },
     {
-      service: "Customer Portal",
+      service: t('company.platformStatus.services.portal.name'),
       status: "operational",
-      description: "Account management and settings accessible",
+      description: t('company.platformStatus.services.portal.description'),
       uptime: "99.98%",
       icon: Server,
-      lastChecked: "2 minutes ago"
+      lastChecked: t('company.platformStatus.services.lastChecked.2min')
     },
     {
-      service: "Payment Gateway",
+      service: t('company.platformStatus.services.payment.name'),
       status: "operational",
-      description: "Card processing and bank transfers active",
+      description: t('company.platformStatus.services.payment.description'),
       uptime: "99.96%",
       icon: CreditCard,
-      lastChecked: "1 minute ago"
+      lastChecked: t('company.platformStatus.services.lastChecked.1min')
     }
   ];
 
   const maintenanceSchedule = [
     {
-      date: "October 20, 2025",
-      time: "02:00 - 04:00 GMT (Saturday)",
-      type: "Scheduled Maintenance",
-      impact: "Trading platform unavailable for 2 hours",
-      services: ["Web Platform", "Mobile Apps", "API"],
-      reason: "Database optimization and security patch deployment",
+      date: t('company.platformStatus.maintenance.item1.date'),
+      time: t('company.platformStatus.maintenance.item1.time'),
+      type: t('company.platformStatus.maintenance.type.scheduled'),
+      impact: t('company.platformStatus.maintenance.item1.impact'),
+      services: [t('company.platformStatus.maintenance.item1.service1'), t('company.platformStatus.maintenance.item1.service2'), t('company.platformStatus.maintenance.item1.service3')],
+      reason: t('company.platformStatus.maintenance.item1.reason'),
       status: "scheduled"
     },
     {
-      date: "October 27, 2025",
-      time: "03:00 - 03:30 GMT (Sunday)",
-      type: "System Update",
-      impact: "Brief interruptions possible, no downtime expected",
-      services: ["Market Data Feed"],
-      reason: "Liquidity provider infrastructure upgrade",
+      date: t('company.platformStatus.maintenance.item2.date'),
+      time: t('company.platformStatus.maintenance.item2.time'),
+      type: t('company.platformStatus.maintenance.type.systemUpdate'),
+      impact: t('company.platformStatus.maintenance.item2.impact'),
+      services: [t('company.platformStatus.maintenance.item2.service1')],
+      reason: t('company.platformStatus.maintenance.item2.reason'),
       status: "scheduled"
     },
     {
-      date: "November 3, 2025",
-      time: "01:00 - 05:00 GMT (Sunday)",
-      type: "Major Infrastructure Upgrade",
-      impact: "All services unavailable for up to 4 hours",
-      services: ["All Systems"],
-      reason: "Data center migration to enhanced infrastructure (Singapore region)",
+      date: t('company.platformStatus.maintenance.item3.date'),
+      time: t('company.platformStatus.maintenance.item3.time'),
+      type: t('company.platformStatus.maintenance.type.majorUpgrade'),
+      impact: t('company.platformStatus.maintenance.item3.impact'),
+      services: [t('company.platformStatus.maintenance.item3.service1')],
+      reason: t('company.platformStatus.maintenance.item3.reason'),
       status: "scheduled"
     },
     {
-      date: "November 10, 2025",
-      time: "02:30 - 03:00 GMT (Sunday)",
-      type: "Security Patch",
-      impact: "Login services may be briefly unavailable",
-      services: ["Authentication", "Customer Portal"],
-      reason: "Application security updates and SSL certificate renewal",
+      date: t('company.platformStatus.maintenance.item4.date'),
+      time: t('company.platformStatus.maintenance.item4.time'),
+      type: t('company.platformStatus.maintenance.type.securityPatch'),
+      impact: t('company.platformStatus.maintenance.item4.impact'),
+      services: [t('company.platformStatus.maintenance.item4.service1'), t('company.platformStatus.maintenance.item4.service2')],
+      reason: t('company.platformStatus.maintenance.item4.reason'),
       status: "scheduled"
     }
   ];
 
   const incidentHistory = [
     {
-      date: "September 23, 2025",
-      time: "14:32 - 14:46 GMT",
-      duration: "14 minutes",
-      impact: "Trading Platform Unavailable",
+      date: t('company.platformStatus.incidents.item1.date'),
+      time: t('company.platformStatus.incidents.item1.time'),
+      duration: t('company.platformStatus.incidents.item1.duration'),
+      impact: t('company.platformStatus.incidents.item1.impact'),
       severity: "Major",
-      affected: ["Web Platform", "Mobile Apps"],
-      cause: "Database connection pool exhaustion during high volatility",
-      resolution: "Connection pool limits increased, auto-scaling improved",
+      affected: [t('company.platformStatus.incidents.item1.affected1'), t('company.platformStatus.incidents.item1.affected2')],
+      cause: t('company.platformStatus.incidents.item1.cause'),
+      resolution: t('company.platformStatus.incidents.item1.resolution'),
       status: "resolved"
     },
     {
-      date: "September 8, 2025",
-      time: "09:15 - 09:22 GMT",
-      duration: "7 minutes",
-      impact: "Delayed Market Data",
+      date: t('company.platformStatus.incidents.item2.date'),
+      time: t('company.platformStatus.incidents.item2.time'),
+      duration: t('company.platformStatus.incidents.item2.duration'),
+      impact: t('company.platformStatus.incidents.item2.impact'),
       severity: "Minor",
-      affected: ["Market Data Feed"],
-      cause: "Liquidity provider API rate limiting during NFP release",
-      resolution: "Backup feed activated, rate limits renegotiated",
+      affected: [t('company.platformStatus.incidents.item2.affected1')],
+      cause: t('company.platformStatus.incidents.item2.cause'),
+      resolution: t('company.platformStatus.incidents.item2.resolution'),
       status: "resolved"
     },
     {
-      date: "August 19, 2025",
-      time: "03:20 - 05:40 GMT",
-      duration: "2 hours 20 minutes",
-      impact: "Deposit Processing Delayed",
+      date: t('company.platformStatus.incidents.item3.date'),
+      time: t('company.platformStatus.incidents.item3.time'),
+      duration: t('company.platformStatus.incidents.item3.duration'),
+      impact: t('company.platformStatus.incidents.item3.impact'),
       severity: "Moderate",
-      affected: ["Payment Gateway", "Deposits"],
-      cause: "Third-party payment processor maintenance (unannounced)",
-      resolution: "Alternative payment routes enabled, SLA review with processor",
+      affected: [t('company.platformStatus.incidents.item3.affected1'), t('company.platformStatus.incidents.item3.affected2')],
+      cause: t('company.platformStatus.incidents.item3.cause'),
+      resolution: t('company.platformStatus.incidents.item3.resolution'),
       status: "resolved"
     },
     {
-      date: "August 3, 2025",
-      time: "22:10 - 22:18 GMT",
-      duration: "8 minutes",
-      impact: "API Requests Failing",
+      date: t('company.platformStatus.incidents.item4.date'),
+      time: t('company.platformStatus.incidents.item4.time'),
+      duration: t('company.platformStatus.incidents.item4.duration'),
+      impact: t('company.platformStatus.incidents.item4.impact'),
       severity: "Minor",
-      affected: ["Trading API"],
-      cause: "DDoS attack mitigated by Cloudflare",
-      resolution: "Enhanced DDoS protection rules deployed",
+      affected: [t('company.platformStatus.incidents.item4.affected1')],
+      cause: t('company.platformStatus.incidents.item4.cause'),
+      resolution: t('company.platformStatus.incidents.item4.resolution'),
       status: "resolved"
     },
     {
-      date: "July 12, 2025",
-      time: "11:45 - 12:30 GMT",
-      duration: "45 minutes",
-      impact: "Mobile App Login Issues",
+      date: t('company.platformStatus.incidents.item5.date'),
+      time: t('company.platformStatus.incidents.item5.time'),
+      duration: t('company.platformStatus.incidents.item5.duration'),
+      impact: t('company.platformStatus.incidents.item5.impact'),
       severity: "Moderate",
-      affected: ["Mobile Apps (iOS/Android)"],
-      cause: "Authentication service memory leak causing crashes",
-      resolution: "Service restarted, memory leak patched in v2.8.1",
+      affected: [t('company.platformStatus.incidents.item5.affected1')],
+      cause: t('company.platformStatus.incidents.item5.cause'),
+      resolution: t('company.platformStatus.incidents.item5.resolution'),
       status: "resolved"
     },
     {
-      date: "June 28, 2025",
-      time: "06:00 - 06:05 GMT",
-      duration: "5 minutes",
-      impact: "Chart Data Not Loading",
+      date: t('company.platformStatus.incidents.item6.date'),
+      time: t('company.platformStatus.incidents.item6.time'),
+      duration: t('company.platformStatus.incidents.item6.duration'),
+      impact: t('company.platformStatus.incidents.item6.impact'),
       severity: "Minor",
-      affected: ["Web Platform - Charts"],
-      cause: "CDN cache corruption for TradingView library",
-      resolution: "CDN cache purged and refreshed",
+      affected: [t('company.platformStatus.incidents.item6.affected1')],
+      cause: t('company.platformStatus.incidents.item6.cause'),
+      resolution: t('company.platformStatus.incidents.item6.resolution'),
       status: "resolved"
     }
   ];
@@ -260,11 +263,11 @@ export default function PlatformStatusPage() {
   const getSeverityBadge = (severity: string) => {
     switch (severity) {
       case "Major":
-        return <Badge variant="destructive">{severity}</Badge>;
+        return <Badge variant="destructive">{t('company.platformStatus.incidents.severity.major')}</Badge>;
       case "Moderate":
-        return <Badge className="bg-amber-500">{severity}</Badge>;
+        return <Badge className="bg-amber-500">{t('company.platformStatus.incidents.severity.moderate')}</Badge>;
       case "Minor":
-        return <Badge variant="outline">{severity}</Badge>;
+        return <Badge variant="outline">{t('company.platformStatus.incidents.severity.minor')}</Badge>;
       default:
         return <Badge variant="secondary">{severity}</Badge>;
     }
@@ -272,32 +275,32 @@ export default function PlatformStatusPage() {
 
   const faqs = [
     {
-      question: "Why does the platform go down for maintenance?",
-      answer: "Scheduled maintenance is essential for platform security, performance, and reliability. We perform: 1) Security patches to protect against vulnerabilities, 2) Database optimization to maintain fast execution speeds, 3) Infrastructure upgrades for better scalability, 4) Bug fixes and feature deployments. Maintenance is always scheduled during low-volume periods (weekends, early morning GMT) to minimize disruption. We provide at least 48 hours notice via email, platform notifications, and this status page."
+      question: t('company.platformStatus.faq.q1.question'),
+      answer: t('company.platformStatus.faq.q1.answer')
     },
     {
-      question: "How will I know if there's a platform issue or maintenance?",
-      answer: "We notify clients through multiple channels: 1) Email notifications sent to all active traders, 2) In-platform banner alerts (web and mobile), 3) SMS alerts for scheduled maintenance (opt-in), 4) Real-time updates on this Status Page, 5) Social media posts (Twitter @ExampleBroker_Status). For unplanned outages, we provide updates every 15 minutes until resolved. Subscribe to status.example-broker.com to receive instant incident notifications."
+      question: t('company.platformStatus.faq.q2.question'),
+      answer: t('company.platformStatus.faq.q2.answer')
     },
     {
-      question: "What happens to my open positions during downtime?",
-      answer: "Your positions remain active in the market even if the platform is unavailable. Stop-losses and take-profits are held on our servers (not just your device) and continue to work during maintenance. However, you won't be able to manually close positions or place new trades during downtime. If downtime occurs during high volatility, we may manually monitor and execute stop-losses to protect clients. After service restoration, all positions are immediately visible and manageable again."
+      question: t('company.platformStatus.faq.q3.question'),
+      answer: t('company.platformStatus.faq.q3.answer')
     },
     {
-      question: "Can I still trade if the web platform is down?",
-      answer: "Yes, we have redundancy: If the web platform is down, try the mobile app (iOS/Android) or vice versa. If both are unavailable, you can trade via our Trading API (for algo traders with API access). As a last resort during critical outages, you can call our emergency trading desk at +44 20 7946 0960 to manually close positions (identity verification required). However, during scheduled maintenance, all trading interfaces are typically offline simultaneously."
+      question: t('company.platformStatus.faq.q4.question'),
+      answer: t('company.platformStatus.faq.q4.answer')
     },
     {
-      question: "How do you achieve 99.9%+ uptime?",
-      answer: "We maintain high availability through: 1) Redundant infrastructure across multiple data centers (London, Frankfurt, New York, Singapore, Tokyo), 2) Load balancing to distribute traffic and prevent server overload, 3) Auto-scaling to handle traffic spikes during news events, 4) Real-time monitoring with automated failover (switches to backup systems in <30 seconds), 5) DDoS protection via Cloudflare Enterprise, 6) Regular disaster recovery drills. We also maintain 'hot standby' servers that activate instantly if primary servers fail."
+      question: t('company.platformStatus.faq.q5.question'),
+      answer: t('company.platformStatus.faq.q5.answer')
     },
     {
-      question: "What's the difference between 'degraded' and 'outage' status?",
-      answer: "'Degraded' means the service is operational but performing below normal standards - e.g., slower execution speeds, delayed data, or intermittent errors. You can still trade but may experience issues. 'Outage' means the service is completely unavailable and you cannot access it at all. During degraded status, we're actively working on restoration while maintaining partial service. We update status every 5 minutes during incidents to keep you informed."
+      question: t('company.platformStatus.faq.q6.question'),
+      answer: t('company.platformStatus.faq.q6.answer')
     },
     {
-      question: "Do you compensate clients for platform downtime?",
-      answer: "Compensation depends on the nature and impact of downtime: Scheduled maintenance (announced 48hrs+ in advance) is not compensated as it's part of normal operations. Unplanned outages are assessed case-by-case: If downtime directly caused trading losses (e.g., stop-loss couldn't execute due to platform failure), we may provide compensation or trade reversal. Service credits or goodwill gestures may be offered for extended outages. File a complaint via complaints@example-broker.com with details of any losses incurred. Each case is reviewed individually by our Compliance team."
+      question: t('company.platformStatus.faq.q7.question'),
+      answer: t('company.platformStatus.faq.q7.answer')
     }
   ];
 
@@ -307,10 +310,10 @@ export default function PlatformStatusPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-status">System Status</Badge>
-            <h1 className="text-4xl font-bold mb-4">Platform Status</h1>
+            <Badge className="mb-4" data-testid="badge-status">{t('company.platformStatus.badge')}</Badge>
+            <h1 className="text-4xl font-bold mb-4">{t('company.platformStatus.title')}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Real-time monitoring of our trading platform, infrastructure, and services. We maintain 99.9%+ uptime with transparent reporting of any incidents or scheduled maintenance.
+              {t('company.platformStatus.description')}
             </p>
           </div>
 
@@ -334,13 +337,13 @@ export default function PlatformStatusPage() {
           <Alert className="mb-12 border-green-500/50 bg-green-500/10" data-testid="alert-status">
             <CheckCircle className="h-4 w-4 text-green-500" />
             <AlertDescription>
-              <strong>All Systems Operational:</strong> All trading services are currently running normally. Last updated: 2 minutes ago.
+              <strong>{t('company.platformStatus.alert.operational')}</strong> {t('company.platformStatus.alert.description')}
             </AlertDescription>
           </Alert>
 
           {/* System Status */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">System Status</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.platformStatus.systemStatus.title')}</h2>
             <div className="grid md:grid-cols-2 gap-4">
               {systemStatus.map((system, index) => {
                 const StatusIcon = getStatusIcon(system.status);
@@ -360,7 +363,7 @@ export default function PlatformStatusPage() {
                         <StatusIcon className={`w-5 h-5 flex-shrink-0 ml-2 ${getStatusColor(system.status)}`} />
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Uptime: {system.uptime}</span>
+                        <span className="text-muted-foreground">{t('company.platformStatus.services.uptime', { uptime: system.uptime })}</span>
                         <span className="text-muted-foreground">{system.lastChecked}</span>
                       </div>
                     </CardContent>
@@ -372,7 +375,7 @@ export default function PlatformStatusPage() {
 
           {/* Maintenance Schedule */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Scheduled Maintenance</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.platformStatus.maintenance.title')}</h2>
             <div className="space-y-4">
               {maintenanceSchedule.map((maintenance, index) => (
                 <Card key={index} data-testid={`card-maintenance-${index}`}>
@@ -391,16 +394,16 @@ export default function PlatformStatusPage() {
                   <CardContent className="space-y-3">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="text-sm font-semibold mb-2">Impact:</h4>
+                        <h4 className="text-sm font-semibold mb-2">{t('company.platformStatus.maintenance.impact')}</h4>
                         <p className="text-sm text-muted-foreground">{maintenance.impact}</p>
                       </div>
                       <div>
-                        <h4 className="text-sm font-semibold mb-2">Reason:</h4>
+                        <h4 className="text-sm font-semibold mb-2">{t('company.platformStatus.maintenance.reason')}</h4>
                         <p className="text-sm text-muted-foreground">{maintenance.reason}</p>
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold mb-2">Affected Services:</h4>
+                      <h4 className="text-sm font-semibold mb-2">{t('company.platformStatus.maintenance.affectedServices')}</h4>
                       <div className="flex flex-wrap gap-2">
                         {maintenance.services.map((service, idx) => (
                           <Badge key={idx} variant="secondary">{service}</Badge>
@@ -415,18 +418,18 @@ export default function PlatformStatusPage() {
 
           {/* Incident History */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Incident History (Last 6 Months)</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.platformStatus.incidents.title')}</h2>
             <Card data-testid="card-incidents">
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="border-b">
                       <tr>
-                        <th className="text-left py-3 px-4 font-semibold">Date & Time</th>
-                        <th className="text-left py-3 px-4 font-semibold">Duration</th>
-                        <th className="text-left py-3 px-4 font-semibold">Impact</th>
-                        <th className="text-left py-3 px-4 font-semibold">Severity</th>
-                        <th className="text-left py-3 px-4 font-semibold">Status</th>
+                        <th className="text-left py-3 px-4 font-semibold">{t('company.platformStatus.incidents.table.dateTime')}</th>
+                        <th className="text-left py-3 px-4 font-semibold">{t('company.platformStatus.incidents.table.duration')}</th>
+                        <th className="text-left py-3 px-4 font-semibold">{t('company.platformStatus.incidents.table.impact')}</th>
+                        <th className="text-left py-3 px-4 font-semibold">{t('company.platformStatus.incidents.table.severity')}</th>
+                        <th className="text-left py-3 px-4 font-semibold">{t('company.platformStatus.incidents.table.status')}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -447,7 +450,7 @@ export default function PlatformStatusPage() {
                             {getSeverityBadge(incident.severity)}
                           </td>
                           <td className="py-3 px-4">
-                            <Badge className="bg-green-500">{incident.status}</Badge>
+                            <Badge className="bg-green-500">{t('company.platformStatus.incidents.status.resolved')}</Badge>
                           </td>
                         </tr>
                       ))}
@@ -471,15 +474,15 @@ export default function PlatformStatusPage() {
                     <AccordionContent data-testid={`incident-details-${index}`}>
                       <div className="space-y-3 pl-4">
                         <div>
-                          <h4 className="font-semibold text-sm mb-1">Root Cause:</h4>
+                          <h4 className="font-semibold text-sm mb-1">{t('company.platformStatus.incidents.rootCause')}</h4>
                           <p className="text-sm text-muted-foreground">{incident.cause}</p>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-sm mb-1">Resolution:</h4>
+                          <h4 className="font-semibold text-sm mb-1">{t('company.platformStatus.incidents.resolution')}</h4>
                           <p className="text-sm text-muted-foreground">{incident.resolution}</p>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-sm mb-1">Affected Systems:</h4>
+                          <h4 className="font-semibold text-sm mb-1">{t('company.platformStatus.incidents.affectedSystems')}</h4>
                           <div className="flex flex-wrap gap-2">
                             {incident.affected.map((service, idx) => (
                               <Badge key={idx} variant="outline">{service}</Badge>
@@ -499,15 +502,15 @@ export default function PlatformStatusPage() {
             <Info className="h-4 w-4" />
             <AlertDescription>
               <div className="flex items-center justify-between">
-                <span><strong>Stay Informed:</strong> Subscribe to status updates via email or SMS to receive instant notifications of incidents and maintenance.</span>
-                <Button variant="outline" size="sm" className="ml-4" data-testid="button-subscribe">Subscribe</Button>
+                <span><strong>{t('company.platformStatus.subscribe.strong')}</strong> {t('company.platformStatus.subscribe.message')}</span>
+                <Button variant="outline" size="sm" className="ml-4" data-testid="button-subscribe">{t('company.platformStatus.subscribe.button')}</Button>
               </div>
             </AlertDescription>
           </Alert>
 
           {/* FAQ Section */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('company.platformStatus.faq.title')}</h2>
             <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
