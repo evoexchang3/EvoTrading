@@ -277,22 +277,30 @@ export const en = {
   'tools.economicCalendar.categories.frequency': 'Frequency:',
   'tools.economicCalendar.categories.strategy': 'Strategy:',
   'tools.economicCalendar.categories.employment.name': 'Employment Data',
-  'tools.economicCalendar.categories.employment.events': 'Non-Farm Payrolls, Unemployment Rate, Jobless Claims, ADP Employment',
+  'tools.economicCalendar.categories.employment.event1': 'Non-Farm Payrolls',
+  'tools.economicCalendar.categories.employment.event2': 'Unemployment Rate',
+  'tools.economicCalendar.categories.employment.event3': 'Jobless Claims',
   'tools.economicCalendar.categories.employment.importance': 'Very High - Drives central bank policy decisions',
   'tools.economicCalendar.categories.employment.frequency': 'Monthly/Weekly',
   'tools.economicCalendar.categories.employment.strategy': 'Trade direction of surprise. Strong jobs = currency long, weak jobs = currency short. Use 1:2 risk/reward minimum.',
   'tools.economicCalendar.categories.inflation.name': 'Inflation Indicators',
-  'tools.economicCalendar.categories.inflation.events': 'CPI, PPI, PCE, Core Inflation',
+  'tools.economicCalendar.categories.inflation.event1': 'CPI',
+  'tools.economicCalendar.categories.inflation.event2': 'PPI',
+  'tools.economicCalendar.categories.inflation.event3': 'PCE',
   'tools.economicCalendar.categories.inflation.importance': 'Very High - Primary central bank mandate',
   'tools.economicCalendar.categories.inflation.frequency': 'Monthly',
   'tools.economicCalendar.categories.inflation.strategy': 'Hot inflation (>forecast) = buy currency (rate hike expectations). Cold inflation = sell currency (dovish policy).',
   'tools.economicCalendar.categories.centralBank.name': 'Central Bank Meetings',
-  'tools.economicCalendar.categories.centralBank.events': 'FOMC, ECB Meeting, BOE Meeting, BOJ Meeting',
+  'tools.economicCalendar.categories.centralBank.event1': 'FOMC',
+  'tools.economicCalendar.categories.centralBank.event2': 'ECB Meeting',
+  'tools.economicCalendar.categories.centralBank.event3': 'BOE Meeting',
   'tools.economicCalendar.categories.centralBank.importance': 'Extreme - Can move markets 200+ pips',
   'tools.economicCalendar.categories.centralBank.frequency': '6-8 times per year',
   'tools.economicCalendar.categories.centralBank.strategy': 'Trade the statement tone, not just the rate. Hawkish (raise/hold high) = buy, Dovish (cut/lower) = sell. Wait for clarity.',
   'tools.economicCalendar.categories.growth.name': 'Growth Indicators',
-  'tools.economicCalendar.categories.growth.events': 'GDP, Retail Sales, Industrial Production, PMI',
+  'tools.economicCalendar.categories.growth.event1': 'GDP',
+  'tools.economicCalendar.categories.growth.event2': 'Retail Sales',
+  'tools.economicCalendar.categories.growth.event3': 'Industrial Production',
   'tools.economicCalendar.categories.growth.importance': 'High - Economic health indicators',
   'tools.economicCalendar.categories.growth.frequency': 'Monthly/Quarterly',
   'tools.economicCalendar.categories.growth.strategy': 'Strong growth data supports currency. Weak data signals slowdown. Combine with inflation for full picture.',
@@ -353,6 +361,9 @@ export const en = {
   'tools.economicCalendar.faq.q6.answer': 'Immediate impact: 5-30 minutes (volatility spike, may reverse). Short-term: 1-24 hours (trend develops if data is significant). Medium-term: 2-7 days (especially for central bank meetings, GDP). Long-term: Weeks to months (major policy shifts like Fed pivot from hikes to cuts). Example: Single strong NFP = 1-2 day USD strength. Three consecutive strong NFPs = Fed rate hike cycle = months of USD uptrend. Use calendar to identify potential trend-starting events (Fed meetings, CPI series) vs one-off volatility (single jobless claims).',
   'tools.economicCalendar.faq.q7.question': 'What are \'revisions\' and why do they matter?',
   'tools.economicCalendar.faq.q7.answer': 'Revisions are adjustments to previously reported data (usually 1-2 months later). Example: NFP initially reported as +200K, revised down to +150K. This means the previous \'good\' data was actually weak - bearish for USD even if current NFP is strong. Always check revisions in the calendar. A positive current number + negative revision can cause mixed reactions or reversals. Professional traders weight revisions heavily because they show real economic trend, not just the headline number. If revisions are consistently negative for 3+ months, it signals deteriorating economy regardless of headline beats.',
+  
+  // Error Messages
+  'tools.economicCalendar.errors.fetchFailed': 'Failed to fetch economic calendar',
   
   // Tools - News
   'tools.news.title': 'Market News',
@@ -1954,6 +1965,9 @@ export const en = {
   
   'tools.news.faq.q7.question': 'How can I trade news if I\'m at work during major economic releases?',
   'tools.news.faq.q7.answer': 'Option 1 - Don\'t trade news directly, trade the aftermath: If NFP releases at 8:30am ET and you can only trade at 6pm ET (10 hours later), you can still trade the resulting trend. After strong NFP, USD often trends higher for 1-3 days. Enter on pullbacks to moving average using technical analysis. You miss the initial spike (100 pips) but catch the trend (200+ pips). Option 2 - Use pending orders (risky): Before news, set buy stop 20 pips above current price, sell stop 20 pips below. One will trigger. Use wide stops (80+ pips). Risk: Both might trigger in whipsaw, causing double loss. Option 3 - Mobile alerts + quick trades: Set alerts for major news on phone. If price moves >50 pips in 5 min, place mobile order during bathroom break. Use \'one-click trading\' apps. Option 4 (recommended) - Accept your limitations: If you can\'t actively monitor during news, focus on swing trading and position trading that doesn\'t rely on news timing. Trade the \'slow money\' while others trade the \'fast money\'. Less stress, more sustainable.',
+
+  // Error Messages
+  'tools.news.errors.fetchFailed': 'Failed to fetch news',
 
   // Education - Beginner Course
   'education.beginnerCourse.badge': 'Beginner Level',

@@ -32,7 +32,7 @@ export default function NewsPage() {
         }
       });
       
-      if (!res.ok) throw new Error('Failed to fetch news');
+      if (!res.ok) throw new Error(t('tools.news.errors.fetchFailed'));
       return res.json();
     },
     refetchInterval: 1000 * 60 * 30, // Refetch every 30 minutes

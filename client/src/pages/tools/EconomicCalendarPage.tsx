@@ -37,7 +37,7 @@ export default function EconomicCalendarPage() {
           'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
       });
-      if (!res.ok) throw new Error('Failed to fetch economic calendar');
+      if (!res.ok) throw new Error(t('tools.economicCalendar.errors.fetchFailed'));
       return res.json();
     },
     refetchInterval: 1000 * 60 * 30,
@@ -58,7 +58,7 @@ export default function EconomicCalendarPage() {
         }
       });
       
-      if (!res.ok) throw new Error('Failed to fetch economic calendar');
+      if (!res.ok) throw new Error(t('tools.economicCalendar.errors.fetchFailed'));
       return res.json();
     },
     refetchInterval: 1000 * 60 * 30,
@@ -124,28 +124,44 @@ export default function EconomicCalendarPage() {
   const eventCategories = [
     {
       category: t('tools.economicCalendar.categories.employment.name'),
-      events: t('tools.economicCalendar.categories.employment.events').split(', '),
+      events: [
+        t('tools.economicCalendar.categories.employment.event1'),
+        t('tools.economicCalendar.categories.employment.event2'),
+        t('tools.economicCalendar.categories.employment.event3')
+      ],
       importance: t('tools.economicCalendar.categories.employment.importance'),
       frequency: t('tools.economicCalendar.categories.employment.frequency'),
       tradingStrategy: t('tools.economicCalendar.categories.employment.strategy')
     },
     {
       category: t('tools.economicCalendar.categories.inflation.name'),
-      events: t('tools.economicCalendar.categories.inflation.events').split(', '),
+      events: [
+        t('tools.economicCalendar.categories.inflation.event1'),
+        t('tools.economicCalendar.categories.inflation.event2'),
+        t('tools.economicCalendar.categories.inflation.event3')
+      ],
       importance: t('tools.economicCalendar.categories.inflation.importance'),
       frequency: t('tools.economicCalendar.categories.inflation.frequency'),
       tradingStrategy: t('tools.economicCalendar.categories.inflation.strategy')
     },
     {
       category: t('tools.economicCalendar.categories.centralBank.name'),
-      events: t('tools.economicCalendar.categories.centralBank.events').split(', '),
+      events: [
+        t('tools.economicCalendar.categories.centralBank.event1'),
+        t('tools.economicCalendar.categories.centralBank.event2'),
+        t('tools.economicCalendar.categories.centralBank.event3')
+      ],
       importance: t('tools.economicCalendar.categories.centralBank.importance'),
       frequency: t('tools.economicCalendar.categories.centralBank.frequency'),
       tradingStrategy: t('tools.economicCalendar.categories.centralBank.strategy')
     },
     {
       category: t('tools.economicCalendar.categories.growth.name'),
-      events: t('tools.economicCalendar.categories.growth.events').split(', '),
+      events: [
+        t('tools.economicCalendar.categories.growth.event1'),
+        t('tools.economicCalendar.categories.growth.event2'),
+        t('tools.economicCalendar.categories.growth.event3')
+      ],
       importance: t('tools.economicCalendar.categories.growth.importance'),
       frequency: t('tools.economicCalendar.categories.growth.frequency'),
       tradingStrategy: t('tools.economicCalendar.categories.growth.strategy')
