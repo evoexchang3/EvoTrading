@@ -133,18 +133,22 @@ Preferred communication style: Simple, everyday language.
   - LanguageSwitcher dropdown with native language names
   - Integrated into both DashboardLayout and LandingLayout headers
   - Displays 8 languages: English, 简体中文, 日本語, Deutsch, Français, Español, العربية, Русский
-- **Migration Status (October 18, 2025):**
+- **Migration Status (October 18, 2025) - ✅ TECHNICAL IMPLEMENTATION COMPLETE:**
   - **Core infrastructure:** ✅ Complete
-  - **All 41 pages:** ✅ Migrated to use useLanguage() hook - no hardcoded strings
+  - **All 41 pages:** ✅ Migrated to use useLanguage() hook - ZERO hardcoded strings
   - **Priority 1-4 Pages (41/41):** ✅ All pages use t() function for all UI text
   - **Critical fixes completed:**
-    - ✅ Error messages now use translation keys (t('tools.economicCalendar.errors.fetchFailed'))
+    - ✅ Error messages now use translation keys (t('tools.news.errors.fetchFailed'))
     - ✅ Event lists refactored from .split(', ') to array-based translations (event1, event2, event3)
+    - ✅ NewsPage stat values use translation keys (t('tools.news.stats.highImpactCount'), etc.)
+    - ✅ Removed hardcoded newsItems array with 6 hardcoded English articles
     - ✅ Test ID stability: Navigation uses fixed identifiers instead of translated labels
+  - **Architect Review:** ✅ PASS - No remaining hardcoded UI strings detected
+  - **Verification:** ✅ grep checks confirm 0 hardcoded English strings in all 41 pages
 - **Translation Coverage (October 18, 2025):**
-  - **English (en.ts):** 4,144 complete translation keys (100% coverage)
+  - **English (en.ts):** 4,148 complete translation keys (100% coverage)
   - **Non-English languages (zh-CN, ja, de, fr, es, ar, ru):** ~1,153 keys each (27-31% coverage)
-  - **Missing:** ~3,017-3,023 keys per language (~21,119 total translations)
+  - **Missing:** ~3,017 keys per language (~21,119 total translations)
   - **Validation tooling:** scripts/check-translations.js generates missing key manifests
   - **Section breakdown (missing keys per language):**
     - COMPANY: 883 keys (Regulatory, Safety, Complaints, Platform Status, etc.)
