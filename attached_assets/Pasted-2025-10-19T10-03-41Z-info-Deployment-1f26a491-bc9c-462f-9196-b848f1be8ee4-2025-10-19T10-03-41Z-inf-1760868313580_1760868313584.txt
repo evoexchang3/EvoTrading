@@ -1,0 +1,61 @@
+2025-10-19T10:03:41Z info: Deployment: 1f26a491-bc9c-462f-9196-b848f1be8ee4
+2025-10-19T10:03:41Z info: Installing packages
+2025-10-19T10:03:42Z info: Starting Build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+
+vite v5.4.20 building for production...
+
+transforming...
+
+Browserslist: browsers data (caniuse-lite) is 12 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/translations/de.ts: Duplicate key "tools.positionCalculator.title" in object literal
+1145|    'error.notFound': 'Ressource nicht gefunden',
+1146|    'error.serverError': 'Serverfehler. Bitte versuchen Sie es später erneut.',
+1147|    'tools.positionCalculator.title': 'Positions-Rechner',
+   |    ^
+1148|    'tools.pipCalculator.title': 'Pip-Rechner',
+1149|    'tools.tradingSessions.title': 'Handelssitzungen',
+
+
+✓ 1862 modules transformed.
+
+x Build failed in 9.33s
+
+error during build:
+[vite:esbuild] Transform failed with 1 error:
+/home/runner/workspace/client/src/translations/fr.ts:1618:49: ERROR: Expected "}" but found "''"
+file: /home/runner/workspace/client/src/translations/fr.ts:1618:49
+
+Expected "}" but found "''"
+1616|  
+1617|    'marketInfo.technicalAnalysis.badge': 'Formation Marché',
+1618|    'marketInfo.technicalAnalysis.title': 'Guide d'''Analyse Technique',
+   |                                                   ^
+1619|    'marketInfo.technicalAnalysis.description': 'Maîtrisez l'''art de lire les graphiques de prix, d'''identifier les figures et d'''utiliser les indicateurs pour prendre des décisions de trading éclairées. Apprenez les stratégies d'''analyse technique éprouvées utilisées par les traders professionnels.',
+1620|  
+
+    at failureErrorWithLog (/home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:1472:15)
+    at /home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:755:50
+    at responseCallbacks.<computed> (/home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:622:9)
+    at handleIncomingPacket (/home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:677:12)
+    at Socket.readFromStdout (/home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:600:7)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23)
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.6.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+npm notice To update run: npm install -g npm@11.6.2
+npm notice
