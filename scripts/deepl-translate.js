@@ -480,15 +480,12 @@ async function main() {
         console.log(`   💾 Saved to: ${path.basename(truncatedFile)}`);
         console.log(`   💡 Run: node scripts/fix-truncated.js ${job.langCode}\n`);
         
-        // Mark truncated strings with placeholder
+        // Mark truncated strings with placeholder - use Map.set() not array assignment
         for (const { key } of truncatedKeys) {
-          for (let i = 0; i < translations.length; i++) {
-            if (translations[i][0] === key) {
-              const original = job.missingKeys.find(item => item.key === key)?.value || '';
-              translations[i] = [key, `[INCOMPLETE] ${original}`];
-              break;
-            }
-          }
+          // Get the full English original (not truncated)
+          const original = job.missingKeys.find(item => item.key === key)?.value || '';
+          // Update the Map directly
+          translations.set(key, `[INCOMPLETE] ${original}`);
         }
       } else {
         console.log('   ✅ No truncated translations found');

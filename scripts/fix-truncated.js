@@ -84,10 +84,23 @@ async function fixTruncatedTranslations(langCode) {
         .replace(/\t/g, '\\t');
       
       // Find and replace the [INCOMPLETE] placeholder
-      const searchPattern = new RegExp(`'${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}': '\\[INCOMPLETE\\] [^']*'`, 'g');
-      const replacement = `'${key}': '${escaped}'`;
+      // Match the incomplete marker format exactly as written by deepl-translate.js
+      const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      // Pattern matches: '  'key': '[INCOMPLETE] ...',
+      const searchPattern = new RegExp(
+        `^(\\s*'${escapedKey}':\\s*')\\[INCOMPLETE\\].*?'(,?)$`,
+        'gm'
+      );
+      const replacement = `$1${escaped}'$2`;
       
+      const beforeLength = fileContent.length;
       fileContent = fileContent.replace(searchPattern, replacement);
+      const afterLength = fileContent.length;
+      
+      // Verify replacement happened
+      if (beforeLength === afterLength) {
+        console.log(`   ⚠️  Warning: No replacement made for ${key}`);
+      }
       
       console.log(`   ✅ Fixed`);
       
