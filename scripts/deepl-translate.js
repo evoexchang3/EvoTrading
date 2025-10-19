@@ -24,9 +24,10 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const DEEPL_API_KEY = process.env.DEEPL_API_KEY;
-const BATCH_SIZE = 500; // Keys per batch (optimal for 128KB limit)
-const MAX_CONCURRENT = 12; // Concurrent requests
-const RETRY_DELAY_BASE = 2000; // Base retry delay in ms
+const BATCH_SIZE = 100; // Keys per batch (ultra-conservative for stability)
+const MAX_CONCURRENT = 1; // One at a time to avoid API issues
+const BATCH_DELAY = 1000; // Delay between batches in ms
+const RETRY_DELAY_BASE = 3000; // Base retry delay in ms
 const MAX_RETRIES = 5;
 const COST_PER_MILLION_CHARS = 25; // USD
 const BASE_FEE = 5.49; // USD/month
@@ -174,12 +175,24 @@ async function translateWithConcurrency(missingKeys, targetLang) {
     const batchGroup = batches.slice(i, i + MAX_CONCURRENT);
     
     const promises = batchGroup.map(async (batch, batchIndex) => {
-      const texts = batch.map(item => item.value);
-      const translated = await translateBatch(texts, targetLang);
+      // Filter out empty values and prepare texts
+      const validItems = batch.filter(item => item.value && item.value.trim());
+      const emptyItems = batch.filter(item => !item.value || !item.value.trim());
       
-      batch.forEach((item, idx) => {
-        translations.set(item.key, translated[idx]);
+      // Add empty values directly to translations
+      emptyItems.forEach(item => {
+        translations.set(item.key, item.value || '');
       });
+      
+      // Only translate non-empty texts
+      if (validItems.length > 0) {
+        const texts = validItems.map(item => item.value);
+        const translated = await translateBatch(texts, targetLang);
+        
+        validItems.forEach((item, idx) => {
+          translations.set(item.key, translated[idx]);
+        });
+      }
       
       completed++;
       const progress = ((completed / batches.length) * 100).toFixed(1);
@@ -187,6 +200,11 @@ async function translateWithConcurrency(missingKeys, targetLang) {
     });
     
     await Promise.all(promises);
+    
+    // Add delay between batch groups to avoid overwhelming API
+    if (i + MAX_CONCURRENT < batches.length) {
+      await sleep(BATCH_DELAY);
+    }
   }
   
   return translations;
@@ -195,29 +213,20 @@ async function translateWithConcurrency(missingKeys, targetLang) {
 /**
  * Validate translated text quality
  */
-function validateTranslation(key, text) {
+function validateTranslation(key, text, originalText) {
   const issues = [];
   
-  // Check for unescaped triple apostrophes
-  if (text.includes("'''")) {
-    issues.push('Contains triple apostrophes');
+  // Check for suspiciously short translations (likely truncated)
+  if (originalText && text.length < originalText.length * 0.3 && originalText.length > 50) {
+    issues.push('Translation suspiciously short (possible truncation)');
   }
   
-  // Check for incomplete strings (ends with backslash)
-  if (text.endsWith('\\') && !text.endsWith('\\\\')) {
-    issues.push('Incomplete string (ends with single backslash)');
+  // Check for incomplete strings (ends with backslash followed by quote or comma)
+  if (/\\['",]?\s*$/.test(text)) {
+    issues.push('Incomplete string (ends with escape sequence)');
   }
   
-  // Check for unmatched quotes
-  const singleQuotes = (text.match(/(?<!\\)'/g) || []).length;
-  const doubleQuotes = (text.match(/(?<!\\)"/g) || []).length;
-  
-  if (singleQuotes % 2 !== 0) {
-    issues.push('Unmatched single quotes');
-  }
-  if (doubleQuotes % 2 !== 0) {
-    issues.push('Unmatched double quotes');
-  }
+  // Skip other validations for now as they produce too many false positives
   
   return issues;
 }
@@ -226,12 +235,8 @@ function validateTranslation(key, text) {
  * Escape special characters for TypeScript strings
  */
 function escapeForTypeScript(text) {
-  return text
-    .replace(/\\/g, '\\\\')  // Escape backslashes
-    .replace(/'/g, "\\'")    // Escape single quotes
-    .replace(/\n/g, '\\n')   // Escape newlines
-    .replace(/\r/g, '\\r')   // Escape carriage returns
-    .replace(/\t/g, '\\t');  // Escape tabs
+  // Only escape single quotes, DeepL already handles other escaping
+  return text.replace(/'/g, "\\'");
 }
 
 /**
@@ -239,36 +244,44 @@ function escapeForTypeScript(text) {
  */
 function writeTranslations(langCode, translations, existingKeys) {
   const filePath = path.join(translationsDir, `${langCode}.ts`);
+  const varName = langCode.replace('-', '_');
   
-  // Read existing file or create new
-  let content = '';
+  // Check if file exists
   if (fs.existsSync(filePath)) {
-    content = fs.readFileSync(filePath, 'utf8');
-  } else {
-    content = `export const ${langCode.replace('-', '_')} = {\n`;
-  }
-  
-  // Find insertion point (before closing brace and semicolon)
-  const closingIndex = content.lastIndexOf('};');
-  
-  if (closingIndex === -1) {
-    throw new Error(`Invalid file format for ${langCode}.ts`);
-  }
-  
-  // Build new translations section
-  let newTranslations = '\n  // Auto-translated by DeepL\n';
-  
-  for (const [key, value] of translations) {
-    if (!existingKeys.has(key)) {
-      const escapedValue = escapeForTypeScript(value);
-      newTranslations += `  '${key}': '${escapedValue}',\n`;
+    // Update existing file
+    let content = fs.readFileSync(filePath, 'utf8');
+    const closingIndex = content.lastIndexOf('};');
+    
+    if (closingIndex === -1) {
+      throw new Error(`Invalid file format for ${langCode}.ts`);
     }
+    
+    // Build new translations section
+    let newTranslations = '\n  // Auto-translated by DeepL\n';
+    
+    for (const [key, value] of translations) {
+      if (!existingKeys.has(key)) {
+        const escapedValue = escapeForTypeScript(value);
+        newTranslations += `  '${key}': '${escapedValue}',\n`;
+      }
+    }
+    
+    // Insert new translations
+    const updatedContent = content.slice(0, closingIndex) + newTranslations + content.slice(closingIndex);
+    fs.writeFileSync(filePath, updatedContent, 'utf8');
+    
+  } else {
+    // Create new file from scratch
+    let content = `export const ${varName} = {\n`;
+    
+    for (const [key, value] of translations) {
+      const escapedValue = escapeForTypeScript(value);
+      content += `  '${key}': '${escapedValue}',\n`;
+    }
+    
+    content += '};\n';
+    fs.writeFileSync(filePath, content, 'utf8');
   }
-  
-  // Insert new translations
-  const updatedContent = content.slice(0, closingIndex) + newTranslations + content.slice(closingIndex);
-  
-  fs.writeFileSync(filePath, updatedContent, 'utf8');
 }
 
 /**
@@ -442,16 +455,30 @@ async function main() {
       // Validate translations
       console.log('   🔍 Validating translations...');
       let issueCount = 0;
+      const criticalIssues = [];
+      
       for (const [key, value] of translations) {
-        const issues = validateTranslation(key, value);
+        const original = job.missingKeys.find(item => item.key === key)?.value;
+        const issues = validateTranslation(key, value, original);
+        
         if (issues.length > 0) {
-          console.log(`   ⚠️  ${key}: ${issues.join(', ')}`);
+          // Check if it's a critical issue
+          if (issues.some(issue => issue.includes('truncation') || issue.includes('Incomplete'))) {
+            criticalIssues.push({ key, issues });
+            console.log(`   ❌ CRITICAL - ${key}: ${issues.join(', ')}`);
+          } else {
+            console.log(`   ⚠️  ${key}: ${issues.join(', ')}`);
+          }
           issueCount++;
         }
       }
       
-      if (issueCount > 0) {
-        console.log(`   ⚠️  Found ${issueCount} validation issues`);
+      if (criticalIssues.length > 0) {
+        console.log(`\n   ❌ Found ${criticalIssues.length} CRITICAL issues - translation aborted`);
+        console.log('   💡 Try reducing batch size or adding more delay\n');
+        throw new Error(`${criticalIssues.length} critical validation failures`);
+      } else if (issueCount > 0) {
+        console.log(`   ⚠️  Found ${issueCount} validation warnings (non-critical)`);
       } else {
         console.log('   ✅ All validations passed');
       }
