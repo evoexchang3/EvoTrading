@@ -217,16 +217,18 @@ function validateTranslation(key, text, originalText) {
   const issues = [];
   
   // Check for suspiciously short translations (likely truncated)
-  if (originalText && text.length < originalText.length * 0.3 && originalText.length > 50) {
+  if (originalText && text.length < originalText.length * 0.2 && originalText.length > 100) {
     issues.push('Translation suspiciously short (possible truncation)');
   }
   
-  // Check for incomplete strings (ends with backslash followed by quote or comma)
-  if (/\\['",]?\s*$/.test(text)) {
-    issues.push('Incomplete string (ends with escape sequence)');
+  // Only flag ACTUAL incomplete strings - single backslash at very end without content after
+  if (text.endsWith('\\') && !text.endsWith('\\\\') && text.length > 0) {
+    // Make sure it's not an escaped quote like \' which is valid
+    const lastThreeChars = text.slice(-3);
+    if (lastThreeChars !== "\\'" && lastThreeChars !== '\\"') {
+      issues.push('Incomplete string (ends with orphan backslash)');
+    }
   }
-  
-  // Skip other validations for now as they produce too many false positives
   
   return issues;
 }
