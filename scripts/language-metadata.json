@@ -1,0 +1,244 @@
+{
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "export": "en",
+      "rtl": false
+    },
+    {
+      "code": "zh-CN",
+      "name": "简体中文",
+      "export": "zhCN",
+      "rtl": false
+    },
+    {
+      "code": "ja",
+      "name": "日本語",
+      "export": "ja",
+      "rtl": false
+    },
+    {
+      "code": "de",
+      "name": "Deutsch",
+      "export": "de",
+      "rtl": false
+    },
+    {
+      "code": "fr",
+      "name": "Français",
+      "export": "fr",
+      "rtl": false
+    },
+    {
+      "code": "es",
+      "name": "Español",
+      "export": "es",
+      "rtl": false
+    },
+    {
+      "code": "ar",
+      "name": "العربية",
+      "export": "ar",
+      "rtl": true
+    },
+    {
+      "code": "ru",
+      "name": "Русский",
+      "export": "ru",
+      "rtl": false
+    },
+    {
+      "code": "pt-BR",
+      "name": "Português (Brasil)",
+      "export": "ptBR",
+      "rtl": false
+    },
+    {
+      "code": "pt-PT",
+      "name": "Português (Portugal)",
+      "export": "ptPT",
+      "rtl": false
+    },
+    {
+      "code": "it",
+      "name": "Italiano",
+      "export": "it",
+      "rtl": false
+    },
+    {
+      "code": "ko",
+      "name": "한국어",
+      "export": "ko",
+      "rtl": false
+    },
+    {
+      "code": "th",
+      "name": "ไทย",
+      "export": "th",
+      "rtl": false
+    },
+    {
+      "code": "vi",
+      "name": "Tiếng Việt",
+      "export": "vi",
+      "rtl": false
+    },
+    {
+      "code": "id",
+      "name": "Bahasa Indonesia",
+      "export": "id",
+      "rtl": false
+    },
+    {
+      "code": "tr",
+      "name": "Türkçe",
+      "export": "tr",
+      "rtl": false
+    },
+    {
+      "code": "pl",
+      "name": "Polski",
+      "export": "pl",
+      "rtl": false
+    },
+    {
+      "code": "nl",
+      "name": "Nederlands",
+      "export": "nl",
+      "rtl": false
+    },
+    {
+      "code": "sv",
+      "name": "Svenska",
+      "export": "sv",
+      "rtl": false
+    },
+    {
+      "code": "no",
+      "name": "Norsk",
+      "export": "no",
+      "rtl": false
+    },
+    {
+      "code": "da",
+      "name": "Dansk",
+      "export": "da",
+      "rtl": false
+    },
+    {
+      "code": "fi",
+      "name": "Suomi",
+      "export": "fi",
+      "rtl": false
+    },
+    {
+      "code": "cs",
+      "name": "Čeština",
+      "export": "cs",
+      "rtl": false
+    },
+    {
+      "code": "sk",
+      "name": "Slovenčina",
+      "export": "sk",
+      "rtl": false
+    },
+    {
+      "code": "hu",
+      "name": "Magyar",
+      "export": "hu",
+      "rtl": false
+    },
+    {
+      "code": "ro",
+      "name": "Română",
+      "export": "ro",
+      "rtl": false
+    },
+    {
+      "code": "el",
+      "name": "Ελληνικά",
+      "export": "el",
+      "rtl": false
+    },
+    {
+      "code": "he",
+      "name": "עברית",
+      "export": "he",
+      "rtl": true
+    },
+    {
+      "code": "hi",
+      "name": "हिन्दी",
+      "export": "hi",
+      "rtl": false
+    },
+    {
+      "code": "bn",
+      "name": "বাংলা",
+      "export": "bn",
+      "rtl": false
+    },
+    {
+      "code": "ms",
+      "name": "Bahasa Melayu",
+      "export": "ms",
+      "rtl": false
+    },
+    {
+      "code": "tl",
+      "name": "Filipino",
+      "export": "tl",
+      "rtl": false
+    },
+    {
+      "code": "uk",
+      "name": "Українська",
+      "export": "uk",
+      "rtl": false
+    },
+    {
+      "code": "bg",
+      "name": "Български",
+      "export": "bg",
+      "rtl": false
+    },
+    {
+      "code": "hr",
+      "name": "Hrvatski",
+      "export": "hr",
+      "rtl": false
+    },
+    {
+      "code": "sr",
+      "name": "Српски",
+      "export": "sr",
+      "rtl": false
+    },
+    {
+      "code": "sl",
+      "name": "Slovenščina",
+      "export": "sl",
+      "rtl": false
+    },
+    {
+      "code": "lt",
+      "name": "Lietuvių",
+      "export": "lt",
+      "rtl": false
+    },
+    {
+      "code": "lv",
+      "name": "Latviešu",
+      "export": "lv",
+      "rtl": false
+    },
+    {
+      "code": "et",
+      "name": "Eesti",
+      "export": "et",
+      "rtl": false
+    }
+  ]
+}
