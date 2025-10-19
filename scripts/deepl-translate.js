@@ -24,11 +24,12 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const DEEPL_API_KEY = process.env.DEEPL_API_KEY;
-const BATCH_SIZE = 100; // Keys per batch (ultra-conservative for stability)
+const BATCH_SIZE = 50; // Smaller batches to prevent truncation
 const MAX_CONCURRENT = 1; // One at a time to avoid API issues
-const BATCH_DELAY = 1000; // Delay between batches in ms
+const BATCH_DELAY = 1500; // Increased delay between batches in ms
 const RETRY_DELAY_BASE = 3000; // Base retry delay in ms
 const MAX_RETRIES = 5;
+const MAX_STRING_RETRIES = 3; // Retries for individual truncated strings
 const COST_PER_MILLION_CHARS = 25; // USD
 const BASE_FEE = 5.49; // USD/month
 
@@ -211,26 +212,56 @@ async function translateWithConcurrency(missingKeys, targetLang) {
 }
 
 /**
- * Validate translated text quality
+ * Check if a translation is truncated
  */
-function validateTranslation(key, text, originalText) {
-  const issues = [];
-  
-  // Check for suspiciously short translations (likely truncated)
-  if (originalText && text.length < originalText.length * 0.2 && originalText.length > 100) {
-    issues.push('Translation suspiciously short (possible truncation)');
+function isTruncated(text) {
+  // Check for orphan backslash at end (most common truncation pattern)
+  if (text.endsWith('\\') && !text.endsWith('\\\\')) {
+    return true;
   }
   
-  // Only flag ACTUAL incomplete strings - single backslash at very end without content after
-  if (text.endsWith('\\') && !text.endsWith('\\\\') && text.length > 0) {
-    // Make sure it's not an escaped quote like \' which is valid
-    const lastThreeChars = text.slice(-3);
-    if (lastThreeChars !== "\\'" && lastThreeChars !== '\\"') {
-      issues.push('Incomplete string (ends with orphan backslash)');
+  // Check for incomplete escape sequences at end
+  if (/\\[^\\'"nrt]?\s*$/.test(text)) {
+    return true;
+  }
+  
+  return false;
+}
+
+/**
+ * Retry translating a single truncated string
+ */
+async function retryTruncatedString(key, value, targetLang, retryCount = 0) {
+  if (retryCount >= MAX_STRING_RETRIES) {
+    console.log(`   ⚠️  Max retries reached for: ${key}`);
+    return value; // Return original truncated value
+  }
+  
+  try {
+    console.log(`   🔄 Retry ${retryCount + 1}/${MAX_STRING_RETRIES}: ${key}`);
+    
+    // Wait before retry
+    await new Promise(resolve => setTimeout(resolve, RETRY_DELAY_BASE));
+    
+    // Translate single string
+    const result = await translator.translateText(value, null, targetLang, {
+      preserveFormatting: true,
+      tagHandling: 'xml',
+    });
+    
+    const translated = result.text;
+    
+    // Check if still truncated
+    if (isTruncated(translated)) {
+      return await retryTruncatedString(key, value, targetLang, retryCount + 1);
     }
+    
+    console.log(`   ✅ Retry successful: ${key}`);
+    return translated;
+  } catch (error) {
+    console.log(`   ❌ Retry failed: ${key} - ${error.message}`);
+    return value; // Return original truncated value
   }
-  
-  return issues;
 }
 
 /**
@@ -454,34 +485,56 @@ async function main() {
     try {
       const translations = await translateWithConcurrency(job.missingKeys, job.deeplLang);
       
-      // Validate translations
-      console.log('   🔍 Validating translations...');
-      let issueCount = 0;
-      const criticalIssues = [];
+      // Validate and retry truncated translations
+      console.log('   🔍 Checking for truncated translations...');
+      const truncatedKeys = [];
       
       for (const [key, value] of translations) {
-        const original = job.missingKeys.find(item => item.key === key)?.value;
-        const issues = validateTranslation(key, value, original);
-        
-        if (issues.length > 0) {
-          // Check if it's a critical issue
-          if (issues.some(issue => issue.includes('truncation') || issue.includes('Incomplete'))) {
-            criticalIssues.push({ key, issues });
-            console.log(`   ❌ CRITICAL - ${key}: ${issues.join(', ')}`);
-          } else {
-            console.log(`   ⚠️  ${key}: ${issues.join(', ')}`);
-          }
-          issueCount++;
+        if (isTruncated(value)) {
+          truncatedKeys.push({ key, value });
         }
       }
       
-      if (criticalIssues.length > 0) {
-        console.log(`\n   ⚠️  Found ${criticalIssues.length} potential validation issues (continuing anyway)`);
-        console.log('   💡 Manual review recommended after completion\n');
-      } else if (issueCount > 0) {
-        console.log(`   ⚠️  Found ${issueCount} validation warnings (non-critical)`);
+      if (truncatedKeys.length > 0) {
+        console.log(`   ⚠️  Found ${truncatedKeys.length} truncated translations`);
+        console.log('   🔄 Retrying truncated strings individually (max ${Math.min(truncatedKeys.length, 10)})...\n');
+        
+        // Only retry first 10 to save time, rest will be marked
+        const toRetry = truncatedKeys.slice(0, 10);
+        const toMark = truncatedKeys.slice(10);
+        
+        for (const { key } of toRetry) {
+          const original = job.missingKeys.find(item => item.key === key)?.value;
+          if (original) {
+            const retried = await retryTruncatedString(key, original, job.deeplLang);
+            
+            // Update the translation
+            for (let i = 0; i < translations.length; i++) {
+              if (translations[i][0] === key) {
+                translations[i] = [key, retried];
+                break;
+              }
+            }
+          }
+        }
+        
+        // Mark remaining truncated strings with placeholder
+        for (const { key } of toMark) {
+          for (let i = 0; i < translations.length; i++) {
+            if (translations[i][0] === key) {
+              const original = job.missingKeys.find(item => item.key === key)?.value || '';
+              translations[i] = [key, `[NEEDS_MANUAL_REVIEW] ${original}`];
+              break;
+            }
+          }
+        }
+        
+        if (toMark.length > 0) {
+          console.log(`\n   ⚠️  ${toMark.length} strings marked for manual review`);
+          console.log('   💡 Search for [NEEDS_MANUAL_REVIEW] in output file\n');
+        }
       } else {
-        console.log('   ✅ All validations passed');
+        console.log('   ✅ No truncated translations found');
       }
       
       // Write to file
