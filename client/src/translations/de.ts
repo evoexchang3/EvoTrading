@@ -1144,12 +1144,6 @@ export const de = {
   'error.unauthorized': 'Sie sind nicht berechtigt, auf diese Ressource zuzugreifen',
   'error.notFound': 'Ressource nicht gefunden',
   'error.serverError': 'Serverfehler. Bitte versuchen Sie es später erneut.',
-  'tools.positionCalculator.title': 'Positions-Rechner',
-  'tools.pipCalculator.title': 'Pip-Rechner',
-  'tools.tradingSessions.title': 'Handelssitzungen',
-  'tools.education.beginnerCourse': 'Anfängerkurs',
-  'tools.education.advancedCourse': 'Fortgeschrittenenkurs',
-  'tools.education.glossary': 'Glossar',
   
   // About Page
   'about.seo.title': 'Über uns',
