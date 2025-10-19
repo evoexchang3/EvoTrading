@@ -7,8 +7,7 @@ export type Language =
   | 'fr'      // French
   | 'es'      // Spanish
   | 'ar'      // Arabic
-  | 'ru'      // Russian
-  | 'pt';     // Portuguese
+  | 'ru';     // Russian
 
 export type TranslationKeys = Record<string, string>;
 
@@ -31,8 +30,6 @@ export const loadTranslations = async (language: Language): Promise<TranslationK
       return (await import('./ar')).ar;
     case 'ru':
       return (await import('./ru')).ru;
-    case 'pt':
-      return (await import('./pt')).pt;
     default:
       return (await import('./en')).en; // Fallback to English
   }
@@ -48,10 +45,9 @@ export const languageNames: Record<Language, { native: string; rtl?: boolean }> 
   'es': { native: 'Español' },
   'ar': { native: 'العربية', rtl: true },
   'ru': { native: 'Русский' },
-  'pt': { native: 'Português' },
 };
 
-export const validLanguages: Language[] = ['en', 'zh-CN', 'ja', 'de', 'fr', 'es', 'ar', 'ru', 'pt'];
+export const validLanguages: Language[] = ['en', 'zh-CN', 'ja', 'de', 'fr', 'es', 'ar', 'ru'];
 
 // Helper to detect browser language
 export const detectBrowserLanguage = (): Language => {
