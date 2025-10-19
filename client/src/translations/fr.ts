@@ -1615,8 +1615,8 @@ export const fr = {
   'education.glossary.terms.carryTrade.difficulty': 'Avancé',
 
   'marketInfo.technicalAnalysis.badge': 'Formation Marché',
-  'marketInfo.technicalAnalysis.title': 'Guide d'''Analyse Technique',
-  'marketInfo.technicalAnalysis.description': 'Maîtrisez l'''art de lire les graphiques de prix, d'''identifier les figures et d'''utiliser les indicateurs pour prendre des décisions de trading éclairées. Apprenez les stratégies d'''analyse technique éprouvées utilisées par les traders professionnels.',
+  'marketInfo.technicalAnalysis.title': 'Guide d\'Analyse Technique',
+  'marketInfo.technicalAnalysis.description': 'Maîtrisez l\'art de lire les graphiques de prix, d\'identifier les figures et d\'utiliser les indicateurs pour prendre des décisions de trading éclairées. Apprenez les stratégies d\'analyse technique éprouvées utilisées par les traders professionnels.',
 
   // Stats
   'marketInfo.technicalAnalysis.stats.patterns': '15+',
@@ -1648,7 +1648,7 @@ export const fr = {
   'marketInfo.technicalAnalysis.concepts.chartPatterns.flags.reliability': 'Moyen-Élevé (70-80%)',
   'marketInfo.technicalAnalysis.concepts.chartPatterns.flags.timeframe': 'M15 à H4 pour les trades rapides',
   'marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.name': 'Tasse avec Anse',
-  'marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.type': 'Figure de continuation haussière montrant l'''accumulation',
+  'marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.type': 'Figure de continuation haussière montrant l\'accumulation',
   'marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.reliability': 'Élevé (75-85%)',
   'marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.timeframe': 'Graphiques quotidiens à hebdomadaires',
 
@@ -1680,13 +1680,13 @@ export const fr = {
   'marketInfo.technicalAnalysis.concepts.technicalIndicators.fibonacci.timeframe': 'Fonctionne sur toutes les échelles de temps',
 
   'marketInfo.technicalAnalysis.concepts.supportResistance.title': 'Support & Résistance',
-  'marketInfo.technicalAnalysis.concepts.supportResistance.description': 'Niveaux de prix clés où la pression d'''achat ou de vente se concentre',
+  'marketInfo.technicalAnalysis.concepts.supportResistance.description': 'Niveaux de prix clés où la pression d\'achat ou de vente se concentre',
   'marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.name': 'Support/Résistance Horizontale',
-  'marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.type': 'Hauts/bas d'''oscillation précédents où le prix s'''est inversé plusieurs fois',
+  'marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.type': 'Hauts/bas d\'oscillation précédents où le prix s\'est inversé plusieurs fois',
   'marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.reliability': 'Très élevé (niveaux testés)',
   'marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.timeframe': 'Plus fort sur les échelles de temps supérieures',
   'marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.name': 'Lignes de Tendance',
-  'marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.type': 'Lignes diagonales reliant les hauts (résistance) ou bas (support) d'''oscillation',
+  'marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.type': 'Lignes diagonales reliant les hauts (résistance) ou bas (support) d\'oscillation',
   'marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.reliability': 'Élevé lorsque touché 3+ fois',
   'marketInfo.technicalAnalysis.concepts.supportResistance.trendLines.timeframe': 'Tracer à partir de H4 vers le haut',
   'marketInfo.technicalAnalysis.concepts.supportResistance.fibonacciRetracements.name': 'Retracements de Fibonacci',
@@ -1785,9 +1785,9 @@ export const fr = {
 
   // FAQ
   'marketInfo.technicalAnalysis.faq.title': 'Questions Fréquemment Posées',
-  'marketInfo.technicalAnalysis.faq.q1.question': 'Quelle échelle de temps est la meilleure pour l'''analyse technique ?',
+  'marketInfo.technicalAnalysis.faq.q1.question': 'Quelle échelle de temps est la meilleure pour l\'analyse technique ?',
   'marketInfo.technicalAnalysis.faq.q1.answer': 'Cela dépend de votre style de trading : Scalpers utilisent M1-M15, day traders M15-H1, swing traders H4-Quotidien, et position traders Quotidien-Hebdomadaire. Pour débutants, commencez avec graphiques H4 et Quotidien pour tendances plus claires et moins de bruit. Vérifiez toujours UT supérieures pour contexte avant entrées sur UT inférieures.',
-  'marketInfo.technicalAnalysis.faq.q2.question': 'Combien d'''indicateurs devrais-je utiliser sur mon graphique ?',
+  'marketInfo.technicalAnalysis.faq.q2.question': 'Combien d\'indicateurs devrais-je utiliser sur mon graphique ?',
   'marketInfo.technicalAnalysis.faq.q2.answer': 'Moins c\'est mieux. Utilisez maximum 2-3 indicateurs complémentaires : un pour direction tendance (moyenne mobile), un pour momentum (RSI ou MACD), et optionnellement un pour volatilité (Bandes Bollinger). Trop d\'indicateurs créent signaux contradictoires et \'paralysie d\'analyse.\' Price action seule peut suffire pour traders expérimentés.',
   'marketInfo.technicalAnalysis.faq.q3.question': 'Les figures techniques fonctionnent-elles vraiment dans les marchés modernes ?',
   'marketInfo.technicalAnalysis.faq.q3.answer': 'Oui, mais avec réserves. Figures classiques fonctionnent car elles représentent psychologie trader et flux ordres institutionnels. Taux succès varient : Tête-Épaules (70-80%), Doubles sommets/creux (75-85%), Triangles (65-75%). Cependant, figures fonctionnent mieux combinées avec analyse volume, contexte marché et gestion risques appropriée. Ne vous fiez jamais uniquement aux figures.',
@@ -1795,7 +1795,7 @@ export const fr = {
   'marketInfo.technicalAnalysis.faq.q4.answer': 'SMA (Moyenne Mobile Simple) donne poids égal à toutes périodes et est plus lisse mais plus lente à réagir. EMA (Moyenne Mobile Exponentielle) donne plus de poids aux prix récents, la rendant plus réactive aux nouvelles données. Pour suivi tendance, 200 SMA est populaire. Pour support/résistance dynamique et signaux plus rapides, 20/50 EMA est préféré. Beaucoup traders utilisent les deux.',
   'marketInfo.technicalAnalysis.faq.q5.question': 'Comment savoir si un niveau de support/résistance est fort ?',
   'marketInfo.technicalAnalysis.faq.q5.answer': 'Niveaux forts ont : 1) Touches multiples (3+ fois) historiquement, 2) Retournements significatifs à ce niveau, 3) Nombres ronds (niveaux psychologiques comme 1,1000), 4) Confluence avec niveaux Fibonacci ou points pivots, 5) Niveaux UT supérieures (Quotidien/Hebdomadaire plus forts que H1). Plus facteurs s\'alignent, plus fort le niveau.',
-  'marketInfo.technicalAnalysis.faq.q6.question': 'Puis-je utiliser l'''analyse technique pour les marchés guidés par les fondamentaux ?',
+  'marketInfo.technicalAnalysis.faq.q6.question': 'Puis-je utiliser l\'analyse technique pour les marchés guidés par les fondamentaux ?',
   'marketInfo.technicalAnalysis.faq.q6.answer': 'Oui, mais avec prudence. Analyse technique fonctionne dans tous marchés mais peut être supplantée par événements fondamentaux forts (NFP, décisions Fed, chocs géopolitiques). Utilisez techniques pour timing entrée/sortie même sur trades fondamentaux. Évitez trader setups purement techniques pendant nouvelles haut impact. Combinez deux analyses pour meilleurs résultats.',
   'marketInfo.technicalAnalysis.faq.q7.question': 'Quel est le meilleur indicateur pour débutants ?',
   'marketInfo.technicalAnalysis.faq.q7.answer': 'Commencez avec Moyennes Mobiles (20/50/200 EMA) et RSI (14 périodes). MAs montrent direction tendance clairement, et RSI identifie conditions surachat/survente. Ces deux couvrent tendance et momentum. Une fois à l\'aise, ajoutez MACD pour confirmation. Évitez indicateurs complexes jusqu\'à maîtriser bases de price action et ces outils fondamentaux.',
@@ -1808,7 +1808,7 @@ export const fr = {
 
   // Fundamental Analysis Page
   'marketInfo.fundamentalAnalysis.badge': 'Formation Marché',
-  'marketInfo.fundamentalAnalysis.title': 'Guide d'''Analyse Fondamentale',
+  'marketInfo.fundamentalAnalysis.title': 'Guide d\'Analyse Fondamentale',
   'marketInfo.fundamentalAnalysis.description': 'Maîtrisez les facteurs économiques, politiques de banques centrales et événements géopolitiques qui génèrent mouvements de devises à long terme. Apprenez comment traders professionnels analysent données macroéconomiques pour identifier opportunités de trade haute probabilité.',
 
   // Quick Stats
@@ -2171,7 +2171,7 @@ export const fr = {
   // Market Heatmap
   'marketInfo.marketHeatmap.badge': 'Formation Marché',
   'marketInfo.marketHeatmap.title': 'Guide de la Heatmap de Marché',
-  'marketInfo.marketHeatmap.description': 'Apprenez à utiliser les heatmaps de marché pour visualiser rapidement la performance de plusieurs instruments, identifier la force des devises, repérer les opportunités de trading et gérer les risques en un coup d'''œil.',
+  'marketInfo.marketHeatmap.description': 'Apprenez à utiliser les heatmaps de marché pour visualiser rapidement la performance de plusieurs instruments, identifier la force des devises, repérer les opportunités de trading et gérer les risques en un coup d\'œil.',
 
   // Stats
   'marketInfo.marketHeatmap.stats.currencies': '8',
