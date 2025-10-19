@@ -146,14 +146,14 @@ Preferred communication style: Simple, everyday language.
     - ✅ Test ID stability: Navigation uses fixed identifiers instead of translated labels
   - **Architect Review:** ✅ PASS - No remaining hardcoded UI strings detected
   - **Verification:** ✅ grep checks confirm 0 hardcoded English strings in all 41 pages
-- **Translation Coverage (October 18-19, 2025):**
+- **Translation Coverage (October 19, 2025):**
   - **English (en.ts):** 4,148 complete translation keys (100% coverage - source)
   - **Tier 1 Complete (9 languages):** en, zh-CN, ja, de, fr, es, ar, ru, pt - All 4,148 keys (100%)
   - **Portuguese (pt.ts):** ✅ 4,148 keys (100% complete - October 19, 2025)
     - Automated via DeepL API hybrid two-pass workflow
-    - First pass: 3 minutes (batch translation with truncation detection)
-    - Second pass: 4 minutes (127 truncated strings individually retranslated)
-    - Total: ~7 minutes end-to-end
+    - First pass: ~3 minutes (batch translation, 127 truncations detected)
+    - Second pass: ~4 minutes (127 truncated strings fixed individually)
+    - Total: ~7 minutes end-to-end, zero manual fixes required
   - **Validation tooling:** scripts/check-translations.js generates missing key manifests
 
 ### Hybrid Translation Workflow - PRODUCTION READY (October 19, 2025)
@@ -176,8 +176,8 @@ Preferred communication style: Simple, everyday language.
      - Update Language type, loadTranslations switch, languageNames map, validLanguages array
      - Restart workflow to verify no crashes
 - **Key Fixes (October 19):**
-  - ✅ Use Map.set() instead of array assignment for marking truncated strings
-  - ✅ Improved regex pattern: `^(\\s*'${key}':\\s*')\\[INCOMPLETE\\].*?'(,?)$` with multiline flag
+  - ✅ Use Map.set() to mark truncated strings (not array assignment)
+  - ✅ Improved regex: `^(\\s*'${key}':\\s*')\\[INCOMPLETE\\][\\s\\S]*?'(,?)$` - uses `[\\s\\S]*?` to match any character including escaped quotes and newlines
   - ✅ Proper escape handling for single quotes, backslashes, newlines in DeepL responses
 - **Performance:** ~7 min per language (vs 25+ min with retry-only approach)
 - **Cost:** ~$0.13 per language at DeepL Pro rates ($25/1M characters)

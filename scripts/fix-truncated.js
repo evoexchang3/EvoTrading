@@ -87,8 +87,9 @@ async function fixTruncatedTranslations(langCode) {
       // Match the incomplete marker format exactly as written by deepl-translate.js
       const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       // Pattern matches: '  'key': '[INCOMPLETE] ...',
+      // Use [\s\S]*? to match any character including newlines and escaped quotes
       const searchPattern = new RegExp(
-        `^(\\s*'${escapedKey}':\\s*')\\[INCOMPLETE\\].*?'(,?)$`,
+        `^(\\s*'${escapedKey}':\\s*')\\[INCOMPLETE\\][\\s\\S]*?'(,?)$`,
         'gm'
       );
       const replacement = `$1${escaped}'$2`;
