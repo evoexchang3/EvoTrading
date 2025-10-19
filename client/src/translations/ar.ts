@@ -4462,7 +4462,6 @@ export const ar = {
   'legal.cookies.section9.email': 'privacy@tradingplatform.com',
 
   // Tools - Pip Calculator
-  'tools.pipCalculator.title': 'حاسبة النقاط',
   'tools.pipCalculator.description': 'احسب الربح والخسارة بناءً على حركة النقاط',
 
   // Quick Stats
@@ -4626,7 +4625,6 @@ export const ar = {
   'tools.pipCalculator.quickReference.microLot.description': '1,000 وحدة • $0.10/نقطة (EUR/USD)',
 
   // Tools - Position Calculator
-  'tools.positionCalculator.title': 'حاسبة حجم المركز',
   'tools.positionCalculator.description': 'احسب حجم المركز الأمثل بناءً على إدارة المخاطر',
 
   // Quick Stats
@@ -4807,7 +4805,6 @@ export const ar = {
   'tools.positionCalculator.results.description': 'حجم اللوت الموصى به بناءً على معايير المخاطرة الخاصة بك',
 
   // Tools - Trading Sessions
-  'tools.tradingSessions.title': 'جلسات التداول',
   'tools.tradingSessions.description': 'راقب ساعات السوق العالمية والسيولة',
 
   // Quick Stats
