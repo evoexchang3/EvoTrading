@@ -51,7 +51,7 @@ export class TradingService {
         margin_required as "marginRequired",
         COALESCE(contract_multiplier, 1) as "contractMultiplier",
         COALESCE(fees, 0) as fees,
-        COALESCE(created_at, opened_at) as "createdAt"
+        opened_at as "createdAt"
       FROM positions
       WHERE account_id = ${accountId} AND status = 'open'
     `);
