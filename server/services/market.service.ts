@@ -54,7 +54,7 @@ export class MarketService {
   }
 
   static async getCandles(symbol: string, interval: string = '1h', limit: number = 100) {
-    // Check cache first
+    // Check for fresh cache first (within 1 hour)
     const cached = await db
       .select()
       .from(candles)
@@ -71,6 +71,7 @@ export class MarketService {
       return cached;
     }
 
+    // Cache expired or missing - try to fetch fresh data from API
     // Get the twelve_data_symbol from database
     const [symbolRecord] = await db
       .select({ twelveDataSymbol: symbols.twelveDataSymbol })
@@ -80,7 +81,7 @@ export class MarketService {
 
     const apiSymbol = symbolRecord?.twelveDataSymbol || symbol;
 
-    // Fetch from API
+    // Fetch from TwelveData API
     try {
       const response = await axios.get('https://api.twelvedata.com/time_series', {
         params: {
@@ -89,9 +90,10 @@ export class MarketService {
           outputsize: limit,
           apikey: TWELVE_DATA_API_KEY,
         },
+        timeout: 10000,
       });
 
-      if (response.data?.values) {
+      if (response.data?.values && Array.isArray(response.data.values)) {
         const candleData = response.data.values.map((v: any) => ({
           symbol,
           interval,
@@ -103,7 +105,7 @@ export class MarketService {
           volume: v.volume || '0',
         }));
 
-        // Cache candles - delete existing entries first to avoid duplicate key errors
+        // Cache candles - delete existing entries first to refresh cache
         try {
           await db.delete(candles).where(
             and(
@@ -112,17 +114,38 @@ export class MarketService {
             )
           );
           await db.insert(candles).values(candleData);
+          console.log(`✓ Cached ${candleData.length} candles for ${symbol} ${interval}`);
         } catch (error) {
           console.error('Error caching candles:', error);
         }
 
         return candleData;
+      } else if (response.data?.status === 'error') {
+        console.error(`TwelveData API error for ${symbol}:`, response.data.message);
       }
-    } catch (error) {
-      console.error('Error fetching candles:', error);
+    } catch (error: any) {
+      console.error(`Error fetching candles from TwelveData for ${symbol}:`, error.message);
     }
 
-    // Return mock data
+    // If API fails, check for ANY cached data (even if expired) as fallback
+    const anyCached = await db
+      .select()
+      .from(candles)
+      .where(
+        and(
+          eq(candles.symbol, symbol),
+          eq(candles.interval, interval)
+        )
+      )
+      .limit(limit);
+
+    if (anyCached.length > 0) {
+      console.log(`Using expired cache for ${symbol} ${interval} (${anyCached.length} candles)`);
+      return anyCached;
+    }
+
+    // No data available
+    console.log(`No candle data available for ${symbol} ${interval}`);
     return [];
   }
 
