@@ -51,6 +51,7 @@ async function importForexPairs() {
         if (existing.length === 0) {
           await db.insert(symbols).values({
             symbol: symbolCode,
+            twelveDataSymbol: pair.symbol, // Preserve original format (e.g. "EUR/USD")
             name: `${pair.currency_base} vs ${pair.currency_quote}`,
             type: 'forex',
             digits: 5,
@@ -61,7 +62,7 @@ async function importForexPairs() {
             spread: '0.00002',
             isActive: true,
           });
-          console.log(`✓ Added ${symbolCode}`);
+          console.log(`✓ Added ${symbolCode} (${pair.symbol})`);
         }
       } catch (error) {
         console.error(`✗ Error adding ${symbolCode}:`, error);
@@ -96,6 +97,7 @@ async function importCryptocurrencies() {
         if (existing.length === 0) {
           await db.insert(symbols).values({
             symbol: symbolCode,
+            twelveDataSymbol: crypto.symbol, // Preserve original format (e.g. "BTC/USD")
             name: `${crypto.currency_base} vs ${crypto.currency_quote}`,
             type: 'crypto',
             digits: 2,
@@ -106,7 +108,7 @@ async function importCryptocurrencies() {
             spread: '0.5',
             isActive: true,
           });
-          console.log(`✓ Added ${symbolCode}`);
+          console.log(`✓ Added ${symbolCode} (${crypto.symbol})`);
         }
       } catch (error) {
         console.error(`✗ Error adding ${symbolCode}:`, error);
