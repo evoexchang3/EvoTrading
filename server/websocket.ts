@@ -103,9 +103,9 @@ export function setupWebSocket(httpServer: Server) {
           
           // Find the database symbol (EURUSD) from the formatted symbol (EUR/USD)
           let dbSymbol = null;
-          for (const [key, value] of symbolFormatCache.entries()) {
-            if (value === twelveDataSymbol) {
-              dbSymbol = key;
+          for (const entry of Array.from(symbolFormatCache.entries())) {
+            if (entry[1] === twelveDataSymbol) {
+              dbSymbol = entry[0];
               break;
             }
           }
