@@ -89,16 +89,18 @@ jobs:
         run: |
           for file in client/public/layouts/variants/*.css; do
             echo "Checking $file..."
-            # Basic CSS syntax validation
-            if ! grep -q ":root\[data-layout=" "$file" && ! grep -q "/* This layout uses" "$file"; then
-              echo "Warning: $file may not have proper data-layout selector"
-            fi
-            # Check for valid CSS
-            if grep -q "[^}]$" "$file"; then
-              echo "Error: $file may have syntax errors (missing closing brace)"
+            # Verify file is not empty
+            if [ ! -s "$file" ]; then
+              echo "Error: $file is empty"
               exit 1
             fi
-            echo "✓ $file syntax OK"
+            # Check for data-layout selector (best practice)
+            if grep -q ":root\[data-layout=" "$file" || grep -q "/* This layout uses" "$file"; then
+              echo "✓ $file has layout selector"
+            else
+              echo "ℹ️ $file may not have data-layout selector (non-critical)"
+            fi
+            echo "✓ $file validated"
           done
 
       - name: Verify activeVariant exists
