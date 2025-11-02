@@ -278,6 +278,234 @@ For multiple instances, use:
 - Sticky sessions for WebSocket
 - Shared session store (Redis)
 
+## Site Customization
+
+The Trading Platform supports runtime customization of branding, layout, and features without code changes.
+
+### Configuration File
+
+All customization is controlled by `site-config.yml` in the repository root.
+
+**Key Configuration Options:**
+- **Branding**: Company name, support email, logo path
+- **Layout Variants**: 15 pre-built visual themes (bloomberg-dark, crypto-neon, modern-light, etc.)
+- **Feature Toggles**: Enable/disable account types and payment methods
+- **Localization**: Default language and available languages
+
+### Customization Methods
+
+#### Method 1: Edit Config File Directly
+
+```bash
+# Edit site-config.yml
+nano site-config.yml
+
+# Example changes:
+# - Update branding.companyName: "My Trading Company"
+# - Update branding.supportEmail: "support@mycompany.com"
+# - Change layout.activeVariant: "crypto-neon"
+# - Disable features.accountTypes.vip.enabled: false
+
+# No restart required - refresh browser to see changes
+```
+
+#### Method 2: Use CLI Tool
+
+The platform includes a command-line tool for safe configuration management:
+
+```bash
+# View current configuration
+node tools/site-customizer/index.cjs audit
+
+# Update company name
+node tools/site-customizer/index.cjs update branding.companyName "My Trading Co"
+
+# Update support email
+node tools/site-customizer/index.cjs update branding.supportEmail "support@example.com"
+
+# Preview all available layout variants
+node tools/site-customizer/index.cjs layout preview
+
+# Change layout variant
+node tools/site-customizer/index.cjs layout select crypto-neon
+
+# Disable a payment method
+node tools/site-customizer/index.cjs update features.paymentMethods.crypto.enabled false
+
+# Enable VIP account type
+node tools/site-customizer/index.cjs update features.accountTypes.vip.visible true
+```
+
+**CLI Features:**
+- Automatic config validation before saving
+- Backup creation on every update
+- Masked output for sensitive values
+- Exit codes for automation (0=success, 1=error, 2=changes detected)
+
+### Available Layout Variants
+
+| Variant Name | Description |
+|--------------|-------------|
+| `bloomberg-dark` | Dark charcoal with professional blue accents (default) |
+| `modern-light` | Clean white with subtle cool grays and vibrant CTAs |
+| `minimalist-corporate` | Ultra-minimal white with navy and gray tones |
+| `crypto-neon` | Dark background with neon green/purple crypto aesthetics |
+| `financial-times` | Newspaper-inspired with sepia tones and serif headers |
+| `nordic-clean` | Light gray with Scandinavian minimalism and blue accents |
+| `charcoal-pro` | Deep charcoal with gold accents for premium feel |
+| `emerald-trader` | Dark teal background with emerald green highlights |
+| `navy-institutional` | Deep navy blue with cream text, institutional look |
+| `sunset-trading` | Warm orange/amber gradients with dark backgrounds |
+| `midnight-premium` | Near-black with subtle purple and silver accents |
+| `arctic-minimal` | Cool blue-grays with ice-blue highlights |
+| `carbon-sleek` | Carbon fiber aesthetic with red danger accents |
+| `sapphire-finance` | Royal blue with gold details, luxury branding |
+| `terracotta-warm` | Warm earth tones with terracotta and cream |
+
+### Docker Customization
+
+#### Option 1: Volume Mount (Recommended)
+
+Mount custom `site-config.yml` as read-only volume in `docker-compose.prod.yml`:
+
+```yaml
+services:
+  app:
+    volumes:
+      - ./my-custom-config.yml:/app/site-config.yml:ro
+```
+
+#### Option 2: Custom Config Path
+
+Use `SITE_CONFIG_PATH` environment variable:
+
+```yaml
+services:
+  app:
+    environment:
+      - SITE_CONFIG_PATH=/app/config/branding.yml
+    volumes:
+      - ./my-branding.yml:/app/config/branding.yml:ro
+```
+
+#### Option 3: Rebuild Image
+
+For permanent customization, edit `site-config.yml` and rebuild:
+
+```bash
+# Edit config
+nano site-config.yml
+
+# Rebuild image
+docker build -t my-trading-platform:custom .
+
+# Update docker-compose.prod.yml image reference
+# Then restart
+docker-compose -f infra/self-host/docker-compose.prod.yml up -d
+```
+
+### Feature Toggle Examples
+
+#### Hide Crypto Payments
+
+```bash
+node tools/site-customizer/index.cjs update features.paymentMethods.crypto.enabled false
+```
+
+Or edit `site-config.yml`:
+```yaml
+features:
+  paymentMethods:
+    crypto:
+      enabled: false  # Hides entire crypto category
+```
+
+#### Show Only Standard and Professional Accounts
+
+```yaml
+features:
+  accountTypes:
+    standard: { enabled: true, visible: true }
+    professional: { enabled: true, visible: true }
+    vip: { enabled: false, visible: false }  # Hidden
+```
+
+#### Disable Specific Payment Sub-Methods
+
+```yaml
+features:
+  paymentMethods:
+    cards:
+      enabled: true
+      visa: true
+      mastercard: true
+      debit: false  # Disable debit cards only
+```
+
+### Testing Layouts
+
+Preview layouts without changing production config:
+
+```bash
+# Preview all variants
+node tools/site-customizer/index.cjs layout preview
+
+# Temporarily switch layout
+node tools/site-customizer/index.cjs layout select midnight-premium
+
+# Refresh browser at https://yoursite.com to see new theme
+# Public pages affected - dashboard remains unchanged
+
+# Switch back
+node tools/site-customizer/index.cjs layout select bloomberg-dark
+```
+
+**Important Notes:**
+- Layout changes apply to **public pages only** (landing, about, contact, etc.)
+- **Dashboard pages remain unchanged** regardless of layout selection
+- No workflow restart required - refresh browser to see changes
+- All layouts are fully responsive and tested across devices
+
+### Branding Best Practices
+
+1. **Company Name**: Keep under 30 characters for mobile nav
+2. **Support Email**: Use dedicated support email, not personal
+3. **Logo**: 
+   - If using custom logo, place in `client/public/assets/logo.png`
+   - Set `branding.logo.path: "/assets/logo.png"`
+   - Recommended size: 120x40px for nav, 200x80px for footer
+4. **Layout Selection**:
+   - Choose layout that matches your brand identity
+   - Test on multiple devices before production
+   - Consider target audience (retail vs institutional)
+
+### Automation Examples
+
+#### Scheduled Layout Rotation
+
+```bash
+#!/bin/bash
+# Rotate through 3 layouts weekly
+WEEK=$(date +%U)
+VARIANTS=("bloomberg-dark" "crypto-neon" "modern-light")
+VARIANT=${VARIANTS[$((WEEK % 3))]}
+
+node tools/site-customizer/index.cjs layout select "$VARIANT"
+```
+
+#### CI/CD Integration
+
+```yaml
+# GitHub Actions example
+- name: Validate site config
+  run: node tools/site-customizer/index.cjs audit
+
+- name: Apply production branding
+  run: |
+    node tools/site-customizer/index.cjs update branding.companyName "${{ secrets.COMPANY_NAME }}"
+    node tools/site-customizer/index.cjs update branding.supportEmail "${{ secrets.SUPPORT_EMAIL }}"
+```
+
 ## Support
 
 For deployment issues:
@@ -285,6 +513,7 @@ For deployment issues:
 - Review [main README](../../README.md) for configuration reference
 - Verify all environment variables are set correctly
 - Test /health endpoint for application status
+- Review `site-config.yml` for branding/layout issues
 
 ---
 

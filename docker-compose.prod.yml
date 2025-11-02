@@ -9,8 +9,14 @@ services:
       - NODE_ENV=production
       - PORT=5000
       - LOG_FORMAT=json
+      # Optional: Override default site config path
+      # - SITE_CONFIG_PATH=/app/custom-config.yml
     env_file:
       - .env
+    # Optional: Mount custom site-config.yml for branding/layout customization
+    volumes:
+      - ./site-config.yml:/app/site-config.yml:ro
+      # Or mount to custom path and set SITE_CONFIG_PATH accordingly
     restart: always
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:5000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); }).on('error', () => process.exit(1));"]

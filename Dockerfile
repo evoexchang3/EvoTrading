@@ -34,6 +34,8 @@ COPY --from=builder /app/client/dist ./client/dist
 # Copy necessary runtime files
 COPY drizzle.config.ts ./
 COPY shared ./shared
+COPY site-config.yml ./
+COPY tools ./tools
 
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
@@ -41,6 +43,9 @@ RUN addgroup -g 1001 -S nodejs && \
     chown -R nodejs:nodejs /app
 
 USER nodejs
+
+# Environment variable for custom config path (default: ./site-config.yml)
+ENV SITE_CONFIG_PATH=/app/site-config.yml
 
 # Expose port (default 5000, configurable via PORT env var)
 EXPOSE 5000
