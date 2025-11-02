@@ -1,0 +1,38 @@
+/* Minimalist Corporate - Ultra-minimal white with navy */
+
+:root[data-layout="minimalist-corporate"] {
+  --background: 0 0% 100%;
+  --foreground: 220 40% 15%;
+  --border: 220 15% 90%;
+  
+  --card: 0 0% 99%;
+  --card-foreground: 220 40% 15%;
+  --card-border: 220 15% 94%;
+  
+  --primary: 220 70% 40%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 220 10% 92%;
+  --secondary-foreground: 220 40% 15%;
+  
+  --muted: 220 10% 94%;
+  --muted-foreground: 220 20% 50%;
+  
+  --accent: 220 15% 90%;
+  --accent-foreground: 220 40% 15%;
+  
+  --destructive: 0 75% 50%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 220 70% 40%;
+  
+  --chart-1: 142 60% 40%;
+  --chart-2: 0 75% 50%;
+  --chart-3: 220 70% 40%;
+  --chart-4: 35 85% 45%;
+  --chart-5: 280 60% 45%;
+  
+  --elevate-1: rgba(0,0,0, .02);
+  --elevate-2: rgba(0,0,0, .05);
+  --opaque-button-border-intensity: -8;
+}

@@ -780,6 +780,31 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Site Configuration endpoint (public)
+  app.get("/api/site-config", async (_req, res) => {
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      const yaml = await import("js-yaml");
+      
+      // Support custom config path via environment variable
+      const configPath = process.env.SITE_CONFIG_PATH || path.resolve(process.cwd(), "site-config.yml");
+      
+      if (!fs.existsSync(configPath)) {
+        console.warn(`Site config not found at ${configPath}, using defaults`);
+        return res.status(404).json({ message: "Site configuration not found" });
+      }
+      
+      const fileContents = fs.readFileSync(configPath, "utf8");
+      const config = yaml.load(fileContents);
+      
+      res.json(config);
+    } catch (error: any) {
+      console.error("Site config load error:", error);
+      res.status(500).json({ message: "Failed to load site configuration" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

@@ -1,0 +1,38 @@
+/* Midnight Premium - Near-black with purple/silver */
+
+:root[data-layout="midnight-premium"] {
+  --background: 240 15% 6%;
+  --foreground: 240 10% 88%;
+  --border: 240 12% 16%;
+  
+  --card: 240 14% 9%;
+  --card-foreground: 240 10% 88%;
+  --card-border: 240 12% 12%;
+  
+  --primary: 270 75% 60%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 240 10% 18%;
+  --secondary-foreground: 240 10% 88%;
+  
+  --muted: 240 12% 16%;
+  --muted-foreground: 240 8% 62%;
+  
+  --accent: 0 0% 70%;
+  --accent-foreground: 240 15% 6%;
+  
+  --destructive: 340 80% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 270 75% 60%;
+  
+  --chart-1: 160 70% 50%;
+  --chart-2: 340 80% 60%;
+  --chart-3: 270 75% 60%;
+  --chart-4: 40 85% 55%;
+  --chart-5: 200 75% 55%;
+  
+  --elevate-1: rgba(180, 120, 255, .05);
+  --elevate-2: rgba(180, 120, 255, .10);
+  --opaque-button-border-intensity: 9;
+}

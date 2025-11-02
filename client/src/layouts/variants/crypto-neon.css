@@ -1,0 +1,38 @@
+/* Crypto Neon - Dark with neon green/purple accents */
+
+:root[data-layout="crypto-neon"] {
+  --background: 240 20% 8%;
+  --foreground: 120 100% 85%;
+  --border: 240 15% 18%;
+  
+  --card: 240 18% 11%;
+  --card-foreground: 120 100% 85%;
+  --card-border: 240 15% 15%;
+  
+  --primary: 280 100% 60%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 240 15% 20%;
+  --secondary-foreground: 120 100% 85%;
+  
+  --muted: 240 15% 18%;
+  --muted-foreground: 120 40% 60%;
+  
+  --accent: 160 100% 45%;
+  --accent-foreground: 240 20% 8%;
+  
+  --destructive: 340 100% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 280 100% 60%;
+  
+  --chart-1: 160 100% 45%;
+  --chart-2: 340 100% 60%;
+  --chart-3: 280 100% 60%;
+  --chart-4: 45 100% 55%;
+  --chart-5: 200 100% 50%;
+  
+  --elevate-1: rgba(128, 255, 128, .06);
+  --elevate-2: rgba(200, 100, 255, .12);
+  --opaque-button-border-intensity: 9;
+}

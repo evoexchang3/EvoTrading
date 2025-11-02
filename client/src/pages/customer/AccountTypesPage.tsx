@@ -4,13 +4,17 @@ import { Check, HelpCircle, ArrowRight, Shield, Zap, TrendingUp } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useSiteConfig } from "@/contexts/SiteConfigContext";
 
 export default function AccountTypesPage() {
   const { t } = useLanguage();
+  const { config, loading } = useSiteConfig();
   
-  const accountTypes = [
+  const allAccountTypes = [
     {
+      id: 'standard',
       name: t('customer.accountTypes.standard.name'),
       description: t('customer.accountTypes.standard.description'),
       minDeposit: t('customer.accountTypes.standard.minDeposit'),
@@ -35,6 +39,7 @@ export default function AccountTypesPage() {
       color: "blue"
     },
     {
+      id: 'professional',
       name: t('customer.accountTypes.professional.name'),
       description: t('customer.accountTypes.professional.description'),
       minDeposit: t('customer.accountTypes.professional.minDeposit'),
@@ -60,6 +65,7 @@ export default function AccountTypesPage() {
       color: "primary"
     },
     {
+      id: 'vip',
       name: t('customer.accountTypes.vip.name'),
       description: t('customer.accountTypes.vip.description'),
       minDeposit: t('customer.accountTypes.vip.minDeposit'),
@@ -87,6 +93,13 @@ export default function AccountTypesPage() {
       color: "amber"
     }
   ];
+
+  const accountTypes = loading 
+    ? allAccountTypes 
+    : allAccountTypes.filter(account => {
+        const accountConfig = config.features?.accountTypes?.[account.id];
+        return accountConfig?.enabled === true && accountConfig?.visible === true;
+      });
 
   const faqs = [
     {
@@ -147,7 +160,17 @@ export default function AccountTypesPage() {
             </div>
           </div>
 
+          {/* No Account Types Message */}
+          {accountTypes.length === 0 && (
+            <Alert className="mb-12">
+              <AlertDescription>
+                <strong>No account types available</strong> - Please contact support for more information about available account options.
+              </AlertDescription>
+            </Alert>
+          )}
+
           {/* Account Cards */}
+          {accountTypes.length > 0 && (
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {accountTypes.map((account) => (
               <Card 
@@ -200,8 +223,10 @@ export default function AccountTypesPage() {
               </Card>
             ))}
           </div>
+          )}
 
           {/* Detailed Comparison Table */}
+          {accountTypes.length > 0 && (
           <Card className="mb-12">
             <CardHeader>
               <CardTitle>{t('customer.accountTypes.comparison.title')}</CardTitle>
@@ -284,8 +309,10 @@ export default function AccountTypesPage() {
               </div>
             </CardContent>
           </Card>
+          )}
 
           {/* Account Selector Guide */}
+          {accountTypes.length > 0 && (
           <Card className="mb-12">
             <CardHeader>
               <CardTitle>{t('customer.accountTypes.selector.title')}</CardTitle>
@@ -328,8 +355,10 @@ export default function AccountTypesPage() {
               </div>
             </CardContent>
           </Card>
+          )}
 
           {/* FAQ Section */}
+          {accountTypes.length > 0 && (
           <Card className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
@@ -350,8 +379,10 @@ export default function AccountTypesPage() {
               </Accordion>
             </CardContent>
           </Card>
+          )}
 
           {/* Next Steps CTA */}
+          {accountTypes.length > 0 && (
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">{t('customer.accountTypes.cta.title')}</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
@@ -372,6 +403,7 @@ export default function AccountTypesPage() {
               <span>✓ {t('customer.accountTypes.cta.freeUpgrade')}</span>
             </div>
           </div>
+          )}
         </div>
       </div>
     </LandingLayout>

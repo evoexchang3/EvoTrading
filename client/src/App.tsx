@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { WebSocketProvider } from "@/contexts/WebSocketContext";
+import { SiteConfigProvider } from "@/contexts/SiteConfigContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { DashboardLayout } from "@/components/DashboardLayout";
 
@@ -229,20 +230,22 @@ function AppRoutes() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <LanguageProvider>
-          <AuthProvider>
-            <WebSocketProvider>
-              <TooltipProvider>
-                <Router>
-                  <Toaster />
-                  <AppRoutes />
-                </Router>
-              </TooltipProvider>
-            </WebSocketProvider>
-          </AuthProvider>
-        </LanguageProvider>
-      </ThemeProvider>
+      <SiteConfigProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <AuthProvider>
+              <WebSocketProvider>
+                <TooltipProvider>
+                  <Router>
+                    <Toaster />
+                    <AppRoutes />
+                  </Router>
+                </TooltipProvider>
+              </WebSocketProvider>
+            </AuthProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+      </SiteConfigProvider>
     </QueryClientProvider>
   );
 }

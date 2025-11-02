@@ -6,18 +6,22 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useSiteConfig } from "@/contexts/SiteConfigContext";
 
 export default function PaymentMethodsPage() {
   const { t } = useLanguage();
+  const { config, loading } = useSiteConfig();
   
-  const paymentMethods = [
+  const allPaymentMethods = [
     {
+      categoryId: 'bankTransfer',
       category: t('customer.paymentMethods.bankTransfer.category'),
       icon: Building2,
       description: t('customer.paymentMethods.bankTransfer.description'),
       recommended: true,
       methods: [
         {
+          id: 'international',
           name: t('customer.paymentMethods.bankTransfer.international.name'),
           processingTime: t('customer.paymentMethods.bankTransfer.international.processingTime'),
           minDeposit: t('customer.paymentMethods.bankTransfer.international.minDeposit'),
@@ -28,6 +32,7 @@ export default function PaymentMethodsPage() {
           security: t('customer.paymentMethods.bankTransfer.international.security')
         },
         {
+          id: 'local',
           name: t('customer.paymentMethods.bankTransfer.local.name'),
           processingTime: t('customer.paymentMethods.bankTransfer.local.processingTime'),
           minDeposit: t('customer.paymentMethods.bankTransfer.local.minDeposit'),
@@ -40,12 +45,14 @@ export default function PaymentMethodsPage() {
       ]
     },
     {
+      categoryId: 'cards',
       category: t('customer.paymentMethods.cards.category'),
       icon: CreditCard,
       description: t('customer.paymentMethods.cards.description'),
       recommended: false,
       methods: [
         {
+          id: 'visa',
           name: t('customer.paymentMethods.cards.visa.name'),
           processingTime: t('customer.paymentMethods.cards.visa.processingTime'),
           minDeposit: t('customer.paymentMethods.cards.visa.minDeposit'),
@@ -56,6 +63,18 @@ export default function PaymentMethodsPage() {
           security: t('customer.paymentMethods.cards.visa.security')
         },
         {
+          id: 'mastercard',
+          name: t('customer.paymentMethods.cards.mastercard.name') || 'Mastercard',
+          processingTime: t('customer.paymentMethods.cards.visa.processingTime'),
+          minDeposit: t('customer.paymentMethods.cards.visa.minDeposit'),
+          maxDeposit: t('customer.paymentMethods.cards.visa.maxDeposit'),
+          fees: t('customer.paymentMethods.cards.visa.fees'),
+          currencies: t('customer.paymentMethods.cards.visa.currencies'),
+          limits: t('customer.paymentMethods.cards.visa.limits'),
+          security: t('customer.paymentMethods.cards.visa.security')
+        },
+        {
+          id: 'debit',
           name: t('customer.paymentMethods.cards.debit.name'),
           processingTime: t('customer.paymentMethods.cards.debit.processingTime'),
           minDeposit: t('customer.paymentMethods.cards.debit.minDeposit'),
@@ -68,12 +87,14 @@ export default function PaymentMethodsPage() {
       ]
     },
     {
+      categoryId: 'ewallets',
       category: t('customer.paymentMethods.ewallets.category'),
       icon: Smartphone,
       description: t('customer.paymentMethods.ewallets.description'),
       recommended: false,
       methods: [
         {
+          id: 'skrill',
           name: t('customer.paymentMethods.ewallets.skrill.name'),
           processingTime: t('customer.paymentMethods.ewallets.skrill.processingTime'),
           minDeposit: t('customer.paymentMethods.ewallets.skrill.minDeposit'),
@@ -84,6 +105,7 @@ export default function PaymentMethodsPage() {
           security: t('customer.paymentMethods.ewallets.skrill.security')
         },
         {
+          id: 'neteller',
           name: t('customer.paymentMethods.ewallets.neteller.name'),
           processingTime: t('customer.paymentMethods.ewallets.neteller.processingTime'),
           minDeposit: t('customer.paymentMethods.ewallets.neteller.minDeposit'),
@@ -94,6 +116,7 @@ export default function PaymentMethodsPage() {
           security: t('customer.paymentMethods.ewallets.neteller.security')
         },
         {
+          id: 'paypal',
           name: t('customer.paymentMethods.ewallets.paypal.name'),
           processingTime: t('customer.paymentMethods.ewallets.paypal.processingTime'),
           minDeposit: t('customer.paymentMethods.ewallets.paypal.minDeposit'),
@@ -106,12 +129,14 @@ export default function PaymentMethodsPage() {
       ]
     },
     {
+      categoryId: 'crypto',
       category: t('customer.paymentMethods.crypto.category'),
       icon: Bitcoin,
       description: t('customer.paymentMethods.crypto.description'),
       recommended: false,
       methods: [
         {
+          id: 'bitcoin',
           name: t('customer.paymentMethods.crypto.bitcoin.name'),
           processingTime: t('customer.paymentMethods.crypto.bitcoin.processingTime'),
           minDeposit: t('customer.paymentMethods.crypto.bitcoin.minDeposit'),
@@ -122,6 +147,7 @@ export default function PaymentMethodsPage() {
           security: t('customer.paymentMethods.crypto.bitcoin.security')
         },
         {
+          id: 'ethereum',
           name: t('customer.paymentMethods.crypto.ethereum.name'),
           processingTime: t('customer.paymentMethods.crypto.ethereum.processingTime'),
           minDeposit: t('customer.paymentMethods.crypto.ethereum.minDeposit'),
@@ -132,6 +158,7 @@ export default function PaymentMethodsPage() {
           security: t('customer.paymentMethods.crypto.ethereum.security')
         },
         {
+          id: 'usdt',
           name: t('customer.paymentMethods.crypto.usdt.name'),
           processingTime: t('customer.paymentMethods.crypto.usdt.processingTime'),
           minDeposit: t('customer.paymentMethods.crypto.usdt.minDeposit'),
@@ -144,6 +171,26 @@ export default function PaymentMethodsPage() {
       ]
     }
   ];
+
+  const paymentMethods = loading 
+    ? allPaymentMethods 
+    : allPaymentMethods
+        .filter(category => {
+          const categoryConfig = config.features?.paymentMethods?.[category.categoryId];
+          return categoryConfig?.enabled === true;
+        })
+        .map(category => {
+          const categoryConfig = config.features?.paymentMethods?.[category.categoryId];
+          const filteredMethods = category.methods.filter(method => {
+            return categoryConfig?.[method.id] === true;
+          });
+          
+          return {
+            ...category,
+            methods: filteredMethods
+          };
+        })
+        .filter(category => category.methods.length > 0);
 
   const faqs = [
     {
@@ -213,7 +260,17 @@ export default function PaymentMethodsPage() {
             </Card>
           </div>
 
+          {/* No Payment Methods Message */}
+          {paymentMethods.length === 0 && (
+            <Alert className="mb-12">
+              <AlertDescription>
+                <strong>No payment methods available</strong> - Please contact support for information about available deposit and withdrawal options.
+              </AlertDescription>
+            </Alert>
+          )}
+
           {/* Payment Methods Details */}
+          {paymentMethods.length > 0 && (
           <div className="space-y-8 mb-12">
             {paymentMethods.map((category) => {
               const Icon = category.icon;
@@ -281,8 +338,10 @@ export default function PaymentMethodsPage() {
               );
             })}
           </div>
+          )}
 
           {/* Step by Step Guide */}
+          {paymentMethods.length > 0 && (
           <Card className="mb-12">
             <CardHeader>
               <CardTitle>📝 {t('customer.paymentMethods.guide.title')}</CardTitle>
@@ -328,8 +387,10 @@ export default function PaymentMethodsPage() {
               </div>
             </CardContent>
           </Card>
+          )}
 
           {/* Important Notices */}
+          {paymentMethods.length > 0 && (
           <div className="space-y-4 mb-12">
             <Alert>
               <Shield className="h-4 w-4" />
@@ -345,8 +406,10 @@ export default function PaymentMethodsPage() {
               </AlertDescription>
             </Alert>
           </div>
+          )}
 
           {/* FAQ Section */}
+          {paymentMethods.length > 0 && (
           <Card className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
@@ -367,8 +430,10 @@ export default function PaymentMethodsPage() {
               </Accordion>
             </CardContent>
           </Card>
+          )}
 
           {/* CTA Section */}
+          {paymentMethods.length > 0 && (
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">{t('customer.paymentMethods.cta.title')}</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
@@ -384,6 +449,7 @@ export default function PaymentMethodsPage() {
               </Button>
             </div>
           </div>
+          )}
         </div>
       </div>
     </LandingLayout>

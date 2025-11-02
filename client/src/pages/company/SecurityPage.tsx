@@ -21,9 +21,13 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useSiteConfig } from "@/contexts/SiteConfigContext";
 
 export default function SecurityPage() {
   const { t } = useLanguage();
+  const { config, loading } = useSiteConfig();
+  
+  const supportEmail = loading ? "support@tradingplatform.com" : (config.branding?.supportEmail || "support@tradingplatform.com");
 
   const stats = [
     {

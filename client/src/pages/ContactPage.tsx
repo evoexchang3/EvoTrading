@@ -13,10 +13,14 @@ import { useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useSiteConfig } from "@/contexts/SiteConfigContext";
 
 export default function ContactPage() {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const { config, loading } = useSiteConfig();
+  
+  const supportEmail = loading ? "support@tradingplatform.com" : (config.branding?.supportEmail || "support@tradingplatform.com");
   
   const contactSchema = z.object({
     name: z.string().min(2, t('contact.form.name.error')),
@@ -187,7 +191,7 @@ export default function ContactPage() {
                   <div>
                     <CardTitle>{t('contact.info.emailSupport.title')}</CardTitle>
                     <CardDescription className="text-base mt-1">
-                      {t('contact.info.emailSupport.value')}
+                      {supportEmail}
                     </CardDescription>
                   </div>
                 </CardHeader>

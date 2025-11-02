@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useEffect } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +21,34 @@ interface LandingLayoutProps {
 export function LandingLayout({ children }: LandingLayoutProps) {
   const [location] = useLocation();
   const { t } = useLanguage();
+  const { config, loading } = useSiteConfig();
+
+  const companyName = loading ? "Trading Platform" : (config.branding?.companyName || "Trading Platform");
+  const supportEmail = loading ? "support@tradingplatform.com" : (config.branding?.supportEmail || "support@tradingplatform.com");
+  const showFooter = loading ? true : (config.layout?.showFooter ?? true);
+  const stickyHeader = loading ? true : (config.layout?.stickyHeader ?? true);
+
+  useEffect(() => {
+    if (loading) return;
+    
+    const variantName = config.layout?.activeVariant || 'bloomberg-dark';
+    
+    const existingLinks = document.querySelectorAll('link[data-layout-variant]');
+    existingLinks.forEach(link => link.remove());
+    
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `/src/layouts/variants/${variantName}.css`;
+    link.setAttribute('data-layout-variant', variantName);
+    document.head.appendChild(link);
+    
+    document.documentElement.setAttribute('data-layout', variantName);
+    
+    return () => {
+      link.remove();
+      document.documentElement.removeAttribute('data-layout');
+    };
+  }, [config.layout?.activeVariant, loading]);
 
   const mainNavigation = [
     { name: t('nav.home'), href: "/", testId: "link-home" },
@@ -29,15 +59,18 @@ export function LandingLayout({ children }: LandingLayoutProps) {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background" data-layout={loading ? undefined : config.layout?.activeVariant}>
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className={cn(
+        "z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        stickyHeader ? "sticky top-0" : ""
+      )}>
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center gap-2 cursor-pointer hover-elevate active-elevate-2 rounded-md px-3 py-2" data-testid="link-home">
               <TrendingUp className="h-6 w-6 text-primary" />
-              <span className="text-lg font-semibold">Trading Platform</span>
+              <span className="text-lg font-semibold">{companyName}</span>
             </div>
           </Link>
 
@@ -84,6 +117,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
+      {showFooter && (
       <footer className="border-t bg-muted/30">
         <div className="container mx-auto px-4 py-12">
           <div className="grid gap-8 md:grid-cols-5">
@@ -91,7 +125,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-primary" />
-                <span className="font-semibold">Trading Platform</span>
+                <span className="font-semibold">{companyName}</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Professional trading platform for forex, crypto, and commodities. Regulated and secure.
@@ -256,7 +290,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
                     </span>
                   </Link>
                 </li>
-                <li>support@tradingplatform.com</li>
+                <li>{supportEmail}</li>
                 <li>24/7 Customer Support</li>
               </ul>
             </div>
@@ -265,7 +299,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
           {/* Bottom Bar */}
           <div className="mt-8 border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2025 Trading Platform. All rights reserved.
+              © 2025 {companyName}. All rights reserved.
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <span className="flex items-center gap-1">
@@ -278,6 +312,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
           </div>
         </div>
       </footer>
+      )}
     </div>
   );
 }
