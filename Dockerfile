@@ -29,7 +29,6 @@ RUN npm ci --only=production && npm cache clean --force
 
 # Copy built artifacts from builder
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/client/dist ./client/dist
 
 # Copy necessary runtime files
 COPY drizzle.config.ts ./
