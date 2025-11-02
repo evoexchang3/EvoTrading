@@ -123,6 +123,207 @@ docker-compose -f infra/self-host/docker-compose.prod.yml logs -f
 sudo journalctl -u caddy -f
 ```
 
+---
+
+## Enterprise Features
+
+### 1. Admin Web UI for Configuration Management
+
+The platform includes a comprehensive admin UI for runtime configuration changes without code modifications or redeployments.
+
+**Accessing the Admin UI:**
+1. Log in to the platform with an admin account
+2. Navigate to `https://<YOUR_DOMAIN>/admin/config`
+3. Use the tabbed interface to modify configuration
+
+**Admin UI Features:**
+
+| Tab | Purpose | Capabilities |
+|-----|---------|-------------|
+| **Branding** | Global branding | Update company name, support email |
+| **Layout** | Visual theming | Select from 15 pre-built layout variants with live preview |
+| **Features** | Feature toggles | Enable/disable account types, payment methods |
+| **Languages** | Multi-regional | Override company name/email per language |
+
+**Creating Admin Users:**
+
+Connect to your database and update the user role:
+
+```sql
+-- Make a user an admin
+UPDATE clients SET role = 'admin' WHERE email = 'admin@example.com';
+```
+
+**Security:**
+- Admin endpoints require authentication via JWT
+- Role-based access control (`role = 'admin'` required)
+- All configuration changes logged to audit trail
+- Automatic backup created before each update (`site-config.backup.yml`)
+
+**How It Works:**
+1. Admin modifies configuration via web UI
+2. PUT request to `/api/admin/site-config` with validation
+3. Backup created automatically
+4. Configuration saved to `site-config.yml`
+5. Application reloads config without restart
+6. Changes apply immediately to all users
+
+### 2. CI/CD Automated Validation
+
+Continuous integration workflows validate configuration changes before deployment.
+
+**GitHub Actions Workflow:** `.github/workflows/validate-site-config.yml`
+
+**Validation Jobs:**
+
+| Job | Validates |
+|-----|-----------|
+| **validate-config** | YAML syntax, required fields (companyName, supportEmail, activeVariant) |
+| **validate-layouts** | All 15 layout CSS files exist, CSS syntax is valid, activeVariant file exists |
+| **validate-language-overrides** | Override language codes match enabled languages |
+| **security-check** | No sensitive data committed, email format validation |
+
+**Trigger Conditions:**
+- Push to `main` or `develop` branches
+- Changes to `site-config.yml`
+- Changes to `client/public/layouts/variants/**`
+- Pull requests targeting `main` or `develop`
+
+**Setting Up CI/CD:**
+
+1. **GitHub Actions** (automated):
+   - Workflows run automatically on push/PR
+   - No setup required if using GitHub
+
+2. **GitLab CI** (manual):
+   ```yaml
+   # .gitlab-ci.yml
+   validate-config:
+     image: node:20
+     script:
+       - npm ci
+       - node tools/site-customizer/index.cjs audit
+       - chmod +x .github/workflows/validate-site-config.yml
+   ```
+
+3. **Pre-commit Hook** (local validation):
+   ```bash
+   # .git/hooks/pre-commit
+   #!/bin/bash
+   node tools/site-customizer/index.cjs audit || exit 1
+   ```
+
+**Failed Validation Response:**
+- PR blocked until issues resolved
+- Error messages show specific problems
+- Common issues: missing CSS files, invalid YAML, undefined language codes
+
+### 3. Per-Language Branding Overrides
+
+Support multi-regional deployments with language-specific company names and support emails.
+
+**Use Cases:**
+- **Regional Subsidiaries:** Show "TradePro Japan" for Japanese users, "TradePro Europe" for German users
+- **Localized Support:** Provide region-specific support emails (support-asia@, support-eu@)
+- **Regulatory Compliance:** Display correct legal entity name based on user's region
+- **Brand Variants:** Use different brand names in different markets
+
+**Configuration Structure:**
+
+```yaml
+branding:
+  companyName: "Global Trading Platform"  # Default fallback
+  supportEmail: "support@example.com"     # Default fallback
+  
+  # Language-specific overrides
+  languageOverrides:
+    zh-CN:
+      companyName: "全球交易平台"
+      supportEmail: "support-cn@example.com"
+    ja:
+      companyName: "グローバルトレーディング"
+      supportEmail: "support-jp@example.com"
+    de:
+      companyName: "Globale Handelsplattform GmbH"
+      supportEmail: "support-de@example.com"
+    fr:
+      companyName: "Plateforme de Trading Mondiale"
+      supportEmail: "support-fr@example.com"
+    es:
+      companyName: "Plataforma de Trading Global"
+      supportEmail: "support-es@example.com"
+    ar:
+      companyName: "منصة التداول العالمية"
+      supportEmail: "support-ar@example.com"
+    ru:
+      companyName: "Глобальная Торговая Платформа"
+      supportEmail: "support-ru@example.com"
+    pt:
+      companyName: "Plataforma de Negociação Global"
+      supportEmail: "support-pt@example.com"
+```
+
+**How Language Override Resolution Works:**
+
+1. User selects language in UI (or browser detection)
+2. `getBranding(language)` checks for language-specific override
+3. If override exists for that language → use override values
+4. If no override → fall back to default branding
+5. Company name and support email dynamically updated throughout UI
+
+**Components Using Localized Branding:**
+- Contact page (support email)
+- Footer (company name, copyright)
+- Headers (brand display)
+- Email templates
+- Legal documents
+
+**Updating via Admin UI:**
+1. Navigate to **Languages** tab in Admin Config UI
+2. Expand language section (e.g., "Chinese (Simplified)")
+3. Enter company name and/or support email
+4. Leave fields empty to use defaults
+5. Save configuration
+
+**Updating via CLI:**
+```bash
+# Update Chinese company name
+node tools/site-customizer/index.cjs update \
+  branding.languageOverrides.zh-CN.companyName "全球交易平台"
+
+# Update Japanese support email
+node tools/site-customizer/index.cjs update \
+  branding.languageOverrides.ja.supportEmail "support-jp@example.com"
+
+# Audit configuration
+node tools/site-customizer/index.cjs audit
+```
+
+**Testing Language Overrides:**
+```bash
+# 1. Update configuration with language override
+# 2. Switch language in UI
+# 3. Verify company name changes in footer
+# 4. Check contact page shows correct support email
+```
+
+**Production Deployment Workflow:**
+```bash
+# Development environment
+1. Update site-config.yml with language overrides
+2. Commit changes → CI validates overrides match enabled languages
+3. PR approved → merge to main
+4. Deploy to production
+
+# Production runtime (no deployment needed)
+1. Admin logs into /admin/config
+2. Updates language overrides in Languages tab
+3. Saves → immediate effect for all users
+4. CI validates on next deployment
+```
+
+---
+
 ## Configuration
 
 ### Environment Variables

@@ -20,11 +20,15 @@ interface LandingLayoutProps {
 
 export function LandingLayout({ children }: LandingLayoutProps) {
   const [location] = useLocation();
-  const { t } = useLanguage();
-  const { config, loading } = useSiteConfig();
+  const { t, language } = useLanguage();
+  const { config, loading, getBranding } = useSiteConfig();
 
-  const companyName = loading ? "Trading Platform" : (config.branding?.companyName || "Trading Platform");
-  const supportEmail = loading ? "support@tradingplatform.com" : (config.branding?.supportEmail || "support@tradingplatform.com");
+  const branding = loading 
+    ? { companyName: "Trading Platform", supportEmail: "support@tradingplatform.com" }
+    : getBranding(language);
+  
+  const companyName = branding.companyName;
+  const supportEmail = branding.supportEmail;
   const showFooter = loading ? true : (config.layout?.showFooter ?? true);
   const stickyHeader = loading ? true : (config.layout?.stickyHeader ?? true);
 
