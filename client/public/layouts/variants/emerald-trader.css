@@ -1,0 +1,38 @@
+/* Emerald Trader - Dark teal with emerald green */
+
+:root[data-layout="emerald-trader"] {
+  --background: 180 25% 10%;
+  --foreground: 160 60% 85%;
+  --border: 180 20% 20%;
+  
+  --card: 180 22% 13%;
+  --card-foreground: 160 60% 85%;
+  --card-border: 180 20% 16%;
+  
+  --primary: 160 80% 45%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 180 18% 22%;
+  --secondary-foreground: 160 60% 85%;
+  
+  --muted: 180 20% 20%;
+  --muted-foreground: 160 30% 60%;
+  
+  --accent: 160 70% 35%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 75% 55%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 160 80% 45%;
+  
+  --chart-1: 160 80% 45%;
+  --chart-2: 0 75% 55%;
+  --chart-3: 200 70% 50%;
+  --chart-4: 40 85% 50%;
+  --chart-5: 280 70% 55%;
+  
+  --elevate-1: rgba(52, 211, 153, .06);
+  --elevate-2: rgba(52, 211, 153, .12);
+  --opaque-button-border-intensity: 9;
+}

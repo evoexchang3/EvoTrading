@@ -478,6 +478,10 @@ node tools/site-customizer/index.cjs layout select bloomberg-dark
    - Choose layout that matches your brand identity
    - Test on multiple devices before production
    - Consider target audience (retail vs institutional)
+5. **Custom Layout Variants**:
+   - Layout CSS files are served from `client/public/layouts/variants/`
+   - Source files maintained in `client/src/layouts/variants/` for version control
+   - To add custom variant: create CSS file in public directory, add to variant list in CLI tool
 
 ### Automation Examples
 

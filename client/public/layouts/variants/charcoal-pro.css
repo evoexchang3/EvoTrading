@@ -1,0 +1,38 @@
+/* Charcoal Pro - Deep charcoal with gold accents */
+
+:root[data-layout="charcoal-pro"] {
+  --background: 0 0% 12%;
+  --foreground: 0 0% 92%;
+  --border: 0 0% 22%;
+  
+  --card: 0 0% 15%;
+  --card-foreground: 0 0% 92%;
+  --card-border: 0 0% 18%;
+  
+  --primary: 45 100% 55%;
+  --primary-foreground: 0 0% 10%;
+  
+  --secondary: 0 0% 24%;
+  --secondary-foreground: 0 0% 92%;
+  
+  --muted: 0 0% 22%;
+  --muted-foreground: 0 0% 65%;
+  
+  --accent: 0 0% 26%;
+  --accent-foreground: 45 100% 55%;
+  
+  --destructive: 0 80% 58%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 45 100% 55%;
+  
+  --chart-1: 120 60% 50%;
+  --chart-2: 0 80% 58%;
+  --chart-3: 45 100% 55%;
+  --chart-4: 35 90% 52%;
+  --chart-5: 280 70% 58%;
+  
+  --elevate-1: rgba(255, 255, 255, .04);
+  --elevate-2: rgba(255, 215, 0, .08);
+  --opaque-button-border-intensity: 9;
+}

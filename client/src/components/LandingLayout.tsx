@@ -38,7 +38,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
     
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `/src/layouts/variants/${variantName}.css`;
+    link.href = `/layouts/variants/${variantName}.css`;
     link.setAttribute('data-layout-variant', variantName);
     document.head.appendChild(link);
     

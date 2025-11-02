@@ -1,0 +1,38 @@
+/* Carbon Sleek - Carbon fiber aesthetic with red */
+
+:root[data-layout="carbon-sleek"] {
+  --background: 0 0% 8%;
+  --foreground: 0 0% 90%;
+  --border: 0 0% 18%;
+  
+  --card: 0 0% 11%;
+  --card-foreground: 0 0% 90%;
+  --card-border: 0 0% 14%;
+  
+  --primary: 0 85% 55%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 0 0% 20%;
+  --secondary-foreground: 0 0% 90%;
+  
+  --muted: 0 0% 18%;
+  --muted-foreground: 0 0% 64%;
+  
+  --accent: 0 0% 22%;
+  --accent-foreground: 0 85% 55%;
+  
+  --destructive: 0 90% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 0 85% 55%;
+  
+  --chart-1: 120 65% 48%;
+  --chart-2: 0 90% 60%;
+  --chart-3: 210 70% 52%;
+  --chart-4: 45 88% 52%;
+  --chart-5: 280 70% 56%;
+  
+  --elevate-1: rgba(255, 255, 255, .04);
+  --elevate-2: rgba(255, 50, 50, .08);
+  --opaque-button-border-intensity: 9;
+}
