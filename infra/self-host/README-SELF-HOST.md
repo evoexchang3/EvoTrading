@@ -480,8 +480,8 @@ node tools/site-customizer/index.cjs layout select bloomberg-dark
    - Consider target audience (retail vs institutional)
 5. **Custom Layout Variants**:
    - Layout CSS files are served from `client/public/layouts/variants/`
-   - Source files maintained in `client/src/layouts/variants/` for version control
-   - To add custom variant: create CSS file in public directory, add to variant list in CLI tool
+   - To add custom variant: create CSS file in `client/public/layouts/variants/`, add variant name to whitelist in `tools/site-customizer/index.cjs`
+   - CSS files use CSS variables to override theme colors (see existing variants for examples)
 
 ### Automation Examples
 

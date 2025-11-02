@@ -1,7 +1,0 @@
-/* Bloomberg Dark - Professional charcoal with blue accents (default) */
-/* This is the default theme, matches existing index.css dark mode */
-
-:root[data-layout="bloomberg-dark"] {
-  /* This layout uses the existing dark mode variables from index.css */
-  /* No overrides needed - just apply dark class to document.documentElement */
-}
