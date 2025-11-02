@@ -1,0 +1,153 @@
+# Trading Platform Site Configuration
+# This file controls branding, features, and layout for the public-facing website.
+# Dashboard pages remain unchanged regardless of these settings.
+# 
+# Self-hosting: Mount this file as a volume in Docker or set SITE_CONFIG_PATH env var
+# CLI Tool: Use tools/site-customizer/index.cjs to audit/update/preview changes
+
+version: 1.0.0
+
+# ===== BRANDING =====
+branding:
+  # Company/Platform Name (displayed in headers, footers, page titles)
+  companyName: "Trading Platform"
+  
+  # Support/Contact Email (shown on contact page, security page, footer)
+  supportEmail: "support@tradingplatform.com"
+  
+  # Logo Configuration
+  # If logoPath is empty/null, displays icon + companyName
+  # If logoPath is set, displays image from public assets
+  logo:
+    enabled: true
+    path: ""  # Empty = use default icon + text, or specify: "/assets/logo.png"
+    altText: "Trading Platform Logo"
+  
+  # Footer Configuration
+  copyright:
+    year: 2025
+    text: "© {{year}} {{companyName}}. All rights reserved."
+  
+  # Social Media Links (optional - leave empty to hide)
+  social:
+    twitter: ""
+    linkedin: ""
+    facebook: ""
+    instagram: ""
+
+# ===== LAYOUT & THEME =====
+layout:
+  # Active layout variant (applies to public pages only, not dashboard)
+  # Available: bloomberg-dark, modern-light, minimalist-corporate, crypto-neon, 
+  #            financial-times, nordic-clean, charcoal-pro, emerald-trader, 
+  #            navy-institutional, sunset-trading, midnight-premium, 
+  #            arctic-minimal, carbon-sleek, sapphire-finance, terracotta-warm
+  activeVariant: "bloomberg-dark"
+  
+  # Layout behavior
+  stickyHeader: true
+  showFooter: true
+  compactMode: false  # Dense spacing for information-heavy layouts
+
+# ===== FEATURE TOGGLES =====
+features:
+  # Account Types - Set enabled: false to hide from public account types page
+  accountTypes:
+    standard:
+      enabled: true
+      visible: true  # Show on account types comparison page
+    professional:
+      enabled: true
+      visible: true
+    vip:
+      enabled: true
+      visible: true
+  
+  # Payment Methods - Set enabled: false to hide from payment methods page
+  paymentMethods:
+    bankTransfer:
+      enabled: true
+      international: true
+      local: true
+    cards:
+      enabled: true
+      visa: true
+      mastercard: true
+      debit: true
+    ewallets:
+      enabled: true
+      skrill: true
+      neteller: true
+      paypal: true
+    crypto:
+      enabled: true
+      bitcoin: true
+      ethereum: true
+      usdt: true
+  
+  # Public Pages - Toggle visibility of entire pages
+  publicPages:
+    partners: true
+    education: true
+    marketInfo: true
+    companyInfo: true
+
+# ===== LOCALIZATION =====
+localization:
+  # Default language (must match translation files in client/src/translations/)
+  defaultLanguage: "en"
+  
+  # Available languages (show/hide in language switcher)
+  enabledLanguages:
+    - "en"
+    - "zh-CN"
+    - "ja"
+    - "de"
+    - "fr"
+    - "es"
+    - "ar"
+    - "ru"
+    - "pt"
+
+# ===== TRADING CONFIGURATION =====
+# These don't affect UI display, but document platform capabilities
+trading:
+  # Documented for transparency - actual limits enforced by backend
+  leverage:
+    standard: "1:100"
+    professional: "1:200"
+    vip: "1:400"
+  
+  minDeposit:
+    standard: 100
+    professional: 5000
+    vip: 25000
+  
+  # Asset classes available on platform
+  assetClasses:
+    forex: true
+    crypto: true
+    commodities: true
+    indices: false
+    stocks: false
+
+# ===== METADATA =====
+metadata:
+  # SEO defaults for public pages (can be overridden per page)
+  defaultTitle: "Trading Platform - Forex, Crypto & Commodities Trading"
+  defaultDescription: "Professional trading platform for forex, cryptocurrencies, and commodities. Advanced charting, real-time data, and institutional-grade execution."
+  defaultKeywords: "forex trading, crypto trading, commodities, CFD trading, online broker"
+  
+  # Open Graph defaults
+  ogImage: "/assets/og-image.png"
+  ogType: "website"
+
+# ===== ADVANCED =====
+advanced:
+  # Custom CSS injection (relative to client/src/layouts/custom/)
+  customCSS: ""
+  
+  # Feature flags for experimental features
+  experimental:
+    customThemeEditor: false
+    advancedLayoutBuilder: false
