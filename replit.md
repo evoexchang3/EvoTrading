@@ -19,12 +19,15 @@ Preferred communication style: Simple, everyday language.
 **Design System:** Dark mode, Bloomberg Terminal-inspired density, HSL-based semantic trading colors.
 **Internationalization (i18n):** Custom context-based system with 9 languages, browser detection, persistent preference, and RTL support.
 **Runtime Customization:** `site-config.yml` for branding, layout variants (15 themes), and feature toggles, integrated via `SiteConfigContext`.
+**Per-Language Branding:** Language-specific overrides for company name and support email via `getBranding(language)` function, enabling multi-regional deployments with localized branding.
+**Admin Configuration UI:** Web-based admin interface at `/admin/config` for runtime configuration management (branding, layouts, features, language overrides) without code changes or redeployment.
 
 ### Backend Architecture
 
 **Technology Stack:** Node.js (TypeScript), Express.js, WebSocket (ws library), Drizzle ORM.
 **Authentication & Security:** JWT-based with access/refresh tokens, bcrypt hashing, session management with audit logging, optional TOTP 2FA.
 **API Architecture:** RESTful, Zod for validation, standardized error handling, authentication middleware, audit logging.
+**Admin API:** Role-based admin endpoints (GET/PUT `/api/admin/site-config`) with JWT authentication, YAML validation, automatic backup, and comprehensive audit logging.
 **Trading Engine:** In-memory simulated order execution supporting various order types (Market, Limit, Stop, Stop-Limit), real-time P/L, TP/SL, margin/leverage calculations, partial close, and a full audit trail.
 **Market Data Integration:** Twelve Data API for quotes, WebSocket for real-time streaming, REST for historical data with caching and automatic fallback.
 **Webhook Integration:** Comprehensive notifications for trading and funding events (`order.placed`, `order.executed`, `position.opened`, `position.closed`, `deposit.completed`, `withdrawal.completed`).
@@ -48,3 +51,48 @@ Preferred communication style: Simple, everyday language.
 - **Marketaux Pro:** For enhanced news coverage, sentiment analysis, and entity metadata for various asset classes.
 **Economic Calendar Data:**
 - **EODHD:** Provides economic calendar event data.
+
+## Enterprise Features (November 2025)
+
+The platform includes three major enterprise enhancements for production deployments:
+
+### 1. Admin Web UI for Configuration Management
+**Purpose:** Runtime configuration changes without code modifications or redeployment.
+**Access:** `/admin/config` (requires `role='admin'`)
+**Features:**
+- **Branding Tab:** Update company name and support email
+- **Layout Tab:** Select from 15 pre-built layout variants with live preview
+- **Features Tab:** Toggle account types (Standard, Professional, VIP) and payment methods
+- **Languages Tab:** Configure per-language branding overrides for multi-regional deployments
+**Security:** JWT authentication + role-based access control, automatic YAML backup before updates, comprehensive audit logging
+**API Endpoints:** GET/PUT `/api/admin/site-config` with schema validation and error handling
+
+### 2. CI/CD Automated Validation
+**Purpose:** Continuous integration workflows to validate configuration changes before deployment.
+**Workflow:** `.github/workflows/validate-site-config.yml`
+**Validation Jobs:**
+- **validate-config:** YAML syntax, required fields (companyName, supportEmail, activeVariant)
+- **validate-layouts:** All 15 layout CSS files exist and are non-empty, activeVariant file verification
+- **validate-language-overrides:** Language codes match enabled languages in config
+- **security-check:** Sensitive data patterns, email format validation
+**Triggers:** Push to main/develop, changes to site-config.yml or layout CSS files, pull requests
+**Benefits:** Prevents deployment of invalid configurations, automated quality gates, comprehensive validation reporting
+
+### 3. Per-Language Branding Overrides
+**Purpose:** Support multi-regional deployments with language-specific company names and support emails.
+**Implementation:** `branding.languageOverrides` in `site-config.yml`, `getBranding(language)` context function
+**Supported Languages:** 8 non-English languages (Chinese, Japanese, German, French, Spanish, Arabic, Russian, Portuguese)
+**Use Cases:**
+- Regional subsidiaries with different legal entity names
+- Localized support emails per region (e.g., support-cn@, support-eu@)
+- Regulatory compliance (correct legal entity display based on user's region)
+- Brand variants for different markets
+**Integration:** LandingLayout and other components automatically use `getBranding(currentLanguage)` to display localized branding
+**CLI Support:** Update language overrides via `node tools/site-customizer/index.cjs update branding.languageOverrides.zh-CN.companyName "公司名"`
+
+**Architecture Decision (November 2025):**
+- Added `role` field to `clients` table (enum: 'client' | 'admin') with default 'client'
+- Extended `AuthRequest` interface to include full user object with role
+- Created `requireAdmin` middleware for admin-only endpoints
+- SiteConfigContext provides `getBranding(language)` function that merges language-specific overrides with default branding
+- Layout variants served from `client/public/layouts/variants/` for Vite production build compatibility (moved from `src/` to fix 404 errors in production builds)
