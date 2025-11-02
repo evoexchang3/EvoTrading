@@ -1,0 +1,66 @@
+
+Title: Read-only self-hosting audit — report only, no changes
+
+Mode (HARD RULES):
+	•	❌ Do not create/modify/delete any files.
+	•	❌ Do not run git commands that change history or open issues/PRs.
+	•	❌ Do not call any external APIs that create resources.
+	•	✅ Only read the repository and print a report in this chat/console.
+
+Goal: Tell us exactly what would be required to host/run this project on our own single server (Ubuntu 24.04 LTS) — purely informational.
+
+⸻
+
+Tasks (read-only)
+	1.	Detect stack & entry
+	•	Language/runtime & versions required.
+	•	Package manager(s).
+	•	App entry point & start command(s) (dev vs prod).
+	•	Whether server binds to 0.0.0.0 and respects PORT.
+	•	Whether a /health endpoint exists (path/method).
+	2.	Config & secrets
+	•	List all environment variables referenced (name, purpose, required at boot?).
+	•	Note if any secrets appear hard-coded (just flag; no edits).
+	•	List third-party services/keys the app expects.
+	3.	Services & storage
+	•	Databases (e.g., Postgres/MySQL), caches (Redis), queues, brokers, jobs/cron, WebSockets.
+	•	Migration tools present (e.g., Prisma/Sequelize/Alembic).
+	•	File storage expectations (local folders, object storage) and any persistent volume paths.
+	4.	Containerization status
+	•	Is there a Dockerfile? Does it appear buildable (state why)?
+	•	Is there a docker-compose file? Summarize services, ports, volumes, healthchecks.
+	•	Any gaps for production (e.g., no healthcheck, dev server only, writes to container FS).
+	5.	CI/CD & artifacts
+	•	Any GitHub Actions? What they do.
+	•	Any image publishing to a registry (GHCR/Docker Hub)? If not, note as missing.
+	6.	Operational considerations (own server)
+	•	Reverse proxy need (Caddy/Traefik/Nginx) and likely target port.
+	•	TLS (Let’s Encrypt) suitability.
+	•	Logging (stdout/stderr), graceful shutdown (SIGTERM), CORS/rate limiting notes.
+	•	Background workers/cron: how they should run (separate process?).
+	•	Static files: who serves them (app vs proxy).
+	7.	Gaps & risks
+	•	Concrete blockers for single-VM production and why (bullet list).
+	•	“Nice-to-have” items for stability/maintainability.
+	8.	Hypothetical runbook (informational only; no execution)
+	•	Minimal steps we’d follow on Ubuntu 24.04 to run it (packages, docker, compose, reverse proxy, env placement).
+	•	Exact ports expected and healthcheck endpoint to monitor.
+	•	Zero-downtime update approach in plain language.
+
+⸻
+
+Output format (print to chat/console)
+
+Self-hosting Readiness Report (READ-ONLY)
+	1.	Executive Summary — Ready / Nearly Ready / Not Ready (3–5 bullets).
+	2.	Detected Stack — runtime, package manager, entry, start command, PORT/0.0.0.0, /health.
+	3.	Environment Variables Table — NAME | Purpose | Required at boot | Default (if any).
+	4.	Services & Storage — DB/cache/queues/migrations/uploads.
+	5.	Containerization & Compose — what exists, what’s missing.
+	6.	CI/CD & Registry — current state, gaps.
+	7.	Ops Considerations — proxy/TLS/logs/shutdown/CORS/workers.
+	8.	Gaps & Risks — bullets with impact.
+	9.	Hypothetical Runbook — step outline for a single VM (no commands executed).
+	10.	Appendix — file paths inspected, assumptions, warnings.
+
+Reminder: This task is information-only. Do not create or modify any files, branches, issues, or PRs. Do not post anything to GitHub.
