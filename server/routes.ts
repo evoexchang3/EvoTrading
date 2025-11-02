@@ -10,6 +10,7 @@ import { economicService } from "./services/economic.service";
 import { newsService } from "./services/news.service";
 import { courseService } from "./services/course.service";
 import { authenticateToken, type AuthRequest } from "./middleware/auth.middleware";
+import type { Response, NextFunction } from "express";
 import { 
   registerSchema, 
   loginSchema, 
@@ -18,6 +19,16 @@ import {
 } from "@shared/schema";
 import { clients, accounts, transactions, kycDocuments, userPreferences } from "@shared/schema";
 import { eq } from "drizzle-orm";
+
+function requireAdmin(req: AuthRequest, res: Response, next: NextFunction) {
+  if (!req.user) {
+    return res.status(401).json({ message: 'Authentication required' });
+  }
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: 'Admin access required' });
+  }
+  next();
+}
 
 export function registerRoutes(app: Express): Server {
   // Auth routes
@@ -802,6 +813,101 @@ export function registerRoutes(app: Express): Server {
     } catch (error: any) {
       console.error("Site config load error:", error);
       res.status(500).json({ message: "Failed to load site configuration" });
+    }
+  });
+
+  // Admin Site Configuration endpoints
+  app.get("/api/admin/site-config", authenticateToken, requireAdmin, async (req: AuthRequest, res) => {
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      const yaml = await import("js-yaml");
+      
+      const configPath = process.env.SITE_CONFIG_PATH || path.resolve(process.cwd(), "site-config.yml");
+      
+      if (!fs.existsSync(configPath)) {
+        return res.status(404).json({ message: "Site configuration not found" });
+      }
+      
+      const fileContents = fs.readFileSync(configPath, "utf8");
+      const config = yaml.load(fileContents);
+      
+      await AuditService.log({
+        userId: req.user!.id,
+        action: "export",
+        entity: "site_config",
+        entityId: "site-config.yml",
+        details: { action: "view_site_config" },
+        ipAddress: req.ip,
+        userAgent: req.headers['user-agent'],
+      });
+      
+      res.json(config);
+    } catch (error: any) {
+      console.error("Admin site config load error:", error);
+      res.status(500).json({ message: "Failed to load site configuration" });
+    }
+  });
+
+  app.put("/api/admin/site-config", authenticateToken, requireAdmin, async (req: AuthRequest, res) => {
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      const yaml = await import("js-yaml");
+      
+      const configPath = process.env.SITE_CONFIG_PATH || path.resolve(process.cwd(), "site-config.yml");
+      const backupPath = process.env.SITE_CONFIG_PATH 
+        ? path.dirname(process.env.SITE_CONFIG_PATH) + '/site-config.backup.yml'
+        : path.resolve(process.cwd(), "site-config.backup.yml");
+      
+      const newConfig = req.body;
+      
+      // Validate configuration structure - check for required fields
+      if (!newConfig.version) {
+        return res.status(400).json({ message: "Missing required field: version" });
+      }
+      if (!newConfig.branding || !newConfig.branding.companyName) {
+        return res.status(400).json({ message: "Missing required field: branding.companyName" });
+      }
+      if (!newConfig.localization || !newConfig.localization.defaultLanguage) {
+        return res.status(400).json({ message: "Missing required field: localization.defaultLanguage" });
+      }
+      
+      // Create backup of current config before updating
+      if (fs.existsSync(configPath)) {
+        const currentConfig = fs.readFileSync(configPath, "utf8");
+        fs.writeFileSync(backupPath, currentConfig, "utf8");
+      }
+      
+      // Write new config to SITE_CONFIG_PATH
+      const yamlContent = yaml.dump(newConfig, {
+        indent: 2,
+        lineWidth: 100,
+        noRefs: true,
+      });
+      
+      fs.writeFileSync(configPath, yamlContent, "utf8");
+      
+      // Log admin config change to audit log
+      await AuditService.log({
+        userId: req.user!.id,
+        action: "import",
+        entity: "site_config",
+        entityId: "site-config.yml",
+        details: { 
+          action: "update_site_config",
+          changes: newConfig,
+          backupCreated: true,
+          backupPath,
+        },
+        ipAddress: req.ip,
+        userAgent: req.headers['user-agent'],
+      });
+      
+      res.json(newConfig);
+    } catch (error: any) {
+      console.error("Admin site config update error:", error);
+      res.status(500).json({ message: "Failed to update site configuration" });
     }
   });
 

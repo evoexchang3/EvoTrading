@@ -21,6 +21,12 @@ export interface SiteConfig {
       facebook: string;
       instagram: string;
     };
+    languageOverrides?: {
+      [langCode: string]: {
+        companyName?: string;
+        supportEmail?: string;
+      };
+    };
   };
   layout: {
     activeVariant: string;
@@ -177,6 +183,10 @@ interface SiteConfigContextType {
   loading: boolean;
   error: string | null;
   reloadConfig: () => Promise<void>;
+  getBranding: (language?: string) => {
+    companyName: string;
+    supportEmail: string;
+  };
 }
 
 const SiteConfigContext = createContext<SiteConfigContextType | undefined>(undefined);
@@ -212,8 +222,29 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
     loadConfig();
   }, []);
 
+  const getBranding = (language?: string) => {
+    const defaultBranding = {
+      companyName: config.branding.companyName,
+      supportEmail: config.branding.supportEmail
+    };
+
+    if (!language || !config.branding.languageOverrides) {
+      return defaultBranding;
+    }
+
+    const override = config.branding.languageOverrides[language];
+    if (!override) {
+      return defaultBranding;
+    }
+
+    return {
+      companyName: override.companyName || defaultBranding.companyName,
+      supportEmail: override.supportEmail || defaultBranding.supportEmail
+    };
+  };
+
   return (
-    <SiteConfigContext.Provider value={{ config, loading, error, reloadConfig: loadConfig }}>
+    <SiteConfigContext.Provider value={{ config, loading, error, reloadConfig: loadConfig, getBranding }}>
       {children}
     </SiteConfigContext.Provider>
   );

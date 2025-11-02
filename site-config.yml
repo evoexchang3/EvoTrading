@@ -14,6 +14,31 @@ branding:
     linkedin: ''
     facebook: ''
     instagram: ''
+  languageOverrides:
+    zh-CN:
+      companyName: ''
+      supportEmail: ''
+    ja:
+      companyName: ''
+      supportEmail: ''
+    de:
+      companyName: ''
+      supportEmail: ''
+    fr:
+      companyName: ''
+      supportEmail: ''
+    es:
+      companyName: ''
+      supportEmail: ''
+    ar:
+      companyName: ''
+      supportEmail: ''
+    ru:
+      companyName: ''
+      supportEmail: ''
+    pt:
+      companyName: ''
+      supportEmail: ''
 layout:
   activeVariant: bloomberg-dark
   stickyHeader: true

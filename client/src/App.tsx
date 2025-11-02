@@ -68,6 +68,9 @@ import ComplaintsPage from "@/pages/company/ComplaintsPage";
 import PlatformStatusPage from "@/pages/company/PlatformStatusPage";
 import SecurityPageCompany from "@/pages/company/SecurityPage";
 
+// Admin Pages
+import AdminConfigPage from "@/pages/admin/AdminConfigPage";
+
 function AppRoutes() {
   return (
     <>
@@ -217,6 +220,13 @@ function AppRoutes() {
       <Route path="/learn/glossary">
         <ProtectedRoute>
           <GlossaryPage />
+        </ProtectedRoute>
+      </Route>
+
+      {/* Admin - Protected (Admin Only) */}
+      <Route path="/admin/config">
+        <ProtectedRoute>
+          <AdminConfigPage />
         </ProtectedRoute>
       </Route>
 

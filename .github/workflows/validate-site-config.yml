@@ -1,0 +1,168 @@
+name: Validate Site Configuration
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'site-config.yml'
+      - 'client/public/layouts/variants/**'
+      - '.github/workflows/validate-site-config.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'site-config.yml'
+      - 'client/public/layouts/variants/**'
+
+jobs:
+  validate-config:
+    name: Validate Configuration Schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate site-config.yml schema
+        run: node tools/site-customizer/index.cjs audit
+
+      - name: Check required fields
+        run: |
+          if ! grep -q "companyName:" site-config.yml; then
+            echo "Error: companyName field is missing"
+            exit 1
+          fi
+          if ! grep -q "supportEmail:" site-config.yml; then
+            echo "Error: supportEmail field is missing"
+            exit 1
+          fi
+          if ! grep -q "activeVariant:" site-config.yml; then
+            echo "Error: activeVariant field is missing"
+            exit 1
+          fi
+
+  validate-layouts:
+    name: Validate Layout Variants
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check layout files exist
+        run: |
+          VARIANTS=(
+            "bloomberg-dark"
+            "modern-light"
+            "minimalist-corporate"
+            "crypto-neon"
+            "financial-times"
+            "nordic-clean"
+            "charcoal-pro"
+            "emerald-trader"
+            "navy-institutional"
+            "sunset-trading"
+            "midnight-premium"
+            "arctic-minimal"
+            "carbon-sleek"
+            "sapphire-finance"
+            "terracotta-warm"
+          )
+
+          for variant in "${VARIANTS[@]}"; do
+            if [ ! -f "client/public/layouts/variants/${variant}.css" ]; then
+              echo "Error: Layout variant file missing: ${variant}.css"
+              exit 1
+            fi
+            echo "✓ Found ${variant}.css"
+          done
+
+      - name: Validate CSS syntax
+        run: |
+          for file in client/public/layouts/variants/*.css; do
+            echo "Checking $file..."
+            # Basic CSS syntax validation
+            if ! grep -q ":root\[data-layout=" "$file" && ! grep -q "/* This layout uses" "$file"; then
+              echo "Warning: $file may not have proper data-layout selector"
+            fi
+            # Check for valid CSS
+            if grep -q "[^}]$" "$file"; then
+              echo "Error: $file may have syntax errors (missing closing brace)"
+              exit 1
+            fi
+            echo "✓ $file syntax OK"
+          done
+
+      - name: Verify activeVariant exists
+        run: |
+          ACTIVE_VARIANT=$(grep "activeVariant:" site-config.yml | awk '{print $2}')
+          if [ ! -f "client/public/layouts/variants/${ACTIVE_VARIANT}.css" ]; then
+            echo "Error: Active variant '${ACTIVE_VARIANT}' CSS file not found"
+            exit 1
+          fi
+          echo "✓ Active variant '${ACTIVE_VARIANT}' file exists"
+
+  validate-language-overrides:
+    name: Validate Language Overrides
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check language override structure
+        run: |
+          if grep -q "languageOverrides:" site-config.yml; then
+            echo "✓ Language overrides section exists"
+            
+            # Check that language codes match enabled languages
+            ENABLED_LANGS=$(grep -A 20 "enabledLanguages:" site-config.yml | grep "    - " | awk '{print $2}' | tr '\n' ' ')
+            echo "Enabled languages: $ENABLED_LANGS"
+            
+            # Verify overrides only use enabled languages
+            OVERRIDE_LANGS=$(grep -A 50 "languageOverrides:" site-config.yml | grep -E "^    [a-z-]+:" | awk -F: '{print $1}' | tr -d ' ' | tr '\n' ' ')
+            echo "Override languages: $OVERRIDE_LANGS"
+            
+            for lang in $OVERRIDE_LANGS; do
+              if ! echo "$ENABLED_LANGS" | grep -q "$lang"; then
+                echo "Warning: Language override '$lang' not in enabled languages"
+              fi
+            done
+          else
+            echo "✓ No language overrides (optional feature)"
+          fi
+
+  security-check:
+    name: Security Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for sensitive data in config
+        run: |
+          # Check for common secrets/passwords
+          if grep -iE "(password|secret|api[_-]?key|token)" site-config.yml; then
+            echo "Warning: Potential sensitive data found in site-config.yml"
+            echo "Ensure no actual secrets are committed to version control"
+          else
+            echo "✓ No obvious sensitive data patterns found"
+          fi
+
+      - name: Validate email format
+        run: |
+          EMAIL=$(grep "supportEmail:" site-config.yml | awk '{print $2}')
+          if [[ ! "$EMAIL" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+            echo "Error: Invalid email format: $EMAIL"
+            exit 1
+          fi
+          echo "✓ Support email format valid: $EMAIL"

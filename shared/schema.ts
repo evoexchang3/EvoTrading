@@ -22,6 +22,7 @@ export const transactionStatusEnum = pgEnum('transaction_status', ['pending', 'a
 export const fundTypeEnum = pgEnum('fund_type', ['real', 'demo', 'bonus']);
 export const kycStatusEnum = pgEnum('kyc_status', ['pending', 'approved', 'rejected', 'under_review']);
 export const clientStatusEnum = pgEnum('client_status', ['new', 'active', 'inactive', 'suspended']);
+export const userRoleEnum = pgEnum('user_role', ['client', 'admin']);
 export const auditActionEnum = pgEnum('audit_action', [
   'login', 'logout',
   'client_create', 'client_edit', 'client_delete',
@@ -46,6 +47,7 @@ export const clients = pgTable("clients", {
   city: text("city"),
   country: text("country"),
   dateOfBirth: timestamp("date_of_birth"),
+  role: userRoleEnum("role").notNull().default('client'),
   kycStatus: kycStatusEnum("kyc_status").notNull().default('pending'),
   kycDocuments: jsonb("kyc_documents").default('[]'),
   assignedAgentId: varchar("assigned_agent_id"),
