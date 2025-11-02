@@ -4,3 +4,22 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+.env.backup.*
+
+# Credential files in documentation
+attached_assets/*_CREDENTIALS*.md
+attached_assets/*_ENV*.txt
+attached_assets/*SHARE_WITH*.md
+attached_assets/*QUICKSTART*.md
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+*.tsbuildinfo

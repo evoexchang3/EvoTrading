@@ -1,8 +1,12 @@
 # Trading Platform Integration - Quick Start
 
-## 🔐 Complete Credentials (Ready to Use)
+> ⚠️ **SECURITY WARNING**: This file contains PLACEHOLDERS only - no real credentials.
+> Real credentials must be provided by your CRM administrator and stored in environment variables.
+> See `.env.example` in the root directory for the complete list of required variables.
 
-All credentials are generated and ready! Copy the `.env` section below directly into your Trading Platform.
+## 🔐 Credentials Setup
+
+All credentials must be obtained from your CRM administrator and configured as environment variables.
 
 ---
 
@@ -10,28 +14,38 @@ All credentials are generated and ready! Copy the `.env` section below directly 
 
 ### Step 1: Add Environment Variables
 
-**Copy this EXACTLY into your `.env` file:**
+**Copy the template from `.env.example` and fill in your actual values:**
 
 ```bash
 # .env file for Trading Platform
 
 # ===== SHARED DATABASE (PROVIDED BY CRM) =====
-DATABASE_URL=postgresql://neondb_owner:npg_lhwn1VNO7pmf@ep-cool-river-afkask7t.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require
+# Format: postgresql://username:password@host:port/database?sslmode=require
+# Request this connection string from your CRM administrator
+DATABASE_URL=<YOUR_DATABASE_CONNECTION_STRING>
 
 # ===== WEBHOOK SECURITY (PROVIDED BY CRM) =====
-WEBHOOK_SECRET=78c61a3b5f15221d5e6a8a84fb8276f64fd1320bfe589597167f0a1e26ceb7b9
-CRM_WEBHOOK_URL=https://evo-crm.replit.app/api/webhooks/site
+# Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+# Must match the secret configured in the CRM system
+WEBHOOK_SECRET=<GENERATE_64_CHAR_HEX_SECRET>
+CRM_WEBHOOK_URL=<CRM_WEBHOOK_ENDPOINT_URL>
 
 # ===== SERVICE API (PROVIDED BY CRM) =====
-CRM_BASE_URL=https://evo-crm.replit.app/api
-CRM_SERVICE_TOKEN=851cc194f38855d4bd3f75526dcd7defc722862c96d9a2b0bcccb8f1c170a7e3
+CRM_BASE_URL=<CRM_API_BASE_URL>
+# Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+CRM_SERVICE_TOKEN=<GENERATE_64_CHAR_HEX_TOKEN>
 
-# ===== YOUR JWT SECRETS (YOU ALREADY HAVE) =====
-JWT_ACCESS_SECRET=<your-existing-secret>
-JWT_REFRESH_SECRET=<your-existing-secret>
+# ===== YOUR JWT SECRETS (YOU GENERATE THESE) =====
+# Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+JWT_ACCESS_SECRET=<GENERATE_YOUR_JWT_ACCESS_SECRET>
+JWT_REFRESH_SECRET=<GENERATE_YOUR_JWT_REFRESH_SECRET>
 ```
 
-⚠️ **IMPORTANT:** Keep these credentials secure! Never commit to Git.
+⚠️ **IMPORTANT:** 
+- Keep these credentials secure! Never commit to Git.
+- Request DATABASE_URL, WEBHOOK_SECRET, CRM_BASE_URL, CRM_SERVICE_TOKEN from CRM admin
+- Generate your own JWT secrets using the crypto command above
+- Store all values in environment variables only
 
 ### Step 2: Install Dependencies
 
@@ -133,11 +147,12 @@ const signature = crypto
   .update(JSON.stringify(payload))
   .digest('hex');
 
-await fetch('https://evo-crm.replit.app/api/webhooks/site', {
+await fetch(process.env.CRM_WEBHOOK_URL, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'X-Webhook-Signature': signature
+    'X-Webhook-Signature': signature,
+    'Authorization': `Bearer ${process.env.CRM_SERVICE_TOKEN}`
   },
   body: JSON.stringify(payload)
 });
@@ -181,7 +196,9 @@ Send these events TO the CRM:
 }
 ```
 
-**Always include:** `X-Webhook-Signature` header with HMAC-SHA256 signature
+**Always include:** 
+- `X-Webhook-Signature` header with HMAC-SHA256 signature
+- `Authorization: Bearer` header with CRM_SERVICE_TOKEN
 
 ---
 
@@ -203,14 +220,11 @@ Send these events TO the CRM:
 - **Integration Guide:** `TRADING_PLATFORM_INTEGRATION.md`
 - **Credentials Guide:** `TRADING_PLATFORM_CREDENTIALS.md`
 - **This Quick Start:** `TRADING_PLATFORM_QUICKSTART.md`
+- **Environment Template:** `.env.example` (in root directory)
 
 ---
 
 ## 🆘 Support
-
-**CRM Administrator:**
-- Email: apitwelve001@gmail.com
-- Project: evo-crm on Replit
 
 **Common Issues:**
 - Database connection fails → Verify DATABASE_URL is copied correctly with `?sslmode=require`
@@ -221,17 +235,17 @@ Send these events TO the CRM:
 
 ## 📋 Credentials Summary
 
-✅ **Provided in this file:**
+⚠️ **All credentials must be requested from your CRM administrator:**
 - `DATABASE_URL` - Shared PostgreSQL database connection
-- `WEBHOOK_SECRET` - HMAC signature secret for webhooks
+- `WEBHOOK_SECRET` - HMAC signature secret for webhooks (64-char hex)
 - `CRM_WEBHOOK_URL` - CRM webhook endpoint
 - `CRM_BASE_URL` - CRM API base URL  
-- `CRM_SERVICE_TOKEN` - Bearer token for API calls
+- `CRM_SERVICE_TOKEN` - Bearer token for API calls (64-char hex)
 
-⚠️ **You need to add:**
-- `JWT_ACCESS_SECRET` - Your existing JWT access secret
-- `JWT_REFRESH_SECRET` - Your existing JWT refresh secret
+✏️ **You must generate yourself:**
+- `JWT_ACCESS_SECRET` - Your JWT access secret (64-char hex minimum)
+- `JWT_REFRESH_SECRET` - Your JWT refresh secret (64-char hex minimum)
 
 ---
 
-**Ready to integrate? All CRM credentials are included above - just copy and start! 🚀**
+**Ready to integrate? Request credentials from your CRM administrator and use `.env.example` as your template! 🚀**

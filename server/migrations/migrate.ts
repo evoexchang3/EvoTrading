@@ -3,10 +3,40 @@ import { sql } from 'drizzle-orm';
 import * as schema from '@shared/schema';
 
 async function migrate() {
+  const NODE_ENV = process.env.NODE_ENV || 'development';
+  const ALLOW_DESTRUCTIVE_MIGRATIONS = process.env.ALLOW_DESTRUCTIVE_MIGRATIONS === 'true';
+
+  if (NODE_ENV !== 'development' && !ALLOW_DESTRUCTIVE_MIGRATIONS) {
+    throw new Error(
+      '🚫 CRITICAL: This migration script contains destructive operations (DROP TABLE) that will DELETE ALL DATA.\n' +
+      '\n' +
+      'This script is BLOCKED in non-development environments for safety.\n' +
+      '\n' +
+      'Current environment: ' + NODE_ENV + '\n' +
+      '\n' +
+      'If you absolutely must run this in ' + NODE_ENV + ', you must:\n' +
+      '  1. Understand that ALL DATA WILL BE PERMANENTLY DELETED\n' +
+      '  2. Have a complete database backup\n' +
+      '  3. Set ALLOW_DESTRUCTIVE_MIGRATIONS=true environment variable\n' +
+      '\n' +
+      'For production databases, use versioned migrations instead:\n' +
+      '  npm run db:generate  # Generate migration from schema changes\n' +
+      '  npm run db:migrate   # Apply migrations safely\n'
+    );
+  }
+
+  if (ALLOW_DESTRUCTIVE_MIGRATIONS) {
+    console.warn('⚠️  WARNING: ALLOW_DESTRUCTIVE_MIGRATIONS is enabled!');
+    console.warn('⚠️  All existing data will be PERMANENTLY DELETED in 5 seconds...');
+    console.warn('⚠️  Press Ctrl+C to cancel!');
+    await new Promise(resolve => setTimeout(resolve, 5000));
+  }
+
   console.log('Starting database migration...');
+  console.log(`Environment: ${NODE_ENV}`);
 
   try {
-    // Drop existing tables (development only)
+    // Drop existing tables (development only - guarded above)
     await db.execute(sql`DROP TABLE IF EXISTS audit_logs CASCADE`);
     await db.execute(sql`DROP TABLE IF EXISTS sso_tokens CASCADE`);
     await db.execute(sql`DROP TABLE IF EXISTS sessions CASCADE`);

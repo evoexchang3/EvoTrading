@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      # All other environment variables loaded from .env file
+    env_file:
+      - .env
+    volumes:
+      # Mount source code for hot reload in development
+      - ./server:/app/server
+      - ./client:/app/client
+      - ./shared:/app/shared
+      # Preserve node_modules from container
+      - /app/node_modules
+    command: npm run dev
+    restart: unless-stopped
+    networks:
+      - trading-platform-dev
+
+networks:
+  trading-platform-dev:
+    driver: bridge
+
+# Note: This compose file uses an external Neon database
+# Database connection configured via DATABASE_URL in .env file
+# No local PostgreSQL container needed - Neon handles database hosting

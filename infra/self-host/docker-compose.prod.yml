@@ -1,0 +1,57 @@
+version: '3.8'
+
+# Production-ready Docker Compose for self-hosting
+# Designed for deployment on Ubuntu 24.04 LTS or any Docker-capable host
+# External database (Neon PostgreSQL) assumed via DATABASE_URL
+
+services:
+  trading-platform:
+    image: ghcr.io/<OWNER>/<REPO>:latest  # Replace with your GHCR image
+    container_name: trading-platform
+    restart: unless-stopped
+    
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      LOG_FORMAT: json
+      
+    # Load secrets from .env file
+    # Create .env from root .env.example template
+    env_file:
+      - ../../.env
+    
+    # Expose internal port (Caddy will proxy to this)
+    ports:
+      - "127.0.0.1:5000:5000"  # Only accessible via localhost
+    
+    # Health check using built-in /health endpoint
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    
+    # Resource limits (adjust based on your server)
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    networks:
+      - trading-platform
+
+networks:
+  trading-platform:
+    driver: bridge
+
+# Deployment Notes:
+# 1. Replace <OWNER>/<REPO> with your GitHub repository path
+# 2. Create .env file from root .env.example with production values
+# 3. Use Caddy (see Caddyfile) for HTTPS termination
+# 4. External database required (DATABASE_URL in .env)
+# 5. Run: docker-compose -f infra/self-host/docker-compose.prod.yml up -d

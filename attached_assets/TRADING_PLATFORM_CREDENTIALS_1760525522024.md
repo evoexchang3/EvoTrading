@@ -1,14 +1,26 @@
 # Trading Platform Integration Credentials
 
+> ⚠️ **SECURITY WARNING**: This file contains NO real credentials - only placeholders and instructions.
+> Contact your CRM administrator to obtain actual credential values.
+> See `.env.example` in the root directory for the complete environment variable template.
+
 ## 🔐 How to Get Your Credentials
 
 ### Step 1: Contact CRM Administrator
 
 Contact the CRM administrator to request the following credentials:
 
-**CRM Administrator Contact:**
-- Email: apitwelve001@gmail.com
-- Replit Project: evo-crm
+**What to Request:**
+1. DATABASE_URL (PostgreSQL connection string)
+2. WEBHOOK_SECRET (64-character hex string for HMAC signing)
+3. CRM_WEBHOOK_URL (CRM webhook endpoint URL)
+4. CRM_BASE_URL (CRM API base URL)
+5. CRM_SERVICE_TOKEN (64-character hex token for API authentication)
+
+**Secure Sharing:**
+- Request credentials via encrypted email or secure messaging
+- Use a password manager for secure storage
+- Never share via plain text channels (Slack, SMS, etc.)
 
 ### Step 2: Credentials You Need
 
@@ -16,19 +28,46 @@ The CRM administrator will provide you with these **confidential** credentials:
 
 #### 1. Database Connection String
 ```bash
-DATABASE_URL=postgresql://[username]:[password]@[host]/[database]?sslmode=require
+DATABASE_URL=<YOUR_DATABASE_CONNECTION_STRING>
+# Format: postgresql://username:password@host:port/database?sslmode=require
 ```
 **What it's for:** Direct access to the shared PostgreSQL database  
 **Security:** Keep this secret - it grants full database access  
-**Where it's stored:** CRM Replit Secrets (DATABASE_URL)
+**Source:** Request from CRM administrator
 
 #### 2. Webhook Secret
 ```bash
-WEBHOOK_SECRET=[64-character-hex-string]
+WEBHOOK_SECRET=<GENERATE_64_CHAR_HEX_SECRET>
+# Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 **What it's for:** HMAC-SHA256 signing of webhooks you send TO the CRM  
 **Security:** Must be identical on both systems for signature verification  
-**Where it's stored:** CRM Replit Secrets (WEBHOOK_SECRET)
+**Source:** Request from CRM administrator (must match their configuration)
+
+#### 3. CRM Webhook URL
+```bash
+CRM_WEBHOOK_URL=<CRM_WEBHOOK_ENDPOINT_URL>
+# Example format: https://your-crm-domain.com/api/webhooks/trading
+```
+**What it's for:** Endpoint where you send webhook events  
+**Source:** Request from CRM administrator
+
+#### 4. CRM Base URL
+```bash
+CRM_BASE_URL=<CRM_API_BASE_URL>
+# Example format: https://your-crm-domain.com/api
+```
+**What it's for:** Base URL for CRM API service calls  
+**Source:** Request from CRM administrator
+
+#### 5. CRM Service Token
+```bash
+CRM_SERVICE_TOKEN=<GENERATE_64_CHAR_HEX_TOKEN>
+# Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+**What it's for:** Bearer token authentication for API calls and webhook Authorization header  
+**Security:** Must match CRM configuration  
+**Source:** Request from CRM administrator
 
 ---
 
@@ -36,39 +75,43 @@ WEBHOOK_SECRET=[64-character-hex-string]
 
 ### Method 1: Secure Environment Variable Sharing
 
-The CRM admin can retrieve the credentials using Replit Secrets:
+The CRM admin can retrieve credentials from their secure environment configuration:
 
-1. Open the CRM Replit project
-2. Go to "Tools" → "Secrets"
-3. Copy the values for:
-   - `DATABASE_URL`
-   - `WEBHOOK_SECRET`
-4. Share via secure channel (encrypted email, password manager, secure messaging)
+1. Access the CRM system's environment configuration
+2. Copy the values for required credentials
+3. Share via secure channel (encrypted email, password manager share, secure vault)
+4. Never send via plain text communication
 
-### Method 2: Command Line (For CRM Admin)
+### Method 2: Security Best Practices
 
-Run this command in the CRM Replit Shell to display credentials:
-
-```bash
-# Display DATABASE_URL (first 50 chars only for verification)
-echo "DATABASE_URL=${DATABASE_URL:0:50}..."
-
-# Display WEBHOOK_SECRET
-echo "WEBHOOK_SECRET=$WEBHOOK_SECRET"
-```
-
-**⚠️ Security Warning:** Never commit these credentials to Git or share in plain text channels!
+**⚠️ Critical Security Rules:**
+- Never commit credentials to Git repositories
+- Never share in plain text channels (chat, email without encryption)
+- Use dedicated password management tools
+- Rotate credentials on a regular schedule (quarterly recommended)
+- Immediately rotate if compromise suspected
 
 ---
 
 ## ✅ Verification Checklist
 
-After receiving credentials, verify you have:
+After receiving credentials from CRM admin, verify you have:
 
 - [ ] **DATABASE_URL** - PostgreSQL connection string starting with `postgresql://`
 - [ ] **WEBHOOK_SECRET** - 64-character hexadecimal string
-- [ ] **CRM_BASE_URL** - https://evo-crm.replit.app/api (already have)
-- [ ] **CRM_SERVICE_TOKEN** - Bearer token for API calls (already have)
+- [ ] **CRM_WEBHOOK_URL** - HTTPS URL for webhook endpoint
+- [ ] **CRM_BASE_URL** - HTTPS URL for API base
+- [ ] **CRM_SERVICE_TOKEN** - 64-character hex token
+
+Additionally, you must generate yourself:
+
+- [ ] **JWT_ACCESS_SECRET** - Your own 64-character hex secret
+- [ ] **JWT_REFRESH_SECRET** - Your own 64-character hex secret
+
+**Generation Command:**
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
 
 ---
 
@@ -114,28 +157,103 @@ const signature = crypto
 console.log('✅ Webhook signature generated:', signature.substring(0, 16) + '...');
 ```
 
+### Test 3: Webhook Delivery
+
+```javascript
+const crypto = require('crypto');
+
+async function testWebhook() {
+  const payload = {
+    event: 'client.registered',
+    data: {
+      email: 'test@example.com',
+      firstName: 'Test',
+      lastName: 'User'
+    },
+    timestamp: Date.now()
+  };
+
+  const signature = crypto
+    .createHmac('sha256', process.env.WEBHOOK_SECRET)
+    .update(JSON.stringify(payload))
+    .digest('hex');
+
+  try {
+    const response = await fetch(process.env.CRM_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Webhook-Signature': signature,
+        'Authorization': `Bearer ${process.env.CRM_SERVICE_TOKEN}`
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      console.log('✅ Webhook delivered successfully');
+    } else {
+      console.error('❌ Webhook delivery failed:', response.status);
+    }
+  } catch (error) {
+    console.error('❌ Webhook error:', error.message);
+  }
+}
+
+testWebhook();
+```
+
 ---
 
-## 🔄 What If Credentials Change?
+## 🔄 Credential Rotation
 
-If the CRM team rotates credentials:
+### When to Rotate:
 
-1. **DATABASE_URL**: Request new connection string from CRM admin
-2. **WEBHOOK_SECRET**: Must be updated on BOTH systems simultaneously
-3. **Update your `.env` file** with new values
-4. **Restart your application**
+1. **Scheduled rotation** - Quarterly (every 90 days) for compliance
+2. **Security incident** - Immediate rotation if credentials compromised
+3. **Personnel changes** - When team members with credential access leave
+4. **System migration** - When moving to new infrastructure
+
+### Rotation Process:
+
+1. **Coordinate with CRM admin** - Both systems must update simultaneously
+2. **Generate new credentials** - Use cryptographically secure random generation
+3. **Test in staging** - Verify new credentials work before production
+4. **Deploy simultaneously** - Update both Trading Platform and CRM at same time
+5. **Verify** - Test all integrations after rotation
+6. **Document** - Record rotation date and reason
 
 ---
 
-## 📞 Support
+## 📋 Environment Variable Summary
 
-**For credential issues:**
-- Contact CRM Administrator: apitwelve001@gmail.com
-- CRM Replit Project: evo-crm
-- Integration Guide: See `TRADING_PLATFORM_INTEGRATION.md`
+Copy this template into your `.env` file and fill in actual values:
 
-**Security Notice:**
-- Never share credentials in public channels
-- Store in environment variables, never hardcode
-- Use encrypted communication when sharing
-- Rotate credentials if compromised
+```bash
+# ===== REQUEST FROM CRM ADMINISTRATOR =====
+DATABASE_URL=<YOUR_DATABASE_CONNECTION_STRING>
+WEBHOOK_SECRET=<GENERATE_64_CHAR_HEX_SECRET>
+CRM_WEBHOOK_URL=<CRM_WEBHOOK_ENDPOINT_URL>
+CRM_BASE_URL=<CRM_API_BASE_URL>
+CRM_SERVICE_TOKEN=<GENERATE_64_CHAR_HEX_TOKEN>
+
+# ===== GENERATE YOURSELF =====
+JWT_ACCESS_SECRET=<GENERATE_YOUR_JWT_ACCESS_SECRET>
+JWT_REFRESH_SECRET=<GENERATE_YOUR_JWT_REFRESH_SECRET>
+```
+
+See `.env.example` in the root directory for the complete template with all optional variables.
+
+---
+
+## ⚠️ Security Notes
+
+1. **Never commit `.env` to Git** - Already configured in `.gitignore`
+2. **Use environment variables** - Never hardcode credentials in code
+3. **Coordinate rotation** - DATABASE_URL and WEBHOOK_SECRET must match CRM
+4. **Secure storage** - Use encrypted password manager
+5. **Access control** - Limit who can view production credentials
+6. **Audit logging** - Track when and by whom credentials were accessed
+
+---
+
+**Ready to integrate? Request all credentials from your CRM administrator using this checklist! 🔐**

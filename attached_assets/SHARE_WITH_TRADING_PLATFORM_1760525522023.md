@@ -1,8 +1,12 @@
 # 📦 Files to Share with Trading Platform Team
 
+> ⚠️ **SECURITY WARNING**: This file has been sanitized and contains NO real credentials.
+> All credential placeholders must be replaced with actual values from your CRM administrator.
+> See `.env.example` in the root directory for the complete environment variable template.
+
 ## ✅ Complete Integration Package
 
-All credentials have been generated and included. Share these files with your Trading Platform team:
+All credentials must be requested from your CRM administrator. Share these documentation files with your Trading Platform team:
 
 ---
 
@@ -10,25 +14,25 @@ All credentials have been generated and included. Share these files with your Tr
 **File:** `TRADING_PLATFORM_QUICKSTART.md`
 
 ✅ Contains:
-- All actual credentials (DATABASE_URL, WEBHOOK_SECRET, SERVICE_API_TOKEN)
+- Placeholders for required credentials (DATABASE_URL, WEBHOOK_SECRET, CRM_SERVICE_TOKEN)
 - 30-second setup instructions
-- Ready-to-copy .env template
+- Template for .env configuration
 - Core integration code examples
 - Testing checklist
 
-**Status:** ✅ READY - All credentials included!
+**Status:** ✅ READY - Use as setup template
 
 ---
 
-## 📄 2. Environment Variables (COPY-PASTE READY)
+## 📄 2. Environment Variables Template
 **File:** `TRADING_PLATFORM_ENV.txt`
 
 ✅ Contains:
-- Pre-filled .env file with all CRM credentials
-- Clean format for direct copy-paste
+- Template .env file with placeholder values
+- Clean format for configuration
 - Security notes and best practices
 
-**Status:** ✅ READY - Just copy into .env!
+**Status:** ✅ READY - Fill in actual values from CRM admin
 
 ---
 
@@ -52,7 +56,7 @@ All credentials have been generated and included. Share these files with your Tr
 **File:** `TRADING_PLATFORM_CREDENTIALS.md`
 
 ✅ Contains:
-- How to verify credentials
+- How to request credentials from CRM admin
 - Security best practices
 - Credential rotation procedures
 - Testing and validation steps
@@ -63,33 +67,41 @@ All credentials have been generated and included. Share these files with your Tr
 
 ## 🔐 Credentials Summary
 
-### Provided to Trading Platform:
+### Provided to Trading Platform by CRM Administrator:
 
-| Credential | Value | Purpose |
-|------------|-------|---------|
-| **DATABASE_URL** | `postgresql://neondb_owner:npg_lhwn1VNO7pmf@ep-cool-river-afkask7t.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require` | Shared database access |
-| **WEBHOOK_SECRET** | `78c61a3b5f15221d5e6a8a84fb8276f64fd1320bfe589597167f0a1e26ceb7b9` | HMAC webhook signing |
-| **CRM_SERVICE_TOKEN** | `851cc194f38855d4bd3f75526dcd7defc722862c96d9a2b0bcccb8f1c170a7e3` | Service API authentication |
-| **CRM_BASE_URL** | `https://evo-crm.replit.app/api` | API endpoint base |
-| **CRM_WEBHOOK_URL** | `https://evo-crm.replit.app/api/webhooks/site` | Webhook endpoint |
+| Credential | Placeholder | Purpose |
+|------------|-------------|---------|
+| **DATABASE_URL** | `<YOUR_DATABASE_CONNECTION_STRING>` | Shared database access |
+| **WEBHOOK_SECRET** | `<GENERATE_64_CHAR_HEX_SECRET>` | HMAC webhook signing |
+| **CRM_SERVICE_TOKEN** | `<GENERATE_64_CHAR_HEX_TOKEN>` | Service API authentication |
+| **CRM_BASE_URL** | `<CRM_API_BASE_URL>` | API endpoint base |
+| **CRM_WEBHOOK_URL** | `<CRM_WEBHOOK_ENDPOINT_URL>` | Webhook endpoint |
 
-### Trading Platform Needs to Provide:
-- `JWT_ACCESS_SECRET` (they already have this)
-- `JWT_REFRESH_SECRET` (they already have this)
+### Trading Platform Must Generate:
+- `JWT_ACCESS_SECRET` - Generate using: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
+- `JWT_REFRESH_SECRET` - Generate using: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
 
 ---
 
 ## 🚀 Integration Steps (For Trading Platform)
 
-### Step 1: Copy Credentials
-Open `TRADING_PLATFORM_ENV.txt` and copy all credentials to `.env` file
+### Step 1: Request Credentials
+Contact your CRM administrator to obtain:
+- DATABASE_URL
+- WEBHOOK_SECRET
+- CRM_WEBHOOK_URL
+- CRM_BASE_URL
+- CRM_SERVICE_TOKEN
 
 ### Step 2: Install Database Client
 ```bash
 npm install pg
 ```
 
-### Step 3: Test Connection
+### Step 3: Configure Environment
+Copy `.env.example` to `.env` and fill in all values
+
+### Step 4: Test Connection
 ```javascript
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -102,7 +114,7 @@ pool.query('SELECT COUNT(*) FROM clients')
   .catch(err => console.error('❌ Error:', err.message));
 ```
 
-### Step 4: Implement Integration
+### Step 5: Implement Integration
 Follow `TRADING_PLATFORM_INTEGRATION.md` for complete implementation guide
 
 ---
@@ -204,13 +216,17 @@ Trading Platform should send these webhooks TO the CRM:
 }
 ```
 
-**Important:** All webhooks must include `X-Webhook-Signature` header with HMAC-SHA256 signature
+**Important:** All webhooks must include:
+- `X-Webhook-Signature` header with HMAC-SHA256 signature
+- `Authorization: Bearer` header with CRM_SERVICE_TOKEN
 
 ---
 
 ## ✅ Integration Checklist
 
-- [ ] Credentials copied to `.env` file
+- [ ] Credentials requested from CRM administrator
+- [ ] `.env` file created from `.env.example` template
+- [ ] All environment variables filled with actual values
 - [ ] Database client installed (`npm install pg`)
 - [ ] Database connection tested successfully
 - [ ] Can read clients from database
@@ -227,33 +243,40 @@ Trading Platform should send these webhooks TO the CRM:
 
 ## 📞 Support Contact
 
-**CRM Administrator:**
-- Email: apitwelve001@gmail.com
-- Project: evo-crm on Replit
+**For Credential Requests:**
+- Contact your CRM administrator
+- Provide a secure channel for credential sharing
 
 **For Questions:**
 - Integration issues: See `TRADING_PLATFORM_INTEGRATION.md`
 - Credential problems: See `TRADING_PLATFORM_CREDENTIALS.md`
 - Quick setup: See `TRADING_PLATFORM_QUICKSTART.md`
+- Environment setup: See `.env.example` in root directory
 
 ---
 
 ## ⚠️ Security Reminders
 
 1. **Never commit credentials to Git**
-   - Add `.env` to `.gitignore`
+   - Add `.env` to `.gitignore` (already configured)
    - Use environment variables only
+   - Never hardcode secrets in code
 
 2. **Keep credentials secure**
    - Store in encrypted password manager
-   - Share via secure channels only
-   - Rotate if compromised
+   - Share via secure channels only (encrypted email, secure vault)
+   - Rotate if compromised or on schedule
 
 3. **Database access**
-   - Read-only where possible
-   - Use parameterized queries
+   - Use read-only access where possible
+   - Always use parameterized queries (prevent SQL injection)
    - Validate all inputs
+
+4. **Request all credentials from CRM admin**
+   - Never generate shared secrets independently
+   - Coordinate rotation with CRM team
+   - Document credential sources
 
 ---
 
-**🎉 Everything is ready! Share these files with your Trading Platform team and they can start integrating immediately!**
+**🎉 Use these template files to guide your integration! Request actual credentials from your CRM administrator.**

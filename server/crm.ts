@@ -7,7 +7,22 @@ import type { Express } from 'express';
 
 const CRM_BASE_URL = process.env.CRM_BASE_URL;
 const CRM_SERVICE_TOKEN = process.env.CRM_SERVICE_TOKEN;
-const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || process.env.SITE_WEBHOOK_SECRET || 'default-webhook-secret';
+
+let WEBHOOK_SECRET: string;
+
+if (process.env.WEBHOOK_SECRET) {
+  WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+} else if (process.env.SITE_WEBHOOK_SECRET) {
+  console.warn('⚠️  WARNING: SITE_WEBHOOK_SECRET is deprecated! Please use WEBHOOK_SECRET instead.');
+  console.warn('⚠️  Support for SITE_WEBHOOK_SECRET will be removed in a future release.');
+  WEBHOOK_SECRET = process.env.SITE_WEBHOOK_SECRET;
+} else {
+  throw new Error(
+    'CRITICAL: WEBHOOK_SECRET environment variable is required. ' +
+    'This secret is used to sign webhooks to the CRM system. ' +
+    'Generate a secure secret with: node -e "console.log(require(\'crypto\').randomBytes(32).toString(\'hex\'))"'
+  );
+}
 
 // SSO Impersonation endpoint
 export function setupCRMIntegration(app: Express) {

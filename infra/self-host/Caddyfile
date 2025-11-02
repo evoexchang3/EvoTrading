@@ -1,0 +1,67 @@
+# Caddyfile for Trading Platform
+# Automatic HTTPS with Let's Encrypt
+# Replace placeholders with your actual domain
+
+<YOUR_DOMAIN> {
+    # Automatic HTTPS
+    # Caddy automatically obtains and renews SSL certificates
+    
+    # Reverse proxy to trading platform container
+    reverse_proxy localhost:5000
+    
+    # WebSocket support (critical for real-time market data)
+    @websockets {
+        header Connection *Upgrade*
+        header Upgrade websocket
+        path /ws
+    }
+    handle @websockets {
+        reverse_proxy localhost:5000
+    }
+    
+    # Security headers
+    header {
+        # Prevent clickjacking
+        X-Frame-Options "SAMEORIGIN"
+        
+        # XSS protection
+        X-Content-Type-Options "nosniff"
+        X-XSS-Protection "1; mode=block"
+        
+        # Referrer policy
+        Referrer-Policy "strict-origin-when-cross-origin"
+        
+        # Remove server header
+        -Server
+    }
+    
+    # Logging
+    log {
+        output file /var/log/caddy/trading-platform-access.log
+        format json
+    }
+    
+    # Rate limiting (adjust as needed)
+    # Install caddy-ratelimit plugin if needed
+    
+    # Compression
+    encode gzip zstd
+}
+
+# Optional: Redirect www to non-www
+www.<YOUR_DOMAIN> {
+    redir https://<YOUR_DOMAIN>{uri} permanent
+}
+
+# Configuration Notes:
+# 1. Replace <YOUR_DOMAIN> with your actual domain (e.g., trading.example.com)
+# 2. Ensure DNS A record points to your server IP
+# 3. Port 80 and 443 must be open in firewall
+# 4. Caddy automatically handles SSL certificate provisioning
+# 5. WebSocket path /ws is configured for real-time market data
+#
+# Run Caddy:
+#   caddy run --config /path/to/Caddyfile
+#   # or as a service
+#   sudo systemctl enable caddy
+#   sudo systemctl start caddy

@@ -1,0 +1,37 @@
+# Gitleaks configuration for Trading Platform
+# Detects hardcoded secrets in tracked files
+
+title = "Trading Platform Secret Scan"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "database-url-with-password"
+description = "PostgreSQL connection string with embedded password"
+regex = '''postgresql://[^:]+:[^@]+@[^/]+/\w+'''
+tags = ["database", "credentials"]
+
+[[rules]]
+id = "hex-secret-64-char"
+description = "64-character hexadecimal secret (WEBHOOK_SECRET, CRM_SERVICE_TOKEN)"
+regex = '''[a-f0-9]{64}'''
+tags = ["secret", "token"]
+
+[allowlist]
+description = "Allowlist for legitimate patterns"
+paths = [
+  '''.env.example''',
+  '''.gitleaks.toml''',
+  '''SECURITY.md''',
+  '''package-lock.json'''
+]
+
+regexes = [
+  '''<[A-Z_]+>''',
+  '''\[placeholder\]''',
+  '''<GENERATE''',
+  '''<YOUR_''',
+  '''example\.com''',
+  '''test@example'''
+]

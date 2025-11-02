@@ -1,24 +1,31 @@
 # ============================================
 # TRADING PLATFORM INTEGRATION CREDENTIALS
 # ============================================
-# Copy this into your Trading Platform .env file
-# Last Updated: October 15, 2025
+# ⚠️ SECURITY WARNING: This file contains PLACEHOLDERS only
+# Real credentials must be provided by your CRM administrator
+# See .env.example in root directory for complete reference
 # ============================================
 
 # ===== SHARED DATABASE (PROVIDED BY CRM) =====
-DATABASE_URL=postgresql://neondb_owner:npg_lhwn1VNO7pmf@ep-cool-river-afkask7t.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require
+# Format: postgresql://username:password@host:port/database?sslmode=require
+# Request this connection string from your CRM administrator
+DATABASE_URL=<YOUR_DATABASE_CONNECTION_STRING>
 
 # ===== WEBHOOK SECURITY (PROVIDED BY CRM) =====
-WEBHOOK_SECRET=78c61a3b5f15221d5e6a8a84fb8276f64fd1320bfe589597167f0a1e26ceb7b9
-CRM_WEBHOOK_URL=https://evo-crm.replit.app/api/webhooks/site
+# Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+# Must match the secret configured in the CRM system
+WEBHOOK_SECRET=<GENERATE_64_CHAR_HEX_SECRET>
+CRM_WEBHOOK_URL=<CRM_WEBHOOK_ENDPOINT_URL>
 
 # ===== SERVICE API (PROVIDED BY CRM) =====
-CRM_BASE_URL=https://evo-crm.replit.app/api
-CRM_SERVICE_TOKEN=851cc194f38855d4bd3f75526dcd7defc722862c96d9a2b0bcccb8f1c170a7e3
+CRM_BASE_URL=<CRM_API_BASE_URL>
+# Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+CRM_SERVICE_TOKEN=<GENERATE_64_CHAR_HEX_TOKEN>
 
-# ===== YOUR JWT SECRETS (YOU PROVIDE THESE) =====
-JWT_ACCESS_SECRET=<your-existing-jwt-access-secret>
-JWT_REFRESH_SECRET=<your-existing-jwt-refresh-secret>
+# ===== YOUR JWT SECRETS (YOU GENERATE THESE) =====
+# Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+JWT_ACCESS_SECRET=<GENERATE_YOUR_JWT_ACCESS_SECRET>
+JWT_REFRESH_SECRET=<GENERATE_YOUR_JWT_REFRESH_SECRET>
 
 # ============================================
 # IMPORTANT SECURITY NOTES:
@@ -26,5 +33,21 @@ JWT_REFRESH_SECRET=<your-existing-jwt-refresh-secret>
 # 1. Never commit these credentials to Git
 # 2. Store in environment variables only
 # 3. Use .gitignore to exclude .env files
-# 4. Rotate credentials if compromised
+# 4. Rotate credentials periodically
+# 5. Request all CRM credentials from administrator
+# ============================================
+
+# ============================================
+# CREDENTIAL SOURCES:
+# ============================================
+# Request from CRM Admin:
+#   - DATABASE_URL
+#   - WEBHOOK_SECRET
+#   - CRM_WEBHOOK_URL
+#   - CRM_BASE_URL
+#   - CRM_SERVICE_TOKEN
+#
+# Generate Yourself:
+#   - JWT_ACCESS_SECRET
+#   - JWT_REFRESH_SECRET
 # ============================================

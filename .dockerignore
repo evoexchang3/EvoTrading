@@ -1,0 +1,65 @@
+# Node modules (will be installed fresh in container)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts (will be generated in container)
+dist/
+.next/
+out/
+
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+.env.backup.*
+*.pem
+*.key
+
+# Logs
+*.log
+logs/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Documentation with potential secrets
+attached_assets/*_CREDENTIALS*.md
+attached_assets/*_ENV*.txt
+attached_assets/*SHARE_WITH*.md
+attached_assets/*QUICKSTART*.md
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS files
+Thumbs.db
+
+# CI/CD
+.github/
+
+# Development-only files
+docker-compose.dev.yml
+docker-compose.override.yml
+README.md
+CONTRIBUTING.md
+
+# Build artifacts
+*.tsbuildinfo
