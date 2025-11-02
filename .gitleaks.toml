@@ -24,7 +24,8 @@ paths = [
   '''.env.example''',
   '''.gitleaks.toml''',
   '''SECURITY.md''',
-  '''package-lock.json'''
+  '''package-lock.json''',
+  '''tools/secret-replacer/.env.sample'''
 ]
 
 regexes = [

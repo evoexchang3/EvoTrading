@@ -170,6 +170,41 @@ npm run db:studio
 
 **⚠️ Production Safety**: Destructive migrations are blocked in production. See `server/migrations/` for details.
 
+## Security Configuration
+
+### CORS (Cross-Origin Resource Sharing)
+
+The application uses deny-by-default CORS for security. **Same-origin requests work automatically with no configuration required.**
+
+```bash
+# Optional: Enable additional origins for cross-origin requests
+CORS_ALLOWED_ORIGINS=https://app.example.com,https://admin.example.com
+```
+
+**Notes:**
+- If your UI and API are served from the same origin (same domain/port), CORS configuration is **not required**
+- WebSocket connections at `/ws` work without CORS configuration
+- Only set `CORS_ALLOWED_ORIGINS` when accessing the API from different domains
+
+### Rate Limiting
+
+Authentication and CRM endpoints are rate-limited to prevent brute force attacks:
+
+```bash
+# Default values (already configured for existing flows)
+RATE_LIMIT_MAX=100                 # Maximum 100 requests
+RATE_LIMIT_WINDOW_MS=900000        # Per 15 minutes (900,000ms)
+```
+
+**Protected endpoints:**
+- `/api/auth/*` - Login, register, token refresh
+- `/api/crm/*` - CRM integration endpoints
+
+**Notes:**
+- Default limits do not affect existing login/CRM flows
+- Limits are per-IP address
+- Can be tuned for high-traffic deployments
+
 ## API Endpoints
 
 ### Health Check
@@ -230,6 +265,12 @@ npm run db:migrate       # Apply pending migrations
 npm run db:studio        # Open Drizzle Studio (database GUI)
 
 # Secret Management
+# Use the secrets-replacer CLI tool for safe secret rotation and auditing
+node tools/secret-replacer/index.cjs audit                                    # List all environment variables
+node tools/secret-replacer/index.cjs explain DATABASE_URL                     # Explain a specific variable
+node tools/secret-replacer/index.cjs dry-run --from .env --target .env.new    # Preview changes (masked)
+node tools/secret-replacer/index.cjs apply --from .env --target .env.new --backup  # Apply with backup
+
 # See secrets-manifest.yml for complete documentation of all environment variables
 # including purpose, required status, format, code locations, and rotation schedule
 

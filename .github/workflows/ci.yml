@@ -93,10 +93,41 @@ jobs:
           npx tsc server/migrations/*.ts --noEmit || echo "Migration validation complete"
           echo "✓ Migrations validated (compile check only, not executed)"
 
+  secrets-replacer:
+    name: Validate Secrets Replacer
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Test secrets:audit command
+        run: node tools/secret-replacer/index.cjs audit
+      
+      - name: Test secrets:explain command
+        run: node tools/secret-replacer/index.cjs explain DATABASE_URL
+      
+      - name: Test secrets:dry-run command
+        run: |
+          node tools/secret-replacer/index.cjs dry-run \
+            --from tools/secret-replacer/.env.sample \
+            --target .env.example || test $? -eq 2
+          echo "✓ Dry-run completed (exit code 0 or 2 expected)"
+
   summary:
     name: CI Summary
     runs-on: ubuntu-latest
-    needs: [lint-and-test, docker-build, migration-validation]
+    needs: [lint-and-test, docker-build, migration-validation, secrets-replacer]
     if: always()
     
     steps:
@@ -104,7 +135,8 @@ jobs:
         run: |
           if [ "${{ needs.lint-and-test.result }}" != "success" ] || \
              [ "${{ needs.docker-build.result }}" != "success" ] || \
-             [ "${{ needs.migration-validation.result }}" != "success" ]; then
+             [ "${{ needs.migration-validation.result }}" != "success" ] || \
+             [ "${{ needs.secrets-replacer.result }}" != "success" ]; then
             echo "❌ CI failed"
             exit 1
           else

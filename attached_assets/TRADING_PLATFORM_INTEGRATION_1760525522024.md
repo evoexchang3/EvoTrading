@@ -65,6 +65,10 @@ DATABASE_URL=<get-from-crm-team>
 WEBHOOK_SECRET=<get-from-crm-team>
 CRM_WEBHOOK_URL=https://evo-crm.replit.app/api/webhooks/site
 
+# MIGRATION NOTE: The canonical webhook path in the trading platform code is 
+# /api/webhooks/trading (not /api/webhooks/site). The path above references 
+# the CRM's inbound webhook endpoint, which remains unchanged.
+
 # ===== API INTEGRATION (YOU ALREADY HAVE) =====
 CRM_BASE_URL=https://evo-crm.replit.app/api
 CRM_SERVICE_TOKEN=<you-already-have-this>
@@ -275,6 +279,9 @@ async function notifyClientRegistration(clientData) {
     .update(JSON.stringify(payload))
     .digest('hex');
 
+  // NOTE: /api/webhooks/site is the CRM's endpoint (not the trading platform's endpoint).
+  // The trading platform sends outbound webhooks TO this CRM endpoint.
+  // The trading platform's own inbound webhook endpoint is /api/webhooks/trading (canonical path).
   await fetch('https://evo-crm.replit.app/api/webhooks/site', {
     method: 'POST',
     headers: {
@@ -581,6 +588,9 @@ const notifyDeposit = async (clientEmail, amount, transactionId) => {
     .update(JSON.stringify(payload))
     .digest('hex');
 
+  // NOTE: /api/webhooks/site is the CRM's endpoint (not the trading platform's endpoint).
+  // The trading platform sends outbound webhooks TO this CRM endpoint.
+  // The trading platform's own inbound webhook endpoint is /api/webhooks/trading (canonical path).
   await fetch('https://evo-crm.replit.app/api/webhooks/site', {
     method: 'POST',
     headers: {
@@ -611,6 +621,9 @@ const notifyWithdrawal = async (clientEmail, amount, transactionId) => {
     .update(JSON.stringify(payload))
     .digest('hex');
 
+  // NOTE: /api/webhooks/site is the CRM's endpoint (not the trading platform's endpoint).
+  // The trading platform sends outbound webhooks TO this CRM endpoint.
+  // The trading platform's own inbound webhook endpoint is /api/webhooks/trading (canonical path).
   await fetch('https://evo-crm.replit.app/api/webhooks/site', {
     method: 'POST',
     headers: {
@@ -640,6 +653,9 @@ const notifyKYC = async (clientEmail, kycStatus) => {
     .update(JSON.stringify(payload))
     .digest('hex');
 
+  // NOTE: /api/webhooks/site is the CRM's endpoint (not the trading platform's endpoint).
+  // The trading platform sends outbound webhooks TO this CRM endpoint.
+  // The trading platform's own inbound webhook endpoint is /api/webhooks/trading (canonical path).
   await fetch('https://evo-crm.replit.app/api/webhooks/site', {
     method: 'POST',
     headers: {
