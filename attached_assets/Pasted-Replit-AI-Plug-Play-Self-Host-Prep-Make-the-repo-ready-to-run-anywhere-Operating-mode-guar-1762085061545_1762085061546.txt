@@ -1,0 +1,77 @@
+Replit AI — “Plug & Play Self-Host Prep” (Make the repo ready to run anywhere)
+Operating mode & guardrails
+Work in a new branch and open a PR with a clear checklist.
+Check-first, non-destructive: if a file already exists and is valid, leave it; if it’s broken, append minimal fixes with comments.
+Keep current webhooks and secrets working; do not rotate or blank live values.
+Remove leaked secrets from tracked documentation; replace with placeholders.
+Additions/edits must be limited to what’s listed below.
+1) Secrets & docs hygiene (stop leaks without breaking runtime)
+Create a sanitized .env.example listing all keys (names only, no values): DATABASE_URL, JWT_ACCESS_SECRET, JWT_REFRESH_SECRET, WEBHOOK_SECRET, CRM_BASE_URL, CRM_SERVICE_TOKEN, TWELVEDATA_API_KEY, EODHD_API_KEY, MARKETAUX_API_KEY, PORT, NODE_ENV, LOG_FORMAT, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS, CORS_ALLOWED_ORIGINS, WEBHOOK_TOLERANCE_SEC.
+In attached_assets/ and any docs that currently contain real secrets or live URLs, remove the secret values and replace them with explicit placeholders and a bright warning note. Preserve the instructional text.
+Extend .gitignore to cover any credential-like files in attached_assets/ so new secrets cannot be re-committed accidentally.
+Add a secret-scan CI workflow that runs on every PR (e.g., gitleaks or equivalent) and fails the PR if secrets are detected in tracked files.
+Add a small “Security Notes” section to README.md explaining where to put real values at deploy time and pointing to .env.example.
+Acceptance: PR shows that no live secret remains in tracked docs; CI secret scan passes; .env.example includes all keys.
+2) Minimal code hardening (surgical, backward-compatible)
+Fail-fast on missing HMAC secret: make WEBHOOK_SECRET required at boot. Keep SITE_WEBHOOK_SECRET only as a deprecation path: if present and WEBHOOK_SECRET is missing, log a loud warning and use it; otherwise ignore it. Remove any insecure literal default.
+Health endpoint: add a lightweight GET /health that returns a 200 OK JSON payload and does not touch database or third parties.
+CORS: add CORS middleware that reads CORS_ALLOWED_ORIGINS (CSV); if unset, default to a strict deny-by-default with a clear log.
+Rate limiting: add a basic rate limiter for auth/session and CRM endpoints using RATE_LIMIT_MAX and RATE_LIMIT_WINDOW_MS.
+Graceful shutdown: add handlers for SIGTERM/SIGINT to stop accepting new requests, close DB connections and WebSocket server cleanly, then exit.
+Structured logging (optional, no behavior change): respect LOG_FORMAT=json|pretty; default to plain logs.
+Acceptance: App boots with existing env; /health returns 200; logs show deprecation warning only when SITE_WEBHOOK_SECRET is used; graceful shutdown closes WS and DB without errors.
+3) Webhook alignment & robustness (no functional change to destinations)
+Canonical path: standardize internal references and documentation to the path already used by code (/api/webhooks/trading). If any docs still mention /webhooks/site, update them to match the code, with a note that older docs used /site.
+Timestamped signatures (config-gated): allow (behind env) sending an additional X-Webhook-Timestamp header and verify it when receiving (tolerance from WEBHOOK_TOLERANCE_SEC). Keep default behavior unchanged if the env is not set.
+Retry policy stub: log and queue a retry intent when a webhook POST fails; implement a simple in-memory backoff controlled by env; keep it disabled by default.
+Acceptance: Docs match the code path; enabling the new envs in a test run logs the timestamp/verification without breaking current flows when disabled.
+4) Database migrations safety
+Deprecate destructive migration script: ensure any script that drops all tables cannot run in non-development environments. Gate it behind NODE_ENV=development and a clear confirmation env (e.g., ALLOW_DESTRUCTIVE_MIGRATIONS=false by default).
+Introduce non-destructive, versioned migrations (Drizzle Kit or equivalent) with scripts to generate/apply migrations.
+Add CI step to validate migrations compile without executing them against production.
+Acceptance: Running migration commands in CI validates but never drops tables; production guard prevents destructive paths.
+5) Containerization for portability
+Add a multi-stage container build that produces a lean runtime image and binds to 0.0.0.0:${PORT} (default 5000).
+Add a .dockerignore to keep the image small (node_modules from host, VCS, logs, attached_assets with secrets, etc.).
+Provide two Compose files:
+docker-compose.dev.yml that runs the app against the existing external Neon database, reading env from a local .env.
+docker-compose.prod.yml that runs only the app service (assumes external DB and reverse proxy), includes a container healthcheck hitting /health, and uses a sensible restart policy.
+Ensure WebSocket traffic works transparently (no special port beyond the main HTTP PORT).
+Acceptance: A local “build then up” sequence works with external Neon; healthcheck reports healthy; image starts with only runtime deps.
+6) CI/CD to produce deployable artifacts (no deployment to any server)
+CI pipeline on PRs and main: install, lint, test (if present), build, and container build to validate Dockerfile.
+Image publishing on tags matching v*: build the container and push to GitHub Container Registry using the built-in token; tag with both the semver and latest.
+Attach CI artifacts: build logs and a small “runbook note” that lists the image reference and required env keys (names only).
+Acceptance: Pushing a tag in the repo produces a GHCR image; CI passes on main and PRs.
+7) Self-host pack (files you add now so it’s plug-and-play later)
+Create infra/self-host/ containing:
+docker-compose.prod.yml (app service only, external DB assumed, healthcheck included, restart policy).
+Caddyfile or Traefik labels reference (choose one, prefer Caddy for simplicity) that proxies /:HTTP and /ws to the app’s PORT and terminates TLS. Use placeholder domains and a note to replace them later.
+README-SELF-HOST.md with a concise, provider-agnostic overview of how these files fit together and which envs must be supplied. Do not include any server-specific commands; include only sequence and file references.
+Keep all placeholders obvious (e.g., <YOUR_DOMAIN>, <SET_IN_ENV>), with a section mapping placeholders to env keys.
+Acceptance: Folder exists with the three files; no secrets; placeholders and mapping are clear; nothing attempts to run by itself.
+8) Secrets & webhooks replacer (to enable safe future rotations without downtime)
+Add a manifest file describing every env key and webhook: purpose, required at boot, format constraints, and locations in code.
+Add a CLI tool that can:
+Audit: list keys/webhooks and where they’re used.
+Dry-run: compare a provided secrets source vs. a target secrets file and show what would change (without revealing values).
+Apply: update only the target secrets file atomically, with backups, touching only keys present in the manifest; optional, explicit allow-list to update literal URLs in non-code docs.
+Explain: print the purpose and references for any single key/webhook.
+Wire npm scripts for audit, dry-run, apply, and explain.
+Acceptance: Running audit/dry-run locally shows accurate, masked diffs; apply writes only to the target secrets file and creates a timestamped backup; source files are never modified unless explicitly allow-listed.
+9) Documentation refresh (dev → prod portability)
+Update README.md with:
+How to run locally via Compose with external Neon (high-level, no secrets).
+Where env keys come from (refer to .env.example and the manifest).
+Where the self-host pack lives and what files it contains (no server commands).
+Link to CI badges and image location pattern on GHCR.
+Add a short “Operational Profiles” section (dev, staging, prod) defining which env keys are mandatory by profile.
+Acceptance: README reads cleanly and references all new files without exposing any credentials.
+10) Final PR contents checklist (must appear in the PR body)
+List of added/updated files.
+Confirmation that no live secrets remain in tracked docs.
+Proof that the app still boots with existing envs; /health returns 200.
+CI status passing; GHCR image published on a tagged test (if tag was pushed in a fork).
+Instructions pointing to infra/self-host/ for future plug-and-play use.
+Notes on deprecated SITE_WEBHOOK_SECRET behavior and the new fail-fast for WEBHOOK_SECRET.
+Statement that no destructive migration can run outside development.
