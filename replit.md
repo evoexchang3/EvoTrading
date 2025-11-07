@@ -130,3 +130,27 @@ The platform includes three major enterprise enhancements for production deploym
 - Foreground/card/secondary tokens remain synchronized
 - Chart palettes retain distinct hues for data differentiation
 **Documentation:** Complete audit report available in `WCAG_AA_AUDIT_REPORT.md` with detailed methodology and saturation analysis
+
+### 6. Navigation System Fixes & Missing Pages (November 7, 2025)
+**Purpose:** Fix broken navigation links across all 15 layout variants and create missing pages referenced in navigation menus.
+**Implementation:**
+- **Navigation Fixes:** Updated all 15 navigation variants to use correct routes:
+  - /auth/login → /login
+  - /auth/register → /register
+- **Footer Fixes:** Updated all 15 footer variants to use correct routes:
+  - /company/faq → /faq
+  - /legal/risk-disclosure → /legal/risk
+- **New Pages Created:**
+  - **MarketsPage** (/markets) - Public page with Forex, Crypto, Commodities overview, live price cards, market stats, and trading CTA. Symbols URL-encoded (EUR/USD → EUR-USD) for Wouter routing compatibility.
+  - **CompanyPage** (/company) - Public page with company statistics, links to regulatory/safety/rates/security/status/complaints subpages, core values section, and contact CTA.
+  - **AccountSecurityPage** (/security) - Protected page with password change form, 2FA toggle, security overview status, and session management. Uses Zod validation with localized error messages.
+- **i18n Coverage:** Added 100+ translation keys (markets.*, company.*, security.*) including all aria-labels for full WCAG AA accessibility compliance
+- **SEO Elements:** Proper heading hierarchy (h1, h2, h3), semantic HTML sections, comprehensive aria-labels, and data-testid attributes on all interactive elements
+**Files Modified:**
+- client/src/pages/MarketsPage.tsx (created)
+- client/src/pages/CompanyPage.tsx (created)
+- client/src/pages/account/AccountSecurityPage.tsx (created)
+- client/src/App.tsx (routes registered)
+- client/src/translations/en.ts (100+ new keys)
+- client/src/layouts/variants/navigation/*.tsx (15 files, auth link fixes)
+- client/src/layouts/variants/footer/*.tsx (15 files, footer link fixes)
