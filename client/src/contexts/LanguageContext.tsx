@@ -28,10 +28,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const [translations, setTranslations] = useState<TranslationKeys>({});
   const [fallbackTranslations, setFallbackTranslations] = useState<TranslationKeys>({});
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Load translations when language changes
   useEffect(() => {
     const loadLanguageTranslations = async () => {
+      setIsLoading(true);
       try {
         const langTranslations = await loadTranslations(language);
         setTranslations(langTranslations);
@@ -48,6 +50,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         // Load English as fallback
         const englishTranslations = await loadTranslations('en');
         setTranslations(englishTranslations);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -72,8 +76,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // Get translation from current language or fallback to English
     let translation = translations[key] || fallbackTranslations[key] || key;
 
-    // Show warning in development if key is missing
-    if (translation === key && process.env.NODE_ENV === 'development') {
+    // Show warning in development if key is missing AND translations have finished loading
+    if (translation === key && !isLoading && process.env.NODE_ENV === 'development') {
       console.warn(`Missing translation key: "${key}" for language: ${language}`);
     }
 

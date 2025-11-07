@@ -425,6 +425,60 @@ docker-compose -f infra/self-host/docker-compose.prod.yml logs --tail=100
 sudo tail -f /var/log/caddy/trading-platform-access.log
 ```
 
+### CORS Configuration
+
+**What is CORS?**
+Cross-Origin Resource Sharing (CORS) controls which domains can make API requests to your trading platform. This is a critical security feature for production deployments.
+
+**When to Configure:**
+- ✅ **Production**: Always set `CORS_ALLOWED_ORIGINS` to your domain(s)
+- ℹ️ **Development**: Not required (Vite dev server handles CORS automatically)
+- ⚠️ **Default Behavior**: If not set, CORS is **deny-by-default** for security
+
+**Configuration Examples:**
+
+```bash
+# Single domain
+CORS_ALLOWED_ORIGINS=https://trading.example.com
+
+# Multiple domains (comma-separated)
+CORS_ALLOWED_ORIGINS=https://trading.example.com,https://www.trading.example.com
+
+# With subdomain wildcard (NOT RECOMMENDED in production)
+# Use explicit domain list instead
+CORS_ALLOWED_ORIGINS=https://app.example.com,https://trade.example.com
+```
+
+**Best Practices:**
+1. **Always use HTTPS** in production (`https://` not `http://`)
+2. **List specific domains** - Never use wildcards (`*`) in production
+3. **Include all variants** - Add both www and non-www if needed
+4. **No trailing slashes** - Use `https://example.com` not `https://example.com/`
+
+**Testing CORS Configuration:**
+```bash
+# Test from allowed origin
+curl -H "Origin: https://trading.example.com" \
+     -H "Access-Control-Request-Method: POST" \
+     -X OPTIONS \
+     https://trading.example.com/api/auth/login
+
+# Should return Access-Control-Allow-Origin header
+```
+
+**Common Issues:**
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| API requests blocked | CORS not configured | Add domain to `CORS_ALLOWED_ORIGINS` |
+| 401 errors on API | Credentials not sent | Ensure `credentials: true` in frontend |
+| CORS works locally, not production | Different domains | Add production domain to env |
+
+**Security Notes:**
+- The platform enables `credentials: true` for cookie/auth header support
+- Trust proxy is enabled for accurate rate limiting behind reverse proxies
+- Rate limiting applies per client IP (not proxy IP) when properly configured
+
 ### Troubleshooting
 
 #### Container won't start

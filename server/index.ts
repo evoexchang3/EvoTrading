@@ -9,6 +9,11 @@ import { db } from "./db";
 import type { Server } from "http";
 
 const app = express();
+
+// Trust first proxy (Caddy, nginx, etc.) for accurate rate limiting and client IP detection
+// When behind a reverse proxy, this ensures X-Forwarded-For headers are trusted
+app.set('trust proxy', 1);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
