@@ -1,11 +1,20 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
-import { useVariant, useVariantClasses } from "@/layouts/shared/useVariant";
+import { useVariant } from "@/layouts/shared/useVariant";
 import { CheckCircle2 } from "lucide-react";
+import {
+  VariantSection,
+  VariantContainer,
+  VariantHeading,
+  VariantText,
+  VariantCard,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/variant";
 
 // Hero components
 import { HeroFullWidth } from "@/components/home/HeroFullWidth";
@@ -20,7 +29,6 @@ import { FeaturesList } from "@/components/home/FeaturesList";
 export default function HomePage() {
   const { t } = useLanguage();
   const variant = useVariant();
-  const classes = useVariantClasses();
 
   // Select appropriate components based on variant configuration
   const HeroComponent = () => {
@@ -74,17 +82,17 @@ export default function HomePage() {
       <FeaturesComponent />
 
       {/* Why Choose Us Section */}
-      <section className={classes.spacing('section')}>
-        <div className={classes.container}>
-          <div className={`grid gap-12 lg:grid-cols-2 items-center ${classes.animation('page')}`}>
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>
-              <h2 className={`${classes.textSize('heading')} font-bold mb-6`} data-testid="text-benefits-title">
+              <VariantHeading level="heading" className="mb-6" data-testid="text-benefits-title">
                 {t('home.benefits.title')}
-              </h2>
-              <p className={`${classes.textSize('body')} text-muted-foreground mb-8`}>
+              </VariantHeading>
+              <VariantText className="text-muted-foreground mb-8">
                 {t('home.benefits.subtitle')}
-              </p>
-              <ul className={classes.spacing('element')}>
+              </VariantText>
+              <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <li key={index} className="flex items-start gap-3" data-testid={`benefit-${index}`}>
                     <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
@@ -95,44 +103,44 @@ export default function HomePage() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
+              <VariantCard>
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-4xl font-bold text-primary">50+</CardTitle>
                   <CardDescription>{t('home.stats.currencyPairs')}</CardDescription>
                 </CardHeader>
-              </Card>
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
+              </VariantCard>
+              <VariantCard>
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-4xl font-bold text-primary">100+</CardTitle>
                   <CardDescription>{t('home.stats.cryptoAssets')}</CardDescription>
                 </CardHeader>
-              </Card>
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
+              </VariantCard>
+              <VariantCard>
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-4xl font-bold text-primary">24/7</CardTitle>
                   <CardDescription>{t('home.stats.customerSupport')}</CardDescription>
                 </CardHeader>
-              </Card>
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
+              </VariantCard>
+              <VariantCard>
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-4xl font-bold text-primary">0.01s</CardTitle>
                   <CardDescription>{t('home.stats.avgExecutionTime')}</CardDescription>
                 </CardHeader>
-              </Card>
+              </VariantCard>
             </div>
           </div>
-        </div>
-      </section>
+        </VariantContainer>
+      </VariantSection>
 
       {/* CTA Section */}
-      <section className={`${classes.spacing('section')} bg-primary text-primary-foreground`}>
-        <div className={`${classes.container} text-center`}>
-          <h2 className={`${classes.textSize('heading')} font-bold mb-4`} data-testid="text-cta-title">
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
+        <VariantContainer className="text-center">
+          <VariantHeading level="heading" className="mb-4" data-testid="text-cta-title">
             {t('home.cta.title')}
-          </h2>
-          <p className={`${classes.textSize('body')} mb-8 opacity-90 max-w-2xl mx-auto`}>
+          </VariantHeading>
+          <VariantText className="mb-8 opacity-90 max-w-2xl mx-auto">
             {t('home.cta.subtitle')}
-          </p>
+          </VariantText>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/register">
               <Button size="lg" variant="secondary" data-testid="button-cta-register">
@@ -145,7 +153,7 @@ export default function HomePage() {
               </Button>
             </Link>
           </div>
-        </div>
+        </VariantContainer>
       </section>
     </LandingLayout>
   );

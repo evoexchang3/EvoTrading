@@ -4,11 +4,9 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
 import { VariantSection, VariantContainer, VariantHeading, VariantText } from "@/components/variant";
 import { VariantProseContent } from "@/components/variant/VariantProseContent";
-import { useVariantClasses } from "@/layouts/shared/useVariant";
 
 export default function RiskPage() {
   const { t } = useLanguage();
-  const classes = useVariantClasses();
 
   return (
     <LandingLayout>

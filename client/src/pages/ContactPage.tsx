@@ -1,5 +1,4 @@
 import { LandingLayout } from "@/components/LandingLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,13 +13,21 @@ import { Loader2 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
-import { useVariantClasses } from "@/layouts/shared/useVariant";
+import {
+  VariantSection,
+  VariantContainer,
+  VariantPageHeader,
+  VariantCard,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/variant";
 
 export default function ContactPage() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const { config, loading } = useSiteConfig();
-  const classes = useVariantClasses();
   
   const supportEmail = loading ? "support@tradingplatform.com" : (config.branding?.supportEmail || "support@tradingplatform.com");
   
@@ -69,6 +76,29 @@ export default function ContactPage() {
     contactMutation.mutate(data);
   };
 
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: t('contact.info.emailSupport.title'),
+      description: supportEmail,
+    },
+    {
+      icon: Clock,
+      title: t('contact.info.supportHours.title'),
+      description: t('contact.info.supportHours.value'),
+    },
+    {
+      icon: MapPin,
+      title: t('contact.info.officeAddress.title'),
+      description: `${t('contact.info.officeAddress.line1')}\n${t('contact.info.officeAddress.line2')}`,
+    },
+    {
+      icon: MessageSquare,
+      title: t('contact.info.liveChat.title'),
+      description: t('contact.info.liveChat.value'),
+    },
+  ];
+
   return (
     <LandingLayout>
       <SEO
@@ -76,30 +106,21 @@ export default function ContactPage() {
         description={t('contact.seo.description')}
         keywords={t('contact.seo.keywords')}
       />
-      {/* Hero Section */}
-      <section className={`${classes.spacing('section')} bg-gradient-to-br from-primary/10 via-background to-background`}>
-        <div className={classes.container}>
-          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')} ${classes.animation('hero')}`}>
-            <h1 className={`${classes.textSize('hero')} font-bold`} data-testid="text-contact-title">
-              {t('contact.hero.title')}
-            </h1>
-            <p className={`${classes.textSize('body')} text-muted-foreground`}>
-              {t('contact.hero.subtitle')}
-            </p>
-          </div>
-        </div>
-      </section>
+      
+      <VariantPageHeader
+        title={t('contact.hero.title')}
+        subtitle={t('contact.hero.subtitle')}
+        titleTestId="text-contact-title"
+      />
 
-      {/* Contact Form and Info */}
-      <section className={classes.spacing('section')}>
-        <div className={classes.container}>
-          <div className={`grid gap-12 lg:grid-cols-2 ${classes.animation('page')}`}>
-            {/* Contact Form */}
+      <VariantSection>
+        <VariantContainer>
+          <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
+              <VariantCard>
                 <CardHeader>
-                  <CardTitle className={classes.textSize('heading')}>{t('contact.form.title')}</CardTitle>
-                  <CardDescription className={classes.textSize('body')}>
+                  <CardTitle>{t('contact.form.title')}</CardTitle>
+                  <CardDescription>
                     {t('contact.form.description')}
                   </CardDescription>
                 </CardHeader>
@@ -180,72 +201,32 @@ export default function ContactPage() {
                     </Button>
                   </form>
                 </CardContent>
-              </Card>
+              </VariantCard>
             </div>
 
-            {/* Contact Information */}
             <div className="space-y-6">
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
-                <CardHeader className="flex flex-row items-center gap-4 space-y-0">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <Mail className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle>{t('contact.info.emailSupport.title')}</CardTitle>
-                    <CardDescription className={`${classes.textSize('body')} mt-1`}>
-                      {supportEmail}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
-
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
-                <CardHeader className="flex flex-row items-center gap-4 space-y-0">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <Clock className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle>{t('contact.info.supportHours.title')}</CardTitle>
-                    <CardDescription className={`${classes.textSize('body')} mt-1`}>
-                      {t('contact.info.supportHours.value')}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
-
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
-                <CardHeader className="flex flex-row items-center gap-4 space-y-0">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <MapPin className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle>{t('contact.info.officeAddress.title')}</CardTitle>
-                    <CardDescription className={`${classes.textSize('body')} mt-1`}>
-                      {t('contact.info.officeAddress.line1')}
-                      <br />
-                      {t('contact.info.officeAddress.line2')}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
-
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
-                <CardHeader className="flex flex-row items-center gap-4 space-y-0">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <MessageSquare className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle>{t('contact.info.liveChat.title')}</CardTitle>
-                    <CardDescription className={`${classes.textSize('body')} mt-1`}>
-                      {t('contact.info.liveChat.value')}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
+              {contactInfo.map((info, index) => {
+                const Icon = info.icon;
+                return (
+                  <VariantCard key={index}>
+                    <CardHeader className="flex flex-row items-center gap-4 space-y-0">
+                      <div className="p-3 rounded-lg bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle>{info.title}</CardTitle>
+                        <CardDescription className="mt-1 whitespace-pre-line">
+                          {info.description}
+                        </CardDescription>
+                      </div>
+                    </CardHeader>
+                  </VariantCard>
+                );
+              })}
             </div>
           </div>
-        </div>
-      </section>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

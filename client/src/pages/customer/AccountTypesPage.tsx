@@ -1,5 +1,4 @@
 import { LandingLayout } from "@/components/LandingLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, HelpCircle, ArrowRight, Shield, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -7,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
-import { VariantSection, VariantContainer, VariantHeading, VariantText } from "@/components/variant";
+import { VariantSection, VariantContainer, VariantHeading, VariantText, VariantGrid, VariantCard, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/variant";
 
 export default function AccountTypesPage() {
   const { t } = useLanguage();

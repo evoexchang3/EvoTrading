@@ -1,13 +1,23 @@
 import { LandingLayout } from "@/components/LandingLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, TrendingUp, Users, Globe2, Award, Target } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
-import { useVariantClasses } from "@/layouts/shared/useVariant";
+import {
+  VariantSection,
+  VariantContainer,
+  VariantPageHeader,
+  VariantHeading,
+  VariantText,
+  VariantGrid,
+  VariantCard,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/variant";
 
 export default function AboutPage() {
   const { t } = useLanguage();
-  const classes = useVariantClasses();
   
   const values = [
     {
@@ -32,6 +42,34 @@ export default function AboutPage() {
     },
   ];
 
+  const missionHighlights = [
+    {
+      icon: Award,
+      title: t("about.mission.regulated.title"),
+      description: t("about.mission.regulated.description"),
+    },
+    {
+      icon: Target,
+      title: t("about.mission.clientFocused.title"),
+      description: t("about.mission.clientFocused.description"),
+    },
+  ];
+
+  const services = [
+    {
+      title: t("about.services.forex.title"),
+      description: t("about.services.forex.description"),
+    },
+    {
+      title: t("about.services.crypto.title"),
+      description: t("about.services.crypto.description"),
+    },
+    {
+      title: t("about.services.commodities.title"),
+      description: t("about.services.commodities.description"),
+    },
+  ];
+
   return (
     <LandingLayout>
       <SEO
@@ -39,163 +77,126 @@ export default function AboutPage() {
         description={t("about.seo.description")}
         keywords={t("about.seo.keywords")}
       />
-      {/* Hero Section */}
-      <section className={`${classes.spacing('section')} bg-gradient-to-br from-primary/10 via-background to-background`}>
-        <div className={classes.container}>
-          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')} ${classes.animation('hero')}`}>
-            <h1 className={`${classes.textSize('hero')} font-bold`} data-testid="text-about-title">
-              {t("about.hero.title")}
-            </h1>
-            <p className={`${classes.textSize('body')} text-muted-foreground`}>
-              {t("about.hero.subtitle")}
-            </p>
-          </div>
-        </div>
-      </section>
+      
+      <VariantPageHeader
+        title={t("about.hero.title")}
+        subtitle={t("about.hero.subtitle")}
+        titleTestId="text-about-title"
+      />
 
-      {/* Mission Section */}
-      <section className={classes.spacing('section')}>
-        <div className={classes.container}>
-          <div className={`grid gap-12 lg:grid-cols-2 items-center ${classes.animation('page')}`}>
+      <VariantSection>
+        <VariantContainer>
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>
-              <h2 className={`${classes.textSize('heading')} font-bold mb-6`} data-testid="text-mission-title">
+              <VariantHeading level="heading" data-testid="text-mission-title">
                 {t("about.mission.title")}
-              </h2>
-              <p className={`${classes.textSize('body')} text-muted-foreground mb-6`}>
+              </VariantHeading>
+              <VariantText className="mb-6">
                 {t("about.mission.paragraph1")}
-              </p>
-              <p className={`${classes.textSize('body')} text-muted-foreground`}>
+              </VariantText>
+              <VariantText>
                 {t("about.mission.paragraph2")}
-              </p>
+              </VariantText>
             </div>
             <div className="grid gap-4">
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
-                <CardHeader className="flex flex-row items-center gap-4 space-y-0">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <Award className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle>{t("about.mission.regulated.title")}</CardTitle>
-                    <CardDescription>{t("about.mission.regulated.description")}</CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
-              <Card className={`${classes.card} ${classes.hover('card')}`}>
-                <CardHeader className="flex flex-row items-center gap-4 space-y-0">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <Target className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle>{t("about.mission.clientFocused.title")}</CardTitle>
-                    <CardDescription>{t("about.mission.clientFocused.description")}</CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
+              {missionHighlights.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <VariantCard key={index}>
+                    <CardHeader className="flex flex-row items-center gap-4 space-y-0">
+                      <div className="p-3 rounded-lg bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle>{item.title}</CardTitle>
+                        <CardDescription>{item.description}</CardDescription>
+                      </div>
+                    </CardHeader>
+                  </VariantCard>
+                );
+              })}
             </div>
           </div>
-        </div>
-      </section>
+        </VariantContainer>
+      </VariantSection>
 
-      {/* Values Section */}
-      <section className={`${classes.spacing('section')} bg-muted/30`}>
-        <div className={classes.container}>
-          <div className={`text-center ${classes.spacing('element')}`}>
-            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-values-title">
+      <VariantSection background="muted">
+        <VariantContainer>
+          <div className="text-center mb-12">
+            <VariantHeading level="heading" data-testid="text-values-title">
               {t("about.values.title")}
-            </h2>
-            <p className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto`}>
+            </VariantHeading>
+            <VariantText className="max-w-2xl mx-auto">
               {t("about.values.subtitle")}
-            </p>
+            </VariantText>
           </div>
 
-          <div className={classes.grid}>
-            {values.map((value, index) => (
-              <Card key={index} className={`${classes.card} ${classes.hover('card')}`} data-testid={`card-value-${index}`}>
-                <CardHeader>
-                  <div className="mb-4">
-                    <div className="inline-flex p-3 rounded-lg bg-primary/10">
-                      <value.icon className="h-6 w-6 text-primary" />
+          <VariantGrid>
+            {values.map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <VariantCard key={index} data-testid={`card-value-${index}`}>
+                  <CardHeader>
+                    <div className="mb-4">
+                      <div className="inline-flex p-3 rounded-lg bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
                     </div>
-                  </div>
-                  <CardTitle className={classes.textSize('heading')}>{value.title}</CardTitle>
+                    <CardTitle>{value.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>{value.description}</CardDescription>
+                  </CardContent>
+                </VariantCard>
+              );
+            })}
+          </VariantGrid>
+        </VariantContainer>
+      </VariantSection>
+
+      <VariantSection>
+        <VariantContainer>
+          <div className="text-center mb-12">
+            <VariantHeading level="heading" data-testid="text-services-title">
+              {t("about.services.title")}
+            </VariantHeading>
+            <VariantText className="max-w-2xl mx-auto">
+              {t("about.services.subtitle")}
+            </VariantText>
+          </div>
+
+          <VariantGrid>
+            {services.map((service, index) => (
+              <VariantCard key={index}>
+                <CardHeader>
+                  <CardTitle>{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className={classes.textSize('body')}>{value.description}</CardDescription>
+                  <CardDescription>{service.description}</CardDescription>
                 </CardContent>
-              </Card>
+              </VariantCard>
             ))}
-          </div>
-        </div>
-      </section>
+          </VariantGrid>
+        </VariantContainer>
+      </VariantSection>
 
-      {/* Services Section */}
-      <section className={classes.spacing('section')}>
-        <div className={classes.container}>
-          <div className={`text-center ${classes.spacing('element')}`}>
-            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-services-title">
-              {t("about.services.title")}
-            </h2>
-            <p className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto`}>
-              {t("about.services.subtitle")}
-            </p>
-          </div>
-
-          <div className={classes.grid}>
-            <Card className={`${classes.card} ${classes.hover('card')}`}>
-              <CardHeader>
-                <CardTitle className={classes.textSize('heading')}>{t("about.services.forex.title")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className={classes.textSize('body')}>
-                  {t("about.services.forex.description")}
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className={`${classes.card} ${classes.hover('card')}`}>
-              <CardHeader>
-                <CardTitle className={classes.textSize('heading')}>{t("about.services.crypto.title")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className={classes.textSize('body')}>
-                  {t("about.services.crypto.description")}
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className={`${classes.card} ${classes.hover('card')}`}>
-              <CardHeader>
-                <CardTitle className={classes.textSize('heading')}>{t("about.services.commodities.title")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className={classes.textSize('body')}>
-                  {t("about.services.commodities.description")}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className={`${classes.spacing('section')} bg-muted/30`}>
-        <div className={classes.container}>
-          <div className={`text-center ${classes.spacing('element')}`}>
-            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-team-title">
+      <VariantSection background="muted">
+        <VariantContainer>
+          <div className="text-center">
+            <VariantHeading level="heading" data-testid="text-team-title">
               {t("about.team.title")}
-            </h2>
-            <p className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto`}>
+            </VariantHeading>
+            <VariantText className="max-w-2xl mx-auto mb-6">
               {t("about.team.subtitle")}
-            </p>
+            </VariantText>
+            <div className="max-w-4xl mx-auto">
+              <VariantText className="text-center">
+                {t("about.team.description")}
+              </VariantText>
+            </div>
           </div>
-
-          <div className="max-w-4xl mx-auto">
-            <p className={`text-center ${classes.textSize('body')} text-muted-foreground`}>
-              {t("about.team.description")}
-            </p>
-          </div>
-        </div>
-      </section>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

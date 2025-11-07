@@ -1,5 +1,4 @@
 import { LandingLayout } from "@/components/LandingLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -18,7 +17,7 @@ import {
   HelpCircle
 } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
-import { VariantSection, VariantContainer, VariantGrid, VariantCard, VariantHeading, VariantText } from "@/components/variant";
+import { VariantSection, VariantContainer, VariantGrid, VariantCard, VariantHeading, VariantText, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/variant";
 
 export default function RegulatoryPage() {
   const { t } = useLanguage();

@@ -1,15 +1,25 @@
 import { LandingLayout } from "@/components/LandingLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { BookOpen, TrendingUp, Shield, BarChart3, Lightbulb, GraduationCap } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
-import { useVariantClasses } from "@/layouts/shared/useVariant";
+import {
+  VariantSection,
+  VariantContainer,
+  VariantPageHeader,
+  VariantHeading,
+  VariantText,
+  VariantGrid,
+  VariantCard,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/variant";
 
 export default function EducationPage() {
   const { t } = useLanguage();
-  const classes = useVariantClasses();
 
   const topics = [
     {
@@ -85,72 +95,66 @@ export default function EducationPage() {
         description={t('education.seo.description')}
         keywords={t('education.seo.keywords')}
       />
-      {/* Hero Section */}
-      <section className={`${classes.spacing('section')} bg-gradient-to-br from-primary/10 via-background to-background`}>
-        <div className={classes.container}>
-          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')} ${classes.animation('hero')}`}>
-            <h1 className={`${classes.textSize('hero')} font-bold`} data-testid="text-education-title">
-              {t('education.hero.title')}
-            </h1>
-            <p className={`${classes.textSize('body')} text-muted-foreground`}>
-              {t('education.hero.subtitle')}
-            </p>
-          </div>
-        </div>
-      </section>
+      
+      <VariantPageHeader
+        title={t('education.hero.title')}
+        subtitle={t('education.hero.subtitle')}
+        titleTestId="text-education-title"
+      />
 
-      {/* Topics Grid */}
-      <section className={classes.spacing('section')}>
-        <div className={classes.container}>
-          <div className={`text-center ${classes.spacing('element')}`}>
-            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-topics-title">
+      <VariantSection>
+        <VariantContainer>
+          <div className="text-center mb-12">
+            <VariantHeading level="heading" data-testid="text-topics-title">
               {t('education.topics.title')}
-            </h2>
-            <p className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto`}>
+            </VariantHeading>
+            <VariantText className="max-w-2xl mx-auto">
               {t('education.topics.subtitle')}
-            </p>
+            </VariantText>
           </div>
 
-          <div className={`${classes.grid} ${classes.animation('page')}`}>
-            {topics.map((topic, index) => (
-              <Card key={index} className={`${classes.card} ${classes.hover('card')}`} data-testid={`card-topic-${index}`}>
-                <CardHeader>
-                  <div className="mb-4">
-                    <div className="inline-flex p-3 rounded-lg bg-primary/10">
-                      <topic.icon className="h-6 w-6 text-primary" />
+          <VariantGrid>
+            {topics.map((topic, index) => {
+              const Icon = topic.icon;
+              return (
+                <VariantCard key={index} data-testid={`card-topic-${index}`}>
+                  <CardHeader>
+                    <div className="mb-4">
+                      <div className="inline-flex p-3 rounded-lg bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
                     </div>
-                  </div>
-                  <CardTitle className={classes.textSize('heading')}>{topic.title}</CardTitle>
-                  <CardDescription className={`${classes.textSize('body')} font-medium text-primary`}>{topic.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className={`${classes.textSize('body')} text-muted-foreground`}>{topic.content}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+                    <CardTitle>{topic.title}</CardTitle>
+                    <CardDescription className="font-medium text-primary">{topic.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <VariantText>{topic.content}</VariantText>
+                  </CardContent>
+                </VariantCard>
+              );
+            })}
+          </VariantGrid>
+        </VariantContainer>
+      </VariantSection>
 
-      {/* Learning Resources */}
-      <section className={`${classes.spacing('section')} bg-muted/30`}>
-        <div className={classes.container}>
-          <div className={`text-center ${classes.spacing('element')}`}>
-            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-resources-title">
+      <VariantSection background="muted">
+        <VariantContainer>
+          <div className="text-center mb-12">
+            <VariantHeading level="heading" data-testid="text-resources-title">
               {t('education.resources.title')}
-            </h2>
-            <p className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto`}>
+            </VariantHeading>
+            <VariantText className="max-w-2xl mx-auto">
               {t('education.resources.subtitle')}
-            </p>
+            </VariantText>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-4">
             {resources.map((resource, index) => (
-              <Card key={index} className={`${classes.card} ${classes.hover('card')}`} data-testid={`card-resource-${index}`}>
+              <VariantCard key={index} data-testid={`card-resource-${index}`}>
                 <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
                   <div className="flex-1">
-                    <CardTitle className={`${classes.textSize('heading')} mb-2`}>{resource.title}</CardTitle>
-                    <CardDescription className={classes.textSize('body')}>{resource.description}</CardDescription>
+                    <CardTitle className="mb-2">{resource.title}</CardTitle>
+                    <CardDescription>{resource.description}</CardDescription>
                   </div>
                   <div className="flex flex-col items-end gap-2">
                     <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
@@ -162,40 +166,39 @@ export default function EducationPage() {
                     </span>
                   </div>
                 </CardHeader>
-              </Card>
+              </VariantCard>
             ))}
           </div>
-        </div>
-      </section>
+        </VariantContainer>
+      </VariantSection>
 
-      {/* Trading Academy Preview */}
-      <section className={classes.spacing('section')}>
-        <div className={classes.container}>
-          <Card className={`${classes.card} ${classes.hover('card')} bg-primary text-primary-foreground`}>
-            <CardHeader className={`text-center ${classes.spacing('element')} pb-8`}>
+      <VariantSection>
+        <VariantContainer>
+          <VariantCard className="bg-primary text-primary-foreground">
+            <CardHeader className="text-center pb-8">
               <div className="inline-flex mx-auto p-4 rounded-full bg-primary-foreground/10">
                 <GraduationCap className="h-8 w-8" />
               </div>
-              <CardTitle className={`${classes.textSize('heading')}`}>{t('education.academy.title')}</CardTitle>
-              <CardDescription className={`${classes.textSize('body')} opacity-90 text-primary-foreground`}>
+              <CardTitle>{t('education.academy.title')}</CardTitle>
+              <CardDescription className="opacity-90 text-primary-foreground">
                 {t('education.academy.subtitle')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className={`${classes.grid} max-w-4xl mx-auto`}>
+              <VariantGrid className="max-w-4xl mx-auto">
                 <div className="text-center space-y-2">
                   <h3 className="font-semibold">{t('education.academy.videoCourses.title')}</h3>
-                  <p className={`${classes.textSize('body')} opacity-90`}>{t('education.academy.videoCourses.description')}</p>
+                  <VariantText className="opacity-90">{t('education.academy.videoCourses.description')}</VariantText>
                 </div>
                 <div className="text-center space-y-2">
                   <h3 className="font-semibold">{t('education.academy.liveWebinars.title')}</h3>
-                  <p className={`${classes.textSize('body')} opacity-90`}>{t('education.academy.liveWebinars.description')}</p>
+                  <VariantText className="opacity-90">{t('education.academy.liveWebinars.description')}</VariantText>
                 </div>
                 <div className="text-center space-y-2">
                   <h3 className="font-semibold">{t('education.academy.certifications.title')}</h3>
-                  <p className={`${classes.textSize('body')} opacity-90`}>{t('education.academy.certifications.description')}</p>
+                  <VariantText className="opacity-90">{t('education.academy.certifications.description')}</VariantText>
                 </div>
-              </div>
+              </VariantGrid>
               <div className="text-center pt-4">
                 <Link href="/register">
                   <Button variant="secondary" size="lg" data-testid="button-get-started">
@@ -204,21 +207,20 @@ export default function EducationPage() {
                 </Link>
               </div>
             </CardContent>
-          </Card>
-        </div>
-      </section>
+          </VariantCard>
+        </VariantContainer>
+      </VariantSection>
 
-      {/* CTA Section */}
-      <section className={`${classes.spacing('section')} bg-muted/30`}>
-        <div className={classes.container}>
-          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')}`}>
-            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-cta-title">
+      <VariantSection background="muted">
+        <VariantContainer>
+          <div className="max-w-3xl mx-auto text-center">
+            <VariantHeading level="heading" data-testid="text-cta-title">
               {t('education.cta.title')}
-            </h2>
-            <p className={`${classes.textSize('body')} text-muted-foreground`}>
+            </VariantHeading>
+            <VariantText className="mb-6">
               {t('education.cta.subtitle')}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
+            </VariantText>
+            <div className="flex flex-wrap justify-center gap-4">
               <Link href="/register">
                 <Button size="lg" data-testid="button-create-account">
                   {t('education.cta.button')}
@@ -226,8 +228,8 @@ export default function EducationPage() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

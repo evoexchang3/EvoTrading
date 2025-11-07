@@ -17,11 +17,9 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/variant";
-import { useVariantClasses } from "@/layouts/shared/useVariant";
 
 export default function PartnersPage() {
   const { t } = useLanguage();
-  const classes = useVariantClasses();
 
   const benefits = [
     {
@@ -73,7 +71,7 @@ export default function PartnersPage() {
       {/* Benefits Section */}
       <VariantSection animation="page">
         <VariantContainer>
-          <div className={`text-center ${classes.spacing('element')}`}>
+          <div className="text-center mb-12">
             <VariantHeading level="heading" data-testid="text-benefits-title">
               {t('partners.benefits.title')}
             </VariantHeading>
@@ -91,10 +89,10 @@ export default function PartnersPage() {
                       <benefit.icon className="h-6 w-6 text-primary" />
                     </div>
                   </div>
-                  <CardTitle className={classes.textSize('heading')}>{benefit.title}</CardTitle>
+                  <CardTitle>{benefit.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className={classes.textSize('body')}>{benefit.description}</CardDescription>
+                  <CardDescription>{benefit.description}</CardDescription>
                 </CardContent>
               </VariantCard>
             ))}
@@ -106,7 +104,7 @@ export default function PartnersPage() {
       <VariantSection background="muted">
         <VariantContainer>
           <div className="max-w-4xl mx-auto">
-            <div className={`text-center ${classes.spacing('element')}`}>
+            <div className="text-center mb-12">
               <VariantHeading level="heading" data-testid="text-commission-title">
                 {t('partners.commission.title')}
               </VariantHeading>
@@ -118,46 +116,46 @@ export default function PartnersPage() {
             <VariantGrid>
               <VariantCard>
                 <CardHeader className="text-center space-y-4">
-                  <CardTitle className={classes.textSize('heading')}>{t('partners.commission.starter.title')}</CardTitle>
+                  <CardTitle>{t('partners.commission.starter.title')}</CardTitle>
                   <div>
                     <p className="text-4xl font-bold text-primary">{t('partners.commission.starter.percentage')}</p>
-                    <p className={`${classes.textSize('body')} text-muted-foreground mt-2`}>{t('partners.commission.starter.label')}</p>
+                    <VariantText className="text-muted-foreground mt-2">{t('partners.commission.starter.label')}</VariantText>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p className={`${classes.textSize('body')} text-muted-foreground`}>
+                  <VariantText className="text-muted-foreground">
                     {t('partners.commission.starter.description')}
-                  </p>
+                  </VariantText>
                 </CardContent>
               </VariantCard>
 
               <VariantCard className="border-primary">
                 <CardHeader className="text-center space-y-4">
-                  <CardTitle className={classes.textSize('heading')}>{t('partners.commission.professional.title')}</CardTitle>
+                  <CardTitle>{t('partners.commission.professional.title')}</CardTitle>
                   <div>
                     <p className="text-4xl font-bold text-primary">{t('partners.commission.professional.percentage')}</p>
-                    <p className={`${classes.textSize('body')} text-muted-foreground mt-2`}>{t('partners.commission.professional.label')}</p>
+                    <VariantText className="text-muted-foreground mt-2">{t('partners.commission.professional.label')}</VariantText>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p className={`${classes.textSize('body')} text-muted-foreground`}>
+                  <VariantText className="text-muted-foreground">
                     {t('partners.commission.professional.description')}
-                  </p>
+                  </VariantText>
                 </CardContent>
               </VariantCard>
 
               <VariantCard>
                 <CardHeader className="text-center space-y-4">
-                  <CardTitle className={classes.textSize('heading')}>{t('partners.commission.elite.title')}</CardTitle>
+                  <CardTitle>{t('partners.commission.elite.title')}</CardTitle>
                   <div>
                     <p className="text-4xl font-bold text-primary">{t('partners.commission.elite.percentage')}</p>
-                    <p className={`${classes.textSize('body')} text-muted-foreground mt-2`}>{t('partners.commission.elite.label')}</p>
+                    <VariantText className="text-muted-foreground mt-2">{t('partners.commission.elite.label')}</VariantText>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p className={`${classes.textSize('body')} text-muted-foreground`}>
+                  <VariantText className="text-muted-foreground">
                     {t('partners.commission.elite.description')}
-                  </p>
+                  </VariantText>
                 </CardContent>
               </VariantCard>
             </VariantGrid>
@@ -180,7 +178,7 @@ export default function PartnersPage() {
                 {programFeatures.map((feature, index) => (
                   <li key={index} className="flex items-start gap-3" data-testid={`feature-${index}`}>
                     <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className={`${classes.textSize('body')} text-muted-foreground`}>{feature}</span>
+                    <VariantText className="text-muted-foreground">{feature}</VariantText>
                   </li>
                 ))}
               </ul>
@@ -188,7 +186,7 @@ export default function PartnersPage() {
 
             <VariantCard className="bg-primary text-primary-foreground">
               <CardHeader className="space-y-4">
-                <CardTitle className={classes.textSize('heading')}>{t('partners.howItWorks.title')}</CardTitle>
+                <CardTitle>{t('partners.howItWorks.title')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-4">
@@ -198,7 +196,7 @@ export default function PartnersPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">{t('partners.howItWorks.signUp.title')}</h3>
-                      <p className={`${classes.textSize('body')} opacity-90`}>{t('partners.howItWorks.signUp.description')}</p>
+                      <VariantText className="opacity-90">{t('partners.howItWorks.signUp.description')}</VariantText>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -207,7 +205,7 @@ export default function PartnersPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">{t('partners.howItWorks.promote.title')}</h3>
-                      <p className={`${classes.textSize('body')} opacity-90`}>{t('partners.howItWorks.promote.description')}</p>
+                      <VariantText className="opacity-90">{t('partners.howItWorks.promote.description')}</VariantText>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -216,7 +214,7 @@ export default function PartnersPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">{t('partners.howItWorks.earn.title')}</h3>
-                      <p className={`${classes.textSize('body')} opacity-90`}>{t('partners.howItWorks.earn.description')}</p>
+                      <VariantText className="opacity-90">{t('partners.howItWorks.earn.description')}</VariantText>
                     </div>
                   </div>
                 </div>
@@ -229,7 +227,7 @@ export default function PartnersPage() {
       {/* CTA Section */}
       <VariantSection background="muted">
         <VariantContainer>
-          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')}`}>
+          <div className="max-w-3xl mx-auto text-center mb-12">
             <VariantHeading level="heading" data-testid="text-cta-title">
               {t('partners.cta.title')}
             </VariantHeading>

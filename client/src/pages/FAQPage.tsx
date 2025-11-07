@@ -5,13 +5,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
-import { useVariantClasses } from "@/layouts/shared/useVariant";
+import {
+  VariantSection,
+  VariantContainer,
+  VariantPageHeader,
+  VariantHeading,
+  VariantText,
+} from "@/components/variant";
 
 export default function FAQPage() {
   const { t } = useLanguage();
-  const classes = useVariantClasses();
 
   const faqCategories = [
     {
@@ -120,41 +126,33 @@ export default function FAQPage() {
         description={t('faq.seo.description')}
         keywords={t('faq.seo.keywords')}
       />
-      {/* Hero Section */}
-      <section className={`${classes.spacing('section')} bg-gradient-to-br from-primary/10 via-background to-background`}>
-        <div className={classes.container}>
-          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')} ${classes.animation('hero')}`}>
-            <h1 className={`${classes.textSize('hero')} font-bold`} data-testid="text-faq-title">
-              {t('faq.hero.title')}
-            </h1>
-            <p className={`${classes.textSize('body')} text-muted-foreground`}>
-              {t('faq.hero.subtitle')}
-            </p>
-          </div>
-        </div>
-      </section>
+      
+      <VariantPageHeader
+        title={t('faq.hero.title')}
+        subtitle={t('faq.hero.subtitle')}
+        titleTestId="text-faq-title"
+      />
 
-      {/* FAQ Content */}
-      <section className={classes.spacing('section')}>
-        <div className={classes.container}>
-          <div className={`max-w-4xl mx-auto ${classes.spacing('element')} ${classes.animation('page')}`}>
+      <VariantSection>
+        <VariantContainer>
+          <div className="max-w-4xl mx-auto space-y-12">
             {faqCategories.map((category, categoryIndex) => (
               <div key={categoryIndex}>
-                <h2 className={`${classes.textSize('heading')} font-bold mb-6`} data-testid={`text-category-${categoryIndex}`}>
+                <VariantHeading level="heading" className="mb-6" data-testid={`text-category-${categoryIndex}`}>
                   {category.category}
-                </h2>
+                </VariantHeading>
                 <Accordion type="single" collapsible className="space-y-4">
                   {category.questions.map((faq, questionIndex) => (
                     <AccordionItem
                       key={`${categoryIndex}-${questionIndex}`}
                       value={`${categoryIndex}-${questionIndex}`}
-                      className={`border rounded-lg px-6 ${classes.hover('card')}`}
+                      className="border rounded-lg px-6"
                       data-testid={`accordion-item-${categoryIndex}-${questionIndex}`}
                     >
-                      <AccordionTrigger className={`text-left font-medium hover:no-underline py-4 ${classes.textSize('body')}`}>
+                      <AccordionTrigger className="text-left font-medium hover:no-underline py-4">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className={`${classes.textSize('body')} text-muted-foreground pb-4`}>
+                      <AccordionContent className="text-muted-foreground pb-4">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -163,29 +161,28 @@ export default function FAQPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </VariantContainer>
+      </VariantSection>
 
-      {/* Contact CTA */}
-      <section className={`${classes.spacing('section')} bg-muted/30`}>
-        <div className={classes.container}>
-          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')}`}>
-            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-contact-cta-title">
+      <VariantSection background="muted">
+        <VariantContainer>
+          <div className="max-w-3xl mx-auto text-center">
+            <VariantHeading level="heading" data-testid="text-contact-cta-title">
               {t('faq.cta.title')}
-            </h2>
-            <p className={`${classes.textSize('body')} text-muted-foreground`}>
+            </VariantHeading>
+            <VariantText className="mb-6">
               {t('faq.cta.description')}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
+            </VariantText>
+            <div className="flex flex-wrap justify-center gap-4">
               <a href="/contact" className="inline-block">
-                <button className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground ${classes.hover('button')} min-h-9 px-4 py-2`} data-testid="button-contact-us">
+                <Button data-testid="button-contact-us">
                   {t('faq.cta.button')}
-                </button>
+                </Button>
               </a>
             </div>
           </div>
-        </div>
-      </section>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }
