@@ -100,6 +100,7 @@ export function registerRoutes(app: Express): Server {
           email: client.email,
           firstName: client.firstName,
           lastName: client.lastName,
+          role: client.role,
         },
       });
     } catch (error: any) {
@@ -297,6 +298,7 @@ export function registerRoutes(app: Express): Server {
           email: client.email,
           firstName: client.firstName,
           lastName: client.lastName,
+          role: client.role,
         },
       });
     } catch (error: any) {
