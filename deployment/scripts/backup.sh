@@ -8,7 +8,8 @@
 # Add to cron for automated backups:
 #   0 2 * * * /var/www/trading-platform/deployment/scripts/backup.sh
 
-set -e  # Exit on any error
+set -e          # Exit on any error
+set -o pipefail # Ensure pg_dump failures propagate through gzip
 
 # Configuration
 APP_NAME="trading-platform"

@@ -25,6 +25,67 @@ APP_USER="tradingapp"
 APP_DIR="/var/www/${APP_NAME}"
 BACKUP_DIR="/var/backups/${APP_NAME}"
 
+# ============================================
+# Preflight Environment Validation
+# ============================================
+echo "Preflight: Validating Environment"
+echo "--------------------------------------------"
+
+# Check for .env file
+if [ ! -f "${APP_DIR}/.env" ]; then
+    echo "❌ ERROR: .env file not found at ${APP_DIR}/.env"
+    echo "Create .env file with required environment variables before deploying."
+    exit 1
+fi
+
+# Load environment variables for validation
+export $(grep -v '^#' ${APP_DIR}/.env | xargs)
+
+# Validate critical environment variables
+REQUIRED_VARS=(
+    "NODE_ENV"
+    "DATABASE_URL"
+    "JWT_SECRET"
+    "JWT_REFRESH_SECRET"
+)
+
+MISSING_VARS=()
+for VAR in "${REQUIRED_VARS[@]}"; do
+    if [ -z "${!VAR}" ]; then
+        MISSING_VARS+=("$VAR")
+    fi
+done
+
+if [ ${#MISSING_VARS[@]} -gt 0 ]; then
+    echo "❌ ERROR: Missing required environment variables:"
+    for VAR in "${MISSING_VARS[@]}"; do
+        echo "  - $VAR"
+    done
+    echo ""
+    echo "Set these in ${APP_DIR}/.env before deploying."
+    exit 1
+fi
+
+# Validate DATABASE_URL format
+if ! echo "${DATABASE_URL}" | grep -q '^postgresql://'; then
+    echo "❌ ERROR: DATABASE_URL must start with postgresql://"
+    echo "Current value: ${DATABASE_URL:0:20}..."
+    exit 1
+fi
+
+# Validate NODE_ENV is production
+if [ "${NODE_ENV}" != "production" ]; then
+    echo "⚠ WARNING: NODE_ENV is '${NODE_ENV}' (expected 'production')"
+    read -p "Continue anyway? [y/N] " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
+fi
+
+echo "✓ Environment validation passed"
+echo ""
+
 echo "Step 1: Create Backup"
 echo "--------------------------------------------"
 mkdir -p ${BACKUP_DIR}

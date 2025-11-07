@@ -3,6 +3,10 @@ Description=Trading Platform - Professional Trading Application
 Documentation=https://github.com/yourusername/trading-platform
 After=network.target postgresql.service
 
+# Ensure .env file exists before starting
+ConditionPathExists=/var/www/trading-platform/.env
+ConditionPathExists=/var/www/trading-platform/dist/index.js
+
 [Service]
 Type=simple
 User=tradingapp
@@ -11,10 +15,16 @@ WorkingDirectory=/var/www/trading-platform
 
 # Environment variables
 Environment=NODE_ENV=production
-EnvironmentFile=/var/www/trading-platform/.env
+EnvironmentFile=-/var/www/trading-platform/.env
 
-# Start command
-ExecStart=/usr/bin/node /var/www/trading-platform/dist/index.js
+# Preflight validation - check critical environment variables
+ExecStartPre=/bin/bash -c 'source /var/www/trading-platform/.env && \
+    test -n "$DATABASE_URL" || (echo "ERROR: DATABASE_URL not set" && exit 1) && \
+    test -n "$JWT_SECRET" || (echo "ERROR: JWT_SECRET not set" && exit 1) && \
+    test -n "$JWT_REFRESH_SECRET" || (echo "ERROR: JWT_REFRESH_SECRET not set" && exit 1)'
+
+# Start command - use env to find node (supports nvm, n, or system node)
+ExecStart=/usr/bin/env node /var/www/trading-platform/dist/index.js
 
 # Restart policy
 Restart=always

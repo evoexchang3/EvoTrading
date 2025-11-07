@@ -40,7 +40,7 @@ branding:
       companyName: ''
       supportEmail: ''
 layout:
-  activeVariant: bloomberg-dark
+  activeVariant: minimalist-corporate
   stickyHeader: true
   showFooter: true
   compactMode: false
