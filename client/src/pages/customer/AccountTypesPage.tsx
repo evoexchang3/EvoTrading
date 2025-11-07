@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
+import { VariantSection, VariantContainer, VariantHeading, VariantText } from "@/components/variant";
 
 export default function AccountTypesPage() {
   const { t } = useLanguage();
@@ -130,15 +131,16 @@ export default function AccountTypesPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
             <Badge className="mb-4" data-testid="badge-account-types">{t('customer.accountTypes.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('customer.accountTypes.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <VariantHeading level="hero" as="h1" className="mb-4">{t('customer.accountTypes.title')}</VariantHeading>
+            <VariantText className="text-muted-foreground max-w-3xl mx-auto">
               {t('customer.accountTypes.subtitle')}
-            </p>
+            </VariantText>
           </div>
 
           {/* Who This Is For */}
@@ -404,8 +406,9 @@ export default function AccountTypesPage() {
             </div>
           </div>
           )}
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
+import { VariantSection, VariantContainer, VariantHeading, VariantText, VariantGrid, VariantCard } from "@/components/variant";
 
 export default function PaymentMethodsPage() {
   const { t } = useLanguage();
@@ -221,44 +222,37 @@ export default function PaymentMethodsPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
             <Badge className="mb-4" data-testid="badge-payment-methods">{t('customer.paymentMethods.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('customer.paymentMethods.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <VariantHeading level="hero" as="h1" className="mb-4">{t('customer.paymentMethods.title')}</VariantHeading>
+            <VariantText className="text-muted-foreground max-w-3xl mx-auto">
               {t('customer.paymentMethods.subtitle')}
-            </p>
+            </VariantText>
           </div>
 
           {/* Quick Summary Stats */}
-          <div className="grid sm:grid-cols-4 gap-4 mb-12">
-            <Card data-testid="card-stat-methods">
-              <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">12+</div>
-                <p className="text-sm text-muted-foreground">{t('customer.paymentMethods.stats.methods')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-currencies">
-              <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">40+</div>
-                <p className="text-sm text-muted-foreground">{t('customer.paymentMethods.stats.currencies')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-processing">
-              <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">&lt;1hr</div>
-                <p className="text-sm text-muted-foreground">{t('customer.paymentMethods.stats.depositTime')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-minimum">
-              <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">$10</div>
-                <p className="text-sm text-muted-foreground">{t('customer.paymentMethods.stats.minDeposit')}</p>
-              </CardContent>
-            </Card>
-          </div>
+          <VariantGrid className="mb-12">
+            <VariantCard data-testid="card-stat-methods">
+              <div className="text-3xl font-bold text-primary mb-1">12+</div>
+              <p className="text-sm text-muted-foreground">{t('customer.paymentMethods.stats.methods')}</p>
+            </VariantCard>
+            <VariantCard data-testid="card-stat-currencies">
+              <div className="text-3xl font-bold text-primary mb-1">40+</div>
+              <p className="text-sm text-muted-foreground">{t('customer.paymentMethods.stats.currencies')}</p>
+            </VariantCard>
+            <VariantCard data-testid="card-stat-processing">
+              <div className="text-3xl font-bold text-primary mb-1">&lt;1hr</div>
+              <p className="text-sm text-muted-foreground">{t('customer.paymentMethods.stats.depositTime')}</p>
+            </VariantCard>
+            <VariantCard data-testid="card-stat-minimum">
+              <div className="text-3xl font-bold text-primary mb-1">$10</div>
+              <p className="text-sm text-muted-foreground">{t('customer.paymentMethods.stats.minDeposit')}</p>
+            </VariantCard>
+          </VariantGrid>
 
           {/* No Payment Methods Message */}
           {paymentMethods.length === 0 && (
@@ -450,8 +444,9 @@ export default function PaymentMethodsPage() {
             </div>
           </div>
           )}
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

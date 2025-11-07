@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading, VariantText, VariantGrid, VariantCard } from "@/components/variant";
 
 export default function VerificationPage() {
   const { t } = useLanguage();
@@ -133,15 +134,16 @@ export default function VerificationPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
             <Badge className="mb-4" data-testid="badge-verification">{t('customer.verification.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('customer.verification.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <VariantHeading level="hero" as="h1" className="mb-4">{t('customer.verification.title')}</VariantHeading>
+            <VariantText className="text-muted-foreground max-w-3xl mx-auto">
               {t('customer.verification.subtitle')}
-            </p>
+            </VariantText>
           </div>
 
           {/* Timeline Progress */}
@@ -392,8 +394,9 @@ export default function VerificationPage() {
               <span>✓ {t('customer.verification.cta.noHiddenRequirements')}</span>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

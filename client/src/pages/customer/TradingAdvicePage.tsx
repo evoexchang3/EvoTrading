@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading, VariantText, VariantGrid, VariantCard } from "@/components/variant";
 
 export default function TradingAdvicePage() {
   const { t } = useLanguage();
@@ -125,44 +126,37 @@ export default function TradingAdvicePage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
             <Badge className="mb-4" data-testid="badge-trading-advice">{t('customer.tradingAdvice.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('customer.tradingAdvice.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <VariantHeading level="hero" as="h1" className="mb-4">{t('customer.tradingAdvice.title')}</VariantHeading>
+            <VariantText className="text-muted-foreground max-w-3xl mx-auto">
               {t('customer.tradingAdvice.subtitle')}
-            </p>
+            </VariantText>
           </div>
 
           {/* Performance Stats */}
-          <div className="grid sm:grid-cols-4 gap-4 mb-12">
-            <Card data-testid="card-stat-signals">
-              <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">363</div>
-                <p className="text-sm text-muted-foreground">{t('customer.tradingAdvice.stats.signals')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-winrate">
-              <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">68%</div>
-                <p className="text-sm text-muted-foreground">{t('customer.tradingAdvice.stats.winRate')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-ratio">
-              <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">1:2.4</div>
-                <p className="text-sm text-muted-foreground">{t('customer.tradingAdvice.stats.riskReward')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-pips">
-              <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-primary mb-1">+1,755</div>
-                <p className="text-sm text-muted-foreground">{t('customer.tradingAdvice.stats.pips')}</p>
-              </CardContent>
-            </Card>
-          </div>
+          <VariantGrid className="mb-12">
+            <VariantCard data-testid="card-stat-signals">
+              <div className="text-3xl font-bold text-primary mb-1">363</div>
+              <p className="text-sm text-muted-foreground">{t('customer.tradingAdvice.stats.signals')}</p>
+            </VariantCard>
+            <VariantCard data-testid="card-stat-winrate">
+              <div className="text-3xl font-bold text-primary mb-1">68%</div>
+              <p className="text-sm text-muted-foreground">{t('customer.tradingAdvice.stats.winRate')}</p>
+            </VariantCard>
+            <VariantCard data-testid="card-stat-ratio">
+              <div className="text-3xl font-bold text-primary mb-1">1:2.4</div>
+              <p className="text-sm text-muted-foreground">{t('customer.tradingAdvice.stats.riskReward')}</p>
+            </VariantCard>
+            <VariantCard data-testid="card-stat-pips">
+              <div className="text-3xl font-bold text-primary mb-1">+1,755</div>
+              <p className="text-sm text-muted-foreground">{t('customer.tradingAdvice.stats.pips')}</p>
+            </VariantCard>
+          </VariantGrid>
 
           {/* Services Grid */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -430,8 +424,9 @@ export default function TradingAdvicePage() {
               <span>✓ {t('customer.tradingAdvice.cta.transparency')}</span>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }
