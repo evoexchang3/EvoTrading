@@ -103,7 +103,7 @@ export default function MarketsPage() {
         </section>
 
         {/* Markets Grid */}
-        <section className="py-16" aria-label="Available trading markets">
+        <section className="py-16" aria-label={t('markets.aria.marketsList')}>
           <div className="container mx-auto px-4">
             <div className="space-y-12">
               {markets.map((market, index) => {
@@ -125,7 +125,7 @@ export default function MarketsPage() {
                             </CardDescription>
                           </div>
                         </div>
-                        <Link href={`/trading/${market.pairs[0].symbol}`}>
+                        <Link href={`/trading/${market.pairs[0].symbol.replace('/', '-')}`}>
                           <Button variant="outline" size="sm" data-testid={`button-trade-${market.id}`}>
                             {t('markets.tradeBtnText')}
                           </Button>
@@ -154,9 +154,9 @@ export default function MarketsPage() {
                               data-testid={`change-${pair.symbol}`}
                             >
                               {pair.isPositive ? (
-                                <TrendingUp className="w-4 h-4" aria-label="Price up" />
+                                <TrendingUp className="w-4 h-4" aria-label={t('markets.aria.priceUp')} />
                               ) : (
-                                <TrendingDown className="w-4 h-4" aria-label="Price down" />
+                                <TrendingDown className="w-4 h-4" aria-label={t('markets.aria.priceDown')} />
                               )}
                               {pair.change}
                             </div>
@@ -182,7 +182,7 @@ export default function MarketsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-muted/20" aria-label="Start trading call to action">
+        <section className="py-16 bg-muted/20" aria-label={t('markets.aria.ctaSection')}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4" data-testid="heading-cta">

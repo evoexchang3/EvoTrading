@@ -124,7 +124,7 @@ export default function CompanyPage() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-12 border-y bg-muted/10" aria-label="Company statistics">
+        <section className="py-12 border-y bg-muted/10" aria-label={t('company.aria.stats')}>
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => {
@@ -146,7 +146,7 @@ export default function CompanyPage() {
         </section>
 
         {/* Company Information Links */}
-        <section className="py-16" aria-label="Company information">
+        <section className="py-16" aria-label={t('company.aria.info')}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold mb-4" data-testid="heading-info">
@@ -189,7 +189,7 @@ export default function CompanyPage() {
         </section>
 
         {/* Our Values */}
-        <section className="py-16 bg-muted/20" aria-label="Company values">
+        <section className="py-16 bg-muted/20" aria-label={t('company.aria.values')}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold mb-4" data-testid="heading-values">
@@ -222,7 +222,7 @@ export default function CompanyPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16" aria-label="Contact us call to action">
+        <section className="py-16" aria-label={t('company.aria.contact')}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <Building2 className="w-16 h-16 mx-auto mb-6 text-primary" aria-hidden="true" />

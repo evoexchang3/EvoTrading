@@ -15,19 +15,25 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Shield, Key, Smartphone, Clock, AlertTriangle, CheckCircle2 } from "lucide-react";
 
-const passwordSchema = z.object({
-  currentPassword: z.string().min(1, "Current password is required"),
-  newPassword: z.string().min(8, "Password must be at least 8 characters"),
-  confirmPassword: z.string().min(1, "Please confirm your password"),
-}).refine((data) => data.newPassword === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
+type PasswordForm = z.infer<typeof passwordSchemaBase>;
 
-type PasswordForm = z.infer<typeof passwordSchema>;
+const passwordSchemaBase = z.object({
+  currentPassword: z.string(),
+  newPassword: z.string(),
+  confirmPassword: z.string(),
+});
 
 export default function AccountSecurityPage() {
   const { t } = useLanguage();
+
+  const passwordSchema = passwordSchemaBase.extend({
+    currentPassword: z.string().min(1, t('security.password.errors.currentRequired')),
+    newPassword: z.string().min(8, t('security.password.errors.newMinLength')),
+    confirmPassword: z.string().min(1, t('security.password.errors.confirmRequired')),
+  }).refine((data) => data.newPassword === data.confirmPassword, {
+    message: t('security.password.errors.mismatch'),
+    path: ["confirmPassword"],
+  });
   const { toast } = useToast();
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
 
@@ -112,7 +118,7 @@ export default function AccountSecurityPage() {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" aria-label="Enabled" />
+                <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" aria-label={t('security.aria.enabled')} />
                 <span className="text-sm">{t('security.overview.strongPassword')}</span>
               </div>
               <Badge variant="secondary" data-testid="badge-password-strength">
@@ -122,9 +128,9 @@ export default function AccountSecurityPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 {twoFactorEnabled ? (
-                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" aria-label="Enabled" />
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" aria-label={t('security.aria.enabled')} />
                 ) : (
-                  <AlertTriangle className="w-5 h-5 text-yellow-600 dark:text-yellow-400" aria-label="Disabled" />
+                  <AlertTriangle className="w-5 h-5 text-yellow-600 dark:text-yellow-400" aria-label={t('security.aria.disabled')} />
                 )}
                 <span className="text-sm">{t('security.overview.twoFactor')}</span>
               </div>
@@ -248,7 +254,7 @@ export default function AccountSecurityPage() {
               onCheckedChange={(checked) => toggle2FAMutation.mutate(checked)}
               disabled={toggle2FAMutation.isPending}
               data-testid="switch-2fa"
-              aria-label="Toggle two-factor authentication"
+              aria-label={t('security.aria.toggle2FA')}
             />
           </div>
           <Separator />

@@ -4952,6 +4952,10 @@ export const en = {
   'markets.hero.cta': 'Start Trading Now',
   'markets.hero.viewHeatmap': 'View Market Heatmap',
   'markets.tradeBtnText': 'Trade Now',
+  'markets.aria.marketsList': 'Available trading markets',
+  'markets.aria.priceUp': 'Price up',
+  'markets.aria.priceDown': 'Price down',
+  'markets.aria.ctaSection': 'Start trading call to action',
   
   'markets.forex.title': 'Forex',
   'markets.forex.description': 'Trade 50+ currency pairs with tight spreads and deep liquidity',
@@ -4981,6 +4985,10 @@ export const en = {
   'company.hero.title': 'Trusted Trading Partner Since 2010',
   'company.hero.subtitle': 'Regulated, secure, and committed to transparency in everything we do',
   'company.hero.cta': 'Learn About Us',
+  'company.aria.stats': 'Company statistics',
+  'company.aria.info': 'Company information',
+  'company.aria.values': 'Company values',
+  'company.aria.contact': 'Contact us call to action',
   
   'company.stats.years': 'Years in Business',
   'company.stats.clients': 'Active Clients',
@@ -5021,6 +5029,9 @@ export const en = {
   // Security Page
   'security.title': 'Account Security',
   'security.subtitle': 'Manage your account security settings and password',
+  'security.aria.enabled': 'Enabled',
+  'security.aria.disabled': 'Disabled',
+  'security.aria.toggle2FA': 'Toggle two-factor authentication',
   
   'security.overview.title': 'Security Overview',
   'security.overview.subtitle': 'Current security status of your account',
@@ -5041,6 +5052,10 @@ export const en = {
   'security.password.successMessage': 'Your password has been changed successfully',
   'security.password.errorTitle': 'Update Failed',
   'security.password.errorMessage': 'Failed to update password. Please try again.',
+  'security.password.errors.currentRequired': 'Current password is required',
+  'security.password.errors.newMinLength': 'Password must be at least 8 characters',
+  'security.password.errors.confirmRequired': 'Please confirm your password',
+  'security.password.errors.mismatch': "Passwords don't match",
   
   'security.twoFactor.title': 'Two-Factor Authentication (2FA)',
   'security.twoFactor.subtitle': 'Add an extra layer of security to your account',
