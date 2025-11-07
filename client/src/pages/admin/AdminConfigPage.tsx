@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
@@ -48,6 +48,7 @@ export default function AdminConfigPage() {
   const { toast } = useToast();
   const [saving, setSaving] = useState(false);
   const [previewVariant, setPreviewVariant] = useState<string | null>(null);
+  const initialized = useRef(false);
   
   // Form state
   const [formData, setFormData] = useState({
@@ -72,7 +73,7 @@ export default function AdminConfigPage() {
 
   // Initialize form data from config
   useEffect(() => {
-    if (!loading && config) {
+    if (!loading && config && !initialized.current) {
       setFormData({
         companyName: config.branding.companyName,
         supportEmail: config.branding.supportEmail,
@@ -88,6 +89,7 @@ export default function AdminConfigPage() {
         },
         languageOverrides: config.branding.languageOverrides || {}
       });
+      initialized.current = true;
     }
   }, [config, loading]);
 

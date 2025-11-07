@@ -579,7 +579,7 @@ export default function RatesPage() {
 
             <TabsContent value="account-comparison" data-testid="content-account-comparison">
               <div className="mb-8">
-                <Card className="bg-muted/50">
+                <VariantCard className="bg-muted/50">
                   <CardHeader>
                     <CardTitle className="text-lg">{t('company.rates.accountComparison.title')}</CardTitle>
                     <CardDescription>
@@ -605,7 +605,7 @@ export default function RatesPage() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               </div>
 
               <Tabs defaultValue="forex" className="w-full">
@@ -625,7 +625,7 @@ export default function RatesPage() {
                 </TabsList>
 
                 <TabsContent value="forex" data-testid="content-forex">
-                  <Card>
+                  <VariantCard>
                     <CardHeader>
                       <div className="flex items-center gap-3">
                         <TrendingUp className="w-6 h-6 text-primary" />
@@ -638,11 +638,11 @@ export default function RatesPage() {
                     <CardContent>
                       {renderInstrumentTable(forexInstruments, "forex")}
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 </TabsContent>
 
                 <TabsContent value="commodities" data-testid="content-commodities">
-                  <Card>
+                  <VariantCard>
                     <CardHeader>
                       <div className="flex items-center gap-3">
                         <DollarSign className="w-6 h-6 text-primary" />
@@ -655,11 +655,11 @@ export default function RatesPage() {
                     <CardContent>
                       {renderInstrumentTable(commodityInstruments, "commodities")}
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 </TabsContent>
 
                 <TabsContent value="indices" data-testid="content-indices">
-                  <Card>
+                  <VariantCard>
                     <CardHeader>
                       <div className="flex items-center gap-3">
                         <TrendingUp className="w-6 h-6 text-primary" />
@@ -672,11 +672,11 @@ export default function RatesPage() {
                     <CardContent>
                       {renderInstrumentTable(indicesInstruments, "indices")}
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 </TabsContent>
 
                 <TabsContent value="crypto" data-testid="content-crypto">
-                  <Card>
+                  <VariantCard>
                     <CardHeader>
                       <div className="flex items-center gap-3">
                         <DollarSign className="w-6 h-6 text-primary" />
@@ -689,14 +689,14 @@ export default function RatesPage() {
                     <CardContent>
                       {renderInstrumentTable(cryptoInstruments, "crypto")}
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 </TabsContent>
               </Tabs>
             </TabsContent>
 
             <TabsContent value="session-comparison" data-testid="content-session-comparison">
               <div className="mb-8">
-                <Card className="bg-muted/50">
+                <VariantCard className="bg-muted/50">
                   <CardHeader>
                     <CardTitle className="text-lg">{t('company.rates.sessionComparison.title')}</CardTitle>
                     <CardDescription>
@@ -731,7 +731,7 @@ export default function RatesPage() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               </div>
 
               <Tabs defaultValue="forex" className="w-full">
@@ -751,7 +751,7 @@ export default function RatesPage() {
                 </TabsList>
 
                 <TabsContent value="forex" data-testid="content-session-forex">
-                  <Card>
+                  <VariantCard>
                     <CardHeader>
                       <CardTitle>{t('company.rates.session.forex.title')}</CardTitle>
                       <CardDescription>{t('company.rates.session.forex.description')}</CardDescription>
@@ -759,11 +759,11 @@ export default function RatesPage() {
                     <CardContent>
                       {renderSessionTable(forexInstruments, "forex")}
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 </TabsContent>
 
                 <TabsContent value="commodities" data-testid="content-session-commodities">
-                  <Card>
+                  <VariantCard>
                     <CardHeader>
                       <CardTitle>{t('company.rates.session.commodities.title')}</CardTitle>
                       <CardDescription>{t('company.rates.session.commodities.description')}</CardDescription>
@@ -771,11 +771,11 @@ export default function RatesPage() {
                     <CardContent>
                       {renderSessionTable(commodityInstruments, "commodities")}
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 </TabsContent>
 
                 <TabsContent value="indices" data-testid="content-session-indices">
-                  <Card>
+                  <VariantCard>
                     <CardHeader>
                       <CardTitle>{t('company.rates.session.indices.title')}</CardTitle>
                       <CardDescription>{t('company.rates.session.indices.description')}</CardDescription>
@@ -783,11 +783,11 @@ export default function RatesPage() {
                     <CardContent>
                       {renderSessionTable(indicesInstruments, "indices")}
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 </TabsContent>
 
                 <TabsContent value="crypto" data-testid="content-session-crypto">
-                  <Card>
+                  <VariantCard>
                     <CardHeader>
                       <CardTitle>{t('company.rates.session.crypto.title')}</CardTitle>
                       <CardDescription>{t('company.rates.session.crypto.description')}</CardDescription>
@@ -795,13 +795,13 @@ export default function RatesPage() {
                     <CardContent>
                       {renderSessionTable(cryptoInstruments, "crypto")}
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 </TabsContent>
               </Tabs>
             </TabsContent>
           </Tabs>
 
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <CardTitle>{t('company.rates.allFees.title')}</CardTitle>
               <CardDescription>{t('company.rates.allFees.description')}</CardDescription>
@@ -898,9 +898,9 @@ export default function RatesPage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <CardTitle>{t('company.rates.faq.title')}</CardTitle>
               <CardDescription>{t('company.rates.faq.description')}</CardDescription>
@@ -919,9 +919,9 @@ export default function RatesPage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
 
-          <Card className="mb-12 border-primary/20 bg-primary/5">
+          <VariantCard className="mb-12 border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Award className="w-6 h-6 text-primary" />
@@ -981,7 +981,7 @@ export default function RatesPage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           <div className="bg-muted rounded-lg p-6">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">

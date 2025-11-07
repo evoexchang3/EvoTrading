@@ -174,7 +174,7 @@ export default function AccountTypesPage() {
           {accountTypes.length > 0 && (
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {accountTypes.map((account) => (
-              <Card 
+              <VariantCard 
                 key={account.name} 
                 className={account.popular ? "border-primary shadow-lg relative" : ""}
                 data-testid={`card-account-${account.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -221,14 +221,14 @@ export default function AccountTypesPage() {
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
-              </Card>
+              </VariantCard>
             ))}
           </div>
           )}
 
           {/* Detailed Comparison Table */}
           {accountTypes.length > 0 && (
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <CardTitle>{t('customer.accountTypes.comparison.title')}</CardTitle>
               <CardDescription>{t('customer.accountTypes.comparison.description')}</CardDescription>
@@ -309,12 +309,12 @@ export default function AccountTypesPage() {
                 </table>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
           )}
 
           {/* Account Selector Guide */}
           {accountTypes.length > 0 && (
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <CardTitle>{t('customer.accountTypes.selector.title')}</CardTitle>
               <CardDescription>{t('customer.accountTypes.selector.description')}</CardDescription>
@@ -355,12 +355,12 @@ export default function AccountTypesPage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
           )}
 
           {/* FAQ Section */}
           {accountTypes.length > 0 && (
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
@@ -379,7 +379,7 @@ export default function AccountTypesPage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
           )}
 
           {/* Next Steps CTA */}

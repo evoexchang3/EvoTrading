@@ -261,7 +261,7 @@ export default function TechnicalAnalysisPage() {
             {concepts.map((concept) => {
               const Icon = concept.icon;
               return (
-                <Card key={concept.title} data-testid={`card-concept-${concept.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                <VariantCard key={concept.title} data-testid={`card-concept-${concept.title.toLowerCase().replace(/\s+/g, '-')}`}>
                   <CardHeader>
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">
@@ -287,13 +287,13 @@ export default function TechnicalAnalysisPage() {
                       ))}
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               );
             })}
           </div>
 
           {/* Trading Strategies */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Target className="w-5 h-5 text-primary" />
@@ -335,10 +335,10 @@ export default function TechnicalAnalysisPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Common Mistakes */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-amber-500" />
@@ -363,11 +363,11 @@ export default function TechnicalAnalysisPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* How to Use Guide */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-primary" />
@@ -400,9 +400,9 @@ export default function TechnicalAnalysisPage() {
                   <p><strong>{t('marketInfo.technicalAnalysis.gettingStarted.step6')}</strong></p>
                 </div>
               </CardContent>
-            </Card>
+            </VariantCard>
 
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <LineChart className="w-5 h-5 text-primary" />
@@ -436,11 +436,11 @@ export default function TechnicalAnalysisPage() {
                   {t('marketInfo.technicalAnalysis.multiTimeframe.example')}
                 </p>
               </CardContent>
-            </Card>
+            </VariantCard>
           </div>
 
           {/* FAQ */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
@@ -459,7 +459,7 @@ export default function TechnicalAnalysisPage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">
