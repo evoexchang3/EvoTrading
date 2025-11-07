@@ -8,12 +8,70 @@ export type TypographySize = 'compact' | 'standard' | 'spacious' | 'large';
 export type LayoutDensity = 'dense' | 'comfortable' | 'spacious';
 export type CardStyle = 'sharp' | 'rounded' | 'soft' | 'elevated' | 'flat';
 
+export type NavigationLayout = 
+  | 'compact-top'       // Logo left, minimal nav right, single row
+  | 'wide-split'        // Logo centered, nav split left/right with CTA
+  | 'centered-double'   // Logo top row centered, nav below
+  | 'ticker-bar'        // Sticky top with live market data strip
+  | 'vertical-sidebar'  // Left-side navigation (Bloomberg-style)
+  | 'hamburger-mobile'  // Hidden menu, slide-out panel
+  | 'mega-menu'         // Hover categories with full-width panels
+  | 'icon-rail'         // Minimal icon-only left rail with tooltips
+  | 'glassmorphic'      // Transparent floating header over hero
+  | 'minimal-text'      // Clean text links, no borders/backgrounds
+  | 'breadcrumb-hybrid' // Top nav + breadcrumb secondary nav
+  | 'ribbon-secondary'  // Two-tier nav with category ribbons
+  | 'bottom-mobile'     // Mobile-app style bottom navigation
+  | 'pillar-layout'     // Vertical pillars with grouped nav sections
+  | 'hero-overlay';     // Transparent nav that overlays hero image
+
+export type FooterLayout = 
+  | 'quad-grid'         // 4 columns, legal/compliance focused
+  | 'tiered-two-row'    // Important links top row, legal bottom
+  | 'social-first'      // Large social icons, minimal text
+  | 'newsletter-hero'   // Email signup prominent, minimal links
+  | 'legal-micro'       // Single row, essential legal links only
+  | 'multi-cta-card'    // 3 columns + featured CTA card
+  | 'accordion-stack'   // Mobile-first accordion sections
+  | 'sticky-support'    // Fixed bottom support/contact bar
+  | 'minimalist-line'   // Copyright + 3-4 essential links
+  | 'metrics-strip'     // Company stats/metrics with minimal links
+  | 'partner-carousel'  // Partner logos with rotating carousel
+  | 'card-resources'    // Footer as resource cards grid
+  | 'contact-panel'     // Large contact info, small nav
+  | 'global-offices'    // Office locations with map visual
+  | 'faq-teaser';       // Common questions + link to full FAQ
+
+export type ContentTone = 
+  | 'professional'      // Formal, institutional language
+  | 'friendly'          // Approachable, welcoming tone
+  | 'premium'           // Luxury, exclusive messaging
+  | 'technical'         // Data-driven, analytical
+  | 'minimalist'        // Concise, zen-like
+  | 'energetic'         // Dynamic, action-oriented
+  | 'trustworthy'       // Security-focused, reliable
+  | 'innovative'        // Forward-thinking, modern
+  | 'educational'       // Teaching, informative
+  | 'corporate'         // B2B, enterprise-focused
+  | 'crypto-native'     // Web3, decentralized language
+  | 'warm'              // Comfortable, inviting
+  | 'authoritative'     // Expert, knowledgeable
+  | 'casual'            // Relaxed, conversational
+  | 'elite';            // High-end, VIP treatment
+
 export interface VariantConfig {
   // Identity
   id: string;
   name: string;
   category: 'professional' | 'modern' | 'crypto' | 'warm' | 'specialized';
   description: string;
+
+  // Structural Components (NEW)
+  structure: {
+    navigationLayout: NavigationLayout;
+    footerLayout: FooterLayout;
+    contentTone: ContentTone;
+  };
 
   // Layout Structure
   layout: {
@@ -72,6 +130,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Bloomberg Terminal',
     category: 'professional',
     description: 'Dense, data-focused layout inspired by Bloomberg Terminal with multi-column grids',
+    structure: {
+      navigationLayout: 'ticker-bar',
+      footerLayout: 'quad-grid',
+      contentTone: 'technical',
+    },
     layout: {
       density: 'dense',
       maxWidth: '1600px',
@@ -116,6 +179,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Charcoal Professional',
     category: 'professional',
     description: 'Sleek, modern corporate design with card-based layouts and subtle animations',
+    structure: {
+      navigationLayout: 'compact-top',
+      footerLayout: 'tiered-two-row',
+      contentTone: 'professional',
+    },
     layout: {
       density: 'comfortable',
       maxWidth: '1400px',
@@ -159,6 +227,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Navy Institutional',
     category: 'professional',
     description: 'Traditional financial institution aesthetic with serif fonts and conservative layout',
+    structure: {
+      navigationLayout: 'wide-split',
+      footerLayout: 'legal-micro',
+      contentTone: 'authoritative',
+    },
     layout: {
       density: 'comfortable',
       maxWidth: '1200px',
@@ -203,6 +276,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Arctic Minimal',
     category: 'modern',
     description: 'Scandinavian-inspired minimalist design with generous whitespace and zen aesthetics',
+    structure: {
+      navigationLayout: 'minimal-text',
+      footerLayout: 'minimalist-line',
+      contentTone: 'minimalist',
+    },
     layout: {
       density: 'spacious',
       maxWidth: '1200px',
@@ -246,6 +324,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Nordic Clean',
     category: 'modern',
     description: 'Light, airy design with simple navigation and plenty of breathing room',
+    structure: {
+      navigationLayout: 'centered-double',
+      footerLayout: 'social-first',
+      contentTone: 'friendly',
+    },
     layout: {
       density: 'spacious',
       maxWidth: '1400px',
@@ -289,6 +372,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Modern Light',
     category: 'modern',
     description: 'Bright, optimistic design with rounded corners and cheerful aesthetics',
+    structure: {
+      navigationLayout: 'glassmorphic',
+      footerLayout: 'newsletter-hero',
+      contentTone: 'energetic',
+    },
     layout: {
       density: 'comfortable',
       maxWidth: '1400px',
@@ -333,6 +421,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Crypto Neon',
     category: 'crypto',
     description: 'Dark background with vibrant neon accents and glowing effects for crypto focus',
+    structure: {
+      navigationLayout: 'mega-menu',
+      footerLayout: 'card-resources',
+      contentTone: 'crypto-native',
+    },
     layout: {
       density: 'comfortable',
       maxWidth: '1600px',
@@ -377,6 +470,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Carbon Sleek',
     category: 'crypto',
     description: 'Cyberpunk-inspired with angular design, tech-forward aesthetic',
+    structure: {
+      navigationLayout: 'icon-rail',
+      footerLayout: 'metrics-strip',
+      contentTone: 'innovative',
+    },
     layout: {
       density: 'dense',
       maxWidth: '1600px',
@@ -421,6 +519,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Emerald Trader',
     category: 'crypto',
     description: 'Matrix-inspired green theme with code aesthetics and hacker vibe',
+    structure: {
+      navigationLayout: 'hamburger-mobile',
+      footerLayout: 'sticky-support',
+      contentTone: 'technical',
+    },
     layout: {
       density: 'dense',
       maxWidth: '1400px',
@@ -466,6 +569,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Terracotta Warm',
     category: 'warm',
     description: 'Earth tones with organic shapes, friendly and inviting atmosphere',
+    structure: {
+      navigationLayout: 'breadcrumb-hybrid',
+      footerLayout: 'multi-cta-card',
+      contentTone: 'warm',
+    },
     layout: {
       density: 'comfortable',
       maxWidth: '1200px',
@@ -509,6 +617,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Sunset Trading',
     category: 'warm',
     description: 'Orange and purple gradients creating welcoming, energetic feel',
+    structure: {
+      navigationLayout: 'ribbon-secondary',
+      footerLayout: 'partner-carousel',
+      contentTone: 'energetic',
+    },
     layout: {
       density: 'comfortable',
       maxWidth: '1400px',
@@ -552,6 +665,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Sapphire Finance',
     category: 'warm',
     description: 'Blue and gold premium design with elegant, sophisticated feel',
+    structure: {
+      navigationLayout: 'pillar-layout',
+      footerLayout: 'contact-panel',
+      contentTone: 'premium',
+    },
     layout: {
       density: 'comfortable',
       maxWidth: '1200px',
@@ -596,6 +714,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Financial Times',
     category: 'specialized',
     description: 'Newspaper-inspired editorial layout with classic typography',
+    structure: {
+      navigationLayout: 'vertical-sidebar',
+      footerLayout: 'faq-teaser',
+      contentTone: 'authoritative',
+    },
     layout: {
       density: 'comfortable',
       maxWidth: '1200px',
@@ -639,6 +762,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Midnight Premium',
     category: 'specialized',
     description: 'Luxury dark purple theme with exclusive, high-end feel',
+    structure: {
+      navigationLayout: 'hero-overlay',
+      footerLayout: 'global-offices',
+      contentTone: 'elite',
+    },
     layout: {
       density: 'spacious',
       maxWidth: '1200px',
@@ -682,6 +810,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     name: 'Minimalist Corporate',
     category: 'specialized',
     description: 'Ultra-clean B2B design with maximum clarity and professionalism',
+    structure: {
+      navigationLayout: 'bottom-mobile',
+      footerLayout: 'accordion-stack',
+      contentTone: 'corporate',
+    },
     layout: {
       density: 'spacious',
       maxWidth: '1200px',
