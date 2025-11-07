@@ -24,7 +24,7 @@ export default function GlobalOfficesFooter({ variant, companyName, supportEmail
   return (
     <footer className="border-t">
       <div className="container mx-auto px-4 py-12">
-        <h3 className="text-2xl font-bold mb-8 text-center">Our Global Presence</h3>
+        <h3 className="text-2xl font-bold mb-8 text-center">{t('footer.ourGlobalPresence')}</h3>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {offices.map((office) => (

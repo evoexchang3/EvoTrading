@@ -23,18 +23,18 @@ export default function NewsletterHeroFooter({ variant, companyName, supportEmai
         <div className="max-w-2xl mx-auto text-center mb-8">
           <div className="mb-4">
             <Mail className="w-12 h-12 mx-auto mb-4 text-primary" />
-            <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
-            <p className="text-muted-foreground">Get market insights and platform updates delivered to your inbox.</p>
+            <h3 className="text-2xl font-bold mb-2">{t('footer.stayUpdated')}</h3>
+            <p className="text-muted-foreground">{t('footer.newsletterDescription')}</p>
           </div>
 
           <div className="flex gap-2 max-w-md mx-auto">
             <Input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t('footer.enterYourEmail')}
               className="flex-1"
               data-testid="input-newsletter-email"
             />
-            <Button data-testid="button-newsletter-subscribe">Subscribe</Button>
+            <Button data-testid="button-newsletter-subscribe">{t('footer.subscribe')}</Button>
           </div>
         </div>
 

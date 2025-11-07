@@ -9,7 +9,7 @@ import { FooterProps } from './index';
 export default function PartnerCarouselFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   // Mock partner logos
-  const partners = ['Partner 1', 'Partner 2', 'Partner 3', 'Partner 4', 'Partner 5'];
+  const partners = [t('footer.partner1'), t('footer.partner2'), t('footer.partner3'), t('footer.partner4'), t('footer.partner5')];
 
   const links = [
     { label: t('footer.aboutUs'), href: '/about' },
@@ -23,7 +23,7 @@ export default function PartnerCarouselFooter({ variant, companyName, supportEma
       <div className="container mx-auto px-4 py-12">
         {/* Partner Logos */}
         <div className="mb-8">
-          <h3 className="text-center text-sm font-semibold text-muted-foreground mb-6">TRUSTED BY</h3>
+          <h3 className="text-center text-sm font-semibold text-muted-foreground mb-6">{t('footer.trustedBy')}</h3>
           <div className="grid grid-cols-3 md:grid-cols-5 gap-8">
             {partners.map((partner, index) => (
               <div

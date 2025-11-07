@@ -664,6 +664,49 @@ export const fr = {
   'footer.countries': 'Pays',
   'footer.dailyVolume': 'Volume quotidien',
   'footer.yearsExperience': 'Années d\'expérience',
+
+  // Footer - CardResourcesFooter descriptions
+  'footer.learnTradingStrategies': 'Apprendre les stratégies de trading',
+  'footer.exploreTradingInstruments': 'Explorer les instruments de trading',
+  'footer.getHelp247': 'Obtenir de l\'aide 24/7',
+  'footer.termsAndPolicies': 'Conditions et politiques',
+
+  // Footer - ContactPanelFooter headings
+  'footer.getInTouch': 'Nous contacter',
+  'footer.quickLinks': 'Liens rapides',
+
+  // Footer - FaqTeaserFooter
+  'footer.faqHeading': 'Questions fréquemment posées',
+  'footer.faqQuestion1': 'Comment ouvrir un compte de trading ?',
+  'footer.faqAnswer1': 'Cliquez sur « S\'inscrire » et complétez le processus simple en 3 étapes.',
+  'footer.faqQuestion2': 'Quelles sont les exigences de dépôt minimum ?',
+  'footer.faqAnswer2': 'Le dépôt minimum varie selon le type de compte, à partir de 100 $.',
+  'footer.faqQuestion3': 'Mon argent est-il en sécurité ?',
+  'footer.faqAnswer3': 'Les fonds des clients sont détenus dans des comptes ségrégués auprès de banques de premier rang.',
+  'footer.viewAllFaq': 'Voir toutes les FAQ',
+
+  // Footer - GlobalOfficesFooter
+  'footer.ourGlobalPresence': 'Notre présence mondiale',
+
+  // Footer - NewsletterHeroFooter
+  'footer.stayUpdated': 'Restez informé',
+  'footer.newsletterDescription': 'Recevez des analyses de marché et des mises à jour de la plateforme dans votre boîte de réception.',
+  'footer.enterYourEmail': 'Entrez votre e-mail',
+  'footer.subscribe': 'S\'abonner',
+
+  // Footer - PartnerCarouselFooter
+  'footer.trustedBy': 'APPROUVÉ PAR',
+  'footer.partner1': 'Partenaire 1',
+  'footer.partner2': 'Partenaire 2',
+  'footer.partner3': 'Partenaire 3',
+  'footer.partner4': 'Partenaire 4',
+  'footer.partner5': 'Partenaire 5',
+
+  // Footer - MultiCtaCardFooter
+  'footer.startTradingToday': 'Commencez à trader aujourd\'hui',
+  'footer.joinThousandsTraders': 'Rejoignez des milliers de traders dans le monde',
+  'footer.openAccount': 'Ouvrir un compte',
+
   'error.required': 'Ce champ est obligatoire',
   'error.invalidEmail': 'Adresse e-mail invalide',
   'error.passwordTooShort': 'Le mot de passe doit contenir au moins 8 caractères',

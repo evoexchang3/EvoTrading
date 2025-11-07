@@ -640,6 +640,49 @@ export const ar = {
   'footer.countries': 'الدول',
   'footer.dailyVolume': 'الحجم اليومي',
   'footer.yearsExperience': 'سنوات الخبرة',
+
+  // Footer - CardResourcesFooter descriptions
+  'footer.learnTradingStrategies': 'تعلم استراتيجيات التداول',
+  'footer.exploreTradingInstruments': 'استكشف أدوات التداول',
+  'footer.getHelp247': 'احصل على المساعدة على مدار الساعة',
+  'footer.termsAndPolicies': 'الشروط والسياسات',
+
+  // Footer - ContactPanelFooter headings
+  'footer.getInTouch': 'تواصل معنا',
+  'footer.quickLinks': 'روابط سريعة',
+
+  // Footer - FaqTeaserFooter
+  'footer.faqHeading': 'الأسئلة الشائعة',
+  'footer.faqQuestion1': 'كيف أفتح حساب تداول؟',
+  'footer.faqAnswer1': 'انقر على "التسجيل" وأكمل العملية البسيطة المكونة من 3 خطوات.',
+  'footer.faqQuestion2': 'ما هي متطلبات الحد الأدنى للإيداع؟',
+  'footer.faqAnswer2': 'يختلف الحد الأدنى للإيداع حسب نوع الحساب، بدءًا من 100 دولار.',
+  'footer.faqQuestion3': 'هل أموالي آمنة؟',
+  'footer.faqAnswer3': 'يتم الاحتفاظ بأموال العملاء في حسابات منفصلة لدى بنوك من الدرجة الأولى.',
+  'footer.viewAllFaq': 'عرض جميع الأسئلة الشائعة',
+
+  // Footer - GlobalOfficesFooter
+  'footer.ourGlobalPresence': 'تواجدنا العالمي',
+
+  // Footer - NewsletterHeroFooter
+  'footer.stayUpdated': 'ابق على اطلاع',
+  'footer.newsletterDescription': 'احصل على رؤى السوق وتحديثات المنصة في صندوق بريدك الإلكتروني.',
+  'footer.enterYourEmail': 'أدخل بريدك الإلكتروني',
+  'footer.subscribe': 'اشترك',
+
+  // Footer - PartnerCarouselFooter
+  'footer.trustedBy': 'موثوق به من قبل',
+  'footer.partner1': 'شريك 1',
+  'footer.partner2': 'شريك 2',
+  'footer.partner3': 'شريك 3',
+  'footer.partner4': 'شريك 4',
+  'footer.partner5': 'شريك 5',
+
+  // Footer - MultiCtaCardFooter
+  'footer.startTradingToday': 'ابدأ التداول اليوم',
+  'footer.joinThousandsTraders': 'انضم إلى آلاف المتداولين في جميع أنحاء العالم',
+  'footer.openAccount': 'فتح حساب',
+
   'error.required': 'هذا الحقل مطلوب',
   'error.invalidEmail': 'عنوان بريد إلكتروني غير صالح',
   'error.passwordTooShort': 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل',

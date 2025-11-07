@@ -46,12 +46,12 @@ export default function MultiCtaCardFooter({ variant, companyName, supportEmail,
           {/* CTA Card */}
           <VariantCard className="hover-elevate">
             <CardHeader>
-              <CardTitle className="text-lg">Start Trading Today</CardTitle>
+              <CardTitle className="text-lg">{t('footer.startTradingToday')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <p className="text-sm text-muted-foreground">Join thousands of traders worldwide</p>
+              <p className="text-sm text-muted-foreground">{t('footer.joinThousandsTraders')}</p>
               <Link href="/auth/register">
-                <Button className="w-full" data-testid="footer-button-cta">Open Account</Button>
+                <Button className="w-full" data-testid="footer-button-cta">{t('footer.openAccount')}</Button>
               </Link>
             </CardContent>
           </VariantCard>

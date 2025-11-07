@@ -1230,6 +1230,48 @@ export const ja = {
   'footer.countries': '国',
   'footer.dailyVolume': '1日の取引量',
   'footer.yearsExperience': '年の経験',
+
+  // Footer - CardResourcesFooter descriptions
+  'footer.learnTradingStrategies': '取引戦略を学ぶ',
+  'footer.exploreTradingInstruments': '取引商品を探索',
+  'footer.getHelp247': '24時間365日サポート',
+  'footer.termsAndPolicies': '利用規約とポリシー',
+
+  // Footer - ContactPanelFooter headings
+  'footer.getInTouch': 'お問い合わせ',
+  'footer.quickLinks': 'クイックリンク',
+
+  // Footer - FaqTeaserFooter
+  'footer.faqHeading': 'よくある質問',
+  'footer.faqQuestion1': '取引口座を開設するにはどうすればよいですか？',
+  'footer.faqAnswer1': '「登録」をクリックして、簡単な3ステップのプロセスを完了してください。',
+  'footer.faqQuestion2': '最低入金額の要件は何ですか？',
+  'footer.faqAnswer2': '最低入金額は口座タイプによって異なり、100ドルから始まります。',
+  'footer.faqQuestion3': '私の資金は安全ですか？',
+  'footer.faqAnswer3': '顧客資金は一流銀行の分別管理口座に保管されています。',
+  'footer.viewAllFaq': 'すべてのFAQを表示',
+
+  // Footer - GlobalOfficesFooter
+  'footer.ourGlobalPresence': '当社のグローバルプレゼンス',
+
+  // Footer - NewsletterHeroFooter
+  'footer.stayUpdated': '最新情報を受け取る',
+  'footer.newsletterDescription': '市場洞察とプラットフォームの更新情報を受信トレイにお届けします。',
+  'footer.enterYourEmail': 'メールアドレスを入力',
+  'footer.subscribe': '購読する',
+
+  // Footer - PartnerCarouselFooter
+  'footer.trustedBy': '信頼されています',
+  'footer.partner1': 'パートナー 1',
+  'footer.partner2': 'パートナー 2',
+  'footer.partner3': 'パートナー 3',
+  'footer.partner4': 'パートナー 4',
+  'footer.partner5': 'パートナー 5',
+
+  // Footer - MultiCtaCardFooter
+  'footer.startTradingToday': '今すぐ取引を開始',
+  'footer.joinThousandsTraders': '世界中の数千人のトレーダーに参加',
+  'footer.openAccount': '口座を開設',
   
   // Error Messages
   'error.required': 'この項目は必須です',

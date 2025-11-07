@@ -26,7 +26,7 @@ export default function ContactPanelFooter({ variant, companyName, supportEmail,
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
+            <h3 className="text-2xl font-bold mb-6">{t('footer.getInTouch')}</h3>
             <div className="grid sm:grid-cols-3 gap-6">
               {contactMethods.map((method) => {
                 const Icon = method.icon;
@@ -44,7 +44,7 @@ export default function ContactPanelFooter({ variant, companyName, supportEmail,
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>

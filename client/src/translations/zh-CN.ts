@@ -1229,6 +1229,48 @@ export const zhCN = {
   'footer.countries': '国家',
   'footer.dailyVolume': '每日交易量',
   'footer.yearsExperience': '年经验',
+
+  // Footer - CardResourcesFooter descriptions
+  'footer.learnTradingStrategies': '学习交易策略',
+  'footer.exploreTradingInstruments': '探索交易工具',
+  'footer.getHelp247': '全天候获取帮助',
+  'footer.termsAndPolicies': '条款与政策',
+
+  // Footer - ContactPanelFooter headings
+  'footer.getInTouch': '联系我们',
+  'footer.quickLinks': '快速链接',
+
+  // Footer - FaqTeaserFooter
+  'footer.faqHeading': '常见问题',
+  'footer.faqQuestion1': '如何开设交易账户？',
+  'footer.faqAnswer1': '点击"注册"并完成简单的3步流程。',
+  'footer.faqQuestion2': '最低存款要求是多少？',
+  'footer.faqAnswer2': '最低存款因账户类型而异，起价为100美元。',
+  'footer.faqQuestion3': '我的资金安全吗？',
+  'footer.faqAnswer3': '客户资金存放在一级银行的隔离账户中。',
+  'footer.viewAllFaq': '查看所有常见问题',
+
+  // Footer - GlobalOfficesFooter
+  'footer.ourGlobalPresence': '我们的全球业务',
+
+  // Footer - NewsletterHeroFooter
+  'footer.stayUpdated': '保持更新',
+  'footer.newsletterDescription': '获取市场洞察和平台更新，直达您的收件箱。',
+  'footer.enterYourEmail': '输入您的电子邮件',
+  'footer.subscribe': '订阅',
+
+  // Footer - PartnerCarouselFooter
+  'footer.trustedBy': '信赖于',
+  'footer.partner1': '合作伙伴 1',
+  'footer.partner2': '合作伙伴 2',
+  'footer.partner3': '合作伙伴 3',
+  'footer.partner4': '合作伙伴 4',
+  'footer.partner5': '合作伙伴 5',
+
+  // Footer - MultiCtaCardFooter
+  'footer.startTradingToday': '立即开始交易',
+  'footer.joinThousandsTraders': '加入全球数千名交易者',
+  'footer.openAccount': '开设账户',
   
   // Error Messages
   'error.required': '此字段为必填项',

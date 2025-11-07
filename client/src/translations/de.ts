@@ -1189,6 +1189,48 @@ export const de = {
   'footer.countries': 'Länder',
   'footer.dailyVolume': 'Tägliches Volumen',
   'footer.yearsExperience': 'Jahre Erfahrung',
+
+  // Footer - CardResourcesFooter descriptions
+  'footer.learnTradingStrategies': 'Handelsstrategien erlernen',
+  'footer.exploreTradingInstruments': 'Handelsinstrumente erkunden',
+  'footer.getHelp247': 'Hilfe rund um die Uhr',
+  'footer.termsAndPolicies': 'Bedingungen & Richtlinien',
+
+  // Footer - ContactPanelFooter headings
+  'footer.getInTouch': 'Kontaktieren Sie uns',
+  'footer.quickLinks': 'Schnellzugriffe',
+
+  // Footer - FaqTeaserFooter
+  'footer.faqHeading': 'Häufig gestellte Fragen',
+  'footer.faqQuestion1': 'Wie eröffne ich ein Handelskonto?',
+  'footer.faqAnswer1': 'Klicken Sie auf „Registrieren" und schließen Sie den einfachen 3-Schritte-Prozess ab.',
+  'footer.faqQuestion2': 'Welche Mindesteinzahlungsanforderungen gibt es?',
+  'footer.faqAnswer2': 'Die Mindesteinzahlung variiert je nach Kontotyp und beginnt bei 100 $.',
+  'footer.faqQuestion3': 'Ist mein Geld sicher?',
+  'footer.faqAnswer3': 'Kundengelder werden auf segregierten Konten bei erstklassigen Banken verwahrt.',
+  'footer.viewAllFaq': 'Alle FAQ anzeigen',
+
+  // Footer - GlobalOfficesFooter
+  'footer.ourGlobalPresence': 'Unsere globale Präsenz',
+
+  // Footer - NewsletterHeroFooter
+  'footer.stayUpdated': 'Bleiben Sie auf dem Laufenden',
+  'footer.newsletterDescription': 'Erhalten Sie Markteinblicke und Plattform-Updates direkt in Ihr Postfach.',
+  'footer.enterYourEmail': 'E-Mail-Adresse eingeben',
+  'footer.subscribe': 'Abonnieren',
+
+  // Footer - PartnerCarouselFooter
+  'footer.trustedBy': 'VERTRAUT VON',
+  'footer.partner1': 'Partner 1',
+  'footer.partner2': 'Partner 2',
+  'footer.partner3': 'Partner 3',
+  'footer.partner4': 'Partner 4',
+  'footer.partner5': 'Partner 5',
+
+  // Footer - MultiCtaCardFooter
+  'footer.startTradingToday': 'Starten Sie noch heute mit dem Trading',
+  'footer.joinThousandsTraders': 'Schließen Sie sich Tausenden von Händlern weltweit an',
+  'footer.openAccount': 'Konto eröffnen',
   
   // Error Messages
   'error.required': 'Dieses Feld ist erforderlich',

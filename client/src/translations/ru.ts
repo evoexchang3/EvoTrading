@@ -639,6 +639,49 @@ export const ru = {
   'footer.countries': 'Страны',
   'footer.dailyVolume': 'Дневной объем',
   'footer.yearsExperience': 'Лет опыта',
+
+  // Footer - CardResourcesFooter descriptions
+  'footer.learnTradingStrategies': 'Изучите торговые стратегии',
+  'footer.exploreTradingInstruments': 'Изучите торговые инструменты',
+  'footer.getHelp247': 'Получите помощь 24/7',
+  'footer.termsAndPolicies': 'Условия и политика',
+
+  // Footer - ContactPanelFooter headings
+  'footer.getInTouch': 'Свяжитесь с нами',
+  'footer.quickLinks': 'Быстрые ссылки',
+
+  // Footer - FaqTeaserFooter
+  'footer.faqHeading': 'Часто задаваемые вопросы',
+  'footer.faqQuestion1': 'Как открыть торговый счет?',
+  'footer.faqAnswer1': 'Нажмите «Зарегистрироваться» и завершите простой 3-этапный процесс.',
+  'footer.faqQuestion2': 'Каковы требования к минимальному депозиту?',
+  'footer.faqAnswer2': 'Минимальный депозит зависит от типа счета, начиная со 100 долларов.',
+  'footer.faqQuestion3': 'Безопасны ли мои деньги?',
+  'footer.faqAnswer3': 'Средства клиентов хранятся на сегрегированных счетах в банках первого уровня.',
+  'footer.viewAllFaq': 'Просмотреть все FAQ',
+
+  // Footer - GlobalOfficesFooter
+  'footer.ourGlobalPresence': 'Наше глобальное присутствие',
+
+  // Footer - NewsletterHeroFooter
+  'footer.stayUpdated': 'Оставайтесь в курсе',
+  'footer.newsletterDescription': 'Получайте аналитику рынка и обновления платформы прямо на вашу почту.',
+  'footer.enterYourEmail': 'Введите ваш email',
+  'footer.subscribe': 'Подписаться',
+
+  // Footer - PartnerCarouselFooter
+  'footer.trustedBy': 'НАМ ДОВЕРЯЮТ',
+  'footer.partner1': 'Партнер 1',
+  'footer.partner2': 'Партнер 2',
+  'footer.partner3': 'Партнер 3',
+  'footer.partner4': 'Партнер 4',
+  'footer.partner5': 'Партнер 5',
+
+  // Footer - MultiCtaCardFooter
+  'footer.startTradingToday': 'Начните торговать сегодня',
+  'footer.joinThousandsTraders': 'Присоединяйтесь к тысячам трейдеров по всему миру',
+  'footer.openAccount': 'Открыть счет',
+
   'error.required': 'Это поле обязательно',
   'error.invalidEmail': 'Неверный адрес электронной почты',
   'error.passwordTooShort': 'Пароль должен содержать не менее 8 символов',

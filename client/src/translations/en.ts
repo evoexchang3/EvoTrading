@@ -903,6 +903,48 @@ export const en = {
   'footer.countries': 'Countries',
   'footer.dailyVolume': 'Daily Volume',
   'footer.yearsExperience': 'Years Experience',
+
+  // Footer - CardResourcesFooter descriptions
+  'footer.learnTradingStrategies': 'Learn trading strategies',
+  'footer.exploreTradingInstruments': 'Explore trading instruments',
+  'footer.getHelp247': 'Get help 24/7',
+  'footer.termsAndPolicies': 'Terms & policies',
+
+  // Footer - ContactPanelFooter headings
+  'footer.getInTouch': 'Get in Touch',
+  'footer.quickLinks': 'Quick Links',
+
+  // Footer - FaqTeaserFooter
+  'footer.faqHeading': 'Frequently Asked Questions',
+  'footer.faqQuestion1': 'How do I open a trading account?',
+  'footer.faqAnswer1': 'Click "Register" and complete the simple 3-step process.',
+  'footer.faqQuestion2': 'What are the minimum deposit requirements?',
+  'footer.faqAnswer2': 'Minimum deposit varies by account type, starting from $100.',
+  'footer.faqQuestion3': 'Is my money safe?',
+  'footer.faqAnswer3': 'Client funds are held in segregated accounts with tier-1 banks.',
+  'footer.viewAllFaq': 'View All FAQ',
+
+  // Footer - GlobalOfficesFooter
+  'footer.ourGlobalPresence': 'Our Global Presence',
+
+  // Footer - NewsletterHeroFooter
+  'footer.stayUpdated': 'Stay Updated',
+  'footer.newsletterDescription': 'Get market insights and platform updates delivered to your inbox.',
+  'footer.enterYourEmail': 'Enter your email',
+  'footer.subscribe': 'Subscribe',
+
+  // Footer - PartnerCarouselFooter
+  'footer.trustedBy': 'TRUSTED BY',
+  'footer.partner1': 'Partner 1',
+  'footer.partner2': 'Partner 2',
+  'footer.partner3': 'Partner 3',
+  'footer.partner4': 'Partner 4',
+  'footer.partner5': 'Partner 5',
+
+  // Footer - MultiCtaCardFooter
+  'footer.startTradingToday': 'Start Trading Today',
+  'footer.joinThousandsTraders': 'Join thousands of traders worldwide',
+  'footer.openAccount': 'Open Account',
   
   // Error Messages
   'error.required': 'This field is required',

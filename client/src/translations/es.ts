@@ -664,6 +664,49 @@ export const es = {
   'footer.countries': 'Países',
   'footer.dailyVolume': 'Volumen diario',
   'footer.yearsExperience': 'Años de experiencia',
+
+  // Footer - CardResourcesFooter descriptions
+  'footer.learnTradingStrategies': 'Aprende estrategias de trading',
+  'footer.exploreTradingInstruments': 'Explora instrumentos de trading',
+  'footer.getHelp247': 'Obtén ayuda 24/7',
+  'footer.termsAndPolicies': 'Términos y políticas',
+
+  // Footer - ContactPanelFooter headings
+  'footer.getInTouch': 'Ponte en contacto',
+  'footer.quickLinks': 'Enlaces rápidos',
+
+  // Footer - FaqTeaserFooter
+  'footer.faqHeading': 'Preguntas frecuentes',
+  'footer.faqQuestion1': '¿Cómo abro una cuenta de trading?',
+  'footer.faqAnswer1': 'Haz clic en "Registrarse" y completa el proceso sencillo de 3 pasos.',
+  'footer.faqQuestion2': '¿Cuáles son los requisitos de depósito mínimo?',
+  'footer.faqAnswer2': 'El depósito mínimo varía según el tipo de cuenta, desde $100.',
+  'footer.faqQuestion3': '¿Mi dinero está seguro?',
+  'footer.faqAnswer3': 'Los fondos de los clientes se mantienen en cuentas segregadas con bancos de primer nivel.',
+  'footer.viewAllFaq': 'Ver todas las FAQ',
+
+  // Footer - GlobalOfficesFooter
+  'footer.ourGlobalPresence': 'Nuestra presencia global',
+
+  // Footer - NewsletterHeroFooter
+  'footer.stayUpdated': 'Mantente actualizado',
+  'footer.newsletterDescription': 'Recibe información del mercado y actualizaciones de la plataforma en tu bandeja de entrada.',
+  'footer.enterYourEmail': 'Ingresa tu correo electrónico',
+  'footer.subscribe': 'Suscribirse',
+
+  // Footer - PartnerCarouselFooter
+  'footer.trustedBy': 'CONFIADO POR',
+  'footer.partner1': 'Socio 1',
+  'footer.partner2': 'Socio 2',
+  'footer.partner3': 'Socio 3',
+  'footer.partner4': 'Socio 4',
+  'footer.partner5': 'Socio 5',
+
+  // Footer - MultiCtaCardFooter
+  'footer.startTradingToday': 'Comienza a operar hoy',
+  'footer.joinThousandsTraders': 'Únete a miles de traders en todo el mundo',
+  'footer.openAccount': 'Abrir cuenta',
+
   'error.required': 'Este campo es obligatorio',
   'error.invalidEmail': 'Dirección de correo electrónico inválida',
   'error.passwordTooShort': 'La contraseña debe tener al menos 8 caracteres',

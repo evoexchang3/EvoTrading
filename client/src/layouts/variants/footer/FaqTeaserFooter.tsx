@@ -11,9 +11,9 @@ import { ChevronRight } from 'lucide-react';
 export default function FaqTeaserFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const faqs = [
-    { question: 'How do I open a trading account?', answer: 'Click "Register" and complete the simple 3-step process.' },
-    { question: 'What are the minimum deposit requirements?', answer: 'Minimum deposit varies by account type, starting from $100.' },
-    { question: 'Is my money safe?', answer: 'Client funds are held in segregated accounts with tier-1 banks.' },
+    { question: t('footer.faqQuestion1'), answer: t('footer.faqAnswer1') },
+    { question: t('footer.faqQuestion2'), answer: t('footer.faqAnswer2') },
+    { question: t('footer.faqQuestion3'), answer: t('footer.faqAnswer3') },
   ];
 
   const legalLinks = [
@@ -25,7 +25,7 @@ export default function FaqTeaserFooter({ variant, companyName, supportEmail, la
     <footer className="border-t">
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
-          <h3 className="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">{t('footer.faqHeading')}</h3>
 
           <div className="space-y-4 mb-8">
             {faqs.map((faq, index) => (
@@ -39,7 +39,7 @@ export default function FaqTeaserFooter({ variant, companyName, supportEmail, la
           <div className="text-center mb-8">
             <Link href="/company/faq">
               <Button variant="outline" data-testid="footer-button-view-all-faq">
-                View All FAQ
+                {t('footer.viewAllFaq')}
                 <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
