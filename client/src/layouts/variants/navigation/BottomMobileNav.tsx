@@ -16,7 +16,7 @@ export default function BottomMobileNav({ variant, companyName, supportEmail, la
     { label: t('nav.markets'), href: '/markets', icon: BarChart3 },
     { label: t('nav.company'), href: '/company', icon: Building2 },
     { label: t('nav.contact'), href: '/contact', icon: Mail },
-    { label: t('nav.account'), href: '/auth/login', icon: User },
+    { label: t('nav.account'), href: '/login', icon: User },
   ];
 
   return (
@@ -27,12 +27,12 @@ export default function BottomMobileNav({ variant, companyName, supportEmail, la
             <span className="text-lg font-bold">{companyName}</span>
           </Link>
           <div className="flex gap-2">
-            <Link href="/auth/login">
+            <Link href="/login">
               <Button size="sm" variant="ghost" data-testid="button-login">
                 {t('nav.login')}
               </Button>
             </Link>
-            <Link href="/auth/register">
+            <Link href="/register">
               <Button size="sm" data-testid="button-register">
                 {t('nav.register')}
               </Button>

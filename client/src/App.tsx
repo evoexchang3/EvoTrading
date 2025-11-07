@@ -22,6 +22,8 @@ import FAQPage from "@/pages/FAQPage";
 import EducationPage from "@/pages/EducationPage";
 import ContactPage from "@/pages/ContactPage";
 import PartnersPage from "@/pages/PartnersPage";
+import MarketsPage from "@/pages/MarketsPage";
+import CompanyPage from "@/pages/CompanyPage";
 import TermsPage from "@/pages/legal/TermsPage";
 import PrivacyPage from "@/pages/legal/PrivacyPage";
 import AMLPage from "@/pages/legal/AMLPage";
@@ -34,6 +36,7 @@ import WithdrawalsPage from "@/pages/funding/WithdrawalsPage";
 import ProfilePage from "@/pages/account/ProfilePage";
 import SecurityPage from "@/pages/account/SecurityPage";
 import KYCPage from "@/pages/account/KYCPage";
+import AccountSecurityPage from "@/pages/account/AccountSecurityPage";
 import SettingsPage from "@/pages/SettingsPage";
 import { CookieConsent } from "@/components/CookieConsent";
 
@@ -84,6 +87,8 @@ function AppRoutes() {
       <Route path="/education" component={EducationPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/partners" component={PartnersPage} />
+      <Route path="/markets" component={MarketsPage} />
+      <Route path="/company" component={CompanyPage} />
       
       {/* Legal Pages */}
       <Route path="/legal/terms" component={TermsPage} />
@@ -170,6 +175,14 @@ function AppRoutes() {
         <ProtectedRoute>
           <DashboardLayout>
             <KYCPage />
+          </DashboardLayout>
+        </ProtectedRoute>
+      </Route>
+
+      <Route path="/security">
+        <ProtectedRoute>
+          <DashboardLayout>
+            <AccountSecurityPage />
           </DashboardLayout>
         </ProtectedRoute>
       </Route>

@@ -33,12 +33,12 @@ export default function GlassmorphicNav({ variant, companyName, supportEmail, la
                 </span>
               </Link>
             ))}
-            <Link href="/auth/login">
+            <Link href="/login">
               <Button size="sm" variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20" data-testid="button-login">
                 {t('nav.login')}
               </Button>
             </Link>
-            <Link href="/auth/register">
+            <Link href="/register">
               <Button size="sm" className="bg-primary text-primary-foreground" data-testid="button-register">
                 {t('nav.register')}
               </Button>

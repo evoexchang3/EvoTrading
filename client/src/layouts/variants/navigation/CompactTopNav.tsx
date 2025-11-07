@@ -38,12 +38,12 @@ export default function CompactTopNav({ variant, companyName, supportEmail, lang
                 </span>
               </Link>
             ))}
-            <Link href="/auth/login">
+            <Link href="/login">
               <Button size="sm" variant="outline" data-testid="button-login">
                 {t('nav.login')}
               </Button>
             </Link>
-            <Link href="/auth/register">
+            <Link href="/register">
               <Button size="sm" data-testid="button-register">
                 {t('nav.register')}
               </Button>
@@ -70,12 +70,12 @@ export default function CompactTopNav({ variant, companyName, supportEmail, lang
                 </Link>
               ))}
               <div className="flex gap-2 pt-2">
-                <Link href="/auth/login" className="flex-1">
+                <Link href="/login" className="flex-1">
                   <Button size="sm" variant="outline" className="w-full" data-testid="button-mobile-login">
                     {t('nav.login')}
                   </Button>
                 </Link>
-                <Link href="/auth/register" className="flex-1">
+                <Link href="/register" className="flex-1">
                   <Button size="sm" className="w-full" data-testid="button-mobile-register">
                     {t('nav.register')}
                   </Button>

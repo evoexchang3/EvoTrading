@@ -32,10 +32,10 @@ export default function MinimalTextNav({ variant, companyName, supportEmail, lan
                 </span>
               </Link>
             ))}
-            <Link href="/auth/login" data-testid="button-login">
+            <Link href="/login" data-testid="button-login">
               <span className="text-sm tracking-wide opacity-60 hover:opacity-100 transition-opacity">{t('nav.login')}</span>
             </Link>
-            <Link href="/auth/register" data-testid="button-register">
+            <Link href="/register" data-testid="button-register">
               <span className="text-sm tracking-wide underline decoration-2 underline-offset-4">{t('nav.register')}</span>
             </Link>
           </div>

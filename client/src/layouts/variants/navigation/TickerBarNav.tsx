@@ -69,12 +69,12 @@ export default function TickerBarNav({ variant, companyName, supportEmail, langu
             </div>
 
             <div className="flex items-center gap-2">
-              <Link href="/auth/login">
+              <Link href="/login">
                 <Button size="sm" variant="outline" data-testid="button-login">
                   {t('nav.login')}
                 </Button>
               </Link>
-              <Link href="/auth/register">
+              <Link href="/register">
                 <Button size="sm" data-testid="button-register">
                   {t('nav.register')}
                 </Button>

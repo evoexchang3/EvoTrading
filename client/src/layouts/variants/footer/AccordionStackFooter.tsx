@@ -31,7 +31,7 @@ export default function AccordionStackFooter({ variant, companyName, supportEmai
       links: [
         { label: t('footer.privacyPolicy'), href: '/legal/privacy' },
         { label: t('footer.termsOfService'), href: '/legal/terms' },
-        { label: t('footer.riskDisclosure'), href: '/legal/risk-disclosure' },
+        { label: t('footer.riskDisclosure'), href: '/legal/risk' },
       ],
     },
   ];

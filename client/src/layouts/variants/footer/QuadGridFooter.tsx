@@ -22,7 +22,7 @@ export default function QuadGridFooter({ variant, companyName, supportEmail, lan
       links: [
         { label: t('footer.privacyPolicy'), href: '/legal/privacy' },
         { label: t('footer.termsOfService'), href: '/legal/terms' },
-        { label: t('footer.riskDisclosure'), href: '/legal/risk-disclosure' },
+        { label: t('footer.riskDisclosure'), href: '/legal/risk' },
       ],
     },
     {
@@ -37,7 +37,7 @@ export default function QuadGridFooter({ variant, companyName, supportEmail, lan
       title: t('footer.sectionSupport'),
       links: [
         { label: t('footer.helpCenter'), href: '/contact' },
-        { label: t('footer.faq'), href: '/company/faq' },
+        { label: t('footer.faq'), href: '/faq' },
         { label: t('footer.documents'), href: '/customer/verification' },
       ],
     },

@@ -33,7 +33,7 @@ export default function HeroOverlayNav({ variant, companyName, supportEmail, lan
                 </span>
               </Link>
             ))}
-            <Link href="/auth/login">
+            <Link href="/login">
               <Button
                 size="sm"
                 variant="outline"
@@ -43,7 +43,7 @@ export default function HeroOverlayNav({ variant, companyName, supportEmail, lan
                 {t('nav.login')}
               </Button>
             </Link>
-            <Link href="/auth/register">
+            <Link href="/register">
               <Button
                 size="sm"
                 className="bg-white text-black hover:bg-white/90"

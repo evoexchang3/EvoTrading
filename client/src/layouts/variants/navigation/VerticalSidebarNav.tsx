@@ -41,13 +41,13 @@ export default function VerticalSidebarNav({ variant, companyName, supportEmail,
         </div>
       </nav>
       <div className="p-4 border-t space-y-2">
-        <Link href="/auth/login">
+        <Link href="/login">
           <Button variant="outline" size="sm" className="w-full" data-testid="button-login">
             <LogIn className="w-4 h-4 mr-2" />
             {t('nav.login')}
           </Button>
         </Link>
-        <Link href="/auth/register">
+        <Link href="/register">
           <Button size="sm" className="w-full" data-testid="button-register">{t('nav.register')}</Button>
         </Link>
       </div>

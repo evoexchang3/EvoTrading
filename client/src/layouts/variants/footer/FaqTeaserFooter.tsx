@@ -37,7 +37,7 @@ export default function FaqTeaserFooter({ variant, companyName, supportEmail, la
           </div>
 
           <div className="text-center mb-8">
-            <Link href="/company/faq">
+            <Link href="/faq">
               <Button variant="outline" data-testid="footer-button-view-all-faq">
                 {t('footer.viewAllFaq')}
                 <ChevronRight className="w-4 h-4 ml-2" />

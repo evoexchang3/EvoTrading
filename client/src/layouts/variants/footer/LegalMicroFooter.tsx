@@ -11,7 +11,7 @@ export default function LegalMicroFooter({ variant, companyName, supportEmail, l
   const legalLinks = [
     { label: t('footer.privacyPolicy'), href: '/legal/privacy' },
     { label: t('footer.termsOfService'), href: '/legal/terms' },
-    { label: t('footer.riskDisclosure'), href: '/legal/risk-disclosure' },
+    { label: t('footer.riskDisclosure'), href: '/legal/risk' },
     { label: t('footer.contact'), href: '/contact' },
   ];
 

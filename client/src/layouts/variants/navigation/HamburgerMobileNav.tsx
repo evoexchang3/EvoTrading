@@ -35,7 +35,7 @@ export default function HamburgerMobileNav({ variant, companyName, supportEmail,
           <Link href="/" data-testid="link-home">
             <span className="text-lg font-bold">{companyName}</span>
           </Link>
-          <Link href="/auth/register">
+          <Link href="/register">
             <Button size="sm" data-testid="button-register">{t('nav.register')}</Button>
           </Link>
         </div>
@@ -59,7 +59,7 @@ export default function HamburgerMobileNav({ variant, companyName, supportEmail,
               </div>
             </Link>
           ))}
-          <Link href="/auth/login">
+          <Link href="/login">
             <Button variant="outline" className="w-full" data-testid="button-login">{t('nav.login')}</Button>
           </Link>
         </div>

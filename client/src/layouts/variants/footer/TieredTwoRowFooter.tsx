@@ -18,7 +18,7 @@ export default function TieredTwoRowFooter({ variant, companyName, supportEmail,
   const legalLinks = [
     { label: t('footer.privacyPolicy'), href: '/legal/privacy' },
     { label: t('footer.termsOfService'), href: '/legal/terms' },
-    { label: t('footer.riskDisclosure'), href: '/legal/risk-disclosure' },
+    { label: t('footer.riskDisclosure'), href: '/legal/risk' },
   ];
 
   return (

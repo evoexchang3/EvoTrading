@@ -32,7 +32,7 @@ export default function CenteredDoubleNav({ variant, companyName, supportEmail, 
                 </span>
               </Link>
             ))}
-            <Link href="/auth/login">
+            <Link href="/login">
               <Button size="sm" variant="outline" data-testid="button-login">{t('nav.login')}</Button>
             </Link>
           </div>

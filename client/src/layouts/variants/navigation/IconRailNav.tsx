@@ -41,7 +41,7 @@ export default function IconRailNav({ variant, companyName, supportEmail, langua
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Link href="/auth/login" data-testid="button-login">
+            <Link href="/login" data-testid="button-login">
               <div className="p-3 rounded-lg hover-elevate">
                 <LogIn className="w-5 h-5" />
               </div>
@@ -52,7 +52,7 @@ export default function IconRailNav({ variant, companyName, supportEmail, langua
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Link href="/auth/register" data-testid="button-register">
+            <Link href="/register" data-testid="button-register">
               <div className="p-3 rounded-lg hover-elevate bg-primary text-primary-foreground">
                 <UserPlus className="w-5 h-5" />
               </div>
