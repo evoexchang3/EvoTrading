@@ -36,6 +36,19 @@ export const ru = {
   'nav.contact': 'Контакты',
   'nav.partners': 'Партнеры',
   'nav.faq': 'ЧЗВ',
+  'nav.markets': 'Рынки',
+  'nav.company': 'Компания',
+  'nav.account': 'Аккаунт',
+  'nav.getStarted': 'Начать',
+  
+  // Markets
+  'markets.forex': 'Forex',
+  'markets.crypto': 'Crypto',
+  'markets.commodities': 'Товары',
+  'markets.indices': 'Индексы',
+  'markets.stocks': 'Акции',
+  
+  // Home Page
   'home.hero.title': 'Торгуйте на глобальных рынках с уверенностью',
   'home.hero.subtitle': 'Профессиональная торговая платформа для Forex, криптовалют и товаров. Регулируется, безопасна и пользуется доверием трейдеров по всему миру.',
   'home.hero.registerButton': 'Создать бесплатный аккаунт',
@@ -574,9 +587,16 @@ export const ru = {
   'account.types.pro.description': 'Для опытных трейдеров',
   'account.types.vip.title': 'VIP счет',
   'account.types.vip.description': 'Премиум функции и поддержка',
+  
+  // Footer
+  'footer.aboutUs': 'О нас',
   'footer.company': 'Компания',
+  'footer.contact': 'Контакты',
   'footer.legal': 'Юридическая информация',
   'footer.support': 'Поддержка',
+  'footer.privacyPolicy': 'Политика конфиденциальности',
+  'footer.termsOfService': 'Условия использования',
+  'footer.riskDisclosure': 'Раскрытие рисков',
   'footer.followUs': 'Подпишитесь',
   'footer.copyright': '© {{year}} Торговая платформа. Все права защищены.',
   'footer.disclaimer': 'Торговля связана с рисками. Прошлые результаты не являются показателем будущих результатов.',

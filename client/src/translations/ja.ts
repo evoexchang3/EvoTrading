@@ -39,6 +39,17 @@ export const ja = {
   'nav.contact': 'お問い合わせ',
   'nav.partners': 'パートナー',
   'nav.faq': 'よくある質問',
+  'nav.markets': '市場',
+  'nav.company': '会社',
+  'nav.account': 'アカウント',
+  'nav.getStarted': '始める',
+  
+  // Markets
+  'markets.forex': 'Forex',
+  'markets.crypto': 'Crypto',
+  'markets.commodities': '商品',
+  'markets.indices': '指数',
+  'markets.stocks': '株式',
   
   // Home Page
   'home.seo.title': 'プロフェッショナル取引プラットフォーム - FX、暗号通貨、商品',
@@ -1169,9 +1180,14 @@ export const ja = {
   'account.types.vip.description': 'プレミアム機能とサポート',
   
   // Footer
+  'footer.aboutUs': '私たちについて',
   'footer.company': '会社',
+  'footer.contact': 'お問い合わせ',
   'footer.legal': '法務',
   'footer.support': 'サポート',
+  'footer.privacyPolicy': 'プライバシーポリシー',
+  'footer.termsOfService': '利用規約',
+  'footer.riskDisclosure': 'リスク開示',
   'footer.followUs': 'フォローする',
   'footer.copyright': '© {{year}} 取引プラットフォーム。全著作権所有。',
   'footer.disclaimer': '取引にはリスクが伴います。過去の実績は将来の結果を保証するものではありません。',

@@ -25,20 +25,31 @@ export const de = {
   // Navigation
   'nav.home': 'Startseite',
   'nav.about': 'Über uns',
+  'nav.markets': 'Märkte',
+  'nav.company': 'Unternehmen',
   'nav.trading': 'Handeln',
   'nav.dashboard': 'Dashboard',
   'nav.deposits': 'Einzahlungen',
   'nav.withdrawals': 'Auszahlungen',
   'nav.profile': 'Profil',
   'nav.settings': 'Einstellungen',
+  'nav.account': 'Konto',
   'nav.logout': 'Abmelden',
   'nav.login': 'Anmelden',
   'nav.register': 'Registrieren',
+  'nav.getStarted': 'Jetzt starten',
   'nav.tools': 'Werkzeuge',
   'nav.education': 'Bildung',
   'nav.contact': 'Kontakt',
   'nav.partners': 'Partner',
   'nav.faq': 'FAQ',
+  
+  // Markets
+  'markets.forex': 'Forex',
+  'markets.crypto': 'Krypto',
+  'markets.commodities': 'Rohstoffe',
+  'markets.indices': 'Indizes',
+  'markets.stocks': 'Aktien',
   
   // Home Page
   'home.seo.title': 'Professionelle Handelsplattform - Forex, Krypto, Rohstoffe',
@@ -1128,9 +1139,14 @@ export const de = {
   'account.types.vip.description': 'Premium-Funktionen und Support',
   
   // Footer
+  'footer.aboutUs': 'Über uns',
   'footer.company': 'Unternehmen',
+  'footer.contact': 'Kontakt',
   'footer.legal': 'Rechtliches',
   'footer.support': 'Support',
+  'footer.privacyPolicy': 'Datenschutzrichtlinie',
+  'footer.termsOfService': 'Nutzungsbedingungen',
+  'footer.riskDisclosure': 'Risikooffenlegung',
   'footer.followUs': 'Folgen Sie uns',
   'footer.copyright': '© {{year}} Handelsplattform. Alle Rechte vorbehalten.',
   'footer.disclaimer': 'Handel birgt Risiken. Die Wertentwicklung in der Vergangenheit ist kein Indikator für zukünftige Ergebnisse.',

@@ -35,6 +35,11 @@ export default function BreadcrumbHybridNav({ variant, companyName, supportEmail
                 </Button>
               </Link>
             ))}
+            <Link href="/auth/login">
+              <Button size="sm" variant="outline" data-testid="button-login">
+                {t('nav.login')}
+              </Button>
+            </Link>
             <Link href="/auth/register">
               <Button size="sm" data-testid="button-register">{t('nav.register')}</Button>
             </Link>
@@ -46,7 +51,7 @@ export default function BreadcrumbHybridNav({ variant, companyName, supportEmail
         <div className="border-b bg-muted/30">
           <div className="container mx-auto px-4 py-2 flex items-center gap-2 text-sm">
             <Link href="/" data-testid="link-breadcrumb-home">
-              <span className="text-muted-foreground hover:text-foreground">Home</span>
+              <span className="text-muted-foreground hover:text-foreground">{t('nav.home')}</span>
             </Link>
             {breadcrumbs.map((crumb, index) => (
               <div key={index} className="flex items-center gap-2">

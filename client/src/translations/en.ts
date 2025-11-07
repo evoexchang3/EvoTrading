@@ -25,20 +25,31 @@ export const en = {
   // Navigation
   'nav.home': 'Home',
   'nav.about': 'About',
+  'nav.markets': 'Markets',
+  'nav.company': 'Company',
   'nav.trading': 'Trading',
   'nav.dashboard': 'Dashboard',
   'nav.deposits': 'Deposits',
   'nav.withdrawals': 'Withdrawals',
   'nav.profile': 'Profile',
   'nav.settings': 'Settings',
+  'nav.account': 'Account',
   'nav.logout': 'Logout',
   'nav.login': 'Login',
   'nav.register': 'Register',
+  'nav.getStarted': 'Get Started',
   'nav.tools': 'Tools',
   'nav.education': 'Education',
   'nav.contact': 'Contact',
   'nav.partners': 'Partners',
   'nav.faq': 'FAQ',
+  
+  // Markets
+  'markets.forex': 'Forex',
+  'markets.crypto': 'Crypto',
+  'markets.commodities': 'Commodities',
+  'markets.indices': 'Indices',
+  'markets.stocks': 'Stocks',
   
   // Home Page
   'home.hero.title': 'Trade Global Markets with Confidence',
@@ -842,9 +853,14 @@ export const en = {
   'account.types.vip.description': 'Premium features and support',
   
   // Footer
+  'footer.aboutUs': 'About Us',
   'footer.company': 'Company',
+  'footer.contact': 'Contact',
   'footer.legal': 'Legal',
   'footer.support': 'Support',
+  'footer.privacyPolicy': 'Privacy Policy',
+  'footer.termsOfService': 'Terms of Service',
+  'footer.riskDisclosure': 'Risk Disclosure',
   'footer.followUs': 'Follow Us',
   'footer.copyright': '© {{year}} Trading Platform. All rights reserved.',
   'footer.disclaimer': 'Trading involves risk. Past performance is not indicative of future results.',

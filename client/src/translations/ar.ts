@@ -36,6 +36,19 @@ export const ar = {
   'nav.contact': 'اتصل بنا',
   'nav.partners': 'الشركاء',
   'nav.faq': 'الأسئلة الشائعة',
+  'nav.markets': 'الأسواق',
+  'nav.company': 'الشركة',
+  'nav.account': 'الحساب',
+  'nav.getStarted': 'ابدأ الآن',
+  
+  // Markets
+  'markets.forex': 'Forex',
+  'markets.crypto': 'Crypto',
+  'markets.commodities': 'السلع',
+  'markets.indices': 'المؤشرات',
+  'markets.stocks': 'الأسهم',
+  
+  // Home Page
   'home.hero.title': 'تداول الأسواق العالمية بثقة',
   'home.hero.subtitle': 'منصة تداول احترافية للفوركس والعملات المشفرة والسلع. منظمة وآمنة وموثوقة من قبل المتداولين في جميع أنحاء العالم.',
   'home.hero.registerButton': 'إنشاء حساب مجاني',
@@ -575,9 +588,16 @@ export const ar = {
   'account.types.pro.description': 'للمتداولين ذوي الخبرة',
   'account.types.vip.title': 'حساب VIP',
   'account.types.vip.description': 'ميزات ودعم متميز',
+  
+  // Footer
+  'footer.aboutUs': 'من نحن',
   'footer.company': 'الشركة',
+  'footer.contact': 'اتصل بنا',
   'footer.legal': 'القانوني',
   'footer.support': 'الدعم',
+  'footer.privacyPolicy': 'سياسة الخصوصية',
+  'footer.termsOfService': 'شروط الخدمة',
+  'footer.riskDisclosure': 'الإفصاح عن المخاطر',
   'footer.followUs': 'تابعنا',
   'footer.copyright': '© {{year}} منصة التداول. جميع الحقوق محفوظة.',
   'footer.disclaimer': 'التداول ينطوي على مخاطر. الأداء السابق ليس مؤشراً على النتائج المستقبلية.',

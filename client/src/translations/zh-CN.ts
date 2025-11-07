@@ -39,6 +39,17 @@ export const zhCN = {
   'nav.contact': '联系我们',
   'nav.partners': '合作伙伴',
   'nav.faq': '常见问题',
+  'nav.markets': '市场',
+  'nav.company': '公司',
+  'nav.account': '账户',
+  'nav.getStarted': '立即开始',
+  
+  // Markets
+  'markets.forex': 'Forex',
+  'markets.crypto': 'Crypto',
+  'markets.commodities': '商品',
+  'markets.indices': '指数',
+  'markets.stocks': '股票',
   
   // Home Page
   'home.seo.title': '专业交易平台 - 外汇、加密货币与商品',
@@ -1168,9 +1179,14 @@ export const zhCN = {
   'account.types.vip.description': '高级功能和支持',
   
   // Footer
+  'footer.aboutUs': '关于我们',
   'footer.company': '公司',
+  'footer.contact': '联系我们',
   'footer.legal': '法律',
   'footer.support': '支持',
+  'footer.privacyPolicy': '隐私政策',
+  'footer.termsOfService': '服务条款',
+  'footer.riskDisclosure': '风险披露',
   'footer.followUs': '关注我们',
   'footer.copyright': '© {{year}} 交易平台。版权所有。',
   'footer.disclaimer': '交易涉及风险。过去的表现不代表未来的结果。',

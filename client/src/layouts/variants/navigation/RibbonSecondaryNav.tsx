@@ -18,9 +18,9 @@ export default function RibbonSecondaryNav({ variant, companyName, supportEmail,
   ];
 
   const secondaryNav = [
-    { label: 'Forex', href: '/markets#forex' },
-    { label: 'Crypto', href: '/markets#crypto' },
-    { label: 'Commodities', href: '/markets#commodities' },
+    { label: t('markets.forex'), href: '/markets#forex' },
+    { label: t('markets.crypto'), href: '/markets#crypto' },
+    { label: t('markets.commodities'), href: '/markets#commodities' },
   ];
 
   return (
@@ -38,6 +38,11 @@ export default function RibbonSecondaryNav({ variant, companyName, supportEmail,
                 </Button>
               </Link>
             ))}
+            <Link href="/auth/login">
+              <Button size="sm" variant="outline" data-testid="button-login">
+                {t('nav.login')}
+              </Button>
+            </Link>
             <Link href="/auth/register">
               <Button size="sm" data-testid="button-register">{t('nav.register')}</Button>
             </Link>

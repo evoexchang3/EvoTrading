@@ -49,6 +49,11 @@ export default function WideSplitNav({ variant, companyName, supportEmail, langu
                 </span>
               </Link>
             ))}
+            <Link href="/auth/login">
+              <Button size="sm" variant="ghost" data-testid="button-login">
+                {t('nav.login')}
+              </Button>
+            </Link>
             <Link href="/auth/register">
               <Button size="sm" data-testid="button-register">
                 {t('nav.getStarted')}

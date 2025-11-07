@@ -36,6 +36,19 @@ export const fr = {
   'nav.contact': 'Contact',
   'nav.partners': 'Partenaires',
   'nav.faq': 'FAQ',
+  'nav.markets': 'Marchés',
+  'nav.company': 'Entreprise',
+  'nav.account': 'Compte',
+  'nav.getStarted': 'Commencer',
+  
+  // Markets
+  'markets.forex': 'Forex',
+  'markets.crypto': 'Crypto',
+  'markets.commodities': 'Matières premières',
+  'markets.indices': 'Indices',
+  'markets.stocks': 'Actions',
+  
+  // Home Page
   'home.hero.title': 'Tradez les marchés mondiaux en toute confiance',
   'home.hero.subtitle': 'Plateforme de trading professionnelle pour le forex, les cryptomonnaies et les matières premières. Réglementée, sécurisée et approuvée par les traders du monde entier.',
   'home.hero.registerButton': 'Créer un compte gratuit',
@@ -599,9 +612,16 @@ export const fr = {
   'account.types.pro.description': 'Pour les traders expérimentés',
   'account.types.vip.title': 'Compte VIP',
   'account.types.vip.description': 'Fonctionnalités et support premium',
+  
+  // Footer
+  'footer.aboutUs': 'À propos de nous',
   'footer.company': 'Entreprise',
+  'footer.contact': 'Contact',
   'footer.legal': 'Juridique',
   'footer.support': 'Support',
+  'footer.privacyPolicy': 'Politique de confidentialité',
+  'footer.termsOfService': 'Conditions d\'utilisation',
+  'footer.riskDisclosure': 'Divulgation des risques',
   'footer.followUs': 'Suivez-nous',
   'footer.copyright': '© {{year}} Plateforme de trading. Tous droits réservés.',
   'footer.disclaimer': 'Le trading comporte des risques. Les performances passées ne préjugent pas des résultats futurs.',
