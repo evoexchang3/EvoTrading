@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading, VariantText, VariantGrid, VariantCard } from "@/components/variant";
 
 export default function TradingSignalsPage() {
   const { t } = useLanguage();
@@ -200,16 +201,17 @@ export default function TradingSignalsPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-trading-signals">{t('marketInfo.tradingSignals.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('marketInfo.tradingSignals.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t('marketInfo.tradingSignals.description')}
-            </p>
-          </div>
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <Badge className="mb-4" data-testid="badge-trading-signals">{t('marketInfo.tradingSignals.badge')}</Badge>
+              <VariantHeading level="hero" as="h1" className="mb-4">{t('marketInfo.tradingSignals.title')}</VariantHeading>
+              <VariantText className="text-muted-foreground max-w-3xl mx-auto">
+                {t('marketInfo.tradingSignals.description')}
+              </VariantText>
+            </div>
 
           {/* Signal Example */}
           <Card className="mb-12">
@@ -455,8 +457,9 @@ export default function TradingSignalsPage() {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

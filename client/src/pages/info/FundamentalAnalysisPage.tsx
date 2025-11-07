@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading, VariantText, VariantGrid, VariantCard } from "@/components/variant";
 
 export default function FundamentalAnalysisPage() {
   const { t } = useLanguage();
@@ -248,44 +249,37 @@ export default function FundamentalAnalysisPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-fundamental-analysis">{t('marketInfo.fundamentalAnalysis.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('marketInfo.fundamentalAnalysis.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t('marketInfo.fundamentalAnalysis.description')}
-            </p>
-          </div>
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <Badge className="mb-4" data-testid="badge-fundamental-analysis">{t('marketInfo.fundamentalAnalysis.badge')}</Badge>
+              <VariantHeading level="hero" as="h1" className="mb-4">{t('marketInfo.fundamentalAnalysis.title')}</VariantHeading>
+              <VariantText className="text-muted-foreground max-w-3xl mx-auto">
+                {t('marketInfo.fundamentalAnalysis.description')}
+              </VariantText>
+            </div>
 
-          {/* Quick Stats */}
-          <div className="grid sm:grid-cols-4 gap-4 mb-12">
-            <Card data-testid="card-stat-indicators">
-              <CardContent className="pt-6">
+            {/* Quick Stats */}
+            <VariantGrid className="mb-12">
+              <VariantCard data-testid="card-stat-indicators">
                 <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.fundamentalAnalysis.stats.indicators')}</div>
                 <p className="text-sm text-muted-foreground">{t('marketInfo.fundamentalAnalysis.stats.indicatorsLabel')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-banks">
-              <CardContent className="pt-6">
+              </VariantCard>
+              <VariantCard data-testid="card-stat-banks">
                 <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.fundamentalAnalysis.stats.centralBanks')}</div>
                 <p className="text-sm text-muted-foreground">{t('marketInfo.fundamentalAnalysis.stats.centralBanksLabel')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-events">
-              <CardContent className="pt-6">
+              </VariantCard>
+              <VariantCard data-testid="card-stat-events">
                 <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.fundamentalAnalysis.stats.monthlyEvents')}</div>
                 <p className="text-sm text-muted-foreground">{t('marketInfo.fundamentalAnalysis.stats.monthlyEventsLabel')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-impact">
-              <CardContent className="pt-6">
+              </VariantCard>
+              <VariantCard data-testid="card-stat-impact">
                 <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.fundamentalAnalysis.stats.pipsPerNews')}</div>
                 <p className="text-sm text-muted-foreground">{t('marketInfo.fundamentalAnalysis.stats.pipsPerNewsLabel')}</p>
-              </CardContent>
-            </Card>
-          </div>
+              </VariantCard>
+            </VariantGrid>
 
           {/* Core Factors */}
           <div className="space-y-8 mb-12">
@@ -485,8 +479,9 @@ export default function FundamentalAnalysisPage() {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

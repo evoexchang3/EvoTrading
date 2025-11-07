@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading, VariantText, VariantGrid, VariantCard } from "@/components/variant";
 
 export default function MarketHeatmapPage() {
   const { t } = useLanguage();
@@ -213,44 +214,37 @@ export default function MarketHeatmapPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-market-heatmap">{t('marketInfo.marketHeatmap.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('marketInfo.marketHeatmap.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t('marketInfo.marketHeatmap.description')}
-            </p>
-          </div>
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <Badge className="mb-4" data-testid="badge-market-heatmap">{t('marketInfo.marketHeatmap.badge')}</Badge>
+              <VariantHeading level="hero" as="h1" className="mb-4">{t('marketInfo.marketHeatmap.title')}</VariantHeading>
+              <VariantText className="text-muted-foreground max-w-3xl mx-auto">
+                {t('marketInfo.marketHeatmap.description')}
+              </VariantText>
+            </div>
 
-          {/* Quick Stats */}
-          <div className="grid sm:grid-cols-4 gap-4 mb-12">
-            <Card data-testid="card-stat-currencies">
-              <CardContent className="pt-6">
+            {/* Quick Stats */}
+            <VariantGrid className="mb-12">
+              <VariantCard data-testid="card-stat-currencies">
                 <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.marketHeatmap.stats.currencies')}</div>
                 <p className="text-sm text-muted-foreground">{t('marketInfo.marketHeatmap.stats.currenciesLabel')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-pairs">
-              <CardContent className="pt-6">
+              </VariantCard>
+              <VariantCard data-testid="card-stat-pairs">
                 <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.marketHeatmap.stats.pairs')}</div>
                 <p className="text-sm text-muted-foreground">{t('marketInfo.marketHeatmap.stats.pairsLabel')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-update">
-              <CardContent className="pt-6">
+              </VariantCard>
+              <VariantCard data-testid="card-stat-update">
                 <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.marketHeatmap.stats.updates')}</div>
                 <p className="text-sm text-muted-foreground">{t('marketInfo.marketHeatmap.stats.updatesLabel')}</p>
-              </CardContent>
-            </Card>
-            <Card data-testid="card-stat-sessions">
-              <CardContent className="pt-6">
+              </VariantCard>
+              <VariantCard data-testid="card-stat-sessions">
                 <div className="text-3xl font-bold text-primary mb-1">{t('marketInfo.marketHeatmap.stats.sessions')}</div>
                 <p className="text-sm text-muted-foreground">{t('marketInfo.marketHeatmap.stats.sessionsLabel')}</p>
-              </CardContent>
-            </Card>
-          </div>
+              </VariantCard>
+            </VariantGrid>
 
           {/* Heatmap Types */}
           <div className="space-y-8 mb-12">
@@ -428,8 +422,9 @@ export default function MarketHeatmapPage() {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }
