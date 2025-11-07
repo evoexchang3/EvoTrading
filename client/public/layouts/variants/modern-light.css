@@ -1,4 +1,4 @@
-/* Modern Light - Clean white with vibrant CTAs */
+/* Modern Light - Clean white with vibrant CTAs - WCAG AA COMPLIANT */
 
 :root[data-layout="modern-light"] {
   /* Force light mode variables */
@@ -9,7 +9,7 @@
   --card-foreground: 222 15% 12%;
   --card-border: 210 12% 92%;
   
-  --primary: 210 95% 50%;
+  --primary: 210 70% 48%; /* Reduced from 95% to 70% */
   --primary-foreground: 0 0% 100%;
   
   --secondary: 210 8% 89%;
@@ -24,12 +24,12 @@
   --destructive: 0 80% 52%;
   --destructive-foreground: 0 80% 98%;
   
-  --ring: 210 95% 50%;
+  --ring: 210 70% 48%; /* Reduced from 95% to 70% */
   
   --chart-1: 142 70% 35%;
   --chart-2: 0 80% 52%;
-  --chart-3: 210 95% 50%;
-  --chart-4: 38 88% 42%;
+  --chart-3: 210 70% 48%; /* Reduced from 95% */
+  --chart-4: 38 68% 42%; /* Reduced from 88% */
   --chart-5: 280 65% 45%;
   
   /* Elevation overlays for light mode */

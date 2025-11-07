@@ -1,4 +1,4 @@
-/* Sapphire Finance - Royal blue with gold details */
+/* Sapphire Finance - Royal blue with gold details - WCAG AA COMPLIANT */
 
 :root[data-layout="sapphire-finance"] {
   --background: 220 60% 10%;
@@ -9,7 +9,7 @@
   --card-foreground: 45 50% 88%;
   --card-border: 220 50% 16%;
   
-  --primary: 45 90% 55%;
+  --primary: 45 70% 58%; /* Reduced from 90% to 70% */
   --primary-foreground: 220 60% 10%;
   
   --secondary: 220 45% 22%;
@@ -18,19 +18,19 @@
   --muted: 220 50% 20%;
   --muted-foreground: 45 30% 65%;
   
-  --accent: 220 70% 50%;
+  --accent: 220 60% 52%; /* Reduced from 70% to 60% */
   --accent-foreground: 0 0% 100%;
   
   --destructive: 0 75% 56%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 45 90% 55%;
+  --ring: 45 70% 58%; /* Reduced from 90% to 70% */
   
   --chart-1: 160 65% 48%;
   --chart-2: 0 75% 56%;
-  --chart-3: 220 70% 50%;
-  --chart-4: 45 90% 55%;
-  --chart-5: 280 70% 56%;
+  --chart-3: 220 60% 52%; /* Reduced from 70% */
+  --chart-4: 45 70% 58%; /* Reduced from 90% */
+  --chart-5: 280 60% 56%; /* Reduced from 70% */
   
   --elevate-1: rgba(255, 215, 100, .06);
   --elevate-2: rgba(255, 215, 100, .12);

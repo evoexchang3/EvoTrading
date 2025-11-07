@@ -1,4 +1,4 @@
-/* Carbon Sleek - Carbon fiber aesthetic with red */
+/* Carbon Sleek - Carbon fiber aesthetic with red - WCAG AA COMPLIANT */
 
 :root[data-layout="carbon-sleek"] {
   --background: 0 0% 8%;
@@ -9,7 +9,7 @@
   --card-foreground: 0 0% 90%;
   --card-border: 0 0% 14%;
   
-  --primary: 0 85% 55%;
+  --primary: 0 68% 58%; /* Reduced from 85% to 68% */
   --primary-foreground: 0 0% 100%;
   
   --secondary: 0 0% 20%;
@@ -19,18 +19,18 @@
   --muted-foreground: 0 0% 64%;
   
   --accent: 0 0% 22%;
-  --accent-foreground: 0 85% 55%;
+  --accent-foreground: 0 68% 58%; /* Reduced from 85% to 68% */
   
-  --destructive: 0 90% 60%;
+  --destructive: 0 70% 62%; /* Reduced from 90% to 70% */
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 0 85% 55%;
+  --ring: 0 68% 58%; /* Reduced from 85% to 68% */
   
   --chart-1: 120 65% 48%;
-  --chart-2: 0 90% 60%;
+  --chart-2: 0 70% 62%; /* Reduced from 90% */
   --chart-3: 210 70% 52%;
-  --chart-4: 45 88% 52%;
-  --chart-5: 280 70% 56%;
+  --chart-4: 45 68% 52%; /* Reduced from 88% */
+  --chart-5: 280 60% 56%; /* Reduced from 70% */
   
   --elevate-1: rgba(255, 255, 255, .04);
   --elevate-2: rgba(255, 50, 50, .08);

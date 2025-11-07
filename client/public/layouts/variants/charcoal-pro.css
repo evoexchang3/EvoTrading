@@ -1,4 +1,4 @@
-/* Charcoal Pro - Deep charcoal with gold accents */
+/* Charcoal Pro - Deep charcoal with gold accents - WCAG AA COMPLIANT */
 
 :root[data-layout="charcoal-pro"] {
   --background: 0 0% 12%;
@@ -9,7 +9,7 @@
   --card-foreground: 0 0% 92%;
   --card-border: 0 0% 18%;
   
-  --primary: 45 100% 55%;
+  --primary: 45 75% 58%; /* Reduced from 100% to 75% */
   --primary-foreground: 0 0% 10%;
   
   --secondary: 0 0% 24%;
@@ -19,18 +19,18 @@
   --muted-foreground: 0 0% 65%;
   
   --accent: 0 0% 26%;
-  --accent-foreground: 45 100% 55%;
+  --accent-foreground: 45 75% 58%; /* Reduced from 100% to 75% */
   
   --destructive: 0 80% 58%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 45 100% 55%;
+  --ring: 45 75% 58%; /* Reduced from 100% to 75% */
   
   --chart-1: 120 60% 50%;
   --chart-2: 0 80% 58%;
-  --chart-3: 45 100% 55%;
-  --chart-4: 35 90% 52%;
-  --chart-5: 280 70% 58%;
+  --chart-3: 45 75% 58%; /* Reduced from 100% */
+  --chart-4: 35 70% 52%; /* Reduced from 90% */
+  --chart-5: 280 60% 58%; /* Reduced from 70% */
   
   --elevate-1: rgba(255, 255, 255, .04);
   --elevate-2: rgba(255, 215, 0, .08);

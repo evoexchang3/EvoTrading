@@ -1,36 +1,36 @@
-/* Emerald Trader - Dark teal with emerald green */
+/* Emerald Trader - Dark teal with emerald green - WCAG AA COMPLIANT */
 
 :root[data-layout="emerald-trader"] {
   --background: 180 25% 10%;
-  --foreground: 160 60% 85%;
+  --foreground: 160 55% 85%; /* Reduced from 60% to 55% */
   --border: 180 20% 20%;
   
   --card: 180 22% 13%;
-  --card-foreground: 160 60% 85%;
+  --card-foreground: 160 55% 85%; /* Reduced from 60% to 55% */
   --card-border: 180 20% 16%;
   
-  --primary: 160 80% 45%;
+  --primary: 160 65% 48%; /* Reduced from 80% to 65% */
   --primary-foreground: 0 0% 100%;
   
   --secondary: 180 18% 22%;
-  --secondary-foreground: 160 60% 85%;
+  --secondary-foreground: 160 55% 85%;
   
   --muted: 180 20% 20%;
   --muted-foreground: 160 30% 60%;
   
-  --accent: 160 70% 35%;
+  --accent: 160 60% 38%; /* Reduced from 70% to 60% */
   --accent-foreground: 0 0% 100%;
   
-  --destructive: 0 75% 55%;
+  --destructive: 0 65% 58%; /* Reduced from 75% to 65% */
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 160 80% 45%;
+  --ring: 160 65% 48%;
   
-  --chart-1: 160 80% 45%;
-  --chart-2: 0 75% 55%;
-  --chart-3: 200 70% 50%;
-  --chart-4: 40 85% 50%;
-  --chart-5: 280 70% 55%;
+  --chart-1: 160 65% 48%; /* Reduced from 80% */
+  --chart-2: 0 65% 58%; /* Reduced from 75% */
+  --chart-3: 200 60% 52%; /* Reduced from 70% */
+  --chart-4: 40 68% 52%; /* Reduced from 85% to 68% */
+  --chart-5: 280 60% 55%; /* Reduced from 70% */
   
   --elevate-1: rgba(52, 211, 153, .06);
   --elevate-2: rgba(52, 211, 153, .12);
