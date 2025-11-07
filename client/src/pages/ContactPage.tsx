@@ -14,11 +14,13 @@ import { Loader2 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
+import { useVariantClasses } from "@/layouts/shared/useVariant";
 
 export default function ContactPage() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const { config, loading } = useSiteConfig();
+  const classes = useVariantClasses();
   
   const supportEmail = loading ? "support@tradingplatform.com" : (config.branding?.supportEmail || "support@tradingplatform.com");
   
@@ -75,13 +77,13 @@ export default function ContactPage() {
         keywords={t('contact.seo.keywords')}
       />
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold" data-testid="text-contact-title">
+      <section className={`${classes.spacing('section')} bg-gradient-to-br from-primary/10 via-background to-background`}>
+        <div className={classes.container}>
+          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')} ${classes.animation('hero')}`}>
+            <h1 className={`${classes.textSize('hero')} font-bold`} data-testid="text-contact-title">
               {t('contact.hero.title')}
             </h1>
-            <p className="text-xl text-muted-foreground">
+            <p className={`${classes.textSize('body')} text-muted-foreground`}>
               {t('contact.hero.subtitle')}
             </p>
           </div>
@@ -89,15 +91,15 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form and Info */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-12 lg:grid-cols-2">
+      <section className={classes.spacing('section')}>
+        <div className={classes.container}>
+          <div className={`grid gap-12 lg:grid-cols-2 ${classes.animation('page')}`}>
             {/* Contact Form */}
             <div>
-              <Card className="hover-elevate transition-all">
+              <Card className={`${classes.card} ${classes.hover('card')}`}>
                 <CardHeader>
-                  <CardTitle className="text-2xl">{t('contact.form.title')}</CardTitle>
-                  <CardDescription>
+                  <CardTitle className={classes.textSize('heading')}>{t('contact.form.title')}</CardTitle>
+                  <CardDescription className={classes.textSize('body')}>
                     {t('contact.form.description')}
                   </CardDescription>
                 </CardHeader>
@@ -183,42 +185,42 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div className="space-y-6">
-              <Card className="hover-elevate transition-all">
+              <Card className={`${classes.card} ${classes.hover('card')}`}>
                 <CardHeader className="flex flex-row items-center gap-4 space-y-0">
                   <div className="p-3 rounded-lg bg-primary/10">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <CardTitle>{t('contact.info.emailSupport.title')}</CardTitle>
-                    <CardDescription className="text-base mt-1">
+                    <CardDescription className={`${classes.textSize('body')} mt-1`}>
                       {supportEmail}
                     </CardDescription>
                   </div>
                 </CardHeader>
               </Card>
 
-              <Card className="hover-elevate transition-all">
+              <Card className={`${classes.card} ${classes.hover('card')}`}>
                 <CardHeader className="flex flex-row items-center gap-4 space-y-0">
                   <div className="p-3 rounded-lg bg-primary/10">
                     <Clock className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <CardTitle>{t('contact.info.supportHours.title')}</CardTitle>
-                    <CardDescription className="text-base mt-1">
+                    <CardDescription className={`${classes.textSize('body')} mt-1`}>
                       {t('contact.info.supportHours.value')}
                     </CardDescription>
                   </div>
                 </CardHeader>
               </Card>
 
-              <Card className="hover-elevate transition-all">
+              <Card className={`${classes.card} ${classes.hover('card')}`}>
                 <CardHeader className="flex flex-row items-center gap-4 space-y-0">
                   <div className="p-3 rounded-lg bg-primary/10">
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <CardTitle>{t('contact.info.officeAddress.title')}</CardTitle>
-                    <CardDescription className="text-base mt-1">
+                    <CardDescription className={`${classes.textSize('body')} mt-1`}>
                       {t('contact.info.officeAddress.line1')}
                       <br />
                       {t('contact.info.officeAddress.line2')}
@@ -227,14 +229,14 @@ export default function ContactPage() {
                 </CardHeader>
               </Card>
 
-              <Card className="hover-elevate transition-all">
+              <Card className={`${classes.card} ${classes.hover('card')}`}>
                 <CardHeader className="flex flex-row items-center gap-4 space-y-0">
                   <div className="p-3 rounded-lg bg-primary/10">
                     <MessageSquare className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <CardTitle>{t('contact.info.liveChat.title')}</CardTitle>
-                    <CardDescription className="text-base mt-1">
+                    <CardDescription className={`${classes.textSize('body')} mt-1`}>
                       {t('contact.info.liveChat.value')}
                     </CardDescription>
                   </div>

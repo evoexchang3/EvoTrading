@@ -5,9 +5,11 @@ import { Link } from "wouter";
 import { BookOpen, TrendingUp, Shield, BarChart3, Lightbulb, GraduationCap } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useVariantClasses } from "@/layouts/shared/useVariant";
 
 export default function EducationPage() {
   const { t } = useLanguage();
+  const classes = useVariantClasses();
 
   const topics = [
     {
@@ -84,13 +86,13 @@ export default function EducationPage() {
         keywords={t('education.seo.keywords')}
       />
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold" data-testid="text-education-title">
+      <section className={`${classes.spacing('section')} bg-gradient-to-br from-primary/10 via-background to-background`}>
+        <div className={classes.container}>
+          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')} ${classes.animation('hero')}`}>
+            <h1 className={`${classes.textSize('hero')} font-bold`} data-testid="text-education-title">
               {t('education.hero.title')}
             </h1>
-            <p className="text-xl text-muted-foreground">
+            <p className={`${classes.textSize('body')} text-muted-foreground`}>
               {t('education.hero.subtitle')}
             </p>
           </div>
@@ -98,31 +100,31 @@ export default function EducationPage() {
       </section>
 
       {/* Topics Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-topics-title">
+      <section className={classes.spacing('section')}>
+        <div className={classes.container}>
+          <div className={`text-center ${classes.spacing('element')}`}>
+            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-topics-title">
               {t('education.topics.title')}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto`}>
               {t('education.topics.subtitle')}
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className={`${classes.grid} ${classes.animation('page')}`}>
             {topics.map((topic, index) => (
-              <Card key={index} className="hover-elevate transition-all" data-testid={`card-topic-${index}`}>
+              <Card key={index} className={`${classes.card} ${classes.hover('card')}`} data-testid={`card-topic-${index}`}>
                 <CardHeader>
                   <div className="mb-4">
                     <div className="inline-flex p-3 rounded-lg bg-primary/10">
                       <topic.icon className="h-6 w-6 text-primary" />
                     </div>
                   </div>
-                  <CardTitle className="text-xl">{topic.title}</CardTitle>
-                  <CardDescription className="font-medium text-primary">{topic.description}</CardDescription>
+                  <CardTitle className={classes.textSize('heading')}>{topic.title}</CardTitle>
+                  <CardDescription className={`${classes.textSize('body')} font-medium text-primary`}>{topic.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{topic.content}</p>
+                  <p className={`${classes.textSize('body')} text-muted-foreground`}>{topic.content}</p>
                 </CardContent>
               </Card>
             ))}
@@ -131,24 +133,24 @@ export default function EducationPage() {
       </section>
 
       {/* Learning Resources */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-resources-title">
+      <section className={`${classes.spacing('section')} bg-muted/30`}>
+        <div className={classes.container}>
+          <div className={`text-center ${classes.spacing('element')}`}>
+            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-resources-title">
               {t('education.resources.title')}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto`}>
               {t('education.resources.subtitle')}
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-4">
             {resources.map((resource, index) => (
-              <Card key={index} className="hover-elevate transition-all" data-testid={`card-resource-${index}`}>
+              <Card key={index} className={`${classes.card} ${classes.hover('card')}`} data-testid={`card-resource-${index}`}>
                 <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
                   <div className="flex-1">
-                    <CardTitle className="text-xl mb-2">{resource.title}</CardTitle>
-                    <CardDescription className="text-base">{resource.description}</CardDescription>
+                    <CardTitle className={`${classes.textSize('heading')} mb-2`}>{resource.title}</CardTitle>
+                    <CardDescription className={classes.textSize('body')}>{resource.description}</CardDescription>
                   </div>
                   <div className="flex flex-col items-end gap-2">
                     <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
@@ -167,31 +169,31 @@ export default function EducationPage() {
       </section>
 
       {/* Trading Academy Preview */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <Card className="hover-elevate transition-all bg-primary text-primary-foreground">
-            <CardHeader className="text-center space-y-4 pb-8">
+      <section className={classes.spacing('section')}>
+        <div className={classes.container}>
+          <Card className={`${classes.card} ${classes.hover('card')} bg-primary text-primary-foreground`}>
+            <CardHeader className={`text-center ${classes.spacing('element')} pb-8`}>
               <div className="inline-flex mx-auto p-4 rounded-full bg-primary-foreground/10">
                 <GraduationCap className="h-8 w-8" />
               </div>
-              <CardTitle className="text-3xl md:text-4xl">{t('education.academy.title')}</CardTitle>
-              <CardDescription className="text-lg opacity-90 text-primary-foreground">
+              <CardTitle className={`${classes.textSize('heading')}`}>{t('education.academy.title')}</CardTitle>
+              <CardDescription className={`${classes.textSize('body')} opacity-90 text-primary-foreground`}>
                 {t('education.academy.subtitle')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+              <div className={`${classes.grid} max-w-4xl mx-auto`}>
                 <div className="text-center space-y-2">
                   <h3 className="font-semibold">{t('education.academy.videoCourses.title')}</h3>
-                  <p className="text-sm opacity-90">{t('education.academy.videoCourses.description')}</p>
+                  <p className={`${classes.textSize('body')} opacity-90`}>{t('education.academy.videoCourses.description')}</p>
                 </div>
                 <div className="text-center space-y-2">
                   <h3 className="font-semibold">{t('education.academy.liveWebinars.title')}</h3>
-                  <p className="text-sm opacity-90">{t('education.academy.liveWebinars.description')}</p>
+                  <p className={`${classes.textSize('body')} opacity-90`}>{t('education.academy.liveWebinars.description')}</p>
                 </div>
                 <div className="text-center space-y-2">
                   <h3 className="font-semibold">{t('education.academy.certifications.title')}</h3>
-                  <p className="text-sm opacity-90">{t('education.academy.certifications.description')}</p>
+                  <p className={`${classes.textSize('body')} opacity-90`}>{t('education.academy.certifications.description')}</p>
                 </div>
               </div>
               <div className="text-center pt-4">
@@ -207,13 +209,13 @@ export default function EducationPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl font-bold" data-testid="text-cta-title">
+      <section className={`${classes.spacing('section')} bg-muted/30`}>
+        <div className={classes.container}>
+          <div className={`max-w-3xl mx-auto text-center ${classes.spacing('element')}`}>
+            <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-cta-title">
               {t('education.cta.title')}
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className={`${classes.textSize('body')} text-muted-foreground`}>
               {t('education.cta.subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-4">
