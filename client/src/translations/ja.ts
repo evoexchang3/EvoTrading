@@ -1192,6 +1192,45 @@ export const ja = {
   'footer.copyright': '© {{year}} 取引プラットフォーム。全著作権所有。',
   'footer.disclaimer': '取引にはリスクが伴います。過去の実績は将来の結果を保証するものではありません。',
   
+  // Footer - Section headings
+  'footer.sectionMarkets': '市場',
+  'footer.sectionCompany': '会社',
+  'footer.sectionLegal': '法務',
+  'footer.sectionCompliance': 'コンプライアンス',
+  'footer.sectionSupport': 'サポート',
+  'footer.sectionEducation': '教育',
+  
+  // Footer - Link labels
+  'footer.forex': 'Forex',
+  'footer.crypto': 'Crypto',
+  'footer.commodities': '商品',
+  'footer.regulatory': '規制',
+  'footer.licenses': 'ライセンス',
+  'footer.complaints': '苦情',
+  'footer.helpCenter': 'ヘルプセンター',
+  'footer.faq': 'FAQ',
+  'footer.documents': '書類',
+  
+  // Footer - Social media
+  'footer.facebook': 'Facebook',
+  'footer.twitter': 'Twitter',
+  'footer.linkedin': 'LinkedIn',
+  'footer.instagram': 'Instagram',
+  'footer.youtube': 'YouTube',
+  
+  // Footer - Support/contact
+  'footer.emailSupport': 'メールサポート',
+  'footer.phoneSupport': '電話サポート',
+  'footer.liveChat': 'ライブチャット',
+  'footer.available247': '24時間365日対応',
+  'footer.needHelp': 'サポートが必要ですか？24時間365日対応しています',
+  
+  // Footer - Metrics
+  'footer.activeTraders': 'アクティブトレーダー',
+  'footer.countries': '国',
+  'footer.dailyVolume': '1日の取引量',
+  'footer.yearsExperience': '年の経験',
+  
   // Error Messages
   'error.required': 'この項目は必須です',
   'error.invalidEmail': '無効なメールアドレス',

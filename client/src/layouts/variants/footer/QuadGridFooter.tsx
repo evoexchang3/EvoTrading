@@ -10,7 +10,7 @@ export default function QuadGridFooter({ variant, companyName, supportEmail, lan
 
   const footerSections = [
     {
-      title: 'Company',
+      title: t('footer.sectionCompany'),
       links: [
         { label: t('footer.aboutUs'), href: '/about' },
         { label: t('footer.company'), href: '/company' },
@@ -18,7 +18,7 @@ export default function QuadGridFooter({ variant, companyName, supportEmail, lan
       ],
     },
     {
-      title: 'Legal',
+      title: t('footer.sectionLegal'),
       links: [
         { label: t('footer.privacyPolicy'), href: '/legal/privacy' },
         { label: t('footer.termsOfService'), href: '/legal/terms' },
@@ -26,19 +26,19 @@ export default function QuadGridFooter({ variant, companyName, supportEmail, lan
       ],
     },
     {
-      title: 'Compliance',
+      title: t('footer.sectionCompliance'),
       links: [
-        { label: 'Regulatory', href: '/company/regulatory' },
-        { label: 'Licenses', href: '/company/regulatory' },
-        { label: 'Complaints', href: '/company/complaints' },
+        { label: t('footer.regulatory'), href: '/company/regulatory' },
+        { label: t('footer.licenses'), href: '/company/regulatory' },
+        { label: t('footer.complaints'), href: '/company/complaints' },
       ],
     },
     {
-      title: 'Support',
+      title: t('footer.sectionSupport'),
       links: [
-        { label: 'Help Center', href: '/contact' },
-        { label: 'FAQ', href: '/company/faq' },
-        { label: 'Documents', href: '/customer/verification' },
+        { label: t('footer.helpCenter'), href: '/contact' },
+        { label: t('footer.faq'), href: '/company/faq' },
+        { label: t('footer.documents'), href: '/customer/verification' },
       ],
     },
   ];

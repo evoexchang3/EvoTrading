@@ -625,6 +625,45 @@ export const fr = {
   'footer.followUs': 'Suivez-nous',
   'footer.copyright': '© {{year}} Plateforme de trading. Tous droits réservés.',
   'footer.disclaimer': 'Le trading comporte des risques. Les performances passées ne préjugent pas des résultats futurs.',
+  
+  // Footer - Section headings
+  'footer.sectionMarkets': 'Marchés',
+  'footer.sectionCompany': 'Entreprise',
+  'footer.sectionLegal': 'Juridique',
+  'footer.sectionCompliance': 'Conformité',
+  'footer.sectionSupport': 'Support',
+  'footer.sectionEducation': 'Éducation',
+  
+  // Footer - Link labels
+  'footer.forex': 'Forex',
+  'footer.crypto': 'Crypto',
+  'footer.commodities': 'Matières premières',
+  'footer.regulatory': 'Réglementation',
+  'footer.licenses': 'Licences',
+  'footer.complaints': 'Réclamations',
+  'footer.helpCenter': 'Centre d\'aide',
+  'footer.faq': 'FAQ',
+  'footer.documents': 'Documents',
+  
+  // Footer - Social media
+  'footer.facebook': 'Facebook',
+  'footer.twitter': 'Twitter',
+  'footer.linkedin': 'LinkedIn',
+  'footer.instagram': 'Instagram',
+  'footer.youtube': 'YouTube',
+  
+  // Footer - Support/contact
+  'footer.emailSupport': 'Support par e-mail',
+  'footer.phoneSupport': 'Support téléphonique',
+  'footer.liveChat': 'Chat en direct',
+  'footer.available247': 'Disponible 24/7',
+  'footer.needHelp': 'Besoin d\'aide? Nous sommes là 24/7',
+  
+  // Footer - Metrics
+  'footer.activeTraders': 'Traders actifs',
+  'footer.countries': 'Pays',
+  'footer.dailyVolume': 'Volume quotidien',
+  'footer.yearsExperience': 'Années d\'expérience',
   'error.required': 'Ce champ est obligatoire',
   'error.invalidEmail': 'Adresse e-mail invalide',
   'error.passwordTooShort': 'Le mot de passe doit contenir au moins 8 caractères',

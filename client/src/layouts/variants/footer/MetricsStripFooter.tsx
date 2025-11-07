@@ -10,10 +10,10 @@ import { Users, Globe, TrendingUp, Award } from 'lucide-react';
 export default function MetricsStripFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const metrics = [
-    { icon: Users, label: 'Active Traders', value: '50,000+' },
-    { icon: Globe, label: 'Countries', value: '150+' },
-    { icon: TrendingUp, label: 'Daily Volume', value: '$2B+' },
-    { icon: Award, label: 'Years Experience', value: '10+' },
+    { icon: Users, label: t('footer.activeTraders'), value: '50,000+' },
+    { icon: Globe, label: t('footer.countries'), value: '150+' },
+    { icon: TrendingUp, label: t('footer.dailyVolume'), value: '$2B+' },
+    { icon: Award, label: t('footer.yearsExperience'), value: '10+' },
   ];
 
   const links = [

@@ -16,17 +16,17 @@ export default function MultiCtaCardFooter({ variant, companyName, supportEmail,
         <div className="grid md:grid-cols-4 gap-8">
           {/* Column 1 */}
           <div>
-            <h3 className="font-semibold mb-4">Markets</h3>
+            <h3 className="font-semibold mb-4">{t('footer.sectionMarkets')}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/markets#forex"><span className="hover:text-foreground">Forex</span></Link></li>
-              <li><Link href="/markets#crypto"><span className="hover:text-foreground">Crypto</span></Link></li>
-              <li><Link href="/markets#commodities"><span className="hover:text-foreground">Commodities</span></Link></li>
+              <li><Link href="/markets#forex"><span className="hover:text-foreground">{t('footer.forex')}</span></Link></li>
+              <li><Link href="/markets#crypto"><span className="hover:text-foreground">{t('footer.crypto')}</span></Link></li>
+              <li><Link href="/markets#commodities"><span className="hover:text-foreground">{t('footer.commodities')}</span></Link></li>
             </ul>
           </div>
 
           {/* Column 2 */}
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
+            <h3 className="font-semibold mb-4">{t('footer.sectionCompany')}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/about" data-testid="footer-link-about"><span className="hover:text-foreground">{t('footer.aboutUs')}</span></Link></li>
               <li><Link href="/company" data-testid="footer-link-company"><span className="hover:text-foreground">{t('footer.company')}</span></Link></li>
@@ -36,7 +36,7 @@ export default function MultiCtaCardFooter({ variant, companyName, supportEmail,
 
           {/* Column 3 */}
           <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
+            <h3 className="font-semibold mb-4">{t('footer.sectionLegal')}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/legal/privacy"><span className="hover:text-foreground">{t('footer.privacyPolicy')}</span></Link></li>
               <li><Link href="/legal/terms"><span className="hover:text-foreground">{t('footer.termsOfService')}</span></Link></li>

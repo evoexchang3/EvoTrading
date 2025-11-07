@@ -19,23 +19,23 @@ export default function StickySupportFooter({ variant, companyName, supportEmail
       <footer className="fixed bottom-0 left-0 right-0 z-40 border-t bg-background/95 backdrop-blur">
         <div className="container mx-auto px-4">
           <div className="flex h-16 items-center justify-between gap-4">
-            <span className="text-sm font-medium hidden sm:block">Need help? We're here 24/7</span>
+            <span className="text-sm font-medium hidden sm:block">{t('footer.needHelp')}</span>
 
             <div className="flex items-center gap-2">
               <Button size="sm" variant="outline" data-testid="footer-button-chat">
                 <MessageCircle className="w-4 h-4 mr-2" />
-                Live Chat
+                {t('footer.liveChat')}
               </Button>
               <Link href="/contact">
                 <Button size="sm" variant="outline" data-testid="footer-button-contact">
                   <Mail className="w-4 h-4 mr-2" />
-                  Contact
+                  {t('footer.contact')}
                 </Button>
               </Link>
               <a href={`mailto:${supportEmail}`}>
                 <Button size="sm" data-testid="footer-button-email">
                   <Phone className="w-4 h-4 mr-2" />
-                  Support
+                  {t('footer.support')}
                 </Button>
               </a>
             </div>

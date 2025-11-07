@@ -601,6 +601,45 @@ export const ar = {
   'footer.followUs': 'تابعنا',
   'footer.copyright': '© {{year}} منصة التداول. جميع الحقوق محفوظة.',
   'footer.disclaimer': 'التداول ينطوي على مخاطر. الأداء السابق ليس مؤشراً على النتائج المستقبلية.',
+  
+  // Footer - Section headings
+  'footer.sectionMarkets': 'الأسواق',
+  'footer.sectionCompany': 'الشركة',
+  'footer.sectionLegal': 'القانوني',
+  'footer.sectionCompliance': 'الامتثال',
+  'footer.sectionSupport': 'الدعم',
+  'footer.sectionEducation': 'التعليم',
+  
+  // Footer - Link labels
+  'footer.forex': 'Forex',
+  'footer.crypto': 'Crypto',
+  'footer.commodities': 'السلع',
+  'footer.regulatory': 'التنظيمي',
+  'footer.licenses': 'التراخيص',
+  'footer.complaints': 'الشكاوى',
+  'footer.helpCenter': 'مركز المساعدة',
+  'footer.faq': 'الأسئلة الشائعة',
+  'footer.documents': 'المستندات',
+  
+  // Footer - Social media
+  'footer.facebook': 'Facebook',
+  'footer.twitter': 'Twitter',
+  'footer.linkedin': 'LinkedIn',
+  'footer.instagram': 'Instagram',
+  'footer.youtube': 'YouTube',
+  
+  // Footer - Support/contact
+  'footer.emailSupport': 'دعم البريد الإلكتروني',
+  'footer.phoneSupport': 'الدعم الهاتفي',
+  'footer.liveChat': 'الدردشة المباشرة',
+  'footer.available247': 'متاح على مدار الساعة',
+  'footer.needHelp': 'هل تحتاج إلى مساعدة؟ نحن هنا على مدار الساعة',
+  
+  // Footer - Metrics
+  'footer.activeTraders': 'المتداولون النشطون',
+  'footer.countries': 'الدول',
+  'footer.dailyVolume': 'الحجم اليومي',
+  'footer.yearsExperience': 'سنوات الخبرة',
   'error.required': 'هذا الحقل مطلوب',
   'error.invalidEmail': 'عنوان بريد إلكتروني غير صالح',
   'error.passwordTooShort': 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل',

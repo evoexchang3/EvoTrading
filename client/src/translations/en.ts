@@ -865,6 +865,45 @@ export const en = {
   'footer.copyright': '© {{year}} Trading Platform. All rights reserved.',
   'footer.disclaimer': 'Trading involves risk. Past performance is not indicative of future results.',
   
+  // Footer - Section headings
+  'footer.sectionMarkets': 'Markets',
+  'footer.sectionCompany': 'Company',
+  'footer.sectionLegal': 'Legal',
+  'footer.sectionCompliance': 'Compliance',
+  'footer.sectionSupport': 'Support',
+  'footer.sectionEducation': 'Education',
+  
+  // Footer - Link labels
+  'footer.forex': 'Forex',
+  'footer.crypto': 'Crypto',
+  'footer.commodities': 'Commodities',
+  'footer.regulatory': 'Regulatory',
+  'footer.licenses': 'Licenses',
+  'footer.complaints': 'Complaints',
+  'footer.helpCenter': 'Help Center',
+  'footer.faq': 'FAQ',
+  'footer.documents': 'Documents',
+  
+  // Footer - Social media
+  'footer.facebook': 'Facebook',
+  'footer.twitter': 'Twitter',
+  'footer.linkedin': 'LinkedIn',
+  'footer.instagram': 'Instagram',
+  'footer.youtube': 'YouTube',
+  
+  // Footer - Support/contact
+  'footer.emailSupport': 'Email Support',
+  'footer.phoneSupport': 'Phone Support',
+  'footer.liveChat': 'Live Chat',
+  'footer.available247': '24/7 Available',
+  'footer.needHelp': 'Need help? We\'re here 24/7',
+  
+  // Footer - Metrics
+  'footer.activeTraders': 'Active Traders',
+  'footer.countries': 'Countries',
+  'footer.dailyVolume': 'Daily Volume',
+  'footer.yearsExperience': 'Years Experience',
+  
   // Error Messages
   'error.required': 'This field is required',
   'error.invalidEmail': 'Invalid email address',

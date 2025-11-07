@@ -13,28 +13,28 @@ export default function CardResourcesFooter({ variant, companyName, supportEmail
   const resources = [
     {
       icon: BookOpen,
-      title: 'Education',
+      title: t('footer.sectionEducation'),
       description: 'Learn trading strategies',
       href: '/customer/education',
       testId: 'footer-card-education',
     },
     {
       icon: TrendingUp,
-      title: 'Markets',
+      title: t('footer.sectionMarkets'),
       description: 'Explore trading instruments',
       href: '/markets',
       testId: 'footer-card-markets',
     },
     {
       icon: HelpCircle,
-      title: 'Support',
+      title: t('footer.sectionSupport'),
       description: 'Get help 24/7',
       href: '/contact',
       testId: 'footer-card-support',
     },
     {
       icon: FileText,
-      title: 'Legal',
+      title: t('footer.sectionLegal'),
       description: 'Terms & policies',
       href: '/legal/terms',
       testId: 'footer-card-legal',

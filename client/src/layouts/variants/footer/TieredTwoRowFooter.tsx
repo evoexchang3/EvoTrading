@@ -10,7 +10,7 @@ export default function TieredTwoRowFooter({ variant, companyName, supportEmail,
 
   const mainLinks = [
     { label: t('footer.aboutUs'), href: '/about' },
-    { label: t('footer.markets'), href: '/markets' },
+    { label: t('footer.sectionMarkets'), href: '/markets' },
     { label: t('footer.company'), href: '/company' },
     { label: t('footer.contact'), href: '/contact' },
   ];

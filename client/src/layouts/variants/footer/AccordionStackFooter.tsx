@@ -11,15 +11,15 @@ export default function AccordionStackFooter({ variant, companyName, supportEmai
 
   const sections = [
     {
-      title: 'Markets',
+      title: t('footer.sectionMarkets'),
       links: [
-        { label: 'Forex', href: '/markets#forex' },
-        { label: 'Crypto', href: '/markets#crypto' },
-        { label: 'Commodities', href: '/markets#commodities' },
+        { label: t('footer.forex'), href: '/markets#forex' },
+        { label: t('footer.crypto'), href: '/markets#crypto' },
+        { label: t('footer.commodities'), href: '/markets#commodities' },
       ],
     },
     {
-      title: 'Company',
+      title: t('footer.sectionCompany'),
       links: [
         { label: t('footer.aboutUs'), href: '/about' },
         { label: t('footer.company'), href: '/company' },
@@ -27,7 +27,7 @@ export default function AccordionStackFooter({ variant, companyName, supportEmai
       ],
     },
     {
-      title: 'Legal',
+      title: t('footer.sectionLegal'),
       links: [
         { label: t('footer.privacyPolicy'), href: '/legal/privacy' },
         { label: t('footer.termsOfService'), href: '/legal/terms' },

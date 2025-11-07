@@ -1151,6 +1151,45 @@ export const de = {
   'footer.copyright': '© {{year}} Handelsplattform. Alle Rechte vorbehalten.',
   'footer.disclaimer': 'Handel birgt Risiken. Die Wertentwicklung in der Vergangenheit ist kein Indikator für zukünftige Ergebnisse.',
   
+  // Footer - Section headings
+  'footer.sectionMarkets': 'Märkte',
+  'footer.sectionCompany': 'Unternehmen',
+  'footer.sectionLegal': 'Rechtliches',
+  'footer.sectionCompliance': 'Compliance',
+  'footer.sectionSupport': 'Support',
+  'footer.sectionEducation': 'Bildung',
+  
+  // Footer - Link labels
+  'footer.forex': 'Forex',
+  'footer.crypto': 'Crypto',
+  'footer.commodities': 'Rohstoffe',
+  'footer.regulatory': 'Regulierung',
+  'footer.licenses': 'Lizenzen',
+  'footer.complaints': 'Beschwerden',
+  'footer.helpCenter': 'Hilfecenter',
+  'footer.faq': 'FAQ',
+  'footer.documents': 'Dokumente',
+  
+  // Footer - Social media
+  'footer.facebook': 'Facebook',
+  'footer.twitter': 'Twitter',
+  'footer.linkedin': 'LinkedIn',
+  'footer.instagram': 'Instagram',
+  'footer.youtube': 'YouTube',
+  
+  // Footer - Support/contact
+  'footer.emailSupport': 'E-Mail-Support',
+  'footer.phoneSupport': 'Telefon-Support',
+  'footer.liveChat': 'Live-Chat',
+  'footer.available247': 'Rund um die Uhr verfügbar',
+  'footer.needHelp': 'Brauchen Sie Hilfe? Wir sind 24/7 für Sie da',
+  
+  // Footer - Metrics
+  'footer.activeTraders': 'Aktive Händler',
+  'footer.countries': 'Länder',
+  'footer.dailyVolume': 'Tägliches Volumen',
+  'footer.yearsExperience': 'Jahre Erfahrung',
+  
   // Error Messages
   'error.required': 'Dieses Feld ist erforderlich',
   'error.invalidEmail': 'Ungültige E-Mail-Adresse',

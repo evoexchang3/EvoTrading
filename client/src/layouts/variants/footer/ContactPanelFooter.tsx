@@ -11,9 +11,9 @@ import { Mail, Phone, MessageCircle } from 'lucide-react';
 export default function ContactPanelFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const contactMethods = [
-    { icon: Mail, label: 'Email Support', value: supportEmail, href: `mailto:${supportEmail}`, testId: 'footer-contact-email' },
-    { icon: Phone, label: 'Phone Support', value: '+1 (555) 123-4567', href: 'tel:+15551234567', testId: 'footer-contact-phone' },
-    { icon: MessageCircle, label: 'Live Chat', value: '24/7 Available', href: '#', testId: 'footer-contact-chat' },
+    { icon: Mail, label: t('footer.emailSupport'), value: supportEmail, href: `mailto:${supportEmail}`, testId: 'footer-contact-email' },
+    { icon: Phone, label: t('footer.phoneSupport'), value: '+1 (555) 123-4567', href: 'tel:+15551234567', testId: 'footer-contact-phone' },
+    { icon: MessageCircle, label: t('footer.liveChat'), value: t('footer.available247'), href: '#', testId: 'footer-contact-chat' },
   ];
 
   const quickLinks = [

@@ -1191,6 +1191,45 @@ export const zhCN = {
   'footer.copyright': '© {{year}} 交易平台。版权所有。',
   'footer.disclaimer': '交易涉及风险。过去的表现不代表未来的结果。',
   
+  // Footer - Section headings
+  'footer.sectionMarkets': '市场',
+  'footer.sectionCompany': '公司',
+  'footer.sectionLegal': '法律',
+  'footer.sectionCompliance': '合规',
+  'footer.sectionSupport': '支持',
+  'footer.sectionEducation': '教育',
+  
+  // Footer - Link labels
+  'footer.forex': 'Forex',
+  'footer.crypto': 'Crypto',
+  'footer.commodities': '商品',
+  'footer.regulatory': '监管',
+  'footer.licenses': '许可证',
+  'footer.complaints': '投诉',
+  'footer.helpCenter': '帮助中心',
+  'footer.faq': 'FAQ',
+  'footer.documents': '文档',
+  
+  // Footer - Social media
+  'footer.facebook': 'Facebook',
+  'footer.twitter': 'Twitter',
+  'footer.linkedin': 'LinkedIn',
+  'footer.instagram': 'Instagram',
+  'footer.youtube': 'YouTube',
+  
+  // Footer - Support/contact
+  'footer.emailSupport': '电子邮件支持',
+  'footer.phoneSupport': '电话支持',
+  'footer.liveChat': '在线聊天',
+  'footer.available247': '全天候可用',
+  'footer.needHelp': '需要帮助吗？我们全天候为您服务',
+  
+  // Footer - Metrics
+  'footer.activeTraders': '活跃交易者',
+  'footer.countries': '国家',
+  'footer.dailyVolume': '每日交易量',
+  'footer.yearsExperience': '年经验',
+  
   // Error Messages
   'error.required': '此字段为必填项',
   'error.invalidEmail': '无效的电子邮件地址',

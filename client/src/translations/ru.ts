@@ -600,6 +600,45 @@ export const ru = {
   'footer.followUs': 'Подпишитесь',
   'footer.copyright': '© {{year}} Торговая платформа. Все права защищены.',
   'footer.disclaimer': 'Торговля связана с рисками. Прошлые результаты не являются показателем будущих результатов.',
+  
+  // Footer - Section headings
+  'footer.sectionMarkets': 'Рынки',
+  'footer.sectionCompany': 'Компания',
+  'footer.sectionLegal': 'Юридическая информация',
+  'footer.sectionCompliance': 'Соответствие',
+  'footer.sectionSupport': 'Поддержка',
+  'footer.sectionEducation': 'Обучение',
+  
+  // Footer - Link labels
+  'footer.forex': 'Forex',
+  'footer.crypto': 'Crypto',
+  'footer.commodities': 'Товары',
+  'footer.regulatory': 'Регуляторная информация',
+  'footer.licenses': 'Лицензии',
+  'footer.complaints': 'Жалобы',
+  'footer.helpCenter': 'Центр помощи',
+  'footer.faq': 'FAQ',
+  'footer.documents': 'Документы',
+  
+  // Footer - Social media
+  'footer.facebook': 'Facebook',
+  'footer.twitter': 'Twitter',
+  'footer.linkedin': 'LinkedIn',
+  'footer.instagram': 'Instagram',
+  'footer.youtube': 'YouTube',
+  
+  // Footer - Support/contact
+  'footer.emailSupport': 'Поддержка по электронной почте',
+  'footer.phoneSupport': 'Телефонная поддержка',
+  'footer.liveChat': 'Онлайн-чат',
+  'footer.available247': 'Доступно 24/7',
+  'footer.needHelp': 'Нужна помощь? Мы здесь 24/7',
+  
+  // Footer - Metrics
+  'footer.activeTraders': 'Активные трейдеры',
+  'footer.countries': 'Страны',
+  'footer.dailyVolume': 'Дневной объем',
+  'footer.yearsExperience': 'Лет опыта',
   'error.required': 'Это поле обязательно',
   'error.invalidEmail': 'Неверный адрес электронной почты',
   'error.passwordTooShort': 'Пароль должен содержать не менее 8 символов',

@@ -625,6 +625,45 @@ export const es = {
   'footer.followUs': 'Síguenos',
   'footer.copyright': '© {{year}} Plataforma de trading. Todos los derechos reservados.',
   'footer.disclaimer': 'El trading implica riesgos. El rendimiento pasado no es indicativo de resultados futuros.',
+  
+  // Footer - Section headings
+  'footer.sectionMarkets': 'Mercados',
+  'footer.sectionCompany': 'Empresa',
+  'footer.sectionLegal': 'Legal',
+  'footer.sectionCompliance': 'Cumplimiento',
+  'footer.sectionSupport': 'Soporte',
+  'footer.sectionEducation': 'Educación',
+  
+  // Footer - Link labels
+  'footer.forex': 'Forex',
+  'footer.crypto': 'Crypto',
+  'footer.commodities': 'Materias primas',
+  'footer.regulatory': 'Regulatorio',
+  'footer.licenses': 'Licencias',
+  'footer.complaints': 'Quejas',
+  'footer.helpCenter': 'Centro de ayuda',
+  'footer.faq': 'FAQ',
+  'footer.documents': 'Documentos',
+  
+  // Footer - Social media
+  'footer.facebook': 'Facebook',
+  'footer.twitter': 'Twitter',
+  'footer.linkedin': 'LinkedIn',
+  'footer.instagram': 'Instagram',
+  'footer.youtube': 'YouTube',
+  
+  // Footer - Support/contact
+  'footer.emailSupport': 'Soporte por correo',
+  'footer.phoneSupport': 'Soporte telefónico',
+  'footer.liveChat': 'Chat en vivo',
+  'footer.available247': 'Disponible 24/7',
+  'footer.needHelp': '¿Necesitas ayuda? Estamos aquí 24/7',
+  
+  // Footer - Metrics
+  'footer.activeTraders': 'Traders activos',
+  'footer.countries': 'Países',
+  'footer.dailyVolume': 'Volumen diario',
+  'footer.yearsExperience': 'Años de experiencia',
   'error.required': 'Este campo es obligatorio',
   'error.invalidEmail': 'Dirección de correo electrónico inválida',
   'error.passwordTooShort': 'La contraseña debe tener al menos 8 caracteres',
