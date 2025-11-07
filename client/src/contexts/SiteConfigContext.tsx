@@ -222,6 +222,32 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
     loadConfig();
   }, []);
 
+  // Apply active layout variant CSS
+  useEffect(() => {
+    if (loading) return;
+
+    const activeVariant = config.layout.activeVariant;
+    
+    // Remove any existing layout variant CSS
+    const existingLinks = document.querySelectorAll('link[data-layout-variant]');
+    existingLinks.forEach(link => link.remove());
+    
+    // Load new variant CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `/layouts/variants/${activeVariant}.css`;
+    link.setAttribute('data-layout-variant', activeVariant);
+    document.head.appendChild(link);
+    
+    // Set data-layout attribute on root element
+    document.documentElement.setAttribute('data-layout', activeVariant);
+    
+    return () => {
+      // Cleanup on unmount
+      link.remove();
+    };
+  }, [config.layout.activeVariant, loading]);
+
   const getBranding = (language?: string) => {
     const defaultBranding = {
       companyName: config.branding.companyName,
