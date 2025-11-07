@@ -209,6 +209,13 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
 
       const data = await response.json();
       setConfig(data);
+      
+      // Cache config in localStorage for instant access on next load
+      try {
+        localStorage.setItem('site-config', JSON.stringify(data));
+      } catch (e) {
+        console.warn('Failed to cache site config in localStorage:', e);
+      }
     } catch (err) {
       console.error('Failed to load site config, using defaults:', err);
       setError(err instanceof Error ? err.message : 'Unknown error');
@@ -219,6 +226,18 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
+    // Try to load cached config synchronously first for instant rendering
+    try {
+      const cachedConfig = localStorage.getItem('site-config');
+      if (cachedConfig) {
+        const parsed = JSON.parse(cachedConfig);
+        setConfig(parsed);
+      }
+    } catch (e) {
+      console.warn('Failed to load cached config:', e);
+    }
+    
+    // Then fetch fresh config from server
     loadConfig();
   }, []);
 

@@ -7,6 +7,8 @@ import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
 import { Button } from '@/components/ui/button';
 import { Home, BarChart3, Building2, Mail, LogIn } from 'lucide-react';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function VerticalSidebarNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
@@ -41,6 +43,10 @@ export default function VerticalSidebarNav({ variant, companyName, supportEmail,
         </div>
       </nav>
       <div className="p-4 border-t space-y-2">
+        <div className="flex items-center justify-center gap-2 pb-2">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
         <Link href="/login">
           <Button variant="outline" size="sm" className="w-full" data-testid="button-login">
             <LogIn className="w-4 h-4 mr-2" />

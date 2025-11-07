@@ -8,6 +8,8 @@ import { NavigationProps } from './index';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function MegaMenuNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
@@ -69,6 +71,8 @@ export default function MegaMenuNav({ variant, companyName, supportEmail, langua
           </div>
 
           <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <ThemeToggle />
             <Link href="/login">
               <Button size="sm" variant="outline" data-testid="button-login">{t('nav.login')}</Button>
             </Link>

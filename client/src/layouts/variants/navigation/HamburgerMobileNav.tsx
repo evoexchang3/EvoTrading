@@ -8,6 +8,8 @@ import { NavigationProps } from './index';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function HamburgerMobileNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
@@ -35,9 +37,13 @@ export default function HamburgerMobileNav({ variant, companyName, supportEmail,
           <Link href="/" data-testid="link-home">
             <span className="text-lg font-bold">{companyName}</span>
           </Link>
-          <Link href="/register">
-            <Button size="sm" data-testid="button-register">{t('nav.register')}</Button>
-          </Link>
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <ThemeToggle />
+            <Link href="/register">
+              <Button size="sm" data-testid="button-register">{t('nav.register')}</Button>
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -59,6 +65,10 @@ export default function HamburgerMobileNav({ variant, companyName, supportEmail,
               </div>
             </Link>
           ))}
+          <div className="flex items-center justify-center gap-2 py-2">
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
           <Link href="/login">
             <Button variant="outline" className="w-full" data-testid="button-login">{t('nav.login')}</Button>
           </Link>

@@ -6,6 +6,8 @@
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
 import { Button } from '@/components/ui/button';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function GlassmorphicNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
@@ -33,6 +35,8 @@ export default function GlassmorphicNav({ variant, companyName, supportEmail, la
                 </span>
               </Link>
             ))}
+            <LanguageSwitcher />
+            <ThemeToggle />
             <Link href="/login">
               <Button size="sm" variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20" data-testid="button-login">
                 {t('nav.login')}

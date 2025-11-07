@@ -6,6 +6,8 @@
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
 import { Button } from '@/components/ui/button';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function CenteredDoubleNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
@@ -32,8 +34,13 @@ export default function CenteredDoubleNav({ variant, companyName, supportEmail, 
                 </span>
               </Link>
             ))}
+            <LanguageSwitcher />
+            <ThemeToggle />
             <Link href="/login">
               <Button size="sm" variant="outline" data-testid="button-login">{t('nav.login')}</Button>
+            </Link>
+            <Link href="/register">
+              <Button size="sm" data-testid="button-register">{t('nav.register')}</Button>
             </Link>
           </div>
         </div>

@@ -6,6 +6,8 @@
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
 import { Button } from '@/components/ui/button';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function WideSplitNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
@@ -49,6 +51,8 @@ export default function WideSplitNav({ variant, companyName, supportEmail, langu
                 </span>
               </Link>
             ))}
+            <LanguageSwitcher />
+            <ThemeToggle />
             <Link href="/login">
               <Button size="sm" variant="ghost" data-testid="button-login">
                 {t('nav.login')}

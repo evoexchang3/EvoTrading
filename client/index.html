@@ -7,6 +7,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Trading Platform</title>
+    
+    <!-- Prevent FOUC: Apply cached layout variant before React loads -->
+    <script>
+      (function() {
+        try {
+          const cachedConfig = localStorage.getItem('site-config');
+          if (cachedConfig) {
+            const config = JSON.parse(cachedConfig);
+            const variant = config.layout?.activeVariant || 'bloomberg-dark';
+            
+            // Set data-layout attribute immediately
+            document.documentElement.setAttribute('data-layout', variant);
+            
+            // Preload variant CSS
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/layouts/variants/' + variant + '.css';
+            link.setAttribute('data-layout-variant', variant);
+            document.head.appendChild(link);
+          }
+        } catch (e) {
+          console.warn('Failed to load cached layout variant:', e);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

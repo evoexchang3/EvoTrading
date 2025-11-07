@@ -31,27 +31,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
   const hasBottomNav = navLayout === 'bottom-mobile';
   const sidebarWidth = navLayout === 'vertical-sidebar' ? '16rem' : navLayout === 'icon-rail' ? '4rem' : '0';
 
-  useEffect(() => {
-    if (loading) return;
-    
-    const variantName = config.layout?.activeVariant || 'bloomberg-dark';
-    
-    const existingLinks = document.querySelectorAll('link[data-layout-variant]');
-    existingLinks.forEach(link => link.remove());
-    
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `/layouts/variants/${variantName}.css`;
-    link.setAttribute('data-layout-variant', variantName);
-    document.head.appendChild(link);
-    
-    document.documentElement.setAttribute('data-layout', variantName);
-    
-    return () => {
-      link.remove();
-      document.documentElement.removeAttribute('data-layout');
-    };
-  }, [config.layout?.activeVariant, loading]);
+  // CSS loading is handled by SiteConfigContext - no duplicate logic here
 
   return (
     <div className="flex min-h-screen flex-col bg-background" data-layout={loading ? undefined : config.layout?.activeVariant}>
