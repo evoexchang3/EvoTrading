@@ -19,6 +19,7 @@ import {
   FileCheck
 } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantGrid, VariantCard, VariantHeading, VariantText } from "@/components/variant";
 
 export default function SafetyOfFundsPage() {
   const { t } = useLanguage();
@@ -220,32 +221,31 @@ export default function SafetyOfFundsPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-safety">{t('company.safetyOfFunds.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('company.safetyOfFunds.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t('company.safetyOfFunds.description')}
-            </p>
-          </div>
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
+            {/* Header Section */}
+            <div className="text-center mb-12">
+              <Badge className="mb-4" data-testid="badge-safety">{t('company.safetyOfFunds.badge')}</Badge>
+              <VariantHeading level="hero" as="h1" className="mb-4">{t('company.safetyOfFunds.title')}</VariantHeading>
+              <VariantText className="text-muted-foreground max-w-3xl mx-auto">
+                {t('company.safetyOfFunds.description')}
+              </VariantText>
+            </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-            {stats.map((stat) => (
-              <Card key={stat.label} data-testid={stat.testId}>
-                <CardContent className="p-6">
+            {/* Stats Cards */}
+            <VariantGrid className="mb-12">
+              {stats.map((stat) => (
+                <VariantCard key={stat.label} data-testid={stat.testId}>
                   <div className="flex items-center justify-between mb-2">
                     <stat.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="text-3xl font-bold mb-1">{stat.value}</div>
                   <div className="text-sm font-medium mb-1">{stat.label}</div>
                   <p className="text-xs text-muted-foreground">{stat.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </VariantCard>
+              ))}
+            </VariantGrid>
 
           {/* Important Notice */}
           <Alert className="mb-12" data-testid="alert-segregation-notice">
@@ -257,7 +257,7 @@ export default function SafetyOfFundsPage() {
 
           {/* Segregation Explanation */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">{t('company.safetyOfFunds.segregation.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.safetyOfFunds.segregation.title')}</VariantHeading>
             <Card className="mb-6" data-testid="card-segregation-overview">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -286,7 +286,7 @@ export default function SafetyOfFundsPage() {
             </Card>
 
             {/* Bank Partners */}
-            <h3 className="text-xl font-bold mb-4">{t('company.safetyOfFunds.segregation.bankPartnersTitle')}</h3>
+            <VariantHeading level="heading" as="h3" className="mb-4">{t('company.safetyOfFunds.segregation.bankPartnersTitle')}</VariantHeading>
             <div className="grid md:grid-cols-2 gap-4">
               {segregationDetails.banks.map((bank, index) => (
                 <Card key={index} data-testid={`card-bank-${index}`}>
@@ -316,7 +316,7 @@ export default function SafetyOfFundsPage() {
 
           {/* Compensation Schemes */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">{t('company.safetyOfFunds.compensation.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.safetyOfFunds.compensation.title')}</VariantHeading>
             <div className="space-y-6">
               {compensationSchemes.map((scheme, index) => (
                 <Card key={index} data-testid={`card-compensation-${index}`}>
@@ -358,7 +358,7 @@ export default function SafetyOfFundsPage() {
 
           {/* Negative Balance Protection */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">{t('company.safetyOfFunds.nbp.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.safetyOfFunds.nbp.title')}</VariantHeading>
             <Card className="mb-6" data-testid="card-nbp-overview">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -427,7 +427,7 @@ export default function SafetyOfFundsPage() {
 
           {/* FAQ Section */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">{t('company.safetyOfFunds.faq.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.safetyOfFunds.faq.title')}</VariantHeading>
             <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
@@ -444,8 +444,9 @@ export default function SafetyOfFundsPage() {
               ))}
             </Accordion>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

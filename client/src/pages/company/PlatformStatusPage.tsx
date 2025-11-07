@@ -24,6 +24,7 @@ import {
   MinusCircle
 } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantGrid, VariantCard, VariantHeading, VariantText } from "@/components/variant";
 
 export default function PlatformStatusPage() {
   const { t } = useLanguage();
@@ -306,32 +307,31 @@ export default function PlatformStatusPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-status">{t('company.platformStatus.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('company.platformStatus.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t('company.platformStatus.description')}
-            </p>
-          </div>
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
+            {/* Header Section */}
+            <div className="text-center mb-12">
+              <Badge className="mb-4" data-testid="badge-status">{t('company.platformStatus.badge')}</Badge>
+              <VariantHeading level="hero" as="h1" className="mb-4">{t('company.platformStatus.title')}</VariantHeading>
+              <VariantText className="text-muted-foreground max-w-3xl mx-auto">
+                {t('company.platformStatus.description')}
+              </VariantText>
+            </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-            {stats.map((stat) => (
-              <Card key={stat.label} data-testid={stat.testId}>
-                <CardContent className="p-6">
+            {/* Stats Cards */}
+            <VariantGrid className="mb-12">
+              {stats.map((stat) => (
+                <VariantCard key={stat.label} data-testid={stat.testId}>
                   <div className="flex items-center justify-between mb-2">
                     <stat.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="text-3xl font-bold mb-1">{stat.value}</div>
                   <div className="text-sm font-medium mb-1">{stat.label}</div>
                   <p className="text-xs text-muted-foreground">{stat.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </VariantCard>
+              ))}
+            </VariantGrid>
 
           {/* All Systems Operational Alert */}
           <Alert className="mb-12 border-green-500/50 bg-green-500/10" data-testid="alert-status">
@@ -343,7 +343,7 @@ export default function PlatformStatusPage() {
 
           {/* System Status */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">{t('company.platformStatus.systemStatus.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.platformStatus.systemStatus.title')}</VariantHeading>
             <div className="grid md:grid-cols-2 gap-4">
               {systemStatus.map((system, index) => {
                 const StatusIcon = getStatusIcon(system.status);
@@ -375,7 +375,7 @@ export default function PlatformStatusPage() {
 
           {/* Maintenance Schedule */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">{t('company.platformStatus.maintenance.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.platformStatus.maintenance.title')}</VariantHeading>
             <div className="space-y-4">
               {maintenanceSchedule.map((maintenance, index) => (
                 <Card key={index} data-testid={`card-maintenance-${index}`}>
@@ -418,7 +418,7 @@ export default function PlatformStatusPage() {
 
           {/* Incident History */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">{t('company.platformStatus.incidents.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.platformStatus.incidents.title')}</VariantHeading>
             <Card data-testid="card-incidents">
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
@@ -510,7 +510,7 @@ export default function PlatformStatusPage() {
 
           {/* FAQ Section */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">{t('company.platformStatus.faq.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.platformStatus.faq.title')}</VariantHeading>
             <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
@@ -527,8 +527,9 @@ export default function PlatformStatusPage() {
               ))}
             </Accordion>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

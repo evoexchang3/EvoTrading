@@ -20,6 +20,7 @@ import {
   Scale
 } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantGrid, VariantCard, VariantHeading, VariantText } from "@/components/variant";
 
 export default function ComplaintsPage() {
   const { t } = useLanguage();
@@ -226,32 +227,31 @@ export default function ComplaintsPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-complaints">{t('company.complaints.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('company.complaints.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t('company.complaints.description')}
-            </p>
-          </div>
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-6xl mx-auto">
+            {/* Header Section */}
+            <div className="text-center mb-12">
+              <Badge className="mb-4" data-testid="badge-complaints">{t('company.complaints.badge')}</Badge>
+              <VariantHeading level="hero" as="h1" className="mb-4">{t('company.complaints.title')}</VariantHeading>
+              <VariantText className="text-muted-foreground max-w-3xl mx-auto">
+                {t('company.complaints.description')}
+              </VariantText>
+            </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-            {stats.map((stat) => (
-              <Card key={stat.label} data-testid={stat.testId}>
-                <CardContent className="p-6">
+            {/* Stats Cards */}
+            <VariantGrid className="mb-12">
+              {stats.map((stat) => (
+                <VariantCard key={stat.label} data-testid={stat.testId}>
                   <div className="flex items-center justify-between mb-2">
                     <stat.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="text-3xl font-bold mb-1">{stat.value}</div>
                   <div className="text-sm font-medium mb-1">{stat.label}</div>
                   <p className="text-xs text-muted-foreground">{stat.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </VariantCard>
+              ))}
+            </VariantGrid>
 
           {/* Important Notice */}
           <Alert className="mb-12" data-testid="alert-complaints-rights">
@@ -263,7 +263,7 @@ export default function ComplaintsPage() {
 
           {/* Resolution Process */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">{t('company.complaints.resolutionProcess.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.complaints.resolutionProcess.title')}</VariantHeading>
             <div className="space-y-6">
               {resolutionProcess.map((level, index) => (
                 <Card key={index} data-testid={`card-level-${index}`}>
@@ -338,7 +338,7 @@ export default function ComplaintsPage() {
 
           {/* Complaint Categories */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">{t('company.complaints.categories.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.complaints.categories.title')}</VariantHeading>
             <div className="grid md:grid-cols-2 gap-6">
               {complaintCategories.map((category, index) => (
                 <Card key={index} data-testid={`card-category-${index}`}>
@@ -398,7 +398,7 @@ export default function ComplaintsPage() {
 
           {/* FAQ Section */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">{t('company.complaints.faq.title')}</h2>
+            <VariantHeading level="heading" as="h2" className="mb-6">{t('company.complaints.faq.title')}</VariantHeading>
             <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
@@ -415,8 +415,9 @@ export default function ComplaintsPage() {
               ))}
             </Accordion>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

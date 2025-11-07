@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantGrid, VariantCard, VariantHeading, VariantText } from "@/components/variant";
 
 type InstrumentData = {
   symbol: string;
@@ -530,15 +531,16 @@ export default function RatesPage() {
 
   return (
     <LandingLayout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <Badge className="mb-4" data-testid="badge-rates-page">{t('company.rates.badge')}</Badge>
-            <h1 className="text-4xl font-bold mb-4">{t('company.rates.title')}</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t('company.rates.description')}
-            </p>
-          </div>
+      <VariantSection animation="page">
+        <VariantContainer>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="mb-4" data-testid="badge-rates-page">{t('company.rates.badge')}</Badge>
+              <VariantHeading level="hero" as="h1" className="mb-4">{t('company.rates.title')}</VariantHeading>
+              <VariantText className="text-muted-foreground max-w-3xl mx-auto">
+                {t('company.rates.description')}
+              </VariantText>
+            </div>
 
           <Alert className="mb-8" data-testid="alert-pricing-info">
             <Info className="h-4 w-4" />
@@ -547,26 +549,24 @@ export default function RatesPage() {
             </AlertDescription>
           </Alert>
 
-          <div className="grid md:grid-cols-4 gap-4 mb-12">
+          <VariantGrid className="mb-12">
             {competitiveHighlights.map((highlight, index) => (
-              <Card key={index} className="hover-elevate" data-testid={`card-highlight-${index}`}>
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <highlight.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <h3 className="font-semibold text-sm">{t(highlight.titleKey)}</h3>
-                        <Badge variant="outline" className="text-xs">{t(highlight.badgeKey)}</Badge>
-                      </div>
-                      <p className="text-xs text-muted-foreground">{t(highlight.descriptionKey)}</p>
-                    </div>
+              <VariantCard key={index} className="hover-elevate" data-testid={`card-highlight-${index}`}>
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <highlight.icon className="w-5 h-5 text-primary" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <h3 className="font-semibold text-sm">{t(highlight.titleKey)}</h3>
+                      <Badge variant="outline" className="text-xs">{t(highlight.badgeKey)}</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{t(highlight.descriptionKey)}</p>
+                  </div>
+                </div>
+              </VariantCard>
             ))}
-          </div>
+          </VariantGrid>
 
           <Tabs defaultValue="account-comparison" className="mb-12">
             <TabsList className="grid w-full grid-cols-2 mb-8" data-testid="tabs-comparison-type">
@@ -1002,8 +1002,9 @@ export default function RatesPage() {
               <li>• {t('company.rates.disclaimers.item10')}</li>
             </ul>
           </div>
-        </div>
-      </div>
+          </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }
