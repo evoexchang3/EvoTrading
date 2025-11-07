@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -122,17 +123,7 @@ export default function AdminConfigPage() {
         }
       };
 
-      const response = await fetch("/api/admin/site-config", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(updatedConfig)
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Failed to update configuration");
-      }
+      await apiRequest("PUT", "/api/admin/site-config", updatedConfig);
 
       toast({
         title: "Configuration updated",

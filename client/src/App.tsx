@@ -9,6 +9,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { WebSocketProvider } from "@/contexts/WebSocketContext";
 import { SiteConfigProvider } from "@/contexts/SiteConfigContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { AdminRoute } from "@/components/AdminRoute";
 import { DashboardLayout } from "@/components/DashboardLayout";
 
 import NotFound from "@/pages/not-found";
@@ -225,9 +226,9 @@ function AppRoutes() {
 
       {/* Admin - Protected (Admin Only) */}
       <Route path="/admin/config">
-        <ProtectedRoute>
+        <AdminRoute>
           <AdminConfigPage />
-        </ProtectedRoute>
+        </AdminRoute>
       </Route>
 
       {/* 404 Fallback */}
