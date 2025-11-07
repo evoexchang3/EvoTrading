@@ -18,7 +18,7 @@ import {
   createTransactionSchema 
 } from "@shared/schema";
 import { clients, accounts, transactions, kycDocuments, userPreferences } from "@shared/schema";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 function requireAdmin(req: AuthRequest, res: Response, next: NextFunction) {
   if (!req.user) {
@@ -31,6 +31,39 @@ function requireAdmin(req: AuthRequest, res: Response, next: NextFunction) {
 }
 
 export function registerRoutes(app: Express): Server {
+  // Health check endpoint for production monitoring
+  app.get("/api/health", async (req, res) => {
+    try {
+      // Check database connectivity
+      const startTime = Date.now();
+      await db.execute(sql`SELECT 1`);
+      const dbLatency = Date.now() - startTime;
+
+      // Return health status
+      res.status(200).json({
+        status: "healthy",
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        database: {
+          status: "connected",
+          latency: `${dbLatency}ms`
+        },
+        memory: {
+          used: `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
+          total: `${Math.round(process.memoryUsage().heapTotal / 1024 / 1024)}MB`
+        },
+        nodeVersion: process.version,
+        environment: process.env.NODE_ENV || 'development'
+      });
+    } catch (error: any) {
+      res.status(503).json({
+        status: "unhealthy",
+        timestamp: new Date().toISOString(),
+        error: error.message
+      });
+    }
+  });
+
   // Auth routes
   app.post("/api/auth/register", async (req, res) => {
     try {
