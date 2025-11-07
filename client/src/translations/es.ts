@@ -53,6 +53,7 @@ export const es = {
   'home.hero.subtitle': 'Plataforma de trading profesional para forex, criptomonedas y materias primas. Regulada, segura y confiada por traders en todo el mundo.',
   'home.hero.registerButton': 'Crear cuenta gratis',
   'home.hero.loginButton': 'Iniciar sesión',
+  'home.hero.badge': 'Confiado por más de 50,000 traders en todo el mundo',
   'home.hero.sslSecured': 'SSL seguro',
   'home.hero.regulated': 'Regulado y licenciado',
   'home.hero.compliant': 'Cumple con AML/KYC',

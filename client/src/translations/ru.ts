@@ -53,6 +53,7 @@ export const ru = {
   'home.hero.subtitle': 'Профессиональная торговая платформа для Forex, криптовалют и товаров. Регулируется, безопасна и пользуется доверием трейдеров по всему миру.',
   'home.hero.registerButton': 'Создать бесплатный аккаунт',
   'home.hero.loginButton': 'Войти на платформу',
+  'home.hero.badge': 'Нам доверяют более 50 000 трейдеров по всему миру',
   'home.hero.sslSecured': 'SSL защита',
   'home.hero.regulated': 'Регулируется и лицензируется',
   'home.hero.compliant': 'Соответствие AML/KYC',

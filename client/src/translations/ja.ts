@@ -59,6 +59,7 @@ export const ja = {
   'home.hero.subtitle': 'FX、暗号通貨、商品のプロフェッショナル取引プラットフォーム。規制され、安全で、世界中のトレーダーから信頼されています。',
   'home.hero.registerButton': '無料アカウント作成',
   'home.hero.loginButton': 'プラットフォームにログイン',
+  'home.hero.badge': '世界中50,000人以上のトレーダーから信頼',
   'home.hero.sslSecured': 'SSL保護',
   'home.hero.regulated': '規制とライセンス',
   'home.hero.compliant': 'AML/KYC準拠',

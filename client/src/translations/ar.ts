@@ -53,6 +53,7 @@ export const ar = {
   'home.hero.subtitle': 'منصة تداول احترافية للفوركس والعملات المشفرة والسلع. منظمة وآمنة وموثوقة من قبل المتداولين في جميع أنحاء العالم.',
   'home.hero.registerButton': 'إنشاء حساب مجاني',
   'home.hero.loginButton': 'تسجيل الدخول إلى المنصة',
+  'home.hero.badge': 'موثوق به من قبل أكثر من 50,000 متداول في جميع أنحاء العالم',
   'home.hero.sslSecured': 'محمي بـ SSL',
   'home.hero.regulated': 'منظم ومرخص',
   'home.hero.compliant': 'متوافق مع AML/KYC',

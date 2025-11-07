@@ -56,6 +56,7 @@ export const en = {
   'home.hero.subtitle': 'Professional trading platform for forex, cryptocurrencies, and commodities. Regulated, secure, and trusted by traders worldwide.',
   'home.hero.registerButton': 'Create Free Account',
   'home.hero.loginButton': 'Login to Platform',
+  'home.hero.badge': 'Trusted by 50,000+ Traders Worldwide',
   'home.hero.sslSecured': 'SSL Secured',
   'home.hero.regulated': 'Regulated & Licensed',
   'home.hero.compliant': 'AML/KYC Compliant',

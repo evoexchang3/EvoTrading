@@ -59,6 +59,7 @@ export const de = {
   'home.hero.subtitle': 'Professionelle Handelsplattform für Forex, Kryptowährungen und Rohstoffe. Reguliert, sicher und von Händlern weltweit vertraut.',
   'home.hero.registerButton': 'Kostenloses Konto erstellen',
   'home.hero.loginButton': 'Zur Plattform anmelden',
+  'home.hero.badge': 'Vertraut von über 50.000 Händlern weltweit',
   'home.hero.sslSecured': 'SSL-gesichert',
   'home.hero.regulated': 'Reguliert & lizenziert',
   'home.hero.compliant': 'AML/KYC-konform',

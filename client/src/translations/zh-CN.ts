@@ -59,6 +59,7 @@ export const zhCN = {
   'home.hero.subtitle': '专业交易平台，提供外汇、加密货币和商品交易。受监管、安全，受全球交易者信赖。',
   'home.hero.registerButton': '创建免费账户',
   'home.hero.loginButton': '登录平台',
+  'home.hero.badge': '受全球50,000+交易者信赖',
   'home.hero.sslSecured': 'SSL安全',
   'home.hero.regulated': '受监管和许可',
   'home.hero.compliant': 'AML/KYC合规',
