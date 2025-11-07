@@ -11,10 +11,10 @@ import { Button } from '@/components/ui/button';
 import { Building2, TrendingUp, Mail } from 'lucide-react';
 
 export default function PillarLayoutNav({ variant }: NavigationProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
   const [location] = useLocation();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const navPillars = [
     {

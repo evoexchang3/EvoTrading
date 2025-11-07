@@ -11,10 +11,10 @@ import { Button } from '@/components/ui/button';
 import { Home, BarChart3, Building2, Mail, LogIn } from 'lucide-react';
 
 export default function VerticalSidebarNav({ variant }: NavigationProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
   const [location] = useLocation();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const navItems = [
     { label: t('nav.home'), href: '/', icon: Home },

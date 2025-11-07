@@ -11,9 +11,9 @@ import { VariantCard, CardHeader, CardTitle, CardContent } from '@/components/va
 import { BookOpen, TrendingUp, HelpCircle, FileText } from 'lucide-react';
 
 export default function CardResourcesFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const resources = [
     {

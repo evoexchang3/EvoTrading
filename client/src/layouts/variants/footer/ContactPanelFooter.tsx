@@ -11,9 +11,9 @@ import { Button } from '@/components/ui/button';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
 
 export default function ContactPanelFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName, supportEmail } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const contactMethods = [
     { icon: Mail, label: 'Email Support', value: supportEmail, href: `mailto:${supportEmail}`, testId: 'footer-contact-email' },

@@ -9,9 +9,9 @@ import { useSiteConfig } from '@/contexts/SiteConfigContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function PartnerCarouselFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   // Mock partner logos
   const partners = ['Partner 1', 'Partner 2', 'Partner 3', 'Partner 4', 'Partner 5'];

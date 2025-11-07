@@ -9,9 +9,9 @@ import { useSiteConfig } from '@/contexts/SiteConfigContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function MinimalistLineFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const links = [
     { label: t('footer.privacyPolicy'), href: '/legal/privacy' },

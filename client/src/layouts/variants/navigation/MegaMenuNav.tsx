@@ -12,11 +12,11 @@ import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 export default function MegaMenuNav({ variant }: NavigationProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
   const [location] = useLocation();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const menuItems = [
     {

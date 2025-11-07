@@ -11,11 +11,11 @@ import { Button } from '@/components/ui/button';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 
 export default function TickerBarNav({ variant }: NavigationProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
   const [location] = useLocation();
 
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const navItems = [
     { label: t('nav.about'), href: '/about' },

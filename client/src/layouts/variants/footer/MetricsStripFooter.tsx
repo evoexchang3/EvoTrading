@@ -10,9 +10,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Users, Globe, TrendingUp, Award } from 'lucide-react';
 
 export default function MetricsStripFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const metrics = [
     { icon: Users, label: 'Active Traders', value: '50,000+' },

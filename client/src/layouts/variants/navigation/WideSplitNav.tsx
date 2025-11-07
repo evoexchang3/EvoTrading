@@ -10,11 +10,11 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 
 export default function WideSplitNav({ variant }: NavigationProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
   const [location] = useLocation();
 
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const leftNavItems = [
     { label: t('nav.about'), href: '/about' },

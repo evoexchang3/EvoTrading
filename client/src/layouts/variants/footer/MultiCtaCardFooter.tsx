@@ -11,9 +11,9 @@ import { Button } from '@/components/ui/button';
 import { VariantCard, CardHeader, CardTitle, CardContent } from '@/components/variant';
 
 export default function MultiCtaCardFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   return (
     <footer className="border-t bg-muted/20">

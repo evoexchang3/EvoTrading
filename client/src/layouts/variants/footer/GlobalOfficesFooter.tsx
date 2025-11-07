@@ -10,9 +10,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin } from 'lucide-react';
 
 export default function GlobalOfficesFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const offices = [
     { city: 'London', address: '123 Financial St, London EC2M 7PP, UK', testId: 'footer-office-london' },

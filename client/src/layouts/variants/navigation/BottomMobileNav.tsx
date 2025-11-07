@@ -10,10 +10,10 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Home, BarChart3, Building2, Mail } from 'lucide-react';
 
 export default function BottomMobileNav({ variant }: NavigationProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { language } = useLanguage();
   const [location] = useLocation();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const navItems = [
     { label: 'Home', href: '/', icon: Home },

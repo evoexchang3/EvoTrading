@@ -11,9 +11,9 @@ import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 
 export default function FaqTeaserFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const faqs = [
     { question: 'How do I open a trading account?', answer: 'Click "Register" and complete the simple 3-step process.' },

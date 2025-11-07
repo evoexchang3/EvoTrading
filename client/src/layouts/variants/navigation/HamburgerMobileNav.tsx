@@ -12,11 +12,11 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 export default function HamburgerMobileNav({ variant }: NavigationProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const navItems = [
     { label: t('nav.about'), href: '/about' },

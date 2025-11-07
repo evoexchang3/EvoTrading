@@ -10,9 +10,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 
 export default function SocialFirstFooter({ variant }: FooterProps) {
-  const { config } = useSiteConfig();
+  const { getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
-  const { companyName } = config.branding.languageOverrides[language] || config.branding;
+  const { companyName, supportEmail } = getBranding(language);
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook', testId: 'social-facebook' },
