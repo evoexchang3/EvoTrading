@@ -1,4 +1,5 @@
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useEffect } from "react";
 import { getNavigationComponent } from "@/layouts/variants/navigation";
 import { getFooterComponent } from "@/layouts/variants/footer";
@@ -9,7 +10,8 @@ interface LandingLayoutProps {
 }
 
 export function LandingLayout({ children }: LandingLayoutProps) {
-  const { config, loading } = useSiteConfig();
+  const { config, loading, getBranding } = useSiteConfig();
+  const { t, language } = useLanguage();
 
   // Get variant-specific components
   const activeVariant = loading ? 'bloomberg-dark' : (config.layout?.activeVariant || 'bloomberg-dark');
@@ -19,6 +21,9 @@ export function LandingLayout({ children }: LandingLayoutProps) {
   const FooterComponent = getFooterComponent(variantConfig.structure.footerLayout);
   
   const showFooter = loading ? true : (config.layout?.showFooter ?? true);
+  
+  // Compute branding data to pass to navigation/footer components
+  const { companyName, supportEmail } = getBranding(language);
   
   // Determine if navigation requires layout adjustment (fixed/sidebar variants)
   const navLayout = variantConfig.structure.navigationLayout;
@@ -51,7 +56,13 @@ export function LandingLayout({ children }: LandingLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col bg-background" data-layout={loading ? undefined : config.layout?.activeVariant}>
       {/* Dynamic Navigation */}
-      <NavigationComponent variant={activeVariant} />
+      <NavigationComponent 
+        variant={activeVariant} 
+        companyName={companyName}
+        supportEmail={supportEmail}
+        language={language}
+        t={t}
+      />
 
       {/* Main Content with sidebar adjustment */}
       <main 
@@ -67,7 +78,13 @@ export function LandingLayout({ children }: LandingLayoutProps) {
       {/* Dynamic Footer */}
       {showFooter && (
         <div style={{ marginLeft: hasSidebarNav ? sidebarWidth : '0' }}>
-          <FooterComponent variant={activeVariant} />
+          <FooterComponent 
+            variant={activeVariant}
+            companyName={companyName}
+            supportEmail={supportEmail}
+            language={language}
+            t={t}
+          />
         </div>
       )}
     </div>

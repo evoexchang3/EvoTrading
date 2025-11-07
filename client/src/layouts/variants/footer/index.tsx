@@ -25,6 +25,10 @@ import FaqTeaserFooter from './FaqTeaserFooter';
 
 export interface FooterProps {
   variant?: string;
+  companyName: string;
+  supportEmail: string;
+  language: string;
+  t: (key: string) => string;
 }
 
 // Footer component registry

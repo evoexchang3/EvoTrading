@@ -25,6 +25,10 @@ import HeroOverlayNav from './HeroOverlayNav';
 
 export interface NavigationProps {
   variant?: string;
+  companyName: string;
+  supportEmail: string;
+  language: string;
+  t: (key: string) => string;
 }
 
 // Navigation component registry
