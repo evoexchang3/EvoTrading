@@ -1,7 +1,26 @@
-/* Bloomberg Dark - Professional charcoal with blue accents (default) */
-/* This is the default theme, matches existing index.css dark mode */
+/**
+ * Bloomberg Dark - Dense Terminal Layout
+ * Data-focused design with sharp borders and compact spacing
+ */
 
 :root[data-layout="bloomberg-dark"] {
-  /* This layout uses the existing dark mode variables from index.css */
-  /* No overrides needed - just apply dark class to document.documentElement */
+  /* Colors - Dark blue-gray with bright blue accents */
+  --background: 222 47% 11%;
+  --foreground: 210 40% 96%;
+  --card: 222 47% 14%;
+  --card-foreground: 210 40% 96%;
+  --card-border: 220 20% 25%;
+  --primary: 210 100% 55%;
+  --primary-foreground: 0 0% 100%;
+  --primary-border: 210 100% 45%;
+  --secondary: 222 47% 18%;
+  --secondary-foreground: 210 40% 96%;
+  --accent: 180 100% 40%;
+  --accent-foreground: 0 0% 100%;
+  --border: 220 20% 25%;
+  --ring: 210 100% 55%;
+  
+  /* Typography - Monospace fonts */
+  --font-sans: ui-monospace, "SF Mono", Monaco, monospace;
+  --font-mono: ui-monospace, "SF Mono", Monaco, monospace;
 }

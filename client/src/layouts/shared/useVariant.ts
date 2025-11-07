@@ -104,6 +104,7 @@ export function useVariantClasses() {
     if (variant.animations.style === 'instant') return '';
     
     const animations: Record<string, string> = {
+      // Hero/Entry animations
       fadeIn: 'animate-fade-in',
       slideUp: 'animate-slide-up',
       slideInRight: 'animate-slide-in-right',
@@ -112,6 +113,17 @@ export function useVariantClasses() {
       zoomIn: 'animate-zoom-in',
       glowIn: 'animate-glow-in',
       typewriter: 'animate-typewriter',
+      
+      // Page transitions
+      none: '',
+      fade: 'animate-fade-in',
+      fadeSlide: 'animate-fade-in-up',
+      fadeUp: 'animate-fade-in-up',
+      glowFade: 'animate-glow-in',
+      gradientFade: 'animate-fade-in-scale',
+      luxuryFade: 'animate-fade-in-scale opacity-80',
+      matrixFall: 'animate-matrix-fall',
+      slideLeft: 'animate-slide-left',
     };
 
     const entryAnimation = type === 'hero' ? variant.animations.heroEntry : 
@@ -124,15 +136,26 @@ export function useVariantClasses() {
     if (variant.animations.style === 'instant') return '';
 
     const hoverEffects: Record<string, string> = {
+      // Common hover effects
       none: '',
       subtle: 'hover-elevate transition-all',
-      lift: 'hover:-translate-y-1 transition-transform',
-      glow: 'hover:shadow-lg hover:shadow-primary/20 transition-shadow',
-      bounce: 'hover:scale-105 transition-transform',
-      grow: 'hover:scale-110 transition-transform',
+      
+      // Card hover effects
+      lift: 'hover:-translate-y-1 transition-transform duration-200',
+      float: 'hover:-translate-y-2 hover:shadow-xl transition-all duration-300',
+      glow: 'hover:shadow-lg hover:shadow-primary/20 transition-shadow duration-300',
+      bounce: 'hover:scale-105 transition-transform duration-200',
+      scan: 'hover:bg-accent/10 transition-colors duration-300',
+      skew: 'hover:skew-y-1 transition-transform duration-200',
+      
+      // Button hover effects
+      grow: 'hover:scale-110 transition-transform duration-200',
+      scale: 'hover:scale-105 transition-transform duration-200',
       pulse: 'hover:animate-pulse',
-      scan: 'hover:bg-accent/10 transition-colors',
-      float: 'hover:-translate-y-2 hover:shadow-xl transition-all',
+      shine: 'relative overflow-hidden hover:after:animate-shine',
+      shimmer: 'hover:animate-shimmer bg-gradient-to-r',
+      glitch: 'hover:translate-x-0.5 hover:text-primary transition-all duration-100',
+      underline: 'hover:underline hover:underline-offset-4 transition-all duration-200',
     };
 
     const effect = type === 'card' ? variant.animations.cardHover : variant.animations.buttonHover;
