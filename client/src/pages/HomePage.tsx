@@ -4,7 +4,9 @@ import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useVariant } from "@/layouts/shared/useVariant";
-import { CheckCircle2 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { AnimatedCounter } from "@/components/home/AnimatedCounter";
+import { CheckCircle2, TrendingUp, Users, Award, ArrowRight } from "lucide-react";
 import {
   VariantSection,
   VariantContainer,
@@ -29,6 +31,8 @@ import { FeaturesList } from "@/components/home/FeaturesList";
 export default function HomePage() {
   const { t } = useLanguage();
   const variant = useVariant();
+  const { ref: benefitsRef, isVisible: benefitsVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation({ threshold: 0.3 });
 
   // Select appropriate components based on variant configuration
   const HeroComponent = () => {
@@ -57,12 +61,19 @@ export default function HomePage() {
   };
 
   const benefits = [
-    t('home.benefits.infrastructure'),
-    t('home.benefits.multiLanguage'),
-    t('home.benefits.support'),
-    t('home.benefits.education'),
-    t('home.benefits.platforms'),
-    t('home.benefits.security'),
+    { text: t('home.benefits.infrastructure'), icon: CheckCircle2 },
+    { text: t('home.benefits.multiLanguage'), icon: CheckCircle2 },
+    { text: t('home.benefits.support'), icon: CheckCircle2 },
+    { text: t('home.benefits.education'), icon: CheckCircle2 },
+    { text: t('home.benefits.platforms'), icon: CheckCircle2 },
+    { text: t('home.benefits.security'), icon: CheckCircle2 },
+  ];
+
+  const stats = [
+    { value: 50, suffix: '+', label: t('home.stats.currencyPairs'), icon: TrendingUp, color: 'text-blue-500' },
+    { value: 100, suffix: '+', label: t('home.stats.cryptoAssets'), icon: TrendingUp, color: 'text-purple-500' },
+    { value: 24, suffix: '/7', label: t('home.stats.customerSupport'), icon: Users, color: 'text-green-500' },
+    { value: 0.01, suffix: 's', label: t('home.stats.avgExecutionTime'), decimals: 2, icon: Award, color: 'text-yellow-500' },
   ];
 
   return (
@@ -81,74 +92,100 @@ export default function HomePage() {
       {/* Variant-aware Features Section */}
       <FeaturesComponent />
 
-      {/* Why Choose Us Section */}
+      {/* Why Choose Us Section - Modernized */}
       <VariantSection animation="page">
         <VariantContainer>
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <div>
+          <div className="grid gap-12 lg:grid-cols-2 items-center" ref={benefitsRef}>
+            <div className={benefitsVisible ? 'animate-fade-in-up' : 'opacity-0'}>
               <VariantHeading level="heading" className="mb-6" data-testid="text-benefits-title">
                 {t('home.benefits.title')}
               </VariantHeading>
-              <VariantText className="text-muted-foreground mb-8">
+              <VariantText className="text-muted-foreground mb-8 leading-relaxed">
                 {t('home.benefits.subtitle')}
               </VariantText>
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-3" data-testid={`benefit-${index}`}>
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground">{benefit}</span>
+                  <li 
+                    key={index} 
+                    className={`flex items-start gap-3 ${benefitsVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    style={{ animationDelay: `${100 + index * 75}ms` }}
+                    data-testid={`benefit-${index}`}
+                  >
+                    <div className="p-1 rounded-full bg-primary/10 mt-0.5">
+                      <benefit.icon className="h-4 w-4 text-primary flex-shrink-0" />
+                    </div>
+                    <span className="text-muted-foreground">{benefit.text}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <VariantCard>
-                <CardHeader className="space-y-1">
-                  <CardTitle className="text-4xl font-bold text-primary">50+</CardTitle>
-                  <CardDescription>{t('home.stats.currencyPairs')}</CardDescription>
-                </CardHeader>
-              </VariantCard>
-              <VariantCard>
-                <CardHeader className="space-y-1">
-                  <CardTitle className="text-4xl font-bold text-primary">100+</CardTitle>
-                  <CardDescription>{t('home.stats.cryptoAssets')}</CardDescription>
-                </CardHeader>
-              </VariantCard>
-              <VariantCard>
-                <CardHeader className="space-y-1">
-                  <CardTitle className="text-4xl font-bold text-primary">24/7</CardTitle>
-                  <CardDescription>{t('home.stats.customerSupport')}</CardDescription>
-                </CardHeader>
-              </VariantCard>
-              <VariantCard>
-                <CardHeader className="space-y-1">
-                  <CardTitle className="text-4xl font-bold text-primary">0.01s</CardTitle>
-                  <CardDescription>{t('home.stats.avgExecutionTime')}</CardDescription>
-                </CardHeader>
-              </VariantCard>
+            <div className="grid gap-4 md:grid-cols-2" ref={statsRef}>
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className={statsVisible ? 'animate-fade-in-up' : 'opacity-0'}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <VariantCard className="group hover:border-primary/50 transition-all duration-300 h-full">
+                    <CardHeader className="space-y-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <stat.icon className={`h-8 w-8 ${stat.color} opacity-80 group-hover:scale-110 transition-transform`} />
+                      </div>
+                      <CardTitle className="text-4xl font-bold text-primary">
+                        {statsVisible ? (
+                          <AnimatedCounter 
+                            end={stat.value} 
+                            suffix={stat.suffix} 
+                            decimals={stat.decimals || 0}
+                            duration={2000}
+                          />
+                        ) : (
+                          `${stat.value}${stat.suffix}`
+                        )}
+                      </CardTitle>
+                      <CardDescription className="text-sm">{stat.label}</CardDescription>
+                    </CardHeader>
+                  </VariantCard>
+                </div>
+              ))}
             </div>
           </div>
         </VariantContainer>
       </VariantSection>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-        <VariantContainer className="text-center">
-          <VariantHeading level="heading" className="mb-4" data-testid="text-cta-title">
+      {/* CTA Section - Modernized with gradient */}
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80"></div>
+        
+        {/* Animated orbs */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-foreground/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary-foreground/5 rounded-full blur-3xl"></div>
+        
+        <VariantContainer className="text-center relative z-10">
+          <VariantHeading level="heading" className="mb-4 text-primary-foreground animate-fade-in-up" data-testid="text-cta-title">
             {t('home.cta.title')}
           </VariantHeading>
-          <VariantText className="mb-8 opacity-90 max-w-2xl mx-auto">
-            {t('home.cta.subtitle')}
-          </VariantText>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+            <VariantText className="mb-8 text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed">
+              {t('home.cta.subtitle')}
+            </VariantText>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
             <Link href="/register">
-              <Button size="lg" variant="secondary" data-testid="button-cta-register">
+              <Button size="lg" variant="secondary" className="group shadow-lg hover:shadow-xl transition-shadow" data-testid="button-cta-register">
                 {t('home.cta.button')}
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
             <Link href="/education">
-              <Button size="lg" variant="outline" className="border-primary-foreground/20 bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground" data-testid="button-cta-learn">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-primary-foreground/30 bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground backdrop-blur-sm" 
+                data-testid="button-cta-learn"
+              >
                 {t('home.cta.learnMore')}
               </Button>
             </Link>

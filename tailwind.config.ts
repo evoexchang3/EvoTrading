@@ -146,6 +146,10 @@ export default {
           "0%": { left: "-100%" },
           "100%": { left: "100%" },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -162,6 +166,7 @@ export default {
         "matrix-fall": "matrix-fall 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         "shimmer": "shimmer 2s linear infinite",
         "shine": "shine 1s ease-in-out",
+        "float": "float 3s ease-in-out infinite",
       },
     },
   },
