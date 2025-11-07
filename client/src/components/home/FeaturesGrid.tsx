@@ -71,9 +71,9 @@ export function FeaturesGrid() {
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       
       <div className={`${classes.container} relative`} ref={ref}>
-        <div className={`text-center ${classes.spacing('element')} mb-12`}>
+        <div className={`text-center ${classes.spacing('element')} mb-8 sm:mb-12`}>
           <h2 
-            className={`${classes.textSize('heading')} font-bold mb-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} 
+            className={`${classes.textSize('heading')} font-bold mb-3 sm:mb-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} 
             data-testid="text-features-title"
           >
             {t('home.features.title')}
@@ -90,22 +90,22 @@ export function FeaturesGrid() {
           {features.map((feature, index) => (
             <Card 
               key={index} 
-              className={`${classes.card} ${classes.hover('card')} group transition-all duration-300 ${
+              className={`${classes.card} ${classes.hover('card')} group transition-all duration-300 touch-manipulation active:scale-[0.98] ${
                 isVisible ? 'animate-fade-in-up' : 'opacity-0'
               }`}
               style={{ animationDelay: `${200 + index * 100}ms` }}
               data-testid={`card-feature-${index}`}
             >
-              <CardHeader>
-                <div className="mb-4">
-                  <div className={`inline-flex p-3 rounded-lg ${feature.bg} transition-transform group-hover:scale-110 duration-300`}>
-                    <feature.icon className={`h-6 w-6 ${feature.color} transition-transform group-hover:rotate-12 duration-300`} />
+              <CardHeader className="p-4 sm:p-6">
+                <div className="mb-3 sm:mb-4">
+                  <div className={`inline-flex p-2.5 sm:p-3 rounded-lg ${feature.bg} transition-transform group-hover:scale-110 duration-300`}>
+                    <feature.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${feature.color} transition-transform group-hover:rotate-12 duration-300`} />
                   </div>
                 </div>
                 <CardTitle className={classes.textSize('heading')}>{feature.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className={classes.textSize('body')}>{feature.description}</CardDescription>
+              <CardContent className="p-4 sm:p-6 pt-0">
+                <CardDescription className={`${classes.textSize('body')} leading-relaxed`}>{feature.description}</CardDescription>
               </CardContent>
             </Card>
           ))}
