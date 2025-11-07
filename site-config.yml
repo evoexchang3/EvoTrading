@@ -40,7 +40,7 @@ branding:
       companyName: ''
       supportEmail: ''
 layout:
-  activeVariant: minimalist-corporate
+  activeVariant: carbon-sleek
   stickyHeader: true
   showFooter: true
   compactMode: false
