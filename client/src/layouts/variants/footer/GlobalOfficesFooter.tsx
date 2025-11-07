@@ -5,14 +5,9 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin } from 'lucide-react';
 
-export default function GlobalOfficesFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function GlobalOfficesFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const offices = [
     { city: 'London', address: '123 Financial St, London EC2M 7PP, UK', testId: 'footer-office-london' },

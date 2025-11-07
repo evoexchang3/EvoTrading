@@ -5,14 +5,9 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Users, Globe, TrendingUp, Award } from 'lucide-react';
 
-export default function MetricsStripFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function MetricsStripFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const metrics = [
     { icon: Users, label: 'Active Traders', value: '50,000+' },

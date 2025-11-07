@@ -5,15 +5,10 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
 
-export default function ContactPanelFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function ContactPanelFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const contactMethods = [
     { icon: Mail, label: 'Email Support', value: supportEmail, href: `mailto:${supportEmail}`, testId: 'footer-contact-email' },

@@ -96,3 +96,16 @@ The platform includes three major enterprise enhancements for production deploym
 - Created `requireAdmin` middleware for admin-only endpoints
 - SiteConfigContext provides `getBranding(language)` function that merges language-specific overrides with default branding
 - Layout variants served from `client/public/layouts/variants/` for Vite production build compatibility (moved from `src/` to fix 404 errors in production builds)
+
+### 4. Variant System Refactoring (November 7, 2025)
+**Purpose:** Fix "Invalid hook call" warnings by converting navigation/footer components from hook-based to prop-based architecture.
+**Implementation:**
+- Extended NavigationProps and FooterProps interfaces to include branding data (companyName, supportEmail, language, t function)
+- Updated LandingLayout to compute branding via `getBranding(language)` and pass as props to navigation/footer components
+- Refactored all 30 variant components (15 navigation + 15 footer) to accept branding data as props instead of calling `useSiteConfig()` and `useLanguage()` hooks
+- This architectural change prevents variant components from being instantiated outside React's render cycle (e.g., in preview utilities or metadata loaders)
+**Benefits:**
+- Variant components are now pure presentational components without context dependencies
+- Safer for future tooling that might need to access component metadata
+- Cleaner separation of concerns: LandingLayout handles context, variants handle presentation
+**Known Issue:** Minor "Invalid hook call" warning may appear in browser console during HMR; app functionality is unaffected

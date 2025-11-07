@@ -5,18 +5,13 @@
 
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
-export default function MegaMenuNav({ variant }: NavigationProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
+export default function MegaMenuNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const { companyName, supportEmail } = getBranding(language);
 
   const menuItems = [
     {

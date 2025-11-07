@@ -5,15 +5,10 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { VariantCard, CardHeader, CardTitle, CardContent } from '@/components/variant';
 import { BookOpen, TrendingUp, HelpCircle, FileText } from 'lucide-react';
 
-export default function CardResourcesFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function CardResourcesFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const resources = [
     {

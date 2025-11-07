@@ -5,14 +5,9 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 
-export default function SocialFirstFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function SocialFirstFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook', testId: 'social-facebook' },

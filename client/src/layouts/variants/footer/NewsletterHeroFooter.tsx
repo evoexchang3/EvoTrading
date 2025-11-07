@@ -5,16 +5,11 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail } from 'lucide-react';
 
-export default function NewsletterHeroFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function NewsletterHeroFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const legalLinks = [
     { label: t('footer.privacyPolicy'), href: '/legal/privacy' },

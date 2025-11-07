@@ -5,16 +5,10 @@
 
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 
-export default function WideSplitNav({ variant }: NavigationProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
+export default function WideSplitNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
-
-  const { companyName, supportEmail } = getBranding(language);
 
   const leftNavItems = [
     { label: t('nav.about'), href: '/about' },

@@ -5,15 +5,10 @@
 
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Home, BarChart3, Building2, Mail } from 'lucide-react';
 
-export default function BottomMobileNav({ variant }: NavigationProps) {
-  const { getBranding } = useSiteConfig();
-  const { language } = useLanguage();
+export default function BottomMobileNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
-  const { companyName, supportEmail } = getBranding(language);
 
   const navItems = [
     { label: 'Home', href: '/', icon: Home },

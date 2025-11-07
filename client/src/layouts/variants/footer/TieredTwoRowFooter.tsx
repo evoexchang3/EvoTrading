@@ -5,13 +5,8 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function TieredTwoRowFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function TieredTwoRowFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const mainLinks = [
     { label: t('footer.aboutUs'), href: '/about' },

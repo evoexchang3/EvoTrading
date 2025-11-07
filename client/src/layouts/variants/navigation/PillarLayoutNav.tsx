@@ -5,16 +5,11 @@
 
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Building2, TrendingUp, Mail } from 'lucide-react';
 
-export default function PillarLayoutNav({ variant }: NavigationProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
+export default function PillarLayoutNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
-  const { companyName, supportEmail } = getBranding(language);
 
   const navPillars = [
     {

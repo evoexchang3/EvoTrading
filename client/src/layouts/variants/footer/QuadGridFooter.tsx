@@ -5,13 +5,8 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function QuadGridFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function QuadGridFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const footerSections = [
     {
@@ -58,8 +53,8 @@ export default function QuadGridFooter({ variant }: FooterProps) {
                 {section.title}
               </h3>
               <ul className="space-y-2">
-                {section.links.map((link) => (
-                  <li key={link.href}>
+                {section.links.map((link, index) => (
+                  <li key={`${link.href}-${index}`}>
                     <Link href={link.href} data-testid={`footer-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
                       <span className="text-sm text-muted-foreground hover:text-foreground">
                         {link.label}

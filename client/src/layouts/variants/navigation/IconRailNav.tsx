@@ -5,13 +5,10 @@
 
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Home, BarChart3, Building2, Mail, LogIn, UserPlus } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
-export default function IconRailNav({ variant }: NavigationProps) {
-  const { t } = useLanguage();
+export default function IconRailNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
 
   const navItems = [

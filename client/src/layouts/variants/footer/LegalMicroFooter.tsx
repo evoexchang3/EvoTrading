@@ -5,13 +5,8 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function LegalMicroFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function LegalMicroFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const legalLinks = [
     { label: t('footer.privacyPolicy'), href: '/legal/privacy' },

@@ -5,15 +5,10 @@
 
 import { Link } from 'wouter';
 import { FooterProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 
-export default function FaqTeaserFooter({ variant }: FooterProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
-  const { companyName, supportEmail } = getBranding(language);
+export default function FaqTeaserFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const faqs = [
     { question: 'How do I open a trading account?', answer: 'Click "Register" and complete the simple 3-step process.' },

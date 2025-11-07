@@ -5,14 +5,9 @@
 
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function MinimalTextNav({ variant }: NavigationProps) {
-  const { getBranding } = useSiteConfig();
-  const { t, language } = useLanguage();
+export default function MinimalTextNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
   const [location] = useLocation();
-  const { companyName, supportEmail } = getBranding(language);
 
   const navItems = [
     { label: t('nav.about'), href: '/about' },
