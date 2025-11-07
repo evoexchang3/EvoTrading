@@ -1,6 +1,8 @@
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading } from "@/components/variant";
+import { VariantProseContent } from "@/components/variant/VariantProseContent";
 
 export default function AMLPage() {
   const { t } = useLanguage();
@@ -12,13 +14,13 @@ export default function AMLPage() {
         description={t('legal.aml.seo.description')}
         keywords={t('legal.aml.seo.keywords')}
       />
-      <div className="py-20">
-        <div className="container mx-auto px-4">
+      <VariantSection animation="page">
+        <VariantContainer>
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold mb-8" data-testid="text-aml-title">
+            <VariantHeading level="hero" as="h1" className="mb-8" data-testid="text-aml-title">
               {t('legal.aml.title')}
-            </h1>
-            <div className="prose prose-slate dark:prose-invert max-w-none">
+            </VariantHeading>
+            <VariantProseContent>
               <p className="text-lg text-muted-foreground mb-8">
                 {t('legal.aml.lastUpdated')}
               </p>
@@ -147,10 +149,10 @@ export default function AMLPage() {
                   <strong>{t('legal.aml.section11.email')}</strong>
                 </p>
               </section>
-            </div>
+            </VariantProseContent>
           </div>
-        </div>
-      </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

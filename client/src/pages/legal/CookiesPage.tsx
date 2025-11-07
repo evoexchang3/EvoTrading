@@ -1,6 +1,8 @@
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading } from "@/components/variant";
+import { VariantProseContent } from "@/components/variant/VariantProseContent";
 
 export default function CookiesPage() {
   const { t } = useLanguage();
@@ -12,13 +14,13 @@ export default function CookiesPage() {
         description={t('legal.cookies.seo.description')}
         keywords={t('legal.cookies.seo.keywords')}
       />
-      <div className="py-20">
-        <div className="container mx-auto px-4">
+      <VariantSection animation="page">
+        <VariantContainer>
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold mb-8" data-testid="text-cookies-title">
+            <VariantHeading level="hero" as="h1" className="mb-8" data-testid="text-cookies-title">
               {t('legal.cookies.title')}
-            </h1>
-            <div className="prose prose-slate dark:prose-invert max-w-none">
+            </VariantHeading>
+            <VariantProseContent>
               <p className="text-lg text-muted-foreground mb-8">
                 {t('legal.cookies.lastUpdated')}
               </p>
@@ -161,10 +163,10 @@ export default function CookiesPage() {
                   <strong>{t('legal.cookies.section9.email')}</strong>
                 </p>
               </section>
-            </div>
+            </VariantProseContent>
           </div>
-        </div>
-      </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

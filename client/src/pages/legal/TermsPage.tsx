@@ -1,9 +1,13 @@
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading } from "@/components/variant";
+import { VariantProseContent } from "@/components/variant/VariantProseContent";
+import { useVariantClasses } from "@/layouts/shared/useVariant";
 
 export default function TermsPage() {
   const { t } = useLanguage();
+  const classes = useVariantClasses();
 
   return (
     <LandingLayout>
@@ -12,13 +16,13 @@ export default function TermsPage() {
         description={t('legal.terms.seo.description')}
         keywords={t('legal.terms.seo.keywords')}
       />
-      <div className="py-20">
-        <div className="container mx-auto px-4">
+      <VariantSection animation="page">
+        <VariantContainer>
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold mb-8" data-testid="text-terms-title">
+            <VariantHeading level="hero" as="h1" className="mb-8" data-testid="text-terms-title">
               {t('legal.terms.title')}
-            </h1>
-            <div className="prose prose-slate dark:prose-invert max-w-none">
+            </VariantHeading>
+            <VariantProseContent>
               <p className="text-lg text-muted-foreground mb-8">
                 {t('legal.terms.lastUpdated')}
               </p>
@@ -119,10 +123,10 @@ export default function TermsPage() {
                   {t('legal.terms.section11.content')}
                 </p>
               </section>
-            </div>
+            </VariantProseContent>
           </div>
-        </div>
-      </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }

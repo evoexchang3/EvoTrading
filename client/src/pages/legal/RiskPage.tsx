@@ -2,9 +2,13 @@ import { LandingLayout } from "@/components/LandingLayout";
 import { AlertTriangle } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
+import { VariantSection, VariantContainer, VariantHeading, VariantText } from "@/components/variant";
+import { VariantProseContent } from "@/components/variant/VariantProseContent";
+import { useVariantClasses } from "@/layouts/shared/useVariant";
 
 export default function RiskPage() {
   const { t } = useLanguage();
+  const classes = useVariantClasses();
 
   return (
     <LandingLayout>
@@ -13,22 +17,22 @@ export default function RiskPage() {
         description={t('legal.risk.seo.description')}
         keywords={t('legal.risk.seo.keywords')}
       />
-      <div className="py-20">
-        <div className="container mx-auto px-4">
+      <VariantSection animation="page">
+        <VariantContainer>
           <div className="max-w-4xl mx-auto">
             <div className="flex items-start gap-4 mb-8">
               <AlertTriangle className="h-10 w-10 text-destructive flex-shrink-0" />
               <div>
-                <h1 className="text-4xl font-bold mb-2" data-testid="text-risk-title">
+                <VariantHeading level="hero" as="h1" className="mb-2" data-testid="text-risk-title">
                   {t('legal.risk.title')}
-                </h1>
-                <p className="text-lg text-muted-foreground">
+                </VariantHeading>
+                <VariantText className="text-muted-foreground">
                   {t('legal.risk.subtitle')}
-                </p>
+                </VariantText>
               </div>
             </div>
 
-            <div className="prose prose-slate dark:prose-invert max-w-none">
+            <VariantProseContent>
               <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4">{t('legal.risk.generalWarning.title')}</h2>
                 <p className="text-muted-foreground mb-4">
@@ -172,10 +176,10 @@ export default function RiskPage() {
                   {t('legal.risk.importantNotice.content')}
                 </p>
               </section>
-            </div>
+            </VariantProseContent>
           </div>
-        </div>
-      </div>
+        </VariantContainer>
+      </VariantSection>
     </LandingLayout>
   );
 }
