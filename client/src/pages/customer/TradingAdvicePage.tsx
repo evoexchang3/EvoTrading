@@ -162,7 +162,7 @@ export default function TradingAdvicePage() {
             {services.map((service) => {
               const Icon = service.icon;
               return (
-                <Card key={service.title} data-testid={`card-service-${service.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                <VariantCard key={service.title} data-testid={`card-service-${service.title.toLowerCase().replace(/\s+/g, '-')}`}>
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
                       <div className="p-3 bg-primary/10 rounded-lg">
@@ -203,13 +203,13 @@ export default function TradingAdvicePage() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               );
             })}
           </div>
 
           {/* Signal Performance History */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <LineChart className="w-5 h-5 text-primary" />
@@ -246,10 +246,10 @@ export default function TradingAdvicePage() {
                 {t('customer.tradingAdvice.performance.disclaimer')}
               </p>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Educational Resources */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-primary" />
@@ -275,10 +275,10 @@ export default function TradingAdvicePage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Risk Disclaimers */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <Shield className="w-6 h-6 text-amber-500" />
@@ -326,10 +326,10 @@ export default function TradingAdvicePage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* FAQ Section */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
@@ -348,13 +348,13 @@ export default function TradingAdvicePage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Account Type Comparison */}
           <div className="bg-muted rounded-lg p-8 mb-12">
             <h2 className="text-2xl font-bold mb-6 text-center">{t('customer.tradingAdvice.accountComparison.title')}</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <Card>
+              <VariantCard>
                 <CardHeader>
                   <CardTitle>{t('customer.tradingAdvice.accountComparison.standard.title')}</CardTitle>
                   <CardDescription>{t('customer.tradingAdvice.accountComparison.standard.description')}</CardDescription>
@@ -366,9 +366,9 @@ export default function TradingAdvicePage() {
                   <p>✓ {t('customer.tradingAdvice.accountComparison.standard.feature4')}</p>
                   <p>✓ {t('customer.tradingAdvice.accountComparison.standard.feature5')}</p>
                 </CardContent>
-              </Card>
+              </VariantCard>
 
-              <Card className="border-primary">
+              <VariantCard className="border-primary">
                 <CardHeader>
                   <Badge className="mb-2">{t('customer.tradingAdvice.accountComparison.professional.mostPopular')}</Badge>
                   <CardTitle>{t('customer.tradingAdvice.accountComparison.professional.title')}</CardTitle>
@@ -382,9 +382,9 @@ export default function TradingAdvicePage() {
                   <p>✓ {t('customer.tradingAdvice.accountComparison.professional.feature5')}</p>
                   <p>✓ {t('customer.tradingAdvice.accountComparison.professional.feature6')}</p>
                 </CardContent>
-              </Card>
+              </VariantCard>
 
-              <Card>
+              <VariantCard>
                 <CardHeader>
                   <CardTitle>{t('customer.tradingAdvice.accountComparison.vip.title')}</CardTitle>
                   <CardDescription>{t('customer.tradingAdvice.accountComparison.vip.description')}</CardDescription>
@@ -398,7 +398,7 @@ export default function TradingAdvicePage() {
                   <p>✓ {t('customer.tradingAdvice.accountComparison.vip.feature6')}</p>
                   <p>✓ {t('customer.tradingAdvice.accountComparison.vip.feature7')}</p>
                 </CardContent>
-              </Card>
+              </VariantCard>
             </div>
           </div>
 

@@ -213,7 +213,7 @@ export default function TradingSignalsPage() {
             </div>
 
           {/* Signal Example */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <Bell className="w-6 h-6 text-primary" />
@@ -277,7 +277,7 @@ export default function TradingSignalsPage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Signal Components */}
           <div className="mb-12">
@@ -286,7 +286,7 @@ export default function TradingSignalsPage() {
               {signalComponents.map((component) => {
                 const Icon = component.icon;
                 return (
-                  <Card key={component.title} data-testid={`card-component-${component.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <VariantCard key={component.title} data-testid={`card-component-${component.title.toLowerCase().replace(/\s+/g, '-')}`}>
                     <CardHeader>
                       <div className="flex items-center gap-3">
                         <div className="p-2 bg-primary/10 rounded-lg">
@@ -304,14 +304,14 @@ export default function TradingSignalsPage() {
                     <CardContent>
                       <p className="text-sm text-muted-foreground">{component.details}</p>
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 );
               })}
             </div>
           </div>
 
           {/* Signal Types */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Activity className="w-5 h-5 text-primary" />
@@ -353,10 +353,10 @@ export default function TradingSignalsPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Signal Quality Evaluation */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-primary" />
@@ -380,10 +380,10 @@ export default function TradingSignalsPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Using Signals */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <CardTitle>{t('marketInfo.tradingSignals.using.title')}</CardTitle>
               <CardDescription>{t('marketInfo.tradingSignals.using.description')}</CardDescription>
@@ -408,10 +408,10 @@ export default function TradingSignalsPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* FAQ */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
@@ -430,7 +430,7 @@ export default function TradingSignalsPage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Warning */}
           <Alert className="mb-8">

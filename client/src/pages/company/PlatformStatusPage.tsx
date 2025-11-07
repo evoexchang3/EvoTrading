@@ -347,7 +347,7 @@ export default function PlatformStatusPage() {
               {systemStatus.map((system, index) => {
                 const StatusIcon = getStatusIcon(system.status);
                 return (
-                  <Card key={index} data-testid={`card-system-${index}`}>
+                  <VariantCard key={index} data-testid={`card-system-${index}`}>
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3 flex-1">
@@ -366,7 +366,7 @@ export default function PlatformStatusPage() {
                         <span className="text-muted-foreground">{system.lastChecked}</span>
                       </div>
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 );
               })}
             </div>
@@ -377,7 +377,7 @@ export default function PlatformStatusPage() {
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.platformStatus.maintenance.title')}</VariantHeading>
             <div className="space-y-4">
               {maintenanceSchedule.map((maintenance, index) => (
-                <Card key={index} data-testid={`card-maintenance-${index}`}>
+                <VariantCard key={index} data-testid={`card-maintenance-${index}`}>
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -410,7 +410,7 @@ export default function PlatformStatusPage() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
@@ -418,7 +418,7 @@ export default function PlatformStatusPage() {
           {/* Incident History */}
           <div className="mb-12">
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.platformStatus.incidents.title')}</VariantHeading>
-            <Card data-testid="card-incidents">
+            <VariantCard data-testid="card-incidents">
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
                   <table className="w-full">
@@ -457,7 +457,7 @@ export default function PlatformStatusPage() {
                   </table>
                 </div>
               </CardContent>
-            </Card>
+            </VariantCard>
 
             {/* Incident Details Accordion */}
             <div className="mt-4">

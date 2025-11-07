@@ -257,7 +257,7 @@ export default function SafetyOfFundsPage() {
           {/* Segregation Explanation */}
           <div className="mb-12">
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.safetyOfFunds.segregation.title')}</VariantHeading>
-            <Card className="mb-6" data-testid="card-segregation-overview">
+            <VariantCard className="mb-6" data-testid="card-segregation-overview">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Lock className="w-5 h-5 text-primary" />
@@ -282,13 +282,13 @@ export default function SafetyOfFundsPage() {
                   ))}
                 </div>
               </CardContent>
-            </Card>
+            </VariantCard>
 
             {/* Bank Partners */}
             <VariantHeading level="heading" as="h3" className="mb-4">{t('company.safetyOfFunds.segregation.bankPartnersTitle')}</VariantHeading>
             <div className="grid md:grid-cols-2 gap-4">
               {segregationDetails.banks.map((bank, index) => (
-                <Card key={index} data-testid={`card-bank-${index}`}>
+                <VariantCard key={index} data-testid={`card-bank-${index}`}>
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -308,7 +308,7 @@ export default function SafetyOfFundsPage() {
                       <p className="font-medium">{bank.protection}</p>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
@@ -318,7 +318,7 @@ export default function SafetyOfFundsPage() {
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.safetyOfFunds.compensation.title')}</VariantHeading>
             <div className="space-y-6">
               {compensationSchemes.map((scheme, index) => (
-                <Card key={index} data-testid={`card-compensation-${index}`}>
+                <VariantCard key={index} data-testid={`card-compensation-${index}`}>
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
@@ -350,7 +350,7 @@ export default function SafetyOfFundsPage() {
                       </p>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
@@ -358,7 +358,7 @@ export default function SafetyOfFundsPage() {
           {/* Negative Balance Protection */}
           <div className="mb-12">
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.safetyOfFunds.nbp.title')}</VariantHeading>
-            <Card className="mb-6" data-testid="card-nbp-overview">
+            <VariantCard className="mb-6" data-testid="card-nbp-overview">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <TrendingDown className="w-5 h-5 text-primary" />
@@ -413,7 +413,7 @@ export default function SafetyOfFundsPage() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </VariantCard>
           </div>
 
           {/* Warning Alert */}

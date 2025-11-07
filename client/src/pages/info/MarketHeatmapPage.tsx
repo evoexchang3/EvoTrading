@@ -250,7 +250,7 @@ export default function MarketHeatmapPage() {
             {heatmapTypes.map((type) => {
               const Icon = type.icon;
               return (
-                <Card key={type.title} data-testid={`card-heatmap-${type.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                <VariantCard key={type.title} data-testid={`card-heatmap-${type.title.toLowerCase().replace(/\s+/g, '-')}`}>
                   <CardHeader>
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">
@@ -287,13 +287,13 @@ export default function MarketHeatmapPage() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               );
             })}
           </div>
 
           {/* Interpretation Guide */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Eye className="w-5 h-5 text-primary" />
@@ -321,10 +321,10 @@ export default function MarketHeatmapPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Trading Strategies */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Zap className="w-5 h-5 text-primary" />
@@ -361,10 +361,10 @@ export default function MarketHeatmapPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Pro Tips */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <CardTitle>{t('marketInfo.marketHeatmap.tips.title')}</CardTitle>
             </CardHeader>
@@ -381,10 +381,10 @@ export default function MarketHeatmapPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* FAQ */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
@@ -403,7 +403,7 @@ export default function MarketHeatmapPage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">

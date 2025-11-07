@@ -268,7 +268,7 @@ export default function PaymentMethodsPage() {
             {paymentMethods.map((category) => {
               const Icon = category.icon;
               return (
-                <Card key={category.category} data-testid={`card-payment-${category.category.toLowerCase().replace(/\s+/g, '-')}`}>
+                <VariantCard key={category.category} data-testid={`card-payment-${category.category.toLowerCase().replace(/\s+/g, '-')}`}>
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -327,7 +327,7 @@ export default function PaymentMethodsPage() {
                       ))}
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               );
             })}
           </div>
@@ -335,7 +335,7 @@ export default function PaymentMethodsPage() {
 
           {/* Step by Step Guide */}
           {paymentMethods.length > 0 && (
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <CardTitle>📝 {t('customer.paymentMethods.guide.title')}</CardTitle>
               <CardDescription>{t('customer.paymentMethods.guide.description')}</CardDescription>
@@ -379,7 +379,7 @@ export default function PaymentMethodsPage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
           )}
 
           {/* Important Notices */}
@@ -403,7 +403,7 @@ export default function PaymentMethodsPage() {
 
           {/* FAQ Section */}
           {paymentMethods.length > 0 && (
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
@@ -422,7 +422,7 @@ export default function PaymentMethodsPage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
           )}
 
           {/* CTA Section */}

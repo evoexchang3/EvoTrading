@@ -134,6 +134,7 @@ export default function AdminConfigPage() {
 
       // Reload config to get fresh data
       await reloadConfig();
+      initialized.current = false;
       
       // Clear preview if active
       setPreviewVariant(null);

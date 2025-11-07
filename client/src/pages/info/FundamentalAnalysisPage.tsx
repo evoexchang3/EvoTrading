@@ -285,7 +285,7 @@ export default function FundamentalAnalysisPage() {
             {factors.map((factor) => {
               const Icon = factor.icon;
               return (
-                <Card key={factor.title} data-testid={`card-factor-${factor.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                <VariantCard key={factor.title} data-testid={`card-factor-${factor.title.toLowerCase().replace(/\s+/g, '-')}`}>
                   <CardHeader>
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">
@@ -311,13 +311,13 @@ export default function FundamentalAnalysisPage() {
                       ))}
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               );
             })}
           </div>
 
           {/* Economic Calendar */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-primary" />
@@ -350,10 +350,10 @@ export default function FundamentalAnalysisPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Correlations */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <CardTitle>{t('marketInfo.fundamentalAnalysis.correlations.title')}</CardTitle>
               <CardDescription>{t('marketInfo.fundamentalAnalysis.correlations.description')}</CardDescription>
@@ -373,11 +373,11 @@ export default function FundamentalAnalysisPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* How to Use */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-primary" />
@@ -410,9 +410,9 @@ export default function FundamentalAnalysisPage() {
                   <p><strong>{t('marketInfo.fundamentalAnalysis.workflow.step6')}</strong></p>
                 </div>
               </CardContent>
-            </Card>
+            </VariantCard>
 
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <AlertTriangle className="w-5 h-5 text-amber-500" />
@@ -437,11 +437,11 @@ export default function FundamentalAnalysisPage() {
                   <p className="text-muted-foreground">{t('marketInfo.fundamentalAnalysis.mistakes.pricedIn.description')}</p>
                 </div>
               </CardContent>
-            </Card>
+            </VariantCard>
           </div>
 
           {/* FAQ */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
@@ -460,7 +460,7 @@ export default function FundamentalAnalysisPage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">

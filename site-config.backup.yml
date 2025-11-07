@@ -40,7 +40,7 @@ branding:
       companyName: ''
       supportEmail: ''
 layout:
-  activeVariant: sapphire-finance
+  activeVariant: arctic-minimal
   stickyHeader: true
   showFooter: true
   compactMode: false

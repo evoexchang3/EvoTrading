@@ -288,7 +288,7 @@ export default function RegulatoryPage() {
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.regulatory.licenses.title')}</VariantHeading>
             <div className="grid md:grid-cols-2 gap-6">
               {regulatoryBodies.map((regulator, index) => (
-                <Card key={index} data-testid={`card-regulator-${index}`}>
+                <VariantCard key={index} data-testid={`card-regulator-${index}`}>
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
@@ -321,7 +321,7 @@ export default function RegulatoryPage() {
                       </ul>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
@@ -331,7 +331,7 @@ export default function RegulatoryPage() {
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.regulatory.compliance.title')}</VariantHeading>
             <div className="grid md:grid-cols-2 gap-6">
               {complianceFramework.map((framework, index) => (
-                <Card key={index} data-testid={`card-compliance-${index}`}>
+                <VariantCard key={index} data-testid={`card-compliance-${index}`}>
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
                       <Scale className="w-5 h-5 text-primary" />
@@ -349,13 +349,13 @@ export default function RegulatoryPage() {
                       ))}
                     </ul>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
 
           {/* Audit & Reporting */}
-          <Card className="mb-12" data-testid="card-audit-reporting">
+          <VariantCard className="mb-12" data-testid="card-audit-reporting">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-primary" />
@@ -391,7 +391,7 @@ export default function RegulatoryPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Warning Alert */}
           <Alert className="mb-12 border-amber-500/50" data-testid="alert-warning">

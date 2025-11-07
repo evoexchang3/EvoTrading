@@ -173,7 +173,7 @@ export default function VerificationPage() {
               {steps.map((step) => {
                 const Icon = step.icon;
                 return (
-                  <Card key={step.number} data-testid={`card-step-${step.number}`}>
+                  <VariantCard key={step.number} data-testid={`card-step-${step.number}`}>
                     <CardHeader>
                       <div className="flex items-center gap-3 mb-2">
                         <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
@@ -191,7 +191,7 @@ export default function VerificationPage() {
                         <span>{t('customer.verification.estimatedTime', { time: step.time })}</span>
                       </div>
                     </CardContent>
-                  </Card>
+                  </VariantCard>
                 );
               })}
             </div>
@@ -199,7 +199,7 @@ export default function VerificationPage() {
 
           {/* Document Requirements */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <FileCheck className="w-5 h-5 text-primary" />
@@ -219,9 +219,9 @@ export default function VerificationPage() {
                   ))}
                 </ul>
               </CardContent>
-            </Card>
+            </VariantCard>
 
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <FileCheck className="w-5 h-5 text-primary" />
@@ -247,11 +247,11 @@ export default function VerificationPage() {
                   </AlertDescription>
                 </Alert>
               </CardContent>
-            </Card>
+            </VariantCard>
           </div>
 
           {/* Photo Guidelines */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Camera className="w-5 h-5 text-primary" />
@@ -283,10 +283,10 @@ export default function VerificationPage() {
                 </ul>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Common Issues & Solutions */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-amber-500" />
@@ -309,11 +309,11 @@ export default function VerificationPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Why Verification */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <Shield className="w-8 h-8 text-primary mb-2" />
                 <CardTitle className="text-lg">{t('customer.verification.whyVerify.regulatory.title')}</CardTitle>
@@ -323,9 +323,9 @@ export default function VerificationPage() {
                   {t('customer.verification.whyVerify.regulatory.description')}
                 </p>
               </CardContent>
-            </Card>
+            </VariantCard>
 
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <Shield className="w-8 h-8 text-primary mb-2" />
                 <CardTitle className="text-lg">{t('customer.verification.whyVerify.security.title')}</CardTitle>
@@ -335,9 +335,9 @@ export default function VerificationPage() {
                   {t('customer.verification.whyVerify.security.description')}
                 </p>
               </CardContent>
-            </Card>
+            </VariantCard>
 
-            <Card>
+            <VariantCard>
               <CardHeader>
                 <TrendingUp className="w-8 h-8 text-primary mb-2" />
                 <CardTitle className="text-lg">{t('customer.verification.whyVerify.features.title')}</CardTitle>
@@ -347,11 +347,11 @@ export default function VerificationPage() {
                   {t('customer.verification.whyVerify.features.description')}
                 </p>
               </CardContent>
-            </Card>
+            </VariantCard>
           </div>
 
           {/* FAQ Section */}
-          <Card className="mb-12">
+          <VariantCard className="mb-12">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-primary" />
@@ -370,7 +370,7 @@ export default function VerificationPage() {
                 ))}
               </Accordion>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-8 text-center">

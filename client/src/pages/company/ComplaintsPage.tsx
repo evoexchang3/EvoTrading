@@ -265,7 +265,7 @@ export default function ComplaintsPage() {
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.complaints.resolutionProcess.title')}</VariantHeading>
             <div className="space-y-6">
               {resolutionProcess.map((level, index) => (
-                <Card key={index} data-testid={`card-level-${index}`}>
+                <VariantCard key={index} data-testid={`card-level-${index}`}>
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-3 flex-1">
@@ -306,13 +306,13 @@ export default function ComplaintsPage() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
 
           {/* Escalation Timeline */}
-          <Card className="mb-12" data-testid="card-timeline">
+          <VariantCard className="mb-12" data-testid="card-timeline">
             <CardHeader>
               <CardTitle>{t('company.complaints.timeline.title')}</CardTitle>
               <CardDescription>{t('company.complaints.timeline.description')}</CardDescription>
@@ -333,14 +333,14 @@ export default function ComplaintsPage() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* Complaint Categories */}
           <div className="mb-12">
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.complaints.categories.title')}</VariantHeading>
             <div className="grid md:grid-cols-2 gap-6">
               {complaintCategories.map((category, index) => (
-                <Card key={index} data-testid={`card-category-${index}`}>
+                <VariantCard key={index} data-testid={`card-category-${index}`}>
                   <CardHeader>
                     <CardTitle className="text-lg">{category.category}</CardTitle>
                   </CardHeader>
@@ -363,13 +363,13 @@ export default function ComplaintsPage() {
                       </p>
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
 
           {/* Contact Card */}
-          <Card className="mb-12 bg-primary/5" data-testid="card-contact">
+          <VariantCard className="mb-12 bg-primary/5" data-testid="card-contact">
             <CardHeader>
               <CardTitle>{t('company.complaints.contactCard.title')}</CardTitle>
               <CardDescription>{t('company.complaints.contactCard.description')}</CardDescription>
@@ -393,7 +393,7 @@ export default function ComplaintsPage() {
                 </Button>
               </div>
             </CardContent>
-          </Card>
+          </VariantCard>
 
           {/* FAQ Section */}
           <div>

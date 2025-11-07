@@ -334,7 +334,7 @@ export default function SecurityPage() {
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.security.measures.title')}</VariantHeading>
             <div className="space-y-6">
               {securityMeasures.map((measure, index) => (
-                <Card key={index} data-testid={`card-measure-${index}`}>
+                <VariantCard key={index} data-testid={`card-measure-${index}`}>
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -354,7 +354,7 @@ export default function SecurityPage() {
                       ))}
                     </div>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
@@ -364,7 +364,7 @@ export default function SecurityPage() {
             <VariantHeading level="heading" as="h2" className="mb-6">{t('company.security.dataProtection.title')}</VariantHeading>
             <div className="space-y-6">
               {dataProtection.map((section, index) => (
-                <Card key={index} data-testid={`card-protection-${index}`}>
+                <VariantCard key={index} data-testid={`card-protection-${index}`}>
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-3">
                       <FileCheck className="w-5 h-5 text-primary" />
@@ -382,7 +382,7 @@ export default function SecurityPage() {
                       ))}
                     </ul>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
@@ -395,7 +395,7 @@ export default function SecurityPage() {
             </p>
             <div className="space-y-6">
               {userResponsibilities.map((practice, index) => (
-                <Card key={index} data-testid={`card-practice-${index}`}>
+                <VariantCard key={index} data-testid={`card-practice-${index}`}>
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -415,7 +415,7 @@ export default function SecurityPage() {
                       ))}
                     </ul>
                   </CardContent>
-                </Card>
+                </VariantCard>
               ))}
             </div>
           </div>
