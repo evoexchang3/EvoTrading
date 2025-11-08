@@ -12,6 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Save, RefreshCw, Eye, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { VariantPreviewCard } from "@/components/admin/VariantPreviewCard";
 
 const layoutVariants = [
   { value: "bloomberg-dark", label: "Bloomberg Dark", description: "Professional charcoal with blue accents" },
@@ -256,43 +257,15 @@ export default function AdminConfigPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {layoutVariants.map((variant) => (
-                  <Card
+                  <VariantPreviewCard
                     key={variant.value}
-                    className={`cursor-pointer transition-all hover-elevate ${
-                      formData.activeVariant === variant.value ? "ring-2 ring-primary" : ""
-                    }`}
-                    onClick={() => setFormData({ ...formData, activeVariant: variant.value })}
-                    data-testid={`card-layout-${variant.value}`}
-                  >
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-sm flex items-center justify-between">
-                        {variant.label}
-                        {formData.activeVariant === variant.value && (
-                          <Badge variant="default" className="ml-2">Active</Badge>
-                        )}
-                      </CardTitle>
-                      <CardDescription className="text-xs">
-                        {variant.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="w-full"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handlePreview(variant.value);
-                        }}
-                        data-testid={`button-preview-${variant.value}`}
-                      >
-                        <Eye className="h-3 w-3 mr-1" />
-                        Preview
-                      </Button>
-                    </CardContent>
-                  </Card>
+                    variant={variant}
+                    isActive={formData.activeVariant === variant.value}
+                    onSelect={() => setFormData({ ...formData, activeVariant: variant.value })}
+                    onPreview={() => handlePreview(variant.value)}
+                  />
                 ))}
               </div>
             </CardContent>

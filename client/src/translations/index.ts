@@ -147,7 +147,72 @@ export const validLanguages: Language[] = [
   'uk', 'id', 'et', 'lt', 'lv', 'sk', 'sl'
 ];
 
-// Helper to detect browser language
+// Regional grouping for language organization
+export type LanguageRegion = 'Popular' | 'European' | 'Asian' | 'Middle Eastern' | 'Other';
+
+export const languageRegions: Record<Language, LanguageRegion> = {
+  // Popular (most commonly used)
+  'en': 'Popular',
+  'en-GB': 'Popular',
+  'zh-CN': 'Popular',
+  'es': 'Popular',
+  'de': 'Popular',
+  'fr': 'Popular',
+  'ja': 'Popular',
+  'ru': 'Popular',
+  
+  // European
+  'it': 'European',
+  'nl': 'European',
+  'pl': 'European',
+  'pt-BR': 'European',
+  'pt-PT': 'European',
+  'sv': 'European',
+  'da': 'European',
+  'fi': 'European',
+  'nb': 'European',
+  'cs': 'European',
+  'ro': 'European',
+  'hu': 'European',
+  'el': 'European',
+  'bg': 'European',
+  'uk': 'European',
+  'et': 'European',
+  'lt': 'European',
+  'lv': 'European',
+  'sk': 'European',
+  'sl': 'European',
+  
+  // Asian
+  'zh-TW': 'Asian',
+  'ko': 'Asian',
+  'vi': 'Asian',
+  'id': 'Asian',
+  
+  // Middle Eastern
+  'ar': 'Middle Eastern',
+  'he': 'Middle Eastern',
+  'tr': 'Middle Eastern',
+};
+
+// Get languages grouped by region in display order
+export const getLanguagesByRegion = (): Record<LanguageRegion, Language[]> => {
+  const groups: Record<LanguageRegion, Language[]> = {
+    'Popular': [],
+    'European': [],
+    'Asian': [],
+    'Middle Eastern': [],
+    'Other': []
+  };
+  
+  validLanguages.forEach(lang => {
+    const region = languageRegions[lang] || 'Other';
+    groups[region].push(lang);
+  });
+  
+  return groups;
+};
+
 export const detectBrowserLanguage = (): Language => {
   const browserLang = navigator.language || 'en';
   

@@ -946,6 +946,104 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Get default configuration
+  app.get("/api/admin/site-config/defaults", authenticateToken, requireAdmin, async (req: AuthRequest, res) => {
+    try {
+      // Import DEFAULT_SITE_CONFIG from shared module
+      const { DEFAULT_SITE_CONFIG } = await import("../shared/site-config.js");
+      
+      await AuditService.log({
+        userId: req.user!.id,
+        action: "export",
+        entity: "site_config",
+        entityId: "defaults",
+        details: { action: "view_default_config" },
+        ipAddress: req.ip,
+        userAgent: req.headers['user-agent'],
+      });
+      
+      res.json(DEFAULT_SITE_CONFIG);
+    } catch (error: any) {
+      console.error("Failed to load default config:", error);
+      res.status(500).json({ message: "Failed to load default configuration" });
+    }
+  });
+
+  // Reset configuration to defaults
+  app.post("/api/admin/site-config/reset", authenticateToken, requireAdmin, async (req: AuthRequest, res) => {
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      const yaml = await import("js-yaml");
+      const { DEFAULT_SITE_CONFIG } = await import("../shared/site-config.js");
+      
+      const { section } = req.body; // Optional: reset specific section only
+      
+      const configPath = process.env.SITE_CONFIG_PATH || path.resolve(process.cwd(), "site-config.yml");
+      const backupPath = process.env.SITE_CONFIG_PATH 
+        ? path.dirname(process.env.SITE_CONFIG_PATH) + '/site-config.backup-reset.yml'
+        : path.resolve(process.cwd(), "site-config.backup-reset.yml");
+      
+      // Create backup before reset
+      if (fs.existsSync(configPath)) {
+        const currentConfig = fs.readFileSync(configPath, "utf8");
+        fs.writeFileSync(backupPath, currentConfig, "utf8");
+      }
+      
+      let newConfig;
+      
+      if (section) {
+        // Reset specific section only
+        const currentConfigContents = fs.readFileSync(configPath, "utf8");
+        const currentConfig = yaml.load(currentConfigContents) as any;
+        
+        if (section in DEFAULT_SITE_CONFIG) {
+          currentConfig[section] = (DEFAULT_SITE_CONFIG as any)[section];
+          newConfig = currentConfig;
+        } else {
+          return res.status(400).json({ message: `Invalid section: ${section}` });
+        }
+      } else {
+        // Full reset
+        newConfig = DEFAULT_SITE_CONFIG;
+      }
+      
+      // Write reset config
+      const yamlContent = yaml.dump(newConfig, {
+        indent: 2,
+        lineWidth: 100,
+        noRefs: true,
+      });
+      
+      fs.writeFileSync(configPath, yamlContent, "utf8");
+      
+      // Log reset action
+      await AuditService.log({
+        userId: req.user!.id,
+        action: "delete",
+        entity: "site_config",
+        entityId: "site-config.yml",
+        details: { 
+          action: section ? "reset_section" : "reset_full",
+          section: section || "all",
+          backupCreated: true,
+          backupPath,
+        },
+        ipAddress: req.ip,
+        userAgent: req.headers['user-agent'],
+      });
+      
+      res.json({ 
+        message: section ? `Section '${section}' reset to defaults` : "Configuration reset to defaults",
+        config: newConfig,
+        backup: backupPath
+      });
+    } catch (error: any) {
+      console.error("Failed to reset config:", error);
+      res.status(500).json({ message: "Failed to reset configuration" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

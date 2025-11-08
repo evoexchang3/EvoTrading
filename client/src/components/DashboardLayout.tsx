@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { LanguageCommand } from "@/components/LanguageCommand";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/hooks/useLanguage";
 import { cn } from "@/lib/utils";
@@ -151,7 +151,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcher />
+          <LanguageCommand />
           <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

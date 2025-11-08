@@ -7,7 +7,7 @@ import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
 import { Home, BarChart3, Building2, Mail, LogIn, UserPlus } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { LanguageCommand } from '@/components/LanguageCommand';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function IconRailNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
@@ -41,7 +41,7 @@ export default function IconRailNav({ variant, companyName, supportEmail, langua
 
         <div className="flex-1" />
 
-        <LanguageSwitcher />
+        <LanguageCommand />
         <ThemeToggle />
 
         <Tooltip>

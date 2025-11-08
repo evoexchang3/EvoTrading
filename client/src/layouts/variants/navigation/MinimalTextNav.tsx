@@ -5,7 +5,7 @@
 
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { LanguageCommand } from '@/components/LanguageCommand';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function MinimalTextNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
@@ -34,7 +34,7 @@ export default function MinimalTextNav({ variant, companyName, supportEmail, lan
                 </span>
               </Link>
             ))}
-            <LanguageSwitcher />
+            <LanguageCommand />
             <ThemeToggle />
             <Link href="/login" data-testid="button-login">
               <span className="text-sm tracking-wide opacity-60 hover:opacity-100 transition-opacity">{t('nav.login')}</span>

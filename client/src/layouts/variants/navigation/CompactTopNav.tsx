@@ -8,7 +8,7 @@ import { NavigationProps } from './index';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { LanguageCommand } from '@/components/LanguageCommand';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function CompactTopNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
@@ -40,7 +40,7 @@ export default function CompactTopNav({ variant, companyName, supportEmail, lang
                 </span>
               </Link>
             ))}
-            <LanguageSwitcher />
+            <LanguageCommand />
             <ThemeToggle />
             <Link href="/login">
               <Button size="sm" variant="outline" data-testid="button-login">
@@ -74,7 +74,7 @@ export default function CompactTopNav({ variant, companyName, supportEmail, lang
                 </Link>
               ))}
               <div className="flex items-center justify-center gap-2 pt-2 pb-2">
-                <LanguageSwitcher />
+                <LanguageCommand />
                 <ThemeToggle />
               </div>
               <div className="flex gap-2">

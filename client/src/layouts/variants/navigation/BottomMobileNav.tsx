@@ -7,7 +7,7 @@ import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
 import { Home, BarChart3, Building2, Mail, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { LanguageCommand } from '@/components/LanguageCommand';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function BottomMobileNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
@@ -29,7 +29,7 @@ export default function BottomMobileNav({ variant, companyName, supportEmail, la
             <span className="text-lg font-bold">{companyName}</span>
           </Link>
           <div className="flex items-center gap-2">
-            <LanguageSwitcher />
+            <LanguageCommand />
             <ThemeToggle />
             <Link href="/login">
               <Button size="sm" variant="ghost" data-testid="button-login">

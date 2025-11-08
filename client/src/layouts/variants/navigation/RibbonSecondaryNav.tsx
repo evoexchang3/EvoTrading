@@ -6,7 +6,7 @@
 import { Link, useLocation } from 'wouter';
 import { NavigationProps } from './index';
 import { Button } from '@/components/ui/button';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { LanguageCommand } from '@/components/LanguageCommand';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function RibbonSecondaryNav({ variant, companyName, supportEmail, language, t }: NavigationProps) {
@@ -40,7 +40,7 @@ export default function RibbonSecondaryNav({ variant, companyName, supportEmail,
                 </Button>
               </Link>
             ))}
-            <LanguageSwitcher />
+            <LanguageCommand />
             <ThemeToggle />
             <Link href="/login">
               <Button size="sm" variant="outline" data-testid="button-login">
