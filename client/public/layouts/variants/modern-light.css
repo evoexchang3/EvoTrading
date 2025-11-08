@@ -1,7 +1,9 @@
-/* Modern Light - Clean white with vibrant CTAs - WCAG AA COMPLIANT */
+/* Modern Light - Clean white with vibrant CTAs - WCAG AA COMPLIANT
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="modern-light"] {
-  /* Force light mode variables */
   --background: 0 0% 100%;
   --foreground: 222 15% 12%;
   --border: 210 12% 88%;
@@ -9,7 +11,7 @@
   --card-foreground: 222 15% 12%;
   --card-border: 210 12% 92%;
   
-  --primary: 210 70% 48%; /* Reduced from 95% to 70% */
+  --primary: 210 70% 48%;
   --primary-foreground: 0 0% 100%;
   
   --secondary: 210 8% 89%;
@@ -21,19 +23,55 @@
   --accent: 210 12% 88%;
   --accent-foreground: 222 15% 12%;
   
-  --destructive: 0 80% 52%;
-  --destructive-foreground: 0 80% 98%;
+  --destructive: 0 70% 52%;
+  --destructive-foreground: 0 0% 100%;
   
-  --ring: 210 70% 48%; /* Reduced from 95% to 70% */
+  --ring: 210 70% 48%;
   
   --chart-1: 142 70% 35%;
-  --chart-2: 0 80% 52%;
-  --chart-3: 210 70% 48%; /* Reduced from 95% */
-  --chart-4: 38 68% 42%; /* Reduced from 88% */
+  --chart-2: 0 70% 52%;
+  --chart-3: 210 70% 48%;
+  --chart-4: 38 68% 42%;
   --chart-5: 280 65% 45%;
   
-  /* Elevation overlays for light mode */
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
   --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="modern-light"] {
+  --background: 222 15% 8%;
+  --foreground: 210 15% 92%;
+  --border: 222 15% 18%;
+  --card: 222 15% 11%;
+  --card-foreground: 210 15% 92%;
+  --card-border: 222 15% 14%;
+  
+  --primary: 210 70% 58%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 222 10% 20%;
+  --secondary-foreground: 210 15% 92%;
+  
+  --muted: 222 12% 18%;
+  --muted-foreground: 222 10% 65%;
+  
+  --accent: 222 15% 20%;
+  --accent-foreground: 210 15% 92%;
+  
+  --destructive: 0 70% 62%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 210 70% 58%;
+  
+  --chart-1: 142 70% 45%;
+  --chart-2: 0 70% 62%;
+  --chart-3: 210 70% 58%;
+  --chart-4: 38 68% 52%;
+  --chart-5: 280 65% 55%;
+  
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(100,150,255, .10);
+  --opaque-button-border-intensity: 9;
 }

@@ -1,5 +1,8 @@
-/* Minimalist Corporate - Ultra-minimal white with navy */
+/* Minimalist Corporate - Ultra-minimal white with navy
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="minimalist-corporate"] {
   --background: 0 0% 100%;
   --foreground: 220 40% 15%;
@@ -21,18 +24,56 @@
   --accent: 220 15% 90%;
   --accent-foreground: 220 40% 15%;
   
-  --destructive: 0 75% 50%;
+  --destructive: 0 70% 50%;
   --destructive-foreground: 0 0% 100%;
   
   --ring: 220 70% 40%;
   
   --chart-1: 142 60% 40%;
-  --chart-2: 0 75% 50%;
+  --chart-2: 0 70% 50%;
   --chart-3: 220 70% 40%;
-  --chart-4: 35 85% 45%;
+  --chart-4: 35 70% 45%;
   --chart-5: 280 60% 45%;
   
   --elevate-1: rgba(0,0,0, .02);
   --elevate-2: rgba(0,0,0, .05);
   --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="minimalist-corporate"] {
+  --background: 220 15% 8%;
+  --foreground: 220 15% 92%;
+  --border: 220 15% 18%;
+  
+  --card: 220 15% 11%;
+  --card-foreground: 220 15% 92%;
+  --card-border: 220 15% 14%;
+  
+  --primary: 220 70% 50%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 220 10% 20%;
+  --secondary-foreground: 220 15% 92%;
+  
+  --muted: 220 10% 18%;
+  --muted-foreground: 220 20% 62%;
+  
+  --accent: 220 15% 22%;
+  --accent-foreground: 220 70% 50%;
+  
+  --destructive: 0 70% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 220 70% 50%;
+  
+  --chart-1: 142 60% 50%;
+  --chart-2: 0 70% 60%;
+  --chart-3: 220 70% 50%;
+  --chart-4: 35 70% 55%;
+  --chart-5: 280 60% 55%;
+  
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(100,150,220, .10);
+  --opaque-button-border-intensity: 9;
 }

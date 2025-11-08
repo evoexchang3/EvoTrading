@@ -1,6 +1,47 @@
-/* Carbon Sleek - Carbon fiber aesthetic with red - WCAG AA COMPLIANT */
+/* Carbon Sleek - Carbon fiber aesthetic with red - WCAG AA COMPLIANT
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="carbon-sleek"] {
+  --background: 0 0% 96%;
+  --foreground: 0 0% 10%;
+  --border: 0 0% 84%;
+  
+  --card: 0 0% 99%;
+  --card-foreground: 0 0% 10%;
+  --card-border: 0 0% 88%;
+  
+  --primary: 0 68% 48%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 0 0% 88%;
+  --secondary-foreground: 0 0% 10%;
+  
+  --muted: 0 0% 90%;
+  --muted-foreground: 0 0% 38%;
+  
+  --accent: 0 0% 86%;
+  --accent-foreground: 0 68% 38%;
+  
+  --destructive: 0 70% 52%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 0 68% 48%;
+  
+  --chart-1: 120 65% 35%;
+  --chart-2: 0 70% 52%;
+  --chart-3: 210 70% 42%;
+  --chart-4: 45 68% 42%;
+  --chart-5: 280 60% 45%;
+  
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(200, 0, 0, .08);
+  --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="carbon-sleek"] {
   --background: 0 0% 8%;
   --foreground: 0 0% 90%;
   --border: 0 0% 18%;
@@ -9,7 +50,7 @@
   --card-foreground: 0 0% 90%;
   --card-border: 0 0% 14%;
   
-  --primary: 0 68% 58%; /* Reduced from 85% to 68% */
+  --primary: 0 68% 58%;
   --primary-foreground: 0 0% 100%;
   
   --secondary: 0 0% 20%;
@@ -19,18 +60,18 @@
   --muted-foreground: 0 0% 64%;
   
   --accent: 0 0% 22%;
-  --accent-foreground: 0 68% 58%; /* Reduced from 85% to 68% */
+  --accent-foreground: 0 68% 58%;
   
-  --destructive: 0 70% 62%; /* Reduced from 90% to 70% */
+  --destructive: 0 70% 62%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 0 68% 58%; /* Reduced from 85% to 68% */
+  --ring: 0 68% 58%;
   
   --chart-1: 120 65% 48%;
-  --chart-2: 0 70% 62%; /* Reduced from 90% */
+  --chart-2: 0 70% 62%;
   --chart-3: 210 70% 52%;
-  --chart-4: 45 68% 52%; /* Reduced from 88% */
-  --chart-5: 280 60% 56%; /* Reduced from 70% */
+  --chart-4: 45 68% 52%;
+  --chart-5: 280 60% 56%;
   
   --elevate-1: rgba(255, 255, 255, .04);
   --elevate-2: rgba(255, 50, 50, .08);

@@ -1,5 +1,8 @@
-/* Nordic Clean - Light gray with Scandinavian minimalism */
+/* Nordic Clean - Light gray with Scandinavian minimalism
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="nordic-clean"] {
   --background: 200 15% 96%;
   --foreground: 200 20% 20%;
@@ -9,7 +12,7 @@
   --card-foreground: 200 20% 20%;
   --card-border: 200 10% 92%;
   
-  --primary: 200 80% 50%;
+  --primary: 200 70% 50%;
   --primary-foreground: 0 0% 100%;
   
   --secondary: 200 10% 90%;
@@ -24,15 +27,53 @@
   --destructive: 0 65% 52%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 200 80% 50%;
+  --ring: 200 70% 50%;
   
   --chart-1: 140 60% 40%;
   --chart-2: 0 65% 52%;
-  --chart-3: 200 80% 50%;
-  --chart-4: 35 80% 48%;
+  --chart-3: 200 70% 50%;
+  --chart-4: 35 70% 48%;
   --chart-5: 270 65% 50%;
   
   --elevate-1: rgba(0, 0, 0, .02);
   --elevate-2: rgba(0, 0, 0, .05);
   --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="nordic-clean"] {
+  --background: 200 15% 10%;
+  --foreground: 200 20% 88%;
+  --border: 200 10% 20%;
+  
+  --card: 200 20% 13%;
+  --card-foreground: 200 20% 88%;
+  --card-border: 200 10% 16%;
+  
+  --primary: 200 70% 60%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 200 10% 22%;
+  --secondary-foreground: 200 20% 88%;
+  
+  --muted: 200 10% 20%;
+  --muted-foreground: 200 15% 62%;
+  
+  --accent: 200 12% 24%;
+  --accent-foreground: 200 70% 60%;
+  
+  --destructive: 0 65% 62%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 200 70% 60%;
+  
+  --chart-1: 140 60% 50%;
+  --chart-2: 0 65% 62%;
+  --chart-3: 200 70% 60%;
+  --chart-4: 35 70% 58%;
+  --chart-5: 270 65% 60%;
+  
+  --elevate-1: rgba(255, 255, 255, .04);
+  --elevate-2: rgba(100, 180, 220, .10);
+  --opaque-button-border-intensity: 9;
 }

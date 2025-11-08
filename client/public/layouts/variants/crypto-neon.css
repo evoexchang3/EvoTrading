@@ -1,37 +1,77 @@
-/* Crypto Neon - Dark with neon green/purple accents - WCAG AA COMPLIANT */
+/* Crypto Neon - Dark with neon green/purple accents - WCAG AA COMPLIANT
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="crypto-neon"] {
+  --background: 240 10% 96%;
+  --foreground: 240 20% 12%;
+  --border: 240 10% 84%;
+  
+  --card: 240 10% 99%;
+  --card-foreground: 240 20% 12%;
+  --card-border: 240 10% 88%;
+  
+  --primary: 280 65% 50%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 240 10% 88%;
+  --secondary-foreground: 240 20% 12%;
+  
+  --muted: 240 10% 90%;
+  --muted-foreground: 240 15% 38%;
+  
+  --accent: 160 65% 42%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 340 70% 52%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 280 65% 50%;
+  
+  --chart-1: 160 65% 40%;
+  --chart-2: 340 70% 52%;
+  --chart-3: 280 65% 50%;
+  --chart-4: 45 70% 48%;
+  --chart-5: 200 65% 45%;
+  
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(100, 0, 150, .08);
+  --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="crypto-neon"] {
   --background: 240 20% 8%;
-  --foreground: 120 45% 75%; /* Reduced from 100% to 45% saturation for eye comfort */
+  --foreground: 120 45% 75%;
   --border: 240 15% 18%;
   
   --card: 240 18% 11%;
-  --card-foreground: 120 45% 75%; /* Reduced from 100% to 45% */
+  --card-foreground: 120 45% 75%;
   --card-border: 240 15% 15%;
   
-  --primary: 280 65% 60%; /* Reduced from 100% to 65% */
+  --primary: 280 65% 60%;
   --primary-foreground: 0 0% 100%;
   
   --secondary: 240 15% 20%;
-  --secondary-foreground: 120 45% 75%; /* Reduced from 100% to 45% */
+  --secondary-foreground: 120 45% 75%;
   
   --muted: 240 15% 18%;
-  --muted-foreground: 120 30% 65%; /* Reduced saturation, increased lightness */
+  --muted-foreground: 120 30% 65%;
   
-  --accent: 160 65% 50%; /* Reduced from 100% to 65%, increased lightness */
+  --accent: 160 65% 50%;
   --accent-foreground: 240 20% 8%;
   
-  --destructive: 340 70% 62%; /* Reduced from 100% to 70% */
+  --destructive: 340 70% 62%;
   --destructive-foreground: 0 0% 100%;
   
   --ring: 280 65% 60%;
   
-  /* Chart colors - reduced saturation for accessibility */
-  --chart-1: 160 65% 50%; /* Was 100% */
-  --chart-2: 340 70% 62%; /* Was 100% */
-  --chart-3: 280 65% 60%; /* Was 100% */
-  --chart-4: 45 70% 58%; /* Was 100% */
-  --chart-5: 200 65% 55%; /* Was 100% */
+  --chart-1: 160 65% 50%;
+  --chart-2: 340 70% 62%;
+  --chart-3: 280 65% 60%;
+  --chart-4: 45 70% 58%;
+  --chart-5: 200 65% 55%;
   
   --elevate-1: rgba(128, 255, 128, .06);
   --elevate-2: rgba(200, 100, 255, .12);

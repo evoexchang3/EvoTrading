@@ -1,6 +1,47 @@
-/* Sapphire Finance - Royal blue with gold details - WCAG AA COMPLIANT */
+/* Sapphire Finance - Royal blue with gold details - WCAG AA COMPLIANT
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="sapphire-finance"] {
+  --background: 45 40% 96%;
+  --foreground: 220 60% 12%;
+  --border: 220 25% 84%;
+  
+  --card: 45 30% 99%;
+  --card-foreground: 220 60% 12%;
+  --card-border: 220 25% 88%;
+  
+  --primary: 45 70% 48%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 220 20% 88%;
+  --secondary-foreground: 220 60% 12%;
+  
+  --muted: 220 20% 90%;
+  --muted-foreground: 220 30% 38%;
+  
+  --accent: 220 60% 42%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 70% 46%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 45 70% 48%;
+  
+  --chart-1: 160 65% 38%;
+  --chart-2: 0 70% 46%;
+  --chart-3: 220 60% 42%;
+  --chart-4: 45 70% 48%;
+  --chart-5: 280 60% 46%;
+  
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(180, 140, 0, .08);
+  --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="sapphire-finance"] {
   --background: 220 60% 10%;
   --foreground: 45 50% 88%;
   --border: 220 50% 20%;
@@ -9,7 +50,7 @@
   --card-foreground: 45 50% 88%;
   --card-border: 220 50% 16%;
   
-  --primary: 45 70% 58%; /* Reduced from 90% to 70% */
+  --primary: 45 70% 58%;
   --primary-foreground: 220 60% 10%;
   
   --secondary: 220 45% 22%;
@@ -18,19 +59,19 @@
   --muted: 220 50% 20%;
   --muted-foreground: 45 30% 65%;
   
-  --accent: 220 60% 52%; /* Reduced from 70% to 60% */
+  --accent: 220 60% 52%;
   --accent-foreground: 0 0% 100%;
   
-  --destructive: 0 75% 56%;
+  --destructive: 0 70% 56%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 45 70% 58%; /* Reduced from 90% to 70% */
+  --ring: 45 70% 58%;
   
   --chart-1: 160 65% 48%;
-  --chart-2: 0 75% 56%;
-  --chart-3: 220 60% 52%; /* Reduced from 70% */
-  --chart-4: 45 70% 58%; /* Reduced from 90% */
-  --chart-5: 280 60% 56%; /* Reduced from 70% */
+  --chart-2: 0 70% 56%;
+  --chart-3: 220 60% 52%;
+  --chart-4: 45 70% 58%;
+  --chart-5: 280 60% 56%;
   
   --elevate-1: rgba(255, 215, 100, .06);
   --elevate-2: rgba(255, 215, 100, .12);

@@ -1,6 +1,47 @@
-/* Midnight Premium - Near-black with purple/silver */
+/* Midnight Premium - Near-black with purple/silver
+ * Supports both light and dark modes - WCAG AA COMPLIANT
+ */
 
+/* Light Mode */
 :root[data-layout="midnight-premium"] {
+  --background: 240 15% 96%;
+  --foreground: 240 14% 12%;
+  --border: 240 12% 84%;
+  
+  --card: 240 10% 98%;
+  --card-foreground: 240 14% 12%;
+  --card-border: 240 12% 88%;
+  
+  --primary: 270 70% 50%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 240 10% 88%;
+  --secondary-foreground: 240 14% 12%;
+  
+  --muted: 240 12% 90%;
+  --muted-foreground: 240 8% 38%;
+  
+  --accent: 0 0% 32%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 340 70% 50%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 270 70% 50%;
+  
+  --chart-1: 160 70% 40%;
+  --chart-2: 340 70% 50%;
+  --chart-3: 270 70% 50%;
+  --chart-4: 40 70% 45%;
+  --chart-5: 200 70% 45%;
+  
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(90, 0, 150, .08);
+  --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="midnight-premium"] {
   --background: 240 15% 6%;
   --foreground: 240 10% 88%;
   --border: 240 12% 16%;
@@ -9,7 +50,7 @@
   --card-foreground: 240 10% 88%;
   --card-border: 240 12% 12%;
   
-  --primary: 270 75% 60%;
+  --primary: 270 70% 60%;
   --primary-foreground: 0 0% 100%;
   
   --secondary: 240 10% 18%;
@@ -21,16 +62,16 @@
   --accent: 0 0% 70%;
   --accent-foreground: 240 15% 6%;
   
-  --destructive: 340 80% 60%;
+  --destructive: 340 70% 60%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 270 75% 60%;
+  --ring: 270 70% 60%;
   
   --chart-1: 160 70% 50%;
-  --chart-2: 340 80% 60%;
-  --chart-3: 270 75% 60%;
-  --chart-4: 40 85% 55%;
-  --chart-5: 200 75% 55%;
+  --chart-2: 340 70% 60%;
+  --chart-3: 270 70% 60%;
+  --chart-4: 40 70% 55%;
+  --chart-5: 200 70% 55%;
   
   --elevate-1: rgba(180, 120, 255, .05);
   --elevate-2: rgba(180, 120, 255, .10);

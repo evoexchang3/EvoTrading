@@ -1,5 +1,8 @@
-/* Terracotta Warm - Earth tones with terracotta/cream */
+/* Terracotta Warm - Earth tones with terracotta/cream
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="terracotta-warm"] {
   --background: 30 25% 94%;
   --foreground: 20 40% 20%;
@@ -29,10 +32,48 @@
   --chart-1: 130 55% 40%;
   --chart-2: 0 68% 50%;
   --chart-3: 15 70% 48%;
-  --chart-4: 40 75% 45%;
+  --chart-4: 40 70% 45%;
   --chart-5: 270 60% 48%;
   
   --elevate-1: rgba(150, 80, 50, .04);
   --elevate-2: rgba(150, 80, 50, .08);
   --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="terracotta-warm"] {
+  --background: 20 25% 10%;
+  --foreground: 30 30% 88%;
+  --border: 20 20% 20%;
+  
+  --card: 20 30% 13%;
+  --card-foreground: 30 30% 88%;
+  --card-border: 20 20% 16%;
+  
+  --primary: 15 70% 58%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 20 15% 22%;
+  --secondary-foreground: 30 30% 88%;
+  
+  --muted: 20 15% 20%;
+  --muted-foreground: 30 25% 62%;
+  
+  --accent: 20 20% 24%;
+  --accent-foreground: 15 70% 58%;
+  
+  --destructive: 0 68% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 15 70% 58%;
+  
+  --chart-1: 130 55% 50%;
+  --chart-2: 0 68% 60%;
+  --chart-3: 15 70% 58%;
+  --chart-4: 40 70% 55%;
+  --chart-5: 270 60% 58%;
+  
+  --elevate-1: rgba(255, 180, 140, .06);
+  --elevate-2: rgba(255, 180, 140, .12);
+  --opaque-button-border-intensity: 9;
 }

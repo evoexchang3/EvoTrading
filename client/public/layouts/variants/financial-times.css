@@ -1,5 +1,8 @@
-/* Financial Times - Newspaper-inspired sepia tones */
+/* Financial Times - Newspaper-inspired sepia tones
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="financial-times"] {
   --background: 40 25% 96%;
   --foreground: 0 0% 10%;
@@ -9,7 +12,7 @@
   --card-foreground: 0 0% 10%;
   --card-border: 40 15% 90%;
   
-  --primary: 15 80% 45%;
+  --primary: 15 70% 45%;
   --primary-foreground: 0 0% 100%;
   
   --secondary: 40 12% 88%;
@@ -24,15 +27,53 @@
   --destructive: 0 70% 45%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 15 80% 45%;
+  --ring: 15 70% 45%;
   
   --chart-1: 120 50% 35%;
   --chart-2: 0 70% 45%;
-  --chart-3: 15 80% 45%;
-  --chart-4: 35 75% 42%;
+  --chart-3: 15 70% 45%;
+  --chart-4: 35 70% 42%;
   --chart-5: 250 60% 45%;
   
   --elevate-1: rgba(139, 90, 43, .04);
   --elevate-2: rgba(139, 90, 43, .08);
   --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="financial-times"] {
+  --background: 40 25% 10%;
+  --foreground: 40 20% 92%;
+  --border: 40 15% 20%;
+  
+  --card: 40 30% 13%;
+  --card-foreground: 40 20% 92%;
+  --card-border: 40 15% 16%;
+  
+  --primary: 15 70% 55%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 40 12% 22%;
+  --secondary-foreground: 40 20% 92%;
+  
+  --muted: 40 15% 20%;
+  --muted-foreground: 0 0% 65%;
+  
+  --accent: 40 20% 24%;
+  --accent-foreground: 15 70% 55%;
+  
+  --destructive: 0 70% 55%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 15 70% 55%;
+  
+  --chart-1: 120 50% 45%;
+  --chart-2: 0 70% 55%;
+  --chart-3: 15 70% 55%;
+  --chart-4: 35 70% 52%;
+  --chart-5: 250 60% 55%;
+  
+  --elevate-1: rgba(255, 200, 140, .06);
+  --elevate-2: rgba(255, 200, 140, .12);
+  --opaque-button-border-intensity: 9;
 }

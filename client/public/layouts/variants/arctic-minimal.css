@@ -1,5 +1,8 @@
-/* Arctic Minimal - Cool blue-grays with ice-blue */
+/* Arctic Minimal - Cool blue-grays with ice-blue
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="arctic-minimal"] {
   --background: 200 25% 95%;
   --foreground: 200 30% 18%;
@@ -9,7 +12,7 @@
   --card-foreground: 200 30% 18%;
   --card-border: 200 15% 90%;
   
-  --primary: 195 85% 48%;
+  --primary: 195 70% 48%;
   --primary-foreground: 0 0% 100%;
   
   --secondary: 200 12% 88%;
@@ -24,15 +27,53 @@
   --destructive: 0 68% 52%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 195 85% 48%;
+  --ring: 195 70% 48%;
   
   --chart-1: 150 60% 42%;
   --chart-2: 0 68% 52%;
-  --chart-3: 195 85% 48%;
-  --chart-4: 35 82% 48%;
+  --chart-3: 195 70% 48%;
+  --chart-4: 35 70% 48%;
   --chart-5: 275 65% 50%;
   
   --elevate-1: rgba(0, 0, 0, .02);
   --elevate-2: rgba(0, 150, 200, .06);
   --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="arctic-minimal"] {
+  --background: 200 25% 12%;
+  --foreground: 200 30% 88%;
+  --border: 200 15% 22%;
+  
+  --card: 200 30% 15%;
+  --card-foreground: 200 30% 88%;
+  --card-border: 200 15% 18%;
+  
+  --primary: 195 70% 58%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 200 12% 24%;
+  --secondary-foreground: 200 30% 88%;
+  
+  --muted: 200 15% 22%;
+  --muted-foreground: 200 20% 62%;
+  
+  --accent: 200 15% 26%;
+  --accent-foreground: 195 70% 58%;
+  
+  --destructive: 0 68% 62%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 195 70% 58%;
+  
+  --chart-1: 150 60% 52%;
+  --chart-2: 0 68% 62%;
+  --chart-3: 195 70% 58%;
+  --chart-4: 35 70% 58%;
+  --chart-5: 275 65% 60%;
+  
+  --elevate-1: rgba(255, 255, 255, .04);
+  --elevate-2: rgba(100, 200, 255, .10);
+  --opaque-button-border-intensity: 9;
 }

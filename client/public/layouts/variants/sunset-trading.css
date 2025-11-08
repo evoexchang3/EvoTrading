@@ -1,15 +1,56 @@
-/* Sunset Trading - Warm orange/amber gradients - WCAG AA COMPLIANT */
+/* Sunset Trading - Warm orange/amber gradients - WCAG AA COMPLIANT
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="sunset-trading"] {
+  --background: 35 30% 96%;
+  --foreground: 20 40% 12%;
+  --border: 35 20% 84%;
+  
+  --card: 35 28% 99%;
+  --card-foreground: 20 40% 12%;
+  --card-border: 35 20% 88%;
+  
+  --primary: 25 70% 48%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 35 15% 88%;
+  --secondary-foreground: 20 40% 12%;
+  
+  --muted: 35 15% 90%;
+  --muted-foreground: 35 25% 38%;
+  
+  --accent: 35 65% 38%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 68% 50%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 25 70% 48%;
+  
+  --chart-1: 140 65% 38%;
+  --chart-2: 0 68% 50%;
+  --chart-3: 25 70% 48%;
+  --chart-4: 45 70% 45%;
+  --chart-5: 280 60% 48%;
+  
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(200, 100, 0, .08);
+  --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="sunset-trading"] {
   --background: 20 30% 10%;
-  --foreground: 35 60% 88%; /* Reduced from 70% to 60% */
+  --foreground: 35 60% 88%;
   --border: 20 25% 20%;
   
   --card: 20 28% 13%;
-  --card-foreground: 35 60% 88%; /* Reduced from 70% to 60% */
+  --card-foreground: 35 60% 88%;
   --card-border: 20 25% 16%;
   
-  --primary: 25 70% 58%; /* Reduced from 95% to 70% */
+  --primary: 25 70% 58%;
   --primary-foreground: 0 0% 100%;
   
   --secondary: 20 22% 22%;
@@ -18,19 +59,19 @@
   --muted: 20 25% 20%;
   --muted-foreground: 35 40% 65%;
   
-  --accent: 35 65% 48%; /* Reduced from 80% to 65% */
+  --accent: 35 65% 48%;
   --accent-foreground: 0 0% 100%;
   
-  --destructive: 0 68% 60%; /* Reduced from 78% to 68% */
+  --destructive: 0 68% 60%;
   --destructive-foreground: 0 0% 100%;
   
   --ring: 25 70% 58%;
   
   --chart-1: 140 65% 48%;
-  --chart-2: 0 68% 60%; /* Reduced from 78% */
-  --chart-3: 25 70% 58%; /* Reduced from 95% to 70% */
-  --chart-4: 45 70% 55%; /* Reduced from 90% to 70% */
-  --chart-5: 280 60% 58%; /* Reduced from 70% to 60% */
+  --chart-2: 0 68% 60%;
+  --chart-3: 25 70% 58%;
+  --chart-4: 45 70% 55%;
+  --chart-5: 280 60% 58%;
   
   --elevate-1: rgba(255, 140, 60, .06);
   --elevate-2: rgba(255, 140, 60, .12);

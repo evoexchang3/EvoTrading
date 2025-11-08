@@ -1,6 +1,47 @@
-/* Charcoal Pro - Deep charcoal with gold accents - WCAG AA COMPLIANT */
+/* Charcoal Pro - Deep charcoal with gold accents - WCAG AA COMPLIANT
+ * Supports both light and dark modes
+ */
 
+/* Light Mode */
 :root[data-layout="charcoal-pro"] {
+  --background: 0 0% 96%;
+  --foreground: 0 0% 12%;
+  --border: 0 0% 84%;
+  
+  --card: 0 0% 99%;
+  --card-foreground: 0 0% 12%;
+  --card-border: 0 0% 88%;
+  
+  --primary: 45 70% 42%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 0 0% 88%;
+  --secondary-foreground: 0 0% 12%;
+  
+  --muted: 0 0% 90%;
+  --muted-foreground: 0 0% 38%;
+  
+  --accent: 0 0% 86%;
+  --accent-foreground: 45 70% 28%;
+  
+  --destructive: 0 70% 48%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 45 70% 42%;
+  
+  --chart-1: 120 60% 35%;
+  --chart-2: 0 70% 48%;
+  --chart-3: 45 70% 42%;
+  --chart-4: 35 70% 42%;
+  --chart-5: 280 60% 45%;
+  
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(180, 140, 0, .08);
+  --opaque-button-border-intensity: -8;
+}
+
+/* Dark Mode */
+.dark[data-layout="charcoal-pro"] {
   --background: 0 0% 12%;
   --foreground: 0 0% 92%;
   --border: 0 0% 22%;
@@ -9,7 +50,7 @@
   --card-foreground: 0 0% 92%;
   --card-border: 0 0% 18%;
   
-  --primary: 45 75% 58%; /* Reduced from 100% to 75% */
+  --primary: 45 70% 58%;
   --primary-foreground: 0 0% 10%;
   
   --secondary: 0 0% 24%;
@@ -19,18 +60,18 @@
   --muted-foreground: 0 0% 65%;
   
   --accent: 0 0% 26%;
-  --accent-foreground: 45 75% 58%; /* Reduced from 100% to 75% */
+  --accent-foreground: 45 70% 58%;
   
-  --destructive: 0 80% 58%;
+  --destructive: 0 70% 58%;
   --destructive-foreground: 0 0% 100%;
   
-  --ring: 45 75% 58%; /* Reduced from 100% to 75% */
+  --ring: 45 70% 58%;
   
   --chart-1: 120 60% 50%;
-  --chart-2: 0 80% 58%;
-  --chart-3: 45 75% 58%; /* Reduced from 100% */
-  --chart-4: 35 70% 52%; /* Reduced from 90% */
-  --chart-5: 280 60% 58%; /* Reduced from 70% */
+  --chart-2: 0 70% 58%;
+  --chart-3: 45 70% 58%;
+  --chart-4: 35 70% 52%;
+  --chart-5: 280 60% 58%;
   
   --elevate-1: rgba(255, 255, 255, .04);
   --elevate-2: rgba(255, 215, 0, .08);
