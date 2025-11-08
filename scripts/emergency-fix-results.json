@@ -1,0 +1,164 @@
+[
+  {
+    "lang": "tr",
+    "processed": true,
+    "fixCount": 171,
+    "backup": "/home/runner/workspace/client/src/translations/tr.ts.backup"
+  },
+  {
+    "lang": "fi",
+    "processed": true,
+    "fixCount": 378,
+    "backup": "/home/runner/workspace/client/src/translations/fi.ts.backup"
+  },
+  {
+    "lang": "sl",
+    "processed": true,
+    "fixCount": 350,
+    "backup": "/home/runner/workspace/client/src/translations/sl.ts.backup"
+  },
+  {
+    "lang": "sk",
+    "processed": true,
+    "fixCount": 347,
+    "backup": "/home/runner/workspace/client/src/translations/sk.ts.backup"
+  },
+  {
+    "lang": "cs",
+    "processed": true,
+    "fixCount": 335,
+    "backup": "/home/runner/workspace/client/src/translations/cs.ts.backup"
+  },
+  {
+    "lang": "ro",
+    "processed": true,
+    "fixCount": 328,
+    "backup": "/home/runner/workspace/client/src/translations/ro.ts.backup"
+  },
+  {
+    "lang": "nb",
+    "processed": true,
+    "fixCount": 214,
+    "backup": "/home/runner/workspace/client/src/translations/nb.ts.backup"
+  },
+  {
+    "lang": "en-GB",
+    "processed": true,
+    "fixCount": 201,
+    "backup": "/home/runner/workspace/client/src/translations/en-GB.ts.backup"
+  },
+  {
+    "lang": "el",
+    "processed": true,
+    "fixCount": 197,
+    "backup": "/home/runner/workspace/client/src/translations/el.ts.backup"
+  },
+  {
+    "lang": "et",
+    "processed": true,
+    "fixCount": 188,
+    "backup": "/home/runner/workspace/client/src/translations/et.ts.backup"
+  },
+  {
+    "lang": "bg",
+    "processed": true,
+    "fixCount": 181,
+    "backup": "/home/runner/workspace/client/src/translations/bg.ts.backup"
+  },
+  {
+    "lang": "hu",
+    "processed": true,
+    "fixCount": 173,
+    "backup": "/home/runner/workspace/client/src/translations/hu.ts.backup"
+  },
+  {
+    "lang": "lt",
+    "processed": true,
+    "fixCount": 157,
+    "backup": "/home/runner/workspace/client/src/translations/lt.ts.backup"
+  },
+  {
+    "lang": "lv",
+    "processed": true,
+    "fixCount": 152,
+    "backup": "/home/runner/workspace/client/src/translations/lv.ts.backup"
+  },
+  {
+    "lang": "vi",
+    "processed": true,
+    "fixCount": 146,
+    "backup": "/home/runner/workspace/client/src/translations/vi.ts.backup"
+  },
+  {
+    "lang": "he",
+    "processed": true,
+    "fixCount": 132,
+    "backup": "/home/runner/workspace/client/src/translations/he.ts.backup"
+  },
+  {
+    "lang": "pt-PT",
+    "processed": true,
+    "fixCount": 128,
+    "backup": "/home/runner/workspace/client/src/translations/pt-PT.ts.backup"
+  },
+  {
+    "lang": "sv",
+    "processed": true,
+    "fixCount": 121,
+    "backup": "/home/runner/workspace/client/src/translations/sv.ts.backup"
+  },
+  {
+    "lang": "pl",
+    "processed": true,
+    "fixCount": 106,
+    "backup": "/home/runner/workspace/client/src/translations/pl.ts.backup"
+  },
+  {
+    "lang": "pt-BR",
+    "processed": true,
+    "fixCount": 106,
+    "backup": "/home/runner/workspace/client/src/translations/pt-BR.ts.backup"
+  },
+  {
+    "lang": "ko",
+    "processed": true,
+    "fixCount": 106,
+    "backup": "/home/runner/workspace/client/src/translations/ko.ts.backup"
+  },
+  {
+    "lang": "da",
+    "processed": true,
+    "fixCount": 86,
+    "backup": "/home/runner/workspace/client/src/translations/da.ts.backup"
+  },
+  {
+    "lang": "id",
+    "processed": true,
+    "fixCount": 62,
+    "backup": "/home/runner/workspace/client/src/translations/id.ts.backup"
+  },
+  {
+    "lang": "uk",
+    "processed": true,
+    "fixCount": 54,
+    "backup": "/home/runner/workspace/client/src/translations/uk.ts.backup"
+  },
+  {
+    "lang": "zh-TW",
+    "processed": true,
+    "fixCount": 46,
+    "backup": "/home/runner/workspace/client/src/translations/zh-TW.ts.backup"
+  },
+  {
+    "lang": "it",
+    "processed": true,
+    "fixCount": 42,
+    "backup": "/home/runner/workspace/client/src/translations/it.ts.backup"
+  },
+  {
+    "lang": "nl",
+    "processed": true,
+    "fixCount": 16,
+    "backup": "/home/runner/workspace/client/src/translations/nl.ts.backup"
+  }
+]
