@@ -16,7 +16,7 @@ export type Language =
   | 'pt-BR'   // Portuguese (Brazilian)
   | 'pt-PT'   // Portuguese (European)
   | 'ko'      // Korean
-  // | 'tr'   // Turkish - DISABLED (escaping issues - follow-up task)
+  | 'tr'      // Turkish
   | 'he'      // Hebrew
   | 'vi'      // Vietnamese
   | 'sv'      // Swedish
@@ -59,7 +59,7 @@ export const loadTranslations = async (language: Language): Promise<TranslationK
       case 'pt-BR': return (await import('./pt-BR')).ptBR;
       case 'pt-PT': return (await import('./pt-PT')).ptPT;
       case 'ko': return (await import('./ko')).ko;
-      // case 'tr': return (await import('./tr')).tr; // DISABLED
+      case 'tr': return (await import('./tr')).tr;
       case 'he': return (await import('./he')).he;
       case 'vi': return (await import('./vi')).vi;
       case 'zh-TW': return (await import('./zh-TW')).zhTW;
@@ -113,7 +113,7 @@ export const languageNames: Record<Language, { native: string; rtl?: boolean }> 
   'pt-BR': { native: 'Português (Brasil)' },
   'pt-PT': { native: 'Português (Portugal)' },
   'ko': { native: '한국어' },
-  // 'tr': { native: 'Türkçe' }, // DISABLED
+  'tr': { native: 'Türkçe' },
   'he': { native: 'עברית', rtl: true },
   'vi': { native: 'Tiếng Việt' },
   'zh-TW': { native: '繁體中文' },
@@ -142,7 +142,7 @@ export const languageNames: Record<Language, { native: string; rtl?: boolean }> 
 
 export const validLanguages: Language[] = [
   'en', 'en-GB', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'ar', 'ru',
-  'it', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ko', 'he', 'vi',
+  'it', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ko', 'tr', 'he', 'vi',
   'sv', 'da', 'fi', 'nb', 'cs', 'ro', 'hu', 'el', 'bg',
   'uk', 'id', 'et', 'lt', 'lv', 'sk', 'sl'
 ];

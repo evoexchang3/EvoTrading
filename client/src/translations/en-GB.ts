@@ -1,5 +1,4 @@
-export const en = {
-  // Common / Global
+export const en_GB = {
   'common.loading': 'Loading...',
   'common.error': 'Error',
   'common.success': 'Success',
@@ -13,7 +12,7 @@ export const en = {
   'common.next': 'Next',
   'common.submit': 'Submit',
   'common.search': 'Search',
-  'common.filter': 'Filter',
+  'common.filter': 'Filters',
   'common.all': 'All',
   'common.none': 'None',
   'common.yes': 'Yes',
@@ -21,8 +20,6 @@ export const en = {
   'common.optional': 'Optional',
   'common.required': 'Required',
   'common.learnMore': 'Learn More',
-  
-  // Navigation
   'nav.home': 'Home',
   'nav.about': 'About',
   'nav.markets': 'Markets',
@@ -43,15 +40,11 @@ export const en = {
   'nav.contact': 'Contact',
   'nav.partners': 'Partners',
   'nav.faq': 'FAQ',
-  
-  // Markets
   'markets.forex': 'Forex',
   'markets.crypto': 'Crypto',
   'markets.commodities': 'Commodities',
   'markets.indices': 'Indices',
   'markets.stocks': 'Stocks',
-  
-  // Home Page
   'home.hero.title': 'Trade Global Markets with Confidence',
   'home.hero.subtitle': 'Professional trading platform for forex, cryptocurrencies, and commodities. Regulated, secure, and trusted by traders worldwide.',
   'home.hero.registerButton': 'Create Free Account',
@@ -90,8 +83,6 @@ export const en = {
   'home.cta.subtitle': 'Join thousands of traders who trust our platform for their trading needs. Create your account in minutes and start trading today.',
   'home.cta.button': 'Create Free Account',
   'home.cta.learnMore': 'Learn More',
-  
-  // Auth - Login
   'auth.login.title': 'Sign in to Trading Platform',
   'auth.login.description': 'Enter your credentials to access your account',
   'auth.login.email': 'Email',
@@ -100,16 +91,14 @@ export const en = {
   'auth.login.passwordPlaceholder': 'Enter your password',
   'auth.login.forgotPassword': 'Forgot password?',
   'auth.login.submitButton': 'Sign In',
-  'auth.login.noAccount': "Don't have an account?",
+  'auth.login.noAccount': 'Don',
   'auth.login.registerLink': 'Sign up',
   'auth.login.success.title': 'Welcome back!',
   'auth.login.success.description': 'Successfully logged in',
   'auth.login.error.title': 'Login failed',
   'auth.login.error.description': 'Invalid credentials',
-  
-  // Auth - Forgot Password
   'auth.forgotPassword.title': 'Reset your password',
-  'auth.forgotPassword.description': "Enter your email address and we'll send you instructions",
+  'auth.forgotPassword.description': 'Enter your email address and we',
   'auth.forgotPassword.email': 'Email',
   'auth.forgotPassword.emailPlaceholder': 'john@example.com',
   'auth.forgotPassword.submitButton': 'Send reset instructions',
@@ -119,8 +108,6 @@ export const en = {
   'auth.forgotPassword.success.description': 'Check your email for password reset instructions',
   'auth.forgotPassword.error.title': 'Error',
   'auth.forgotPassword.error.description': 'Failed to send reset email',
-  
-  // Auth - Register
   'auth.register.title': 'Create Your Account',
   'auth.register.description': 'Join thousands of traders worldwide',
   'auth.register.firstName': 'First Name',
@@ -140,12 +127,10 @@ export const en = {
   'auth.register.termsLink': 'Terms of Service',
   'auth.register.and': 'and',
   'auth.register.privacyLink': 'Privacy Policy',
-  
-  // Dashboard
   'dashboard.greeting.morning': 'Good morning',
   'dashboard.greeting.afternoon': 'Good afternoon',
   'dashboard.greeting.evening': 'Good evening',
-  'dashboard.welcome': 'Welcome back to your trading platform. Here\'s your portfolio overview.',
+  'dashboard.welcome': 'Welcome back to your trading platform. Here\\',
   'dashboard.margin.warning': 'Warning: Your margin level is {{marginLevel}}% - below 150%. Please close positions or add funds to avoid liquidation.',
   'dashboard.balance.title': 'Balance',
   'dashboard.balance.account': 'Account #{{accountNumber}}',
@@ -178,14 +163,12 @@ export const en = {
   'dashboard.recentActivity.title': 'Recent Activity',
   'dashboard.recentActivity.description': 'Your latest trades and account activity',
   'dashboard.recentActivity.noActivity': 'No recent activity',
-  
-  // Trading
   'trading.title': 'Trading Platform',
   'trading.toolbar.backToDashboard': 'Dashboard',
   'trading.toolbar.watchlist': 'Watchlist',
   'trading.toolbar.orderTicket': 'Order Ticket',
   'trading.toolbar.positions': 'Positions',
-  'trading.toolbar.resetLayout': 'Reset Layout',
+  'trading.toolbar.resetLayout': 'Reset layout',
   'trading.tabs.positions': 'Positions',
   'trading.tabs.orders': 'Orders',
   'trading.tabs.history': 'History',
@@ -216,9 +199,7 @@ export const en = {
   'trading.positions.modify': 'Modify',
   'trading.positions.noPositions': 'No open positions',
   'trading.watchlist.title': 'Watchlist',
-  'trading.watchlist.add': 'Add Symbol',
-  
-  // Tools - Economic Calendar
+  'trading.watchlist.add': 'Add symbol',
   'tools.economicCalendar.title': 'Economic Calendar',
   'tools.economicCalendar.description': 'Track important economic events that impact markets',
   'tools.economicCalendar.stats.highImpact': 'High Impact Today',
@@ -238,7 +219,7 @@ export const en = {
   'tools.economicCalendar.table.impact': 'Impact',
   'tools.economicCalendar.table.forecast': 'Forecast',
   'tools.economicCalendar.table.previous': 'Previous',
-  'tools.economicCalendar.table.actual': 'Actual',
+  'tools.economicCalendar.table.actual': 'Current',
   'tools.economicCalendar.noEvents': 'No events found for selected filters',
   'tools.economicCalendar.events.title': 'Economic Events',
   'tools.economicCalendar.events.loading': 'Loading events...',
@@ -250,8 +231,6 @@ export const en = {
   'tools.economicCalendar.legend.high': 'High Impact',
   'tools.economicCalendar.legend.medium': 'Medium Impact',
   'tools.economicCalendar.legend.low': 'Low Impact',
-  
-  // Key Indicators
   'tools.economicCalendar.keyIndicators.title': 'Understanding Key Economic Indicators',
   'tools.economicCalendar.keyIndicators.description': 'Master the most market-moving economic events',
   'tools.economicCalendar.keyIndicators.howToInterpret': 'How to Interpret:',
@@ -279,9 +258,7 @@ export const en = {
   'tools.economicCalendar.keyIndicators.cpi.impact': 'Very High',
   'tools.economicCalendar.keyIndicators.cpi.description': 'Consumer Price Index - measure of inflation',
   'tools.economicCalendar.keyIndicators.cpi.interpretation': 'Higher inflation (variable): If <3% target, bullish (growth). If >3%, bearish (rate hike fear)\n\nLower inflation: If too low (<1%), bearish (deflation risk). If moderate, bullish (Goldilocks)\n\nCore CPI: Excludes food/energy, watched more by central banks',
-  'tools.economicCalendar.keyIndicators.cpi.tradingTips': 'Watch for \'hot\' CPI (>0.3% monthly) to trade aggressive USD long. Cold CPI (<0.1%) = USD short opportunity',
-  
-  // Event Categories
+  'tools.economicCalendar.keyIndicators.cpi.tradingTips': 'Watch for \\',
   'tools.economicCalendar.categories.title': 'Event Categories & Trading Strategies',
   'tools.economicCalendar.categories.description': 'How to trade different types of economic releases',
   'tools.economicCalendar.categories.keyEvents': 'Key Events:',
@@ -316,8 +293,6 @@ export const en = {
   'tools.economicCalendar.categories.growth.importance': 'High - Economic health indicators',
   'tools.economicCalendar.categories.growth.frequency': 'Monthly/Quarterly',
   'tools.economicCalendar.categories.growth.strategy': 'Strong growth data supports currency. Weak data signals slowdown. Combine with inflation for full picture.',
-  
-  // Interpretation Examples
   'tools.economicCalendar.examples.title': 'Real-World Interpretation Examples',
   'tools.economicCalendar.examples.description': 'Learn how to react to actual vs forecast scenarios',
   'tools.economicCalendar.examples.interpretation': 'Interpretation:',
@@ -339,11 +314,9 @@ export const en = {
   'tools.economicCalendar.examples.usCpi.interpretation': 'Fed will likely raise rates - bullish USD short-term',
   'tools.economicCalendar.examples.usCpi.expectedMove': 'USD pairs rally, Gold drops, indices may fall (rate hike fear)',
   'tools.economicCalendar.examples.usCpi.tradingAction': 'Buy USD/JPY, USD/CHF immediately. Sell Gold. Hold until Fed meeting or next data. If inflation continues rising for 2-3 months, switch to USD short (recession fear).',
-  
-  // Pro Tips
   'tools.economicCalendar.proTips.title': 'Professional Tips & Best Practices',
   'tools.economicCalendar.proTips.description': 'Master economic calendar trading with these expert insights',
-  'tools.economicCalendar.proTips.beatMiss.tip': 'Trade the \'Beat\' or \'Miss\', Not the Absolute Number',
+  'tools.economicCalendar.proTips.beatMiss.tip': 'Trade the \\',
   'tools.economicCalendar.proTips.beatMiss.detail': 'Market moves based on forecast deviation, not the actual value. NFP 180K that beats 160K forecast is bullish. NFP 220K that misses 250K forecast is bearish.',
   'tools.economicCalendar.proTips.highImpact.tip': 'High Impact Events = Stay Out or Use Reduced Size',
   'tools.economicCalendar.proTips.highImpact.detail': 'During NFP, Fed meetings, CPI: Either stay flat or reduce position size to 50%. Spreads widen 3-5x, slippage is common. Not worth the risk for most retail traders.',
@@ -352,32 +325,26 @@ export const en = {
   'tools.economicCalendar.proTips.currencySpecific.tip': 'Watch Currency-Specific Events, Not Just USD',
   'tools.economicCalendar.proTips.currencySpecific.detail': 'EUR traders: ECB meeting > US events for EUR/GBP, EUR/CHF. JPY traders: BOJ > Fed. Trade the currency whose data is released.',
   'tools.economicCalendar.proTips.technical.tip': 'Combine Calendar with Technical Levels',
-  'tools.economicCalendar.proTips.technical.detail': 'Economic data + technical confluence = highest probability. Example: NFP bullish USD + price at major support = strong long setup. Data alone isn\'t enough.',
+  'tools.economicCalendar.proTips.technical.detail': 'Economic data + technical confluence = highest probability. Example: NFP bullish USD + price at major support = strong long setup. Data alone isn\\',
   'tools.economicCalendar.proTips.reaction.tip': 'First Reaction Often Reversed Within 1 Hour',
   'tools.economicCalendar.proTips.reaction.detail': 'Knee-jerk reactions fade as traders digest details. If NFP beats but revision shows previous month was terrible, USD may reverse lower after 30-60min spike.',
-  
-  // FAQ
   'tools.economicCalendar.faq.title': 'Frequently Asked Questions',
   'tools.economicCalendar.faq.description': 'Everything you need to know about trading economic events',
   'tools.economicCalendar.faq.q1.question': 'How do I know which economic events are most important?',
-  'tools.economicCalendar.faq.q1.answer': 'High impact events are: Non-Farm Payrolls (NFP), FOMC/ECB/BOE/BOJ meetings, CPI/inflation data, and GDP releases. These typically cause 50-150 pip moves. Medium impact: Retail sales, jobless claims, PMI (20-50 pips). Low impact: Minor indicators, speeches (<20 pips). Always check the \'impact\' rating on the calendar and focus on \'high\' and \'very high\' events that affect currencies you trade.',
+  'tools.economicCalendar.faq.q1.answer': 'High impact events are: Non-Farm Payrolls (NFP), FOMC/ECB/BOE/BOJ meetings, CPI/inflation data, and GDP releases. These typically cause 50-150 pip moves. Medium impact: Retail sales, jobless claims, PMI (20-50 pips). Low impact: Minor indicators, speeches (&lt;20 pips). Always check the \\',
   'tools.economicCalendar.faq.q2.question': 'Should I trade during high-impact news events or avoid them?',
   'tools.economicCalendar.faq.q2.answer': 'For beginners: Avoid trading 15min before to 30min after high-impact events. Spreads widen dramatically (EUR/USD from 0.8 pips to 5+ pips), slippage is common, and stop losses may not trigger at your level. For experienced traders: Reduce position size by 50-75%, use wider stops (50+ pips), and trade the breakout after initial volatility settles (10-15 minutes post-release). Never hold pending orders during NFP or central bank meetings.',
-  'tools.economicCalendar.faq.q3.question': 'How do I interpret \'forecast vs actual\' correctly?',
-  'tools.economicCalendar.faq.q3.answer': 'Market moves based on SURPRISE (deviation from forecast), not the actual number. Formula: If Actual > Forecast by ≥0.3% = Bullish currency (big beat). If Actual < Forecast by ≥0.3% = Bearish currency (big miss). Example: GDP forecast 1.5%, actual 2.0% (+0.5% beat) = very bullish. GDP forecast 2.0%, actual 1.9% (-0.1% miss) = slightly bearish but minimal impact. The bigger the surprise, the bigger the move. Track \'consensus\' vs \'previous\' too - if consensus already priced in improvement, \'meeting\' forecast may not rally currency.',
-  'tools.economicCalendar.faq.q4.question': 'What\'s the best way to prepare for a major economic release?',
-  'tools.economicCalendar.faq.q4.answer': 'Day before: 1) Check calendar for all releases in next 24h, 2) Identify your bias (bullish/bearish on the currency), 3) Mark key technical levels (support/resistance). 1 hour before: 4) Close/reduce positions in that currency if holding overnight, 5) Remove pending orders, 6) Set alerts at technical levels. Post-release: 7) Wait 5-10min for initial volatility, 8) Assess if actual beat/missed forecast significantly, 9) Trade the breakout direction IF it aligns with technicals. If confused, stay out entirely - there\'s always another trade.',
+  'tools.economicCalendar.faq.q3.question': 'How do I interpret \\',
+  'tools.economicCalendar.faq.q3.answer': 'Market moves based on SURPRISE (deviation from forecast), not the actual number. Formula: If Actual &gt; Forecast by ≥0.3% = Bullish currency (big beat). If Actual &lt; Forecast by ≥0.3% = Bearish currency (big miss). Example: GDP forecast 1.5%, actual 2.0% (+0.5% beat) = very bullish. GDP forecast 2.0%, actual 1.9% (-0.1% miss) = slightly bearish but minimal impact. The bigger the surprise, the bigger the move. Track \\',
+  'tools.economicCalendar.faq.q4.question': 'What\\',
+  'tools.economicCalendar.faq.q4.answer': 'Day before: 1) Check calendar for all releases in next 24h, 2) Identify your bias (bullish/bearish on the currency), 3) Mark key technical levels (support/resistance). 1 hour before: 4) Close/reduce positions in that currency if holding overnight, 5) Remove pending orders, 6) Set alerts at technical levels. Post-release: 7) Wait 5-10min for initial volatility, 8) Assess if actual beat/missed forecast significantly, 9) Trade the breakout direction IF it aligns with technicals. If confused, stay out entirely - there\\',
   'tools.economicCalendar.faq.q5.question': 'Can I predict market direction before the data is released?',
-  'tools.economicCalendar.faq.q5.answer': 'No. Attempting to predict economic data is gambling, not trading. However, you CAN prepare scenarios: \'If NFP beats by 50K+ → Buy USD/JPY at 149.50 with SL 149.00, TP 150.50\' vs \'If NFP misses by 50K+ → Sell USD/JPY at 148.50, SL 149.00, TP 147.00\'. Create an IF/THEN plan for both outcomes. This removes emotion and allows fast execution. Never \'hope\' or \'guess\' the number - let the data tell you, then react with a predefined plan.',
+  'tools.economicCalendar.faq.q5.answer': 'No. Attempting to predict economic data is gambling, not trading. However, you CAN prepare scenarios: \\',
   'tools.economicCalendar.faq.q6.question': 'How long does the impact of economic data typically last?',
   'tools.economicCalendar.faq.q6.answer': 'Immediate impact: 5-30 minutes (volatility spike, may reverse). Short-term: 1-24 hours (trend develops if data is significant). Medium-term: 2-7 days (especially for central bank meetings, GDP). Long-term: Weeks to months (major policy shifts like Fed pivot from hikes to cuts). Example: Single strong NFP = 1-2 day USD strength. Three consecutive strong NFPs = Fed rate hike cycle = months of USD uptrend. Use calendar to identify potential trend-starting events (Fed meetings, CPI series) vs one-off volatility (single jobless claims).',
-  'tools.economicCalendar.faq.q7.question': 'What are \'revisions\' and why do they matter?',
-  'tools.economicCalendar.faq.q7.answer': 'Revisions are adjustments to previously reported data (usually 1-2 months later). Example: NFP initially reported as +200K, revised down to +150K. This means the previous \'good\' data was actually weak - bearish for USD even if current NFP is strong. Always check revisions in the calendar. A positive current number + negative revision can cause mixed reactions or reversals. Professional traders weight revisions heavily because they show real economic trend, not just the headline number. If revisions are consistently negative for 3+ months, it signals deteriorating economy regardless of headline beats.',
-  
-  // Error Messages
+  'tools.economicCalendar.faq.q7.question': 'What are \\',
+  'tools.economicCalendar.faq.q7.answer': 'Revisions are adjustments to previously reported data (usually 1-2 months later). Example: NFP initially reported as +200K, revised down to +150K. This means the previous \\',
   'tools.economicCalendar.errors.fetchFailed': 'Failed to fetch economic calendar',
-  
-  // Tools - News
   'tools.news.title': 'Market News',
   'tools.news.description': 'Stay updated with real-time financial news and market analysis',
   'tools.news.filter.category': 'Category',
@@ -396,12 +363,8 @@ export const en = {
   'tools.news.sentiment.neutral': 'Neutral',
   'tools.news.readMore': 'Read More',
   'tools.news.noArticles': 'No articles found',
-  
-  // Tools - Pip Calculator
   'tools.pipCalculator.title': 'Pip Calculator',
   'tools.pipCalculator.description': 'Calculate profit and loss based on pip movement',
-  
-  // Quick Stats
   'tools.pipCalculator.stats.standardLot': '$10',
   'tools.pipCalculator.stats.standardLotDescription': 'Per Pip (1 Lot EUR/USD)',
   'tools.pipCalculator.stats.miniLot': '$1',
@@ -410,8 +373,6 @@ export const en = {
   'tools.pipCalculator.stats.microLotDescription': 'Per Pip (0.01 Lot)',
   'tools.pipCalculator.stats.jpyPipSize': '0.01',
   'tools.pipCalculator.stats.jpyPipSizeDescription': 'JPY Pair Pip Size',
-  
-  // Form
   'tools.pipCalculator.form.title': 'Trade Parameters',
   'tools.pipCalculator.form.description': 'Enter your position details',
   'tools.pipCalculator.form.symbol': 'Currency Pair',
@@ -420,8 +381,6 @@ export const en = {
   'tools.pipCalculator.form.pipMovement': 'Pip Movement (+ for profit, - for loss)',
   'tools.pipCalculator.form.pipMovementPlaceholder': '50 or -50',
   'tools.pipCalculator.form.accountCurrency': 'Account Currency',
-  
-  // Result
   'tools.pipCalculator.result.title': 'Calculation Result',
   'tools.pipCalculator.result.description': 'Profit/Loss based on pip movement',
   'tools.pipCalculator.result.pipValue': 'Pip Value',
@@ -433,92 +392,70 @@ export const en = {
   'tools.pipCalculator.result.pipMovement': 'Pip Movement',
   'tools.pipCalculator.result.pips': 'pips',
   'tools.pipCalculator.result.symbol': 'Symbol',
-  
-  // Calculation Examples
   'tools.pipCalculator.examples.title': 'Real Calculation Examples',
   'tools.pipCalculator.examples.description': 'Step-by-step examples showing how pip values work',
   'tools.pipCalculator.examples.inputs': 'Inputs:',
   'tools.pipCalculator.examples.calculation': 'Calculation:',
   'tools.pipCalculator.examples.result': 'Result:',
-  
-  'tools.pipCalculator.examples.example1.scenario': 'EUR/USD, 1 Standard Lot, +50 Pips',
+  'tools.pipCalculator.examples.example1.scenario': 'EUR/USD, 1 standard lot, +50 pips',
   'tools.pipCalculator.examples.example1.inputs': 'Pair: EUR/USD | Lot Size: 1.00 | Pip Movement: +50',
   'tools.pipCalculator.examples.example1.calculation': 'Pip Value = 0.0001 × 100,000 = $10 per pip\nProfit = $10 × 50 pips = $500',
   'tools.pipCalculator.examples.example1.result': '$500 profit',
   'tools.pipCalculator.examples.example1.explanation': 'For standard lots on major USD pairs, each pip = $10. A 50 pip favorable move = $500 gain.',
-  
   'tools.pipCalculator.examples.example2.scenario': 'GBP/JPY, 0.5 Lots, -80 Pips',
   'tools.pipCalculator.examples.example2.inputs': 'Pair: GBP/JPY | Lot Size: 0.50 | Pip Movement: -80',
   'tools.pipCalculator.examples.example2.calculation': 'Pip Value = 0.01 × (0.5 × 100,000) = 500 JPY per pip\nConvert to USD (assume 150 JPY/USD): 500/150 = $3.33 per pip\nLoss = $3.33 × 80 = $266.40',
   'tools.pipCalculator.examples.example2.result': '$266.40 loss',
   'tools.pipCalculator.examples.example2.explanation': 'JPY pairs use 0.01 as pip value. Cross pairs require currency conversion. Half lot = 50% pip value.',
-  
   'tools.pipCalculator.examples.example3.scenario': 'AUD/USD, 0.1 Mini Lot, +25 Pips',
   'tools.pipCalculator.examples.example3.inputs': 'Pair: AUD/USD | Lot Size: 0.10 | Pip Movement: +25',
   'tools.pipCalculator.examples.example3.calculation': 'Pip Value = 0.0001 × 10,000 = $1 per pip\nProfit = $1 × 25 pips = $25',
   'tools.pipCalculator.examples.example3.result': '$25 profit',
   'tools.pipCalculator.examples.example3.explanation': 'Mini lots (0.1) have 1/10th the pip value of standard lots. Good for risk management with small accounts.',
-  
   'tools.pipCalculator.examples.example4.scenario': 'USD/CAD, 2 Lots, -120 Pips',
   'tools.pipCalculator.examples.example4.inputs': 'Pair: USD/CAD | Lot Size: 2.00 | Pip Movement: -120',
   'tools.pipCalculator.examples.example4.calculation': 'Pip Value per standard lot = 0.0001 × 100,000 = 10 CAD\nConvert to USD (assume 1.35 CAD/USD): 10/1.35 = $7.41 per pip\nTotal for 2 lots: $7.41 × 2 = $14.82 per pip\nLoss = $14.82 × 120 = $1,778.40',
   'tools.pipCalculator.examples.example4.result': '$1,778.40 loss',
   'tools.pipCalculator.examples.example4.explanation': 'When USD is base currency (USD/XXX), pip value is in counter currency. Multiple lots multiply pip value linearly.',
-  
-  // Use Cases
   'tools.pipCalculator.useCases.title': 'Practical Use Cases',
   'tools.pipCalculator.useCases.description': 'When and how to use the pip calculator effectively',
   'tools.pipCalculator.useCases.scenario': 'Scenario:',
   'tools.pipCalculator.useCases.howToUse': 'How to Use Calculator:',
   'tools.pipCalculator.useCases.benefit': 'Benefit:',
-  
   'tools.pipCalculator.useCases.preTradeRisk.title': 'Pre-Trade Risk Assessment',
-  'tools.pipCalculator.useCases.preTradeRisk.scenario': 'You\'re planning to buy EUR/USD at 1.0850 with stop loss at 1.0800 (50 pips risk)',
+  'tools.pipCalculator.useCases.preTradeRisk.scenario': 'You\\',
   'tools.pipCalculator.useCases.preTradeRisk.howToUse': '1. Enter pair: EUR/USD\n2. Enter position size: 1 lot\n3. Enter pips: -50 (negative for potential loss)\n4. Calculator shows: $500 risk\n5. Decision: If this is >2% of account, reduce lot size to 0.5 (risk becomes $250)',
   'tools.pipCalculator.useCases.preTradeRisk.benefit': 'Know exact dollar risk before entering trade. Prevents overleveraging and emotional decisions.',
-  
   'tools.pipCalculator.useCases.profitTarget.title': 'Profit Target Calculation',
   'tools.pipCalculator.useCases.profitTarget.scenario': 'You want to make $300 on a GBP/USD trade using 0.5 lots',
   'tools.pipCalculator.useCases.profitTarget.howToUse': '1. Set pair: GBP/USD, lots: 0.5\n2. Try different pip values until P/L shows ~$300\n3. Result: 60 pips needed (0.5 × $10 × 60 = $300)\n4. Set take profit 60 pips above entry',
   'tools.pipCalculator.useCases.profitTarget.benefit': 'Reverse-engineer required pip movement to hit profit goals. Helps set realistic TP levels.',
-  
   'tools.pipCalculator.useCases.comparingPairs.title': 'Comparing Multiple Pairs',
   'tools.pipCalculator.useCases.comparingPairs.scenario': 'Choosing between EUR/USD and GBP/JPY for next trade',
   'tools.pipCalculator.useCases.comparingPairs.howToUse': '1. Calculate pip value for EUR/USD (1 lot = $10/pip)\n2. Calculate GBP/JPY (1 lot ≈ $6.67/pip at 150 JPY/USD)\n3. For same 100 pip move: EUR/USD = $1000, GBP/JPY = $667\n4. Adjust lot sizes to match risk (use 1.5 lots GBP/JPY for same $1000 exposure)',
   'tools.pipCalculator.useCases.comparingPairs.benefit': 'Normalize risk across different pairs. Essential when trading exotics or cross pairs.',
-  
   'tools.pipCalculator.useCases.positionSizing.title': 'Position Sizing for Fixed Dollar Risk',
   'tools.pipCalculator.useCases.positionSizing.scenario': 'You want to risk exactly $200 on USD/JPY trade with 40 pip stop',
   'tools.pipCalculator.useCases.positionSizing.howToUse': '1. Set pair: USD/JPY, pips: -40\n2. Try lot sizes: 0.5 lots → ~$666 risk (too much)\n3. Try 0.15 lots → ~$200 risk ✓\n4. Use 0.15 lots to match desired $200 risk',
   'tools.pipCalculator.useCases.positionSizing.benefit': 'Achieve consistent dollar risk per trade regardless of pair or stop distance. Core risk management.',
-  
-  // Pro Tips
   'tools.pipCalculator.proTips.title': 'Professional Tips & Best Practices',
   'tools.pipCalculator.proTips.description': 'Expert insights for mastering pip calculations',
-  
   'tools.pipCalculator.proTips.jpyPairs.tip': 'JPY Pairs Have Different Pip Values',
-  'tools.pipCalculator.proTips.jpyPairs.detail': 'For pairs ending in JPY (USD/JPY, EUR/JPY), a pip is 0.01 not 0.0001. This means pip values are ~100x larger but price moves in larger increments. Don\'t compare JPY pip moves to EUR/USD directly.',
-  
+  'tools.pipCalculator.proTips.jpyPairs.detail': 'For pairs ending in JPY (USD/JPY, EUR/JPY), a pip is 0.01 not 0.0001. This means pip values are ~100x larger but price moves in larger increments. Don\\',
   'tools.pipCalculator.proTips.accountCurrency.tip': 'Account Currency Matters for Cross Pairs',
   'tools.pipCalculator.proTips.accountCurrency.detail': 'If your account is in USD but trading EUR/GBP, pip value must be converted twice (GBP→USD). Calculator handles this automatically, but be aware cross pairs have variable pip values based on exchange rates.',
-  
   'tools.pipCalculator.proTips.microLots.tip': 'Micro Lots Are Perfect for Learning',
   'tools.pipCalculator.proTips.microLots.detail': '0.01 lot (micro) = $0.10 per pip on EUR/USD. You can practice with real money but tiny risk. A 100 pip loss = only $10. Use micro lots for first 3-6 months of live trading.',
-  
   'tools.pipCalculator.proTips.linearScaling.tip': 'Pip Value Changes with Lot Size Linearly',
   'tools.pipCalculator.proTips.linearScaling.detail': 'Double the lot size = double the pip value. EUR/USD: 0.5 lots = $5/pip, 1 lot = $10/pip, 2 lots = $20/pip. Use this to quickly scale positions without recalculating.',
-  
   'tools.pipCalculator.proTips.riskFirst.tip': 'Calculate Risk BEFORE Setting Stop Loss',
   'tools.pipCalculator.proTips.riskFirst.detail': 'Many traders set stop at technical level, then calculate risk. Better: Decide max risk first ($200), calculate pip allowance (40 pips), then check if technical stop fits. If not, reduce size or skip trade.',
-  
   'tools.pipCalculator.proTips.saveScenarios.tip': 'Save Common Scenarios for Quick Access',
   'tools.pipCalculator.proTips.saveScenarios.detail': 'Create a spreadsheet with pip values for your standard lot sizes (0.1, 0.5, 1, 2) on pairs you trade often. Saves time vs calculating every trade. Update when account currency changes.',
-  
-  // Export Features
   'tools.pipCalculator.export.title': 'Save & Export Features',
   'tools.pipCalculator.export.description': 'Keep track of your pip calculations',
   'tools.pipCalculator.export.save.title': '💾 Save Calculation',
-  'tools.pipCalculator.export.save.description': 'Save current calculation with custom label (e.g., "EUR/USD Strategy A") for quick reference later',
+  'tools.pipCalculator.export.save.description': 'Save current calculation with custom label (e.g.,',
   'tools.pipCalculator.export.save.button': 'Save Current',
   'tools.pipCalculator.export.csv.title': '📊 Export to CSV',
   'tools.pipCalculator.export.csv.description': 'Export pip value tables for all your common lot sizes and pairs to use in trading journal',
@@ -526,33 +463,22 @@ export const en = {
   'tools.pipCalculator.export.copy.title': '📋 Copy Results',
   'tools.pipCalculator.export.copy.description': 'Copy calculation results to clipboard for pasting into trade notes or risk spreadsheet',
   'tools.pipCalculator.export.copy.button': 'Copy to Clipboard',
-  
-  // FAQ
   'tools.pipCalculator.faq.title': 'Frequently Asked Questions',
   'tools.pipCalculator.faq.description': 'Everything you need to know about pip calculations',
-  
-  'tools.pipCalculator.faq.q1.question': 'What exactly is a \'pip\' and how is it measured?',
+  'tools.pipCalculator.faq.q1.question': 'What exactly is a \\',
   'tools.pipCalculator.faq.q1.answer': 'A pip (Point in Percentage) is the smallest price movement in forex. For most pairs (EUR/USD, GBP/USD), a pip is the 4th decimal place: 0.0001. Example: EUR/USD moves from 1.0850 to 1.0851 = 1 pip move. Exception: JPY pairs use 2 decimals, so a pip is 0.01. Example: USD/JPY 149.50 to 149.51 = 1 pip. Some brokers quote fractional pips (pipettes/points) as 5th decimal: 1.08501 - each pipette is 1/10th of a pip.',
-  
   'tools.pipCalculator.faq.q2.question': 'How do I calculate pip value for pairs where USD is not involved (cross pairs)?',
   'tools.pipCalculator.faq.q2.answer': 'For crosses like EUR/GBP or AUD/NZD, pip value calculation requires two conversions to your account currency. Formula: (0.0001 / current exchange rate) × lot size × counter currency to account currency rate. However, our calculator handles this automatically. Example: EUR/GBP with USD account - calculator uses GBP/USD rate to convert GBP pip value to USD. Manual calculation complex, always use calculator for crosses to avoid errors.',
-  
   'tools.pipCalculator.faq.q3.question': 'Why does my actual profit/loss sometimes differ from the calculator?',
   'tools.pipCalculator.faq.q3.answer': 'Three main reasons: 1) Spread cost - Calculator shows gross P/L, but you pay bid/ask spread (typically 1-3 pips on entry). Subtract spread from profit. 2) Overnight swap/rollover - Holding positions overnight incurs interest charges or credits, not reflected in pip calculations. 3) Slippage - During fast markets (news events), your exit may be 2-5 pips worse than intended, especially on stop losses. Calculator assumes perfect execution at exact pip count. For accurate P/L, deduct spreads and factor in realistic slippage (5-10 pips for stops during news).',
-  
-  'tools.pipCalculator.faq.q4.question': 'What\'s the difference between standard, mini, and micro lots?',
+  'tools.pipCalculator.faq.q4.question': 'What\\',
   'tools.pipCalculator.faq.q4.answer': 'Standard lot = 100,000 units of base currency. On EUR/USD: 1 lot = $10 per pip. Mini lot = 10,000 units (0.1 lot). EUR/USD: 0.1 lot = $1 per pip. Micro lot = 1,000 units (0.01 lot). EUR/USD: 0.01 lot = $0.10 per pip. Use standard lots with large accounts ($50K+), mini lots for accounts $5K-$50K, and micro lots for learning or accounts <$5K. Each step down reduces risk by 90%, making micro lots ideal for beginners to practice without risking significant capital.',
-  
   'tools.pipCalculator.faq.q5.question': 'How can I use this calculator to determine my position size?',
   'tools.pipCalculator.faq.q5.answer': 'Reverse calculation method: 1) Decide max risk in dollars (e.g., $100 = 2% of $5K account). 2) Measure stop loss distance in pips (e.g., 50 pips from entry to stop). 3) Work backward: Required lot size = Risk ($100) / (pips (50) × pip value per lot). For EUR/USD: $100 / (50 × $10) = 0.2 lots. Enter different lot sizes in calculator until P/L at your pip distance equals your dollar risk. This ensures consistent risk per trade regardless of stop loss width.',
-  
   'tools.pipCalculator.faq.q6.question': 'Does pip value change during the trade, or is it fixed?',
   'tools.pipCalculator.faq.q6.answer': 'For USD-account pairs where USD is the counter currency (EUR/USD, GBP/USD, AUD/USD), pip value is fixed at $10 per standard lot throughout the trade. For pairs where USD is the base (USD/JPY, USD/CHF) or cross pairs (EUR/GBP), pip value fluctuates with exchange rate changes - but the difference is usually negligible (<5%) for short-term trades. Our calculator uses current rates. For accuracy on long-term positions (weeks/months), recalculate pip value if exchange rates move significantly (>10%).',
-  
   'tools.pipCalculator.faq.q7.question': 'How do I account for commission when using this calculator?',
   'tools.pipCalculator.faq.q7.answer': 'Calculator shows gross P/L before commission. If your broker charges commission (e.g., $3.50 per lot per side): 1) Calculate pip P/L normally. 2) Subtract commission: For 1 lot EUR/USD = $7 total ($3.50 open + $3.50 close). 3) Adjust for breakeven: With $7 commission on 1 lot ($10/pip), you need 0.7 pip move just to break even. For 50 pip profit shown in calculator, actual net = 50 pips × $10 - $7 = $493. Consider commission-free brokers (spread-only) for smaller accounts or frequent trading to avoid commission eating into profits.',
-  
-  // Quick Reference
   'tools.pipCalculator.quickReference.title': '📌 Quick Reference: Lot Sizes',
   'tools.pipCalculator.quickReference.standardLot.title': 'Standard Lot (1.00)',
   'tools.pipCalculator.quickReference.standardLot.description': '100,000 units • $10/pip (EUR/USD)',
@@ -560,12 +486,8 @@ export const en = {
   'tools.pipCalculator.quickReference.miniLot.description': '10,000 units • $1/pip (EUR/USD)',
   'tools.pipCalculator.quickReference.microLot.title': 'Micro Lot (0.01)',
   'tools.pipCalculator.quickReference.microLot.description': '1,000 units • $0.10/pip (EUR/USD)',
-  
-  // Tools - Trading Sessions
   'tools.tradingSessions.title': 'Trading Sessions',
   'tools.tradingSessions.description': 'Monitor global market hours and liquidity',
-  
-  // Quick Stats
   'tools.tradingSessions.stats.peakHours': '4 hrs',
   'tools.tradingSessions.stats.peakHoursDescription': 'Peak Overlap Time',
   'tools.tradingSessions.stats.volume': '70%',
@@ -573,113 +495,77 @@ export const en = {
   'tools.tradingSessions.stats.currentlyActive': 'Currently Active',
   'tools.tradingSessions.stats.marketOpen': '24/5',
   'tools.tradingSessions.stats.marketOpenDescription': 'Market Open (Mon-Fri)',
-  
-  // Current Time
   'tools.tradingSessions.currentTime.title': 'Current Time (UTC)',
   'tools.tradingSessions.currentTime.description': 'All times displayed in UTC timezone',
-  
-  // Session Status
   'tools.tradingSessions.session.open': 'OPEN',
   'tools.tradingSessions.session.closed': 'CLOSED',
   'tools.tradingSessions.session.progress': 'Session Progress',
-  
-  // Overlaps
   'tools.tradingSessions.overlap.londonNy': 'London/NY Overlap',
   'tools.tradingSessions.overlap.tokyoLondon': 'Tokyo/London Overlap',
   'tools.tradingSessions.overlap.sydneyTokyo': 'Sydney/Tokyo Overlap',
   'tools.tradingSessions.overlap.none': 'No Major Overlap',
-  
-  // Volatility Levels
   'tools.tradingSessions.volatility.low': 'Low',
   'tools.tradingSessions.volatility.medium': 'Medium',
   'tools.tradingSessions.volatility.high': 'High',
-  
-  // Session Strategies Section
   'tools.tradingSessions.strategies.title': 'Trading Strategies by Session',
   'tools.tradingSessions.strategies.description': 'Optimize your strategy based on market hours',
   'tools.tradingSessions.strategies.characteristics': 'Characteristics:',
   'tools.tradingSessions.strategies.bestPairs': 'Best Pairs:',
   'tools.tradingSessions.strategies.tradingStrategies': 'Trading Strategies:',
   'tools.tradingSessions.strategies.avoid': '⚠️ Avoid:',
-  
-  // Asian Session Strategy
   'tools.tradingSessions.strategies.asian.session': 'Asian Session (Sydney + Tokyo)',
   'tools.tradingSessions.strategies.asian.timeUTC': '21:00 - 08:00 UTC',
   'tools.tradingSessions.strategies.asian.characteristics': 'Lower volatility, ranging markets, thin liquidity outside major pairs',
-  'tools.tradingSessions.strategies.asian.strategies': 'Range Trading: Identify support/resistance from previous day\'s high/low. Buy at support, sell at resistance with tight stops (20-30 pips). Avoid breakout trades - fakeouts common.\n\nScalping: Use 5-15 minute charts. Target 5-10 pips per trade. Best during Tokyo open (23:00-01:00 UTC) when Japanese institutions active.\n\nCarry Trade Adjustments: Positions often rebalanced during Asian session. Watch for \'rollover\' flows at 00:00 UTC affecting AUD, NZD.',
+  'tools.tradingSessions.strategies.asian.strategies': 'Range Trading: Identify support/resistance from previous day\\',
   'tools.tradingSessions.strategies.asian.avoid': 'Avoid EUR/USD, GBP/USD - very low volume, wide spreads (3-5 pips vs 1-2 during London)',
-  
-  // London Session Strategy
   'tools.tradingSessions.strategies.london.session': 'London Session',
   'tools.tradingSessions.strategies.london.timeUTC': '07:00 - 16:00 UTC',
   'tools.tradingSessions.strategies.london.characteristics': 'Highest volume globally (~35% of forex transactions), strong trends, major breakouts',
-  'tools.tradingSessions.strategies.london.strategies': 'Breakout Trading: First hour (07:00-08:00 UTC) - \'London Open Breakout\'. Price often breaks previous day range. Trade direction of break with 40-60 pip stops, 100+ pip targets.\n\nTrend Following: Mid-session (09:00-14:00 UTC). Use 15min/1H charts. Follow strong directional moves. Don\'t fight the trend - London drives global forex direction.\n\nNews Trading: UK/EU economic data released 07:00-10:00 UTC. Trade with the surprise (beat = buy GBP/EUR, miss = sell).',
+  'tools.tradingSessions.strategies.london.strategies': 'Breakout Trading: First hour (07:00-08:00 UTC) - \\',
   'tools.tradingSessions.strategies.london.avoid': 'Last hour (15:00-16:00 UTC) - volatility drops as traders prepare for NY close',
-  
-  // London/NY Overlap Strategy
   'tools.tradingSessions.strategies.londonNy.session': 'London/New York Overlap',
   'tools.tradingSessions.strategies.londonNy.timeUTC': '12:00 - 16:00 UTC (8am-12pm NY time)',
   'tools.tradingSessions.strategies.londonNy.characteristics': 'PEAK LIQUIDITY - Tightest spreads, largest moves, 70% of daily volume in this 4-hour window',
   'tools.tradingSessions.strategies.londonNy.strategies': 'Momentum Trading: Strongest trends occur here. Use 5-15 min charts. Enter pullbacks to 20 EMA in direction of trend. Ride until momentum weakens (RSI divergence).\n\nNews Spike Trading: US news (12:30-14:00 UTC) - NFP, Fed, CPI. Wait 10 min post-release, trade breakout direction. High risk/reward.\n\nHigh-Volume Scalping: If spread drops below 1 pip on EUR/USD, scalp 3-5 pip targets with high win rate. Need tight execution.',
   'tools.tradingSessions.strategies.londonNy.avoid': 'Nothing - this is THE trading session. If you can only trade 4 hours/day, make it these 4 hours.',
-  
-  // NY Afternoon Strategy
   'tools.tradingSessions.strategies.nyAfternoon.session': 'New York Afternoon',
   'tools.tradingSessions.strategies.nyAfternoon.timeUTC': '16:00 - 21:00 UTC (12pm-5pm NY time)',
   'tools.tradingSessions.strategies.nyAfternoon.characteristics': 'Declining volume, position squaring before close, potential reversals',
   'tools.tradingSessions.strategies.nyAfternoon.strategies': 'Reversal Trading: After London close (16:00 UTC), trends often reverse as London traders close positions. Look for reversals at extremes - overbought/oversold RSI + candlestick patterns.\n\nEnd-of-Day Positioning: Final hour (20:00-21:00 UTC) - trade in direction that favors overnight carry. If AUD positive carry, bias long AUD/USD into close.\n\nLow-Risk Scalping: Use very tight stops (10-15 pips). Volatility lower, so profits smaller but safer for learning.',
   'tools.tradingSessions.strategies.nyAfternoon.avoid': 'Avoid holding positions into Sydney open if major news pending in Asia (China data, BOJ) - can gap against you',
-  
-  // Overlap Guides Section
   'tools.tradingSessions.overlaps.title': 'Session Overlap Trading Guide',
   'tools.tradingSessions.overlaps.description': 'Maximize profits during high-liquidity overlaps',
   'tools.tradingSessions.overlaps.bestPairs': 'Best Pairs:',
   'tools.tradingSessions.overlaps.tradingTip': 'Trading Tip:',
-  
-  // Tokyo/London Overlap
   'tools.tradingSessions.overlaps.tokyoLondon.overlap': 'Tokyo/London Overlap',
   'tools.tradingSessions.overlaps.tokyoLondon.time': '07:00 - 08:00 UTC (1 hour)',
   'tools.tradingSessions.overlaps.tokyoLondon.volume': 'Medium - Increases as London opens',
   'tools.tradingSessions.overlaps.tokyoLondon.bestFor': 'EUR/JPY, GBP/JPY, EUR/GBP',
   'tools.tradingSessions.overlaps.tokyoLondon.tradingTip': 'London traders enter while Tokyo still active. Yen crosses (EUR/JPY, GBP/JPY) see increased volatility. Watch for Tokyo range breakout as London volume hits. Not as strong as London/NY overlap but still tradable with 40-60 pip targets.',
-  
-  // London/NY Overlap Guide
   'tools.tradingSessions.overlaps.londonNy.overlap': 'London/New York Overlap',
   'tools.tradingSessions.overlaps.londonNy.time': '12:00 - 16:00 UTC (4 hours)',
   'tools.tradingSessions.overlaps.londonNy.volume': 'EXTREME - 70%+ of daily forex volume',
   'tools.tradingSessions.overlaps.londonNy.bestFor': 'ALL major pairs, especially EUR/USD, GBP/USD',
   'tools.tradingSessions.overlaps.londonNy.tradingTip': 'THE most important 4 hours in forex. Spreads at daily low (EUR/USD often 0.5-0.8 pips). Largest moves, clearest trends. US news + European afternoon = perfect storm. Professional traders make 60-80% of daily profits in this window. If struggling with profits, focus ONLY on this session.',
-  
-  // Sydney/Tokyo Overlap
   'tools.tradingSessions.overlaps.sydneyTokyo.overlap': 'Sydney/Tokyo Overlap',
   'tools.tradingSessions.overlaps.sydneyTokyo.time': '23:00 - 06:00 UTC (7 hours)',
   'tools.tradingSessions.overlaps.sydneyTokyo.volume': 'Low - Primarily regional flows',
   'tools.tradingSessions.overlaps.sydneyTokyo.bestFor': 'AUD/JPY, NZD/JPY, AUD/NZD',
   'tools.tradingSessions.overlaps.sydneyTokyo.tradingTip': 'Quiet overlap, mostly institutional/corporate flows. Good for learning without pressure. Spreads wider (1.5-2 pips vs 0.8). Use for range trading with 30-40 pip ranges. Avoid large positions - liquidity thin, one large order can move market 20 pips.',
-  
-  // Pro Tips Section
   'tools.tradingSessions.proTips.title': 'Professional Tips & Best Practices',
   'tools.tradingSessions.proTips.description': 'Master session-based trading with expert insights',
-  
-  'tools.tradingSessions.proTips.tip1.tip': 'Trade the First Hour of London - \'London Open Breakout\'',
+  'tools.tradingSessions.proTips.tip1.tip': 'Trade the First Hour of London - \\',
   'tools.tradingSessions.proTips.tip1.detail': '07:00-08:00 UTC is when London traders arrive and break previous session ranges. Set alerts on daily high/low - when price breaks with volume, trade the direction. 60-70% success rate if executed properly. Use 1:2 risk/reward minimum.',
-  
-  'tools.tradingSessions.proTips.tip2.tip': 'Never Trade During \'Dead Zones\' (04:00-07:00 UTC)',
-  'tools.tradingSessions.proTips.tip2.detail': 'Between Tokyo close and London open, volume drops 80%. Spreads widen, price action is random. Even if you see a \'perfect\' setup, skip it - execution will be poor and you\'ll get stopped out on spread widening alone.',
-  
+  'tools.tradingSessions.proTips.tip2.tip': 'Never Trade During \\',
+  'tools.tradingSessions.proTips.tip2.detail': 'Between Tokyo close and London open, volume drops 80%. Spreads widen, price action is random. Even if you see a \\',
   'tools.tradingSessions.proTips.tip3.tip': 'Adjust Strategy Based on Session - Not One-Size-Fits-All',
-  'tools.tradingSessions.proTips.tip3.detail': 'Breakouts work in London/NY (high volume). Range trading works in Asia (low volume). Momentum strategies work in overlaps. Using Asian session strategy in NY overlap will lose money - they\'re different markets.',
-  
+  'tools.tradingSessions.proTips.tip3.detail': 'Breakouts work in London/NY (high volume). Range trading works in Asia (low volume). Momentum strategies work in overlaps. Using Asian session strategy in NY overlap will lose money - they\\',
   'tools.tradingSessions.proTips.tip4.tip': 'London/NY Overlap is When Retail Traders Get Destroyed',
-  'tools.tradingSessions.proTips.tip4.detail': 'Paradox: Best session for profit is also most dangerous. Spreads tight but moves are violent. If you don\'t have fast execution and tight risk management, you\'ll get run over. Start with smaller position sizes (50% normal) until you master this session.',
-  
+  'tools.tradingSessions.proTips.tip4.detail': 'Paradox: Best session for profit is also most dangerous. Spreads tight but moves are violent. If you don\\',
   'tools.tradingSessions.proTips.tip5.tip': 'Use Session Times to Set Stop Losses Strategically',
-  'tools.tradingSessions.proTips.tip5.detail': 'Don\'t place stops near round numbers during London open - they\'ll get hunted. Instead, place slightly above/below (e.g., 1.0852 instead of 1.0850). During Asian session, tight stops (20-30 pips) work. During London, need 40-60 pips minimum.',
-  
+  'tools.tradingSessions.proTips.tip5.detail': 'Don\\',
   'tools.tradingSessions.proTips.tip6.tip': 'Friday Afternoon is Terrible for Trading (Position Squaring)',
-  'tools.tradingSessions.proTips.tip6.detail': 'After 18:00 UTC on Fridays, traders close positions before weekend (can\'t manage risk Sat/Sun). Trends reverse, stop hunts common. If you have profits by Friday 16:00 UTC, close and enjoy weekend. Weekend gaps can wipe out week\'s gains.',
-  
-  // Export Features Section
+  'tools.tradingSessions.proTips.tip6.detail': 'After 18:00 UTC on Fridays, traders close positions before weekend (can\\',
   'tools.tradingSessions.export.title': 'Session Tools & Alerts',
   'tools.tradingSessions.export.description': 'Never miss optimal trading hours',
   'tools.tradingSessions.export.alerts.title': '⏰ Session Alerts',
@@ -691,33 +577,22 @@ export const en = {
   'tools.tradingSessions.export.timezone.title': '🌍 Timezone Converter',
   'tools.tradingSessions.export.timezone.description': 'Convert UTC session times to your local timezone for easy reference',
   'tools.tradingSessions.export.timezone.button': 'Convert Times',
-  
-  // FAQ Section
   'tools.tradingSessions.faq.title': 'Frequently Asked Questions',
   'tools.tradingSessions.faq.description': 'Everything you need to know about trading sessions',
-  
   'tools.tradingSessions.faq.q1.question': 'What is the best trading session for beginners?',
-  'tools.tradingSessions.faq.q1.answer': 'London/New York overlap (12:00-16:00 UTC) for active trading - clearest trends, tightest spreads, most educational. BUT if you want to LEARN without losing money, start with Asian session (23:00-06:00 UTC) using micro lots. Asian session is slower, more forgiving, and you can practice range trading without the pressure of rapid price movements. After 3-6 months of profitable Asian trading, graduate to London/NY overlap. Never start learning during London open (07:00-08:00 UTC) - it\'s too fast and you\'ll form bad habits from panic trading.',
-  
+  'tools.tradingSessions.faq.q1.answer': 'London/New York overlap (12:00-16:00 UTC) for active trading - clearest trends, tightest spreads, most educational. BUT if you want to LEARN without losing money, start with Asian session (23:00-06:00 UTC) using micro lots. Asian session is slower, more forgiving, and you can practice range trading without the pressure of rapid price movements. After 3-6 months of profitable Asian trading, graduate to London/NY overlap. Never start learning during London open (07:00-08:00 UTC) - it\\',
   'tools.tradingSessions.faq.q2.question': 'Should I trade during my local business hours or adjust to forex hours?',
-  'tools.tradingSessions.faq.q2.answer': 'Adjust to forex hours, not your local schedule. Forex doesn\'t care where you live. If you\'re in California (UTC-8) and can only trade 9am-5pm your time (17:00-01:00 UTC), you\'re stuck with end of NY session (mediocre) and start of Sydney (poor). Either: 1) Wake up early (4am-8am local = 12:00-16:00 UTC overlap - GOLD), or 2) Accept lower profits trading suboptimal hours. The only exception: If you\'re in London (GMT) or Central Europe (CET) - you\'re blessed, your business hours align perfectly with best forex hours.',
-  
+  'tools.tradingSessions.faq.q2.answer': 'Adjust to forex hours, not your local schedule. Forex doesn\\',
   'tools.tradingSessions.faq.q3.question': 'How do session times affect different currency pairs differently?',
-  'tools.tradingSessions.faq.q3.answer': 'Currency pairs are most active during their \'home\' sessions: AUD/USD, NZD/USD: Sydney/Tokyo sessions (21:00-08:00 UTC) - 60% of daily range occurs here. EUR/USD, EUR/GBP, GBP/USD: London session (07:00-16:00 UTC) - 70% of moves here. USD/CAD, USD/MXN: NY session (12:00-21:00 UTC). JPY pairs: Active in Tokyo (23:00-08:00) but MORE active in London/NY when crosses move (EUR/JPY, GBP/JPY). Rule: Trade a currency pair during the session when at least one of its currencies is \'at work\'. Don\'t trade AUD/NZD during London (both sides asleep) - you\'re just gambling on random moves.',
-  
+  'tools.tradingSessions.faq.q3.answer': 'Currency pairs are most active during their \\',
   'tools.tradingSessions.faq.q4.question': 'Why do prices often reverse at session changes (especially London open and NY open)?',
   'tools.tradingSessions.faq.q4.answer': 'Session changes = liquidity shift = trader rotation. Example: Asian session ends at 08:00 UTC - Asian traders (who were long USD/JPY) close positions (sell USD/JPY). London traders arrive with fresh view, see USD/JPY weak, also sell. Cascade = reversal. NY open (12:00 UTC) - European traders take profit on EUR/USD longs (sell), US traders see weakness, pile on (more selling) = reversal. These reversals are TRADABLE: Watch for exhaustion patterns (wicks, doji) in final 30min of a session. If Tokyo pushed USD/JPY up 40 pips (06:30-08:00 UTC), expect reversal as London opens. Place sell stop 20 pips below high.',
-  
   'tools.tradingSessions.faq.q5.question': 'How can I trade if I work full-time and can only trade 1-2 hours per day?',
-  'tools.tradingSessions.faq.q5.answer': 'Scenario 1 - You can trade mornings (before work): If you wake at 6am local time, calculate 6am your timezone = ?:00 UTC. If it\'s 12:00-16:00 UTC → PERFECT, trade London/NY overlap for 1 hour. If it\'s during Asian session → trade ranges. Scenario 2 - You can trade evenings (after work): If you trade 7pm-9pm local = ?:00 UTC. If it\'s 00:00-02:00 UTC (Tokyo open) → tradable for scalping. If it\'s 03:00-06:00 UTC (dead zone) → skip trading, use time for analysis/education. Scenario 3 - Flexible schedule (can pick any 2 hours): ALWAYS choose 12:00-14:00 UTC (London/NY overlap start). Cancel meetings, wake up early, trade these 2 hours - they\'re worth more than 8 hours of Asian session. Use session clock to find YOUR optimal 1-2 hours.',
-  
-  'tools.tradingSessions.faq.q6.question': 'What are \'session highs/lows\' and why do traders watch them closely?',
+  'tools.tradingSessions.faq.q5.answer': 'Scenario 1 - You can trade mornings (before work): If you wake at 6am local time, calculate 6am your timezone = ?:00 UTC. If it\\',
+  'tools.tradingSessions.faq.q6.question': 'What are \\',
   'tools.tradingSessions.faq.q6.answer': 'Session high/low = the highest/lowest price reached during a specific session. Example: Asian session (21:00-08:00 UTC) EUR/USD ranged 1.0850-1.0880. Asian high = 1.0880, Asian low = 1.0850. Why critical: When London opens (08:00 UTC), if price breaks above 1.0880 (Asian high) with volume → BULLISH breakout → traders pile in long → rally to 1.0920+. If price stays below 1.0880 and breaks 1.0850 (Asian low) → BEARISH breakout. Trading strategy: At session change, set buy stop 5 pips above previous session high, sell stop 5 pips below previous session low. Cancel opposite order when one triggers. Works 60-70% of time at major session changes (Tokyo→London, London→NY). Stop loss 40-50 pips, target 80-100 pips (1:2 R:R).',
-  
   'tools.tradingSessions.faq.q7.question': 'How do daylight saving time changes affect trading sessions?',
-  'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \'open\' moves from 08:00 UTC to 07:00 UTC local. NY shifts from EST (UTC-5) to EDT (UTC-4). NY \'open\' stays 12:00 UTC (but is 8am local instead of 9am). November (Fall back): Reverse of above. Problem: Overlap timing CHANGES. When US on DST but UK not (or vice versa for 2 weeks), overlap may be 3 hours instead of 4. Solution: Ignore local times entirely. Use UTC exclusively. Set your trading platform to UTC. Mark on calendar: London/NY overlap is ALWAYS 12:00-16:00 UTC regardless of DST. Let other traders get confused by local times - you\'ll know the exact moment overlap starts.',
-  
-  // Settings
+  'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
   'settings.title': 'Settings',
   'settings.description': 'Manage your account preferences and trading settings',
   'settings.tabs.general': 'General',
@@ -778,8 +653,6 @@ export const en = {
   'settings.preferences.theme.light': 'Light',
   'settings.preferences.theme.dark': 'Dark',
   'settings.preferences.theme.system': 'System',
-  
-  // Deposits
   'deposits.title': 'Deposits',
   'deposits.description': 'Fund your trading account',
   'deposits.newDeposit': 'New Deposit',
@@ -787,7 +660,7 @@ export const en = {
   'deposits.form.description': 'Submit a deposit request to add funds to your account',
   'deposits.form.amount': 'Amount (USD)',
   'deposits.form.amountPlaceholder': '1000.00',
-  'deposits.form.fundType': 'Fund Type',
+  'deposits.form.fundType': 'Fund type',
   'deposits.form.fundTypePlaceholder': 'Select fund type',
   'deposits.form.fundType.real': 'Real Funds (Withdrawable)',
   'deposits.form.fundType.demo': 'Demo Funds (Practice)',
@@ -811,8 +684,6 @@ export const en = {
   'deposits.toast.success.title': 'Deposit request submitted',
   'deposits.toast.success.description': 'Your deposit request has been submitted for processing',
   'deposits.toast.error.title': 'Failed to submit deposit',
-  
-  // Withdrawals
   'withdrawals.title': 'Withdrawals',
   'withdrawals.description': 'Withdraw funds from your account',
   'withdrawals.newWithdrawal': 'New Withdrawal',
@@ -820,9 +691,9 @@ export const en = {
   'withdrawals.form.description': 'Submit a withdrawal request to transfer funds from your account',
   'withdrawals.form.amount': 'Amount (USD)',
   'withdrawals.form.amountPlaceholder': '1000.00',
-  'withdrawals.form.fundType': 'Fund Type',
+  'withdrawals.form.fundType': 'Fund type',
   'withdrawals.form.fundTypePlaceholder': 'Select fund type',
-  'withdrawals.form.fundType.real': 'Real Funds',
+  'withdrawals.form.fundType.real': 'Real funds',
   'withdrawals.form.fundType.demo': 'Demo Funds',
   'withdrawals.form.method': 'Withdrawal Method',
   'withdrawals.form.methodPlaceholder': 'Select withdrawal method',
@@ -842,8 +713,6 @@ export const en = {
   'withdrawals.toast.success.title': 'Withdrawal request submitted',
   'withdrawals.toast.success.description': 'Your withdrawal request has been submitted for processing',
   'withdrawals.toast.error.title': 'Failed to submit withdrawal',
-  
-  // Account Types
   'account.types.title': 'Account Types',
   'account.types.description': 'Choose the account that fits your trading style',
   'account.types.standard.title': 'Standard Account',
@@ -852,8 +721,6 @@ export const en = {
   'account.types.pro.description': 'For experienced traders',
   'account.types.vip.title': 'VIP Account',
   'account.types.vip.description': 'Premium features and support',
-  
-  // Footer
   'footer.aboutUs': 'About Us',
   'footer.company': 'Company',
   'footer.contact': 'Contact',
@@ -865,16 +732,12 @@ export const en = {
   'footer.followUs': 'Follow Us',
   'footer.copyright': '© {{year}} Trading Platform. All rights reserved.',
   'footer.disclaimer': 'Trading involves risk. Past performance is not indicative of future results.',
-  
-  // Footer - Section headings
   'footer.sectionMarkets': 'Markets',
   'footer.sectionCompany': 'Company',
   'footer.sectionLegal': 'Legal',
   'footer.sectionCompliance': 'Compliance',
   'footer.sectionSupport': 'Support',
   'footer.sectionEducation': 'Education',
-  
-  // Footer - Link labels
   'footer.forex': 'Forex',
   'footer.crypto': 'Crypto',
   'footer.commodities': 'Commodities',
@@ -884,70 +747,48 @@ export const en = {
   'footer.helpCenter': 'Help Center',
   'footer.faq': 'FAQ',
   'footer.documents': 'Documents',
-  
-  // Footer - Social media
   'footer.facebook': 'Facebook',
   'footer.twitter': 'Twitter',
   'footer.linkedin': 'LinkedIn',
   'footer.instagram': 'Instagram',
   'footer.youtube': 'YouTube',
-  
-  // Footer - Support/contact
   'footer.emailSupport': 'Email Support',
   'footer.phoneSupport': 'Phone Support',
   'footer.liveChat': 'Live Chat',
   'footer.available247': '24/7 Available',
-  'footer.needHelp': 'Need help? We\'re here 24/7',
-  
-  // Footer - Metrics
+  'footer.needHelp': 'Need help? We\\',
   'footer.activeTraders': 'Active Traders',
   'footer.countries': 'Countries',
   'footer.dailyVolume': 'Daily Volume',
   'footer.yearsExperience': 'Years Experience',
-
-  // Footer - CardResourcesFooter descriptions
   'footer.learnTradingStrategies': 'Learn trading strategies',
   'footer.exploreTradingInstruments': 'Explore trading instruments',
   'footer.getHelp247': 'Get help 24/7',
   'footer.termsAndPolicies': 'Terms & policies',
-
-  // Footer - ContactPanelFooter headings
   'footer.getInTouch': 'Get in Touch',
   'footer.quickLinks': 'Quick Links',
-
-  // Footer - FaqTeaserFooter
   'footer.faqHeading': 'Frequently Asked Questions',
   'footer.faqQuestion1': 'How do I open a trading account?',
-  'footer.faqAnswer1': 'Click "Register" and complete the simple 3-step process.',
+  'footer.faqAnswer1': 'Click',
   'footer.faqQuestion2': 'What are the minimum deposit requirements?',
   'footer.faqAnswer2': 'Minimum deposit varies by account type, starting from $100.',
   'footer.faqQuestion3': 'Is my money safe?',
   'footer.faqAnswer3': 'Client funds are held in segregated accounts with tier-1 banks.',
   'footer.viewAllFaq': 'View All FAQ',
-
-  // Footer - GlobalOfficesFooter
   'footer.ourGlobalPresence': 'Our Global Presence',
-
-  // Footer - NewsletterHeroFooter
   'footer.stayUpdated': 'Stay Updated',
   'footer.newsletterDescription': 'Get market insights and platform updates delivered to your inbox.',
   'footer.enterYourEmail': 'Enter your email',
   'footer.subscribe': 'Subscribe',
-
-  // Footer - PartnerCarouselFooter
   'footer.trustedBy': 'TRUSTED BY',
   'footer.partner1': 'Partner 1',
   'footer.partner2': 'Partner 2',
   'footer.partner3': 'Partner 3',
   'footer.partner4': 'Partner 4',
   'footer.partner5': 'Partner 5',
-
-  // Footer - MultiCtaCardFooter
   'footer.startTradingToday': 'Start Trading Today',
   'footer.joinThousandsTraders': 'Join thousands of traders worldwide',
   'footer.openAccount': 'Open Account',
-  
-  // Error Messages
   'error.required': 'This field is required',
   'error.invalidEmail': 'Invalid email address',
   'error.passwordTooShort': 'Password must be at least 8 characters',
@@ -956,8 +797,6 @@ export const en = {
   'error.unauthorized': 'You are not authorized to access this resource',
   'error.notFound': 'Resource not found',
   'error.serverError': 'Server error. Please try again later.',
-  
-  // Profile Page
   'profile.title': 'Profile Settings',
   'profile.description': 'Manage your account information',
   'profile.personalInfo.title': 'Personal Information',
@@ -981,8 +820,6 @@ export const en = {
   'profile.toast.success.title': 'Profile updated',
   'profile.toast.success.description': 'Your profile has been updated successfully',
   'profile.toast.error.title': 'Update failed',
-  
-  // KYC Page
   'kyc.title': 'KYC Verification',
   'kyc.description': 'Upload your documents for account verification',
   'kyc.uploadDocument.title': 'Upload Document',
@@ -991,7 +828,7 @@ export const en = {
   'kyc.documentType.placeholder': 'Select document type',
   'kyc.documentType.passport': 'Passport',
   'kyc.documentType.idCard': 'ID Card',
-  'kyc.documentType.driversLicense': 'Driver\'s License',
+  'kyc.documentType.driversLicense': 'Driver\\',
   'kyc.documentType.proofAddress': 'Proof of Address',
   'kyc.documentFile.label': 'Document File',
   'kyc.documentFile.formats': 'Accepted formats: PDF, JPG, PNG (Max 10MB)',
@@ -1004,8 +841,6 @@ export const en = {
   'kyc.toast.uploadFailed.title': 'Upload failed',
   'kyc.toast.missingInfo.title': 'Missing information',
   'kyc.toast.missingInfo.description': 'Please select a document type and file',
-  
-  // About Page
   'about.seo.title': 'About Us',
   'about.seo.description': 'Learn about our professional trading platform. We provide traders worldwide with access to forex, cryptocurrencies, and commodities markets.',
   'about.seo.keywords': 'about trading platform, regulated broker, trading company, forex broker',
@@ -1013,7 +848,7 @@ export const en = {
   'about.hero.subtitle': 'A professional trading platform built for traders who demand excellence, security, and transparency in every trade.',
   'about.mission.title': 'Our Mission',
   'about.mission.paragraph1': 'We are dedicated to providing traders worldwide with access to professional-grade trading tools and markets. Our mission is to democratize trading by offering institutional-quality infrastructure to retail traders.',
-  'about.mission.paragraph2': 'Founded by experienced traders and technologists, we understand the challenges traders face. We\'ve built a platform that addresses these challenges with cutting-edge technology, comprehensive education, and unwavering support.',
+  'about.mission.paragraph2': 'Founded by experienced traders and technologists, we understand the challenges traders face. We\\',
   'about.mission.regulated.title': 'Regulated & Licensed',
   'about.mission.regulated.description': 'Fully compliant with international financial regulations',
   'about.mission.clientFocused.title': 'Client-Focused',
@@ -1038,9 +873,7 @@ export const en = {
   'about.services.commodities.description': 'Access gold, silver, oil, and major stock indices. Diversify your portfolio with alternative assets.',
   'about.team.title': 'Leadership Team',
   'about.team.subtitle': 'Our team combines decades of experience in finance, technology, and trading.',
-  'about.team.description': 'Led by industry veterans with backgrounds from top financial institutions and technology companies, our leadership team is committed to building the most reliable and user-friendly trading platform in the industry. We\'re traders ourselves, and we build the platform we wish existed when we started.',
-  
-  // FAQ Page
+  'about.team.description': 'Led by industry veterans with backgrounds from top financial institutions and technology companies, our leadership team is committed to building the most reliable and user-friendly trading platform in the industry. We\\',
   'faq.seo.title': 'FAQ - Frequently Asked Questions',
   'faq.seo.description': 'Find answers to common questions about our trading platform, accounts, deposits, withdrawals, trading, and security.',
   'faq.seo.keywords': 'trading faq, broker questions, trading help, platform support',
@@ -1052,9 +885,9 @@ export const en = {
   'faq.category.securitySafety': 'Security & Safety',
   'faq.category.platformTechnical': 'Platform & Technical',
   'faq.accountRegistration.createAccount.question': 'How do I create an account?',
-  'faq.accountRegistration.createAccount.answer': 'Click the \'Create Account\' button in the top right corner, fill out the registration form with your details, and verify your email address. The process takes less than 5 minutes.',
+  'faq.accountRegistration.createAccount.answer': 'Click the \\',
   'faq.accountRegistration.kycDocuments.question': 'What documents do I need for KYC verification?',
-  'faq.accountRegistration.kycDocuments.answer': 'You\'ll need a government-issued ID (passport, driver\'s license, or national ID card) and proof of address (utility bill or bank statement) not older than 3 months.',
+  'faq.accountRegistration.kycDocuments.answer': 'You\\',
   'faq.accountRegistration.multipleAccounts.question': 'Can I have multiple accounts?',
   'faq.accountRegistration.multipleAccounts.answer': 'No, each person is allowed only one account per platform to comply with regulatory requirements and prevent abuse.',
   'faq.depositsWithdrawals.depositMethods.question': 'What deposit methods are available?',
@@ -1062,7 +895,7 @@ export const en = {
   'faq.depositsWithdrawals.withdrawalTime.question': 'How long do withdrawals take?',
   'faq.depositsWithdrawals.withdrawalTime.answer': 'Crypto withdrawals are processed within 1-2 hours. Bank transfers take 1-3 business days depending on your bank and location.',
   'faq.depositsWithdrawals.withdrawalFees.question': 'Are there any withdrawal fees?',
-  'faq.depositsWithdrawals.withdrawalFees.answer': 'We don\'t charge withdrawal fees, but your bank or payment provider may apply their own fees. Crypto withdrawals have network fees.',
+  'faq.depositsWithdrawals.withdrawalFees.answer': 'We don\\',
   'faq.depositsWithdrawals.minimumWithdrawal.question': 'What is the minimum withdrawal amount?',
   'faq.depositsWithdrawals.minimumWithdrawal.answer': 'The minimum withdrawal is $50 for bank transfers and varies for cryptocurrencies based on network fees.',
   'faq.trading.markets.question': 'What markets can I trade?',
@@ -1078,7 +911,7 @@ export const en = {
   'faq.securitySafety.twoFactor.question': 'Do you offer two-factor authentication (2FA)?',
   'faq.securitySafety.twoFactor.answer': 'Yes, we strongly recommend enabling 2FA for additional account security. You can enable it in your security settings.',
   'faq.securitySafety.forgotPassword.question': 'What happens if I forget my password?',
-  'faq.securitySafety.forgotPassword.answer': 'Click \'Forgot Password\' on the login page, enter your email, and follow the instructions sent to your inbox to reset your password.',
+  'faq.securitySafety.forgotPassword.answer': 'Click \\',
   'faq.securitySafety.dataPrivacy.question': 'Is my personal data secure?',
   'faq.securitySafety.dataPrivacy.answer': 'Yes, we use industry-standard encryption and comply with GDPR and other privacy regulations. We never share your data with third parties without your consent.',
   'faq.platformTechnical.mobileApp.question': 'Do you have a mobile app?',
@@ -1090,14 +923,12 @@ export const en = {
   'faq.cta.title': 'Still Have Questions?',
   'faq.cta.description': 'Our support team is available 24/7 to help you with any questions or concerns.',
   'faq.cta.button': 'Contact Support',
-  
-  // Education Page
   'education.seo.title': 'Trading Education & Learning Center',
   'education.seo.description': 'Learn trading from basics to advanced strategies. Free educational resources, guides, and tutorials for forex, crypto, and commodities trading.',
   'education.seo.keywords': 'trading education, learn forex, crypto trading course, trading strategies, technical analysis',
   'education.hero.title': 'Trading Education Center',
   'education.hero.subtitle': 'Learn from comprehensive guides, tutorials, and courses designed to help you become a successful trader, regardless of your experience level.',
-  'education.topics.title': 'What You\'ll Learn',
+  'education.topics.title': 'What You\\',
   'education.topics.subtitle': 'Comprehensive education covering every aspect of trading from basics to advanced strategies.',
   'education.topics.tradingBasics.title': 'Trading Basics',
   'education.topics.tradingBasics.description': 'Understanding Markets',
@@ -1144,17 +975,15 @@ export const en = {
   'education.academy.certifications.description': 'Earn trading certificates',
   'education.academy.button': 'Get Started with Trading',
   'education.cta.title': 'Ready to Apply Your Knowledge?',
-  'education.cta.subtitle': 'Open a free account and start trading with the skills you\'ve learned.',
+  'education.cta.subtitle': 'Open a free account and start trading with the skills you\\',
   'education.cta.button': 'Create Free Account',
-  
-  // Contact Page
   'contact.seo.title': 'Contact Us - Get in Touch',
-  'contact.seo.description': 'Contact our 24/7 support team. We\'re here to help with any questions about trading, accounts, or our platform.',
+  'contact.seo.description': 'Contact our 24/7 support team. We\\',
   'contact.seo.keywords': 'contact trading platform, customer support, trading help, broker contact',
   'contact.hero.title': 'Get in Touch',
-  'contact.hero.subtitle': 'Have questions? We\'re here to help. Reach out to our support team 24/7.',
+  'contact.hero.subtitle': 'Have questions? We\\',
   'contact.form.title': 'Send us a Message',
-  'contact.form.description': 'Fill out the form below and we\'ll respond within 24 hours.',
+  'contact.form.description': 'Fill out the form below and we\\',
   'contact.form.name.label': 'Name',
   'contact.form.name.placeholder': 'John Doe',
   'contact.form.name.error': 'Name must be at least 2 characters',
@@ -1172,18 +1001,16 @@ export const en = {
   'contact.info.emailSupport.title': 'Email Support',
   'contact.info.emailSupport.value': 'support@tradingplatform.com',
   'contact.info.supportHours.title': 'Support Hours',
-  'contact.info.supportHours.value': '24/7 - We\'re always here to help',
+  'contact.info.supportHours.value': '24/7 - We',
   'contact.info.officeAddress.title': 'Office Address',
   'contact.info.officeAddress.line1': '123 Trading Street, Financial District',
   'contact.info.officeAddress.line2': 'London, UK',
   'contact.info.liveChat.title': 'Live Chat',
   'contact.info.liveChat.value': 'Chat support coming soon',
   'contact.toast.success.title': 'Message sent successfully',
-  'contact.toast.success.description': 'We\'ll get back to you as soon as possible.',
+  'contact.toast.success.description': 'We\\',
   'contact.toast.error.title': 'Error',
   'contact.toast.error.description': 'Failed to send message. Please try again.',
-  
-  // Partners Page
   'partners.seo.title': 'Partners & Affiliates Program',
   'partners.seo.description': 'Join our affiliate program and earn competitive commissions. Up to 30% revenue share, dedicated support, and professional marketing tools.',
   'partners.seo.keywords': 'trading affiliate program, broker partnership, affiliate marketing, trading referral',
@@ -1227,13 +1054,11 @@ export const en = {
   'partners.howItWorks.promote.title': 'Promote',
   'partners.howItWorks.promote.description': 'Share your unique referral link using our marketing materials.',
   'partners.howItWorks.earn.title': 'Earn',
-  'partners.howItWorks.earn.description': 'Receive commissions for every referred trader\'s activity.',
+  'partners.howItWorks.earn.description': 'Receive commissions for every referred trader\\',
   'partners.cta.title': 'Ready to Become a Partner?',
   'partners.cta.subtitle': 'Join our affiliate program today and start earning competitive commissions.',
   'partners.cta.applyButton': 'Apply Now',
   'partners.cta.learnMoreButton': 'Learn More',
-  
-  // Customer - Account Types Page
   'customer.accountTypes.badge': 'Customer Information',
   'customer.accountTypes.title': 'Choose Your Account Type',
   'customer.accountTypes.subtitle': 'Select the account that matches your trading experience and goals. All accounts include access to our full range of instruments, trading platforms, and educational resources. Upgrade anytime as your trading evolves.',
@@ -1346,7 +1171,7 @@ export const en = {
   'customer.accountTypes.selector.volume.high': '100+ lots → VIP',
   'customer.accountTypes.faq.upgrade.question': 'Can I upgrade my account type later?',
   'customer.accountTypes.faq.upgrade.answer': 'Yes, you can upgrade your account type at any time by meeting the minimum deposit requirement of the higher tier. Contact our support team to initiate an upgrade, and your account will be transitioned within 24 hours.',
-  'customer.accountTypes.faq.executionSpeed.question': 'What\'s the difference in execution speed between account types?',
+  'customer.accountTypes.faq.executionSpeed.question': 'What\\',
   'customer.accountTypes.faq.executionSpeed.answer': 'All account types benefit from the same ultra-fast execution speeds (average 0.05 seconds). However, Professional and VIP accounts receive priority order routing during high volatility periods, ensuring optimal fills even in fast-moving markets.',
   'customer.accountTypes.faq.fees.question': 'Are there any hidden fees or commissions?',
   'customer.accountTypes.faq.fees.answer': 'No hidden fees. Standard accounts have no commission on forex trades (spreads only). Professional accounts have a small commission structure ($3.50 per lot) but tighter spreads. VIP accounts have custom fee structures based on volume. All fees are disclosed upfront.',
@@ -1363,8 +1188,6 @@ export const en = {
   'customer.accountTypes.cta.opensIn5Min': 'Account opens in 5 minutes',
   'customer.accountTypes.cta.noHiddenFees': 'No hidden fees',
   'customer.accountTypes.cta.freeUpgrade': 'Free to upgrade anytime',
-  
-  // Customer - Payment Methods Page
   'customer.paymentMethods.badge': 'Customer Information',
   'customer.paymentMethods.title': 'Payment Methods',
   'customer.paymentMethods.subtitle': 'Fast, secure, and convenient funding options for traders worldwide. We support bank transfers, cards, e-wallets, and cryptocurrency with competitive fees and rapid processing times.',
@@ -1409,7 +1232,7 @@ export const en = {
   'customer.paymentMethods.cards.debit.currencies': 'Multiple currencies',
   'customer.paymentMethods.cards.debit.limits': 'Daily: $15,000 | Monthly: $50,000',
   'customer.paymentMethods.cards.debit.security': '3D Secure enabled',
-  'customer.paymentMethods.ewallets.category': 'E-Wallets',
+  'customer.paymentMethods.ewallets.category': 'E-wallets',
   'customer.paymentMethods.ewallets.description': 'Fast and secure digital wallet payments',
   'customer.paymentMethods.ewallets.skrill.name': 'Skrill',
   'customer.paymentMethods.ewallets.skrill.processingTime': 'Instant both ways',
@@ -1439,7 +1262,7 @@ export const en = {
   'customer.paymentMethods.crypto.description': 'Secure deposits using popular cryptocurrencies',
   'customer.paymentMethods.crypto.bitcoin.name': 'Bitcoin (BTC)',
   'customer.paymentMethods.crypto.bitcoin.processingTime': '1-2 confirmations (~20 min)',
-  'customer.paymentMethods.crypto.bitcoin.minDeposit': '$50 equivalent',
+  'customer.paymentMethods.crypto.bitcoin.minDeposit': '50 equivalent',
   'customer.paymentMethods.crypto.bitcoin.maxDeposit': 'Unlimited',
   'customer.paymentMethods.crypto.bitcoin.fees': 'Network fees only (~$2-10)',
   'customer.paymentMethods.crypto.bitcoin.currencies': 'BTC → USD conversion',
@@ -1447,7 +1270,7 @@ export const en = {
   'customer.paymentMethods.crypto.bitcoin.security': 'Cold wallet storage',
   'customer.paymentMethods.crypto.ethereum.name': 'Ethereum (ETH)',
   'customer.paymentMethods.crypto.ethereum.processingTime': '12-20 confirmations (~5 min)',
-  'customer.paymentMethods.crypto.ethereum.minDeposit': '$50 equivalent',
+  'customer.paymentMethods.crypto.ethereum.minDeposit': '50 equivalent',
   'customer.paymentMethods.crypto.ethereum.maxDeposit': 'Unlimited',
   'customer.paymentMethods.crypto.ethereum.fees': 'Network fees only (~$1-5)',
   'customer.paymentMethods.crypto.ethereum.currencies': 'ETH → USD conversion',
@@ -1469,13 +1292,13 @@ export const en = {
   'customer.paymentMethods.guide.title': 'How to Make a Deposit (Step-by-Step)',
   'customer.paymentMethods.guide.description': 'Follow these simple steps to fund your account',
   'customer.paymentMethods.guide.step1.title': 'Log in to Your Account',
-  'customer.paymentMethods.guide.step1.description': 'Access your dashboard and navigate to the "Deposit" section in the main menu.',
+  'customer.paymentMethods.guide.step1.description': 'Access your dashboard and navigate to the',
   'customer.paymentMethods.guide.step2.title': 'Select Payment Method',
   'customer.paymentMethods.guide.step2.description': 'Choose your preferred payment method from the available options. Consider processing time and fees.',
   'customer.paymentMethods.guide.step3.title': 'Enter Deposit Amount',
   'customer.paymentMethods.guide.step3.description': 'Enter the amount you wish to deposit. Ensure it meets the minimum requirement for your chosen method.',
   'customer.paymentMethods.guide.step4.title': 'Complete Payment',
-  'customer.paymentMethods.guide.step4.description': 'Follow the payment provider\'s instructions. You may be redirected to your bank or payment processor.',
+  'customer.paymentMethods.guide.step4.description': 'Follow the payment provider\\',
   'customer.paymentMethods.guide.step5.title': 'Funds Appear in Account',
   'customer.paymentMethods.guide.step5.description': 'Your balance updates automatically once payment is processed. Check your account balance or transaction history.',
   'customer.paymentMethods.notice.security.title': 'Security First:',
@@ -1483,7 +1306,7 @@ export const en = {
   'customer.paymentMethods.notice.processing.title': 'Processing Times:',
   'customer.paymentMethods.notice.processing.description': 'Stated processing times are estimates and may vary based on your bank, payment provider, and local regulations. Deposits during weekends or holidays may take longer. Cryptocurrency transactions depend on network congestion.',
   'customer.paymentMethods.faq.depositTime.question': 'How long does it take for my deposit to appear in my account?',
-  'customer.paymentMethods.faq.depositTime.answer': 'Deposit times vary by method: Credit/debit cards and e-wallets are instant (within seconds). Bank transfers take 1-3 business days. Cryptocurrency deposits are credited after required network confirmations (typically 5-20 minutes). Your funds appear immediately as \'pending\' and become available for trading once cleared.',
+  'customer.paymentMethods.faq.depositTime.answer': 'Deposit times vary by method: Credit/debit cards and e-wallets are instant (within seconds). Bank transfers take 1-3 business days. Cryptocurrency deposits are credited after required network confirmations (typically 5-20 minutes). Your funds appear immediately as \\',
   'customer.paymentMethods.faq.fees.question': 'Are there any deposit or withdrawal fees?',
   'customer.paymentMethods.faq.fees.answer': 'Most deposit methods are free. Bank wire withdrawals have a $25 fee. E-wallet withdrawals (Skrill, Neteller) have a 1% fee with a $5 minimum. Cryptocurrency transactions only pay network fees. Credit/debit card deposits and withdrawals are completely free. See the detailed table above for specific fees per method.',
   'customer.paymentMethods.faq.differentMethod.question': 'Can I withdraw to a different method than I deposited with?',
@@ -1498,8 +1321,6 @@ export const en = {
   'customer.paymentMethods.cta.description': 'Choose from 12+ payment methods with competitive fees. Most deposits are instant, so you can start trading right away.',
   'customer.paymentMethods.cta.makeDeposit': 'Make a Deposit',
   'customer.paymentMethods.cta.viewAccountTypes': 'View Account Types',
-  
-  // Customer - Verification Page
   'customer.verification.badge': 'Customer Information',
   'customer.verification.title': 'Account Verification (KYC)',
   'customer.verification.subtitle': 'Know Your Customer (KYC) verification is a simple, secure process that protects your account and ensures compliance with financial regulations. Most accounts are verified within 24-48 hours.',
@@ -1511,7 +1332,7 @@ export const en = {
   'customer.verification.step2.title': 'Identity Verification',
   'customer.verification.step2.description': 'Upload a clear photo of your government-issued ID',
   'customer.verification.step2.time': '5 minutes',
-  'customer.verification.step2.details': 'Accepted: Passport, driver\'s license, or national ID card. Ensure all text is readable and photo is clear.',
+  'customer.verification.step2.details': 'Accepted: Passport, driver\\',
   'customer.verification.step3.title': 'Proof of Address',
   'customer.verification.step3.description': 'Submit a recent utility bill, bank statement, or government document',
   'customer.verification.step3.time': '5 minutes',
@@ -1519,7 +1340,7 @@ export const en = {
   'customer.verification.step4.title': 'Review & Approval',
   'customer.verification.step4.description': 'Our compliance team reviews your documents',
   'customer.verification.step4.time': '24-48 hours',
-  'customer.verification.step4.details': 'We verify all documents for authenticity and accuracy. You\'ll receive email confirmation once approved.',
+  'customer.verification.step4.details': 'We verify all documents for authenticity and accuracy. You\\',
   'customer.verification.processDetails.title': 'Verification Process Details',
   'customer.verification.estimatedTime': 'Estimated time: {{time}}',
   'customer.verification.identityDocs.title': 'Accepted Identity Documents',
@@ -1527,7 +1348,7 @@ export const en = {
   'customer.verification.identityDocs.passport.note': 'Most commonly accepted',
   'customer.verification.identityDocs.nationalId': 'National ID card (both sides)',
   'customer.verification.identityDocs.nationalId.note': 'Must be valid',
-  'customer.verification.identityDocs.driversLicense': 'Driver\'s license (both sides)',
+  'customer.verification.identityDocs.driversLicense': 'Driver\\',
   'customer.verification.identityDocs.driversLicense.note': 'Government-issued only',
   'customer.verification.identityDocs.militaryId': 'Military ID',
   'customer.verification.identityDocs.militaryId.note': 'Active military only',
@@ -1576,24 +1397,24 @@ export const en = {
   'customer.verification.commonIssues.tooOld.solution': 'Proof of address must be dated within the last 3 months. Submit a more recent document.',
   'customer.verification.commonIssues.tooOld.prevention': 'Check the document date before uploading',
   'customer.verification.commonIssues.missingPages.issue': 'Missing Pages',
-  'customer.verification.commonIssues.missingPages.solution': 'Upload both sides of ID cards and driver\'s licenses. Include all relevant pages of bank statements.',
+  'customer.verification.commonIssues.missingPages.solution': 'Upload both sides of ID cards and driver\\',
   'customer.verification.commonIssues.missingPages.prevention': 'Review the upload checklist before submitting',
   'customer.verification.commonIssues.solution': 'Solution:',
   'customer.verification.commonIssues.prevention': 'Prevention:',
   'customer.verification.whyVerify.regulatory.title': 'Regulatory Compliance',
-  'customer.verification.whyVerify.regulatory.description': 'Financial regulations require us to verify the identity of all clients to prevent money laundering, terrorist financing, and fraud. We\'re licensed and regulated in multiple jurisdictions.',
+  'customer.verification.whyVerify.regulatory.description': 'Financial regulations require us to verify the identity of all clients to prevent money laundering, terrorist financing, and fraud. We\\',
   'customer.verification.whyVerify.security.title': 'Account Security',
-  'customer.verification.whyVerify.security.description': 'Verification protects your account from unauthorized access and ensures only you can withdraw funds. It\'s an essential security measure that safeguards your assets and personal information.',
+  'customer.verification.whyVerify.security.description': 'Verification protects your account from unauthorized access and ensures only you can withdraw funds. It\\',
   'customer.verification.whyVerify.features.title': 'Enhanced Features',
   'customer.verification.whyVerify.features.description': 'Verified accounts enjoy higher deposit limits, faster withdrawals, access to premium features, increased leverage options, and eligibility for promotional offers and bonuses.',
   'customer.verification.faq.required.question': 'Why is account verification required?',
   'customer.verification.faq.required.answer': 'Account verification (KYC - Know Your Customer) is a legal requirement for all financial service providers. It prevents money laundering, fraud, and identity theft. Verification also protects your account by ensuring only you can withdraw funds. Additionally, it allows us to comply with international financial regulations and maintain our licenses.',
   'customer.verification.faq.howLong.question': 'How long does the verification process take?',
-  'customer.verification.faq.howLong.answer': 'Most verifications are completed within 24-48 hours during business days. Simple cases may be approved in as little as 2-4 hours. Complex cases requiring additional documentation can take up to 5 business days. VIP account applications may require enhanced due diligence taking 3-7 business days. You\'ll receive email notifications at each stage.',
+  'customer.verification.faq.howLong.answer': 'Most verifications are completed within 24-48 hours during business days. Simple cases may be approved in as little as 2-4 hours. Complex cases requiring additional documentation can take up to 5 business days. VIP account applications may require enhanced due diligence taking 3-7 business days. You\\',
   'customer.verification.faq.tradeBeforeVerify.question': 'Can I trade before my account is verified?',
   'customer.verification.faq.tradeBeforeVerify.answer': 'Yes, you can deposit funds and start trading before verification is complete. However, you cannot withdraw funds until your account is fully verified. We recommend completing verification immediately after registration to avoid withdrawal delays. Some features like higher leverage and increased limits also require verified status.',
   'customer.verification.faq.rejected.question': 'What if my documents are rejected?',
-  'customer.verification.faq.rejected.answer': 'If documents are rejected, you\'ll receive an email explaining the specific reasons. Common reasons include poor image quality, expired documents, or address mismatches. You can immediately resubmit corrected documents. Our support team is available 24/5 to help you resolve any verification issues. Most rejections are resolved within 24 hours of resubmission.',
+  'customer.verification.faq.rejected.answer': 'If documents are rejected, you\\',
   'customer.verification.faq.secure.question': 'Is my personal information secure?',
   'customer.verification.faq.secure.answer': 'Absolutely. All documents are transmitted using bank-grade 256-bit SSL encryption. We store documents in secure, encrypted servers with restricted access. Our systems are regularly audited for security compliance. We comply with GDPR, CCPA, and other data protection regulations. Your information is never shared with third parties except as required by law or regulation.',
   'customer.verification.faq.changeAddress.question': 'Do I need to verify again if I change my address?',
@@ -1601,14 +1422,12 @@ export const en = {
   'customer.verification.faq.thirdParty.question': 'Can someone else verify the account on my behalf?',
   'customer.verification.faq.thirdParty.answer': 'No, you must verify your own account using your own documents. Third-party verification is not permitted due to regulatory requirements. For corporate accounts, authorized signatories and beneficial owners must provide their own documentation. We may require additional corporate documentation including certificates of incorporation and board resolutions.',
   'customer.verification.cta.title': 'Start Your Verification Now',
-  'customer.verification.cta.description': 'Complete your KYC verification in less than 15 minutes. Have your ID and proof of address ready, and you\'ll be approved within 24-48 hours.',
+  'customer.verification.cta.description': 'Complete your KYC verification in less than 15 minutes. Have your ID and proof of address ready, and you\\',
   'customer.verification.cta.beginVerification': 'Begin Verification',
   'customer.verification.cta.contactSupport': 'Contact Support',
   'customer.verification.cta.secureEncrypted': 'Secure & encrypted',
   'customer.verification.cta.approval24h': '24-48 hour approval',
   'customer.verification.cta.noHiddenRequirements': 'No hidden requirements',
-  
-  // Customer - Trading Advice Page
   'customer.tradingAdvice.badge': 'Advisory Services',
   'customer.tradingAdvice.title': 'Trading Advice & Advisory Services',
   'customer.tradingAdvice.subtitle': 'Access professional market insights, trading signals, and educational resources to enhance your trading performance. Our team of expert analysts provides actionable advice across forex, crypto, and commodities.',
@@ -1669,7 +1488,7 @@ export const en = {
   'customer.tradingAdvice.performance.description': 'Transparent track record of our signal performance',
   'customer.tradingAdvice.performance.month': 'Month',
   'customer.tradingAdvice.performance.totalSignals': 'Total Signals',
-  'customer.tradingAdvice.performance.winRate': 'Win Rate',
+  'customer.tradingAdvice.performance.winRate': 'Win rate',
   'customer.tradingAdvice.performance.avgRR': 'Avg R:R',
   'customer.tradingAdvice.performance.totalPips': 'Total Pips',
   'customer.tradingAdvice.performance.disclaimer': '* Performance based on recommended position sizes and all signals executed at suggested levels. Individual results may vary based on execution, slippage, and risk management.',
@@ -1693,17 +1512,17 @@ export const en = {
   'customer.tradingAdvice.disclaimers.marketConditions.title': 'Market Conditions & Volatility',
   'customer.tradingAdvice.disclaimers.marketConditions.description': 'Market conditions can change rapidly, affecting the effectiveness of any trading strategy or signal. High-impact news events, unexpected geopolitical developments, and market volatility can cause signals to perform differently than expected. Always use appropriate risk management and never risk more than you can afford to lose.',
   'customer.tradingAdvice.faq.accuracy.question': 'How accurate are the trading signals?',
-  'customer.tradingAdvice.faq.accuracy.answer': 'Our signals maintain a 65-72% win rate over the past 12 months with an average risk-reward ratio of 1:2.3. We publish full performance statistics monthly for transparency. However, past performance doesn\'t guarantee future results. All signals include stop loss and take profit levels to manage risk effectively.',
+  'customer.tradingAdvice.faq.accuracy.answer': 'Our signals maintain a 65-72% win rate over the past 12 months with an average risk-reward ratio of 1:2.3. We publish full performance statistics monthly for transparency. However, past performance doesn\\',
   'customer.tradingAdvice.faq.relySolely.question': 'Can I rely solely on trading signals without my own analysis?',
   'customer.tradingAdvice.faq.relySolely.answer': 'While our signals are professionally researched, we strongly recommend using them as part of your overall trading strategy, not as standalone trades. Combine signals with your own analysis, risk management, and market understanding. Signals are educational tools to help you learn market patterns and trading strategies.',
-  'customer.tradingAdvice.faq.analysisContent.question': 'What\'s included in the market analysis reports?',
+  'customer.tradingAdvice.faq.analysisContent.question': 'What\\',
   'customer.tradingAdvice.faq.analysisContent.answer': 'Each market analysis includes: technical chart analysis with key levels, fundamental factors affecting price movement, upcoming economic events to watch, trend analysis across multiple timeframes, potential trading opportunities, and risk factors to consider. Professional and VIP accounts receive more detailed analysis with exclusive insights.',
   'customer.tradingAdvice.faq.receiveSignals.question': 'How do I receive trading signals and alerts?',
   'customer.tradingAdvice.faq.receiveSignals.answer': 'Signals are delivered via multiple channels: push notifications in the trading platform, email alerts to your registered address, SMS text messages (opt-in required), and through our mobile app. You can customize which signals you receive and via which channels. VIP members get priority delivery before general release.',
   'customer.tradingAdvice.faq.webinarType.question': 'Are the webinars live or pre-recorded?',
   'customer.tradingAdvice.faq.webinarType.answer': 'We offer both. Live webinars occur weekly and include Q&A sessions where you can ask questions directly to our analysts. All live sessions are recorded and added to our library of 100+ educational videos. Professional and VIP members can access all recordings on-demand. Topics range from beginner basics to advanced strategies.',
-  'customer.tradingAdvice.faq.signalFails.question': 'What if a signal doesn\'t work out?',
-  'customer.tradingAdvice.faq.signalFails.answer': 'Not all signals will be profitable - that\'s the nature of trading. Each signal includes stop loss levels to limit potential losses. Our 65-72% win rate means 28-35% of signals hit stop loss. The key is our risk-reward ratio (1:2+), which means winners typically outweigh losers. We track and publish all signal outcomes for transparency.',
+  'customer.tradingAdvice.faq.signalFails.question': 'What if a signal doesn\\',
+  'customer.tradingAdvice.faq.signalFails.answer': 'Not all signals will be profitable - that\\',
   'customer.tradingAdvice.faq.requestAnalysis.question': 'Can I request analysis on specific instruments?',
   'customer.tradingAdvice.faq.requestAnalysis.answer': 'Professional and VIP account holders can request analysis on specific instruments. Submit requests through your account dashboard, and our team will include them in upcoming reports (subject to availability). VIP members receive priority for custom analysis requests and can schedule 1-on-1 sessions with our senior analysts.',
   'customer.tradingAdvice.accountComparison.title': 'Advisory Access by Account Type',
@@ -1739,18 +1558,12 @@ export const en = {
   'customer.tradingAdvice.cta.winRate': '68% average win rate',
   'customer.tradingAdvice.cta.riskReward': '1:2.4 risk/reward ratio',
   'customer.tradingAdvice.cta.transparency': 'Full transparency',
-
-  // Tools - Position Calculator
   'tools.positionCalculator.title': 'Position Size Calculator',
   'tools.positionCalculator.description': 'Calculate optimal position size based on risk management',
-  
-  // Quick Stats
   'tools.positionCalculator.stats.recommendedRisk': 'Recommended Risk Per Trade',
   'tools.positionCalculator.stats.maxExposure': 'Max Total Exposure',
   'tools.positionCalculator.stats.stopRequired': 'Trades Need Stop Loss',
   'tools.positionCalculator.stats.survival': 'Losses to Survive (2% Risk)',
-  
-  // Calculator Form
   'tools.positionCalculator.calculator.title': 'Calculate Position Size',
   'tools.positionCalculator.calculator.description': 'Enter your account details and trade parameters',
   'tools.positionCalculator.calculator.accountBalance': 'Account Balance',
@@ -1759,8 +1572,6 @@ export const en = {
   'tools.positionCalculator.calculator.entryPrice': 'Entry Price',
   'tools.positionCalculator.calculator.stopLoss': 'Stop Loss Price',
   'tools.positionCalculator.calculator.calculate': 'Calculate',
-  
-  // Results
   'tools.positionCalculator.results.title': 'Results',
   'tools.positionCalculator.results.positionSize': 'Position Size',
   'tools.positionCalculator.results.lots': 'lots',
@@ -1771,8 +1582,6 @@ export const en = {
   'tools.positionCalculator.results.stopDistance': 'Stop Distance',
   'tools.positionCalculator.results.pips': 'pips',
   'tools.positionCalculator.results.enterValues': 'Enter all values to calculate position size',
-  
-  // Examples Section
   'tools.positionCalculator.examples.title': 'Position Size Calculation Examples',
   'tools.positionCalculator.examples.description': 'Understand how different account sizes, risk levels, and stop distances affect position sizing',
   'tools.positionCalculator.examples.scenario': 'Scenario:',
@@ -1780,132 +1589,97 @@ export const en = {
   'tools.positionCalculator.examples.calculation': 'Calculation:',
   'tools.positionCalculator.examples.result': 'Result:',
   'tools.positionCalculator.examples.explanation': 'Explanation:',
-  
   'tools.positionCalculator.examples.example1.scenario': '$10,000 Account, 2% Risk, EUR/USD 50 Pip Stop',
   'tools.positionCalculator.examples.example1.inputs': 'Balance: $10,000 | Risk: 2% | Entry: 1.1000 | Stop Loss: 1.0950 (50 pips)',
   'tools.positionCalculator.examples.example1.calculation': 'Step 1: Calculate risk amount = $10,000 × 2% = $200\nStep 2: Stop distance = |1.1000 - 1.0950| × 10,000 = 50 pips\nStep 3: Pip value needed = $200 ÷ 50 pips = $4 per pip\nStep 4: Position size = $4 ÷ $10 (standard lot pip value) = 0.4 lots',
   'tools.positionCalculator.examples.example1.result': '0.40 lots (40,000 units)',
   'tools.positionCalculator.examples.example1.explanation': 'With a 50 pip stop and 2% risk, you can trade 0.4 lots. If stopped out, you lose exactly $200 (2% of account). Never exceed this size.',
-  
   'tools.positionCalculator.examples.example2.scenario': '$5,000 Account, 1% Risk, GBP/USD 80 Pip Stop',
   'tools.positionCalculator.examples.example2.inputs': 'Balance: $5,000 | Risk: 1% | Entry: 1.2500 | Stop Loss: 1.2420 (80 pips)',
   'tools.positionCalculator.examples.example2.calculation': 'Step 1: Risk amount = $5,000 × 1% = $50\nStep 2: Stop distance = 80 pips\nStep 3: Pip value = $50 ÷ 80 = $0.625 per pip\nStep 4: Position size = $0.625 ÷ $10 = 0.0625 lots (or 0.06 rounded)',
   'tools.positionCalculator.examples.example2.result': '0.06 lots (6,000 units)',
   'tools.positionCalculator.examples.example2.explanation': 'Wider stop (80 pips) means smaller position size to maintain $50 risk. Conservative 1% risk protects small account from significant drawdowns.',
-  
   'tools.positionCalculator.examples.example3.scenario': '$50,000 Account, 3% Risk, USD/JPY 30 Pip Stop',
   'tools.positionCalculator.examples.example3.inputs': 'Balance: $50,000 | Risk: 3% | Entry: 150.00 | Stop Loss: 149.70 (30 pips)',
   'tools.positionCalculator.examples.example3.calculation': 'Step 1: Risk amount = $50,000 × 3% = $1,500\nStep 2: Stop distance = 30 pips (JPY pair, but same logic)\nStep 3: Pip value = $1,500 ÷ 30 = $50 per pip\nStep 4: Position size = $50 ÷ $10 ≈ 5 lots',
   'tools.positionCalculator.examples.example3.result': '5.00 lots (500,000 units)',
   'tools.positionCalculator.examples.example3.explanation': 'Tight stop (30 pips) allows larger position. Warning: 3% risk is aggressive - recommended only for experienced traders with proven edge.',
-  
   'tools.positionCalculator.examples.example4.scenario': '$2,000 Account, 2% Risk, AUD/USD 100 Pip Stop',
   'tools.positionCalculator.examples.example4.inputs': 'Balance: $2,000 | Risk: 2% | Entry: 0.6500 | Stop Loss: 0.6400 (100 pips)',
   'tools.positionCalculator.examples.example4.calculation': 'Step 1: Risk amount = $2,000 × 2% = $40\nStep 2: Stop distance = 100 pips\nStep 3: Pip value = $40 ÷ 100 = $0.40 per pip\nStep 4: Position size = $0.40 ÷ $10 = 0.04 lots',
   'tools.positionCalculator.examples.example4.result': '0.04 lots (4,000 units / micro lots)',
   'tools.positionCalculator.examples.example4.explanation': 'Small account + wide stop = very small position. Consider micro lots (0.01). Better to skip trade if stop must be 100 pips - find better entry.',
-  
-  // Risk Management Rules
   'tools.positionCalculator.riskRules.title': 'Essential Risk Management Rules',
   'tools.positionCalculator.riskRules.description': 'Follow these rules to protect your capital and ensure long-term trading success',
   'tools.positionCalculator.riskRules.reasoning': 'Reasoning:',
   'tools.positionCalculator.riskRules.example': 'Example:',
-  
   'tools.positionCalculator.riskRules.rule1.name': 'The 2% Rule (Conservative Standard)',
   'tools.positionCalculator.riskRules.rule1.description': 'Never risk more than 2% of your account on any single trade',
   'tools.positionCalculator.riskRules.rule1.reasoning': 'With 2% risk, you can withstand 50 consecutive losses before blowing account (unlikely with proper strategy). Most professional traders use 0.5-2% risk. Beginners should start at 1%.',
-  'tools.positionCalculator.riskRules.rule1.example': '$10,000 account → Max $200 risk per trade. If stopped out 5 times in a row, you\'re only down $1,000 (10%), still plenty of capital to recover.',
-  
+  'tools.positionCalculator.riskRules.rule1.example': '  'tools.positionCalculator.riskRules.rule1.example': '0,000 account → Max ,00 risk per trade. If stopped out 5 times in a row, you\\',
   'tools.positionCalculator.riskRules.rule2.name': 'Maximum 6% Total Risk Exposure',
   'tools.positionCalculator.riskRules.rule2.description': 'Combined risk across all open positions should not exceed 6%',
   'tools.positionCalculator.riskRules.rule2.reasoning': 'Multiple losing trades can compound losses. If you have 3 trades open at 2% each (6% total) and all hit stops, you lose 6% in one event (e.g., major news). Reduce individual position sizes when holding multiple.',
   'tools.positionCalculator.riskRules.rule2.example': 'If you want 3 positions open: Use 1.5% risk each (4.5% total) or 2% each but close one before opening third. Never exceed 6% combined.',
-  
   'tools.positionCalculator.riskRules.rule3.name': 'Adjust for Volatility & Pair Characteristics',
   'tools.positionCalculator.riskRules.rule3.description': 'Reduce position size for high-volatility pairs or exotic currencies',
   'tools.positionCalculator.riskRules.rule3.reasoning': 'GBP/JPY moves 150+ pips daily (high volatility) vs EUR/CHF 30 pips (low). Using same 2% risk on both pairs gives different actual volatility exposure. Exotic pairs can gap 200+ pips on news.',
   'tools.positionCalculator.riskRules.rule3.example': 'Standard trade: 2% risk, 50 pip stop on EUR/USD. High volatility (GBP/JPY): 1% risk, 80 pip stop. Exotic (USD/TRY): 0.5% risk, 150 pip stop. Scale risk down for unpredictable pairs.',
-  
   'tools.positionCalculator.riskRules.rule4.name': 'Stop Loss is Non-Negotiable',
   'tools.positionCalculator.riskRules.rule4.description': 'Every trade MUST have a predefined stop loss before entry, no exceptions',
-  'tools.positionCalculator.riskRules.rule4.reasoning': 'Position size is meaningless without a stop. \'Mental stops\' don\'t work - you\'ll move them when trade goes against you. Pre-set physical stop loss enforces discipline and limits losses to calculated risk.',
-  'tools.positionCalculator.riskRules.rule4.example': 'DON\'T: Enter EUR/USD at 1.1000, \'I\'ll exit if it goes too far down.\' DO: Enter 1.1000, stop at 1.0950 (50 pips), position 0.4 lots for $200 risk. System exits automatically.',
-  
-  // Use Cases
+  'tools.positionCalculator.riskRules.rule4.reasoning': 'Position size is meaningless without a stop. \\',
+  'tools.positionCalculator.riskRules.rule4.example': 'DON\\',
   'tools.positionCalculator.useCases.title': 'Common Trading Scenarios & Position Sizing',
   'tools.positionCalculator.useCases.description': 'Apply position sizing to real-world trading situations',
   'tools.positionCalculator.useCases.scenario': 'Scenario:',
   'tools.positionCalculator.useCases.calculation': 'Calculation:',
   'tools.positionCalculator.useCases.insight': 'Insight:',
-  
   'tools.positionCalculator.useCases.case1.title': 'Scalping with Tight Stops (5-15 Pips)',
   'tools.positionCalculator.useCases.case1.scenario': 'EUR/USD scalp setup: Entry 1.0850, Stop 1.0845 (5 pips), $10K account, 1% risk',
   'tools.positionCalculator.useCases.case1.calculation': 'Risk = $100, Stop = 5 pips → Pip value = $20 → Size = 2 lots',
   'tools.positionCalculator.useCases.case1.insight': 'Very tight stop allows large position (2 lots). Scalping requires this. Risk: Spreads eat into profit (1.2 pip spread = 24% of 5 pip target). Use during London/NY overlap for tight spreads.',
-  
   'tools.positionCalculator.useCases.case2.title': 'Swing Trading with Wide Stops (100+ Pips)',
   'tools.positionCalculator.useCases.case2.scenario': 'GBP/USD swing: Entry 1.2500, Stop 1.2350 (150 pips), $10K account, 2% risk',
   'tools.positionCalculator.useCases.case2.calculation': 'Risk = $200, Stop = 150 pips → Pip value = $1.33 → Size = 0.13 lots',
-  'tools.positionCalculator.useCases.case2.insight': 'Wide stop forces small position. That\'s OK - swing trades target 300-500 pips (2:1 to 3:1 R:R). One win covers 2-3 losses. Don\'t increase risk to get bigger size - adjust strategy.',
-  
+  'tools.positionCalculator.useCases.case2.insight': 'Wide stop forces small position. That\\',
   'tools.positionCalculator.useCases.case3.title': 'Multiple Correlated Positions',
   'tools.positionCalculator.useCases.case3.scenario': 'Trading EUR/USD long + GBP/USD long (80% correlated). Both lose if USD strengthens.',
   'tools.positionCalculator.useCases.case3.calculation': 'Normal: 2% each = 4% total risk. Adjusted: 1.5% each = 3% total (safer).',
   'tools.positionCalculator.useCases.case3.insight': 'When trading correlated pairs (EUR/USD + GBP/USD, or AUD/USD + NZD/USD), reduce individual position sizes. Treat them as one trade from risk perspective. If wrong, both lose together.',
-  
   'tools.positionCalculator.useCases.case4.title': 'Pyramiding (Adding to Winners)',
   'tools.positionCalculator.useCases.case4.scenario': 'Initial: 1 lot EUR/USD long, +50 pips profit. Want to add 1 more lot.',
-  'tools.positionCalculator.useCases.case4.calculation': 'DON\'T: Add full 1 lot (2 lot total = 2x risk). DO: Add 0.5 lot (1.5 total) or move initial stop to breakeven first.',
+  'tools.positionCalculator.useCases.case4.calculation': 'DON\\',
   'tools.positionCalculator.useCases.case4.insight': 'Pyramiding increases position size as trade profits. Risk: Reversal loses all gains + original risk. Solution: Move stop to breakeven on initial position before adding, or reduce add-on size to 50%.',
-  
-  // Pro Tips
   'tools.positionCalculator.proTips.title': 'Professional Position Sizing Tips',
   'tools.positionCalculator.proTips.description': 'Advanced insights for optimizing your position sizing strategy',
-  
   'tools.positionCalculator.proTips.tip1.title': 'Calculate Position Size BEFORE Finding Entry',
   'tools.positionCalculator.proTips.tip1.detail': 'Many traders find setup, then calculate size. Better: Decide max risk ($200), then find setups that fit. If only setup has 200 pip stop but you can only afford 50 pip stop at proper size, skip trade.',
-  
   'tools.positionCalculator.proTips.tip2.title': 'Use This Calculator for Every Single Trade',
-  'tools.positionCalculator.proTips.tip2.detail': 'Don\'t eyeball position size or use \'standard\' lot size. Account balance changes daily (profits/losses), risk % may vary by setup quality. Recalculate each trade - takes 30 seconds, saves account.',
-  
+  'tools.positionCalculator.proTips.tip2.detail': 'Don\\',
   'tools.positionCalculator.proTips.tip3.title': 'If Calculator Shows Very Small Size (<0.05 lots), Reconsider Trade',
   'tools.positionCalculator.proTips.tip3.detail': 'If $5K account + 100 pip stop + 1% risk = 0.05 lots, spread/commission eats significant portion. Either reduce stop (better entry), increase risk (risky), or skip trade. Micro accounts struggle with wide stops.',
-  
   'tools.positionCalculator.proTips.tip4.title': 'Stop Distance is More Important Than Direction',
-  'tools.positionCalculator.proTips.tip4.detail': 'Many traders focus on \'will it go up/down\' but ignore \'how far to stop.\' A great setup with bad entry (wide stop) forces tiny size. A decent setup with tight stop (proper entry) allows proper size. Entry quality matters.',
-  
+  'tools.positionCalculator.proTips.tip4.detail': 'Many traders focus on \\',
   'tools.positionCalculator.proTips.tip5.title': 'Create a Position Sizing Spreadsheet for Common Scenarios',
   'tools.positionCalculator.proTips.tip5.detail': 'Pre-calculate position sizes for your account at different stop distances (20, 30, 50, 75, 100 pips) and risk levels (1%, 1.5%, 2%). Faster execution when opportunity appears. Update monthly as balance changes.',
-  
   'tools.positionCalculator.proTips.tip6.title': 'Account for Spread in Stop Distance',
   'tools.positionCalculator.proTips.tip6.detail': 'If EUR/USD spread is 1.2 pips, entry 1.0850, stop 1.0830 (20 pips chart distance), ACTUAL risk is 21.2 pips (20 + 1.2 spread). Add spread to stop distance for accurate position size calculation.',
-  
-  // FAQ
   'tools.positionCalculator.faq.title': 'Frequently Asked Questions',
   'tools.positionCalculator.faq.description': 'Common questions about position sizing and risk management',
-  
   'tools.positionCalculator.faq.q1.question': 'What percentage of my account should I risk per trade?',
   'tools.positionCalculator.faq.q1.answer': 'Conservative (recommended for beginners): 0.5-1% per trade. Standard (intermediate): 1-2% per trade. Aggressive (experienced only): 2-3% per trade. Never exceed 3%. At 1% risk, you can lose 100 trades before account is gone (impossible with any strategy). At 5% risk, 20 losses = game over (very possible in rough month). Most blown accounts came from 5-10% risk per trade. Start at 1%, increase to 2% only after 6+ months of consistent profitability.',
-  
-  'tools.positionCalculator.faq.q2.question': 'How do I calculate position size if I don\'t know the pip value?',
-  'tools.positionCalculator.faq.q2.answer': 'Use this formula for any pair: Position Size (lots) = (Account Risk $ ) / (Stop Loss pips × Pip Value). If you don\'t know pip value: For EUR/USD, GBP/USD, AUD/USD, NZD/USD (USD is counter currency): $10 per pip per standard lot. For USD/JPY, USD/CHF, USD/CAD (USD is base): ~$7-9 per pip per lot (varies with exchange rate). For crosses (EUR/GBP, etc.): Use our calculator - too complex to calculate manually. Quick shortcut: For USD account trading major pairs, assume $10/pip, calculate, then verify in calculator.',
-  
+  'tools.positionCalculator.faq.q2.question': 'How do I calculate position size if I don\\',
+  'tools.positionCalculator.faq.q2.answer': 'Use this formula for any pair: Position Size (lots) = (Account Risk $ ) / (Stop Loss pips × Pip Value). If you don\\',
   'tools.positionCalculator.faq.q3.question': 'Should I use the same position size for every trade or vary it?',
-  'tools.positionCalculator.faq.q3.answer': 'Vary position size based on these factors: 1) Stop loss distance - Wider stop = smaller size to maintain constant dollar risk. 2) Setup quality - A-grade setups (3+ confluences): 2% risk. B-grade (1-2 confluences): 1% risk. C-grade (marginal): 0.5% or skip. 3) Market conditions - High volatility/news: Reduce all positions by 50%. Never vary size based on \'feeling confident\' or trying to recover losses (revenge trading). Use objective criteria only.',
-  
-  'tools.positionCalculator.faq.q4.question': 'What if the calculated position size is larger than my broker\'s maximum?',
-  'tools.positionCalculator.faq.q4.answer': 'If calculator shows 20 lots but broker max is 10 lots per order: 1) Split into multiple orders (2 × 10 lots) with same entry/stop. 2) Reduce risk % to fit within 10 lot limit. 3) Switch to institutional broker (Interactive Brokers, etc.) with higher limits. This is a \'good problem\' - means you have large account ($100K+). Most retail traders never hit this. For accounts >$500K, consider prime broker with no lot limits and institutional pricing.',
-  
+  'tools.positionCalculator.faq.q3.answer': 'Vary position size based on these factors: 1) Stop loss distance - Wider stop = smaller size to maintain constant dollar risk. 2) Setup quality - A-grade setups (3+ confluences): 2% risk. B-grade (1-2 confluences): 1% risk. C-grade (marginal): 0.5% or skip. 3) Market conditions - High volatility/news: Reduce all positions by 50%. Never vary size based on \\',
+  'tools.positionCalculator.faq.q4.question': 'What if the calculated position size is larger than my broker\\',
+  'tools.positionCalculator.faq.q4.answer': 'If calculator shows 20 lots but broker max is 10 lots per order: 1) Split into multiple orders (2 × 10 lots) with same entry/stop. 2) Reduce risk % to fit within 10 lot limit. 3) Switch to institutional broker (Interactive Brokers, etc.) with higher limits. This is a \\',
   'tools.positionCalculator.faq.q5.question': 'How do I account for overnight swap/rollover fees in position sizing?',
-  'tools.positionCalculator.faq.q5.answer': 'Swap fees are typically 0.5-3 pips per night and don\'t affect position size calculation for day trades or swing trades <1 week. For longer holds: 1) Check swap rate (e.g., -$2 per lot per night on EUR/USD long). 2) Calculate total swap for hold period: 30 days × $2 × 1 lot = $60. 3) Add to risk: If normal stop loss risk is $200, total risk = $200 + $60 = $260. 4) Calculate position size using $260 as total risk, not $200. For carry trades (holding for weeks), swap can exceed stop loss risk - factor it in heavily.',
-  
-  'tools.positionCalculator.faq.q6.question': 'What\'s the difference between \'fixed fractional\' and \'fixed ratio\' position sizing?',
-  'tools.positionCalculator.faq.q6.answer': 'Fixed Fractional (recommended for most traders): Risk a fixed % of current account balance per trade. Example: 2% of $10K = $200 risk. Account grows to $12K → 2% = $240 risk. Position size scales with account automatically. Pros: Compounds gains, reduces risk on drawdowns. Cons: Slow growth initially. Fixed Ratio: Risk increases only after specific profit target (e.g., increase size by 1 lot per $5K profit). Example: 1 lot until $15K, then 2 lots until $20K. Pros: Controlled growth. Cons: Complex to manage. For 95% of traders, use Fixed Fractional - it\'s mathematically optimal and emotionally easier.',
-  
+  'tools.positionCalculator.faq.q5.answer': 'Swap fees are typically 0.5-3 pips per night and don\\',
+  'tools.positionCalculator.faq.q6.question': 'What\\',
+  'tools.positionCalculator.faq.q6.answer': 'Fixed Fractional (recommended for most traders): Risk a fixed % of current account balance per trade. Example: 2% of   'tools.positionCalculator.faq.q6.answer': '0K = ,00 risk. Account grows to   'tools.positionCalculator.faq.q6.answer': '2K → 2% = ,40 risk. Position size scales with account automatically. Pros: Compounds gains, reduces risk on drawdowns. Cons: Slow growth initially. Fixed Ratio: Risk increases only after specific profit target (e.g., increase size by 1 lot per $5K profit). Example: 1 lot until   'tools.positionCalculator.faq.q6.answer': '5K, then 2 lots until ,0K. Pros: Controlled growth. Cons: Complex to manage. For 95% of traders, use Fixed Fractional - it\\',
   'tools.positionCalculator.faq.q7.question': 'How should I adjust position size during a losing streak?',
-  'tools.positionCalculator.faq.q7.answer': 'During losing streak (3+ losses in a row): REDUCE position size to 50% of normal, not increase to \'make it back\' (revenge trading). Example: Normal 2% risk → Reduce to 1% after 3 losses. After 5 losses → 0.5% or stop trading for 1 week to reassess strategy. DO NOT: Increase to 4-5% to recover losses quickly - this is how accounts blow up. The goal during drawdown is capital preservation, not recovery. Recovery happens naturally when strategy works again. Alternatively, use fixed dollar risk that doesn\'t change ($200 per trade regardless of account size) - prevents downward spiral where smaller account + same % = even smaller $ risk.',
-  
-  // Export & Save Features
+  'tools.positionCalculator.faq.q7.answer': 'During losing streak (3+ losses in a row): REDUCE position size to 50% of normal, not increase to \\',
   'tools.positionCalculator.export.title': 'Save & Export Features',
   'tools.positionCalculator.export.description': 'Track and analyze your position sizing',
   'tools.positionCalculator.export.save.title': '💾 Save Calculation',
@@ -1917,11 +1691,7 @@ export const en = {
   'tools.positionCalculator.export.journal.title': '📋 Trade Journal Integration',
   'tools.positionCalculator.export.journal.description': 'Copy calculation results with timestamp to paste into your trading journal or risk log',
   'tools.positionCalculator.export.journal.button': 'Copy for Journal',
-  
-  // Additional Calculator Labels
   'tools.positionCalculator.results.description': 'Recommended lot size based on your risk parameters',
-
-  // News Page - Additional keys
   'tools.news.stats.highImpactToday': 'High Impact Today',
   'tools.news.stats.highImpactCount': '3',
   'tools.news.stats.autoRefreshRate': 'Auto-Refresh Rate',
@@ -1941,142 +1711,101 @@ export const en = {
   'tools.news.feed.articles': 'articles',
   'tools.news.feed.loadingMarketNews': 'Loading market news...',
   'tools.news.feed.noArticles': 'No news articles found for the selected filters',
-  
-  // News Interpretation Guide
   'tools.news.interpretation.title': 'How to Interpret Different News Types',
   'tools.news.interpretation.description': 'Master the art of reading economic news for trading decisions',
   'tools.news.interpretation.howToRead': 'How to Read This News:',
   'tools.news.interpretation.tradingAction': 'Trading Action:',
-  
   'tools.news.interpretation.centralBanks.type': 'Central Bank Rate Decisions (Fed, ECB, BOE, BOJ)',
   'tools.news.interpretation.centralBanks.impact': 'Very High - Can move markets 100-200 pips instantly',
-  'tools.news.interpretation.centralBanks.howToRead': '1. Rate decision (hike/cut/hold) - Less important than you think\n2. Forward guidance in statement - THIS is what moves markets\n3. Press conference tone (hawkish/dovish) - Watch Jerome Powell\'s face, not just words\n4. Dot plot / rate projections - Shows future path\n\nExample: Fed holds at 5.25% (neutral), but statement says \'prepared to hike further if needed\' (hawkish) = USD rallies even though no hike today.',
+  'tools.news.interpretation.centralBanks.howToRead': '1. Rate decision (hike/cut/hold) - Less important than you think\\n2. Forward guidance in statement - THIS is what moves markets\\n3. Press conference tone (hawkish/dovish) - Watch Jerome Powell\\',
   'tools.news.interpretation.centralBanks.tradingAction': 'WAIT for press conference (30min after decision). Initial move often reverses. Trade the tone: Hawkish statement + hawkish presser = Buy currency. Dovish statement but hawkish presser = Confusion, stay out. Use 1.5x normal stop loss (high volatility).',
-  
   'tools.news.interpretation.employment.type': 'Employment Data (NFP, Jobless Claims, ADP)',
   'tools.news.interpretation.employment.impact': 'Very High (NFP) / Medium (Claims, ADP)',
   'tools.news.interpretation.employment.howToRead': '1. Headline number vs forecast - Beat = bullish, miss = bearish\n2. Revisions to previous months - Negative revisions can negate good headline\n3. Unemployment rate - Rising unemployment = recession signal (bearish)\n4. Wage growth (Average Hourly Earnings) - High wages = inflation = hawkish Fed = bullish USD\n\nFormula: Strong jobs + high wages = Most bullish. Weak jobs + low wages = Most bearish. Mixed data = choppy, avoid.',
   'tools.news.interpretation.employment.tradingAction': 'For NFP (first Friday each month): Close all positions 30min before (8:30am ET). Wait 10-15min post-release for initial spike to settle. If beat by >50K: Buy USD. If miss by >50K: Sell USD. If within 30K of forecast: Ignore, no trade. Use 60-80 pip stops (wide moves).',
-  
   'tools.news.interpretation.inflation.type': 'Inflation Data (CPI, PPI, PCE)',
   'tools.news.interpretation.inflation.impact': 'Very High - Directly affects rate policy',
-  'tools.news.interpretation.inflation.howToRead': '1. Headline CPI vs forecast - Most watched number\n2. Core CPI (excludes food/energy) - Fed watches this more\n3. Month-over-month (MoM) - Shows current trend. >0.3% MoM = \'hot\', <0.1% = \'cold\'\n4. Year-over-year (YoY) - Less important for trading, more for policy\n\nThresholds: CPI >3.5% = Fed must hike/keep high = Bullish USD. CPI <2% = Fed can cut = Bearish USD. CPI 2-3% = Goldilocks, mixed reaction.',
-  'tools.news.interpretation.inflation.tradingAction': 'Hot inflation (beat forecast by >0.2%): Buy USD immediately, sell Gold, sell indices (rate hike fear). Cold inflation (miss by >0.2%): Sell USD, buy Gold, buy indices (rate cut hopes). Trade expires in 24hrs - take profit by next day, don\'t hold for weeks.',
-  
+  'tools.news.interpretation.inflation.howToRead': '1. Headline CPI vs forecast - Most watched number\\n2. Core CPI (excludes food/energy) - Fed watches this more\\n3. Month-over-month (MoM) - Shows current trend. &gt;0.3% MoM = \\',
+  'tools.news.interpretation.inflation.tradingAction': 'Hot inflation (beat forecast by &gt;0.2%): Buy USD immediately, sell Gold, sell indices (rate hike fear). Cold inflation (miss by &gt;0.2%): Sell USD, buy Gold, buy indices (rate cut hopes). Trade expires in 24hrs - take profit by next day, don\\',
   'tools.news.interpretation.gdp.type': 'GDP Growth Data',
   'tools.news.interpretation.gdp.impact': 'High - Shows economic health',
   'tools.news.interpretation.gdp.howToRead': '1. Q/Q (quarter-over-quarter) vs forecast - Most immediate impact\n2. Components: Consumer spending (70% of US GDP), business investment, net exports\n3. Revisions - Second and third estimates can change narrative\n\nPositive surprise (beat by >0.5%): Economy strong → Rate hikes likely → Bullish currency. Negative surprise (miss/negative): Recession fears → Rate cuts → Bearish currency.',
-  'tools.news.interpretation.gdp.tradingAction': 'Strong GDP (>3%): Buy currency, but ONLY if inflation also high. Strong GDP + low inflation = No trades (Fed confused). Weak GDP (<1%): Sell currency IF employment also weak (confirms slowdown). One weak data point isn\'t enough - need confirmation.',
-  
+  'tools.news.interpretation.gdp.tradingAction': 'Strong GDP (&gt;3%): Buy currency, but ONLY if inflation also high. Strong GDP + low inflation = No trades (Fed confused). Weak GDP (&lt;1%): Sell currency IF employment also weak (confirms slowdown). One weak data point isn\\',
   'tools.news.interpretation.geopolitical.type': 'Geopolitical Events (Wars, Elections, Crises)',
   'tools.news.interpretation.geopolitical.impact': 'Variable - Can be extreme (war) or negligible (small election)',
   'tools.news.interpretation.geopolitical.howToRead': '1. Severity - War/terrorism = high impact. Trade disputes = medium. Political speeches = low\n2. Which currencies affected - War in Middle East = Oil up = CAD up. US election = USD volatile. Brexit = GBP chaos\n3. Safe haven flows - Fear → Buy USD, JPY, CHF, Gold. Risk-on → Buy AUD, NZD, GBP\n\nRule: Uncertainty = Sell risk currencies (AUD, NZD, emerging markets), Buy safe havens (USD, JPY, CHF, Gold).',
-  'tools.news.interpretation.geopolitical.tradingAction': 'Geopolitical shock (war starts, coup, major attack): Immediately buy JPY (ultimate safe haven), buy Gold, sell all risk currencies. DON\'T use normal technical analysis - geopolitics override all patterns. Use wide stops (100+ pips). Exit when crisis de-escalates (1-7 days usually).',
-  
-  // Trading Strategies
+  'tools.news.interpretation.geopolitical.tradingAction': 'Geopolitical shock (war starts, coup, major attack): Immediately buy JPY (ultimate safe haven), buy Gold, sell all risk currencies. DON\\',
   'tools.news.strategies.title': 'News-Based Trading Strategies',
   'tools.news.strategies.description': 'Proven approaches for trading market-moving news',
   'tools.news.strategies.whenToUse': 'When to Use:',
   'tools.news.strategies.setup': 'Setup:',
   'tools.news.strategies.executionExample': 'Execution Example:',
   'tools.news.strategies.riskManagement': 'Risk Management:',
-  
   'tools.news.strategies.surprise.name': 'Trade the Surprise (Deviation from Forecast)',
   'tools.news.strategies.surprise.when': 'Economic data releases (NFP, CPI, GDP, etc.)',
   'tools.news.strategies.surprise.setup': 'Compare actual vs forecast. Calculate deviation percentage. If deviation >30% of forecast = tradeable surprise.',
   'tools.news.strategies.surprise.execution': 'Example: NFP forecast 180K, actual 250K. Deviation: +70K (39% beat) = STRONG surprise → Buy USD/JPY immediately. Entry: Current price. Stop: 50 pips. Target: 100 pips (1:2 R:R). Exit in 2-4 hours max.',
-  'tools.news.strategies.surprise.risk': 'Use 50% normal position size (news is volatile). If price doesn\'t move 20+ pips in first 10min, exit (market doesn\'t care about this data).',
-  
+  'tools.news.strategies.surprise.risk': 'Use 50% normal position size (news is volatile). If price doesn\\',
   'tools.news.strategies.fade.name': 'Fade the Initial Spike (Reversal Trading)',
   'tools.news.strategies.fade.when': 'High impact news with extreme initial reaction (>100 pip move in 5min)',
   'tools.news.strategies.fade.setup': 'Wait 15-20min after news release. If price spikes violently up/down, then shows exhaustion (long wick, doji, volume drop), prepare to fade.',
   'tools.news.strategies.fade.execution': 'Example: Fed cuts rates, USD crashes 120 pips in 10min (spike low 1.0850). Price bounces to 1.0900, forms doji on 5min chart. Sell USD at 1.0895, stop 1.0920 (25 pips), target 1.0850 (45 pips). Expect reversal to 50% of initial move.',
-  'tools.news.strategies.fade.risk': 'ONLY fade extremes (>80 pip moves). Never fade a 30 pip move - it can go 200 more. Set tight stop (30 pips max). If wrong, don\'t re-enter - you missed the trade.',
-  
+  'tools.news.strategies.fade.risk': 'ONLY fade extremes (&gt;80 pip moves). Never fade a 30 pip move - it can go 200 more. Set tight stop (30 pips max). If wrong, don\\',
   'tools.news.strategies.preposition.name': 'Pre-Position Based on Consensus (Risky but High Reward)',
   'tools.news.strategies.preposition.when': 'Before very predictable news (e.g., Fed hike is 95% priced in)',
   'tools.news.strategies.preposition.setup': 'When market consensus is >90% (check CME FedWatch for Fed, analyst surveys for others), pre-position 1-2 hours before news in direction of consensus.',
-  'tools.news.strategies.preposition.execution': 'Example: Fed 95% likely to hike 0.25%. Buy USD/JPY 2 hours before meeting at 149.50. When Fed hikes as expected, USD rallies to 150.20 (+70 pips). Exit immediately - don\'t hold for presser (can reverse).',
-  'tools.news.strategies.preposition.risk': 'If consensus wrong (5% chance), loss is huge (100-200 pips). Use 25% position size only. Set mental stop - if news opposes position, exit at market instantly, don\'t wait for stop loss (slippage will destroy you).',
-  
+  'tools.news.strategies.preposition.execution': 'Example: Fed 95% likely to hike 0.25%. Buy USD/JPY 2 hours before meeting at 149.50. When Fed hikes as expected, USD rallies to 150.20 (+70 pips). Exit immediately - don\\',
+  'tools.news.strategies.preposition.risk': 'If consensus wrong (5% chance), loss is huge (100-200 pips). Use 25% position size only. Set mental stop - if news opposes position, exit at market instantly, don\\',
   'tools.news.strategies.confluence.name': 'News + Technical Confluence',
   'tools.news.strategies.confluence.when': 'News aligns with existing technical setup (best setup)',
   'tools.news.strategies.confluence.setup': 'Identify key technical level (support/resistance, trend line, major Fib). Wait for news that supports technical bias. Combine for high-probability trade.',
   'tools.news.strategies.confluence.execution': 'Example: EUR/USD at 1.0800 major support. Strong US CPI expected (bearish EUR). If CPI hot → EUR/USD breaks 1.0800 → Sell with conviction. Entry 1.0795, stop 1.0820 (25 pips), target 1.0720 (80 pips - next support). News + technicals = 70-80% win rate.',
-  'tools.news.strategies.confluence.risk': 'ONLY trade when news AND technicals agree. Don\'t force it. If news bullish but technicals bearish (or vice versa), stay out - signals are mixed. Wait for alignment.',
-  
-  // Pro Tips
+  'tools.news.strategies.confluence.risk': 'ONLY trade when news AND technicals agree. Don\\',
   'tools.news.proTips.title': 'Professional News Trading Tips',
   'tools.news.proTips.description': 'Expert insights for profitable news trading',
-  
   'tools.news.proTips.tip1.title': 'The First Reaction is Often Wrong (Wait 10-15 Minutes)',
   'tools.news.proTips.tip1.detail': 'Algorithmic trading and knee-jerk reactions dominate first 5-10 minutes. Real direction emerges after humans digest the details. USD may spike up on strong NFP, then reverse when traders realize revisions were terrible.',
-  
   'tools.news.proTips.tip2.title': 'Read the Full Statement/Report, Not Just Headlines',
-  'tools.news.proTips.tip2.detail': 'Headlines lie. \'Fed Holds Rates\' sounds neutral, but statement might say \'prepared to hike further if needed\' (hawkish). Algos trade headlines, humans trade substance. Be the human. Bloomberg terminal users see details 15sec before free news sites - you\'re already behind, so don\'t rush.',
-  
+  'tools.news.proTips.tip2.detail': 'Headlines lie. \\',
   'tools.news.proTips.tip3.title': 'Correlation is Key: USD Up = Gold Down, Stocks May Down',
   'tools.news.proTips.tip3.detail': 'Strong USD news (hawkish Fed, good jobs): USD/JPY up, EUR/USD down, Gold down, US indices may drop (rate hike fear). Weak USD news: Opposite. Trade the correlated assets, not just forex. Sometimes Gold moves more clearly than EUR/USD on same news.',
-  
   'tools.news.proTips.tip4.title': 'Never Hold Positions Through High Impact News Unless Planned',
-  'tools.news.proTips.tip4.detail': 'If you have EUR/USD long going into NFP, either: Close it 30min before (safe), or accept 100+ pip stop might get hit (risky). \'Maybe I\'ll get lucky\' is not a strategy. News gaps can blow past stop losses by 50 pips (slippage).',
-  
-  'tools.news.proTips.tip5.title': 'Some News is \'Priced In\' - Market Won\'t React Even if Predictable',
-  'tools.news.proTips.tip5.detail': 'When Fed hike is 100% expected, announcement may cause ZERO move - it\'s already in the price. Only trade news with uncertainty (50/50 outcomes) or extreme surprises. Check CME FedWatch, analyst estimates before trading.',
-  
+  'tools.news.proTips.tip4.detail': 'If you have EUR/USD long going into NFP, either: Close it 30min before (safe), or accept 100+ pip stop might get hit (risky). \\',
+  'tools.news.proTips.tip5.title': 'Some News is \\',
+  'tools.news.proTips.tip5.detail': 'When Fed hike is 100% expected, announcement may cause ZERO move - it\\',
   'tools.news.proTips.tip6.title': 'Create a News Trading Journal Separate from Regular Journal',
-  'tools.news.proTips.tip6.detail': 'News trading has different dynamics than technical trading. Track: News type, expectation, actual, initial move, final move (4 hours later), your entry/exit. Find patterns: \'I\'m profitable on NFP but lose on CPI - stop trading CPI\'.',
-  
-  // Export & Alerts
+  'tools.news.proTips.tip6.detail': 'News trading has different dynamics than technical trading. Track: News type, expectation, actual, initial move, final move (4 hours later), your entry/exit. Find patterns: \\',
   'tools.news.export.title': 'News Alerts & Export Features',
   'tools.news.export.description': 'Stay informed with custom notifications',
-  
   'tools.news.export.customAlerts.title': '🔔 Custom News Alerts',
   'tools.news.export.customAlerts.description': 'Get instant push notifications for high-impact news affecting your traded pairs (EUR/USD, GBP/USD, etc.)',
   'tools.news.export.customAlerts.button': 'Configure Alerts',
-  
   'tools.news.export.digest.title': '📰 News Digest',
   'tools.news.export.digest.description': 'Daily/weekly summary of major market-moving news sent to your email with trading implications',
   'tools.news.export.digest.button': 'Subscribe',
-  
   'tools.news.export.save.title': '💾 Save Articles',
   'tools.news.export.save.description': 'Bookmark important news for later review and export your saved articles as PDF/CSV',
   'tools.news.export.save.button': 'View Saved',
-  
-  // FAQ
   'tools.news.faq.title': 'Frequently Asked Questions',
   'tools.news.faq.description': 'Everything you need to know about trading the news',
-  
   'tools.news.faq.q1.question': 'How can I tell which news is important and which to ignore?',
-  'tools.news.faq.q1.answer': 'High Impact (Always trade): Fed/ECB/BOE/BOJ meetings, NFP, CPI/inflation data, GDP flash estimates. Medium Impact (Trade if surprise >30%): Retail sales, jobless claims, PMI, consumer confidence. Low Impact (Ignore): Existing home sales, crude oil inventories, minor speeches. Use Forex Factory or Investing.com economic calendar - they rate impact (red = high, orange = medium, yellow = low). If it\'s not \'red\' and doesn\'t move market 30+ pips historically, skip it. Focus on 10-15 major events per month, not 100+ minor ones.',
-  
+  'tools.news.faq.q1.answer': 'High Impact (Always trade): Fed/ECB/BOE/BOJ meetings, NFP, CPI/inflation data, GDP flash estimates. Medium Impact (Trade if surprise &gt;30%): Retail sales, jobless claims, PMI, consumer confidence. Low Impact (Ignore): Existing home sales, crude oil inventories, minor speeches. Use Forex Factory or Investing.com economic calendar - they rate impact (red = high, orange = medium, yellow = low). If it\\',
   'tools.news.faq.q2.question': 'Should I trade immediately when news is released or wait?',
-  'tools.news.faq.q2.answer': 'Wait 10-15 minutes UNLESS you have a predefined plan. Immediate (0-5 min): Algorithms dominate, spreads widen to 5+ pips, slippage is common, stop losses may not trigger at exact level - very risky for retail. After 10-15 min: Algorithms done, spreads normalize (1-2 pips), direction clarifies, humans take over. Trading strategy: Set alerts for news, watch first 5 min WITHOUT trading (learn the initial reaction), then trade 10-15 min after with clear bias. Exception: If you\'re very experienced and have fast execution (VPS, institutional broker), you can trade 30-60 seconds after release - but most retail traders will lose doing this.',
-  
-  'tools.news.faq.q3.question': 'What\'s the best way to prepare for a major news event?',
-  'tools.news.faq.q3.answer': '48 hours before: 1) Mark calendar with news time (convert to YOUR timezone). 2) Check consensus forecast (what market expects). 3) Review previous 3 releases (trend). 24 hours before: 4) Identify current bias (is USD strong/weak leading into this?). 5) Note key technical levels (support/resistance). 6) Decide IF you\'ll trade (if uncertain, sit out). 1 hour before: 7) Close unrelated positions or reduce size to 50%. 8) Remove pending orders (can trigger in spike). 9) Write down plan: \'If NFP beats by >50K → Buy USD/JPY at market, stop 50 pips, target 100 pips. If misses → Sell.\' 10 min before: 10) Hands off keyboard. Watch. Let first move happen. At release +10min: 11) Execute your plan IF conditions met, or walk away if not. Never \'wing it\' - you\'ll panic trade.',
-  
+  'tools.news.faq.q2.answer': 'Wait 10-15 minutes UNLESS you have a predefined plan. Immediate (0-5 min): Algorithms dominate, spreads widen to 5+ pips, slippage is common, stop losses may not trigger at exact level - very risky for retail. After 10-15 min: Algorithms done, spreads normalize (1-2 pips), direction clarifies, humans take over. Trading strategy: Set alerts for news, watch first 5 min WITHOUT trading (learn the initial reaction), then trade 10-15 min after with clear bias. Exception: If you\\',
+  'tools.news.faq.q3.question': 'What\\',
+  'tools.news.faq.q3.answer': '48 hours before: 1) Mark calendar with news time (convert to YOUR timezone). 2) Check consensus forecast (what market expects). 3) Review previous 3 releases (trend). 24 hours before: 4) Identify current bias (is USD strong/weak leading into this?). 5) Note key technical levels (support/resistance). 6) Decide IF you\\',
   'tools.news.faq.q4.question': 'Why does the market sometimes move opposite to what the news suggests?',
-  'tools.news.faq.q4.answer': 'Three main reasons: 1) \'Priced In\' - Market already expected the outcome. NFP beats but USD drops because everyone was already long USD before the news (buy the rumor, sell the fact). 2) Details Matter More Than Headlines - Headline: \'Strong NFP 250K\' (bullish). Detail: Previous month revised down by 100K (bearish). Net result: Bearish. Algos trade headline (USD up), humans trade details (USD down) = reversal. 3) Bigger Picture Overrides - Strong US jobs (bullish USD), but global recession fears (bearish USD). Macro context wins. Solution: Don\'t assume direction based on headline alone. Wait for market to tell you with price action, then trade WITH the market direction, not against it.',
-  
+  'tools.news.faq.q4.answer': 'Three main reasons: 1) \\',
   'tools.news.faq.q5.question': 'How do I manage risk when trading around news events?',
-  'tools.news.faq.q5.answer': 'Before news: 1) Reduce position size to 50% of normal if trading the news. 2) Use wider stops (60-80 pips vs usual 30-40) to account for volatility. 3) Set maximum loss for the day (e.g., \'If I lose $500 on this NFP trade, I\'m done for the day\'). During news: 4) NEVER move stop loss further away if trade goes against you (discipline). 5) Use mental stops for news trades - if price moves 30 pips against you instantly, exit at market, don\'t wait for stop to trigger (slippage). After news: 6) Take profit within 1-4 hours. Don\'t get greedy and hold for \'the big move\' - it often reverses by next day. 7) If trade profitable by +2R, move stop to breakeven and let it run. Overall: Accept that news trading is higher risk than technical trading. Win rates may be 50-60% (vs 65-70% technical), but R:R can be 1:3 if you catch big moves. Use it to complement technical trading, not replace it.',
-  
-  'tools.news.faq.q6.question': 'What\'s the relationship between news events and technical analysis?',
-  'tools.news.faq.q6.answer': 'News can override technicals short-term (1-4 hours), but technicals override news medium-term (1-3 days). Example: EUR/USD at 1.1000 resistance (technical). Strong US CPI released (bullish USD, bearish EUR - fundamental). Price crashes through 1.1000 to 1.0920 (news wins). But after 48 hours, if there\'s no follow-through, price often returns to 1.1000 area (technical level reasserts). Best approach: Use technicals to identify levels, use news to provide catalyst for breakout. Setup: Price at major support + supportive news = high probability long. Price at random level + random news = low probability, skip. Never trade news in a vacuum - always consider where price is relative to key technical levels.',
-  
-  'tools.news.faq.q7.question': 'How can I trade news if I\'m at work during major economic releases?',
-  'tools.news.faq.q7.answer': 'Option 1 - Don\'t trade news directly, trade the aftermath: If NFP releases at 8:30am ET and you can only trade at 6pm ET (10 hours later), you can still trade the resulting trend. After strong NFP, USD often trends higher for 1-3 days. Enter on pullbacks to moving average using technical analysis. You miss the initial spike (100 pips) but catch the trend (200+ pips). Option 2 - Use pending orders (risky): Before news, set buy stop 20 pips above current price, sell stop 20 pips below. One will trigger. Use wide stops (80+ pips). Risk: Both might trigger in whipsaw, causing double loss. Option 3 - Mobile alerts + quick trades: Set alerts for major news on phone. If price moves >50 pips in 5 min, place mobile order during bathroom break. Use \'one-click trading\' apps. Option 4 (recommended) - Accept your limitations: If you can\'t actively monitor during news, focus on swing trading and position trading that doesn\'t rely on news timing. Trade the \'slow money\' while others trade the \'fast money\'. Less stress, more sustainable.',
-
-  // Error Messages
+  'tools.news.faq.q5.answer': 'Before news: 1) Reduce position size to 50% of normal if trading the news. 2) Use wider stops (60-80 pips vs usual 30-40) to account for volatility. 3) Set maximum loss for the day (e.g., \\',
+  'tools.news.faq.q6.question': 'What\\',
+  'tools.news.faq.q6.answer': 'News can override technicals short-term (1-4 hours), but technicals override news medium-term (1-3 days). Example: EUR/USD at 1.1000 resistance (technical). Strong US CPI released (bullish USD, bearish EUR - fundamental). Price crashes through 1.1000 to 1.0920 (news wins). But after 48 hours, if there\\',
+  'tools.news.faq.q7.question': 'How can I trade news if I\\',
+  'tools.news.faq.q7.answer': 'Option 1 - Don\\',
   'tools.news.errors.fetchFailed': 'Failed to fetch news',
-
-  // Education - Beginner Course
   'education.beginnerCourse.badge': 'Beginner Level',
   'education.beginnerCourse.title': 'Beginner Trading Course',
   'education.beginnerCourse.subtitle': 'Master the fundamentals of forex trading',
-
-  // Progress Overview
   'education.beginnerCourse.progress.title': 'Your Progress',
   'education.beginnerCourse.progress.description': 'Track your learning journey',
   'education.beginnerCourse.progress.courseCompletion': 'Course Completion',
@@ -2085,20 +1814,16 @@ export const en = {
   'education.beginnerCourse.progress.timeInvested': 'Time Invested',
   'education.beginnerCourse.progress.saved': 'Progress Saved',
   'education.beginnerCourse.progress.savedDescription': 'Your course progress has been updated.',
-
-  // Course Overview
   'education.beginnerCourse.overview.title': 'Course Overview',
   'education.beginnerCourse.overview.description': 'A comprehensive introduction to forex trading for beginners',
   'education.beginnerCourse.overview.totalDuration': 'Total Duration',
   'education.beginnerCourse.overview.modules': 'Modules',
-  'education.beginnerCourse.overview.lessons': 'Lessons',
+  'education.beginnerCourse.overview.lessons': 'Lessons learnt',
   'education.beginnerCourse.overview.level': 'Level',
   'education.beginnerCourse.overview.levelValue': 'Beginner',
   'education.beginnerCourse.overview.durationValue': '4.5 hours',
   'education.beginnerCourse.overview.modulesValue': '6',
-  'education.beginnerCourse.overview.descriptionText': 'This course covers everything you need to know to start trading forex. From basic concepts to practical strategies, you\'ll learn at your own pace with clear explanations and real-world examples. Each module includes video lessons, practical exercises, and a quiz to test your knowledge.',
-
-  // Course Modules
+  'education.beginnerCourse.overview.descriptionText': 'This course covers everything you need to know to start trading forex. From basic concepts to practical strategies, you\\',
   'education.beginnerCourse.modules.title': 'Course Modules',
   'education.beginnerCourse.modules.lessons': 'lessons',
   'education.beginnerCourse.modules.locked': 'Locked',
@@ -2108,14 +1833,12 @@ export const en = {
   'education.beginnerCourse.modules.review': 'Review',
   'education.beginnerCourse.modules.continue': 'Continue',
   'education.beginnerCourse.modules.start': 'Start',
-  'education.beginnerCourse.modules.lessonsSection': 'Lessons',
-  'education.beginnerCourse.modules.moduleQuiz': 'Module Quiz',
+  'education.beginnerCourse.modules.lessonsSection': 'Lessons learnt',
+  'education.beginnerCourse.modules.moduleQuiz': 'Modules Quiz',
   'education.beginnerCourse.modules.questions': 'Questions:',
   'education.beginnerCourse.modules.passingScore': 'Passing Score:',
   'education.beginnerCourse.modules.timeLimit': 'Time Limit:',
   'education.beginnerCourse.modules.attempts': 'Attempts:',
-
-  // Module 1
   'education.beginnerCourse.module1.title': 'Module 1: Trading Basics',
   'education.beginnerCourse.module1.description': 'Foundation knowledge of forex markets, currency pairs, and trading fundamentals',
   'education.beginnerCourse.module1.duration': '30 mins',
@@ -2124,8 +1847,6 @@ export const en = {
   'education.beginnerCourse.module1.lesson3': 'How the Forex Market Works',
   'education.beginnerCourse.module1.lesson4': 'Market Participants and Liquidity',
   'education.beginnerCourse.module1.lesson5': 'Trading Sessions and Market Hours',
-
-  // Module 2
   'education.beginnerCourse.module2.title': 'Module 2: Essential Concepts',
   'education.beginnerCourse.module2.description': 'Core trading concepts including pips, lots, leverage, margin, and order types',
   'education.beginnerCourse.module2.duration': '45 mins',
@@ -2134,8 +1855,6 @@ export const en = {
   'education.beginnerCourse.module2.lesson3': 'Leverage and Margin',
   'education.beginnerCourse.module2.lesson4': 'Long vs Short Positions',
   'education.beginnerCourse.module2.lesson5': 'Order Types (Market, Limit, Stop)',
-
-  // Module 3
   'education.beginnerCourse.module3.title': 'Module 3: Chart Reading',
   'education.beginnerCourse.module3.description': 'Learn to read price charts, identify patterns, and understand market structure',
   'education.beginnerCourse.module3.duration': '60 mins',
@@ -2144,8 +1863,6 @@ export const en = {
   'education.beginnerCourse.module3.lesson3': 'Support and Resistance',
   'education.beginnerCourse.module3.lesson4': 'Trend Identification',
   'education.beginnerCourse.module3.lesson5': 'Timeframe Selection',
-
-  // Module 4
   'education.beginnerCourse.module4.title': 'Module 4: Risk Management',
   'education.beginnerCourse.module4.description': 'Essential risk management principles to protect your trading capital',
   'education.beginnerCourse.module4.duration': '45 mins',
@@ -2154,8 +1871,6 @@ export const en = {
   'education.beginnerCourse.module4.lesson3': 'Setting Stop Losses',
   'education.beginnerCourse.module4.lesson4': 'Risk-Reward Ratios',
   'education.beginnerCourse.module4.lesson5': 'Managing Multiple Positions',
-
-  // Module 5
   'education.beginnerCourse.module5.title': 'Module 5: Basic Strategies',
   'education.beginnerCourse.module5.description': 'Simple yet effective trading strategies for beginners',
   'education.beginnerCourse.module5.duration': '60 mins',
@@ -2164,8 +1879,6 @@ export const en = {
   'education.beginnerCourse.module5.lesson3': 'Moving Average Crossovers',
   'education.beginnerCourse.module5.lesson4': 'Simple Breakout Trading',
   'education.beginnerCourse.module5.lesson5': 'When to Avoid Trading',
-
-  // Module 6
   'education.beginnerCourse.module6.title': 'Module 6: Trading Psychology',
   'education.beginnerCourse.module6.description': 'Master the mental aspects of trading for consistent performance',
   'education.beginnerCourse.module6.duration': '30 mins',
@@ -2174,11 +1887,9 @@ export const en = {
   'education.beginnerCourse.module6.lesson3': 'Avoiding Revenge Trading',
   'education.beginnerCourse.module6.lesson4': 'Building Discipline',
   'education.beginnerCourse.module6.lesson5': 'Creating a Trading Routine',
-
-  // Certificate
   'education.beginnerCourse.certificate.title': 'Course Certificate',
   'education.beginnerCourse.certificate.description': 'Earn your certification upon completion',
-  'education.beginnerCourse.certificate.intro': 'Upon successful completion of this course, you\'ll receive a verified digital certificate that demonstrates your foundational knowledge of forex trading.',
+  'education.beginnerCourse.certificate.intro': 'Upon successful completion of this course, you\\',
   'education.beginnerCourse.certificate.requirementsTitle': 'Requirements',
   'education.beginnerCourse.certificate.requirement1': 'Complete all 6 modules (30 lessons)',
   'education.beginnerCourse.certificate.requirement2': 'Pass all module quizzes with 70%+ score',
@@ -2191,8 +1902,6 @@ export const en = {
   'education.beginnerCourse.certificate.benefit4': 'Lifetime access to certificate records',
   'education.beginnerCourse.certificate.name': 'Certified Forex Trading Beginner',
   'education.beginnerCourse.certificate.academy': 'Official certification from our trading academy',
-
-  // Downloadable Resources
   'education.beginnerCourse.resources.title': 'Downloadable Resources',
   'education.beginnerCourse.resources.description': 'Study materials and templates to support your learning',
   'education.beginnerCourse.resources.locked': 'Resources Locked',
@@ -2205,8 +1914,6 @@ export const en = {
   'education.beginnerCourse.resources.resource6': 'Trading Psychology Workbook',
   'education.beginnerCourse.resources.resource7': 'Beginner Trading Plan Template',
   'education.beginnerCourse.resources.resource8': 'Market Sessions Time Zone Chart',
-
-  // Learning Path
   'education.beginnerCourse.learningPath.title': 'Your Learning Path',
   'education.beginnerCourse.learningPath.description': 'Recommended courses after completing this one',
   'education.beginnerCourse.learningPath.current': 'Beginner Course',
@@ -2220,9 +1927,7 @@ export const en = {
   'education.beginnerCourse.learningPath.next3.title': 'Risk Management Pro',
   'education.beginnerCourse.learningPath.next3.description': 'Advanced position sizing and portfolio management',
   'education.beginnerCourse.learningPath.next3.estimated': '1-2 weeks',
-
-  // What You'll Learn
-  'education.beginnerCourse.whatYouLearn.title': 'What You\'ll Learn',
+  'education.beginnerCourse.whatYouLearn.title': 'What You\\',
   'education.beginnerCourse.whatYouLearn.item1': 'Understand how the forex market works and who trades it',
   'education.beginnerCourse.whatYouLearn.item2': 'Read and interpret price charts and candlestick patterns',
   'education.beginnerCourse.whatYouLearn.item3': 'Calculate position sizes and manage risk properly',
@@ -2231,8 +1936,6 @@ export const en = {
   'education.beginnerCourse.whatYouLearn.item6': 'Develop discipline and emotional control in trading',
   'education.beginnerCourse.whatYouLearn.item7': 'Use leverage and margin safely and effectively',
   'education.beginnerCourse.whatYouLearn.item8': 'Create a sustainable trading routine and plan',
-
-  // FAQs
   'education.beginnerCourse.faq.title': 'Frequently Asked Questions',
   'education.beginnerCourse.faq.description': 'Common questions about the Beginner Trading Course',
   'education.beginnerCourse.faq.q1.question': 'How long does it take to complete the Beginner Course?',
@@ -2240,17 +1943,15 @@ export const en = {
   'education.beginnerCourse.faq.q2.question': 'Do I need any prior trading experience to start this course?',
   'education.beginnerCourse.faq.q2.answer': 'No prior trading experience is required. This course is specifically designed for complete beginners. We start with the absolute basics and gradually build your knowledge. All you need is a computer or mobile device, internet connection, and a willingness to learn. We explain every concept from the ground up.',
   'education.beginnerCourse.faq.q3.question': 'What happens if I fail a module quiz?',
-  'education.beginnerCourse.faq.q3.answer': 'Each module quiz allows 3 attempts. If you don\'t pass on the first try, review the lesson materials and try again. You need 70-80% to pass (varies by module). If you exhaust all attempts, you can request a quiz reset after 24 hours. The quizzes are designed to reinforce learning, not to penalize you.',
+  'education.beginnerCourse.faq.q3.answer': 'Each module quiz allows 3 attempts. If you don\\',
   'education.beginnerCourse.faq.q4.question': 'Will I receive a certificate after completing the course?',
-  'education.beginnerCourse.faq.q4.answer': 'Yes! Upon successfully completing all 6 modules and passing all quizzes with the minimum required score, you\'ll receive a \'Certified Forex Trading Beginner\' certificate. The certificate is digital, shareable on LinkedIn, and demonstrates your foundational knowledge of forex trading to potential employers or clients.',
+  'education.beginnerCourse.faq.q4.answer': 'Yes! Upon successfully completing all 6 modules and passing all quizzes with the minimum required score, you\\',
   'education.beginnerCourse.faq.q5.question': 'Can I practice trading while taking this course?',
-  'education.beginnerCourse.faq.q5.answer': 'Absolutely! We strongly encourage you to open a demo trading account and practice what you learn in each module. Demo accounts use virtual money, so there\'s no financial risk. Hands-on practice alongside the course material significantly accelerates your learning and builds confidence before trading with real money.',
+  'education.beginnerCourse.faq.q5.answer': 'Absolutely! We strongly encourage you to open a demo trading account and practice what you learn in each module. Demo accounts use virtual money, so there\\',
   'education.beginnerCourse.faq.q6.question': 'How are the downloadable resources different from the video lessons?',
-  'education.beginnerCourse.faq.q6.answer': 'The downloadable resources complement the video lessons by providing quick-reference materials, templates, and worksheets. While videos teach concepts in depth, the PDFs and templates are designed for quick consultation during actual trading, helping you apply what you\'ve learned without rewatching entire lessons.',
+  'education.beginnerCourse.faq.q6.answer': 'The downloadable resources complement the video lessons by providing quick-reference materials, templates, and worksheets. While videos teach concepts in depth, the PDFs and templates are designed for quick consultation during actual trading, helping you apply what you\\',
   'education.beginnerCourse.faq.q7.question': 'What should I study after completing the Beginner Course?',
   'education.beginnerCourse.faq.q7.answer': 'After completing the Beginner Course, we recommend practicing with a demo account for at least 1-2 months to solidify your skills. Then, progress to our Advanced Trading Course to learn professional strategies, institutional concepts, and systematic trading approaches. You can also explore our specialized courses on technical analysis and risk management.',
-
-  // Lesson Viewer
   'education.beginnerCourse.lesson.module': 'Module',
   'education.beginnerCourse.lesson.lesson': 'Lesson',
   'education.beginnerCourse.lesson.completed': 'Completed',
@@ -2263,12 +1964,10 @@ export const en = {
   'education.beginnerCourse.lesson.quiz': 'Lesson Quiz',
   'education.beginnerCourse.lesson.previousLesson': 'Previous Lesson',
   'education.beginnerCourse.lesson.nextLesson': 'Next Lesson',
-
-  // Lesson Content
   'education.beginnerCourse.lesson.intro.text': 'Forex trading, also known as foreign exchange or FX trading, is the act of buying and selling currencies with the aim of making a profit. The forex market is the largest financial market in the world, with a daily trading volume exceeding $6 trillion.',
   'education.beginnerCourse.lesson.marketWorks.text': 'Unlike stock markets, the forex market operates 24 hours a day, 5 days a week, across major financial centers worldwide. This continuous operation allows traders to respond to global economic events in real-time.',
   'education.beginnerCourse.lesson.keyConcept.title': 'Key Concept: Currency Pairs',
-  'education.beginnerCourse.lesson.keyConcept.text': 'In forex, currencies are always traded in pairs (e.g., EUR/USD). The first currency is the "base currency" and the second is the "quote currency". If EUR/USD = 1.1000, it means 1 Euro equals 1.10 US Dollars.',
+  'education.beginnerCourse.lesson.keyConcept.text': 'In forex, currencies are always traded in pairs (e.g., EUR/USD). The first currency is the',
   'education.beginnerCourse.lesson.centralBanks': 'Central Banks: Manage currency reserves and stabilize exchange rates',
   'education.beginnerCourse.lesson.commercialBanks': 'Commercial Banks: Facilitate international trade and investment',
   'education.beginnerCourse.lesson.hedgeFunds': 'Hedge Funds & Investment Firms: Seek profit through currency speculation',
@@ -2276,8 +1975,6 @@ export const en = {
   'education.beginnerCourse.lesson.retailTraders': 'Retail Traders: Individual traders like you, seeking to profit from currency movements',
   'education.beginnerCourse.lesson.riskWarning.text': 'Forex trading involves substantial risk. Leverage can magnify both gains and losses. Never trade with money you cannot afford to lose, and always use proper risk management.',
   'education.beginnerCourse.lesson.summary.text': 'Forex trading is the simultaneous buying of one currency and selling of another. The market operates 24/5, providing opportunities for traders worldwide. Understanding the basics of how currencies are quoted and who participates in the market is your first step toward becoming a successful forex trader.',
-
-  // Quiz
   'education.beginnerCourse.quiz.q1.question': 'What is the approximate daily trading volume of the forex market?',
   'education.beginnerCourse.quiz.q1.a': '$600 million',
   'education.beginnerCourse.quiz.q1.b': '$60 billion',
@@ -2294,17 +1991,11 @@ export const en = {
   'education.beginnerCourse.quiz.score': 'Your Score:',
   'education.beginnerCourse.quiz.passed': 'Passed! Great work!',
   'education.beginnerCourse.quiz.failed': 'Not quite. Review the lesson and try again.',
-
-  // Advanced Course
   'education.advancedCourse.badge': 'Advanced Level',
   'education.advancedCourse.title': 'Advanced Trading Course',
   'education.advancedCourse.subtitle': 'Master professional trading strategies and techniques',
-
-  // Prerequisites Alert
   'education.advancedCourse.prerequisites.title': 'Prerequisites Required:',
   'education.advancedCourse.prerequisites.description': 'This course requires completion of the Beginner Course or equivalent trading experience. You should be comfortable with basic technical analysis, risk management, and have executed live trades.',
-
-  // Progress
   'education.advancedCourse.progress.title': 'Your Progress',
   'education.advancedCourse.progress.description': 'Track your advanced learning journey',
   'education.advancedCourse.progress.courseCompletion': 'Course Completion',
@@ -2313,20 +2004,16 @@ export const en = {
   'education.advancedCourse.progress.timeInvested': 'Time Invested',
   'education.advancedCourse.progress.saved': 'Progress Saved',
   'education.advancedCourse.progress.savedDescription': 'Your course progress has been updated.',
-
-  // Course Overview
   'education.advancedCourse.overview.title': 'Course Overview',
   'education.advancedCourse.overview.description': 'Advanced concepts for experienced traders',
   'education.advancedCourse.overview.totalDuration': 'Total Duration',
   'education.advancedCourse.overview.modules': 'Modules',
-  'education.advancedCourse.overview.lessons': 'Lessons',
+  'education.advancedCourse.overview.lessons': 'Lessons learnt',
   'education.advancedCourse.overview.level': 'Level',
   'education.advancedCourse.overview.levelValue': 'Advanced',
   'education.advancedCourse.overview.durationValue': '8.5 hours',
   'education.advancedCourse.overview.modulesValue': '6',
   'education.advancedCourse.overview.descriptionText': 'Elevate your trading to a professional level with advanced technical analysis, institutional trading concepts, and systematic approach to the markets. This course covers professional strategies used by institutional traders, hedge funds, and successful independent traders. Each module includes detailed video lessons, case studies, and comprehensive quizzes to ensure mastery.',
-
-  // Modules
   'education.advancedCourse.modules.title': 'Course Modules',
   'education.advancedCourse.modules.lessons': 'lessons',
   'education.advancedCourse.modules.locked': 'Locked',
@@ -2336,14 +2023,12 @@ export const en = {
   'education.advancedCourse.modules.review': 'Review',
   'education.advancedCourse.modules.continue': 'Continue',
   'education.advancedCourse.modules.start': 'Start',
-  'education.advancedCourse.modules.lessonsSection': 'Lessons',
-  'education.advancedCourse.modules.moduleQuiz': 'Module Quiz',
+  'education.advancedCourse.modules.lessonsSection': 'Lessons learnt',
+  'education.advancedCourse.modules.moduleQuiz': 'Modules Quiz',
   'education.advancedCourse.modules.questions': 'Questions:',
   'education.advancedCourse.modules.passingScore': 'Passing Score:',
   'education.advancedCourse.modules.timeLimit': 'Time Limit:',
   'education.advancedCourse.modules.attempts': 'Attempts:',
-
-  // Module 1
   'education.advancedCourse.module1.title': 'Module 1: Advanced Technical Analysis',
   'education.advancedCourse.module1.description': 'Deep dive into Elliott Wave Theory, harmonic patterns, and advanced Fibonacci techniques',
   'education.advancedCourse.module1.duration': '90 mins',
@@ -2352,8 +2037,6 @@ export const en = {
   'education.advancedCourse.module1.lesson3': 'Advanced Fibonacci Techniques',
   'education.advancedCourse.module1.lesson4': 'Volume Profile Analysis',
   'education.advancedCourse.module1.lesson5': 'Multi-Timeframe Analysis',
-
-  // Module 2
   'education.advancedCourse.module2.title': 'Module 2: Market Structure',
   'education.advancedCourse.module2.description': 'Understand institutional order flow, smart money concepts, and supply/demand zones',
   'education.advancedCourse.module2.duration': '75 mins',
@@ -2362,8 +2045,6 @@ export const en = {
   'education.advancedCourse.module2.lesson3': 'Supply and Demand Zones',
   'education.advancedCourse.module2.lesson4': 'Institutional Order Blocks',
   'education.advancedCourse.module2.lesson5': 'Liquidity Sweeps and Stop Hunts',
-
-  // Module 3
   'education.advancedCourse.module3.title': 'Module 3: Advanced Risk Management',
   'education.advancedCourse.module3.description': 'Portfolio-level risk management, correlation analysis, and position optimization',
   'education.advancedCourse.module3.duration': '60 mins',
@@ -2372,8 +2053,6 @@ export const en = {
   'education.advancedCourse.module3.lesson3': 'Kelly Criterion and Optimal F',
   'education.advancedCourse.module3.lesson4': 'Drawdown Management',
   'education.advancedCourse.module3.lesson5': 'Scaling In and Out of Positions',
-
-  // Module 4
   'education.advancedCourse.module4.title': 'Module 4: Trading Systems',
   'education.advancedCourse.module4.description': 'Design, backtest, and optimize professional trading systems',
   'education.advancedCourse.module4.duration': '90 mins',
@@ -2382,8 +2061,6 @@ export const en = {
   'education.advancedCourse.module4.lesson3': 'Forward Testing and Optimization',
   'education.advancedCourse.module4.lesson4': 'System Performance Metrics',
   'education.advancedCourse.module4.lesson5': 'Avoiding Curve Fitting',
-
-  // Module 5
   'education.advancedCourse.module5.title': 'Module 5: Advanced Strategies',
   'education.advancedCourse.module5.description': 'Master scalping, swing trading, carry trades, and event-driven strategies',
   'education.advancedCourse.module5.duration': '120 mins',
@@ -2392,8 +2069,6 @@ export const en = {
   'education.advancedCourse.module5.lesson3': 'Carry Trade Strategies',
   'education.advancedCourse.module5.lesson4': 'News Trading and Event-Driven Setups',
   'education.advancedCourse.module5.lesson5': 'Hedging and Risk Mitigation',
-
-  // Module 6
   'education.advancedCourse.module6.title': 'Module 6: Professional Trading',
   'education.advancedCourse.module6.description': 'Build a trading business, optimize performance, and scale your capital',
   'education.advancedCourse.module6.duration': '60 mins',
@@ -2402,8 +2077,6 @@ export const en = {
   'education.advancedCourse.module6.lesson3': 'Tax Optimization for Traders',
   'education.advancedCourse.module6.lesson4': 'Scaling Capital and Prop Firms',
   'education.advancedCourse.module6.lesson5': 'Continuous Improvement Process',
-
-  // Downloadable Resources
   'education.advancedCourse.resources.title': 'Downloadable Resources',
   'education.advancedCourse.resources.description': 'Supplementary materials to enhance your learning',
   'education.advancedCourse.resources.resource1': 'Elliott Wave Cheat Sheet',
@@ -2416,30 +2089,26 @@ export const en = {
   'education.advancedCourse.resources.resource8': 'Correlation Matrix Template',
   'education.advancedCourse.resources.resource9': 'Scalping Strategy Guide',
   'education.advancedCourse.resources.resource10': 'Professional Trading Journal',
-
-  // FAQs
   'education.advancedCourse.faq.title': 'Frequently Asked Questions',
   'education.advancedCourse.faq.q1.question': 'What prerequisites do I need before taking this advanced course?',
   'education.advancedCourse.faq.q1.answer': 'You should have completed our Beginner Course or have equivalent experience with at least 6-12 months of active trading. You need to be comfortable with basic technical analysis, understand leverage and margin, and have experience executing live trades. Familiarity with common indicators (moving averages, RSI, MACD) is essential.',
   'education.advancedCourse.faq.q2.question': 'How is the Advanced Course different from the Beginner Course?',
   'education.advancedCourse.faq.q2.answer': 'The Advanced Course goes far beyond basics. While the Beginner Course teaches fundamental concepts, this course covers professional institutional strategies, complex market structure analysis, systematic trading approaches, and advanced risk management techniques used by professional traders. The material is significantly more technical and requires solid foundational knowledge.',
   'education.advancedCourse.faq.q3.question': 'Will I learn automated trading or algorithmic strategies?',
-  'education.advancedCourse.faq.q3.answer': 'Yes, Module 4 covers trading system design and backtesting, which includes systematic and rule-based approaches. While we don\'t teach programming, you\'ll learn how to design quantifiable systems that can be automated. We provide Excel templates for backtesting and system development that don\'t require coding knowledge.',
+  'education.advancedCourse.faq.q3.answer': 'Yes, Module 4 covers trading system design and backtesting, which includes systematic and rule-based approaches. While we don\\',
   'education.advancedCourse.faq.q4.question': 'What is the passing score for the Advanced Course certificate?',
-  'education.advancedCourse.faq.q4.answer': 'Each module requires 80-85% to pass (higher than Beginner Course). The final comprehensive exam requires 85% to earn your \'Certified Advanced Forex Trader\' certificate. This ensures you\'ve truly mastered the professional-level concepts and can apply them in real trading scenarios.',
-  'education.advancedCourse.faq.q5.question': 'Can I get help if I\'m stuck on complex topics like Elliott Wave?',
+  'education.advancedCourse.faq.q4.answer': 'Each module requires 80-85% to pass (higher than Beginner Course). The final comprehensive exam requires 85% to earn your \\',
+  'education.advancedCourse.faq.q5.question': 'Can I get help if I\\',
   'education.advancedCourse.faq.q5.answer': 'Absolutely! Advanced Course students have access to weekly live Q&A sessions with professional traders, a private Discord community, and email support. Complex topics like Elliott Wave, harmonic patterns, and smart money concepts often require discussion and practice, so we provide extensive support resources.',
   'education.advancedCourse.faq.q6.question': 'How much capital do I need to implement these advanced strategies?',
   'education.advancedCourse.faq.q6.answer': 'Strategy capital requirements vary. Scalping can be done with smaller accounts ($1,000-$5,000) while swing trading and carry trades work better with $10,000+. The course teaches you how to adapt strategies to your capital level. Many concepts (like correlation analysis and portfolio management) become more relevant as your capital grows.',
   'education.advancedCourse.faq.q7.question': 'Will this course help me get funded by a prop firm?',
   'education.advancedCourse.faq.q7.answer': 'Yes! Module 6 specifically covers prop firm evaluation, risk parameters prop firms look for, and strategies to pass their challenges. Many of our Advanced Course graduates have successfully obtained funding from firms like FTMO, MyForexFunds, and others. We teach the disciplined, rule-based approach prop firms require.',
-
-  // Learning Path
   'education.advancedCourse.learningPath.title': 'Your Learning Path',
   'education.advancedCourse.learningPath.description': 'Recommended progression for your trading education',
   'education.advancedCourse.learningPath.prerequisite': 'Prerequisite',
   'education.advancedCourse.learningPath.current': 'Advanced Course',
-  'education.advancedCourse.learningPath.next': 'What\'s Next',
+  'education.advancedCourse.learningPath.next': 'What\\',
   'education.advancedCourse.learningPath.next1.title': 'Algorithmic Trading Bootcamp',
   'education.advancedCourse.learningPath.next1.description': 'Learn to code and automate your trading strategies',
   'education.advancedCourse.learningPath.next1.estimated': '4-6 weeks',
@@ -2449,8 +2118,6 @@ export const en = {
   'education.advancedCourse.learningPath.next3.title': 'Professional Trader Mentorship',
   'education.advancedCourse.learningPath.next3.description': '1-on-1 guidance from experienced traders',
   'education.advancedCourse.learningPath.next3.estimated': '12 weeks',
-
-  // Lesson Dialog
   'education.advancedCourse.lesson.title': 'Lesson',
   'education.advancedCourse.lesson.completeLesson': 'Complete Lesson',
   'education.advancedCourse.lesson.markComplete': 'Mark as Complete',
@@ -2461,8 +2128,6 @@ export const en = {
   'education.advancedCourse.lesson.quiz': 'Lesson Quiz',
   'education.advancedCourse.lesson.previousLesson': 'Previous Lesson',
   'education.advancedCourse.lesson.nextLesson': 'Next Lesson',
-  
-  // Lesson Content - Elliott Wave
   'education.advancedCourse.lesson.elliottWave.intro': 'Elliott Wave Theory is a form of technical analysis that looks for recurring long-term price patterns related to persistent changes in investor sentiment and psychology. The theory identifies waves of optimism and pessimism in market movements.',
   'education.advancedCourse.lesson.elliottWave.keyConcept.title': 'The Basic Pattern',
   'education.advancedCourse.lesson.elliottWave.keyConcept.text': 'Every complete Elliott Wave cycle consists of 8 waves: 5 impulse waves (1, 2, 3, 4, 5) in the direction of the main trend, followed by 3 corrective waves (A, B, C) against the trend.',
@@ -2474,14 +2139,12 @@ export const en = {
   'education.advancedCourse.lesson.elliottWave.trading': 'Trading Strategy: Wait for a clear 5-wave pattern to complete in your direction on a higher timeframe (H4 or Daily). Then enter on the corrective wave (A-B-C) on a lower timeframe (H1 or M15). Set your stop below Wave 2 and target the 161.8% Fibonacci extension of Wave 1.',
   'education.advancedCourse.lesson.elliottWave.warning': 'Important: Elliott Wave is subjective and requires practice. Different analysts may count waves differently. Use it in confluence with other analysis methods, not in isolation.',
   'education.advancedCourse.lesson.elliottWave.summary': 'Elliott Wave Theory provides a framework for understanding market psychology and price patterns. The 5-3 wave structure repeats at all timeframes (fractal nature). Master the three cardinal rules before attempting to trade this method. Combine with Fibonacci retracements and volume analysis for best results.',
-
-  // Quiz
   'education.advancedCourse.quiz.q1.question': 'What is the primary purpose of Elliott Wave Theory in trading?',
   'education.advancedCourse.quiz.q1.a': 'To predict exact price targets with 100% accuracy',
   'education.advancedCourse.quiz.q1.b': 'To identify recurring patterns in investor sentiment and market psychology',
   'education.advancedCourse.quiz.q1.c': 'To replace all other forms of technical analysis',
   'education.advancedCourse.quiz.q1.d': 'To determine the exact time to enter every trade',
-  'education.advancedCourse.quiz.q2.question': 'What does a "pin bar" candlestick pattern indicate?',
+  'education.advancedCourse.quiz.q2.question': 'What does a',
   'education.advancedCourse.quiz.q2.a': 'Market indecision and consolidation',
   'education.advancedCourse.quiz.q2.b': 'Strong trend continuation signal',
   'education.advancedCourse.quiz.q2.c': 'Strong rejection at a price level (long wick, small body)',
@@ -2502,19 +2165,13 @@ export const en = {
   'education.advancedCourse.quiz.quizSubmitted': 'Quiz submitted! Review your answers and try again if needed.',
   'education.advancedCourse.quiz.incompleteQuiz': 'Incomplete Quiz',
   'education.advancedCourse.quiz.answerAll': 'Please answer all questions before submitting.',
-
-  // Glossary Page
   'education.glossary.badge': 'Learning Resource',
   'education.glossary.title': 'Trading Glossary',
   'education.glossary.description': 'Comprehensive forex trading terminology dictionary',
-
-  // Stats
   'education.glossary.stats.totalTerms': 'Total Terms',
   'education.glossary.stats.beginner': 'Beginner',
   'education.glossary.stats.intermediate': 'Intermediate',
   'education.glossary.stats.advanced': 'Advanced',
-
-  // Usage Tips
   'education.glossary.usageTips.title': 'How to Use This Glossary',
   'education.glossary.usageTips.description': 'Tips for effective learning',
   'education.glossary.usageTips.tip1': 'Use the search function to quickly find terms during live trading',
@@ -2522,15 +2179,11 @@ export const en = {
   'education.glossary.usageTips.tip3': 'Focus on beginner terms first before advancing to complex concepts',
   'education.glossary.usageTips.tip4': 'Bookmark commonly referenced terms for quick access',
   'education.glossary.usageTips.tip5': 'Practice using new terms in your trading journal',
-
-  // Search & Filter
   'education.glossary.search.title': 'Search & Filter',
   'education.glossary.search.description': 'Find definitions quickly',
   'education.glossary.search.placeholder': 'Search for a term or definition...',
-  'education.glossary.search.found': 'Found {{count}} term{{plural}} matching "{{searchTerm}}"',
+  'education.glossary.search.found': 'Found {{count}} term{{plural}} matching',
   'education.glossary.search.termsCounted': '{{count}} terms',
-
-  // Categories
   'education.glossary.categories.allTerms': 'All Terms',
   'education.glossary.categories.basics': 'Basics',
   'education.glossary.categories.technical': 'Technical Analysis',
@@ -2540,15 +2193,9 @@ export const en = {
   'education.glossary.categories.orders': 'Orders',
   'education.glossary.categories.analysis': 'Analysis',
   'education.glossary.categories.advanced': 'Advanced Concepts',
-
-  // Tabs
   'education.glossary.tabs.alphabetical': 'Alphabetical',
   'education.glossary.tabs.byCategory': 'By Category',
-
-  // No Results
-  'education.glossary.noResults': 'No terms found matching "{{searchTerm}}"',
-
-  // Learning Resources
+  'education.glossary.noResults': 'No terms found matching',
   'education.glossary.learningResources.title': 'Continue Your Learning',
   'education.glossary.learningResources.description': 'Recommended courses based on glossary usage',
   'education.glossary.learningResources.beginnerCourse.title': 'Beginner Trading Course',
@@ -2557,277 +2204,221 @@ export const en = {
   'education.glossary.learningResources.advancedCourse.title': 'Advanced Trading Course',
   'education.glossary.learningResources.advancedCourse.description': 'Deep dive into advanced terminology and professional trading concepts',
   'education.glossary.learningResources.advancedCourse.duration': '8.5 hours • {{count}} terms covered',
-
-  // FAQs
   'education.glossary.faq.title': 'Frequently Asked Questions',
   'education.glossary.faq.description': 'Common questions about trading terminology',
   'education.glossary.faq.q1.question': 'How can I best use this glossary to improve my trading knowledge?',
-  'education.glossary.faq.q1.answer': 'Start by reading through the \'Basics\' category to build a strong foundation. When you encounter a new term during your studies or trading, search for it here. We recommend reading 5-10 terms daily and trying to use them in context. The difficulty levels help you progress from beginner to advanced terminology systematically.',
-  'education.glossary.faq.q2.question': 'What\'s the difference between beginner, intermediate, and advanced terms?',
+  'education.glossary.faq.q1.answer': 'Start by reading through the \\',
+  'education.glossary.faq.q2.question': 'What\\',
   'education.glossary.faq.q2.answer': 'Beginner terms are fundamental concepts every trader must know before their first trade (pip, spread, leverage). Intermediate terms are used by active traders managing positions (drawdown, correlation, pivot points). Advanced terms involve professional concepts and institutional strategies (order flow, smart money, harmonic patterns).',
   'education.glossary.faq.q3.question': 'Why do some terms have multiple definitions or seem contradictory?',
-  'education.glossary.faq.q3.answer': 'Trading terminology can vary by context or region. For example, \'lot\' has a specific meaning (100,000 units) but some brokers use it differently. We provide the most widely accepted definitions with context. When in doubt, always verify with your broker\'s specific terminology.',
+  'education.glossary.faq.q3.answer': 'Trading terminology can vary by context or region. For example, \\',
   'education.glossary.faq.q4.question': 'Should I memorize all these terms before I start trading?',
-  'education.glossary.faq.q4.answer': 'No, memorization isn\'t necessary. Focus on understanding 15-20 core beginner terms first (pip, lot, leverage, margin, stop loss, support/resistance). Learn additional terms progressively as you encounter them in courses or trading. Understanding context and practical application is more important than memorization.',
+  'education.glossary.faq.q4.answer': 'No, memorization isn\\',
   'education.glossary.faq.q5.question': 'How often is this glossary updated with new trading terms?',
-  'education.glossary.faq.q5.answer': 'We update the glossary monthly to include emerging trading concepts, new strategies, and evolving market terminology. Recent additions include smart money concepts, institutional order flow, and modern algorithmic trading terms. Follow the \'Recently Added\' section to stay current.',
+  'education.glossary.faq.q5.answer': 'We update the glossary monthly to include emerging trading concepts, new strategies, and evolving market terminology. Recent additions include smart money concepts, institutional order flow, and modern algorithmic trading terms. Follow the \\',
   'education.glossary.faq.q6.question': 'Are there any terms specific to forex that differ from stock trading?',
   'education.glossary.faq.q6.answer': 'Yes, several terms are forex-specific: pips (instead of ticks/points), lots (standardized forex position size), swap/rollover (overnight interest), and currency pair notation (EUR/USD vs stock symbols). However, many technical analysis and risk management terms apply across all markets.',
   'education.glossary.faq.q7.question': 'Can I suggest new terms to be added to the glossary?',
   'education.glossary.faq.q7.answer': 'Absolutely! We encourage community contributions. If you encounter a trading term not in our glossary, submit it through the feedback form or contact support. Include the term, your understanding of its definition, and context where you found it. We review all submissions.',
-
-  // Glossary Terms - All 63 terms with definitions
   'education.glossary.terms.askPrice.term': 'Ask Price',
   'education.glossary.terms.askPrice.definition': 'The price at which a currency pair can be bought. Also known as the offer price. This is the higher price in the bid-ask spread and represents the price at which market makers are willing to sell.',
   'education.glossary.terms.askPrice.category': 'Basics',
   'education.glossary.terms.askPrice.difficulty': 'Beginner',
-
   'education.glossary.terms.bidPrice.term': 'Bid Price',
   'education.glossary.terms.bidPrice.definition': 'The price at which a currency pair can be sold. This is the lower price in the bid-ask spread and represents the price at which market makers are willing to buy.',
   'education.glossary.terms.bidPrice.category': 'Basics',
   'education.glossary.terms.bidPrice.difficulty': 'Beginner',
-
   'education.glossary.terms.spread.term': 'Spread',
-  'education.glossary.terms.spread.definition': 'The difference between the bid and ask price, representing the broker\'s commission or market liquidity cost. Tighter spreads indicate better liquidity and lower transaction costs.',
+  'education.glossary.terms.spread.definition': 'The difference between the bid and ask price, representing the broker\\',
   'education.glossary.terms.spread.category': 'Basics',
   'education.glossary.terms.spread.difficulty': 'Beginner',
-
   'education.glossary.terms.pip.term': 'Pip',
-  'education.glossary.terms.pip.definition': 'The smallest price movement in a currency pair, typically 0.0001 for most pairs (or 0.01 for JPY pairs). Stands for \'percentage in point\' or \'price interest point\'.',
+  'education.glossary.terms.pip.definition': 'The smallest price movement in a currency pair, typically 0.0001 for most pairs (or 0.01 for JPY pairs). Stands for \\',
   'education.glossary.terms.pip.category': 'Basics',
   'education.glossary.terms.pip.difficulty': 'Beginner',
-
   'education.glossary.terms.lot.term': 'Lot',
   'education.glossary.terms.lot.definition': 'A standardized trading size. Standard lot = 100,000 units, Mini lot = 10,000 units, Micro lot = 1,000 units. Position size is measured in lots.',
   'education.glossary.terms.lot.category': 'Basics',
   'education.glossary.terms.lot.difficulty': 'Beginner',
-
   'education.glossary.terms.leverage.term': 'Leverage',
   'education.glossary.terms.leverage.definition': 'The ability to control a large position with a small amount of capital. E.g., 1:100 leverage allows $100 to control $10,000. Amplifies both profits and losses proportionally.',
   'education.glossary.terms.leverage.category': 'Risk',
   'education.glossary.terms.leverage.difficulty': 'Beginner',
-
   'education.glossary.terms.margin.term': 'Margin',
-  'education.glossary.terms.margin.definition': 'The amount of money required to open and maintain a leveraged position. It\'s essentially a good-faith deposit held by the broker to cover potential losses.',
+  'education.glossary.terms.margin.definition': 'The amount of money required to open and maintain a leveraged position. It\\',
   'education.glossary.terms.margin.category': 'Risk',
   'education.glossary.terms.margin.difficulty': 'Beginner',
-
   'education.glossary.terms.stopLoss.term': 'Stop Loss',
   'education.glossary.terms.stopLoss.definition': 'An order placed to automatically close a position at a specified price to limit losses. Essential risk management tool that should be used on every trade.',
   'education.glossary.terms.stopLoss.category': 'Orders',
   'education.glossary.terms.stopLoss.difficulty': 'Beginner',
-
   'education.glossary.terms.takeProfit.term': 'Take Profit',
   'education.glossary.terms.takeProfit.definition': 'An order placed to automatically close a position at a specified price to secure profits. Allows traders to lock in gains without monitoring positions constantly.',
   'education.glossary.terms.takeProfit.category': 'Orders',
   'education.glossary.terms.takeProfit.difficulty': 'Beginner',
-
   'education.glossary.terms.longPosition.term': 'Long Position',
-  'education.glossary.terms.longPosition.definition': 'Buying a currency pair with the expectation that its price will rise. \'Going long\' means you profit when the price increases.',
+  'education.glossary.terms.longPosition.definition': 'Buying a currency pair with the expectation that its price will rise. \\',
   'education.glossary.terms.longPosition.category': 'Trading',
   'education.glossary.terms.longPosition.difficulty': 'Beginner',
-
   'education.glossary.terms.shortPosition.term': 'Short Position',
-  'education.glossary.terms.shortPosition.definition': 'Selling a currency pair with the expectation that its price will fall. \'Going short\' means you profit when the price decreases.',
+  'education.glossary.terms.shortPosition.definition': 'Selling a currency pair with the expectation that its price will fall. \\',
   'education.glossary.terms.shortPosition.category': 'Trading',
   'education.glossary.terms.shortPosition.difficulty': 'Beginner',
-
   'education.glossary.terms.supportLevel.term': 'Support Level',
   'education.glossary.terms.supportLevel.definition': 'A price level where buying pressure is expected to prevent further decline. Historical price floor where demand typically increases.',
   'education.glossary.terms.supportLevel.category': 'Technical',
   'education.glossary.terms.supportLevel.difficulty': 'Beginner',
-
   'education.glossary.terms.resistanceLevel.term': 'Resistance Level',
   'education.glossary.terms.resistanceLevel.definition': 'A price level where selling pressure is expected to prevent further rise. Historical price ceiling where supply typically increases.',
   'education.glossary.terms.resistanceLevel.category': 'Technical',
   'education.glossary.terms.resistanceLevel.difficulty': 'Beginner',
-
   'education.glossary.terms.bullish.term': 'Bullish',
   'education.glossary.terms.bullish.definition': 'Market sentiment expecting prices to rise. Bulls buy with the expectation of profit. Characterized by higher highs and higher lows on charts.',
   'education.glossary.terms.bullish.category': 'Trading',
   'education.glossary.terms.bullish.difficulty': 'Beginner',
-
   'education.glossary.terms.bearish.term': 'Bearish',
   'education.glossary.terms.bearish.definition': 'Market sentiment expecting prices to fall. Bears sell with the expectation of profit. Characterized by lower highs and lower lows on charts.',
   'education.glossary.terms.bearish.category': 'Trading',
   'education.glossary.terms.bearish.difficulty': 'Beginner',
-
   'education.glossary.terms.candlestick.term': 'Candlestick',
   'education.glossary.terms.candlestick.definition': 'A charting method showing open, high, low, and close prices for a specific period. Body shows open-close range, wicks show high-low range.',
   'education.glossary.terms.candlestick.category': 'Technical',
   'education.glossary.terms.candlestick.difficulty': 'Beginner',
-
   'education.glossary.terms.trend.term': 'Trend',
-  'education.glossary.terms.trend.definition': 'The general direction of price movement: uptrend (higher highs/lows), downtrend (lower highs/lows), or sideways (ranging). \'The trend is your friend\' is a common trading maxim.',
+  'education.glossary.terms.trend.definition': 'The general direction of price movement: uptrend (higher highs/lows), downtrend (lower highs/lows), or sideways (ranging). \\',
   'education.glossary.terms.trend.category': 'Technical',
   'education.glossary.terms.trend.difficulty': 'Beginner',
-
   'education.glossary.terms.volatility.term': 'Volatility',
   'education.glossary.terms.volatility.definition': 'The degree of price fluctuation over time. High volatility means large price swings, creating both opportunity and risk. Measured by indicators like ATR or Bollinger Bands.',
   'education.glossary.terms.volatility.category': 'Analysis',
   'education.glossary.terms.volatility.difficulty': 'Beginner',
-
   'education.glossary.terms.liquidity.term': 'Liquidity',
   'education.glossary.terms.liquidity.definition': 'The ease with which an asset can be bought or sold without affecting its price. Major pairs have high liquidity with tight spreads and minimal slippage.',
   'education.glossary.terms.liquidity.category': 'Basics',
   'education.glossary.terms.liquidity.difficulty': 'Beginner',
-
   'education.glossary.terms.slippage.term': 'Slippage',
   'education.glossary.terms.slippage.definition': 'The difference between expected execution price and actual execution price, often during high volatility or when trading large positions during low liquidity periods.',
   'education.glossary.terms.slippage.category': 'Trading',
   'education.glossary.terms.slippage.difficulty': 'Intermediate',
-
   'education.glossary.terms.swap.term': 'Swap',
   'education.glossary.terms.swap.definition': 'The interest earned or paid for holding a position overnight, based on interest rate differential between the two currencies. Also called rollover.',
   'education.glossary.terms.swap.category': 'Trading',
   'education.glossary.terms.swap.difficulty': 'Intermediate',
-
   'education.glossary.terms.drawdown.term': 'Drawdown',
   'education.glossary.terms.drawdown.definition': 'The decline in account balance from peak to trough, measuring trading losses. Maximum drawdown is a key performance metric for risk assessment.',
   'education.glossary.terms.drawdown.category': 'Risk',
   'education.glossary.terms.drawdown.difficulty': 'Intermediate',
-
   'education.glossary.terms.equity.term': 'Equity',
   'education.glossary.terms.equity.definition': 'The current value of a trading account including unrealized profits/losses from open positions. Calculated as Balance + Floating P/L.',
   'education.glossary.terms.equity.category': 'Risk',
   'education.glossary.terms.equity.difficulty': 'Intermediate',
-
   'education.glossary.terms.freeMargin.term': 'Free Margin',
   'education.glossary.terms.freeMargin.definition': 'The amount of money available to open new positions, calculated as Equity minus Used Margin. When this reaches zero, you cannot open new positions.',
   'education.glossary.terms.freeMargin.category': 'Risk',
   'education.glossary.terms.freeMargin.difficulty': 'Intermediate',
-
   'education.glossary.terms.marginCall.term': 'Margin Call',
   'education.glossary.terms.marginCall.definition': 'A warning from broker when account equity falls too low to support open positions. Signals danger of stop out if losses continue.',
   'education.glossary.terms.marginCall.category': 'Risk',
   'education.glossary.terms.marginCall.difficulty': 'Intermediate',
-
   'education.glossary.terms.stopOut.term': 'Stop Out',
-  'education.glossary.terms.stopOut.definition': 'Automatic closure of positions when margin level drops below broker\'s minimum requirement (typically 20-50%). Protection mechanism preventing negative balance.',
+  'education.glossary.terms.stopOut.definition': 'Automatic closure of positions when margin level drops below broker\\',
   'education.glossary.terms.stopOut.category': 'Risk',
   'education.glossary.terms.stopOut.difficulty': 'Intermediate',
-
   'education.glossary.terms.scalping.term': 'Scalping',
   'education.glossary.terms.scalping.definition': 'A trading style that aims to profit from small price changes with very short holding periods (seconds to minutes). Requires tight spreads and fast execution.',
   'education.glossary.terms.scalping.category': 'Strategies',
   'education.glossary.terms.scalping.difficulty': 'Advanced',
-
   'education.glossary.terms.swingTrading.term': 'Swing Trading',
   'education.glossary.terms.swingTrading.definition': 'A trading style that holds positions for days to weeks to profit from price swings. Based on technical analysis and market momentum.',
   'education.glossary.terms.swingTrading.category': 'Strategies',
   'education.glossary.terms.swingTrading.difficulty': 'Intermediate',
-
   'education.glossary.terms.dayTrading.term': 'Day Trading',
   'education.glossary.terms.dayTrading.definition': 'Opening and closing all positions within the same trading day to avoid overnight risk and swap charges. Requires significant time commitment.',
   'education.glossary.terms.dayTrading.category': 'Strategies',
   'education.glossary.terms.dayTrading.difficulty': 'Intermediate',
-
   'education.glossary.terms.technicalAnalysis.term': 'Technical Analysis',
   'education.glossary.terms.technicalAnalysis.definition': 'Trading approach based on chart patterns, indicators, and historical price data. Assumes price reflects all available information.',
   'education.glossary.terms.technicalAnalysis.category': 'Analysis',
   'education.glossary.terms.technicalAnalysis.difficulty': 'Beginner',
-
   'education.glossary.terms.fundamentalAnalysis.term': 'Fundamental Analysis',
   'education.glossary.terms.fundamentalAnalysis.definition': 'Trading approach based on economic data, news events, and intrinsic value. Focuses on supply/demand factors affecting currency values.',
   'education.glossary.terms.fundamentalAnalysis.category': 'Analysis',
   'education.glossary.terms.fundamentalAnalysis.difficulty': 'Intermediate',
-
   'education.glossary.terms.rsi.term': 'RSI',
   'education.glossary.terms.rsi.definition': 'Relative Strength Index - momentum oscillator measuring overbought/oversold conditions (0-100). Above 70 is overbought, below 30 is oversold.',
   'education.glossary.terms.rsi.category': 'Indicators',
   'education.glossary.terms.rsi.difficulty': 'Intermediate',
-
   'education.glossary.terms.macd.term': 'MACD',
   'education.glossary.terms.macd.definition': 'Moving Average Convergence Divergence - trend-following indicator showing momentum changes. Consists of MACD line, signal line, and histogram.',
   'education.glossary.terms.macd.category': 'Indicators',
   'education.glossary.terms.macd.difficulty': 'Intermediate',
-
   'education.glossary.terms.movingAverage.term': 'Moving Average',
   'education.glossary.terms.movingAverage.definition': 'Average price over a specific period, smoothing price data to identify trends. SMA (simple) and EMA (exponential) are most common types.',
   'education.glossary.terms.movingAverage.category': 'Indicators',
   'education.glossary.terms.movingAverage.difficulty': 'Beginner',
-
   'education.glossary.terms.fibonacciRetracement.term': 'Fibonacci Retracement',
   'education.glossary.terms.fibonacciRetracement.definition': 'Technical tool using horizontal lines at 23.6%, 38.2%, 50%, 61.8%, 78.6% to indicate potential support/resistance based on golden ratio.',
   'education.glossary.terms.fibonacciRetracement.category': 'Technical',
   'education.glossary.terms.fibonacciRetracement.difficulty': 'Advanced',
-
   'education.glossary.terms.breakout.term': 'Breakout',
   'education.glossary.terms.breakout.definition': 'Price movement beyond a defined support or resistance level, often signaling a new trend. High-volume breakouts are more reliable.',
   'education.glossary.terms.breakout.category': 'Technical',
   'education.glossary.terms.breakout.difficulty': 'Intermediate',
-
   'education.glossary.terms.consolidation.term': 'Consolidation',
   'education.glossary.terms.consolidation.definition': 'Period when price moves sideways within a range, showing market indecision. Often precedes significant breakout moves.',
   'education.glossary.terms.consolidation.category': 'Technical',
   'education.glossary.terms.consolidation.difficulty': 'Intermediate',
-
   'education.glossary.terms.reversal.term': 'Reversal',
   'education.glossary.terms.reversal.definition': 'Change in trend direction from uptrend to downtrend or vice versa. Confirmed by price action and indicator signals.',
   'education.glossary.terms.reversal.category': 'Technical',
   'education.glossary.terms.reversal.difficulty': 'Intermediate',
-
   'education.glossary.terms.riskRewardRatio.term': 'Risk-Reward Ratio',
   'education.glossary.terms.riskRewardRatio.definition': 'Comparison of potential profit to potential loss. E.g., 1:3 means risking $1 to make $3. Minimum 1:2 recommended for consistent profitability.',
   'education.glossary.terms.riskRewardRatio.category': 'Risk',
   'education.glossary.terms.riskRewardRatio.difficulty': 'Beginner',
-
   'education.glossary.terms.orderFlow.term': 'Order Flow',
   'education.glossary.terms.orderFlow.definition': 'The process of buy and sell orders being filled in the market. Advanced traders analyze order flow to understand institutional activity and liquidity.',
   'education.glossary.terms.orderFlow.category': 'Advanced',
   'education.glossary.terms.orderFlow.difficulty': 'Advanced',
-
   'education.glossary.terms.smartMoney.term': 'Smart Money',
   'education.glossary.terms.smartMoney.definition': 'Large institutional traders (banks, hedge funds) whose activity can move markets. Retail traders try to identify and follow smart money movements.',
   'education.glossary.terms.smartMoney.category': 'Advanced',
   'education.glossary.terms.smartMoney.difficulty': 'Advanced',
-
   'education.glossary.terms.elliottWave.term': 'Elliott Wave',
   'education.glossary.terms.elliottWave.definition': 'Technical theory that market prices move in repetitive wave patterns based on investor psychology. Consists of impulse waves (5) and corrective waves (3).',
   'education.glossary.terms.elliottWave.category': 'Advanced',
   'education.glossary.terms.elliottWave.difficulty': 'Advanced',
-
   'education.glossary.terms.harmonicPatterns.term': 'Harmonic Patterns',
   'education.glossary.terms.harmonicPatterns.definition': 'Advanced price patterns based on Fibonacci ratios (Gartley, Butterfly, Bat, Crab). Used to identify high-probability reversal zones.',
   'education.glossary.terms.harmonicPatterns.category': 'Advanced',
   'education.glossary.terms.harmonicPatterns.difficulty': 'Advanced',
-
   'education.glossary.terms.correlation.term': 'Correlation',
   'education.glossary.terms.correlation.definition': 'Statistical relationship between two currency pairs. Positive correlation means they move together, negative means they move opposite. Important for portfolio risk.',
   'education.glossary.terms.correlation.category': 'Analysis',
   'education.glossary.terms.correlation.difficulty': 'Advanced',
-
   'education.glossary.terms.hedging.term': 'Hedging',
   'education.glossary.terms.hedging.definition': 'Opening positions to offset risk in existing positions. Common strategy for protecting against adverse market moves while maintaining exposure.',
   'education.glossary.terms.hedging.category': 'Strategies',
   'education.glossary.terms.hedging.difficulty': 'Advanced',
-
   'education.glossary.terms.pivotPoints.term': 'Pivot Points',
-  'education.glossary.terms.pivotPoints.definition': 'Technical indicators calculating potential support and resistance levels based on previous period\'s high, low, and close prices.',
+  'education.glossary.terms.pivotPoints.definition': 'Technical indicators calculating potential support and resistance levels based on previous period\\',
   'education.glossary.terms.pivotPoints.category': 'Technical',
   'education.glossary.terms.pivotPoints.difficulty': 'Intermediate',
-
   'education.glossary.terms.bollingerBands.term': 'Bollinger Bands',
   'education.glossary.terms.bollingerBands.definition': 'Volatility indicator consisting of moving average with upper and lower bands set at standard deviations. Price touching bands can signal overbought/oversold.',
   'education.glossary.terms.bollingerBands.category': 'Indicators',
   'education.glossary.terms.bollingerBands.difficulty': 'Intermediate',
-
   'education.glossary.terms.atr.term': 'ATR',
   'education.glossary.terms.atr.definition': 'Average True Range - volatility indicator measuring average price movement over specified period. Used for position sizing and stop loss placement.',
   'education.glossary.terms.atr.category': 'Indicators',
   'education.glossary.terms.atr.difficulty': 'Intermediate',
-
   'education.glossary.terms.carryTrade.term': 'Carry Trade',
   'education.glossary.terms.carryTrade.definition': 'Strategy of borrowing in low interest rate currency and investing in high interest rate currency to profit from interest differential.',
   'education.glossary.terms.carryTrade.category': 'Strategies',
   'education.glossary.terms.carryTrade.difficulty': 'Advanced',
-
-  // Market Info - Technical Analysis
   'marketInfo.technicalAnalysis.badge': 'Market Education',
   'marketInfo.technicalAnalysis.title': 'Technical Analysis Guide',
   'marketInfo.technicalAnalysis.description': 'Master the art of reading price charts, identifying patterns, and using indicators to make informed trading decisions. Learn proven technical analysis strategies used by professional traders.',
-
-  // Stats
   'marketInfo.technicalAnalysis.stats.patterns': '15+',
   'marketInfo.technicalAnalysis.stats.patternsLabel': 'Chart Patterns',
   'marketInfo.technicalAnalysis.stats.indicators': '10+',
@@ -2836,8 +2427,6 @@ export const en = {
   'marketInfo.technicalAnalysis.stats.strategiesLabel': 'Proven Strategies',
   'marketInfo.technicalAnalysis.stats.accuracy': '70%+',
   'marketInfo.technicalAnalysis.stats.accuracyLabel': 'Pattern Accuracy',
-
-  // Core Concepts
   'marketInfo.technicalAnalysis.concepts.chartPatterns.title': 'Chart Patterns',
   'marketInfo.technicalAnalysis.concepts.chartPatterns.description': 'Visual formations that predict future price movements',
   'marketInfo.technicalAnalysis.concepts.chartPatterns.headAndShoulders.name': 'Head and Shoulders',
@@ -2860,7 +2449,6 @@ export const en = {
   'marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.type': 'Bullish continuation pattern showing accumulation',
   'marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.reliability': 'High (75-85%)',
   'marketInfo.technicalAnalysis.concepts.chartPatterns.cupAndHandle.timeframe': 'Daily to Weekly charts',
-
   'marketInfo.technicalAnalysis.concepts.technicalIndicators.title': 'Technical Indicators',
   'marketInfo.technicalAnalysis.concepts.technicalIndicators.description': 'Mathematical calculations based on price and volume',
   'marketInfo.technicalAnalysis.concepts.technicalIndicators.movingAverages.name': 'Moving Averages (SMA/EMA)',
@@ -2887,7 +2475,6 @@ export const en = {
   'marketInfo.technicalAnalysis.concepts.technicalIndicators.fibonacci.type': 'Mathematical levels (23.6%, 38.2%, 50%, 61.8%) for pullback entries',
   'marketInfo.technicalAnalysis.concepts.technicalIndicators.fibonacci.reliability': 'Self-fulfilling prophecy effect',
   'marketInfo.technicalAnalysis.concepts.technicalIndicators.fibonacci.timeframe': 'Works on all timeframes',
-
   'marketInfo.technicalAnalysis.concepts.supportResistance.title': 'Support & Resistance',
   'marketInfo.technicalAnalysis.concepts.supportResistance.description': 'Key price levels where buying or selling pressure concentrates',
   'marketInfo.technicalAnalysis.concepts.supportResistance.horizontal.name': 'Horizontal Support/Resistance',
@@ -2903,15 +2490,13 @@ export const en = {
   'marketInfo.technicalAnalysis.concepts.supportResistance.fibonacciRetracements.reliability': 'Medium-High at key levels',
   'marketInfo.technicalAnalysis.concepts.supportResistance.fibonacciRetracements.timeframe': 'All timeframes',
   'marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.name': 'Pivot Points (Daily/Weekly)',
-  'marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.type': 'Calculated levels from previous period\'s high, low, close (PP, R1-R3, S1-S3)',
+  'marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.type': 'Calculated levels from previous period\\',
   'marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.reliability': 'High for intraday trading',
   'marketInfo.technicalAnalysis.concepts.supportResistance.pivotPoints.timeframe': 'Daily pivots for day trading',
   'marketInfo.technicalAnalysis.concepts.supportResistance.psychological.name': 'Psychological Levels',
   'marketInfo.technicalAnalysis.concepts.supportResistance.psychological.type': 'Round numbers ending in 00 or 50 (e.g., 1.1000, 1.1050)',
   'marketInfo.technicalAnalysis.concepts.supportResistance.psychological.reliability': 'Medium (self-fulfilling)',
   'marketInfo.technicalAnalysis.concepts.supportResistance.psychological.timeframe': 'All timeframes, major pairs',
-
-  // Trading Strategies
   'marketInfo.technicalAnalysis.strategies.title': 'Proven Technical Trading Strategies',
   'marketInfo.technicalAnalysis.strategies.description': 'Complete strategy breakdowns with entry, exit, and risk management',
   'marketInfo.technicalAnalysis.strategies.winRate': 'Win Rate: {{rate}}',
@@ -2920,7 +2505,6 @@ export const en = {
   'marketInfo.technicalAnalysis.strategies.entry': 'Entry:',
   'marketInfo.technicalAnalysis.strategies.stopLoss': 'Stop Loss:',
   'marketInfo.technicalAnalysis.strategies.takeProfit': 'Take Profit:',
-
   'marketInfo.technicalAnalysis.strategies.trendFollowing.name': 'Trend Following Strategy',
   'marketInfo.technicalAnalysis.strategies.trendFollowing.description': 'Trade with the dominant trend using MAs and momentum indicators',
   'marketInfo.technicalAnalysis.strategies.trendFollowing.setup': 'Price above 200 EMA + MACD positive + RSI > 50 = Bullish bias',
@@ -2929,7 +2513,6 @@ export const en = {
   'marketInfo.technicalAnalysis.strategies.trendFollowing.takeProfit': 'Previous high or 2-3x risk distance',
   'marketInfo.technicalAnalysis.strategies.trendFollowing.winRate': '55-65%',
   'marketInfo.technicalAnalysis.strategies.trendFollowing.rrRatio': '1:2 to 1:3',
-
   'marketInfo.technicalAnalysis.strategies.supportResistanceBounce.name': 'Support/Resistance Bounce',
   'marketInfo.technicalAnalysis.strategies.supportResistanceBounce.description': 'Trade reversals at key horizontal levels',
   'marketInfo.technicalAnalysis.strategies.supportResistanceBounce.setup': 'Price approaching tested S/R level + RSI oversold/overbought',
@@ -2938,7 +2521,6 @@ export const en = {
   'marketInfo.technicalAnalysis.strategies.supportResistanceBounce.takeProfit': 'Next S/R level or 1:2 RR minimum',
   'marketInfo.technicalAnalysis.strategies.supportResistanceBounce.winRate': '60-70%',
   'marketInfo.technicalAnalysis.strategies.supportResistanceBounce.rrRatio': '1:2 to 1:2.5',
-
   'marketInfo.technicalAnalysis.strategies.breakout.name': 'Breakout Strategy',
   'marketInfo.technicalAnalysis.strategies.breakout.description': 'Trade momentum when price breaks consolidation',
   'marketInfo.technicalAnalysis.strategies.breakout.setup': 'Triangle, range, or consolidation pattern + decreasing volume',
@@ -2947,34 +2529,25 @@ export const en = {
   'marketInfo.technicalAnalysis.strategies.breakout.takeProfit': 'Pattern height projected from breakout point',
   'marketInfo.technicalAnalysis.strategies.breakout.winRate': '50-60%',
   'marketInfo.technicalAnalysis.strategies.breakout.rrRatio': '1:2.5 to 1:4',
-
-  // Common Mistakes
   'marketInfo.technicalAnalysis.mistakes.title': '5 Common Technical Analysis Mistakes',
   'marketInfo.technicalAnalysis.mistakes.description': 'Avoid these pitfalls to improve your trading results',
-  'marketInfo.technicalAnalysis.mistakes.whyWrong': 'Why it\'s wrong:',
+  'marketInfo.technicalAnalysis.mistakes.whyWrong': 'Why it\\',
   'marketInfo.technicalAnalysis.mistakes.solution': 'Solution:',
-
   'marketInfo.technicalAnalysis.mistakes.singleIndicator.mistake': 'Over-reliance on a Single Indicator',
   'marketInfo.technicalAnalysis.mistakes.singleIndicator.why': 'No indicator is 100% accurate; false signals are common',
   'marketInfo.technicalAnalysis.mistakes.singleIndicator.solution': 'Use confluence: Combine 2-3 indicators + price action confirmation',
-
   'marketInfo.technicalAnalysis.mistakes.counterTrend.mistake': 'Trading Against the Trend',
   'marketInfo.technicalAnalysis.mistakes.counterTrend.why': 'Counter-trend trades have lower probability and need perfect timing',
   'marketInfo.technicalAnalysis.mistakes.counterTrend.solution': 'Trade with the trend or wait for clear reversal confirmation (H&S, double top)',
-
   'marketInfo.technicalAnalysis.mistakes.higherTimeframes.mistake': 'Ignoring Higher Timeframes',
   'marketInfo.technicalAnalysis.mistakes.higherTimeframes.why': 'Lower timeframe trades can conflict with daily/weekly trend',
   'marketInfo.technicalAnalysis.mistakes.higherTimeframes.solution': 'Check Daily/H4 trend first, then drop to H1/M15 for entries',
-
   'marketInfo.technicalAnalysis.mistakes.noConfirmation.mistake': 'Not Waiting for Confirmation',
   'marketInfo.technicalAnalysis.mistakes.noConfirmation.why': 'Early entries before pattern completion lead to losses',
   'marketInfo.technicalAnalysis.mistakes.noConfirmation.solution': 'Wait for candle close, volume confirmation, or indicator crossover',
-
   'marketInfo.technicalAnalysis.mistakes.tooManyIndicators.mistake': 'Using Too Many Indicators',
   'marketInfo.technicalAnalysis.mistakes.tooManyIndicators.why': 'Chart clutter causes confusion and contradictory signals',
   'marketInfo.technicalAnalysis.mistakes.tooManyIndicators.solution': 'Maximum 3 indicators: One trend (MA), one momentum (RSI/MACD), one volatility (BB)',
-
-  // Getting Started Guide
   'marketInfo.technicalAnalysis.gettingStarted.title': 'Getting Started with Technical Analysis',
   'marketInfo.technicalAnalysis.gettingStarted.step1': 'Learn to read candlesticks: Understand bullish/bearish candles, wicks, and bodies',
   'marketInfo.technicalAnalysis.gettingStarted.step2': 'Identify the trend: Use moving averages to determine overall market direction',
@@ -2982,8 +2555,6 @@ export const en = {
   'marketInfo.technicalAnalysis.gettingStarted.step4': 'Add 2-3 indicators: Start with RSI and MACD for confirmation',
   'marketInfo.technicalAnalysis.gettingStarted.step5': 'Look for confluence: Trade only when multiple factors align',
   'marketInfo.technicalAnalysis.gettingStarted.step6': 'Practice on demo: Test strategies without risking real money',
-
-  // Multi-Timeframe Analysis
   'marketInfo.technicalAnalysis.multiTimeframe.title': 'Multi-Timeframe Analysis',
   'marketInfo.technicalAnalysis.multiTimeframe.alert': 'Always analyze multiple timeframes before trading. This prevents taking buy signals on M15 when Daily chart shows strong downtrend.',
   'marketInfo.technicalAnalysis.multiTimeframe.approach': 'Recommended Approach:',
@@ -2991,36 +2562,28 @@ export const en = {
   'marketInfo.technicalAnalysis.multiTimeframe.h1': 'H1: Find key support/resistance levels',
   'marketInfo.technicalAnalysis.multiTimeframe.m15': 'M15/M5: Fine-tune entry with precise timing',
   'marketInfo.technicalAnalysis.multiTimeframe.example': 'Example: Daily shows uptrend → H4 pullback to support → M15 bullish engulfing = High-probability long entry',
-
-  // FAQ
   'marketInfo.technicalAnalysis.faq.title': 'Frequently Asked Questions',
   'marketInfo.technicalAnalysis.faq.q1.question': 'What timeframe is best for technical analysis?',
   'marketInfo.technicalAnalysis.faq.q1.answer': 'It depends on your trading style: Scalpers use M1-M15, day traders use M15-H1, swing traders use H4-Daily, and position traders use Daily-Weekly. For beginners, start with H4 and Daily charts for clearer trends and less noise. Always check higher timeframes for context before entering trades on lower timeframes.',
   'marketInfo.technicalAnalysis.faq.q2.question': 'How many indicators should I use on my chart?',
-  'marketInfo.technicalAnalysis.faq.q2.answer': 'Less is more. Use 2-3 complementary indicators maximum: one for trend direction (moving average), one for momentum (RSI or MACD), and optionally one for volatility (Bollinger Bands). Too many indicators create conflicting signals and \'analysis paralysis.\' Price action alone can be sufficient for experienced traders.',
+  'marketInfo.technicalAnalysis.faq.q2.answer': 'Less is more. Use 2-3 complementary indicators maximum: one for trend direction (moving average), one for momentum (RSI or MACD), and optionally one for volatility (Bollinger Bands). Too many indicators create conflicting signals and \\',
   'marketInfo.technicalAnalysis.faq.q3.question': 'Do technical patterns really work in modern markets?',
   'marketInfo.technicalAnalysis.faq.q3.answer': 'Yes, but with caveats. Classic patterns work because they represent trader psychology and institutional order flow. Success rates vary: Head & Shoulders (70-80%), Double tops/bottoms (75-85%), Triangles (65-75%). However, patterns work best when combined with volume analysis, market context, and proper risk management. Never rely solely on patterns.',
-  'marketInfo.technicalAnalysis.faq.q4.question': 'What\'s the difference between SMA and EMA?',
+  'marketInfo.technicalAnalysis.faq.q4.question': 'What\\',
   'marketInfo.technicalAnalysis.faq.q4.answer': 'SMA (Simple Moving Average) gives equal weight to all periods and is smoother but slower to react. EMA (Exponential Moving Average) gives more weight to recent prices, making it more responsive to new data. For trend following, 200 SMA is popular. For dynamic support/resistance and quicker signals, 20/50 EMA is preferred. Many traders use both.',
   'marketInfo.technicalAnalysis.faq.q5.question': 'How do I know if a support/resistance level is strong?',
   'marketInfo.technicalAnalysis.faq.q5.answer': 'Strong levels have: 1) Multiple touches (3+ times) historically, 2) Significant reversals at that level, 3) Round numbers (psychological levels like 1.1000), 4) Confluence with Fibonacci levels or pivot points, 5) High timeframe levels (Daily/Weekly stronger than H1). The more factors align, the stronger the level.',
   'marketInfo.technicalAnalysis.faq.q6.question': 'Can I use technical analysis for fundamental-driven markets?',
   'marketInfo.technicalAnalysis.faq.q6.answer': 'Yes, but with caution. Technical analysis works in all markets but can be overridden by strong fundamental events (NFP, Fed decisions, geopolitical shocks). Use technicals for entry/exit timing even on fundamental trades. Avoid trading purely technical setups during high-impact news. Combine both analyses for best results.',
-  'marketInfo.technicalAnalysis.faq.q7.question': 'What\'s the best indicator for beginners?',
+  'marketInfo.technicalAnalysis.faq.q7.question': 'What\\',
   'marketInfo.technicalAnalysis.faq.q7.answer': 'Start with Moving Averages (20/50/200 EMA) and RSI (14 period). MAs show trend direction clearly, and RSI identifies overbought/oversold conditions. These two cover trend and momentum. Once comfortable, add MACD for confirmation. Avoid complex indicators until you master the basics of price action and these fundamental tools.',
-
-  // CTA Section
   'marketInfo.technicalAnalysis.cta.title': 'Ready to Apply Technical Analysis?',
   'marketInfo.technicalAnalysis.cta.description': 'Access our trading platform with advanced charting tools, all major indicators, and drawing tools to practice technical analysis in real-time.',
   'marketInfo.technicalAnalysis.cta.button': 'Open Trading Platform',
   'marketInfo.technicalAnalysis.cta.learnMore': 'View Educational Resources',
-
-  // Fundamental Analysis Page
   'marketInfo.fundamentalAnalysis.badge': 'Market Education',
   'marketInfo.fundamentalAnalysis.title': 'Fundamental Analysis Guide',
   'marketInfo.fundamentalAnalysis.description': 'Master the economic factors, central bank policies, and geopolitical events that drive long-term currency movements. Learn how professional traders analyze macroeconomic data to identify high-probability trade opportunities.',
-
-  // Quick Stats
   'marketInfo.fundamentalAnalysis.stats.indicators': '20+',
   'marketInfo.fundamentalAnalysis.stats.indicatorsLabel': 'Key Indicators',
   'marketInfo.fundamentalAnalysis.stats.centralBanks': '8',
@@ -3029,8 +2592,6 @@ export const en = {
   'marketInfo.fundamentalAnalysis.stats.monthlyEventsLabel': 'Monthly Events',
   'marketInfo.fundamentalAnalysis.stats.pipsPerNews': '150+',
   'marketInfo.fundamentalAnalysis.stats.pipsPerNewsLabel': 'Pips per Major News',
-
-  // Economic Indicators
   'marketInfo.fundamentalAnalysis.factors.economicIndicators.title': 'Economic Indicators',
   'marketInfo.fundamentalAnalysis.factors.economicIndicators.description': 'Key data releases that drive currency valuations',
   'marketInfo.fundamentalAnalysis.factors.economicIndicators.interestRates.name': 'Interest Rates (Central Bank Rates)',
@@ -3057,8 +2618,6 @@ export const en = {
   'marketInfo.fundamentalAnalysis.factors.economicIndicators.retailSales.impact': 'Strong sales = consumer confidence → Currency positive',
   'marketInfo.fundamentalAnalysis.factors.economicIndicators.retailSales.frequency': 'Monthly',
   'marketInfo.fundamentalAnalysis.factors.economicIndicators.retailSales.importance': 'Medium - Leading indicator of economic health',
-
-  // Central Bank Policy
   'marketInfo.fundamentalAnalysis.factors.centralBankPolicy.title': 'Central Bank Policy',
   'marketInfo.fundamentalAnalysis.factors.centralBankPolicy.description': 'Monetary policy decisions that directly impact currencies',
   'marketInfo.fundamentalAnalysis.factors.centralBankPolicy.rateDecisions.name': 'Interest Rate Decisions',
@@ -3077,8 +2636,6 @@ export const en = {
   'marketInfo.fundamentalAnalysis.factors.centralBankPolicy.meetingMinutes.impact': 'Reveals central bank thinking → Hints at future policy bias (hawkish/dovish)',
   'marketInfo.fundamentalAnalysis.factors.centralBankPolicy.meetingMinutes.frequency': 'Weekly (speeches)',
   'marketInfo.fundamentalAnalysis.factors.centralBankPolicy.meetingMinutes.importance': 'Medium-High - Fine-tunes expectations',
-
-  // Geopolitical Events
   'marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.title': 'Geopolitical Events',
   'marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.description': 'Political and global events affecting market sentiment',
   'marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.elections.name': 'Elections & Political Stability',
@@ -3097,8 +2654,6 @@ export const en = {
   'marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.brexit.impact': 'Major structural changes create volatility and trend shifts',
   'marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.brexit.frequency': 'Rare but impactful',
   'marketInfo.fundamentalAnalysis.factors.geopoliticalEvents.brexit.importance': 'Extreme when occurring',
-
-  // Market Sentiment
   'marketInfo.fundamentalAnalysis.factors.marketSentiment.title': 'Market Sentiment & Risk Appetite',
   'marketInfo.fundamentalAnalysis.factors.marketSentiment.description': 'Collective trader psychology and risk appetite',
   'marketInfo.fundamentalAnalysis.factors.marketSentiment.riskOn.name': 'Risk-On Sentiment',
@@ -3117,8 +2672,6 @@ export const en = {
   'marketInfo.fundamentalAnalysis.factors.marketSentiment.stockMarket.impact': 'Strong equities correlate with risk currencies gaining (AUD, NZD, GBP)',
   'marketInfo.fundamentalAnalysis.factors.marketSentiment.stockMarket.frequency': 'Continuous',
   'marketInfo.fundamentalAnalysis.factors.marketSentiment.stockMarket.importance': 'Medium-High - Risk appetite gauge',
-
-  // Economic Calendar
   'marketInfo.fundamentalAnalysis.economicCalendar.title': 'High-Impact Economic Events',
   'marketInfo.fundamentalAnalysis.economicCalendar.description': 'Key events that move markets - plan your trades around these',
   'marketInfo.fundamentalAnalysis.economicCalendar.tradingTipLabel': 'Trading Tip:',
@@ -3146,10 +2699,9 @@ export const en = {
   'marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.event': 'China GDP',
   'marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.country': 'CNY/AUD',
   'marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.impact': 'High',
+  'marketInfo.fundamentalAnalysis.faq.q4.answer': '',
   'marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.typical': 'Quarterly',
-  'marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.tradingTip': "Affects AUD heavily (China's largest trading partner)",
-
-  // Correlations
+  'marketInfo.fundamentalAnalysis.economicCalendar.chinaGdp.tradingTip': 'Affects AUD heavily (China',
   'marketInfo.fundamentalAnalysis.correlations.title': 'Currency-Commodity Correlations',
   'marketInfo.fundamentalAnalysis.correlations.description': 'How commodities and other assets influence forex pairs',
   'marketInfo.fundamentalAnalysis.correlations.audGold.pair': 'AUD/USD vs Gold',
@@ -3163,12 +2715,10 @@ export const en = {
   'marketInfo.fundamentalAnalysis.correlations.eurDxy.reason': 'EUR is 57% of Dollar Index',
   'marketInfo.fundamentalAnalysis.correlations.nzdDairy.pair': 'NZD/USD vs Dairy Prices',
   'marketInfo.fundamentalAnalysis.correlations.nzdDairy.relationship': 'Positive (65%)',
-  'marketInfo.fundamentalAnalysis.correlations.nzdDairy.reason': "New Zealand's main export is dairy",
+  'marketInfo.fundamentalAnalysis.correlations.nzdDairy.reason': 'New Zealand',
   'marketInfo.fundamentalAnalysis.correlations.usdJpyYields.pair': 'USD/JPY vs US Yields',
   'marketInfo.fundamentalAnalysis.correlations.usdJpyYields.relationship': 'Positive (85%)',
   'marketInfo.fundamentalAnalysis.correlations.usdJpyYields.reason': 'Higher yields attract capital to USD',
-
-  // Fundamental Trading Workflow
   'marketInfo.fundamentalAnalysis.workflow.title': 'Fundamental Trading Workflow',
   'marketInfo.fundamentalAnalysis.workflow.step1': 'Check economic calendar: Identify high-impact events for the week',
   'marketInfo.fundamentalAnalysis.workflow.step2': 'Analyze central bank stance: Determine if hawkish or dovish bias',
@@ -3176,8 +2726,6 @@ export const en = {
   'marketInfo.fundamentalAnalysis.workflow.step4': 'Assess geopolitical risks: Wars, elections, trade tensions',
   'marketInfo.fundamentalAnalysis.workflow.step5': 'Determine market sentiment: Risk-on (high-yield) vs risk-off (safe-haven)',
   'marketInfo.fundamentalAnalysis.workflow.step6': 'Use technicals for entry: Fundamentals = direction, technicals = timing',
-
-  // Common Mistakes
   'marketInfo.fundamentalAnalysis.mistakes.title': 'Common Fundamental Mistakes',
   'marketInfo.fundamentalAnalysis.mistakes.tradingNumber.title': 'Trading the number, not the expectation',
   'marketInfo.fundamentalAnalysis.mistakes.tradingNumber.description': 'Markets react to surprises, not absolute values. Check consensus forecasts first.',
@@ -3185,39 +2733,30 @@ export const en = {
   'marketInfo.fundamentalAnalysis.mistakes.ignoringDivergence.description': 'Rate differentials create multi-month trends. Follow both central banks in a pair.',
   'marketInfo.fundamentalAnalysis.mistakes.holdingThroughNews.title': 'Holding through high-impact news',
   'marketInfo.fundamentalAnalysis.mistakes.holdingThroughNews.description': 'News can reverse trends instantly. Close positions or use very wide stops (100+ pips).',
-  'marketInfo.fundamentalAnalysis.mistakes.pricedIn.title': "Overlooking 'priced in' effect",
-  'marketInfo.fundamentalAnalysis.mistakes.pricedIn.description': 'Expected news often causes "buy rumor, sell fact." Trade the surprise, not the headline.',
-
-  // FAQ
+  'marketInfo.fundamentalAnalysis.mistakes.pricedIn.title': 'Overlooking',
+  'marketInfo.fundamentalAnalysis.mistakes.pricedIn.description': 'Expected news often causes',
   'marketInfo.fundamentalAnalysis.faq.title': 'Frequently Asked Questions',
   'marketInfo.fundamentalAnalysis.faq.q1.question': 'How does fundamental analysis differ from technical analysis?',
-  'marketInfo.fundamentalAnalysis.faq.q1.answer': "Fundamental analysis examines economic factors, central bank policies, and geopolitical events to determine intrinsic currency value and long-term trends. Technical analysis uses price charts and patterns for timing entries/exits. Most professional traders combine both: fundamentals for direction and bias, technicals for precise entry/exit timing. For example, if Fed raises rates (fundamental), you'd look for bullish USD setups on charts (technical).",
+  'marketInfo.fundamentalAnalysis.faq.q1.answer': 'Fundamental analysis examines economic factors, central bank policies, and geopolitical events to determine intrinsic currency value and long-term trends. Technical analysis uses price charts and patterns for timing entries/exits. Most professional traders combine both: fundamentals for direction and bias, technicals for precise entry/exit timing. For example, if Fed raises rates (fundamental), you',
   'marketInfo.fundamentalAnalysis.faq.q2.question': 'Which economic indicators have the biggest impact on forex?',
   'marketInfo.fundamentalAnalysis.faq.q2.answer': 'The top 3 are: 1) Interest rate decisions (highest impact - directly set by central banks), 2) Employment data like NFP (very high - influences rate policy), 3) Inflation (CPI/PPI - determines if rates need to change). These often cause 50-150 pip moves within minutes. GDP, retail sales, and PMI data are secondary but still important for medium-term trends.',
   'marketInfo.fundamentalAnalysis.faq.q3.question': 'How do I trade around major news releases?',
   'marketInfo.fundamentalAnalysis.faq.q3.answer': 'Three approaches: 1) Avoid trading - Close positions 30min before high-impact news and wait for volatility to settle. 2) Breakout trading - Wait for initial spike to establish direction, then trade the continuation with tight stops. 3) Fade the spike - Counter-trade emotional moves after 30-60 minutes. Beginners should avoid trading during news; it requires experience and wider stops (50+ pips).',
-  'marketInfo.fundamentalAnalysis.faq.q4.question': "What is 'priced in' and how does it affect trading?",
-  'marketInfo.fundamentalAnalysis.faq.q4.answer': "'Priced in' means the market has already adjusted prices based on expectations. If everyone expects a Fed rate hike and it happens, there may be no USD rally (buy the rumor, sell the fact). The key is surprises: if expected +0.25% but get +0.50%, expect big moves. Check market expectations (consensus forecasts) before news and trade the deviation from expectations, not the absolute number.",
+  'marketInfo.fundamentalAnalysis.faq.q4.question': 'What is',
   'marketInfo.fundamentalAnalysis.faq.q5.question': 'How do central bank policies affect currency pairs?',
   'marketInfo.fundamentalAnalysis.faq.q5.answer': 'Central banks control interest rates, which drive currency value through carry trade. Higher rates attract foreign investment → stronger currency. Divergent policies create trends: if Fed raises rates while ECB holds, USD/EUR strengthens. Key terms: Hawkish (favors rate hikes) = bullish currency; Dovish (favors rate cuts) = bearish currency. Follow central bank meeting calendars and speeches closely.',
   'marketInfo.fundamentalAnalysis.faq.q6.question': 'Can I trade forex based purely on fundamentals?',
-  'marketInfo.fundamentalAnalysis.faq.q6.answer': "Yes, but it's challenging for short-term traders. Fundamental themes (like Fed hiking cycle) play out over weeks/months, not hours. Position traders use fundamentals successfully with multi-week trades. For day traders, fundamentals provide directional bias, but you still need technical analysis for entries. Recommended: Use fundamentals to determine which side to trade, technicals for timing.",
+  'marketInfo.fundamentalAnalysis.faq.q6.answer': 'Yes, but it',
   'marketInfo.fundamentalAnalysis.faq.q7.question': 'How do commodity prices affect forex pairs?',
   'marketInfo.fundamentalAnalysis.faq.q7.answer': 'Commodity currencies (CAD, AUD, NZD, NOK) correlate with commodity prices because exports drive their economies. USD/CAD falls ~80% of time when oil rises (Canada exports oil). AUD/USD rises with gold and iron ore prices. NZD/USD follows dairy prices. Trade these correlations: if oil spikes, consider shorting USD/CAD. Check commodity charts before trading commodity currencies.',
-
-  // CTA Section
   'marketInfo.fundamentalAnalysis.cta.title': 'Stay Ahead with Economic Calendar',
   'marketInfo.fundamentalAnalysis.cta.description': 'Access our integrated economic calendar with real-time alerts for high-impact events. Never miss a major news release that could affect your trades.',
   'marketInfo.fundamentalAnalysis.cta.button': 'View Economic Calendar',
   'marketInfo.fundamentalAnalysis.cta.learnMore': 'Latest Market News',
   'marketInfo.fundamentalAnalysis.frequencyLabel': 'Frequency:',
-
-  // Trading Signals Page
   'marketInfo.tradingSignals.badge': 'Market Education',
   'marketInfo.tradingSignals.title': 'Trading Signals Explained',
   'marketInfo.tradingSignals.description': 'Learn how professional trading signals work, their components, evaluation criteria, and how to use them effectively to enhance your trading performance without blindly following.',
-
-  // Example Signal Section
   'marketInfo.tradingSignals.example.title': 'Example Professional Trading Signal',
   'marketInfo.tradingSignals.example.description': 'Complete signal format with all critical components',
   'marketInfo.tradingSignals.example.instrument': 'Instrument',
@@ -3237,12 +2776,10 @@ export const en = {
   'marketInfo.tradingSignals.example.tag1': 'Technical Setup',
   'marketInfo.tradingSignals.example.tag2': 'Bullish Divergence',
   'marketInfo.tradingSignals.example.tag3': 'Support Bounce',
-
-  // Signal Components
   'marketInfo.tradingSignals.components.title': 'Essential Signal Components',
   'marketInfo.tradingSignals.components.entryPoint.title': 'Entry Point',
   'marketInfo.tradingSignals.components.entryPoint.description': 'Precise price level to enter the trade',
-  'marketInfo.tradingSignals.components.entryPoint.details': "Based on technical analysis, chart patterns, and indicator confluence. Signals specify exact entry price or trigger conditions (e.g., 'Buy above 1.1050'). Professional signals include both market orders and pending orders.",
+  'marketInfo.tradingSignals.components.entryPoint.details': 'Based on technical analysis, chart patterns, and indicator confluence. Signals specify exact entry price or trigger conditions (e.g.,',
   'marketInfo.tradingSignals.components.entryPoint.importance': 'Critical',
   'marketInfo.tradingSignals.components.stopLoss.title': 'Stop Loss',
   'marketInfo.tradingSignals.components.stopLoss.description': 'Risk management level to limit losses',
@@ -3256,8 +2793,6 @@ export const en = {
   'marketInfo.tradingSignals.components.riskReward.description': 'Potential profit vs potential loss',
   'marketInfo.tradingSignals.components.riskReward.details': 'Minimum 1:2 ratio recommended (risk $1 to make $2). Professional traders target 1:3 or higher ratios. Crucial for long-term profitability even with 50% win rate. Calculate: (TP - Entry) / (Entry - SL) for longs.',
   'marketInfo.tradingSignals.components.riskReward.importance': 'Essential',
-
-  // Signal Types
   'marketInfo.tradingSignals.types.title': 'Types of Trading Signals',
   'marketInfo.tradingSignals.types.description': 'Different signal methodologies and their characteristics',
   'marketInfo.tradingSignals.types.examples': 'Examples:',
@@ -3299,18 +2834,13 @@ export const en = {
   'marketInfo.tradingSignals.types.priceAction.accuracy': '70-80%',
   'marketInfo.tradingSignals.types.priceAction.bestFor': 'Experienced traders',
   'marketInfo.tradingSignals.types.priceAction.timeframe': 'H1 to Daily',
-
-  // Signal Quality Evaluation
   'marketInfo.tradingSignals.quality.title': 'Evaluating Signal Quality',
   'marketInfo.tradingSignals.quality.description': 'How to identify high-quality signal providers',
   'marketInfo.tradingSignals.quality.goodLabel': '✓',
   'marketInfo.tradingSignals.quality.badLabel': '✗ Red Flag',
-  'marketInfo.tradingSignals.quality.trackRecord.factor': 'Track Record Transparency',
-  'marketInfo.tradingSignals.quality.trackRecord.good': 'Verified results with win rate, average R:R, drawdown stats',
-  'marketInfo.tradingSignals.quality.trackRecord.bad': 'No historical performance or cherry-picked winners only',
   'marketInfo.tradingSignals.quality.riskManagement.factor': 'Risk Management',
   'marketInfo.tradingSignals.quality.riskManagement.good': 'Clear SL/TP levels, position sizing guidance, max 2-3% risk per trade',
-  'marketInfo.tradingSignals.quality.riskManagement.bad': "No stop loss, 'hold until profit', or risky martingale strategies",
+  'marketInfo.tradingSignals.quality.riskManagement.bad': 'No stop loss,',
   'marketInfo.tradingSignals.quality.frequency.factor': 'Signal Frequency',
   'marketInfo.tradingSignals.quality.frequency.good': 'Quality over quantity: 3-10 signals per week with high probability',
   'marketInfo.tradingSignals.quality.frequency.bad': '20+ signals daily (overtrading), inconsistent quality',
@@ -3319,17 +2849,15 @@ export const en = {
   'marketInfo.tradingSignals.quality.transparency.bad': 'Signals sent after move started, delayed notifications, no rationale',
   'marketInfo.tradingSignals.quality.claims.factor': 'Realistic Claims',
   'marketInfo.tradingSignals.quality.claims.good': '50-70% win rate with 1:2+ R:R, acknowledges losses',
-  'marketInfo.tradingSignals.quality.claims.bad': "90%+ win rate claims, 'guaranteed profits', no losing trades shown",
-
-  // Using Signals
+  'marketInfo.tradingSignals.quality.claims.bad': '90%+ win rate claims,',
   'marketInfo.tradingSignals.using.title': 'Step-by-Step: How to Use Trading Signals',
   'marketInfo.tradingSignals.using.description': 'Follow this process for every signal you receive',
   'marketInfo.tradingSignals.using.proTipLabel': 'Pro Tip:',
   'marketInfo.tradingSignals.using.step1.title': 'Verify Signal Quality',
-  'marketInfo.tradingSignals.using.step1.action': "Check provider's track record, verify win rate and R:R ratio",
+  'marketInfo.tradingSignals.using.step1.action': 'Check provider',
   'marketInfo.tradingSignals.using.step1.tip': 'Demand verified results, not screenshots',
   'marketInfo.tradingSignals.using.step2.title': 'Understand the Setup',
-  'marketInfo.tradingSignals.using.step2.action': "Read the signal reasoning - why this trade, what's the setup?",
+  'marketInfo.tradingSignals.using.step2.action': 'Read the signal reasoning - why this trade, what',
   'marketInfo.tradingSignals.using.step2.tip': 'Never blindly follow; learn from each signal',
   'marketInfo.tradingSignals.using.step3.title': 'Check Your Chart',
   'marketInfo.tradingSignals.using.step3.action': 'Confirm the setup matches on your platform before entering',
@@ -3347,42 +2875,32 @@ export const en = {
   'marketInfo.tradingSignals.using.step7.action': 'Trail stops, take partial profits at TP1/TP2 if multiple levels',
   'marketInfo.tradingSignals.using.step7.tip': 'Stick to the plan, avoid emotional decisions',
   'marketInfo.tradingSignals.using.step8.title': 'Log Results',
-  'marketInfo.tradingSignals.using.step8.action': "Track every signal's outcome for performance analysis",
+  'marketInfo.tradingSignals.using.step8.action': 'Track every signal',
   'marketInfo.tradingSignals.using.step8.tip': 'Identify which signal types work best for you',
-
-  // FAQ
   'marketInfo.tradingSignals.faq.title': 'Frequently Asked Questions',
   'marketInfo.tradingSignals.faq.q1.question': 'Are trading signals worth paying for?',
-  'marketInfo.tradingSignals.faq.q1.answer': "It depends on the provider's track record and your goals. Quality signal services with verified 60%+ win rates and 1:2+ R:R can be worth it for beginners learning trading or busy professionals. However, many free signals exist, and developing your own analysis skills is ultimately more valuable. Never rely 100% on signals - use them as learning tools and always verify setups yourself before entering trades.",
+  'marketInfo.tradingSignals.faq.q1.answer': 'It depends on the provider',
   'marketInfo.tradingSignals.faq.q2.question': 'What win rate should I expect from trading signals?',
-  'marketInfo.tradingSignals.faq.q2.answer': 'Realistic expectations: 55-70% win rate for quality signals. With proper risk/reward (1:2 minimum), even 50% win rate is profitable. Beware of services claiming 80-90%+ win rates - they\'re often manipulated or cherry-picked. Focus on risk/reward ratio over win rate. A 40% win rate with 1:3 R:R (risk $1 to make $3) is more profitable than 70% win rate with 1:1 R:R.',
+  'marketInfo.tradingSignals.faq.q2.answer': 'Realistic expectations: 55-70% win rate for quality signals. With proper risk/reward (1:2 minimum), even 50% win rate is profitable. Beware of services claiming 80-90%+ win rates - they\\',
   'marketInfo.tradingSignals.faq.q3.question': 'How do I know if a signal provider is legitimate?',
   'marketInfo.tradingSignals.faq.q3.answer': 'Check for: 1) Verified track record on third-party platforms (MyFXBook, FX Blue), 2) Transparent performance metrics (win rate, drawdown, average R:R), 3) Realistic claims (no guaranteed profits), 4) Clear risk management (always includes SL), 5) Reasoning behind each signal (not just entry/exit numbers), 6) Consistent signal quality over months, not weeks. Red flags: No track record, delayed signals, no stop losses, 90%+ win rate claims.',
   'marketInfo.tradingSignals.faq.q4.question': 'Can I automate trading signals with a robot/EA?',
-  'marketInfo.tradingSignals.faq.q4.answer': "Yes, but with caution. Some providers offer APIs or Telegram bots for auto-execution. Benefits: Faster execution, no emotional trading. Risks: Technical failures, slippage, broker compatibility issues. Only automate signals from providers with long, verified track records. Always test on demo first for 1-2 months. Keep position sizes small (max 1% risk). Monitor automated trades daily - never 'set and forget.'",
+  'marketInfo.tradingSignals.faq.q4.answer': 'Yes, but with caution. Some providers offer APIs or Telegram bots for auto-execution. Benefits: Faster execution, no emotional trading. Risks: Technical failures, slippage, broker compatibility issues. Only automate signals from providers with long, verified track records. Always test on demo first for 1-2 months. Keep position sizes small (max 1% risk). Monitor automated trades daily - never',
   'marketInfo.tradingSignals.faq.q5.question': 'Should I take every signal from my provider?',
-  'marketInfo.tradingSignals.faq.q5.answer': 'No. Filter signals based on: 1) Your risk tolerance (skip signals with >50 pip SL if you\'re conservative), 2) Market conditions (avoid ranging market signals during low volatility), 3) Your trading session (skip Tokyo signals if you trade London/NY), 4) Confluence with your own analysis (signal + your confirmation = higher probability). Start with cherry-picking the highest quality setups (strong R:R, clear patterns) until you build confidence.',
-  'marketInfo.tradingSignals.faq.q6.question': 'What\'s the difference between free and paid signals?',
+  'marketInfo.tradingSignals.faq.q5.answer': 'No. Filter signals based on: 1) Your risk tolerance (skip signals with &gt;50 pip SL if you\\',
+  'marketInfo.tradingSignals.faq.q6.question': 'What\\',
   'marketInfo.tradingSignals.faq.q6.answer': 'Free signals: Often delayed, fewer per week, less detail, may be marketing for paid tiers, inconsistent quality. Paid signals ($50-200/month): Faster delivery, more signals, detailed analysis, multiple TP levels, trade management updates, community support. However, paid ≠ better. Some free providers outperform paid ones. Evaluate based on verified track record, not price. Many paid services offer free trials - use them to test quality before committing.',
   'marketInfo.tradingSignals.faq.q7.question': 'How should I manage multiple take profit levels?',
   'marketInfo.tradingSignals.faq.q7.answer': 'Standard approach: Close 50% at TP1 (secure profits), 30% at TP2 (lock in more gains), let 20% run to TP3 or trail stop (maximize winners). This balances profit-taking with letting winners run. When TP1 hits, move SL to breakeven to make trade risk-free. Alternative: Close 100% at TP1 for beginners (simpler, less stress). Advanced: Trail stop after TP1 instead of fixed TP2/TP3 (can capture larger moves). Choose based on your risk tolerance and trading style.',
-
-  // Warning
   'marketInfo.tradingSignals.warning.label': 'Important:',
-  'marketInfo.tradingSignals.warning.text': 'Trading signals should be used as learning tools and trade ideas, not blindly followed. Always verify setups on your charts, understand the reasoning, and manage risk properly. Past performance doesn\'t guarantee future results.',
-
-  // CTA
+  'marketInfo.tradingSignals.warning.text': 'Trading signals should be used as learning tools and trade ideas, not blindly followed. Always verify setups on your charts, understand the reasoning, and manage risk properly. Past performance doesn\\',
   'marketInfo.tradingSignals.cta.title': 'Learn to Generate Your Own Signals',
   'marketInfo.tradingSignals.cta.description': 'While signals can help, developing your own analysis skills leads to long-term trading success. Explore our comprehensive education courses.',
   'marketInfo.tradingSignals.cta.coursesButton': 'View Trading Courses',
   'marketInfo.tradingSignals.cta.tradingButton': 'Start Trading',
-
-  // Market Heatmap
   'marketInfo.marketHeatmap.badge': 'Market Education',
   'marketInfo.marketHeatmap.title': 'Market Heatmap Guide',
   'marketInfo.marketHeatmap.description': 'Learn how to use market heatmaps to quickly visualize performance across multiple instruments, identify currency strength, spot trading opportunities, and manage risk at a glance.',
-
-  // Stats
   'marketInfo.marketHeatmap.stats.currencies': '8',
   'marketInfo.marketHeatmap.stats.currenciesLabel': 'Major Currencies',
   'marketInfo.marketHeatmap.stats.pairs': '28+',
@@ -3391,8 +2909,6 @@ export const en = {
   'marketInfo.marketHeatmap.stats.updatesLabel': 'Live Updates',
   'marketInfo.marketHeatmap.stats.sessions': '3',
   'marketInfo.marketHeatmap.stats.sessionsLabel': 'Trading Sessions',
-
-  // Heatmap Types
   'marketInfo.marketHeatmap.types.currencyStrength.title': 'Currency Strength Heatmap',
   'marketInfo.marketHeatmap.types.currencyStrength.description': 'Visual representation of relative currency strength across major pairs',
   'marketInfo.marketHeatmap.types.currencyStrength.feature1': 'Compare 8 major currencies: USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF',
@@ -3402,7 +2918,6 @@ export const en = {
   'marketInfo.marketHeatmap.types.currencyStrength.useCase': 'Use to find the strongest vs weakest currency pairs for trending trades. For example, if USD is strongest (+1.5%) and JPY is weakest (-1.2%), consider buying USD/JPY. Avoid pairs where both currencies show similar strength (low relative movement).',
   'marketInfo.marketHeatmap.types.currencyStrength.updateFrequency': 'Real-time (tick-by-tick)',
   'marketInfo.marketHeatmap.types.currencyStrength.bestTimeframe': 'Intraday to swing trading',
-
   'marketInfo.marketHeatmap.types.assetClass.title': 'Asset Class Performance Heatmap',
   'marketInfo.marketHeatmap.types.assetClass.description': 'Performance comparison across different market sectors and instruments',
   'marketInfo.marketHeatmap.types.assetClass.feature1': 'Categories: Forex pairs, Commodities (Gold, Oil, Silver), Indices (S&P, FTSE, DAX), Cryptocurrencies',
@@ -3412,7 +2927,6 @@ export const en = {
   'marketInfo.marketHeatmap.types.assetClass.useCase': 'Determine overall market sentiment. Strong equities + weak safe havens (JPY, CHF) = risk-on environment. Weak equities + strong USD/JPY = risk-off. Trade accordingly: In risk-on, buy AUD/JPY, NZD/JPY. In risk-off, buy USD/JPY, sell commodity currencies.',
   'marketInfo.marketHeatmap.types.assetClass.updateFrequency': 'Every 5-15 minutes',
   'marketInfo.marketHeatmap.types.assetClass.bestTimeframe': 'Position and swing trading',
-
   'marketInfo.marketHeatmap.types.volatility.title': 'Volatility Heatmap',
   'marketInfo.marketHeatmap.types.volatility.description': 'Measure of price volatility across instruments using ATR (Average True Range)',
   'marketInfo.marketHeatmap.types.volatility.feature1': 'Shows which pairs/assets are moving the most (high volatility) vs consolidating (low volatility)',
@@ -3422,7 +2936,6 @@ export const en = {
   'marketInfo.marketHeatmap.types.volatility.useCase': 'Trade high volatility pairs for breakouts and momentum strategies. Use low volatility pairs for range trading and mean reversion strategies. Adjust stop loss width based on current volatility levels (wider stops for GBP/JPY, tighter for EUR/CHF).',
   'marketInfo.marketHeatmap.types.volatility.updateFrequency': 'Hourly',
   'marketInfo.marketHeatmap.types.volatility.bestTimeframe': 'All trading styles',
-
   'marketInfo.marketHeatmap.types.session.title': 'Session-Based Heatmap',
   'marketInfo.marketHeatmap.types.session.description': 'Performance segmented by trading sessions (Tokyo, London, New York)',
   'marketInfo.marketHeatmap.types.session.feature1': 'Identify which pairs are most active during specific sessions',
@@ -3432,50 +2945,39 @@ export const en = {
   'marketInfo.marketHeatmap.types.session.useCase': 'Trade the most active pairs during your available session. London traders should focus on EUR/GBP, GBP/USD. Tokyo session traders should focus on AUD/JPY, NZD/JPY. Overlaps (London + NY) provide highest liquidity and opportunities.',
   'marketInfo.marketHeatmap.types.session.updateFrequency': 'Per session',
   'marketInfo.marketHeatmap.types.session.bestTimeframe': 'Day trading and scalping',
-
-  // Interpretation
   'marketInfo.marketHeatmap.interpretation.title': 'Reading Heatmap Patterns',
   'marketInfo.marketHeatmap.interpretation.description': 'What different color patterns mean and how to trade them',
   'marketInfo.marketHeatmap.interpretation.keyFeatures': 'Key Features:',
   'marketInfo.marketHeatmap.interpretation.practicalUse': 'Practical Use Case:',
   'marketInfo.marketHeatmap.interpretation.meaning': 'Meaning:',
   'marketInfo.marketHeatmap.interpretation.tradingAction': 'Trading Action:',
-
   'marketInfo.marketHeatmap.interpretation.strongGreen.scenario': 'Strong Green Cluster (Multiple Currencies Up)',
   'marketInfo.marketHeatmap.interpretation.strongGreen.meaning': 'Widespread bullish sentiment across major pairs',
   'marketInfo.marketHeatmap.interpretation.strongGreen.action': 'Look for continuation buys on pullbacks. Positive risk-on environment. Consider buying high-yield currencies (AUD, NZD) against safe havens (JPY, CHF).',
   'marketInfo.marketHeatmap.interpretation.strongGreen.probability': 'Medium-High confidence',
-
   'marketInfo.marketHeatmap.interpretation.strongRed.scenario': 'Strong Red Cluster (Widespread Selling)',
   'marketInfo.marketHeatmap.interpretation.strongRed.meaning': 'Risk-off sentiment, flight to safety underway',
   'marketInfo.marketHeatmap.interpretation.strongRed.action': 'Look for continuation sells on rallies. Buy safe havens (USD, JPY, CHF). Avoid commodity currencies and emerging markets. Reduce position sizes due to volatility.',
   'marketInfo.marketHeatmap.interpretation.strongRed.probability': 'High confidence',
-
   'marketInfo.marketHeatmap.interpretation.mixed.scenario': 'Mixed Colors (No Clear Pattern)',
   'marketInfo.marketHeatmap.interpretation.mixed.meaning': 'Indecisive market, no dominant trend, choppy consolidation',
   'marketInfo.marketHeatmap.interpretation.mixed.action': 'Reduce position sizes significantly. Focus on range trading strategies at key levels. Wait for clearer directional bias. Avoid breakout trades (high false breakout risk).',
   'marketInfo.marketHeatmap.interpretation.mixed.probability': 'Low-confidence environment',
-
   'marketInfo.marketHeatmap.interpretation.single.scenario': 'Single Currency Green Across All Pairs',
   'marketInfo.marketHeatmap.interpretation.single.meaning': 'Strong buying pressure in that specific currency (e.g., USD green across EUR/USD, GBP/USD, AUD/USD)',
   'marketInfo.marketHeatmap.interpretation.single.action': 'Trade pairs with that currency on the buy side. Check fundamentals - likely central bank hawkishness, strong data, or safe-haven demand. High-probability trend trades.',
   'marketInfo.marketHeatmap.interpretation.single.probability': 'Very High confidence',
-
   'marketInfo.marketHeatmap.interpretation.sudden.scenario': 'Sudden Color Shift (Green to Red in <1 hour)',
   'marketInfo.marketHeatmap.interpretation.sudden.meaning': 'Major news event or trend reversal occurring, market repricing rapidly',
   'marketInfo.marketHeatmap.interpretation.sudden.action': 'Check economic calendar for news. If no scheduled news, possible geopolitical event. Reassess open positions immediately. Tighten stops or exit if against new trend. Wait 30min for clarity before new entries.',
   'marketInfo.marketHeatmap.interpretation.sudden.probability': 'High volatility, lower confidence initially',
-
   'marketInfo.marketHeatmap.interpretation.divergence.scenario': 'Divergence: Heatmap vs Your Chart',
-  'marketInfo.marketHeatmap.interpretation.divergence.meaning': 'Currency strength showing bullish but your pair\'s chart shows bearish structure',
+  'marketInfo.marketHeatmap.interpretation.divergence.meaning': 'Currency strength showing bullish but your pair\\',
   'marketInfo.marketHeatmap.interpretation.divergence.action': 'Trust the heatmap for broader context but wait for chart confirmation. Heatmap might be early signal of upcoming reversal. Mark levels and wait for price action confirmation before entering.',
   'marketInfo.marketHeatmap.interpretation.divergence.probability': 'Requires confirmation',
-
-  // Strategies
   'marketInfo.marketHeatmap.strategies.title': 'Heatmap-Based Trading Strategies',
   'marketInfo.marketHeatmap.strategies.description': 'Complete strategies using heatmap analysis',
   'marketInfo.marketHeatmap.strategies.stepByStep': 'Step-by-Step:',
-
   'marketInfo.marketHeatmap.strategies.relativeStrength.strategy': 'Relative Strength Trading',
   'marketInfo.marketHeatmap.strategies.relativeStrength.description': 'Identify and trade the strongest vs weakest currencies',
   'marketInfo.marketHeatmap.strategies.relativeStrength.step1': 'Check heatmap at start of session (London open, NY open)',
@@ -3486,7 +2988,6 @@ export const en = {
   'marketInfo.marketHeatmap.strategies.relativeStrength.step6': 'Risk/Reward minimum 1:2',
   'marketInfo.marketHeatmap.strategies.relativeStrength.winRate': '60-70%',
   'marketInfo.marketHeatmap.strategies.relativeStrength.riskReward': '1:2 to 1:3',
-
   'marketInfo.marketHeatmap.strategies.volatility.strategy': 'Volatility Breakout Strategy',
   'marketInfo.marketHeatmap.strategies.volatility.description': 'Trade breakouts when volatility spikes from low levels',
   'marketInfo.marketHeatmap.strategies.volatility.step1': 'Monitor volatility heatmap for pairs showing low ATR (blue/neutral)',
@@ -3497,7 +2998,6 @@ export const en = {
   'marketInfo.marketHeatmap.strategies.volatility.step6': 'TP at pattern height projected from breakout',
   'marketInfo.marketHeatmap.strategies.volatility.winRate': '55-65%',
   'marketInfo.marketHeatmap.strategies.volatility.riskReward': '1:2.5 to 1:4',
-
   'marketInfo.marketHeatmap.strategies.session.strategy': 'Session Momentum Trading',
   'marketInfo.marketHeatmap.strategies.session.description': 'Trade pairs most active during your session for best liquidity',
   'marketInfo.marketHeatmap.strategies.session.step1': 'Check session heatmap to see which pairs are moving most',
@@ -3508,54 +3008,42 @@ export const en = {
   'marketInfo.marketHeatmap.strategies.session.step6': 'Avoid carrying positions through quiet sessions',
   'marketInfo.marketHeatmap.strategies.session.winRate': '65-75%',
   'marketInfo.marketHeatmap.strategies.session.riskReward': '1:1.5 to 1:2',
-
-  // Pro Tips
   'marketInfo.marketHeatmap.tips.title': 'Professional Tips & Best Practices',
   'marketInfo.marketHeatmap.tips.combine.tip': 'Combine Heatmap with Price Action',
-  'marketInfo.marketHeatmap.tips.combine.detail': 'Heatmap shows what\'s moving, but always confirm with chart structure (support/resistance, patterns) before entering',
+  'marketInfo.marketHeatmap.tips.combine.detail': 'Heatmap shows what\\',
   'marketInfo.marketHeatmap.tips.timeframes.tip': 'Check Multiple Timeframes',
   'marketInfo.marketHeatmap.tips.timeframes.detail': 'Daily heatmap for trend, H4 for swing trades, H1 for day trades. Align your trading with the dominant timeframe strength',
-  'marketInfo.marketHeatmap.tips.neutral.tip': 'Avoid \'Neutral\' Pairs',
+  'marketInfo.marketHeatmap.tips.neutral.tip': 'Avoid \\',
   'marketInfo.marketHeatmap.tips.neutral.detail': 'If both currencies show similar strength (both green or both red), pair will likely range. Trade pairs with strong divergence only',
   'marketInfo.marketHeatmap.tips.sentiment.tip': 'Use Heatmap for Market Sentiment',
   'marketInfo.marketHeatmap.tips.sentiment.detail': 'Safe havens strong (USD, JPY, CHF green) = Risk-off. Commodity currencies strong (AUD, NZD, CAD green) = Risk-on',
   'marketInfo.marketHeatmap.tips.timing.tip': 'Time Your Entries with Heatmap',
-  'marketInfo.marketHeatmap.tips.timing.detail': 'Don\'t chase strong green after 5 hours of rally. Wait for pullback or trade the opposite on reversal signs',
+  'marketInfo.marketHeatmap.tips.timing.detail': 'Don\\',
   'marketInfo.marketHeatmap.tips.correlation.tip': 'Monitor Correlation Changes',
   'marketInfo.marketHeatmap.tips.correlation.detail': 'Usually correlated pairs (EUR/USD and GBP/USD) diverging? Potential pair trading opportunity or confusion - be cautious',
-
-  // FAQ
   'marketInfo.marketHeatmap.faq.title': 'Frequently Asked Questions',
   'marketInfo.marketHeatmap.faq.q1.question': 'How often should I check the market heatmap?',
   'marketInfo.marketHeatmap.faq.q1.answer': 'For day traders: Every 30-60 minutes to catch momentum shifts. For swing traders: Once per day at market open to identify weekly bias. For scalpers: Every 5-15 minutes during active sessions. Set alerts for major color changes (green to red shift) to catch reversals early. Always check heatmap before entering any trade to ensure currency momentum aligns with your direction.',
   'marketInfo.marketHeatmap.faq.q2.question': 'Can I rely solely on the heatmap for trading decisions?',
-  'marketInfo.marketHeatmap.faq.q2.answer': 'No. Heatmaps show relative strength but don\'t indicate support/resistance levels, chart patterns, or risk/reward ratios. Use heatmap as a filter to identify which pairs to trade, then analyze charts for precise entries. Best approach: Heatmap identifies the pair (strongest vs weakest) → Chart analysis finds the entry setup → Risk management determines position size.',
+  'marketInfo.marketHeatmap.faq.q2.answer': 'No. Heatmaps show relative strength but don\\',
   'marketInfo.marketHeatmap.faq.q3.question': 'What causes sudden heatmap color changes?',
   'marketInfo.marketHeatmap.faq.q3.answer': 'Major news events (NFP, Fed decisions, geopolitical shocks), central bank surprises, or technical breakouts. When you see rapid shifts: 1) Check economic calendar for scheduled news, 2) Check news feeds for breaking stories, 3) Review charts for major level breaks. Allow 15-30min for volatility to settle before trading after sudden shifts.',
   'marketInfo.marketHeatmap.faq.q4.question': 'How do I use heatmap for risk management?',
   'marketInfo.marketHeatmap.faq.q4.answer': 'Volatility heatmaps show which pairs are most risky. High volatility (dark red) = wider stops needed (40-60 pips for GBP/JPY). Low volatility (blue) = tighter stops (15-25 pips for EUR/CHF). Also, reduce position size by 50% when trading high volatility pairs to keep dollar risk constant. If overall market shows extreme volatility (all red), reduce trading or stay out completely.',
   'marketInfo.marketHeatmap.faq.q5.question': 'Which heatmap type is best for beginners?',
-  'marketInfo.marketHeatmap.faq.q5.answer': 'Start with Currency Strength Heatmap - it\'s the simplest and most actionable. Shows which currencies are strong/weak in real-time. Trade strongest vs weakest pairs with clear trends. Once comfortable, add Session-Based Heatmap to trade during your available hours. Volatility and Asset Class heatmaps are for intermediate traders who understand correlations and market sentiment.',
+  'marketInfo.marketHeatmap.faq.q5.answer': 'Start with Currency Strength Heatmap - it\\',
   'marketInfo.marketHeatmap.faq.q6.question': 'How do I interpret divergence between heatmap and my chart?',
   'marketInfo.marketHeatmap.faq.q6.answer': 'Example: Heatmap shows USD strong (green) but USD/JPY chart is falling. Possibilities: 1) JPY is even stronger (check JPY vs other pairs), 2) Temporary pullback before resuming up, 3) Early reversal signal. Action: Wait for alignment - either heatmap shifts or chart confirms. Never trade against both heatmap and chart structure; one must support your direction.',
   'marketInfo.marketHeatmap.faq.q7.question': 'Can heatmaps predict market direction?',
-  'marketInfo.marketHeatmap.faq.q7.answer': 'No, heatmaps are descriptive (what\'s happening now), not predictive (what will happen). They show current strength, not future direction. However, persistent strength (USD green for 3+ hours) often continues short-term. Use heatmap to ride existing momentum, not predict reversals. For reversals, wait for price action confirmation (chart patterns, candlesticks) + heatmap color change together.',
-
-  // CTA
+  'marketInfo.marketHeatmap.faq.q7.answer': 'No, heatmaps are descriptive (what\\',
   'marketInfo.marketHeatmap.cta.title': 'Access Real-Time Market Heatmaps',
   'marketInfo.marketHeatmap.cta.description': 'Our trading platform includes integrated currency strength, volatility, and session heatmaps updated in real-time to help you identify the best trading opportunities.',
   'marketInfo.marketHeatmap.cta.viewButton': 'View Live Heatmap',
   'marketInfo.marketHeatmap.cta.tradingButton': 'Start Trading',
-
-  // Company - Rates Page
   'company.rates.badge': 'Pricing Information',
   'company.rates.title': 'Spreads, Commissions & Fees',
   'company.rates.description': 'Transparent, competitive pricing across all instruments. Compare rates by account type and trading session to find the best value for your trading strategy.',
-  
-  // Alert
   'company.rates.alert': 'Spreads shown are typical during normal market conditions. Live spreads may vary based on market volatility and liquidity. All spreads and commissions are displayed in real-time on our trading platform.',
-  
-  // Competitive Highlights
   'company.rates.highlights.ultraLow.title': 'Ultra-Low Spreads',
   'company.rates.highlights.ultraLow.description': 'Starting from 0.3 pips on EUR/USD for VIP accounts',
   'company.rates.highlights.ultraLow.badge': 'Industry Leading',
@@ -3568,12 +3056,8 @@ export const en = {
   'company.rates.highlights.volume.title': 'Volume Discounts',
   'company.rates.highlights.volume.description': 'Better rates for high-volume traders automatically applied',
   'company.rates.highlights.volume.badge': 'Rewarding',
-  
-  // Tabs
   'company.rates.tabs.accountComparison': 'By Account Type',
   'company.rates.tabs.sessionComparison': 'By Trading Session',
-  
-  // Account Comparison
   'company.rates.accountComparison.title': 'Account Type Comparison',
   'company.rates.accountComparison.description': 'Compare spreads and commissions across Standard, ECN, and VIP account types',
   'company.rates.accountComparison.standard.title': 'Standard Account',
@@ -3585,14 +3069,10 @@ export const en = {
   'company.rates.accountComparison.vip.title': 'VIP Account',
   'company.rates.accountComparison.vip.description': 'Custom pricing, best spreads',
   'company.rates.accountComparison.vip.minDeposit': 'Min deposit: $50,000',
-  
-  // Instrument Types
   'company.rates.instruments.forex': 'Forex',
   'company.rates.instruments.commodities': 'Commodities',
   'company.rates.instruments.indices': 'Indices',
   'company.rates.instruments.crypto': 'Crypto',
-  
-  // Table Headers
   'company.rates.table.instrument': 'Instrument',
   'company.rates.table.standard': 'Standard',
   'company.rates.table.ecn': 'ECN',
@@ -3604,8 +3084,6 @@ export const en = {
   'company.rates.table.asianTime': '12am-9am GMT',
   'company.rates.table.londonTime': '8am-5pm GMT',
   'company.rates.table.newYorkTime': '1pm-10pm GMT',
-  
-  // Instrument Cards - Account Comparison
   'company.rates.forex.title': 'Forex Spreads',
   'company.rates.forex.description': 'Major, minor, and cross currency pairs',
   'company.rates.commodities.title': 'Commodity Spreads',
@@ -3614,8 +3092,6 @@ export const en = {
   'company.rates.indices.description': 'Global stock market indices',
   'company.rates.crypto.title': 'Cryptocurrency Spreads',
   'company.rates.crypto.description': 'Digital currencies vs US Dollar',
-  
-  // Session Comparison
   'company.rates.sessionComparison.title': 'Trading Session Impact',
   'company.rates.sessionComparison.description': 'Spreads vary by session based on market liquidity. Trade during peak hours for tightest spreads.',
   'company.rates.sessionComparison.asian.title': 'Asian Session',
@@ -3627,8 +3103,6 @@ export const en = {
   'company.rates.sessionComparison.newYork.title': 'New York Session',
   'company.rates.sessionComparison.newYork.time': '1:00pm - 10:00pm GMT',
   'company.rates.sessionComparison.newYork.description': 'Peak overlap: 1pm-5pm GMT',
-  
-  // Session Cards
   'company.rates.session.forex.title': 'Forex Spreads by Session',
   'company.rates.session.forex.description': 'Average spreads (ECN account) across different trading sessions',
   'company.rates.session.commodities.title': 'Commodity Spreads by Session',
@@ -3637,8 +3111,6 @@ export const en = {
   'company.rates.session.indices.description': 'Average spreads (ECN account) across different trading sessions',
   'company.rates.session.crypto.title': 'Crypto Spreads by Session',
   'company.rates.session.crypto.description': 'Average spreads (ECN account) across different trading sessions',
-  
-  // All Fees Section
   'company.rates.allFees.title': 'All Fees & Charges Explained',
   'company.rates.allFees.description': 'Complete breakdown of all trading costs',
   'company.rates.allFees.spreads.title': 'Spreads',
@@ -3657,26 +3129,22 @@ export const en = {
   'company.rates.allFees.conversionFees.description': 'Free automatic currency conversion for deposits/withdrawals. We use interbank rates with no markup for converting between account currencies.',
   'company.rates.allFees.platformFees.title': 'Platform & Data Fees',
   'company.rates.allFees.platformFees.description': 'Zero platform fees. Free real-time market data for all clients. No monthly subscription or software licensing costs.',
-  
-  // FAQ
   'company.rates.faq.title': 'Frequently Asked Questions',
   'company.rates.faq.description': 'Common questions about our pricing and fees',
-  'company.rates.faq.q1.question': 'What\'s the difference between spreads and commissions?',
+  'company.rates.faq.q1.question': 'What\\',
   'company.rates.faq.q1.answer': 'Spreads are the difference between the buy and sell price of an instrument, measured in pips or points. This is built into the price you see. Commissions are separate fees charged per trade, typically per lot. Standard accounts have no commission but slightly wider spreads, while ECN accounts have tighter spreads but charge a small commission ($3.50-$10 per lot depending on instrument). VIP accounts have custom pricing tailored to trading volume.',
   'company.rates.faq.q2.question': 'Why do spreads vary between trading sessions?',
   'company.rates.faq.q2.answer': 'Spreads fluctuate based on market liquidity. During major session overlaps (London-NY: 1pm-5pm GMT), spreads are typically tightest due to high trading volume. Asian session spreads tend to be wider for EUR/USD and GBP/USD due to lower liquidity, but narrower for JPY pairs and Asian indices. The most liquid session for each instrument generally offers the best spreads.',
   'company.rates.faq.q3.question': 'Are there any hidden fees I should know about?',
   'company.rates.faq.q3.answer': 'No hidden fees. All costs are transparent: spreads (shown in real-time on platform), commissions (if applicable to account type), swap rates (overnight financing charges displayed per instrument), withdrawal fees ($0 for e-wallets/crypto, $25 for wire transfers), and an inactivity fee ($15/month after 6 months of no trading). There are no deposit fees, platform fees, or account maintenance charges.',
   'company.rates.faq.q4.question': 'How do swap rates (overnight fees) work?',
-  'company.rates.faq.q4.answer': 'Swap rates are interest charges or credits applied when holding positions overnight (past 5pm EST). They\'re based on the interest rate differential between the two currencies in a pair, plus our small markup. Swap rates can be positive (you earn) or negative (you pay). They\'re calculated daily and triple on Wednesdays to account for weekends. View current swap rates for each instrument in the trading platform\'s contract specifications.',
-  'company.rates.faq.q5.question': 'Can I get better spreads than what\'s shown here?',
+  'company.rates.faq.q4.answer': 'Swap rates are interest charges or credits applied when holding positions overnight (past 5pm EST). They\\',
+  'company.rates.faq.q5.question': 'Can I get better spreads than what\\',
   'company.rates.faq.q5.answer': 'Yes, in several ways: (1) Upgrade to ECN or VIP account for significantly tighter spreads, (2) Trade during peak liquidity sessions (London-NY overlap), (3) High-volume traders can negotiate custom VIP pricing with dedicated account managers, (4) Our institutional clients receive the tightest possible spreads with direct market access. Contact support to discuss volume-based discounts.',
   'company.rates.faq.q6.question': 'Why are your rates competitive compared to other brokers?',
-  'company.rates.faq.q6.answer': 'We maintain competitive rates through: (1) Direct partnerships with top-tier liquidity providers, giving us access to institutional pricing, (2) Advanced technology infrastructure that reduces operating costs, (3) High trading volumes allowing better rates from liquidity providers, (4) Transparent fee structure with no hidden markups. Unlike many brokers, we don\'t profit from client losses—we earn from spreads/commissions, so we want you to succeed and trade more.',
+  'company.rates.faq.q6.answer': 'We maintain competitive rates through: (1) Direct partnerships with top-tier liquidity providers, giving us access to institutional pricing, (2) Advanced technology infrastructure that reduces operating costs, (3) High trading volumes allowing better rates from liquidity providers, (4) Transparent fee structure with no hidden markups. Unlike many brokers, we don\\',
   'company.rates.faq.q7.question': 'What happens to spreads during news events or high volatility?',
-  'company.rates.faq.q7.answer': 'Spreads can widen significantly during major news releases (NFP, central bank decisions, etc.) and periods of extreme volatility due to reduced liquidity and increased risk. This is standard across all brokers. We recommend avoiding trading during major news if you\'re sensitive to wider spreads, or use limit orders instead of market orders. Spreads typically return to normal within minutes after the event. VIP clients receive preferential treatment even during volatile periods.',
-  
-  // Competitive Reasons
+  'company.rates.faq.q7.answer': 'Spreads can widen significantly during major news releases (NFP, central bank decisions, etc.) and periods of extreme volatility due to reduced liquidity and increased risk. This is standard across all brokers. We recommend avoiding trading during major news if you\\',
   'company.rates.competitive.title': 'Why Our Rates Are Competitive',
   'company.rates.competitive.liquidity.title': 'Institutional-Grade Liquidity',
   'company.rates.competitive.liquidity.description': 'We partner with 20+ top-tier liquidity providers including major banks and financial institutions, giving us access to the same institutional pricing that large hedge funds receive.',
@@ -3685,12 +3153,10 @@ export const en = {
   'company.rates.competitive.volume.title': 'Volume-Based Pricing Power',
   'company.rates.competitive.volume.description': 'Our high trading volumes give us negotiating power with liquidity providers, securing better rates that we pass directly to our clients across all account types.',
   'company.rates.competitive.noConflict.title': 'No Conflict of Interest',
-  'company.rates.competitive.noConflict.description': 'We operate on an agency model—we don\'t trade against you. Our revenue comes from spreads and commissions, so we\'re incentivized to help you succeed and trade more.',
+  'company.rates.competitive.noConflict.description': 'We operate on an agency model—we don\\',
   'company.rates.competitive.cta.title': 'Ready to experience competitive pricing?',
   'company.rates.competitive.cta.description': 'Open an account and start trading with institutional-grade spreads',
   'company.rates.competitive.cta.button': 'Open Account',
-  
-  // Disclaimers
   'company.rates.disclaimers.title': 'Important Disclaimers',
   'company.rates.disclaimers.item1': 'Spreads shown are typical during normal market conditions and may widen significantly during high volatility, low liquidity periods, or major news events',
   'company.rates.disclaimers.item2': 'All spreads are variable and subject to change without notice based on market conditions',
@@ -3702,8 +3168,6 @@ export const en = {
   'company.rates.disclaimers.item8': 'Index CFD spreads are for cash indices; futures contracts may have different spread structures',
   'company.rates.disclaimers.item9': 'Session times are approximate and spreads may vary within sessions based on liquidity conditions',
   'company.rates.disclaimers.item10': 'All fees and charges are clearly disclosed before executing trades; there are no hidden costs',
-
-  // Instrument Names
   'company.rates.instrumentNames.EURUSD': 'Euro vs US Dollar',
   'company.rates.instrumentNames.GBPUSD': 'British Pound vs US Dollar',
   'company.rates.instrumentNames.USDJPY': 'US Dollar vs Japanese Yen',
@@ -3730,13 +3194,9 @@ export const en = {
   'company.rates.instrumentNames.XRPUSD': 'Ripple vs US Dollar',
   'company.rates.instrumentNames.LTCUSD': 'Litecoin vs US Dollar',
   'company.rates.instrumentNames.ADAUSD': 'Cardano vs US Dollar',
-
-  // Regulatory Page
   'company.regulatory.badge': 'Trust & Compliance',
   'company.regulatory.title': 'Regulatory & Licenses',
   'company.regulatory.description': 'We operate under the oversight of six major financial regulators across eight jurisdictions, ensuring the highest standards of client protection, fund security, and regulatory compliance.',
-
-  // Stats
   'company.regulatory.stats.jurisdictions.label': 'Jurisdictions',
   'company.regulatory.stats.jurisdictions.value': '8',
   'company.regulatory.stats.jurisdictions.description': 'Operating licenses worldwide',
@@ -3749,27 +3209,19 @@ export const en = {
   'company.regulatory.stats.compliance.label': 'Compliance Score',
   'company.regulatory.stats.compliance.value': '98.5%',
   'company.regulatory.stats.compliance.description': 'Annual audit rating',
-
-  // Important Notice
   'company.regulatory.alert.important': 'Important:',
   'company.regulatory.alert.message': 'Different group entities operate under different licenses. Your regulatory protection depends on which entity you open an account with, typically determined by your country of residence. Always verify which regulated entity serves your jurisdiction.',
-
-  // Regulatory Bodies Section
   'company.regulatory.licenses.title': 'Our Regulatory Licenses',
   'company.regulatory.licenses.keyRequirements': 'Key Requirements:',
-
-  // FCA
   'company.regulatory.fca.name': 'Financial Conduct Authority (FCA)',
   'company.regulatory.fca.country': 'United Kingdom',
   'company.regulatory.fca.license': 'FRN 742681',
   'company.regulatory.fca.type': 'Full Authorization',
-  'company.regulatory.fca.description': 'Authorized and regulated by the UK\'s premier financial regulator, ensuring the highest standards of client protection and market conduct.',
+  'company.regulatory.fca.description': 'Authorized and regulated by the UK\\',
   'company.regulatory.fca.req1': 'Segregated client funds in UK banks',
   'company.regulatory.fca.req2': '£1 million minimum capital requirement',
   'company.regulatory.fca.req3': 'Quarterly regulatory reporting',
   'company.regulatory.fca.req4': 'FSCS protection up to £85,000 per client',
-
-  // CySEC
   'company.regulatory.cysec.name': 'Cyprus Securities and Exchange Commission (CySEC)',
   'company.regulatory.cysec.country': 'Cyprus (EU)',
   'company.regulatory.cysec.license': 'License No. 247/14',
@@ -3779,30 +3231,24 @@ export const en = {
   'company.regulatory.cysec.req2': '€730,000 minimum capital requirement',
   'company.regulatory.cysec.req3': 'Compliance with MiFID II directive',
   'company.regulatory.cysec.req4': 'Annual external audits by Big 4 firms',
-
-  // ASIC
   'company.regulatory.asic.name': 'Australian Securities and Investments Commission (ASIC)',
   'company.regulatory.asic.country': 'Australia',
   'company.regulatory.asic.license': 'AFSL 428901',
-  'company.regulatory.asic.type': 'Market Maker License',
+  'company.regulatory.asic.type': 'Market Maker Licence',
   'company.regulatory.asic.description': 'Holds Australian Financial Services License with full authority to provide derivatives and leveraged products to retail and wholesale clients.',
   'company.regulatory.asic.req1': 'Segregated accounts with Tier-1 Australian banks',
   'company.regulatory.asic.req2': 'Negative balance protection for retail clients',
   'company.regulatory.asic.req3': 'Product intervention orders compliance',
   'company.regulatory.asic.req4': 'External dispute resolution via AFCA',
-
-  // FSCA
   'company.regulatory.fsca.name': 'Financial Sector Conduct Authority (FSCA)',
   'company.regulatory.fsca.country': 'South Africa',
-  'company.regulatory.fsca.license': 'FSP No. 48896',
+  'company.regulatory.fsca.license': 'FSP No 48896',
   'company.regulatory.fsca.type': 'Category I FSP',
-  'company.regulatory.fsca.description': 'Licensed to provide over-the-counter derivatives and foreign exchange services under South Africa\'s stringent financial services framework.',
+  'company.regulatory.fsca.description': 'Licensed to provide over-the-counter derivatives and foreign exchange services under South Africa\\',
   'company.regulatory.fsca.req1': 'Minimum capital: 500,000 ZAR',
   'company.regulatory.fsca.req2': 'Quarterly compliance officer reports',
   'company.regulatory.fsca.req3': 'Ombud for Financial Services Providers access',
   'company.regulatory.fsca.req4': 'Segregated client accounts mandatory',
-
-  // FSA
   'company.regulatory.fsa.name': 'Financial Services Authority (FSA)',
   'company.regulatory.fsa.country': 'Seychelles',
   'company.regulatory.fsa.license': 'SD089',
@@ -3812,8 +3258,6 @@ export const en = {
   'company.regulatory.fsa.req2': 'Annual external audit requirement',
   'company.regulatory.fsa.req3': 'Client fund segregation at regulated banks',
   'company.regulatory.fsa.req4': 'Professional Indemnity Insurance coverage',
-
-  // DFSA
   'company.regulatory.dfsa.name': 'Dubai Financial Services Authority (DFSA)',
   'company.regulatory.dfsa.country': 'United Arab Emirates',
   'company.regulatory.dfsa.license': 'F004822',
@@ -3823,8 +3267,6 @@ export const en = {
   'company.regulatory.dfsa.req2': 'DFSA Client Money Rules compliance',
   'company.regulatory.dfsa.req3': 'Risk management framework approval',
   'company.regulatory.dfsa.req4': 'Quarterly regulatory returns',
-
-  // Compliance Framework
   'company.regulatory.compliance.title': 'Compliance Framework',
   'company.regulatory.compliance.aml.title': 'Anti-Money Laundering (AML)',
   'company.regulatory.compliance.aml.description': 'Comprehensive AML procedures in line with FATF recommendations',
@@ -3833,15 +3275,13 @@ export const en = {
   'company.regulatory.compliance.aml.measure3': 'Source of funds and source of wealth verification',
   'company.regulatory.compliance.aml.measure4': 'Regular staff training on AML/CFT procedures',
   'company.regulatory.compliance.aml.measure5': 'Annual independent AML audit by external firm',
-
   'company.regulatory.compliance.kyc.title': 'Know Your Customer (KYC)',
   'company.regulatory.compliance.kyc.description': 'Rigorous client identification and verification processes',
-  'company.regulatory.compliance.kyc.measure1': 'Government-issued ID verification (passport, driver\'s license)',
+  'company.regulatory.compliance.kyc.measure1': 'Government-issued ID verification (passport, driver\\',
   'company.regulatory.compliance.kyc.measure2': 'Proof of address verification (utility bill, bank statement <3 months)',
   'company.regulatory.compliance.kyc.measure3': 'Biometric verification for high-value accounts',
   'company.regulatory.compliance.kyc.measure4': 'Politically Exposed Persons (PEP) screening',
   'company.regulatory.compliance.kyc.measure5': 'Beneficial ownership identification for corporate accounts',
-
   'company.regulatory.compliance.privacy.title': 'Data Protection & Privacy',
   'company.regulatory.compliance.privacy.description': 'Full compliance with GDPR, DPA 2018, and international privacy laws',
   'company.regulatory.compliance.privacy.measure1': 'Data Protection Officer (DPO) appointed and contactable',
@@ -3849,7 +3289,6 @@ export const en = {
   'company.regulatory.compliance.privacy.measure3': 'Right to access, rectification, and erasure honored within 30 days',
   'company.regulatory.compliance.privacy.measure4': 'Data retention policy: 7 years for financial records, 5 years for KYC',
   'company.regulatory.compliance.privacy.measure5': 'Annual Data Protection Impact Assessments (DPIA)',
-
   'company.regulatory.compliance.execution.title': 'Best Execution Policy',
   'company.regulatory.compliance.execution.description': 'Commitment to obtaining the best possible results for client orders',
   'company.regulatory.compliance.execution.measure1': 'Multi-venue execution across 15+ liquidity providers',
@@ -3857,8 +3296,6 @@ export const en = {
   'company.regulatory.compliance.execution.measure3': 'Annual best execution reports published on website',
   'company.regulatory.compliance.execution.measure4': 'Client order priority: Client orders filled before proprietary trading',
   'company.regulatory.compliance.execution.measure5': 'No last look rejections on retail client orders',
-
-  // Audit & Reporting
   'company.regulatory.audit.title': 'Audit & Reporting Transparency',
   'company.regulatory.audit.description': 'We maintain the highest standards of accountability through regular independent audits and transparent reporting',
   'company.regulatory.audit.financial.type': 'External Financial Audit',
@@ -3887,34 +3324,26 @@ export const en = {
   'company.regulatory.audit.penetration.scope': 'Trading platform, mobile apps, API endpoints, internal network infrastructure',
   'company.regulatory.audit.lastCompleted': 'Last Completed:',
   'company.regulatory.audit.nextDue': 'Next Due:',
-
-  // Warning Alert
   'company.regulatory.warning.title': 'Beware of Clone Firms:',
   'company.regulatory.warning.message': 'Fraudsters sometimes impersonate regulated brokers. Always verify our license numbers directly on regulator websites, never through links we provide. Check the FCA Warning List for known scams.',
-
-  // FAQ
   'company.regulatory.faq.title': 'Frequently Asked Questions',
   'company.regulatory.faq.q1.question': 'Why is regulation important when choosing a forex broker?',
-  'company.regulatory.faq.q1.answer': 'Regulation provides critical client protections: segregated funds (your money kept separate from broker\'s), compensation schemes (insurance if broker fails), dispute resolution mechanisms, and oversight by government authorities. Regulated brokers must maintain minimum capital reserves, submit to regular audits, and follow strict conduct rules. Unregulated brokers can freeze accounts, manipulate prices, or disappear with client funds without recourse.',
+  'company.regulatory.faq.q1.answer': 'Regulation provides critical client protections: segregated funds (your money kept separate from broker\\',
   'company.regulatory.faq.q2.question': 'What does it mean to be FCA or CySEC regulated?',
   'company.regulatory.faq.q2.answer': 'FCA (UK) regulation is considered the gold standard, requiring brokers to hold £1M+ capital, segregate client funds in UK banks, and provide FSCS protection up to £85,000. CySEC (Cyprus) regulation offers EU-wide MiFID II protections, including ICF compensation up to €20,000, segregated accounts, and negative balance protection for retail clients. Both regulators conduct regular audits and can revoke licenses for non-compliance.',
   'company.regulatory.faq.q3.question': 'How can I verify your regulatory licenses are legitimate?',
-  'company.regulatory.faq.q3.answer': 'You can independently verify all our licenses: FCA Register (register.fca.org.uk, search FRN 742681), CySEC Register (cysec.gov.cy, License 247/14), ASIC Register (connectonline.asic.gov.au, AFSL 428901). Each regulator maintains a public database. We also publish our license certificates and annual compliance reports in the \'Legal Documents\' section of our website. Never trust a broker that refuses to provide verifiable license numbers.',
+  'company.regulatory.faq.q3.answer': 'You can independently verify all our licenses: FCA Register (register.fca.org.uk, search FRN 742681), CySEC Register (cysec.gov.cy, License 247/14), ASIC Register (connectonline.asic.gov.au, AFSL 428901). Each regulator maintains a public database. We also publish our license certificates and annual compliance reports in the \\',
   'company.regulatory.faq.q4.question': 'Which regulatory jurisdiction protects me best as a client?',
   'company.regulatory.faq.q4.answer': 'Depends on your location and trading style: UK (FCA) offers the strongest retail protections with FSCS insurance and strict leverage limits (1:30). EU (CySEC) provides MiFID II harmonized protections across Europe. Australia (ASIC) offers negative balance protection and AFCA dispute resolution. Offshore licenses (Seychelles, Mauritius) allow higher leverage but weaker protections. Choose the entity that regulates in your country of residence for maximum protection.',
   'company.regulatory.faq.q5.question': 'What happens to my funds if the broker goes bankrupt?',
-  'company.regulatory.faq.q5.answer': 'With FCA regulation, the Financial Services Compensation Scheme (FSCS) protects up to £85,000 per client. CySEC clients get Investor Compensation Fund (ICF) coverage up to €20,000. ASIC doesn\'t have a compensation scheme but requires segregated accounts with Australian banks. Your funds are kept separate from company assets, so in bankruptcy, client money is returned first before creditors. This is why choosing a regulated broker is critical.',
+  'company.regulatory.faq.q5.answer': 'With FCA regulation, the Financial Services Compensation Scheme (FSCS) protects up to £85,000 per client. CySEC clients get Investor Compensation Fund (ICF) coverage up to €20,000. ASIC doesn\\',
   'company.regulatory.faq.q6.question': 'Do you have to follow different rules for professional vs retail clients?',
   'company.regulatory.faq.q6.answer': 'Yes, under MiFID II and FCA rules. Retail clients receive maximum protection: leverage limits (1:30 forex, 1:20 indices), negative balance protection, 50% margin close-out rule, and stricter marketing restrictions. Professional clients (€500K portfolio, high trade volume, or financial sector experience) get higher leverage but fewer protections. Clients must opt-in and meet strict criteria to be classified as professional.',
   'company.regulatory.faq.q7.question': 'How often are you audited and by whom?',
   'company.regulatory.faq.q7.answer': 'We undergo multiple audits annually: Financial audit by KPMG (annual), compliance audit (quarterly by internal team + external consultants), ISO 27001 security audit by BSI Group (bi-annual), and penetration testing (quarterly). Regulators also conduct surprise inspections. All audit reports (excluding sensitive security details) are summarized in our annual compliance report, published each April on our website.',
-
-  // Safety of Funds
   'company.safetyOfFunds.badge': 'Trust & Compliance',
   'company.safetyOfFunds.title': 'Safety of Funds',
   'company.safetyOfFunds.description': 'Your funds are protected through strict segregation, Tier-1 banking partners, statutory compensation schemes, and negative balance protection. We prioritize the security of your capital above all else.',
-
-  // Stats
   'company.safetyOfFunds.stats.segregated.label': 'Segregated Accounts',
   'company.safetyOfFunds.stats.segregated.value': '100%',
   'company.safetyOfFunds.stats.segregated.description': 'All client funds separated',
@@ -3927,12 +3356,8 @@ export const en = {
   'company.safetyOfFunds.stats.protection.label': 'Client Protection',
   'company.safetyOfFunds.stats.protection.value': '£85K',
   'company.safetyOfFunds.stats.protection.description': 'FSCS max compensation',
-
-  // Alert Notice
   'company.safetyOfFunds.alert.title': 'Client Money Protection:',
   'company.safetyOfFunds.alert.message': 'All client funds are held in segregated accounts at Tier-1 banks, separate from company operational funds. Your money is protected by statutory compensation schemes up to regulatory limits.',
-
-  // Segregation
   'company.safetyOfFunds.segregation.title': 'Client Fund Segregation',
   'company.safetyOfFunds.segregation.subtitle': 'How Your Funds Are Protected',
   'company.safetyOfFunds.segregation.overview': 'We maintain strict segregation of client funds from company operational funds, ensuring your money is protected at all times. Client funds are held in designated segregated accounts at major Tier-1 banks and never used for company operations, hedging, or any other business activities.',
@@ -3940,7 +3365,7 @@ export const en = {
   'company.safetyOfFunds.segregation.process.step1.step': 'Deposit Received',
   'company.safetyOfFunds.segregation.process.step1.description': 'When you deposit funds, they are immediately identified as client money and must be segregated within 1 business day (UK) or by close of next business day (EU).',
   'company.safetyOfFunds.segregation.process.step2.step': 'Segregated Account Transfer',
-  'company.safetyOfFunds.segregation.process.step2.description': 'Funds are transferred to designated client money accounts at our partner banks. These accounts are clearly titled \'Client Segregated Funds\' and cannot be used for any company purposes.',
+  'company.safetyOfFunds.segregation.process.step2.description': 'Funds are transferred to designated client money accounts at our partner banks. These accounts are clearly titled \\',
   'company.safetyOfFunds.segregation.process.step3.step': 'Daily Reconciliation',
   'company.safetyOfFunds.segregation.process.step3.description': 'Our finance team performs daily reconciliation to ensure 100% of client funds are properly segregated. Any discrepancies trigger immediate investigation and resolution within 24 hours.',
   'company.safetyOfFunds.segregation.process.step4.step': 'Regular Audits',
@@ -3968,13 +3393,11 @@ export const en = {
   'company.safetyOfFunds.segregation.bank4.protection': 'MAS Regulated Segregation',
   'company.safetyOfFunds.segregation.accountTypeLabel': 'Account Type:',
   'company.safetyOfFunds.segregation.protectionLabel': 'Protection:',
-
-  // Compensation Schemes
   'company.safetyOfFunds.compensation.title': 'Compensation Schemes',
   'company.safetyOfFunds.compensation.fscs.scheme': 'Financial Services Compensation Scheme (FSCS)',
   'company.safetyOfFunds.compensation.fscs.jurisdiction': 'United Kingdom (FCA)',
   'company.safetyOfFunds.compensation.fscs.coverage': 'Up to £85,000 per client',
-  'company.safetyOfFunds.compensation.fscs.description': 'UK clients benefit from FSCS protection if we become insolvent. The FSCS is the UK\'s statutory deposit insurance and investors compensation scheme, funded by levies on regulated financial firms.',
+  'company.safetyOfFunds.compensation.fscs.description': 'UK clients benefit from FSCS protection if we become insolvent. The FSCS is the UK\\',
   'company.safetyOfFunds.compensation.fscs.eligibility1': 'Individuals and small businesses',
   'company.safetyOfFunds.compensation.fscs.eligibility2': 'Must be an eligible claimant under FCA rules',
   'company.safetyOfFunds.compensation.fscs.eligibility3': 'Covers deposits, investments, and insurance claims',
@@ -3992,7 +3415,7 @@ export const en = {
   'company.safetyOfFunds.compensation.afca.scheme': 'Australian Financial Complaints Authority (AFCA)',
   'company.safetyOfFunds.compensation.afca.jurisdiction': 'Australia (ASIC)',
   'company.safetyOfFunds.compensation.afca.coverage': 'Up to AUD $1,085,000 (investments)',
-  'company.safetyOfFunds.compensation.afca.description': 'While ASIC doesn\'t provide a compensation scheme, AFCA offers free dispute resolution. Claims above compensation limits may be pursued through liquidators or legal action.',
+  'company.safetyOfFunds.compensation.afca.description': 'While ASIC doesn\\',
   'company.safetyOfFunds.compensation.afca.eligibility1': 'Australian residents or entities',
   'company.safetyOfFunds.compensation.afca.eligibility2': 'Complaints about financial services',
   'company.safetyOfFunds.compensation.afca.eligibility3': 'Must first attempt resolution with broker',
@@ -4000,10 +3423,8 @@ export const en = {
   'company.safetyOfFunds.compensation.afca.claimProcess': 'File complaint with AFCA → Broker response period (30 days) → AFCA investigation → Binding determination issued',
   'company.safetyOfFunds.compensation.eligibilityTitle': 'Eligibility Requirements:',
   'company.safetyOfFunds.compensation.claimProcessLabel': 'Claim Process:',
-
-  // Negative Balance Protection
   'company.safetyOfFunds.nbp.title': 'Negative Balance Protection',
-  'company.safetyOfFunds.nbp.subtitle': 'You\'ll Never Owe Us Money',
+  'company.safetyOfFunds.nbp.subtitle': 'You\\',
   'company.safetyOfFunds.nbp.overview': 'We provide Negative Balance Protection (NBP) to all retail clients, ensuring you never lose more than your account balance. If extreme market volatility causes your account to go negative, we will reset it to zero at no cost to you.',
   'company.safetyOfFunds.nbp.coverageTitle': 'Protection by Client Type:',
   'company.safetyOfFunds.nbp.retail.clientType': 'Retail Clients (FCA, CySEC, ASIC)',
@@ -4030,34 +3451,26 @@ export const en = {
   'company.safetyOfFunds.nbp.example2.situation': 'Client holds $2,000 position over weekend. Market opens 500 pips against them on Monday due to unexpected election result.',
   'company.safetyOfFunds.nbp.example2.outcome': 'Account goes to -$800. NBP triggers, balance reset to $0 within 24 hours.',
   'company.safetyOfFunds.nbp.outcomeLabel': 'Outcome:',
-
-  // Warning Alert
   'company.safetyOfFunds.warning.title': 'Important:',
   'company.safetyOfFunds.warning.message': 'While we provide multiple layers of fund protection, no investment is risk-free. You can lose your entire trading capital through market losses. Negative balance protection prevents debt, not capital loss. Never trade with money you cannot afford to lose.',
-
-  // FAQ
   'company.safetyOfFunds.faq.title': 'Frequently Asked Questions',
   'company.safetyOfFunds.faq.q1.question': 'How do I know my funds are actually segregated?',
-  'company.safetyOfFunds.faq.q1.answer': 'We are legally required to segregate client funds and face severe penalties (license revocation, fines, criminal charges) for non-compliance. You can verify through: 1) Our quarterly segregation reports published on our website, 2) External audit reports by KPMG confirming segregation compliance, 3) Direct confirmation from regulators (FCA, CySEC) that segregation is verified during inspections. Additionally, our bank partners (Barclays, Deutsche Bank, NAB) provide confirmation that accounts are designated as \'Client Segregated Funds\'.',
+  'company.safetyOfFunds.faq.q1.answer': 'We are legally required to segregate client funds and face severe penalties (license revocation, fines, criminal charges) for non-compliance. You can verify through: 1) Our quarterly segregation reports published on our website, 2) External audit reports by KPMG confirming segregation compliance, 3) Direct confirmation from regulators (FCA, CySEC) that segregation is verified during inspections. Additionally, our bank partners (Barclays, Deutsche Bank, NAB) provide confirmation that accounts are designated as \\',
   'company.safetyOfFunds.faq.q2.question': 'What happens to my money if the broker goes bankrupt?',
-  'company.safetyOfFunds.faq.q2.answer': 'If we become insolvent, your segregated funds are protected through a \'statutory trust\' (UK) or equivalent legal structure. Client money is not considered company assets and cannot be used to pay creditors. The process: 1) Regulator appoints a Special Administrator, 2) Client funds are identified and frozen, 3) Clients are contacted to claim funds, 4) Funds are returned directly from segregated accounts (typically within 3-6 months). If there\'s a shortfall due to fraud or mismanagement, compensation schemes (FSCS, ICF) cover up to their limits.',
+  'company.safetyOfFunds.faq.q2.answer': 'If we become insolvent, your segregated funds are protected through a \\',
   'company.safetyOfFunds.faq.q3.question': 'Is FSCS protection automatic or do I need to apply?',
-  'company.safetyOfFunds.faq.q3.answer': 'FSCS protection is automatic for all eligible clients of FCA-regulated firms. You don\'t need to register or pay anything. If we fail, the FSCS will automatically contact you using our client records. However, you must: 1) Trade with the UK entity (verify your account is under FRN 742681), 2) Be an eligible claimant (individuals, small businesses qualify; large corporates may not), 3) Submit a claim within 6 years if not auto-contacted. Keep records of your account statements as proof of funds.',
-  'company.safetyOfFunds.faq.q4.question': 'What\'s the difference between segregation and compensation schemes?',
+  'company.safetyOfFunds.faq.q3.answer': 'FSCS protection is automatic for all eligible clients of FCA-regulated firms. You don\\',
+  'company.safetyOfFunds.faq.q4.question': 'What\\',
   'company.safetyOfFunds.faq.q4.answer': 'Segregation is the first line of defense: your money is kept separate from company money in protected bank accounts. If the broker fails, segregated funds should be returned in full (no compensation needed). Compensation schemes (FSCS, ICF) are the second line of defense: they cover shortfalls if segregated funds are missing due to fraud, theft, or mismanagement. Think of segregation as preventing the problem, compensation schemes as insurance if prevention fails. Best case: segregation works, you get 100% back. Worst case: segregation failed, compensation scheme covers up to their limit (£85K FSCS, €20K ICF).',
-  'company.safetyOfFunds.faq.q5.question': 'Does negative balance protection mean I can\'t lose money trading?',
-  'company.safetyOfFunds.faq.q5.answer': 'No, you can still lose your entire account balance through normal trading losses. Negative Balance Protection (NBP) only prevents you from owing money beyond your deposited amount. Example: You deposit $1,000 and lose it all → You lose $1,000 (NBP doesn\'t help). You deposit $1,000, market gaps, account goes to -$500 → NBP resets to $0, you lose $1,000 but don\'t owe the extra $500. NBP protects from debt, not from losing your capital. Always trade responsibly with money you can afford to lose.',
+  'company.safetyOfFunds.faq.q5.question': 'Does negative balance protection mean I can\\',
+  'company.safetyOfFunds.faq.q5.answer': 'No, you can still lose your entire account balance through normal trading losses. Negative Balance Protection (NBP) only prevents you from owing money beyond your deposited amount. Example: You deposit   'company.safetyOfFunds.faq.q5.answer': ',000 and lose it all → You lose   'company.safetyOfFunds.faq.q5.answer': ',000 (NBP doesn\\',
   'company.safetyOfFunds.faq.q6.question': 'Why do some brokers offer higher compensation than others?',
-  'company.safetyOfFunds.faq.q6.answer': 'Compensation depends on which regulator oversees the entity you trade with, not the broker\'s choice. FCA (UK) offers £85,000 via FSCS, CySEC (Cyprus/EU) offers €20,000 via ICF, ASIC (Australia) has no compensation scheme but strong segregation laws. Many brokers operate multiple entities under different regulators. Check which entity holds your account: UK residents typically get FCA protection, EU residents get CySEC protection, etc. Some brokers also buy additional private insurance (we carry £5M professional indemnity), but this is not the same as statutory compensation schemes.',
+  'company.safetyOfFunds.faq.q6.answer': 'Compensation depends on which regulator oversees the entity you trade with, not the broker\\',
   'company.safetyOfFunds.faq.q7.question': 'Can the broker use my segregated funds for anything?',
   'company.safetyOfFunds.faq.q7.answer': 'Absolutely not. Segregated funds cannot be used for: company operations, paying creditors, hedging broker positions, earning interest for the company, or any other business purpose. The only permitted uses are: 1) Facilitating your trades (margin requirements), 2) Processing your withdrawals, 3) Paying charges you authorized (e.g., swap fees, commissions). Any unauthorized use is a criminal offense and grounds for immediate license revocation. Regulators audit this monthly, and external auditors verify quarterly. If you suspect misuse, report immediately to the regulator (FCA, CySEC, ASIC).',
-
-  // Complaints Page
   'company.complaints.badge': 'Trust & Compliance',
   'company.complaints.title': 'Complaints & Disputes',
   'company.complaints.description': 'We are committed to resolving any issues fairly and efficiently. Our structured complaint process ensures your concerns are heard and addressed at the appropriate level, with access to external dispute resolution if needed.',
-
-  // Stats
   'company.complaints.stats.resolutionTime.label': 'Resolution Time',
   'company.complaints.stats.resolutionTime.value': '48hrs',
   'company.complaints.stats.resolutionTime.description': 'Average first response',
@@ -4070,17 +3483,11 @@ export const en = {
   'company.complaints.stats.levels.label': 'Escalation Levels',
   'company.complaints.stats.levels.value': '4',
   'company.complaints.stats.levels.description': 'Fair review process',
-
-  // Alert
   'company.complaints.alert.title': 'Your Rights:',
   'company.complaints.alert.message': 'You have the right to complain and receive a fair review. Filing a complaint will not affect your account or trading. If unsatisfied with our response, you can escalate to an independent Ombudsman at no cost to you.',
-
-  // Resolution Process Section
   'company.complaints.resolutionProcess.title': 'Step-by-Step Resolution Process',
   'company.complaints.resolutionProcess.processSteps': 'Process Steps:',
   'company.complaints.resolutionProcess.contactMethods': 'Contact Methods:',
-
-  // Level 1
   'company.complaints.level1.title': 'Level 1: Customer Support',
   'company.complaints.level1.timeframe': '0-5 business days',
   'company.complaints.level1.description': 'Initial complaint submission and first-line resolution attempt',
@@ -4098,17 +3505,15 @@ export const en = {
   'company.complaints.level1.contact3.method': 'Live Chat',
   'company.complaints.level1.contact3.detail': 'Available on website/platform',
   'company.complaints.level1.contact3.available': '24/5 (Mon-Fri)',
-  'company.complaints.level1.contact4.method': 'Online Form',
+  'company.complaints.level1.contact4.method': 'Online form',
   'company.complaints.level1.contact4.detail': 'www.example-broker.com/complaints',
   'company.complaints.level1.contact4.available': '24/7',
-
-  // Level 2
   'company.complaints.level2.title': 'Level 2: Customer Relations Manager',
   'company.complaints.level2.timeframe': '5-15 business days',
   'company.complaints.level2.description': 'Escalation for unresolved or complex complaints',
   'company.complaints.level2.step1': 'Request escalation if unsatisfied with Level 1 response',
   'company.complaints.level2.step2': 'Case reviewed by Senior Customer Relations Manager',
-  'company.complaints.level2.step3': 'Independent assessment of complaint and broker\'s actions',
+  'company.complaints.level2.step3': 'Independent assessment of complaint and broker\\',
   'company.complaints.level2.step4': 'Additional evidence may be requested from both parties',
   'company.complaints.level2.step5': 'Detailed written response provided within 10 business days',
   'company.complaints.level2.contact1.method': 'Email',
@@ -4120,8 +3525,6 @@ export const en = {
   'company.complaints.level2.contact3.method': 'Written',
   'company.complaints.level2.contact3.detail': 'Customer Relations Team, 123 Financial St, London EC2V 7QQ',
   'company.complaints.level2.contact3.available': 'Postal mail',
-
-  // Level 3
   'company.complaints.level3.title': 'Level 3: Compliance Department',
   'company.complaints.level3.timeframe': '15-30 business days',
   'company.complaints.level3.description': 'Formal review for regulatory or serious disputes',
@@ -4139,12 +3542,10 @@ export const en = {
   'company.complaints.level3.contact3.method': 'Regulatory Copy',
   'company.complaints.level3.contact3.detail': 'You may cc your regulator (FCA, CySEC) on correspondence',
   'company.complaints.level3.contact3.available': 'N/A',
-
-  // Level 4
   'company.complaints.level4.title': 'Level 4: External Ombudsman',
   'company.complaints.level4.timeframe': '30+ business days',
   'company.complaints.level4.description': 'Independent external dispute resolution if internal process fails',
-  'company.complaints.level4.step1': 'After 8 weeks or receiving \'final response letter\', escalate to Ombudsman',
+  'company.complaints.level4.step1': 'After 8 weeks or receiving \\',
   'company.complaints.level4.step2': 'Financial Ombudsman Service (UK), CySEC Ombudsman (EU), or AFCA (Australia)',
   'company.complaints.level4.step3': 'Submit complaint with all documentation and correspondence',
   'company.complaints.level4.step4': 'Ombudsman investigates independently (can take 3-6 months)',
@@ -4155,11 +3556,9 @@ export const en = {
   'company.complaints.level4.contact2.method': 'CySEC Ombudsman (EU)',
   'company.complaints.level4.contact2.detail': 'www.financialombudsman.gov.cy',
   'company.complaints.level4.contact2.available': 'Online submission',
-  'company.complaints.level4.contact3.method': 'AFCA (Australia)',
+  'company.complaints.level4.contact3.method': 'FCA (Australia)',
   'company.complaints.level4.contact3.detail': 'info@afca.org.au / 1800 931 678',
   'company.complaints.level4.contact3.available': 'Mon-Fri 9am-5pm AEST',
-
-  // Escalation Timeline
   'company.complaints.timeline.title': 'Escalation Timeline',
   'company.complaints.timeline.description': 'What to expect at each stage of the complaint process',
   'company.complaints.timeline.stage1.stage': 'Complaint Submitted',
@@ -4180,11 +3579,9 @@ export const en = {
   'company.complaints.timeline.stage6.stage': 'Ombudsman Eligible',
   'company.complaints.timeline.stage6.days': 'After 8 weeks or final response',
   'company.complaints.timeline.stage6.action': 'External review available',
-
-  // Complaint Categories
   'company.complaints.categories.title': 'Common Complaint Categories',
   'company.complaints.categories.commonExamples': 'Common Examples:',
-  'company.complaints.categories.typicalResolution': 'Typical Resolution: ',
+  'company.complaints.categories.typicalResolution': 'Typical Resolution:',
   'company.complaints.categories.tradingDisputes.category': 'Trading Disputes',
   'company.complaints.categories.tradingDisputes.example1': 'Order execution issues',
   'company.complaints.categories.tradingDisputes.example2': 'Slippage complaints',
@@ -4215,42 +3612,34 @@ export const en = {
   'company.complaints.categories.customerService.example3': 'Unresponsive support',
   'company.complaints.categories.customerService.example4': 'Rude staff behavior',
   'company.complaints.categories.customerService.resolution': 'Staff review, process improvement, apology and service recovery',
-
-  // Contact Card
   'company.complaints.contactCard.title': 'File a Complaint Now',
   'company.complaints.contactCard.description': 'Choose your preferred contact method to begin the resolution process',
   'company.complaints.contactCard.email.title': 'Email',
   'company.complaints.contactCard.email.detail': 'complaints@example-broker.com',
   'company.complaints.contactCard.phone.title': 'Phone',
   'company.complaints.contactCard.phone.detail': '+44 20 7946 0958',
-  'company.complaints.contactCard.form.title': 'Online Form',
+  'company.complaints.contactCard.form.title': 'Online form',
   'company.complaints.contactCard.form.detail': 'Complete in 2 minutes',
-
-  // FAQ
   'company.complaints.faq.title': 'Frequently Asked Questions',
   'company.complaints.faq.q1.question': 'How do I file a complaint?',
-  'company.complaints.faq.q1.answer': 'You can file a complaint through multiple channels: 1) Email complaints@example-broker.com with your account number and detailed issue description, 2) Call our complaints hotline +44 20 7946 0958, 3) Use the \'File Complaint\' form on our website under Help > Complaints, 4) Live chat (ask to speak to a complaints specialist), or 5) Secure message via your client portal. You\'ll receive an acknowledgment within 24 hours with a case reference number. Include all relevant details: dates, trade IDs, screenshots, and what resolution you\'re seeking.',
+  'company.complaints.faq.q1.answer': 'You can file a complaint through multiple channels: 1) Email complaints@example-broker.com with your account number and detailed issue description, 2) Call our complaints hotline +44 20 7946 0958, 3) Use the \\',
   'company.complaints.faq.q2.question': 'How long does the complaint process take?',
-  'company.complaints.faq.q2.answer': 'Timelines depend on complexity: Simple issues (e.g., withdrawal delays) are often resolved within 48 hours at Level 1. More complex cases (e.g., trading disputes) may take 5-10 business days at Level 2. If escalated to Compliance (Level 3), you\'ll receive a final response within 8 weeks (UK regulatory requirement). If still unsatisfied, external Ombudsman review typically takes 3-6 months. At each stage, you\'ll receive updates every 5 business days minimum.',
-  'company.complaints.faq.q3.question': 'What happens if I\'m not satisfied with the resolution?',
-  'company.complaints.faq.q3.answer': 'You have the right to escalate: If unsatisfied with Level 1 (Support), request escalation to Level 2 (Manager). If Level 2 doesn\'t resolve it, escalate to Level 3 (Compliance). After receiving our \'final response letter\' or 8 weeks have passed, you can escalate to the external Ombudsman (Financial Ombudsman Service for UK, CySEC Ombudsman for EU, AFCA for Australia). The Ombudsman\'s decision is binding on us. You always retain the right to pursue legal action if preferred.',
+  'company.complaints.faq.q2.answer': 'Timelines depend on complexity: Simple issues (e.g., withdrawal delays) are often resolved within 48 hours at Level 1. More complex cases (e.g., trading disputes) may take 5-10 business days at Level 2. If escalated to Compliance (Level 3), you\\',
+  'company.complaints.faq.q3.question': 'What happens if I\\',
+  'company.complaints.faq.q3.answer': 'You have the right to escalate: If unsatisfied with Level 1 (Support), request escalation to Level 2 (Manager). If Level 2 doesn\\',
   'company.complaints.faq.q4.question': 'Can I get compensation for my complaint?',
-  'company.complaints.faq.q4.answer': 'Compensation depends on the nature of the complaint and fault determination: If we made an error (e.g., platform failure caused loss, withdrawal wrongly delayed), compensation may include financial remedy, trade reversal, or fee refunds. If the issue was due to market conditions or client error, no compensation is provided but we\'ll explain why. For service failures (e.g., poor communication), non-financial remedies like apology, process improvement, or goodwill gestures may be offered. The Ombudsman can award up to £415,000 (UK) if they find in your favor.',
+  'company.complaints.faq.q4.answer': 'Compensation depends on the nature of the complaint and fault determination: If we made an error (e.g., platform failure caused loss, withdrawal wrongly delayed), compensation may include financial remedy, trade reversal, or fee refunds. If the issue was due to market conditions or client error, no compensation is provided but we\\',
   'company.complaints.faq.q5.question': 'Will filing a complaint affect my account or trading?',
   'company.complaints.faq.q5.answer': 'Absolutely not. You have the right to complain without any negative consequences. Your account will not be restricted, closed, or limited in any way for filing a complaint. All trading services remain available as normal. We are prohibited by FCA rules from retaliating against complainants. In fact, filing a complaint often improves service as it highlights issues we can fix. Your complaint is confidential and handled professionally by dedicated teams separate from trading operations.',
   'company.complaints.faq.q6.question': 'What documentation should I provide with my complaint?',
-  'company.complaints.faq.q6.answer': 'Provide as much evidence as possible: 1) Account number and personal details, 2) Dates and times of incidents, 3) Trade IDs or transaction references for specific trades, 4) Screenshots of errors, platform issues, or conversations, 5) Email correspondence with support team, 6) Bank statements showing withdrawal delays or incorrect charges, 7) Any previous complaint reference numbers. The more detail you provide initially, the faster we can investigate. If we need additional information, we\'ll request it.',
+  'company.complaints.faq.q6.answer': 'Provide as much evidence as possible: 1) Account number and personal details, 2) Dates and times of incidents, 3) Trade IDs or transaction references for specific trades, 4) Screenshots of errors, platform issues, or conversations, 5) Email correspondence with support team, 6) Bank statements showing withdrawal delays or incorrect charges, 7) Any previous complaint reference numbers. The more detail you provide initially, the faster we can investigate. If we need additional information, we\\',
   'company.complaints.faq.q7.question': 'Can I complain to the regulator directly instead of the broker?',
-  'company.complaints.faq.q7.answer': 'Yes, but regulators (FCA, CySEC, ASIC) typically require you to first attempt resolution with the broker. File your complaint with us and give us 8 weeks to resolve (UK rule). If unresolved, you can then contact the regulator. However, you can immediately contact the regulator if: 1) You suspect fraud or serious misconduct, 2) The broker refuses to accept your complaint, 3) You believe your funds are at risk, or 4) The broker has ceased operations. Regulators may investigate but won\'t award individual compensation - that\'s what Ombudsmen do.',
-
-  // Platform Status Page
-  'company.platformStatus.badge': 'System Status',
+  'company.complaints.faq.q7.answer': 'Yes, but regulators (FCA, CySEC, ASIC) typically require you to first attempt resolution with the broker. File your complaint with us and give us 8 weeks to resolve (UK rule). If unresolved, you can then contact the regulator. However, you can immediately contact the regulator if: 1) You suspect fraud or serious misconduct, 2) The broker refuses to accept your complaint, 3) You believe your funds are at risk, or 4) The broker has ceased operations. Regulators may investigate but won\\',
+  'company.platformStatus.badge': 'System status',
   'company.platformStatus.title': 'Platform Status',
   'company.platformStatus.description': 'Real-time monitoring of our trading platform, infrastructure, and services. We maintain 99.9%+ uptime with transparent reporting of any incidents or scheduled maintenance.',
-
-  // Stats
   'company.platformStatus.stats.uptime.label': 'Current Uptime',
-  'company.platformStatus.stats.uptime.value': '99.97%',
+  'company.platformStatus.stats.uptime.value': '99.97 per cent',
   'company.platformStatus.stats.uptime.description': 'Last 30 days',
   'company.platformStatus.stats.monthly.label': 'Monthly Uptime',
   'company.platformStatus.stats.monthly.value': '99.94%',
@@ -4261,18 +3650,12 @@ export const en = {
   'company.platformStatus.stats.maintenance.label': 'Next Maintenance',
   'company.platformStatus.stats.maintenance.value': 'Oct 20',
   'company.platformStatus.stats.maintenance.description': 'Sat 02:00-04:00 GMT',
-
-  // Alert
   'company.platformStatus.alert.operational': 'All Systems Operational:',
   'company.platformStatus.alert.description': 'All trading services are currently running normally. Last updated: 2 minutes ago.',
-
-  // Section Titles
-  'company.platformStatus.systemStatus.title': 'System Status',
+  'company.platformStatus.systemStatus.title': 'System status',
   'company.platformStatus.maintenance.title': 'Scheduled Maintenance',
   'company.platformStatus.incidents.title': 'Incident History (Last 6 Months)',
   'company.platformStatus.faq.title': 'Frequently Asked Questions',
-
-  // System Status Services
   'company.platformStatus.services.tradingWeb.name': 'Trading Platform (Web)',
   'company.platformStatus.services.tradingWeb.description': 'All trading functions operational',
   'company.platformStatus.services.mobileApps.name': 'Mobile Apps (iOS/Android)',
@@ -4294,17 +3677,13 @@ export const en = {
   'company.platformStatus.services.lastChecked.1min': '1 minute ago',
   'company.platformStatus.services.lastChecked.3min': '3 minutes ago',
   'company.platformStatus.services.lastChecked.30sec': '30 seconds ago',
-
-  // Maintenance Schedule
   'company.platformStatus.maintenance.impact': 'Impact:',
   'company.platformStatus.maintenance.reason': 'Reason:',
   'company.platformStatus.maintenance.affectedServices': 'Affected Services:',
   'company.platformStatus.maintenance.type.scheduled': 'Scheduled Maintenance',
-  'company.platformStatus.maintenance.type.systemUpdate': 'System Update',
+  'company.platformStatus.maintenance.type.systemUpdate': 'System update',
   'company.platformStatus.maintenance.type.majorUpgrade': 'Major Infrastructure Upgrade',
   'company.platformStatus.maintenance.type.securityPatch': 'Security Patch',
-
-  // Maintenance Schedule Items
   'company.platformStatus.maintenance.item1.date': 'October 20, 2025',
   'company.platformStatus.maintenance.item1.time': '02:00 - 04:00 GMT (Saturday)',
   'company.platformStatus.maintenance.item1.impact': 'Trading platform unavailable for 2 hours',
@@ -4328,8 +3707,6 @@ export const en = {
   'company.platformStatus.maintenance.item4.reason': 'Application security updates and SSL certificate renewal',
   'company.platformStatus.maintenance.item4.service1': 'Authentication',
   'company.platformStatus.maintenance.item4.service2': 'Customer Portal',
-
-  // Incident History Table
   'company.platformStatus.incidents.table.dateTime': 'Date & Time',
   'company.platformStatus.incidents.table.duration': 'Duration',
   'company.platformStatus.incidents.table.impact': 'Impact',
@@ -4342,8 +3719,6 @@ export const en = {
   'company.platformStatus.incidents.rootCause': 'Root Cause:',
   'company.platformStatus.incidents.resolution': 'Resolution:',
   'company.platformStatus.incidents.affectedSystems': 'Affected Systems:',
-
-  // Incident History Items
   'company.platformStatus.incidents.item1.date': 'September 23, 2025',
   'company.platformStatus.incidents.item1.time': '14:32 - 14:46 GMT',
   'company.platformStatus.incidents.item1.duration': '14 minutes',
@@ -4388,34 +3763,26 @@ export const en = {
   'company.platformStatus.incidents.item6.affected1': 'Web Platform - Charts',
   'company.platformStatus.incidents.item6.cause': 'CDN cache corruption for TradingView library',
   'company.platformStatus.incidents.item6.resolution': 'CDN cache purged and refreshed',
-
-  // Subscribe Alert
   'company.platformStatus.subscribe.strong': 'Stay Informed:',
   'company.platformStatus.subscribe.message': 'Subscribe to status updates via email or SMS to receive instant notifications of incidents and maintenance.',
   'company.platformStatus.subscribe.button': 'Subscribe',
-
-  // FAQ
   'company.platformStatus.faq.q1.question': 'Why does the platform go down for maintenance?',
   'company.platformStatus.faq.q1.answer': 'Scheduled maintenance is essential for platform security, performance, and reliability. We perform: 1) Security patches to protect against vulnerabilities, 2) Database optimization to maintain fast execution speeds, 3) Infrastructure upgrades for better scalability, 4) Bug fixes and feature deployments. Maintenance is always scheduled during low-volume periods (weekends, early morning GMT) to minimize disruption. We provide at least 48 hours notice via email, platform notifications, and this status page.',
-  'company.platformStatus.faq.q2.question': 'How will I know if there\'s a platform issue or maintenance?',
+  'company.platformStatus.faq.q2.question': 'How will I know if there\\',
   'company.platformStatus.faq.q2.answer': 'We notify clients through multiple channels: 1) Email notifications sent to all active traders, 2) In-platform banner alerts (web and mobile), 3) SMS alerts for scheduled maintenance (opt-in), 4) Real-time updates on this Status Page, 5) Social media posts (Twitter @ExampleBroker_Status). For unplanned outages, we provide updates every 15 minutes until resolved. Subscribe to status.example-broker.com to receive instant incident notifications.',
   'company.platformStatus.faq.q3.question': 'What happens to my open positions during downtime?',
-  'company.platformStatus.faq.q3.answer': 'Your positions remain active in the market even if the platform is unavailable. Stop-losses and take-profits are held on our servers (not just your device) and continue to work during maintenance. However, you won\'t be able to manually close positions or place new trades during downtime. If downtime occurs during high volatility, we may manually monitor and execute stop-losses to protect clients. After service restoration, all positions are immediately visible and manageable again.',
+  'company.platformStatus.faq.q3.answer': 'Your positions remain active in the market even if the platform is unavailable. Stop-losses and take-profits are held on our servers (not just your device) and continue to work during maintenance. However, you won\\',
   'company.platformStatus.faq.q4.question': 'Can I still trade if the web platform is down?',
   'company.platformStatus.faq.q4.answer': 'Yes, we have redundancy: If the web platform is down, try the mobile app (iOS/Android) or vice versa. If both are unavailable, you can trade via our Trading API (for algo traders with API access). As a last resort during critical outages, you can call our emergency trading desk at +44 20 7946 0960 to manually close positions (identity verification required). However, during scheduled maintenance, all trading interfaces are typically offline simultaneously.',
   'company.platformStatus.faq.q5.question': 'How do you achieve 99.9%+ uptime?',
-  'company.platformStatus.faq.q5.answer': 'We maintain high availability through: 1) Redundant infrastructure across multiple data centers (London, Frankfurt, New York, Singapore, Tokyo), 2) Load balancing to distribute traffic and prevent server overload, 3) Auto-scaling to handle traffic spikes during news events, 4) Real-time monitoring with automated failover (switches to backup systems in <30 seconds), 5) DDoS protection via Cloudflare Enterprise, 6) Regular disaster recovery drills. We also maintain \'hot standby\' servers that activate instantly if primary servers fail.',
-  'company.platformStatus.faq.q6.question': 'What\'s the difference between \'degraded\' and \'outage\' status?',
-  'company.platformStatus.faq.q6.answer': '\'Degraded\' means the service is operational but performing below normal standards - e.g., slower execution speeds, delayed data, or intermittent errors. You can still trade but may experience issues. \'Outage\' means the service is completely unavailable and you cannot access it at all. During degraded status, we\'re actively working on restoration while maintaining partial service. We update status every 5 minutes during incidents to keep you informed.',
+  'company.platformStatus.faq.q5.answer': 'We maintain high availability through: 1) Redundant infrastructure across multiple data centers (London, Frankfurt, New York, Singapore, Tokyo), 2) Load balancing to distribute traffic and prevent server overload, 3) Auto-scaling to handle traffic spikes during news events, 4) Real-time monitoring with automated failover (switches to backup systems in &lt;30 seconds), 5) DDoS protection via Cloudflare Enterprise, 6) Regular disaster recovery drills. We also maintain \\',
+  'company.platformStatus.faq.q6.question': 'What\\',
+  'company.platformStatus.faq.q6.answer': '\\',
   'company.platformStatus.faq.q7.question': 'Do you compensate clients for platform downtime?',
-  'company.platformStatus.faq.q7.answer': 'Compensation depends on the nature and impact of downtime: Scheduled maintenance (announced 48hrs+ in advance) is not compensated as it\'s part of normal operations. Unplanned outages are assessed case-by-case: If downtime directly caused trading losses (e.g., stop-loss couldn\'t execute due to platform failure), we may provide compensation or trade reversal. Service credits or goodwill gestures may be offered for extended outages. File a complaint via complaints@example-broker.com with details of any losses incurred. Each case is reviewed individually by our Compliance team.',
-
-  // Company - Security Page
+  'company.platformStatus.faq.q7.answer': 'Compensation depends on the nature and impact of downtime: Scheduled maintenance (announced 48hrs+ in advance) is not compensated as it\\',
   'company.security.badge': 'Trust & Compliance',
   'company.security.title': 'Security & Data Protection',
-  'company.security.description': 'Your security is our top priority. We employ military-grade encryption, multi-factor authentication, and regular security audits to protect your data and funds. We\'re fully compliant with GDPR and international data protection standards.',
-
-  // Stats
+  'company.security.description': 'Your security is our top priority. We employ military-grade encryption, multi-factor authentication, and regular security audits to protect your data and funds. We\\',
   'company.security.stats.encryption.label': 'Encryption Level',
   'company.security.stats.encryption.value': 'AES-256',
   'company.security.stats.encryption.description': 'Military-grade encryption',
@@ -4425,17 +3792,12 @@ export const en = {
   'company.security.stats.audits.label': 'Security Audits',
   'company.security.stats.audits.value': '4/year',
   'company.security.stats.audits.description': 'Independent assessments',
-  'company.security.stats.dataCenters.label': 'Data Centers',
+  'company.security.stats.dataCenters.label': 'Data Centres',
   'company.security.stats.dataCenters.value': '5',
   'company.security.stats.dataCenters.description': 'Geo-redundant locations',
-
-  // Important Notice
   'company.security.notice.title': 'Security Certified:',
   'company.security.notice.message': 'We are ISO 27001 certified and undergo quarterly penetration testing by independent security firms. Your data is protected by bank-level security measures.',
-
-  // Security Measures Section
   'company.security.measures.title': 'Security Measures',
-  
   'company.security.measures.sslTls.title': 'SSL/TLS Encryption',
   'company.security.measures.sslTls.description': 'All data transmitted between your device and our servers is protected by industry-standard encryption',
   'company.security.measures.sslTls.tls13.feature': 'TLS 1.3 Protocol',
@@ -4446,7 +3808,6 @@ export const en = {
   'company.security.measures.sslTls.certPinning.description': 'Mobile apps verify server identity to prevent man-in-the-middle attacks',
   'company.security.measures.sslTls.hsts.feature': 'HSTS Enabled',
   'company.security.measures.sslTls.hsts.description': 'HTTP Strict Transport Security forces encrypted connections, preventing downgrade attacks',
-
   'company.security.measures.twoFactor.title': 'Two-Factor Authentication (2FA)',
   'company.security.measures.twoFactor.description': 'Add an extra layer of security beyond passwords to protect your account from unauthorized access',
   'company.security.measures.twoFactor.appBased.feature': 'App-Based Authenticators',
@@ -4457,7 +3818,6 @@ export const en = {
   'company.security.measures.twoFactor.hardwareKeys.description': 'YubiKey and FIDO2-compliant devices supported for maximum protection against phishing',
   'company.security.measures.twoFactor.biometric.feature': 'Biometric Login (Mobile)',
   'company.security.measures.twoFactor.biometric.description': 'Face ID and fingerprint authentication on mobile apps for convenient yet secure access',
-
   'company.security.measures.dataEncryption.title': 'Data Encryption at Rest',
   'company.security.measures.dataEncryption.description': 'Your sensitive data is encrypted even when stored on our servers, protecting against database breaches',
   'company.security.measures.dataEncryption.aes256.feature': 'AES-256 Encryption',
@@ -4468,7 +3828,6 @@ export const en = {
   'company.security.measures.dataEncryption.kms.description': 'Encryption keys stored separately from data using AWS KMS with automatic rotation every 90 days',
   'company.security.measures.dataEncryption.backups.feature': 'Encrypted Backups',
   'company.security.measures.dataEncryption.backups.description': 'All database backups encrypted before storage and geographically distributed across secure facilities',
-
   'company.security.measures.threatProtection.title': 'Advanced Threat Protection',
   'company.security.measures.threatProtection.description': 'Multi-layered security infrastructure to detect and prevent cyber attacks in real-time',
   'company.security.measures.threatProtection.waf.feature': 'Web Application Firewall (WAF)',
@@ -4479,20 +3838,16 @@ export const en = {
   'company.security.measures.threatProtection.ids.description': '24/7 monitoring for suspicious network activity with automated blocking of malicious IPs',
   'company.security.measures.threatProtection.rateLimit.feature': 'Rate Limiting & Anti-Bot',
   'company.security.measures.threatProtection.rateLimit.description': 'API rate limits, CAPTCHA challenges, and behavioral analysis to prevent automated attacks',
-
-  // Data Protection Compliance Section
   'company.security.dataProtection.title': 'Data Protection Compliance',
-  
   'company.security.dataProtection.gdpr.title': 'GDPR Compliance (EU)',
   'company.security.dataProtection.gdpr.description': 'Full compliance with European General Data Protection Regulation',
   'company.security.dataProtection.gdpr.measure1': 'Data Protection Officer (DPO) appointed: dpo@example-broker.com',
   'company.security.dataProtection.gdpr.measure2': 'Right to access your data within 30 days of request',
-  'company.security.dataProtection.gdpr.measure3': 'Right to rectification, erasure (\'right to be forgotten\'), and data portability',
+  'company.security.dataProtection.gdpr.measure3': 'Right to rectification, erasure (\\',
   'company.security.dataProtection.gdpr.measure4': 'Privacy by design: minimal data collection, purpose limitation, storage limitation',
   'company.security.dataProtection.gdpr.measure5': 'Data Processing Agreements (DPA) with all third-party processors',
   'company.security.dataProtection.gdpr.measure6': 'Annual Data Protection Impact Assessments (DPIA) for high-risk processing',
   'company.security.dataProtection.gdpr.measure7': 'Breach notification to authorities within 72 hours if required',
-
   'company.security.dataProtection.handling.title': 'Data Handling & Retention',
   'company.security.dataProtection.handling.description': 'Strict policies governing how your data is collected, used, and retained',
   'company.security.dataProtection.handling.measure1': 'Data minimization: Only collect data necessary for service provision and regulatory compliance',
@@ -4501,149 +3856,119 @@ export const en = {
   'company.security.dataProtection.handling.measure4': 'Secure deletion: Data permanently deleted (not just archived) after retention period using DOD 5220.22-M standard',
   'company.security.dataProtection.handling.measure5': 'Cross-border transfers: EU-US Data Privacy Framework certified for transatlantic data flows',
   'company.security.dataProtection.handling.measure6': 'Third-party sharing: Only with explicit consent or regulatory requirement (never sold to marketers)',
-
   'company.security.dataProtection.privacy.title': 'Privacy & Access Controls',
-  'company.security.dataProtection.privacy.description': 'Who can access your data and how it\'s protected internally',
+  'company.security.dataProtection.privacy.description': 'Who can access your data and how it\\',
   'company.security.dataProtection.privacy.measure1': 'Role-Based Access Control (RBAC): Employees see only data needed for their role',
   'company.security.dataProtection.privacy.measure2': 'Principle of Least Privilege: Default deny, access granted only when necessary',
   'company.security.dataProtection.privacy.measure3': 'Multi-Factor Authentication (MFA) for all employee accounts',
   'company.security.dataProtection.privacy.measure4': 'Access logging and audit trails: All data access recorded and reviewed quarterly',
   'company.security.dataProtection.privacy.measure5': 'Background checks and NDA for all employees with data access',
   'company.security.dataProtection.privacy.measure6': 'Annual security awareness training for all staff',
-
-  // User Security Practices Section
   'company.security.userPractices.title': 'Your Security Responsibilities',
   'company.security.userPractices.description': 'While we provide robust security infrastructure, your actions play a crucial role in protecting your account. Follow these best practices to maintain maximum security.',
-
   'company.security.userPractices.passwords.title': 'Use Strong, Unique Passwords',
   'company.security.userPractices.passwords.description': 'Create complex passwords with 12+ characters, mixing uppercase, lowercase, numbers, and symbols. Never reuse passwords across sites.',
   'company.security.userPractices.passwords.tip1': 'Use a password manager (e.g., Bitwarden, 1Password) to generate and store unique passwords',
   'company.security.userPractices.passwords.tip2': 'Avoid personal information (names, birthdays) in passwords',
   'company.security.userPractices.passwords.tip3': 'Change password immediately if you suspect compromise',
-  'company.security.userPractices.passwords.tip4': 'Never share your password with anyone, including support staff (we\'ll never ask for it)',
-
+  'company.security.userPractices.passwords.tip4': 'Never share your password with anyone, including support staff (we\\',
   'company.security.userPractices.enable2fa.title': 'Enable Two-Factor Authentication (2FA)',
   'company.security.userPractices.enable2fa.description': 'Always enable 2FA on your trading account. App-based authenticators (Google Authenticator, Authy) are more secure than SMS.',
   'company.security.userPractices.enable2fa.tip1': 'Set up 2FA immediately after account creation',
   'company.security.userPractices.enable2fa.tip2': 'Save backup codes in a secure location (offline, not in email)',
   'company.security.userPractices.enable2fa.tip3': 'If changing phones, disable 2FA on old device and re-enable on new one',
   'company.security.userPractices.enable2fa.tip4': 'Avoid SMS 2FA if possible due to SIM-swapping attacks',
-
   'company.security.userPractices.phishing.title': 'Beware of Phishing Attempts',
-  'company.security.userPractices.phishing.description': 'Be vigilant against fake emails, SMS, or calls pretending to be from us. We\'ll never ask for your password or 2FA codes.',
+  'company.security.userPractices.phishing.description': 'Be vigilant against fake emails, SMS, or calls pretending to be from us. We\\',
   'company.security.userPractices.phishing.tip1': 'Check sender email address carefully (genuine emails only from @example-broker.com)',
   'company.security.userPractices.phishing.tip2': 'Hover over links before clicking to verify destination URL',
-  'company.security.userPractices.phishing.tip3': 'Don\'t click links in unsolicited emails - go directly to our website instead',
+  'company.security.userPractices.phishing.tip3': 'Don\\',
   'company.security.userPractices.phishing.tip4': 'Report suspicious emails to security@example-broker.com',
-  'company.security.userPractices.phishing.tip5': 'We\'ll never ask for passwords, 2FA codes, or remote access to your device',
-
+  'company.security.userPractices.phishing.tip5': 'We\\',
   'company.security.userPractices.devices.title': 'Secure Your Devices',
-  'company.security.userPractices.devices.description': 'Keep your computer, phone, and tablet secure as they\'re gateways to your trading account.',
+  'company.security.userPractices.devices.description': 'Keep your computer, phone, and tablet secure as they\\',
   'company.security.userPractices.devices.tip1': 'Keep operating systems and browsers updated with latest security patches',
   'company.security.userPractices.devices.tip2': 'Use antivirus/anti-malware software on all devices',
   'company.security.userPractices.devices.tip3': 'Avoid public Wi-Fi for trading; use VPN if necessary',
   'company.security.userPractices.devices.tip4': 'Enable device encryption (FileVault on Mac, BitLocker on Windows)',
   'company.security.userPractices.devices.tip5': 'Lock devices when not in use and use biometric authentication when available',
-
   'company.security.userPractices.monitoring.title': 'Monitor Account Activity',
   'company.security.userPractices.monitoring.description': 'Regularly review your account for any unauthorized activity or suspicious transactions.',
   'company.security.userPractices.monitoring.tip1': 'Enable email/SMS notifications for logins, trades, and withdrawals',
-  'company.security.userPractices.monitoring.tip2': 'Check \'Recent Activity\' in your account dashboard weekly',
+  'company.security.userPractices.monitoring.tip2': 'Check \\',
   'company.security.userPractices.monitoring.tip3': 'Review trade history and transaction records monthly',
   'company.security.userPractices.monitoring.tip4': 'Report any unrecognized activity immediately to security@example-broker.com',
   'company.security.userPractices.monitoring.tip5': 'Set up withdrawal whitelist (only allow withdrawals to pre-approved bank accounts)',
-
   'company.security.userPractices.thirdParty.title': 'Be Cautious with Third-Party Apps',
   'company.security.userPractices.thirdParty.description': 'Only use trusted trading bots, signals, or tools. Never give third parties your login credentials.',
   'company.security.userPractices.thirdParty.tip1': 'Use API keys instead of passwords for third-party integrations',
   'company.security.userPractices.thirdParty.tip2': 'Review and revoke API access regularly (Settings > API Management)',
-  'company.security.userPractices.thirdParty.tip3': 'Set read-only permissions on API keys when full access isn\'t needed',
-  'company.security.userPractices.thirdParty.tip4': 'Avoid \'account management\' services that ask for your password',
+  'company.security.userPractices.thirdParty.tip3': 'Set read-only permissions on API keys when full access isn\\',
+  'company.security.userPractices.thirdParty.tip4': 'Avoid \\',
   'company.security.userPractices.thirdParty.tip5': 'Research third-party vendors thoroughly before granting access',
-
-  // Security Contact Alert
   'company.security.reportAlert.title': 'Report Security Issues:',
   'company.security.reportAlert.message': 'If you discover a security vulnerability or suspect unauthorized account access, contact us immediately at security@example-broker.com or call +44 20 7946 0961.',
-
-  // FAQ
   'company.security.faq.title': 'Frequently Asked Questions',
   'company.security.faq.q1.question': 'How secure is my money on your platform?',
-  'company.security.faq.q1.answer': 'Your funds are protected through multiple layers: 1) Segregated accounts at Tier-1 banks (your money never mixes with company funds), 2) AES-256 encryption for all data at rest and TLS 1.3 for data in transit, 3) Two-factor authentication (2FA) to prevent unauthorized account access, 4) Regular security audits by independent firms (KPMG, BSI Group), 5) Statutory compensation schemes (FSCS, ICF) up to regulatory limits if the broker fails. Additionally, we\'re ISO 27001 certified for information security management, demonstrating compliance with international security standards.',
+  'company.security.faq.q1.answer': 'Your funds are protected through multiple layers: 1) Segregated accounts at Tier-1 banks (your money never mixes with company funds), 2) AES-256 encryption for all data at rest and TLS 1.3 for data in transit, 3) Two-factor authentication (2FA) to prevent unauthorized account access, 4) Regular security audits by independent firms (KPMG, BSI Group), 5) Statutory compensation schemes (FSCS, ICF) up to regulatory limits if the broker fails. Additionally, we\\',
   'company.security.faq.q2.question': 'What should I do if I suspect my account has been hacked?',
-  'company.security.faq.q2.answer': 'Take immediate action: 1) Change your password immediately via \'Forgot Password\' (don\'t log in with potentially compromised credentials), 2) Contact our security team at security@example-broker.com or call +44 20 7946 0961, 3) We\'ll temporarily freeze your account to prevent unauthorized trades/withdrawals, 4) Review recent account activity and report any suspicious trades or transactions, 5) Enable 2FA if not already active, 6) Check your email account security (hackers may have accessed your email first). We\'ll investigate, reverse any fraudulent transactions, and restore your account. If funds were withdrawn, we\'ll work with banks and law enforcement to recover them.',
+  'company.security.faq.q2.answer': 'Take immediate action: 1) Change your password immediately via \\',
   'company.security.faq.q3.question': 'Is two-factor authentication (2FA) really necessary?',
-  'company.security.faq.q3.answer': 'Absolutely. 2FA reduces account takeover risk by over 99%. Even if someone steals your password (via phishing, data breach, keylogger), they can\'t access your account without the second factor (authenticator app code, hardware key). We strongly recommend app-based 2FA (Google Authenticator, Authy) over SMS because SIM-swapping attacks can intercept SMS codes. For high-value accounts ($50K+), consider hardware security keys (YubiKey) for maximum protection. 87% of our clients use 2FA, and accounts without 2FA are 40x more likely to be compromised.',
+  'company.security.faq.q3.answer': 'Absolutely. 2FA reduces account takeover risk by over 99%. Even if someone steals your password (via phishing, data breach, keylogger), they can\\',
   'company.security.faq.q4.question': 'How do I spot a phishing attempt?',
-  'company.security.faq.q4.answer': 'Red flags include: 1) Sender email not from @example-broker.com (e.g., @examp1e-broker.com with a \'1\'), 2) Urgent language pressuring immediate action (\'Your account will be closed!\'), 3) Requests for passwords, 2FA codes, or remote access, 4) Suspicious links (hover to see real URL before clicking), 5) Generic greetings (\'Dear Customer\' instead of your name), 6) Poor grammar or spelling errors. We will NEVER ask for your password or 2FA codes via email, phone, or chat. When in doubt, don\'t click links - go directly to our website by typing the URL. Report suspicious emails to security@example-broker.com.',
+  'company.security.faq.q4.answer': 'Red flags include: 1) Sender email not from @example-broker.com (e.g., @examp1e-broker.com with a \\',
   'company.security.faq.q5.question': 'What happens to my data if I close my account?',
   'company.security.faq.q5.answer': 'Your data is retained according to regulatory and legal requirements: Financial transaction records are kept for 7 years (required by FCA/AML regulations), KYC/identity documents for 5 years after account closure, Marketing communications deleted immediately upon account closure or consent withdrawal. After retention periods expire, data is securely deleted using DOD 5220.22-M erasure standards (data overwritten multiple times, unrecoverable). You can request a copy of your data before closure (data portability right under GDPR). Note: We cannot delete data still required for regulatory compliance, ongoing investigations, or legal disputes.',
   'company.security.faq.q6.question': 'Do you share my data with third parties?',
-  'company.security.faq.q6.answer': 'We share data only when necessary and with your consent or legal obligation: 1) Service providers (payment processors, ID verification, cloud hosting) under strict Data Processing Agreements (GDPR-compliant), 2) Regulators (FCA, CySEC, ASIC) when required by law, 3) Law enforcement with valid court orders or for fraud investigation, 4) Credit reference agencies for creditworthiness checks (professional accounts only). We NEVER sell your data to marketers or unrelated third parties. All sharing is logged and auditable. You can request a \'data sharing report\' showing who accessed your data in the last 12 months (contact dpo@example-broker.com).',
+  'company.security.faq.q6.answer': 'We share data only when necessary and with your consent or legal obligation: 1) Service providers (payment processors, ID verification, cloud hosting) under strict Data Processing Agreements (GDPR-compliant), 2) Regulators (FCA, CySEC, ASIC) when required by law, 3) Law enforcement with valid court orders or for fraud investigation, 4) Credit reference agencies for creditworthiness checks (professional accounts only). We NEVER sell your data to marketers or unrelated third parties. All sharing is logged and auditable. You can request a \\',
   'company.security.faq.q7.question': 'How often do you conduct security audits?',
   'company.security.faq.q7.answer': 'We undergo multiple independent security assessments annually: 1) ISO 27001 audit by BSI Group (bi-annual) covering information security management systems, 2) Penetration testing by certified ethical hackers (quarterly) attempting to breach our systems, 3) Vulnerability scanning (monthly) using automated tools to identify security weaknesses, 4) Code security reviews (before every major release) checking for vulnerabilities like SQL injection, XSS, 5) Third-party security assessments by KPMG (annual) as part of financial audit. All critical vulnerabilities are patched within 24 hours. Audit summaries (non-sensitive parts) are published in our annual compliance report.',
-
-  // Legal - Terms & Conditions
   'legal.terms.seo.title': 'Terms & Conditions',
   'legal.terms.seo.description': 'Read our terms and conditions for using the trading platform. Understand your rights and responsibilities when trading with us.',
   'legal.terms.seo.keywords': 'terms and conditions, trading terms, broker terms, user agreement',
   'legal.terms.title': 'Terms & Conditions',
   'legal.terms.lastUpdated': 'Last updated: January 2025',
-
   'legal.terms.section1.title': '1. Introduction',
-  'legal.terms.section1.content': 'These Terms and Conditions ("Terms") govern your use of our trading platform and services. By accessing or using our platform, you agree to be bound by these Terms.',
-
+  'legal.terms.section1.content': 'These Terms and Conditions (',
   'legal.terms.section2.title': '2. Account Registration',
   'legal.terms.section2.intro': 'To use our trading services, you must:',
   'legal.terms.section2.requirement1': 'Be at least 18 years of age',
   'legal.terms.section2.requirement2': 'Provide accurate and complete information',
   'legal.terms.section2.requirement3': 'Maintain the security of your account credentials',
   'legal.terms.section2.requirement4': 'Complete the KYC verification process',
-
   'legal.terms.section3.title': '3. Trading Services',
   'legal.terms.section3.content': 'Our platform provides access to trading in various financial instruments including forex, cryptocurrencies, and commodities. All trading carries risk of loss.',
-
   'legal.terms.section4.title': '4. Fees and Charges',
   'legal.terms.section4.intro': 'We charge fees for certain services including:',
   'legal.terms.section4.fee1': 'Trading spreads and commissions',
   'legal.terms.section4.fee2': 'Overnight financing charges',
   'legal.terms.section4.fee3': 'Withdrawal fees (where applicable)',
   'legal.terms.section4.disclosure': 'All fees are disclosed transparently before transactions.',
-
   'legal.terms.section5.title': '5. Risk Disclosure',
   'legal.terms.section5.content': 'Trading involves significant risk of loss. You should only trade with money you can afford to lose. Past performance does not guarantee future results.',
-
   'legal.terms.section6.title': '6. Account Security',
   'legal.terms.section6.content': 'You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account.',
-
   'legal.terms.section7.title': '7. Prohibited Activities',
   'legal.terms.section7.intro': 'You may not:',
   'legal.terms.section7.prohibition1': 'Use the platform for illegal activities',
   'legal.terms.section7.prohibition2': 'Attempt to manipulate markets',
   'legal.terms.section7.prohibition3': 'Engage in abusive trading practices',
   'legal.terms.section7.prohibition4': 'Share your account with others',
-
   'legal.terms.section8.title': '8. Limitation of Liability',
   'legal.terms.section8.content': 'We are not liable for losses arising from market movements, system failures, or circumstances beyond our control. Our liability is limited to the maximum extent permitted by law.',
-
   'legal.terms.section9.title': '9. Termination',
   'legal.terms.section9.content': 'We reserve the right to suspend or terminate your account for violation of these Terms or for any other reason at our discretion.',
-
   'legal.terms.section10.title': '10. Changes to Terms',
   'legal.terms.section10.content': 'We may update these Terms from time to time. Continued use of the platform constitutes acceptance of updated Terms.',
-
   'legal.terms.section11.title': '11. Contact Information',
   'legal.terms.section11.content': 'For questions about these Terms, please contact us at legal@tradingplatform.com',
-
-  // Legal - Privacy Policy
   'legal.privacy.seo.title': 'Privacy Policy',
   'legal.privacy.seo.description': 'Our privacy policy explains how we collect, use, and protect your personal information. GDPR compliant and transparent.',
   'legal.privacy.seo.keywords': 'privacy policy, data protection, GDPR, privacy rights, personal data',
   'legal.privacy.title': 'Privacy Policy',
   'legal.privacy.lastUpdated': 'Last updated: January 2025',
-
   'legal.privacy.section1.title': '1. Introduction',
   'legal.privacy.section1.content': 'This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our trading platform and services.',
-
   'legal.privacy.section2.title': '2. Information We Collect',
   'legal.privacy.section2.personalInfo.title': 'Personal Information',
   'legal.privacy.section2.personalInfo.item1': 'Name, email address, phone number',
@@ -4655,7 +3980,6 @@ export const en = {
   'legal.privacy.section2.usageInfo.item2': 'Device information and IP address',
   'legal.privacy.section2.usageInfo.item3': 'Browser type and operating system',
   'legal.privacy.section2.usageInfo.item4': 'Pages visited and features used',
-
   'legal.privacy.section3.title': '3. How We Use Your Information',
   'legal.privacy.section3.intro': 'We use your information to:',
   'legal.privacy.section3.use1': 'Provide and maintain our trading services',
@@ -4664,7 +3988,6 @@ export const en = {
   'legal.privacy.section3.use4': 'Detect and prevent fraud and abuse',
   'legal.privacy.section3.use5': 'Improve our services and user experience',
   'legal.privacy.section3.use6': 'Send important updates and notifications',
-
   'legal.privacy.section4.title': '4. Information Sharing',
   'legal.privacy.section4.intro': 'We may share your information with:',
   'legal.privacy.section4.share1': 'Service providers who assist in operating our platform',
@@ -4672,7 +3995,6 @@ export const en = {
   'legal.privacy.section4.share3': 'Payment processors for transaction processing',
   'legal.privacy.section4.share4': 'Legal advisors and auditors as necessary',
   'legal.privacy.section4.noSell': 'We never sell your personal information to third parties.',
-
   'legal.privacy.section5.title': '5. Data Security',
   'legal.privacy.section5.intro': 'We implement industry-standard security measures including:',
   'legal.privacy.section5.measure1': 'SSL/TLS encryption for data transmission',
@@ -4680,7 +4002,6 @@ export const en = {
   'legal.privacy.section5.measure3': 'Regular security audits and updates',
   'legal.privacy.section5.measure4': 'Access controls and authentication',
   'legal.privacy.section5.measure5': '24/7 security monitoring',
-
   'legal.privacy.section6.title': '6. Your Rights (GDPR)',
   'legal.privacy.section6.intro': 'Under GDPR, you have the right to:',
   'legal.privacy.section6.right1': 'Access your personal data',
@@ -4690,41 +4011,32 @@ export const en = {
   'legal.privacy.section6.right5': 'Data portability',
   'legal.privacy.section6.right6': 'Object to processing',
   'legal.privacy.section6.right7': 'Withdraw consent at any time',
-
   'legal.privacy.section7.title': '7. Cookies',
   'legal.privacy.section7.content': 'We use cookies and similar technologies to enhance your experience. You can control cookie preferences through your browser settings. See our Cookie Policy for details.',
-
   'legal.privacy.section8.title': '8. Data Retention',
   'legal.privacy.section8.content': 'We retain your information for as long as necessary to provide services and comply with legal obligations, typically 7 years after account closure as required by financial regulations.',
-
   'legal.privacy.section9.title': '9. International Transfers',
   'legal.privacy.section9.content': 'Your data may be transferred to and processed in countries outside your residence. We ensure appropriate safeguards are in place for such transfers.',
-
   'legal.privacy.section10.title': '10. Contact Us',
   'legal.privacy.section10.content': 'For privacy-related questions or to exercise your rights, contact our Data Protection Officer at:',
   'legal.privacy.section10.email': 'privacy@tradingplatform.com',
-
-  // Legal - AML / KYC Policy
   'legal.aml.seo.title': 'AML / KYC Policy',
   'legal.aml.seo.description': 'Our Anti-Money Laundering and Know Your Customer policy. Learn about our compliance procedures and verification requirements.',
   'legal.aml.seo.keywords': 'AML policy, KYC policy, anti-money laundering, compliance, identity verification',
   'legal.aml.title': 'AML / KYC Policy',
   'legal.aml.lastUpdated': 'Last updated: January 2025',
-
   'legal.aml.section1.title': '1. Introduction',
   'legal.aml.section1.content': 'Our Anti-Money Laundering (AML) and Know Your Customer (KYC) Policy outlines our commitment to preventing financial crime and ensuring compliance with international regulations.',
-
   'legal.aml.section2.title': '2. Regulatory Compliance',
   'legal.aml.section2.intro': 'We comply with:',
   'legal.aml.section2.compliance1': 'Financial Action Task Force (FATF) recommendations',
   'legal.aml.section2.compliance2': 'EU Anti-Money Laundering Directives',
   'legal.aml.section2.compliance3': 'Local financial regulations in operating jurisdictions',
   'legal.aml.section2.compliance4': 'International sanctions and embargo requirements',
-
   'legal.aml.section3.title': '3. Know Your Customer (KYC)',
   'legal.aml.section3.identityVerification.title': 'Identity Verification',
   'legal.aml.section3.identityVerification.intro': 'All clients must provide:',
-  'legal.aml.section3.identityVerification.requirement1': 'Government-issued photo ID (passport, driver\'s license, or national ID)',
+  'legal.aml.section3.identityVerification.requirement1': 'Government-issued photo ID (passport, driver\\',
   'legal.aml.section3.identityVerification.requirement2': 'Proof of residential address (utility bill, bank statement, or government document)',
   'legal.aml.section3.identityVerification.requirement3': 'Selfie verification for enhanced security',
   'legal.aml.section3.enhancedDueDiligence.title': 'Enhanced Due Diligence',
@@ -4733,84 +4045,68 @@ export const en = {
   'legal.aml.section3.enhancedDueDiligence.requirement2': 'Politically Exposed Persons (PEPs)',
   'legal.aml.section3.enhancedDueDiligence.requirement3': 'High-risk jurisdictions',
   'legal.aml.section3.enhancedDueDiligence.requirement4': 'Corporate or institutional accounts',
-
   'legal.aml.section4.title': '4. Transaction Monitoring',
   'legal.aml.section4.intro': 'We monitor all transactions for suspicious activity including:',
   'legal.aml.section4.activity1': 'Unusual transaction patterns',
   'legal.aml.section4.activity2': 'Structuring or splitting of transactions',
   'legal.aml.section4.activity3': 'Transactions involving high-risk jurisdictions',
   'legal.aml.section4.activity4': 'Rapid movement of funds',
-
   'legal.aml.section5.title': '5. Suspicious Activity Reporting',
   'legal.aml.section5.content': 'We are required to report suspicious activities to relevant authorities. We maintain confidentiality of such reports as required by law.',
-
   'legal.aml.section6.title': '6. Source of Funds',
   'legal.aml.section6.intro': 'We may request documentation to verify the source of funds for:',
   'legal.aml.section6.requirement1': 'Large deposits or withdrawals',
   'legal.aml.section6.requirement2': 'First-time deposits above certain thresholds',
   'legal.aml.section6.requirement3': 'Unusual account activity',
-
   'legal.aml.section7.title': '7. Sanctions Screening',
   'legal.aml.section7.intro': 'All clients are screened against:',
   'legal.aml.section7.screening1': 'UN, EU, US, and UK sanctions lists',
   'legal.aml.section7.screening2': 'PEP databases',
   'legal.aml.section7.screening3': 'Adverse media screening',
   'legal.aml.section7.screening4': 'Watchlists and enforcement lists',
-
   'legal.aml.section8.title': '8. Record Keeping',
   'legal.aml.section8.intro': 'We maintain records of:',
   'legal.aml.section8.record1': 'Client identification documents for 7 years after relationship ends',
   'legal.aml.section8.record2': 'Transaction records for 7 years',
   'legal.aml.section8.record3': 'Correspondence and due diligence records',
   'legal.aml.section8.record4': 'AML/CFT training and policy updates',
-
   'legal.aml.section9.title': '9. Prohibited Jurisdictions',
   'legal.aml.section9.content': 'We do not accept clients from jurisdictions subject to comprehensive sanctions or identified as high-risk for money laundering.',
-
   'legal.aml.section10.title': '10. Staff Training',
   'legal.aml.section10.content': 'All staff receive regular AML/KYC training to ensure compliance and effective implementation of our policies.',
-
   'legal.aml.section11.title': '11. Contact',
   'legal.aml.section11.content': 'For AML/KYC related questions, contact our compliance team at:',
   'legal.aml.section11.email': 'compliance@tradingplatform.com',
-
-  // Legal - Cookie Policy
   'legal.cookies.seo.title': 'Cookie Policy',
   'legal.cookies.seo.description': 'Learn about how we use cookies on our platform. Manage your cookie preferences and understand what data we collect.',
   'legal.cookies.seo.keywords': 'cookie policy, cookies, tracking, website cookies, cookie consent',
   'legal.cookies.title': 'Cookie Policy',
   'legal.cookies.lastUpdated': 'Last updated: January 2025',
-
   'legal.cookies.section1.title': '1. What Are Cookies',
   'legal.cookies.section1.content': 'Cookies are small text files stored on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and understanding how you use our platform.',
-
   'legal.cookies.section2.title': '2. Types of Cookies We Use',
   'legal.cookies.section2.essential.title': 'Essential Cookies',
   'legal.cookies.section2.essential.content': 'These cookies are necessary for the website to function properly. They enable core functionality such as:',
   'legal.cookies.section2.essential.item1': 'User authentication and security',
   'legal.cookies.section2.essential.item2': 'Session management',
   'legal.cookies.section2.essential.item3': 'Load balancing',
-
   'legal.cookies.section2.functional.title': 'Functional Cookies',
   'legal.cookies.section2.functional.content': 'These cookies allow us to remember your preferences and provide enhanced features:',
   'legal.cookies.section2.functional.item1': 'Language preferences',
   'legal.cookies.section2.functional.item2': 'Theme settings (dark/light mode)',
   'legal.cookies.section2.functional.item3': 'Layout preferences',
   'legal.cookies.section2.functional.item4': 'Chart settings and customizations',
-
   'legal.cookies.section2.analytics.title': 'Analytics Cookies',
   'legal.cookies.section2.analytics.content': 'These cookies help us understand how visitors interact with our website:',
   'legal.cookies.section2.analytics.item1': 'Page views and navigation patterns',
   'legal.cookies.section2.analytics.item2': 'Time spent on pages',
   'legal.cookies.section2.analytics.item3': 'Error messages encountered',
   'legal.cookies.section2.analytics.item4': 'Device and browser information',
-
   'legal.cookies.section2.marketing.title': 'Marketing Cookies',
   'legal.cookies.section2.marketing.content': 'These cookies track your online activity to help deliver more relevant advertising:',
   'legal.cookies.section2.marketing.item1': 'Advertising effectiveness',
   'legal.cookies.section2.marketing.item2': 'Personalized content',
   'legal.cookies.section2.marketing.item3': 'Social media integration',
-
   'legal.cookies.section3.title': '3. Third-Party Cookies',
   'legal.cookies.section3.content': 'We use services from third parties that may set their own cookies:',
   'legal.cookies.section3.analytics': 'Analytics:',
@@ -4821,13 +4117,11 @@ export const en = {
   'legal.cookies.section3.supportValue': 'Zendesk, Intercom',
   'legal.cookies.section3.payments': 'Payments:',
   'legal.cookies.section3.paymentsValue': 'Stripe, PayPal',
-
   'legal.cookies.section4.title': '4. Cookie Duration',
   'legal.cookies.section4.session.title': 'Session Cookies',
   'legal.cookies.section4.session.content': 'Temporary cookies that are deleted when you close your browser.',
   'legal.cookies.section4.persistent.title': 'Persistent Cookies',
   'legal.cookies.section4.persistent.content': 'Remain on your device for a set period or until manually deleted. Typical duration: 30 days to 2 years depending on the cookie type.',
-
   'legal.cookies.section5.title': '5. How to Manage Cookies',
   'legal.cookies.section5.browser.title': 'Browser Settings',
   'legal.cookies.section5.browser.content': 'You can control and manage cookies through your browser settings:',
@@ -4839,43 +4133,33 @@ export const en = {
   'legal.cookies.section5.browser.safariValue': 'Preferences → Privacy → Cookies',
   'legal.cookies.section5.browser.edge': 'Edge:',
   'legal.cookies.section5.browser.edgeValue': 'Settings → Privacy → Cookies',
-
   'legal.cookies.section5.consent.title': 'Cookie Consent',
-  'legal.cookies.section5.consent.content': 'When you first visit our website, we\'ll ask for your consent to use non-essential cookies. You can update your preferences at any time using the cookie settings in the footer.',
-
+  'legal.cookies.section5.consent.content': 'When you first visit our website, we\\',
   'legal.cookies.section6.title': '6. Impact of Disabling Cookies',
   'legal.cookies.section6.content': 'If you disable cookies, some features may not work properly:',
   'legal.cookies.section6.item1': 'You may need to log in repeatedly',
-  'legal.cookies.section6.item2': 'Preferences won\'t be saved',
+  'legal.cookies.section6.item2': 'Preferences won\\',
   'legal.cookies.section6.item3': 'Some features may be unavailable',
   'legal.cookies.section6.item4': 'Website performance may be affected',
-
   'legal.cookies.section7.title': '7. Do Not Track',
-  'legal.cookies.section7.content': 'Some browsers have a "Do Not Track" feature. When enabled, we respect this preference and will not use tracking cookies for analytics or marketing purposes.',
-
+  'legal.cookies.section7.content': 'Some browsers have a',
   'legal.cookies.section8.title': '8. Updates to This Policy',
-  'legal.cookies.section8.content': 'We may update this Cookie Policy from time to time to reflect changes in technology or legal requirements. We\'ll notify you of significant changes.',
-
+  'legal.cookies.section8.content': 'We may update this Cookie Policy from time to time to reflect changes in technology or legal requirements. We\\',
   'legal.cookies.section9.title': '9. Contact Us',
   'legal.cookies.section9.content': 'For questions about our use of cookies, contact us at:',
   'legal.cookies.section9.email': 'privacy@tradingplatform.com',
-
-  // Legal - Risk Disclosure
   'legal.risk.seo.title': 'Risk Disclosure',
   'legal.risk.seo.description': 'Important risk disclosure about trading forex, cryptocurrencies, and commodities. Understand the risks before you trade.',
   'legal.risk.seo.keywords': 'trading risks, risk disclosure, forex risks, crypto risks, trading warning',
   'legal.risk.title': 'Risk Disclosure',
   'legal.risk.subtitle': 'Important information about trading risks',
-
   'legal.risk.generalWarning.title': 'General Risk Warning',
   'legal.risk.generalWarning.content': 'Trading in financial instruments carries a high level of risk to your capital with the possibility of losing more than your initial investment. Trading may not be suitable for all investors, and you should ensure that you understand the risks involved.',
-
   'legal.risk.leverage.title': '1. Leverage Risk',
   'legal.risk.leverage.content': 'Leverage allows you to trade positions larger than your account balance. While this can magnify profits, it equally magnifies losses. A small market movement can lead to proportionately larger losses, potentially exceeding your initial deposit.',
   'legal.risk.leverage.point1': 'Higher leverage = Higher risk',
   'legal.risk.leverage.point2': 'Margin calls can occur if your account balance falls below required levels',
   'legal.risk.leverage.point3': 'Positions may be automatically closed if margin requirements are not met',
-
   'legal.risk.marketVolatility.title': '2. Market Volatility',
   'legal.risk.marketVolatility.content': 'Financial markets can be extremely volatile. Prices can move rapidly against you due to:',
   'legal.risk.marketVolatility.point1': 'Economic news and data releases',
@@ -4883,7 +4167,6 @@ export const en = {
   'legal.risk.marketVolatility.point3': 'Market sentiment changes',
   'legal.risk.marketVolatility.point4': 'Low liquidity conditions',
   'legal.risk.marketVolatility.point5': 'Unexpected global events',
-
   'legal.risk.cryptocurrency.title': '3. Cryptocurrency Risks',
   'legal.risk.cryptocurrency.content': 'Cryptocurrency trading carries additional risks:',
   'legal.risk.cryptocurrency.point1': 'Extreme price volatility and rapid value changes',
@@ -4892,7 +4175,6 @@ export const en = {
   'legal.risk.cryptocurrency.point4': 'Technology and cybersecurity risks',
   'legal.risk.cryptocurrency.point5': 'Market manipulation concerns',
   'legal.risk.cryptocurrency.point6': 'Irreversible transactions',
-
   'legal.risk.forex.title': '4. Forex Trading Risks',
   'legal.risk.forex.content': 'Foreign exchange trading involves specific risks:',
   'legal.risk.forex.point1': 'Currency value fluctuations',
@@ -4900,14 +4182,12 @@ export const en = {
   'legal.risk.forex.point3': 'Central bank interventions',
   'legal.risk.forex.point4': 'Political and economic instability',
   'legal.risk.forex.point5': 'Slippage during volatile periods',
-
   'legal.risk.commodity.title': '5. Commodity Risks',
   'legal.risk.commodity.content': 'Commodity trading carries unique risks:',
   'legal.risk.commodity.point1': 'Supply and demand imbalances',
   'legal.risk.commodity.point2': 'Weather and natural disaster impacts',
   'legal.risk.commodity.point3': 'Geopolitical tensions affecting supply',
   'legal.risk.commodity.point4': 'Storage and transportation costs',
-
   'legal.risk.technology.title': '6. Technology Risks',
   'legal.risk.technology.content': 'Electronic trading platforms carry technical risks:',
   'legal.risk.technology.point1': 'System failures or downtime',
@@ -4915,16 +4195,13 @@ export const en = {
   'legal.risk.technology.point3': 'Software bugs or errors',
   'legal.risk.technology.point4': 'Cybersecurity threats',
   'legal.risk.technology.point5': 'Order execution delays',
-
   'legal.risk.overnightWeekend.title': '7. Overnight and Weekend Risk',
   'legal.risk.overnightWeekend.content': 'Holding positions overnight or over weekends exposes you to:',
   'legal.risk.overnightWeekend.point1': 'Gap risk when markets reopen',
   'legal.risk.overnightWeekend.point2': 'Overnight financing charges',
   'legal.risk.overnightWeekend.point3': 'News events outside trading hours',
-
   'legal.risk.pastPerformance.title': '8. Past Performance',
   'legal.risk.pastPerformance.content': 'Past performance is not indicative of future results. Historical returns, backtests, and analysis do not guarantee similar performance in the future.',
-
   'legal.risk.riskManagement.title': '9. Risk Management Recommendations',
   'legal.risk.riskManagement.content': 'To manage your risk:',
   'legal.risk.riskManagement.point1': 'Never invest more than you can afford to lose',
@@ -4934,18 +4211,14 @@ export const en = {
   'legal.risk.riskManagement.point5': 'Continuously educate yourself about markets',
   'legal.risk.riskManagement.point6': 'Consider using lower leverage',
   'legal.risk.riskManagement.point7': 'Keep adequate reserves for margin requirements',
-
   'legal.risk.professionalAdvice.title': '10. Professional Advice',
   'legal.risk.professionalAdvice.content': 'If you are uncertain about trading:',
   'legal.risk.professionalAdvice.point1': 'Seek independent financial advice',
   'legal.risk.professionalAdvice.point2': 'Start with a demo account to practice',
   'legal.risk.professionalAdvice.point3': 'Invest time in education before trading real money',
   'legal.risk.professionalAdvice.point4': 'Understand all features and risks of products you trade',
-
   'legal.risk.importantNotice.title': 'Important Notice',
   'legal.risk.importantNotice.content': 'By using our platform, you acknowledge that you have read, understood, and accepted this Risk Disclosure. You confirm that you are aware of the risks and that you are solely responsible for your trading decisions and any resulting losses.',
-
-  // Markets Page
   'markets.hero.badge': 'Global Markets',
   'markets.hero.title': 'Trade Global Markets',
   'markets.hero.subtitle': 'Access forex, cryptocurrencies, and commodities with competitive spreads and professional tools',
@@ -4956,31 +4229,25 @@ export const en = {
   'markets.aria.priceUp': 'Price up',
   'markets.aria.priceDown': 'Price down',
   'markets.aria.ctaSection': 'Start trading call to action',
-  
   'markets.forex.title': 'Forex',
   'markets.forex.description': 'Trade 50+ currency pairs with tight spreads and deep liquidity',
   'markets.forex.pairs': 'Currency Pairs',
   'markets.forex.spread': 'Spread from',
   'markets.forex.leverage': 'Leverage up to',
-  
   'markets.crypto.title': 'Cryptocurrencies',
   'markets.crypto.description': 'Trade Bitcoin, Ethereum, and 30+ cryptocurrencies 24/7',
   'markets.crypto.coins': 'Crypto Assets',
   'markets.crypto.availability': 'Trading Hours',
-  'markets.crypto.minDeposit': 'Min. Deposit',
-  
+  'markets.crypto.minDeposit': 'Min. deposit',
   'markets.commodities.title': 'Commodities',
   'markets.commodities.description': 'Trade gold, silver, oil, and other commodities with CFDs',
   'markets.commodities.products': 'Products',
   'markets.commodities.spread': 'Spread from',
   'markets.commodities.contract': 'Contract Type',
-  
   'markets.cta.title': 'Ready to Start Trading?',
   'markets.cta.subtitle': 'Open your account today and access global markets with professional trading tools',
   'markets.cta.button': 'Create Free Account',
   'markets.cta.compareAccounts': 'Compare Account Types',
-  
-  // Company Page
   'company.hero.badge': 'About Us',
   'company.hero.title': 'Trusted Trading Partner Since 2010',
   'company.hero.subtitle': 'Regulated, secure, and committed to transparency in everything we do',
@@ -4989,15 +4256,12 @@ export const en = {
   'company.aria.info': 'Company information',
   'company.aria.values': 'Company values',
   'company.aria.contact': 'Contact us call to action',
-  
   'company.stats.years': 'Years in Business',
   'company.stats.clients': 'Active Clients',
   'company.stats.countries': 'Countries Served',
   'company.stats.volume': 'Monthly Volume',
-  
   'company.info.title': 'Company Information',
   'company.info.subtitle': 'Learn more about our regulations, security measures, and commitment to excellence',
-  
   'company.links.regulatory.title': 'Regulation & Licensing',
   'company.links.regulatory.description': 'View our regulatory licenses and compliance information',
   'company.links.safety.title': 'Safety of Funds',
@@ -5010,7 +4274,6 @@ export const en = {
   'company.links.status.description': 'Real-time system status and uptime monitoring',
   'company.links.complaints.title': 'Complaints Procedure',
   'company.links.complaints.description': 'How to submit and resolve complaints',
-  
   'company.values.title': 'Our Core Values',
   'company.values.subtitle': 'The principles that guide everything we do',
   'company.values.transparency.title': 'Transparency',
@@ -5019,27 +4282,22 @@ export const en = {
   'company.values.security.description': 'Bank-level encryption and multi-layer security to protect your data and funds',
   'company.values.innovation.title': 'Innovation',
   'company.values.innovation.description': 'Cutting-edge technology and continuous platform improvements',
-  
   'company.cta.title': 'Have Questions?',
   'company.cta.subtitle': 'Our team is here to help you understand our services and get started',
   'company.cta.button': 'Contact Us',
   'company.cta.about': 'About Our Team',
   'company.learnMore': 'Learn More',
-  
-  // Security Page
   'security.title': 'Account Security',
   'security.subtitle': 'Manage your account security settings and password',
   'security.aria.enabled': 'Enabled',
   'security.aria.disabled': 'Disabled',
   'security.aria.toggle2FA': 'Toggle two-factor authentication',
-  
   'security.overview.title': 'Security Overview',
   'security.overview.subtitle': 'Current security status of your account',
   'security.overview.strongPassword': 'Strong Password',
   'security.overview.twoFactor': 'Two-Factor Authentication',
   'security.overview.active': 'Active',
   'security.overview.inactive': 'Inactive',
-  
   'security.password.title': 'Change Password',
   'security.password.subtitle': 'Update your account password regularly for better security',
   'security.password.currentLabel': 'Current Password',
@@ -5055,8 +4313,7 @@ export const en = {
   'security.password.errors.currentRequired': 'Current password is required',
   'security.password.errors.newMinLength': 'Password must be at least 8 characters',
   'security.password.errors.confirmRequired': 'Please confirm your password',
-  'security.password.errors.mismatch': "Passwords don't match",
-  
+  'security.password.errors.mismatch': 'Passwords don',
   'security.twoFactor.title': 'Two-Factor Authentication (2FA)',
   'security.twoFactor.subtitle': 'Add an extra layer of security to your account',
   'security.twoFactor.status': 'Authentication Status',
@@ -5070,7 +4327,6 @@ export const en = {
   'security.twoFactor.enabledMessage': 'Two-factor authentication has been enabled',
   'security.twoFactor.disabledTitle': '2FA Disabled',
   'security.twoFactor.disabledMessage': 'Two-factor authentication has been disabled',
-  
   'security.sessions.title': 'Active Sessions',
   'security.sessions.subtitle': 'Manage devices with access to your account',
   'security.sessions.currentDevice': 'This device - Current session',
