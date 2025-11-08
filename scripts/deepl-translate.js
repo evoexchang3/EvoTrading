@@ -35,36 +35,50 @@ const BASE_FEE = 5.49; // USD/month
 const translationsDir = path.join(__dirname, '..', 'client', 'src', 'translations');
 const progressFile = path.join(__dirname, 'translation-progress.json');
 
-// Language code mapping (DeepL format)
+// Language code mapping (i18n code -> DeepL API code)
+// All 35 DeepL-supported languages as of 2025
 const LANGUAGE_MAP = {
-  'zh-CN': 'ZH', // Chinese (simplified)
-  'ja': 'JA',
-  'de': 'DE',
-  'fr': 'FR',
-  'es': 'ES',
-  'ar': 'AR',
-  'ru': 'RU',
-  // Phase 2 languages (40+ total)
-  'pt': 'PT-PT', // Portuguese
-  'it': 'IT',
-  'nl': 'NL',
-  'pl': 'PL',
-  'tr': 'TR',
-  'ko': 'KO',
-  'sv': 'SV',
-  'da': 'DA',
-  'fi': 'FI',
-  'no': 'NB', // Norwegian
-  'cs': 'CS',
-  'ro': 'RO',
-  'hu': 'HU',
-  'el': 'EL',
-  'bg': 'BG',
-  'uk': 'UK',
-  'id': 'ID',
-  'th': 'TH',
-  'vi': 'VI',
-  'hi': 'HI', // Hindi (if available)
+  // Tier 0 - Existing (8 languages)
+  'zh-CN': 'ZH',     // Chinese Simplified
+  'ja': 'JA',        // Japanese
+  'de': 'DE',        // German
+  'fr': 'FR',        // French
+  'es': 'ES',        // Spanish
+  'ar': 'AR',        // Arabic
+  'ru': 'RU',        // Russian
+  
+  // Tier 1 - High Priority Markets (11 languages)
+  'it': 'IT',        // Italian
+  'nl': 'NL',        // Dutch
+  'pl': 'PL',        // Polish
+  'pt-BR': 'PT-BR',  // Portuguese (Brazilian)
+  'pt-PT': 'PT-PT',  // Portuguese (European)
+  'ko': 'KO',        // Korean
+  'tr': 'TR',        // Turkish
+  'he': 'HE',        // Hebrew (RTL)
+  'vi': 'VI',        // Vietnamese
+  'zh-TW': 'ZH-HANT',// Chinese Traditional
+  'en-GB': 'EN-GB',  // English (British)
+  
+  // Tier 2 - European Expansion (9 languages)
+  'sv': 'SV',        // Swedish
+  'da': 'DA',        // Danish
+  'fi': 'FI',        // Finnish
+  'nb': 'NB',        // Norwegian Bokmål
+  'cs': 'CS',        // Czech
+  'ro': 'RO',        // Romanian
+  'hu': 'HU',        // Hungarian
+  'el': 'EL',        // Greek
+  'bg': 'BG',        // Bulgarian
+  
+  // Tier 3 - Emerging Markets (7 languages)
+  'uk': 'UK',        // Ukrainian
+  'id': 'ID',        // Indonesian
+  'et': 'ET',        // Estonian
+  'lt': 'LT',        // Lithuanian
+  'lv': 'LV',        // Latvian
+  'sk': 'SK',        // Slovak
+  'sl': 'SL',        // Slovenian
 };
 
 // Initialize DeepL translator

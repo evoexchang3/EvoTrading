@@ -16,19 +16,25 @@ const __dirname = path.dirname(__filename);
 const DEEPL_API_KEY = process.env.DEEPL_API_KEY;
 const RETRY_DELAY = 2000; // 2 seconds between translations
 
-// Language code mapping
+// Language code mapping (i18n code -> DeepL API code) - All 35 languages
 const DEEPL_LANG_MAP = {
-  'pt': 'pt-PT', // Portuguese
-  'it': 'it',    // Italian
-  'nl': 'nl',    // Dutch
-  'pl': 'pl',    // Polish
-  'zh-CN': 'zh', // Chinese Simplified
-  'ja': 'ja',    // Japanese
-  'de': 'de',    // German
-  'fr': 'fr',    // French
-  'es': 'es',    // Spanish
-  'ar': 'ar',    // Arabic
-  'ru': 'ru',    // Russian
+  // Tier 0 - Existing
+  'zh-CN': 'ZH',     'ja': 'JA',        'de': 'DE',        'fr': 'FR',
+  'es': 'ES',        'ar': 'AR',        'ru': 'RU',
+  
+  // Tier 1 - High Priority
+  'it': 'IT',        'nl': 'NL',        'pl': 'PL',        'pt-BR': 'PT-BR',
+  'pt-PT': 'PT-PT',  'ko': 'KO',        'tr': 'TR',        'he': 'HE',
+  'vi': 'VI',        'zh-TW': 'ZH-HANT','en-GB': 'EN-GB',
+  
+  // Tier 2 - European
+  'sv': 'SV',        'da': 'DA',        'fi': 'FI',        'nb': 'NB',
+  'cs': 'CS',        'ro': 'RO',        'hu': 'HU',        'el': 'EL',
+  'bg': 'BG',
+  
+  // Tier 3 - Emerging
+  'uk': 'UK',        'id': 'ID',        'et': 'ET',        'lt': 'LT',
+  'lv': 'LV',        'sk': 'SK',        'sl': 'SL',
 };
 
 async function fixTruncatedTranslations(langCode) {
