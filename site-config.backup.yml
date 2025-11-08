@@ -39,8 +39,16 @@ branding:
     pt:
       companyName: ''
       supportEmail: ''
+  legalEntity:
+    registeredName: ''
+    registrationNumber: ''
+    registeredAddress: ''
+    jurisdiction: ''
+  licenses: []
+  locations: []
+  team: []
 layout:
-  activeVariant: sapphire-finance
+  activeVariant: emerald-trader
   stickyHeader: true
   showFooter: true
   compactMode: false
@@ -120,9 +128,6 @@ advanced:
   experimental:
     customThemeEditor: false
     advancedLayoutBuilder: false
-
-# NEW: Extended Configuration Categories
-
 tradingSettings:
   marketHours:
     forex:
@@ -155,7 +160,6 @@ tradingSettings:
     stopOutLevel: 50
     allowNegativeBalance: false
     maxDrawdownAlert: 20
-
 accountSettings:
   registration:
     requireEmailVerification: true
@@ -211,7 +215,6 @@ accountSettings:
       - 270
       - 330
     autoCloseAfterDays: 730
-
 funding:
   deposits:
     minAmounts:
@@ -241,12 +244,11 @@ funding:
       bankTransfer: 0
       card: 2.5
       crypto: 0
-      ewallet: 1.0
+      ewallet: 1
     verification:
       requireKYC: true
       requirePhoneOTP: true
       manualReviewThreshold: 5000
-
 promotions:
   welcomeBonus:
     enabled: true
@@ -281,7 +283,6 @@ promotions:
           - vip_support
           - no_commission
           - free_withdrawals
-
 platformFeatures:
   tradingTools:
     economicCalendar: true
@@ -307,7 +308,6 @@ platformFeatures:
     taxReporting: true
     exportData: true
     apiAccess: false
-
 communications:
   supportChannels:
     liveChat:
@@ -357,7 +357,6 @@ communications:
       enabled: false
       message: Platform under maintenance
       allowedIPs: []
-
 compliance:
   riskWarnings:
     enabled: true
@@ -386,7 +385,6 @@ compliance:
     depositLimitsAvailable: true
     realityChecks: true
     coolingOffPeriod: true
-
 technical:
   api:
     enabled: false
@@ -422,7 +420,6 @@ technical:
       provider: ''
     compression:
       enabled: true
-
 regional:
   currencies:
     base: USD
@@ -449,7 +446,6 @@ regional:
       enabled: true
       name: SIPC
       coverage: 500000
-
 demoAccounts:
   enabled: true
   settings:
