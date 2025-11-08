@@ -89,7 +89,8 @@ const translator = new deepl.Translator(DEEPL_API_KEY);
  */
 function extractKeys(content) {
   const keys = [];
-  const keyValueRegex = /['"]([^'"]+)['"]\s*:\s*['"]([^'"]*(?:\\'[^'"]*)*)['"]/g;
+  // Match both single/double quotes AND backticks for values
+  const keyValueRegex = /['"]([^'"]+)['"]\s*:\s*(?:['"`])([^'"`]*(?:\\['"`][^'"`]*)*)(?:['"`])/g;
   let match;
   
   while ((match = keyValueRegex.exec(content)) !== null) {
@@ -254,8 +255,9 @@ function saveTruncatedKeys(langCode, truncatedKeys) {
  * Escape special characters for TypeScript strings
  */
 function escapeForTypeScript(text) {
-  // Only escape single quotes, DeepL already handles other escaping
-  return text.replace(/'/g, "\\'");
+  // First unescape any existing escaped quotes to avoid double-escaping,
+  // then escape properly for JavaScript single-quoted strings
+  return text.replace(/\\'/g, "'").replace(/'/g, "\\'");
 }
 
 /**
@@ -358,6 +360,7 @@ async function main() {
   const targetLanguages = args.length > 0 ? args : Object.keys(LANGUAGE_MAP);
   const estimateOnly = args.includes('--estimate');
   const skipConfirmation = args.includes('--yes') || args.includes('-y');
+  const forceFull = args.includes('--force-full');
   
   console.log('🌍 DeepL Translation Automation\n');
   console.log('═'.repeat(60));
@@ -385,7 +388,7 @@ async function main() {
   const jobs = [];
   
   for (const langCode of targetLanguages) {
-    if (langCode === '--estimate' || langCode === '--yes' || langCode === '-y') continue;
+    if (langCode === '--estimate' || langCode === '--yes' || langCode === '-y' || langCode === '--force-full') continue;
     
     const deeplLang = LANGUAGE_MAP[langCode];
     if (!deeplLang) {
@@ -395,7 +398,7 @@ async function main() {
     
     console.log(`\n🔍 Analyzing ${langCode}...`);
     
-    const existingKeys = loadTranslationKeys(langCode);
+    const existingKeys = forceFull ? new Set() : loadTranslationKeys(langCode);
     const missingKeys = enKeys.filter(item => !existingKeys.has(item.key));
     
     if (missingKeys.length === 0) {
@@ -440,6 +443,12 @@ async function main() {
   if (estimateOnly) {
     console.log('💡 Estimate only mode. Use without --estimate to translate.\n');
     return;
+  }
+  
+  // Warning for force-full mode
+  if (forceFull && jobs.length > 0) {
+    console.log('⚠️  WARNING: --force-full mode enabled!');
+    console.log(`   This will RETRANSLATE ALL ${jobs.reduce((sum, j) => sum + j.missingKeys.length, 0)} KEYS, not just missing ones.\n`);
   }
   
   // Confirm before proceeding

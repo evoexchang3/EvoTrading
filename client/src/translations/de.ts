@@ -1876,15 +1876,15 @@ export const de = {
   'education.glossary.faq.title': 'Häufig gestellte Fragen',
   'education.glossary.faq.description': 'Häufige Fragen zur Handelsterminologie',
   'education.glossary.faq.q1.question': 'Wie kann ich dieses Glossar am besten nutzen, um mein Handelswissen zu verbessern?',
-  'education.glossary.faq.q1.answer': 'Beginnen Sie damit, die Kategorie \'Grundlagen\' durchzulesen, um eine solide Basis aufzubauen. Wenn Sie während Ihres Studiums oder Handels auf einen neuen Begriff stoßen, suchen Sie hier danach. Wir empfehlen, täglich 5-10 Begriffe zu lesen und zu versuchen, sie im Kontext zu verwenden. Die Schwierigkeitsstufen helfen Ihnen, systematisch von Anfänger- zu fortgeschrittener Terminologie fortzuschreiten.',
+  'education.glossary.faq.q1.answer': 'Beginnen Sie damit, die Kategorie 'Grundlagen' durchzulesen, um eine solide Basis aufzubauen. Wenn Sie während Ihres Studiums oder Handels auf einen neuen Begriff stoßen, suchen Sie hier danach. Wir empfehlen, täglich 5-10 Begriffe zu lesen und zu versuchen, sie im Kontext zu verwenden. Die Schwierigkeitsstufen helfen Ihnen, systematisch von Anfänger- zu fortgeschrittener Terminologie fortzuschreiten.',
   'education.glossary.faq.q2.question': 'Was ist der Unterschied zwischen Anfänger-, Fortgeschrittenen- und Expertenbegriffen?',
   'education.glossary.faq.q2.answer': 'Anfängerbegriffe sind grundlegende Konzepte, die jeder Händler vor seinem ersten Trade kennen muss (Pip, Spread, Leverage). Fortgeschrittenenbegriffe werden von aktiven Händlern verwendet, die Positionen verwalten (Drawdown, Korrelation, Pivot-Punkte). Expertenbegriffe beinhalten professionelle Konzepte und institutionelle Strategien (Order Flow, Smart Money, harmonische Muster).',
   'education.glossary.faq.q3.question': 'Warum haben einige Begriffe mehrere Definitionen oder scheinen widersprüchlich?',
-  'education.glossary.faq.q3.answer': 'Die Handelsterminologie kann je nach Kontext oder Region variieren. Zum Beispiel hat \'Lot\' eine spezifische Bedeutung (100.000 Einheiten), aber einige Broker verwenden es anders. Wir bieten die am weitesten akzeptierten Definitionen mit Kontext. Im Zweifelsfall überprüfen Sie immer die spezifische Terminologie Ihres Brokers.',
+  'education.glossary.faq.q3.answer': 'Die Handelsterminologie kann je nach Kontext oder Region variieren. Zum Beispiel hat 'Lot' eine spezifische Bedeutung (100.000 Einheiten), aber einige Broker verwenden es anders. Wir bieten die am weitesten akzeptierten Definitionen mit Kontext. Im Zweifelsfall überprüfen Sie immer die spezifische Terminologie Ihres Brokers.',
   'education.glossary.faq.q4.question': 'Sollte ich alle diese Begriffe auswendig lernen, bevor ich mit dem Handel beginne?',
   'education.glossary.faq.q4.answer': 'Nein, Auswendiglernen ist nicht notwendig. Konzentrieren Sie sich zunächst darauf, 15-20 Kern-Anfängerbegriffe zu verstehen (Pip, Lot, Leverage, Margin, Stop Loss, Unterstützung/Widerstand). Lernen Sie zusätzliche Begriffe schrittweise, wenn Sie ihnen in Kursen oder beim Handel begegnen. Das Verständnis von Kontext und praktischer Anwendung ist wichtiger als Auswendiglernen.',
   'education.glossary.faq.q5.question': 'Wie oft wird dieses Glossar mit neuen Handelsbegriffen aktualisiert?',
-  'education.glossary.faq.q5.answer': 'Wir aktualisieren das Glossar monatlich, um aufkommende Handelskonzepte, neue Strategien und sich entwickelnde Marktterminologie einzubeziehen. Zu den jüngsten Ergänzungen gehören Smart-Money-Konzepte, institutioneller Order Flow und moderne algorithmische Handelsbegriffe. Folgen Sie dem Abschnitt \'Kürzlich hinzugefügt\', um auf dem Laufenden zu bleiben.',
+  'education.glossary.faq.q5.answer': 'Wir aktualisieren das Glossar monatlich, um aufkommende Handelskonzepte, neue Strategien und sich entwickelnde Marktterminologie einzubeziehen. Zu den jüngsten Ergänzungen gehören Smart-Money-Konzepte, institutioneller Order Flow und moderne algorithmische Handelsbegriffe. Folgen Sie dem Abschnitt 'Kürzlich hinzugefügt', um auf dem Laufenden zu bleiben.',
   'education.glossary.faq.q6.question': 'Gibt es Begriffe, die spezifisch für Forex sind und sich vom Aktienhandel unterscheiden?',
   'education.glossary.faq.q6.answer': 'Ja, mehrere Begriffe sind spezifisch für Forex: Pips (statt Ticks/Punkte), Lots (standardisierte Forex-Positionsgröße), Swap/Rollover (Übernachtzinsen) und Währungspaar-Notation (EUR/USD vs. Aktiensymbole). Viele Begriffe der technischen Analyse und des Risikomanagements gelten jedoch für alle Märkte.',
   'education.glossary.faq.q7.question': 'Kann ich neue Begriffe vorschlagen, die dem Glossar hinzugefügt werden sollen?',
@@ -1907,7 +1907,7 @@ export const de = {
   'education.glossary.terms.spread.difficulty': 'Anfänger',
 
   'education.glossary.terms.pip.term': 'Pip',
-  'education.glossary.terms.pip.definition': 'Die kleinste Preisbewegung bei einem Währungspaar, typischerweise 0,0001 für die meisten Paare (oder 0,01 für JPY-Paare). Steht für \'percentage in point\' oder \'price interest point\'.',
+  'education.glossary.terms.pip.definition': 'Die kleinste Preisbewegung bei einem Währungspaar, typischerweise 0,0001 für die meisten Paare (oder 0,01 für JPY-Paare). Steht für 'percentage in point' oder 'price interest point'.',
   'education.glossary.terms.pip.category': 'Grundlagen',
   'education.glossary.terms.pip.difficulty': 'Anfänger',
 
@@ -1937,12 +1937,12 @@ export const de = {
   'education.glossary.terms.takeProfit.difficulty': 'Anfänger',
 
   'education.glossary.terms.longPosition.term': 'Long-Position',
-  'education.glossary.terms.longPosition.definition': 'Kauf eines Währungspaares mit der Erwartung, dass sein Preis steigen wird. \'Long gehen\' bedeutet, dass Sie profitieren, wenn der Preis steigt.',
+  'education.glossary.terms.longPosition.definition': 'Kauf eines Währungspaares mit der Erwartung, dass sein Preis steigen wird. 'Long gehen' bedeutet, dass Sie profitieren, wenn der Preis steigt.',
   'education.glossary.terms.longPosition.category': 'Handel',
   'education.glossary.terms.longPosition.difficulty': 'Anfänger',
 
   'education.glossary.terms.shortPosition.term': 'Short-Position',
-  'education.glossary.terms.shortPosition.definition': 'Verkauf eines Währungspaares mit der Erwartung, dass sein Preis fallen wird. \'Short gehen\' bedeutet, dass Sie profitieren, wenn der Preis fällt.',
+  'education.glossary.terms.shortPosition.definition': 'Verkauf eines Währungspaares mit der Erwartung, dass sein Preis fallen wird. 'Short gehen' bedeutet, dass Sie profitieren, wenn der Preis fällt.',
   'education.glossary.terms.shortPosition.category': 'Handel',
   'education.glossary.terms.shortPosition.difficulty': 'Anfänger',
 
@@ -1972,7 +1972,7 @@ export const de = {
   'education.glossary.terms.candlestick.difficulty': 'Anfänger',
 
   'education.glossary.terms.trend.term': 'Trend',
-  'education.glossary.terms.trend.definition': 'Die allgemeine Richtung der Preisbewegung: Aufwärtstrend (höhere Hochs/Tiefs), Abwärtstrend (niedrigere Hochs/Tiefs) oder seitwärts (Range). \'Der Trend ist dein Freund\' ist eine gängige Handelsweisheit.',
+  'education.glossary.terms.trend.definition': 'Die allgemeine Richtung der Preisbewegung: Aufwärtstrend (höhere Hochs/Tiefs), Abwärtstrend (niedrigere Hochs/Tiefs) oder seitwärts (Range). 'Der Trend ist dein Freund' ist eine gängige Handelsweisheit.',
   'education.glossary.terms.trend.category': 'Technisch',
   'education.glossary.terms.trend.difficulty': 'Anfänger',
 
