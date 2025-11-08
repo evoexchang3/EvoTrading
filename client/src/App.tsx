@@ -71,6 +71,7 @@ import SafetyOfFundsPage from "@/pages/company/SafetyOfFundsPage";
 import ComplaintsPage from "@/pages/company/ComplaintsPage";
 import PlatformStatusPage from "@/pages/company/PlatformStatusPage";
 import SecurityPageCompany from "@/pages/company/SecurityPage";
+import LocationsPage from "@/pages/company/LocationsPage";
 
 // Admin Pages
 import AdminConfigPage from "@/pages/admin/AdminConfigPage";
@@ -112,6 +113,7 @@ function AppRoutes() {
       {/* Company Pages */}
       <Route path="/company/rates" component={RatesPage} />
       <Route path="/company/regulatory" component={RegulatoryPage} />
+      <Route path="/company/locations" component={LocationsPage} />
       <Route path="/company/safety-of-funds" component={SafetyOfFundsPage} />
       <Route path="/company/complaints" component={ComplaintsPage} />
       <Route path="/company/platform-status" component={PlatformStatusPage} />

@@ -2,6 +2,8 @@ import { LandingLayout } from "@/components/LandingLayout";
 import { Shield, TrendingUp, Users, Globe2, Award, Target } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useSiteConfig } from "@/contexts/SiteConfigContext";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   VariantSection,
   VariantContainer,
@@ -18,6 +20,9 @@ import {
 
 export default function AboutPage() {
   const { t } = useLanguage();
+  const { config } = useSiteConfig();
+
+  const teamMembers = config.branding?.team || [];
   
   const values = [
     {
@@ -182,19 +187,55 @@ export default function AboutPage() {
 
       <VariantSection background="muted">
         <VariantContainer>
-          <div className="text-center">
+          <div className="text-center mb-12">
             <VariantHeading level="heading" data-testid="text-team-title">
               {t("about.team.title")}
             </VariantHeading>
-            <VariantText className="max-w-2xl mx-auto mb-6">
+            <VariantText className="max-w-2xl mx-auto">
               {t("about.team.subtitle")}
             </VariantText>
-            <div className="max-w-4xl mx-auto">
-              <VariantText className="text-center">
+          </div>
+
+          {teamMembers.length > 0 ? (
+            <VariantGrid>
+              {teamMembers.map((member, index) => {
+                const initials = member.name
+                  .split(' ')
+                  .map(n => n[0])
+                  .join('')
+                  .toUpperCase()
+                  .slice(0, 2);
+
+                return (
+                  <VariantCard key={index} data-testid={`card-team-${index}`}>
+                    <CardHeader>
+                      <div className="flex flex-col items-center text-center">
+                        <Avatar className="w-24 h-24 mb-4">
+                          {member.photo && <AvatarImage src={member.photo} alt={member.name} />}
+                          <AvatarFallback>{initials}</AvatarFallback>
+                        </Avatar>
+                        <CardTitle data-testid={`text-team-name-${index}`}>{member.name}</CardTitle>
+                        <CardDescription data-testid={`text-team-role-${index}`}>{member.role}</CardDescription>
+                      </div>
+                    </CardHeader>
+                    {member.bio && (
+                      <CardContent>
+                        <VariantText className="text-center text-sm" data-testid={`text-team-bio-${index}`}>
+                          {member.bio}
+                        </VariantText>
+                      </CardContent>
+                    )}
+                  </VariantCard>
+                );
+              })}
+            </VariantGrid>
+          ) : (
+            <div className="max-w-4xl mx-auto text-center">
+              <VariantText>
                 {t("about.team.description")}
               </VariantText>
             </div>
-          </div>
+          )}
         </VariantContainer>
       </VariantSection>
     </LandingLayout>
