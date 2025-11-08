@@ -58,61 +58,35 @@ export interface BrandingConfig {
     };
   };
   
-  // NEW: Phase 4 - Extended Branding
+  // NEW: Phase 4 - Extended Branding (simplified for admin UI)
   legalEntity?: {
-    registeredName: string;
-    registrationNumber: string;
-    jurisdiction: string;
-    registeredAddress: {
-      street: string;
-      city: string;
-      state: string;
-      postalCode: string;
-      country: string;
-    };
-    taxId?: string;
-    incorporationDate?: string;
+    registeredName?: string;
+    registrationNumber?: string;
+    registeredAddress?: string;
+    jurisdiction?: string;
   };
   
   locations?: Array<{
-    id: string;
-    type: 'headquarters' | 'office' | 'branch';
     name: string;
-    address: {
-      street: string;
-      city: string;
-      state: string;
-      postalCode: string;
-      country: string;
-    };
+    type: 'headquarters' | 'branch' | 'representative';
+    address: string;
     phone?: string;
     email?: string;
-    timezone?: string;
-    isDefault: boolean;
   }>;
   
   licenses?: Array<{
-    id: string;
-    enabled: boolean;
-    jurisdiction: string;
+    authority: string;
     licenseNumber: string;
-    regulatoryBody: string;
-    licenseType: string;
-    issueDate: string;
+    status: 'active' | 'pending' | 'suspended';
+    issueDate?: string;
     expiryDate?: string;
-    status: 'active' | 'pending' | 'suspended' | 'expired';
-    documentUrl?: string;
   }>;
   
   team?: Array<{
-    id: string;
     name: string;
-    title: string;
+    role: string;
     bio?: string;
-    photoUrl?: string;
-    linkedIn?: string;
-    email?: string;
-    displayOrder: number;
+    photo?: string;
   }>;
 }
 
@@ -608,76 +582,44 @@ export const DEFAULT_SITE_CONFIG: ExtendedSiteConfig = {
     legalEntity: {
       registeredName: 'Trading Platform Inc.',
       registrationNumber: 'TP123456789',
-      jurisdiction: 'Delaware, USA',
-      registeredAddress: {
-        street: '123 Financial District',
-        city: 'New York',
-        state: 'NY',
-        postalCode: '10004',
-        country: 'United States'
-      },
-      taxId: 'US-TAX-123456',
-      incorporationDate: '2020-01-15'
+      registeredAddress: '123 Financial District, New York, NY 10004, United States',
+      jurisdiction: 'Delaware, USA'
     },
     locations: [
       {
-        id: 'loc-hq-1',
-        type: 'headquarters' as const,
         name: 'Global Headquarters',
-        address: {
-          street: '123 Financial District',
-          city: 'New York',
-          state: 'NY',
-          postalCode: '10004',
-          country: 'United States'
-        },
+        type: 'headquarters' as const,
+        address: '123 Financial District, New York, NY 10004, United States',
         phone: '+1-800-TRADE-00',
-        email: 'headquarters@tradingplatform.com',
-        timezone: 'America/New_York',
-        isDefault: true
+        email: 'headquarters@tradingplatform.com'
       }
     ],
     licenses: [
       {
-        id: 'lic-us-sec-1',
-        enabled: true,
-        jurisdiction: 'United States',
+        authority: 'U.S. Securities and Exchange Commission (SEC)',
         licenseNumber: 'SEC-2020-12345',
-        regulatoryBody: 'U.S. Securities and Exchange Commission (SEC)',
-        licenseType: 'Broker-Dealer',
-        issueDate: '2020-03-01',
-        expiryDate: '2030-03-01',
         status: 'active' as const,
-        documentUrl: '/documents/licenses/sec-license.pdf'
+        issueDate: '2020-03-01',
+        expiryDate: '2030-03-01'
       },
       {
-        id: 'lic-uk-fca-1',
-        enabled: false,
-        jurisdiction: 'United Kingdom',
+        authority: 'Financial Conduct Authority (FCA)',
         licenseNumber: 'FCA-UK-987654',
-        regulatoryBody: 'Financial Conduct Authority (FCA)',
-        licenseType: 'Investment Services',
-        issueDate: '2021-06-15',
-        status: 'pending' as const
+        status: 'pending' as const,
+        issueDate: '2021-06-15'
       }
     ],
     team: [
       {
-        id: 'team-ceo-1',
         name: 'John Smith',
-        title: 'Chief Executive Officer',
+        role: 'Chief Executive Officer',
         bio: 'John has over 20 years of experience in financial markets and fintech.',
-        photoUrl: '/team/john-smith.jpg',
-        linkedIn: 'https://linkedin.com/in/johnsmith',
-        email: 'john.smith@tradingplatform.com',
-        displayOrder: 1
+        photo: '/team/john-smith.jpg'
       },
       {
-        id: 'team-cfo-1',
         name: 'Jane Doe',
-        title: 'Chief Financial Officer',
-        bio: 'Jane brings extensive expertise in financial operations and regulatory compliance.',
-        displayOrder: 2
+        role: 'Chief Financial Officer',
+        bio: 'Jane brings extensive expertise in financial operations and regulatory compliance.'
       }
     ]
   },

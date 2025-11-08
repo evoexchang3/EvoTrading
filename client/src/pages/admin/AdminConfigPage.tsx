@@ -12,9 +12,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Save, RefreshCw, Eye, AlertCircle, Settings, DollarSign, Award, Shield } from "lucide-react";
+import { Save, RefreshCw, Eye, AlertCircle, Settings, DollarSign, Award, Shield, Building2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { VariantPreviewCard } from "@/components/admin/VariantPreviewCard";
+import { LicenseManager } from "@/components/admin/LicenseManager";
+import { LocationManager } from "@/components/admin/LocationManager";
+import { TeamManager } from "@/components/admin/TeamManager";
 
 const layoutVariants = [
   { value: "bloomberg-dark", label: "Bloomberg Dark", description: "Professional charcoal with blue accents" },
@@ -71,7 +74,34 @@ export default function AdminConfigPage() {
       ewallets: { enabled: true },
       crypto: { enabled: true }
     },
-    languageOverrides: {} as Record<string, { companyName: string; supportEmail: string }>,
+    languageOverrides: {} as Record<string, { companyName?: string; supportEmail?: string }>,
+    // Extended branding fields
+    legalEntity: {
+      registeredName: "" as string | undefined,
+      registrationNumber: "" as string | undefined,
+      registeredAddress: "" as string | undefined,
+      jurisdiction: "" as string | undefined
+    },
+    licenses: [] as Array<{
+      authority: string;
+      licenseNumber: string;
+      status: 'active' | 'pending' | 'suspended';
+      issueDate?: string;
+      expiryDate?: string;
+    }>,
+    locations: [] as Array<{
+      name: string;
+      type: 'headquarters' | 'branch' | 'representative';
+      address: string;
+      phone?: string;
+      email?: string;
+    }>,
+    team: [] as Array<{
+      name: string;
+      role: string;
+      bio?: string;
+      photo?: string;
+    }>,
     // Advanced config state
     advanced: {
       hedgingAllowed: true,
@@ -119,6 +149,15 @@ export default function AdminConfigPage() {
           crypto: { enabled: config.features.paymentMethods.crypto.enabled }
         },
         languageOverrides: config.branding.languageOverrides || {},
+        legalEntity: {
+          registeredName: config.branding.legalEntity?.registeredName || "",
+          registrationNumber: config.branding.legalEntity?.registrationNumber || "",
+          registeredAddress: config.branding.legalEntity?.registeredAddress || "",
+          jurisdiction: config.branding.legalEntity?.jurisdiction || ""
+        },
+        licenses: config.branding.licenses || [],
+        locations: config.branding.locations || [],
+        team: config.branding.team || [],
         advanced: {
           hedgingAllowed: config.tradingSettings?.restrictions?.hedgingAllowed ?? true,
           scalpingAllowed: config.tradingSettings?.restrictions?.scalping?.allowed ?? true,
@@ -162,7 +201,11 @@ export default function AdminConfigPage() {
           ...config.branding,
           companyName: formData.companyName,
           supportEmail: formData.supportEmail,
-          languageOverrides: formData.languageOverrides
+          languageOverrides: formData.languageOverrides,
+          legalEntity: formData.legalEntity,
+          licenses: formData.licenses,
+          locations: formData.locations,
+          team: formData.team
         },
         layout: {
           ...config.layout,
@@ -395,6 +438,125 @@ export default function AdminConfigPage() {
                   data-testid="input-support-email"
                 />
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Legal Entity */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <Building2 className="h-5 w-5" />
+                <div>
+                  <CardTitle>Legal Entity</CardTitle>
+                  <CardDescription>
+                    Company registration and legal information
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="registeredName">Registered Name</Label>
+                  <Input
+                    id="registeredName"
+                    value={formData.legalEntity.registeredName}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      legalEntity: { ...formData.legalEntity, registeredName: e.target.value }
+                    })}
+                    placeholder="Trading Platform Ltd."
+                    data-testid="input-registered-name"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="registrationNumber">Registration Number</Label>
+                  <Input
+                    id="registrationNumber"
+                    value={formData.legalEntity.registrationNumber}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      legalEntity: { ...formData.legalEntity, registrationNumber: e.target.value }
+                    })}
+                    placeholder="12345678"
+                    data-testid="input-registration-number"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="registeredAddress">Registered Address</Label>
+                  <Input
+                    id="registeredAddress"
+                    value={formData.legalEntity.registeredAddress}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      legalEntity: { ...formData.legalEntity, registeredAddress: e.target.value }
+                    })}
+                    placeholder="123 Business Street, City, Country"
+                    data-testid="input-registered-address"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="jurisdiction">Jurisdiction</Label>
+                  <Input
+                    id="jurisdiction"
+                    value={formData.legalEntity.jurisdiction}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      legalEntity: { ...formData.legalEntity, jurisdiction: e.target.value }
+                    })}
+                    placeholder="United Kingdom"
+                    data-testid="input-jurisdiction"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Licenses */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Regulatory Licenses</CardTitle>
+              <CardDescription>
+                Manage regulatory licenses and authorizations
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <LicenseManager
+                licenses={formData.licenses}
+                onChange={(licenses) => setFormData({ ...formData, licenses })}
+              />
+            </CardContent>
+          </Card>
+
+          {/* Locations */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Office Locations</CardTitle>
+              <CardDescription>
+                Manage headquarters and branch offices
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <LocationManager
+                locations={formData.locations}
+                onChange={(locations) => setFormData({ ...formData, locations })}
+              />
+            </CardContent>
+          </Card>
+
+          {/* Team */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Team Members</CardTitle>
+              <CardDescription>
+                Manage leadership and key team members
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <TeamManager
+                team={formData.team}
+                onChange={(team) => setFormData({ ...formData, team })}
+              />
             </CardContent>
           </Card>
         </TabsContent>

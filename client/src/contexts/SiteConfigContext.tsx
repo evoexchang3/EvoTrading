@@ -1,7 +1,12 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import type { ExtendedSiteConfig } from '@/../../shared/site-config';
+import { DEFAULT_SITE_CONFIG } from '@/../../shared/site-config';
 
-// Site Configuration Type
-export interface SiteConfig {
+// Re-export for backwards compatibility
+export type SiteConfig = ExtendedSiteConfig;
+
+// Legacy type definition (deprecated - kept for reference only)
+interface LegacySiteConfig {
   version: string;
   branding: {
     companyName: string;
@@ -93,7 +98,10 @@ export interface SiteConfig {
 }
 
 // Default configuration (fallback if API fails)
-const defaultConfig: SiteConfig = {
+const defaultConfig: SiteConfig = DEFAULT_SITE_CONFIG as SiteConfig;
+
+// Legacy default (deprecated - reference only)
+const legacyDefault = {
   version: '1.0.0',
   branding: {
     companyName: 'Trading Platform',
