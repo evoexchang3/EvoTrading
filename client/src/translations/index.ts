@@ -142,7 +142,7 @@ export const languageNames: Record<Language, { native: string; rtl?: boolean }> 
 
 export const validLanguages: Language[] = [
   'en', 'en-GB', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'ar', 'ru',
-  'it', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ko', 'tr', 'he', 'vi',
+  'it', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ko', 'he', 'vi',
   'sv', 'da', 'fi', 'nb', 'cs', 'ro', 'hu', 'el', 'bg',
   'uk', 'id', 'et', 'lt', 'lv', 'sk', 'sl'
 ];

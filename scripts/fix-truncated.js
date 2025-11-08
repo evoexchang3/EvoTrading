@@ -142,21 +142,22 @@ async function fixTruncatedTranslations(langCode) {
   for (const { key, translated, success } of allResults) {
     if (!success || !translated) continue;
     
-    // Escape special characters for TypeScript string
+    // Escape special characters for TypeScript double-quoted string
+    // Using double quotes eliminates need to escape apostrophes
     const escaped = translated
       .replace(/\\/g, '\\\\')
-      .replace(/'/g, "\\'")
+      .replace(/"/g, '\\"')
       .replace(/\n/g, '\\n')
       .replace(/\r/g, '\\r')
       .replace(/\t/g, '\\t');
     
-    // Find and replace the [INCOMPLETE] placeholder
+    // Find and replace the [INCOMPLETE] placeholder (supports both single and double quotes)
     const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const searchPattern = new RegExp(
-      `^(\\s*'${escapedKey}':\\s*')\\[INCOMPLETE\\][\\s\\S]*?'(,?)$`,
+      `^(\\s*["']${escapedKey}["']:\\s*")\\[INCOMPLETE\\][\\s\\S]*?"(,?)$`,
       'gm'
     );
-    const replacement = `$1${escaped}'$2`;
+    const replacement = `$1${escaped}"$2`;
     
     const beforeLength = fileContent.length;
     fileContent = fileContent.replace(searchPattern, replacement);

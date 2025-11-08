@@ -252,12 +252,13 @@ function saveTruncatedKeys(langCode, truncatedKeys) {
 }
 
 /**
- * Escape special characters for TypeScript strings
+ * Escape special characters for TypeScript double-quoted strings
+ * Using double quotes eliminates need to escape apostrophes
  */
 function escapeForTypeScript(text) {
-  // First unescape any existing escaped quotes to avoid double-escaping,
-  // then escape properly for JavaScript single-quoted strings
-  return text.replace(/\\'/g, "'").replace(/'/g, "\\'");
+  // Escape only double quotes and backslashes for double-quoted strings
+  // Apostrophes don't need escaping in double-quoted strings
+  return text.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
 }
 
 /**
@@ -283,7 +284,7 @@ function writeTranslations(langCode, translations, existingKeys) {
     for (const [key, value] of translations) {
       if (!existingKeys.has(key)) {
         const escapedValue = escapeForTypeScript(value);
-        newTranslations += `  '${key}': '${escapedValue}',\n`;
+        newTranslations += `  "${key}": "${escapedValue}",\n`;
       }
     }
     
@@ -297,7 +298,7 @@ function writeTranslations(langCode, translations, existingKeys) {
     
     for (const [key, value] of translations) {
       const escapedValue = escapeForTypeScript(value);
-      content += `  '${key}': '${escapedValue}',\n`;
+      content += `  "${key}": "${escapedValue}",\n`;
     }
     
     content += '};\n';
