@@ -3463,7 +3463,7 @@ export const ko = {
   'company.safetyOfFunds.faq.q4.question': 'What\\',
   'company.safetyOfFunds.faq.q4.answer': '분리 예금은 첫 번째 방어선으로, 회원님의 자금이 회사 자금과 분리되어 보호되는 은행 계좌에 보관됩니다. 브로커가 실패할 경우 분리된 자금은 전액 반환되어야 합니다(보상 필요 없음). 사기, 도난 또는 잘못된 관리로 인해 분리된 자금이 누락된 경우 부족분을 보상하는 보상 제도(FSCS, ICF)가 두 번째 방어선입니다. 분리는 문제를 예방하는 것이고, 보상 제도는 예방에 실패했을 때를 대비한 보험이라고 생각하면 됩니다. 최상의 경우: 자금 분리가 성공하면 100% 돌려받습니다. 최악의 경우: 분리에 실패한 경우, 보상 제도는 한도까지만 보상합니다(FSCS £85,000, ICF €20,000).',
   'company.safetyOfFunds.faq.q5.question': '마이너스 잔액 보호가 가능한가요?',
-  'company.safetyOfFunds.faq.q5.answer': 'No, you can still lose your entire account balance through normal trading losses. Negative Balance Protection (NBP) only prevents you from owing money beyond your deposited amount. Example: You deposit $1,000 and lose it all → You lose $1,000 (NBP doesn\'t help). You deposit $1,000, market gaps, account goes to -$500 → NBP resets to $0, you lose $1,000 but don\'t owe the extra $500. NBP protects from debt, not from losing your capital. Always trade responsibly with money you can afford to lose.',
+  'company.safetyOfFunds.faq.q5.answer': 'No, you can still lose your entire account balance through normal trading losses. Negative Balance Protection (NBP) only prevents you from owing money beyond your deposited amount. Example: You deposit 'company.safetyOfFunds.faq.q5.answer': ,000 and lose it all → You lose 'company.safetyOfFunds.faq.q5.answer': ,000 (NBP doesn\\',
   'company.safetyOfFunds.faq.q6.question': '일부 브로커가 다른 브로커보다 높은 보상을 제공하는 이유는 무엇인가요?',
   'company.safetyOfFunds.faq.q6.answer': 'Compensation depends on which regulator oversees the entity you trade with, not the broker\\',
   'company.safetyOfFunds.faq.q7.question': '브로커가 분리된 자금을 다른 용도로 사용할 수 있나요?',
