@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Save, RefreshCw, Eye, AlertCircle } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Save, RefreshCw, Eye, AlertCircle, Settings, DollarSign, Award, Shield } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { VariantPreviewCard } from "@/components/admin/VariantPreviewCard";
 
@@ -69,7 +71,35 @@ export default function AdminConfigPage() {
       ewallets: { enabled: true },
       crypto: { enabled: true }
     },
-    languageOverrides: {} as Record<string, { companyName: string; supportEmail: string }>
+    languageOverrides: {} as Record<string, { companyName: string; supportEmail: string }>,
+    // Advanced config state
+    advanced: {
+      hedgingAllowed: true,
+      scalpingAllowed: true,
+      marginCallLevel: 80,
+      stopOutLevel: 50,
+      requireEmailVerification: true,
+      requirePhoneVerification: false,
+      minimumAge: 18,
+      enforce2FAForWithdrawals: true,
+      minDepositBank: 100,
+      minWithdrawal: 50,
+      autoApproveDeposits: true,
+      manualReviewThreshold: 5000,
+      welcomeBonusEnabled: true,
+      bonusPercentage: 100,
+      maxBonus: 500,
+      referralProgramEnabled: true,
+      riskWarningText: "Trading involves risk of loss. Only trade with money you can afford to lose.",
+      showWarningOnLogin: true,
+      showWarningOnDeposit: true,
+      gdprCompliant: true,
+      selfExclusionAvailable: true,
+      demoAccountsEnabled: true,
+      demoInitialBalance: 10000,
+      demoAllowReset: true,
+      demoExpiryDays: 90
+    }
   });
 
   // Initialize form data from config
@@ -88,7 +118,34 @@ export default function AdminConfigPage() {
           ewallets: { enabled: config.features.paymentMethods.ewallets.enabled },
           crypto: { enabled: config.features.paymentMethods.crypto.enabled }
         },
-        languageOverrides: config.branding.languageOverrides || {}
+        languageOverrides: config.branding.languageOverrides || {},
+        advanced: {
+          hedgingAllowed: config.tradingSettings?.restrictions?.hedgingAllowed ?? true,
+          scalpingAllowed: config.tradingSettings?.restrictions?.scalping?.allowed ?? true,
+          marginCallLevel: config.tradingSettings?.riskManagement?.marginCallLevel ?? 80,
+          stopOutLevel: config.tradingSettings?.riskManagement?.stopOutLevel ?? 50,
+          requireEmailVerification: config.accountSettings?.registration?.requireEmailVerification ?? true,
+          requirePhoneVerification: config.accountSettings?.registration?.requirePhoneVerification ?? false,
+          minimumAge: config.accountSettings?.registration?.minimumAge ?? 18,
+          enforce2FAForWithdrawals: config.accountSettings?.security?.twoFactorAuth?.enforcedForWithdrawals ?? true,
+          minDepositBank: config.funding?.deposits?.minAmounts?.bankTransfer ?? 100,
+          minWithdrawal: config.funding?.withdrawals?.minAmount ?? 50,
+          autoApproveDeposits: config.funding?.deposits?.processing?.autoApprove ?? true,
+          manualReviewThreshold: config.funding?.withdrawals?.verification?.manualReviewThreshold ?? 5000,
+          welcomeBonusEnabled: config.promotions?.welcomeBonus?.enabled ?? true,
+          bonusPercentage: config.promotions?.welcomeBonus?.percentage ?? 100,
+          maxBonus: config.promotions?.welcomeBonus?.maxBonus ?? 500,
+          referralProgramEnabled: config.promotions?.referralProgram?.enabled ?? true,
+          riskWarningText: config.compliance?.riskWarnings?.customText ?? "Trading involves risk of loss.",
+          showWarningOnLogin: config.compliance?.riskWarnings?.showOnLogin ?? true,
+          showWarningOnDeposit: config.compliance?.riskWarnings?.showOnDeposit ?? true,
+          gdprCompliant: config.compliance?.dataProtection?.gdprCompliant ?? true,
+          selfExclusionAvailable: config.compliance?.responsibleTrading?.selfExclusionAvailable ?? true,
+          demoAccountsEnabled: config.demoAccounts?.enabled ?? true,
+          demoInitialBalance: config.demoAccounts?.settings?.initialBalance ?? 10000,
+          demoAllowReset: config.demoAccounts?.settings?.allowReset ?? true,
+          demoExpiryDays: config.demoAccounts?.settings?.expiryDays ?? 90
+        }
       });
       initialized.current = true;
     }
@@ -122,6 +179,100 @@ export default function AdminConfigPage() {
             cards: { ...config.features.paymentMethods.cards, enabled: formData.paymentMethods.cards.enabled },
             ewallets: { ...config.features.paymentMethods.ewallets, enabled: formData.paymentMethods.ewallets.enabled },
             crypto: { ...config.features.paymentMethods.crypto, enabled: formData.paymentMethods.crypto.enabled }
+          }
+        },
+        tradingSettings: {
+          ...config.tradingSettings,
+          restrictions: {
+            ...config.tradingSettings?.restrictions,
+            hedgingAllowed: formData.advanced.hedgingAllowed,
+            scalping: {
+              ...config.tradingSettings?.restrictions?.scalping,
+              allowed: formData.advanced.scalpingAllowed
+            }
+          },
+          riskManagement: {
+            ...config.tradingSettings?.riskManagement,
+            marginCallLevel: formData.advanced.marginCallLevel,
+            stopOutLevel: formData.advanced.stopOutLevel
+          }
+        },
+        accountSettings: {
+          ...config.accountSettings,
+          registration: {
+            ...config.accountSettings?.registration,
+            requireEmailVerification: formData.advanced.requireEmailVerification,
+            requirePhoneVerification: formData.advanced.requirePhoneVerification,
+            minimumAge: formData.advanced.minimumAge
+          },
+          security: {
+            ...config.accountSettings?.security,
+            twoFactorAuth: {
+              ...config.accountSettings?.security?.twoFactorAuth,
+              enforcedForWithdrawals: formData.advanced.enforce2FAForWithdrawals
+            }
+          }
+        },
+        funding: {
+          ...config.funding,
+          deposits: {
+            ...config.funding?.deposits,
+            minAmounts: {
+              ...config.funding?.deposits?.minAmounts,
+              bankTransfer: formData.advanced.minDepositBank
+            },
+            processing: {
+              ...config.funding?.deposits?.processing,
+              autoApprove: formData.advanced.autoApproveDeposits
+            }
+          },
+          withdrawals: {
+            ...config.funding?.withdrawals,
+            minAmount: formData.advanced.minWithdrawal,
+            verification: {
+              ...config.funding?.withdrawals?.verification,
+              manualReviewThreshold: formData.advanced.manualReviewThreshold
+            }
+          }
+        },
+        promotions: {
+          ...config.promotions,
+          welcomeBonus: {
+            ...config.promotions?.welcomeBonus,
+            enabled: formData.advanced.welcomeBonusEnabled,
+            percentage: formData.advanced.bonusPercentage,
+            maxBonus: formData.advanced.maxBonus
+          },
+          referralProgram: {
+            ...config.promotions?.referralProgram,
+            enabled: formData.advanced.referralProgramEnabled
+          }
+        },
+        compliance: {
+          ...config.compliance,
+          riskWarnings: {
+            ...config.compliance?.riskWarnings,
+            customText: formData.advanced.riskWarningText,
+            showOnLogin: formData.advanced.showWarningOnLogin,
+            showOnDeposit: formData.advanced.showWarningOnDeposit
+          },
+          dataProtection: {
+            ...config.compliance?.dataProtection,
+            gdprCompliant: formData.advanced.gdprCompliant
+          },
+          responsibleTrading: {
+            ...config.compliance?.responsibleTrading,
+            selfExclusionAvailable: formData.advanced.selfExclusionAvailable
+          }
+        },
+        demoAccounts: {
+          ...config.demoAccounts,
+          enabled: formData.advanced.demoAccountsEnabled,
+          settings: {
+            ...config.demoAccounts?.settings,
+            initialBalance: formData.advanced.demoInitialBalance,
+            allowReset: formData.advanced.demoAllowReset,
+            expiryDays: formData.advanced.demoExpiryDays
           }
         }
       };
@@ -205,11 +356,12 @@ export default function AdminConfigPage() {
       )}
 
       <Tabs defaultValue="branding" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="branding" data-testid="tab-branding">Branding</TabsTrigger>
           <TabsTrigger value="layout" data-testid="tab-layout">Layout</TabsTrigger>
           <TabsTrigger value="features" data-testid="tab-features">Features</TabsTrigger>
           <TabsTrigger value="languages" data-testid="tab-languages">Languages</TabsTrigger>
+          <TabsTrigger value="advanced" data-testid="tab-advanced">Advanced</TabsTrigger>
         </TabsList>
 
         {/* Branding Tab */}
@@ -448,6 +600,343 @@ export default function AdminConfigPage() {
                 <AlertCircle className="h-4 w-4 text-muted-foreground mt-0.5" />
                 <p className="text-sm text-muted-foreground">
                   Language overrides allow you to display different company names or support emails based on the user's selected language. Leave fields empty to use the default values.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Advanced Configuration Tab */}
+        <TabsContent value="advanced" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Advanced Configuration</CardTitle>
+              <CardDescription>
+                Extended platform settings for trading, accounts, funding, compliance, and more
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Accordion type="multiple" className="w-full">
+                {/* Trading Settings */}
+                <AccordionItem value="trading">
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-2">
+                      <Settings className="h-4 w-4" />
+                      <span>Trading Settings</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4 pt-4">
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label>Hedging Allowed</Label>
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            checked={formData.advanced.hedgingAllowed}
+                            onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, hedgingAllowed: checked}})}
+                            data-testid="switch-hedging"
+                          />
+                          <span className="text-sm text-muted-foreground">Allow opposite positions on same instrument</span>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Scalping Allowed</Label>
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            checked={formData.advanced.scalpingAllowed}
+                            onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, scalpingAllowed: checked}})}
+                            data-testid="switch-scalping"
+                          />
+                          <span className="text-sm text-muted-foreground">Allow rapid position opening/closing</span>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Margin Call Level (%)</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.marginCallLevel}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, marginCallLevel: parseInt(e.target.value) || 80}})}
+                          placeholder="80"
+                          data-testid="input-margin-call"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Stop Out Level (%)</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.stopOutLevel}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, stopOutLevel: parseInt(e.target.value) || 50}})}
+                          placeholder="50"
+                          data-testid="input-stop-out"
+                        />
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Account Settings */}
+                <AccordionItem value="accounts">
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-2">
+                      <Settings className="h-4 w-4" />
+                      <span>Account & Registration</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4 pt-4">
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label>Require Email Verification</Label>
+                        <Switch
+                          checked={formData.advanced.requireEmailVerification}
+                          onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, requireEmailVerification: checked}})}
+                          data-testid="switch-email-verification"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Require Phone Verification</Label>
+                        <Switch
+                          checked={formData.advanced.requirePhoneVerification}
+                          onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, requirePhoneVerification: checked}})}
+                          data-testid="switch-phone-verification"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Minimum Age</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.minimumAge}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, minimumAge: parseInt(e.target.value) || 18}})}
+                          placeholder="18"
+                          data-testid="input-minimum-age"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>2FA Required for Withdrawals</Label>
+                        <Switch
+                          checked={formData.advanced.enforce2FAForWithdrawals}
+                          onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, enforce2FAForWithdrawals: checked}})}
+                          data-testid="switch-2fa-withdrawals"
+                        />
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Funding */}
+                <AccordionItem value="funding">
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-2">
+                      <DollarSign className="h-4 w-4" />
+                      <span>Funding & Withdrawals</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4 pt-4">
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label>Min Deposit (Bank Transfer)</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.minDepositBank}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, minDepositBank: parseInt(e.target.value) || 100}})}
+                          placeholder="100"
+                          data-testid="input-min-deposit-bank"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Min Withdrawal Amount</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.minWithdrawal}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, minWithdrawal: parseInt(e.target.value) || 50}})}
+                          placeholder="50"
+                          data-testid="input-min-withdrawal"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Auto-approve Deposits</Label>
+                        <Switch
+                          checked={formData.advanced.autoApproveDeposits}
+                          onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, autoApproveDeposits: checked}})}
+                          data-testid="switch-auto-approve"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Manual Review Threshold</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.manualReviewThreshold}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, manualReviewThreshold: parseInt(e.target.value) || 5000}})}
+                          placeholder="5000"
+                          data-testid="input-review-threshold"
+                        />
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Promotions */}
+                <AccordionItem value="promotions">
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-2">
+                      <Award className="h-4 w-4" />
+                      <span>Promotions & Bonuses</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4 pt-4">
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label>Welcome Bonus Enabled</Label>
+                        <Switch
+                          checked={formData.advanced.welcomeBonusEnabled}
+                          onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, welcomeBonusEnabled: checked}})}
+                          data-testid="switch-welcome-bonus"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Bonus Percentage (%)</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.bonusPercentage}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, bonusPercentage: parseInt(e.target.value) || 100}})}
+                          placeholder="100"
+                          data-testid="input-bonus-percentage"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Max Bonus Amount</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.maxBonus}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, maxBonus: parseInt(e.target.value) || 500}})}
+                          placeholder="500"
+                          data-testid="input-max-bonus"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Referral Program Enabled</Label>
+                        <Switch
+                          checked={formData.advanced.referralProgramEnabled}
+                          onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, referralProgramEnabled: checked}})}
+                          data-testid="switch-referral"
+                        />
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Compliance */}
+                <AccordionItem value="compliance">
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-2">
+                      <Shield className="h-4 w-4" />
+                      <span>Compliance & Legal</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4 pt-4">
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label>Risk Warning Text</Label>
+                        <Textarea
+                          value={formData.advanced.riskWarningText}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, riskWarningText: e.target.value}})}
+                          placeholder="Enter custom risk warning"
+                          rows={3}
+                          data-testid="textarea-risk-warning"
+                        />
+                      </div>
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <div className="space-y-2">
+                          <Label>Show on Login</Label>
+                          <Switch
+                            checked={formData.advanced.showWarningOnLogin}
+                            onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, showWarningOnLogin: checked}})}
+                            data-testid="switch-warning-login"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Show on Deposit</Label>
+                          <Switch
+                            checked={formData.advanced.showWarningOnDeposit}
+                            onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, showWarningOnDeposit: checked}})}
+                            data-testid="switch-warning-deposit"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>GDPR Compliant</Label>
+                          <Switch
+                            checked={formData.advanced.gdprCompliant}
+                            onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, gdprCompliant: checked}})}
+                            data-testid="switch-gdpr"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Self-Exclusion Available</Label>
+                          <Switch
+                            checked={formData.advanced.selfExclusionAvailable}
+                            onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, selfExclusionAvailable: checked}})}
+                            data-testid="switch-self-exclusion"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Demo Accounts */}
+                <AccordionItem value="demo">
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-2">
+                      <Settings className="h-4 w-4" />
+                      <span>Demo Accounts</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4 pt-4">
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label>Demo Accounts Enabled</Label>
+                        <Switch
+                          checked={formData.advanced.demoAccountsEnabled}
+                          onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, demoAccountsEnabled: checked}})}
+                          data-testid="switch-demo-enabled"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Initial Balance</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.demoInitialBalance}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, demoInitialBalance: parseInt(e.target.value) || 10000}})}
+                          placeholder="10000"
+                          data-testid="input-demo-balance"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Allow Reset</Label>
+                        <Switch
+                          checked={formData.advanced.demoAllowReset}
+                          onCheckedChange={(checked) => setFormData({...formData, advanced: {...formData.advanced, demoAllowReset: checked}})}
+                          data-testid="switch-demo-reset"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Expiry Days</Label>
+                        <Input
+                          type="number"
+                          value={formData.advanced.demoExpiryDays}
+                          onChange={(e) => setFormData({...formData, advanced: {...formData.advanced, demoExpiryDays: parseInt(e.target.value) || 90}})}
+                          placeholder="90"
+                          data-testid="input-demo-expiry"
+                        />
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+
+              <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg flex gap-2 mt-4">
+                <AlertCircle className="h-4 w-4 text-blue-600 dark:text-blue-400 mt-0.5" />
+                <p className="text-sm text-blue-900 dark:text-blue-100">
+                  Advanced settings control platform behavior across trading, accounts, funding, promotions, compliance, and demo accounts. 
+                  Changes to these settings may affect user experience, platform operations, and regulatory compliance. Always test changes thoroughly before applying to production.
                 </p>
               </div>
             </CardContent>

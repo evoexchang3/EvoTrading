@@ -57,6 +57,63 @@ export interface BrandingConfig {
       supportEmail?: string;
     };
   };
+  
+  // NEW: Phase 4 - Extended Branding
+  legalEntity?: {
+    registeredName: string;
+    registrationNumber: string;
+    jurisdiction: string;
+    registeredAddress: {
+      street: string;
+      city: string;
+      state: string;
+      postalCode: string;
+      country: string;
+    };
+    taxId?: string;
+    incorporationDate?: string;
+  };
+  
+  locations?: Array<{
+    id: string;
+    type: 'headquarters' | 'office' | 'branch';
+    name: string;
+    address: {
+      street: string;
+      city: string;
+      state: string;
+      postalCode: string;
+      country: string;
+    };
+    phone?: string;
+    email?: string;
+    timezone?: string;
+    isDefault: boolean;
+  }>;
+  
+  licenses?: Array<{
+    id: string;
+    enabled: boolean;
+    jurisdiction: string;
+    licenseNumber: string;
+    regulatoryBody: string;
+    licenseType: string;
+    issueDate: string;
+    expiryDate?: string;
+    status: 'active' | 'pending' | 'suspended' | 'expired';
+    documentUrl?: string;
+  }>;
+  
+  team?: Array<{
+    id: string;
+    name: string;
+    title: string;
+    bio?: string;
+    photoUrl?: string;
+    linkedIn?: string;
+    email?: string;
+    displayOrder: number;
+  }>;
 }
 
 export interface LayoutConfig {
@@ -547,7 +604,82 @@ export const DEFAULT_SITE_CONFIG: ExtendedSiteConfig = {
       linkedin: '',
       facebook: '',
       instagram: ''
-    }
+    },
+    legalEntity: {
+      registeredName: 'Trading Platform Inc.',
+      registrationNumber: 'TP123456789',
+      jurisdiction: 'Delaware, USA',
+      registeredAddress: {
+        street: '123 Financial District',
+        city: 'New York',
+        state: 'NY',
+        postalCode: '10004',
+        country: 'United States'
+      },
+      taxId: 'US-TAX-123456',
+      incorporationDate: '2020-01-15'
+    },
+    locations: [
+      {
+        id: 'loc-hq-1',
+        type: 'headquarters' as const,
+        name: 'Global Headquarters',
+        address: {
+          street: '123 Financial District',
+          city: 'New York',
+          state: 'NY',
+          postalCode: '10004',
+          country: 'United States'
+        },
+        phone: '+1-800-TRADE-00',
+        email: 'headquarters@tradingplatform.com',
+        timezone: 'America/New_York',
+        isDefault: true
+      }
+    ],
+    licenses: [
+      {
+        id: 'lic-us-sec-1',
+        enabled: true,
+        jurisdiction: 'United States',
+        licenseNumber: 'SEC-2020-12345',
+        regulatoryBody: 'U.S. Securities and Exchange Commission (SEC)',
+        licenseType: 'Broker-Dealer',
+        issueDate: '2020-03-01',
+        expiryDate: '2030-03-01',
+        status: 'active' as const,
+        documentUrl: '/documents/licenses/sec-license.pdf'
+      },
+      {
+        id: 'lic-uk-fca-1',
+        enabled: false,
+        jurisdiction: 'United Kingdom',
+        licenseNumber: 'FCA-UK-987654',
+        regulatoryBody: 'Financial Conduct Authority (FCA)',
+        licenseType: 'Investment Services',
+        issueDate: '2021-06-15',
+        status: 'pending' as const
+      }
+    ],
+    team: [
+      {
+        id: 'team-ceo-1',
+        name: 'John Smith',
+        title: 'Chief Executive Officer',
+        bio: 'John has over 20 years of experience in financial markets and fintech.',
+        photoUrl: '/team/john-smith.jpg',
+        linkedIn: 'https://linkedin.com/in/johnsmith',
+        email: 'john.smith@tradingplatform.com',
+        displayOrder: 1
+      },
+      {
+        id: 'team-cfo-1',
+        name: 'Jane Doe',
+        title: 'Chief Financial Officer',
+        bio: 'Jane brings extensive expertise in financial operations and regulatory compliance.',
+        displayOrder: 2
+      }
+    ]
   },
   
   layout: {
