@@ -7,6 +7,7 @@ import { FooterLayout } from '@/layouts/shared/variantConfig';
 import { ComponentType } from 'react';
 
 // Import all footer variants
+import FiveColumnOriginalFooter from './FiveColumnOriginalFooter';
 import QuadGridFooter from './QuadGridFooter';
 import TieredTwoRowFooter from './TieredTwoRowFooter';
 import SocialFirstFooter from './SocialFirstFooter';
@@ -33,6 +34,7 @@ export interface FooterProps {
 
 // Footer component registry
 const footerRegistry: Record<FooterLayout, ComponentType<FooterProps>> = {
+  'five-column-original': FiveColumnOriginalFooter,
   'quad-grid': QuadGridFooter,
   'tiered-two-row': TieredTwoRowFooter,
   'social-first': SocialFirstFooter,

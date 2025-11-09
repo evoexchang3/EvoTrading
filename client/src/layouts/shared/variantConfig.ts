@@ -26,6 +26,7 @@ export type NavigationLayout =
   | 'hero-overlay';     // Transparent nav that overlays hero image
 
 export type FooterLayout = 
+  | 'five-column-original' // 5 columns: Information, Customer, Company, Trust & Security, Support
   | 'quad-grid'         // 4 columns, legal/compliance focused
   | 'tiered-two-row'    // Important links top row, legal bottom
   | 'social-first'      // Large social icons, minimal text
@@ -132,7 +133,7 @@ export const variantConfigs: Record<string, VariantConfig> = {
     description: 'The original platform design with clean, professional aesthetics and full functionality',
     structure: {
       navigationLayout: 'compact-top',
-      footerLayout: 'quad-grid',
+      footerLayout: 'five-column-original',
       contentTone: 'professional',
     },
     layout: {
