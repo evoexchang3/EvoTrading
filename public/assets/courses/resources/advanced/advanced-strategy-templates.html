@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Trading Strategy Templates</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 950px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        h1 { color: #7c3aed; border-bottom: 3px solid #7c3aed; padding-bottom: 10px; }
+        h2 { color: #6d28d9; margin-top: 30px; background: #f5f3ff; padding: 12px; border-left: 4px solid #7c3aed; }
+        h3 { color: #5b21b6; margin-top: 20px; }
+        .strategy { margin: 30px 0; padding: 25px; background: #faf5ff; border: 2px solid #e9d5ff; border-radius: 8px; }
+        .field { margin: 15px 0; }
+        label { font-weight: bold; color: #374151; display: block; margin-bottom: 5px; }
+        input[type="text"], textarea, select { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 6px; font-family: Arial, sans-serif; }
+        textarea { min-height: 90px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th { background: #7c3aed; color: white; padding: 12px; text-align: left; }
+        td { border: 1px solid #ddd; padding: 10px; }
+        .info-box { background: #dbeafe; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; }
+        .checklist { background: #dcfce7; border-left: 4px solid #16a34a; padding: 15px; margin: 15px 0; }
+        .checklist ul { margin: 10px 0; padding-left: 25px; }
+        @media print { body { margin: 15px; } }
+    </style>
+</head>
+<body>
+    <h1>Advanced Trading Strategy Templates</h1>
+    
+    <div class="info-box">
+        <strong>Purpose:</strong> These templates help you document and systematize your advanced trading strategies across multiple timeframes. Each strategy should be thoroughly tested before live trading.
+    </div>
+
+    <!-- Template 1: Multi-Timeframe Trend Following -->
+    <div class="strategy">
+        <h2>Strategy Template 1: Multi-Timeframe Trend Following</h2>
+        
+        <div class="field">
+            <label>Strategy Name:</label>
+            <input type="text" placeholder="e.g., HTF Trend + LTF Pullback Entry">
+        </div>
+
+        <h3>Timeframe Structure</h3>
+        <table>
+            <tr>
+                <th>Timeframe</th>
+                <th>Purpose</th>
+                <th>Indicators/Analysis</th>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="e.g., Daily"></td>
+                <td><textarea placeholder="e.g., Identify primary trend direction"></textarea></td>
+                <td><textarea placeholder="e.g., 200 EMA, Market Structure"></textarea></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="e.g., 4H"></td>
+                <td><textarea placeholder="e.g., Find trend structure & key levels"></textarea></td>
+                <td><textarea placeholder="e.g., Swing highs/lows, Fibonacci levels"></textarea></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="e.g., 1H"></td>
+                <td><textarea placeholder="e.g., Entry signals and timing"></textarea></td>
+                <td><textarea placeholder="e.g., Candlestick patterns, RSI divergence"></textarea></td>
+            </tr>
+        </table>
+
+        <h3>Entry Criteria (All Must Be True)</h3>
+        <div class="checklist">
+            <ul>
+                <li><input type="text" placeholder="e.g., Daily timeframe shows clear uptrend (price above 200 EMA)"></li>
+                <li><input type="text" placeholder="e.g., 4H pullback to key support level (38.2% or 50% Fib)"></li>
+                <li><input type="text" placeholder="e.g., 1H shows bullish reversal pattern (hammer, engulfing)"></li>
+                <li><input type="text" placeholder="e.g., Volume confirms the setup"></li>
+                <li><input type="text" placeholder="Add more criteria..."></li>
+            </ul>
+        </div>
+
+        <h3>Exit Strategy</h3>
+        <div class="field">
+            <label>Stop Loss Placement:</label>
+            <textarea placeholder="e.g., Below the pullback low on 4H chart, or below key support level, maximum 2% account risk"></textarea>
+        </div>
+        <div class="field">
+            <label>Take Profit Targets:</label>
+            <textarea placeholder="e.g., TP1: 1:2 R:R (50% position), TP2: 1:3 R:R (30% position), TP3: Trail remaining 20% with 4H structure"></textarea>
+        </div>
+        <div class="field">
+            <label>Trade Management Rules:</label>
+            <textarea placeholder="e.g., Move stop to breakeven at 1:1, trail with 4H swing lows, exit if 4H trend structure breaks"></textarea>
+        </div>
+
+        <h3>Risk Management</h3>
+        <table>
+            <tr>
+                <td style="width: 50%;"><label>Risk Per Trade:</label><input type="text" placeholder="e.g., 1.5%"></td>
+                <td><label>Max Concurrent Trades:</label><input type="text" placeholder="e.g., 3"></td>
+            </tr>
+            <tr>
+                <td><label>Position Sizing Method:</label><input type="text" placeholder="e.g., Volatility-based ATR sizing"></td>
+                <td><label>Correlation Rules:</label><input type="text" placeholder="e.g., Max 2 USD pairs"></td>
+            </tr>
+        </table>
+
+        <h3>Backtesting Results</h3>
+        <table>
+            <tr>
+                <td><label>Period Tested:</label><input type="text" placeholder="e.g., Jan 2023 - Dec 2023"></td>
+                <td><label>Total Trades:</label><input type="text" placeholder="e.g., 87"></td>
+            </tr>
+            <tr>
+                <td><label>Win Rate:</label><input type="text" placeholder="e.g., 58%"></td>
+                <td><label>Profit Factor:</label><input type="text" placeholder="e.g., 2.1"></td>
+            </tr>
+            <tr>
+                <td><label>Average R:R:</label><input type="text" placeholder="e.g., 1:2.4"></td>
+                <td><label>Max Drawdown:</label><input type="text" placeholder="e.g., 12%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Template 2: Range Trading Strategy -->
+    <div class="strategy">
+        <h2>Strategy Template 2: Advanced Range Trading</h2>
+        
+        <div class="field">
+            <label>Strategy Name:</label>
+            <input type="text" placeholder="e.g., Supply/Demand Range Fade">
+        </div>
+
+        <h3>Range Identification Criteria</h3>
+        <div class="field">
+            <label>How to identify a valid range:</label>
+            <textarea placeholder="e.g., Minimum 3 touches on both support and resistance, range duration minimum 2 weeks, clear horizontal levels on Daily chart"></textarea>
+        </div>
+        <div class="field">
+            <label>Range Invalidation Rules:</label>
+            <textarea placeholder="e.g., Clean break and close above resistance with 2% margin, volume spike above average, follow-through on next timeframe"></textarea>
+        </div>
+
+        <h3>Entry Setup</h3>
+        <div class="field">
+            <label>Buy Entry (Range Support):</label>
+            <textarea placeholder="e.g., Price touches support zone + bullish divergence on RSI + rejection candle on 1H chart"></textarea>
+        </div>
+        <div class="field">
+            <label>Sell Entry (Range Resistance):</label>
+            <textarea placeholder="e.g., Price touches resistance zone + bearish divergence on RSI + rejection candle on 1H chart"></textarea>
+        </div>
+
+        <h3>Exit Rules</h3>
+        <div class="field">
+            <label>Profit Targets:</label>
+            <textarea placeholder="e.g., Buy: Target mid-range or opposite boundary. Sell: Target mid-range or opposite boundary. Use 50% position split"></textarea>
+        </div>
+        <div class="field">
+            <label>Stop Loss:</label>
+            <textarea placeholder="e.g., 20-30 pips beyond range boundary, or below recent swing on lower timeframe"></textarea>
+        </div>
+    </div>
+
+    <!-- Template 3: Breakout Strategy -->
+    <div class="strategy">
+        <h2>Strategy Template 3: Volatility Breakout System</h2>
+        
+        <div class="field">
+            <label>Strategy Name:</label>
+            <input type="text" placeholder="e.g., ATR-Based Volatility Expansion Breakout">
+        </div>
+
+        <h3>Consolidation Phase Identification</h3>
+        <div class="field">
+            <label>Consolidation Criteria:</label>
+            <textarea placeholder="e.g., ATR declining for minimum 5 days, Bollinger Bands squeezing, range contraction on Daily chart"></textarea>
+        </div>
+
+        <h3>Breakout Confirmation</h3>
+        <div class="checklist">
+            <ul>
+                <li><input type="text" placeholder="e.g., Price closes above/below consolidation range high/low"></li>
+                <li><input type="text" placeholder="e.g., Volume spike (>150% of 20-day average)"></li>
+                <li><input type="text" placeholder="e.g., ATR expansion (>20% increase from recent average)"></li>
+                <li><input type="text" placeholder="e.g., No major resistance/support immediately ahead"></li>
+                <li><input type="text" placeholder="Add more confirmation criteria..."></li>
+            </ul>
+        </div>
+
+        <h3>Entry & Exit</h3>
+        <div class="field">
+            <label>Entry Method:</label>
+            <select>
+                <option value="">Select...</option>
+                <option>Immediate entry on breakout candle close</option>
+                <option>Wait for pullback to breakout level</option>
+                <option>Enter on retest of broken level</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Stop Loss Strategy:</label>
+            <textarea placeholder="e.g., Below consolidation range low + 1 ATR buffer, or below breakout candle low"></textarea>
+        </div>
+        <div class="field">
+            <label>Profit Targets:</label>
+            <textarea placeholder="e.g., TP1: Range height projection (100%), TP2: 1.618 Fibonacci extension, Trail remainder with ATR-based trailing stop"></textarea>
+        </div>
+
+        <h3>False Breakout Filter</h3>
+        <div class="field">
+            <label>How to avoid false breakouts:</label>
+            <textarea placeholder="e.g., Wait for 4H candle close beyond level, require volume confirmation, check higher timeframe context, avoid breakouts into major news events"></textarea>
+        </div>
+    </div>
+
+    <!-- Template 4: ICT/Smart Money Concepts -->
+    <div class="strategy">
+        <h2>Strategy Template 4: Order Block & Fair Value Gap Strategy</h2>
+        
+        <div class="field">
+            <label>Strategy Name:</label>
+            <input type="text" placeholder="e.g., HTF Order Block + LTF FVG Entry">
+        </div>
+
+        <h3>Market Structure Analysis</h3>
+        <div class="field">
+            <label>Higher Timeframe Bias (Daily/4H):</label>
+            <textarea placeholder="e.g., Identify market structure breaks, determine bullish/bearish bias, locate key order blocks and FVGs"></textarea>
+        </div>
+
+        <h3>Order Block Identification</h3>
+        <div class="field">
+            <label>Bullish Order Block Criteria:</label>
+            <textarea placeholder="e.g., Last down candle before strong bullish move, candle with long wick showing rejection, imbalance left behind (FVG), located at key structural level"></textarea>
+        </div>
+        <div class="field">
+            <label>Bearish Order Block Criteria:</label>
+            <textarea placeholder="e.g., Last up candle before strong bearish move, candle with long wick showing rejection, imbalance left behind (FVG), located at key structural level"></textarea>
+        </div>
+
+        <h3>Fair Value Gap (FVG) Rules</h3>
+        <div class="field">
+            <label>Valid FVG Definition:</label>
+            <textarea placeholder="e.g., 3-candle pattern with gap between candle 1 high and candle 3 low (bullish), or candle 1 low and candle 3 high (bearish). Minimum gap size: 10 pips"></textarea>
+        </div>
+        <div class="field">
+            <label>FVG Entry Rules:</label>
+            <textarea placeholder="e.g., Enter on first touch of 50% FVG level, wait for rejection confirmation on lower timeframe, align with higher timeframe order block"></textarea>
+        </div>
+
+        <h3>Entry & Exit</h3>
+        <div class="field">
+            <label>Entry Trigger:</label>
+            <textarea placeholder="e.g., Price enters order block zone + FVG forms on 15M/1H + bullish/bearish engulfing pattern + volume confirmation"></textarea>
+        </div>
+        <div class="field">
+            <label>Stop Loss:</label>
+            <textarea placeholder="e.g., Beyond order block extremes (high for bearish, low for bullish) + small buffer (5-10 pips)"></textarea>
+        </div>
+        <div class="field">
+            <label>Take Profit:</label>
+            <textarea placeholder="e.g., Opposite order block, liquidity pool, previous swing high/low, or 1:3 minimum R:R"></textarea>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <strong>📌 Strategy Development Tips:</strong>
+        <ul style="margin: 10px 0; padding-left: 25px;">
+            <li>Backtest each strategy on minimum 100 trades before live trading</li>
+            <li>Document all variations and their results</li>
+            <li>Test across different market conditions (trending, ranging, volatile)</li>
+            <li>Keep detailed notes on what works and what doesn't</li>
+            <li>Refine entry/exit rules based on data, not emotions</li>
+            <li>Review and update strategies quarterly</li>
+        </ul>
+    </div>
+</body>
+</html>

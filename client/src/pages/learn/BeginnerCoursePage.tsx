@@ -15,12 +15,15 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 import { LessonViewer } from "@/components/LessonViewer";
 import { getLessonContent } from "@/content/courses";
+import { useAuth } from "@/contexts/AuthContext";
+import { CourseCertificate } from "@/components/certificates/CourseCertificate";
 
 const COURSE_ID = "beginner-trading";
 
 export default function BeginnerCoursePage() {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const { user } = useAuth();
   const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
   const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
@@ -221,14 +224,9 @@ export default function BeginnerCoursePage() {
   ];
 
   const downloadableResources = [
-    { title: t('education.beginnerCourse.resources.resource1'), type: "PDF", size: "2.1 MB" },
-    { title: t('education.beginnerCourse.resources.resource2'), type: "PDF", size: "1.5 MB" },
-    { title: t('education.beginnerCourse.resources.resource3'), type: "Excel", size: "0.8 MB" },
-    { title: t('education.beginnerCourse.resources.resource4'), type: "PDF", size: "1.2 MB" },
-    { title: t('education.beginnerCourse.resources.resource5'), type: "PDF", size: "3.4 MB" },
-    { title: t('education.beginnerCourse.resources.resource6'), type: "PDF", size: "2.8 MB" },
-    { title: t('education.beginnerCourse.resources.resource7'), type: "Word", size: "0.5 MB" },
-    { title: t('education.beginnerCourse.resources.resource8'), type: "PDF", size: "1.1 MB" }
+    { title: "Trading Plan Template", type: "HTML/PDF", size: "45 KB", url: "/assets/courses/resources/beginner/trading-plan-template.html" },
+    { title: "Trading Journal Template", type: "HTML/PDF", size: "38 KB", url: "/assets/courses/resources/beginner/trading-journal-template.html" },
+    { title: "Risk Calculator & Position Sizer", type: "HTML", size: "32 KB", url: "/assets/courses/resources/beginner/risk-calculator.html" }
   ];
 
   const faqs = [
@@ -275,6 +273,36 @@ export default function BeginnerCoursePage() {
   const completedLessons = progressData.filter(p => p.lessonId && p.completed).length;
   const overallProgress = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
 
+  // Calculate modules passed (module is passed if all lessons are completed)
+  const modulesPassed = modules.filter(module => {
+    const moduleLessons = module.lessons;
+    const completedInModule = moduleLessons.filter(lesson => 
+      getLessonProgress(module.id, lesson.id)
+    ).length;
+    return completedInModule === moduleLessons.length;
+  }).length;
+
+  // Calculate time invested from completed lessons
+  const timeInvested = modules.reduce((totalMinutes, module) => {
+    return totalMinutes + module.lessons.reduce((moduleMinutes, lesson) => {
+      if (getLessonProgress(module.id, lesson.id)) {
+        const duration = parseInt(lesson.duration) || 0;
+        return moduleMinutes + duration;
+      }
+      return moduleMinutes;
+    }, 0);
+  }, 0);
+  
+  const timeInvestedHours = timeInvested / 60;
+  const timeInvestedDisplay = timeInvestedHours >= 1 
+    ? `${timeInvestedHours.toFixed(1)} hrs` 
+    : `${timeInvested} mins`;
+
+  const isCourseComplete = overallProgress === 100;
+  const userName = user?.firstName && user?.lastName 
+    ? `${user.firstName} ${user.lastName}` 
+    : user?.email?.split('@')[0] || 'Student';
+
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
@@ -286,6 +314,18 @@ export default function BeginnerCoursePage() {
           </div>
           <BookOpen className="w-8 h-8 text-muted-foreground" />
         </div>
+
+        {/* Certificate - shown when course is complete */}
+        {isCourseComplete && (
+          <CourseCertificate
+            courseName="Trading Fundamentals"
+            courseLevel="Beginner"
+            userName={userName}
+            completionDate={new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            totalLessons={totalLessons}
+            totalDuration="6-8 hours"
+          />
+        )}
 
         {/* Progress Overview */}
         <Card data-testid="card-progress-overview">
@@ -315,14 +355,14 @@ export default function BeginnerCoursePage() {
                   <Target className="w-4 h-4 text-primary" />
                   <p className="text-sm text-muted-foreground">{t('education.beginnerCourse.progress.modulesPassed')}</p>
                 </div>
-                <p className="text-2xl font-bold" data-testid="text-modules-passed">1/6</p>
+                <p className="text-2xl font-bold" data-testid="text-modules-passed">{modulesPassed}/{modules.length}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <Clock className="w-4 h-4 text-primary" />
                   <p className="text-sm text-muted-foreground">{t('education.beginnerCourse.progress.timeInvested')}</p>
                 </div>
-                <p className="text-2xl font-bold" data-testid="text-time-invested">1.6 hrs</p>
+                <p className="text-2xl font-bold" data-testid="text-time-invested">{timeInvestedDisplay}</p>
               </div>
             </div>
           </CardContent>
@@ -585,9 +625,10 @@ export default function BeginnerCoursePage() {
                   className="justify-between h-auto p-4"
                   data-testid={`button-download-${index}`}
                   onClick={() => {
+                    window.open(resource.url, '_blank');
                     toast({
-                      title: t('education.beginnerCourse.resources.locked'),
-                      description: t('education.beginnerCourse.resources.lockedDescription'),
+                      title: "Resource Opened",
+                      description: `${resource.title} has been opened in a new tab. You can save it as PDF using your browser's print function.`,
                       variant: "default"
                     });
                   }}

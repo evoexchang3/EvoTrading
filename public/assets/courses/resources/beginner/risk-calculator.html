@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Calculator & Position Sizer</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; background: #f8f9fa; }
+        h1 { color: #dc2626; border-bottom: 3px solid #dc2626; padding-bottom: 10px; }
+        h2 { color: #b91c1c; margin-top: 25px; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .calc-section { margin: 30px 0; padding: 25px; background: #fef2f2; border-left: 4px solid #dc2626; border-radius: 4px; }
+        .field { margin: 15px 0; }
+        label { font-weight: bold; color: #374151; display: block; margin-bottom: 5px; }
+        input[type="number"], select { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px; }
+        input[type="number"]:focus, select:focus { border-color: #dc2626; outline: none; }
+        .result-box { background: #dcfce7; border: 2px solid #16a34a; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .result-box h3 { margin-top: 0; color: #16a34a; }
+        .result-value { font-size: 24px; font-weight: bold; color: #15803d; margin: 10px 0; }
+        .warning-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; }
+        .info-box { background: #dbeafe; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; }
+        button { background: #dc2626; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #b91c1c; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th { background: #dc2626; color: white; padding: 12px; text-align: left; }
+        td { border: 1px solid #ddd; padding: 10px; }
+        .example { background: #f1f5f9; padding: 15px; border-radius: 6px; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trading Risk Calculator & Position Sizer</h1>
+        
+        <div class="info-box">
+            <strong>Purpose:</strong> This calculator helps you determine the exact position size for each trade based on your account size and risk tolerance. Never risk more than you can afford to lose!
+        </div>
+
+        <div class="calc-section">
+            <h2>1. Position Size Calculator (Forex)</h2>
+            <div class="field">
+                <label>Account Balance ($):</label>
+                <input type="number" id="accountBalance" placeholder="e.g., 10000" value="">
+            </div>
+            <div class="field">
+                <label>Risk Per Trade (%):</label>
+                <input type="number" id="riskPercent" placeholder="e.g., 1 or 2" step="0.1" value="">
+            </div>
+            <div class="field">
+                <label>Entry Price:</label>
+                <input type="number" id="entryPrice" placeholder="e.g., 1.1250" step="0.00001" value="">
+            </div>
+            <div class="field">
+                <label>Stop Loss Price:</label>
+                <input type="number" id="stopLoss" placeholder="e.g., 1.1200" step="0.00001" value="">
+            </div>
+            <div class="field">
+                <label>Currency Pair:</label>
+                <select id="currencyPair">
+                    <option value="100000">Major Pairs (EUR/USD, GBP/USD, etc.) - 100,000 per lot</option>
+                    <option value="10000">Mini Lot - 10,000 units</option>
+                    <option value="1000">Micro Lot - 1,000 units</option>
+                </select>
+            </div>
+            <button onclick="calculatePositionSize()">Calculate Position Size</button>
+            
+            <div id="positionResult" class="result-box" style="display: none;">
+                <h3>Calculated Position Size</h3>
+                <div class="result-value" id="positionLots"></div>
+                <div id="positionDetails"></div>
+            </div>
+        </div>
+
+        <div class="calc-section">
+            <h2>2. Risk:Reward Calculator</h2>
+            <div class="field">
+                <label>Entry Price:</label>
+                <input type="number" id="rrEntry" placeholder="e.g., 50000" step="0.01" value="">
+            </div>
+            <div class="field">
+                <label>Stop Loss Price:</label>
+                <input type="number" id="rrStop" placeholder="e.g., 49000" step="0.01" value="">
+            </div>
+            <div class="field">
+                <label>Take Profit Price:</label>
+                <input type="number" id="rrTarget" placeholder="e.g., 52000" step="0.01" value="">
+            </div>
+            <button onclick="calculateRiskReward()">Calculate R:R Ratio</button>
+            
+            <div id="rrResult" class="result-box" style="display: none;">
+                <h3>Risk:Reward Analysis</h3>
+                <div class="result-value" id="rrRatio"></div>
+                <div id="rrDetails"></div>
+            </div>
+        </div>
+
+        <div class="calc-section">
+            <h2>3. Win Rate Required Calculator</h2>
+            <div class="field">
+                <label>Average Risk:Reward Ratio:</label>
+                <input type="number" id="avgRR" placeholder="e.g., 2 for 1:2 R:R" step="0.1" value="">
+            </div>
+            <button onclick="calculateWinRate()">Calculate Required Win Rate</button>
+            
+            <div id="winRateResult" class="result-box" style="display: none;">
+                <h3>Breakeven Win Rate</h3>
+                <div class="result-value" id="requiredWinRate"></div>
+                <div id="winRateDetails"></div>
+            </div>
+        </div>
+
+        <div class="calc-section">
+            <h2>4. Profit/Loss Calculator</h2>
+            <div class="field">
+                <label>Position Size (lots):</label>
+                <input type="number" id="plLots" placeholder="e.g., 1.0" step="0.01" value="">
+            </div>
+            <div class="field">
+                <label>Entry Price:</label>
+                <input type="number" id="plEntry" placeholder="e.g., 1.1250" step="0.00001" value="">
+            </div>
+            <div class="field">
+                <label>Exit Price:</label>
+                <input type="number" id="plExit" placeholder="e.g., 1.1300" step="0.00001" value="">
+            </div>
+            <div class="field">
+                <label>Pip Value ($):</label>
+                <input type="number" id="pipValue" placeholder="e.g., 10 for standard lot" value="10">
+            </div>
+            <button onclick="calculateProfitLoss()">Calculate P/L</button>
+            
+            <div id="plResult" class="result-box" style="display: none;">
+                <h3>Profit/Loss</h3>
+                <div class="result-value" id="plAmount"></div>
+                <div id="plDetails"></div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>Risk Management Rules:</strong>
+            <ul style="margin: 10px 0;">
+                <li>Never risk more than 1-2% of your account on a single trade</li>
+                <li>Always use a stop loss on every trade</li>
+                <li>Aim for minimum 1:2 risk-reward ratio</li>
+                <li>Limit total portfolio risk to 6-10% maximum</li>
+                <li>Adjust position size based on market volatility</li>
+            </ul>
+        </div>
+
+        <div class="calc-section">
+            <h2>Quick Reference Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account Size</th>
+                        <th>1% Risk</th>
+                        <th>2% Risk</th>
+                        <th>Max Daily Loss (5%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>$1,000</td><td>$10</td><td>$20</td><td>$50</td></tr>
+                    <tr><td>$5,000</td><td>$50</td><td>$100</td><td>$250</td></tr>
+                    <tr><td>$10,000</td><td>$100</td><td>$200</td><td>$500</td></tr>
+                    <tr><td>$25,000</td><td>$250</td><td>$500</td><td>$1,250</td></tr>
+                    <tr><td>$50,000</td><td>$500</td><td>$1,000</td><td>$2,500</td></tr>
+                    <tr><td>$100,000</td><td>$1,000</td><td>$2,000</td><td>$5,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="example">
+            <h3>📝 Example Calculation</h3>
+            <p><strong>Scenario:</strong> You have a $10,000 account and want to risk 2% per trade on EUR/USD.</p>
+            <p><strong>Entry:</strong> 1.1250 | <strong>Stop Loss:</strong> 1.1200 | <strong>Difference:</strong> 50 pips</p>
+            <p><strong>Risk Amount:</strong> $10,000 × 2% = $200</p>
+            <p><strong>Position Size:</strong> $200 ÷ 50 pips ÷ $10 per pip = 0.4 lots (40,000 units)</p>
+            <p><strong>Result:</strong> If stopped out, you lose exactly $200 (2% of your account)</p>
+        </div>
+    </div>
+
+    <script>
+        function calculatePositionSize() {
+            const balance = parseFloat(document.getElementById('accountBalance').value);
+            const riskPercent = parseFloat(document.getElementById('riskPercent').value);
+            const entry = parseFloat(document.getElementById('entryPrice').value);
+            const stop = parseFloat(document.getElementById('stopLoss').value);
+            const contractSize = parseFloat(document.getElementById('currencyPair').value);
+
+            if (!balance || !riskPercent || !entry || !stop) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const riskAmount = balance * (riskPercent / 100);
+            const pipRisk = Math.abs(entry - stop) * 10000; // Convert to pips
+            const pipValue = 10; // Standard for major pairs
+            const positionSize = riskAmount / (pipRisk * pipValue / contractSize);
+
+            document.getElementById('positionResult').style.display = 'block';
+            document.getElementById('positionLots').textContent = `Position Size: ${positionSize.toFixed(2)} lots`;
+            document.getElementById('positionDetails').innerHTML = `
+                <p><strong>Risk Amount:</strong> $${riskAmount.toFixed(2)}</p>
+                <p><strong>Pip Risk:</strong> ${pipRisk.toFixed(1)} pips</p>
+                <p><strong>Units:</strong> ${(positionSize * contractSize).toFixed(0)}</p>
+                <p style="color: #dc2626;"><strong>If stopped out, you will lose exactly $${riskAmount.toFixed(2)} (${riskPercent}%)</strong></p>
+            `;
+        }
+
+        function calculateRiskReward() {
+            const entry = parseFloat(document.getElementById('rrEntry').value);
+            const stop = parseFloat(document.getElementById('rrStop').value);
+            const target = parseFloat(document.getElementById('rrTarget').value);
+
+            if (!entry || !stop || !target) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const risk = Math.abs(entry - stop);
+            const reward = Math.abs(target - entry);
+            const ratio = reward / risk;
+
+            document.getElementById('rrResult').style.display = 'block';
+            document.getElementById('rrRatio').textContent = `Risk:Reward Ratio: 1:${ratio.toFixed(2)}`;
+            
+            let message = '';
+            if (ratio >= 2) {
+                message = '<p style="color: #16a34a;">Excellent R:R ratio! This is a high-quality trade setup.</p>';
+            } else if (ratio >= 1.5) {
+                message = '<p style="color: #3b82f6;">✓ Good R:R ratio. Acceptable for trading.</p>';
+            } else {
+                message = '<p style="color: #dc2626;">Low R:R ratio. Consider waiting for better setup.</p>';
+            }
+
+            document.getElementById('rrDetails').innerHTML = `
+                <p><strong>Risk:</strong> ${risk.toFixed(2)} points</p>
+                <p><strong>Reward:</strong> ${reward.toFixed(2)} points</p>
+                ${message}
+            `;
+        }
+
+        function calculateWinRate() {
+            const rr = parseFloat(document.getElementById('avgRR').value);
+
+            if (!rr) {
+                alert('Please enter your average R:R ratio');
+                return;
+            }
+
+            const winRate = (1 / (1 + rr)) * 100;
+
+            document.getElementById('winRateResult').style.display = 'block';
+            document.getElementById('requiredWinRate').textContent = `${winRate.toFixed(1)}%`;
+            document.getElementById('winRateDetails').innerHTML = `
+                <p>With an average 1:${rr} risk-reward ratio, you need a minimum win rate of <strong>${winRate.toFixed(1)}%</strong> to break even.</p>
+                <p style="margin-top: 15px;"><strong>Profitability Guide:</strong></p>
+                <p>• Win Rate < ${winRate.toFixed(1)}%: Losing money</p>
+                <p>• Win Rate = ${winRate.toFixed(1)}%: Breaking even</p>
+                <p>• Win Rate > ${winRate.toFixed(1)}%: Profitable! </p>
+            `;
+        }
+
+        function calculateProfitLoss() {
+            const lots = parseFloat(document.getElementById('plLots').value);
+            const entry = parseFloat(document.getElementById('plEntry').value);
+            const exit = parseFloat(document.getElementById('plExit').value);
+            const pipVal = parseFloat(document.getElementById('pipValue').value);
+
+            if (!lots || !entry || !exit || !pipVal) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const pips = (exit - entry) * 10000;
+            const pl = pips * pipVal * lots;
+
+            document.getElementById('plResult').style.display = 'block';
+            const color = pl >= 0 ? '#16a34a' : '#dc2626';
+            const symbol = pl >= 0 ? '+' : '';
+            document.getElementById('plAmount').innerHTML = `<span style="color: ${color};">${symbol}$${pl.toFixed(2)}</span>`;
+            document.getElementById('plDetails').innerHTML = `
+                <p><strong>Pip Movement:</strong> ${pips >= 0 ? '+' : ''}${pips.toFixed(1)} pips</p>
+                <p><strong>Position Size:</strong> ${lots} lots</p>
+                <p style="color: ${color}; font-weight: bold;">${pl >= 0 ? 'Profit' : 'Loss'}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

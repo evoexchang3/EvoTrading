@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategy Backtesting Checklist</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        h1 { color: #ea580c; border-bottom: 3px solid #ea580c; padding-bottom: 10px; }
+        h2 { color: #c2410c; margin-top: 30px; background: #fff7ed; padding: 12px; border-left: 4px solid #ea580c; }
+        .section { margin: 25px 0; padding: 20px; background: #fffbeb; border: 2px solid #fed7aa; border-radius: 8px; }
+        .checkbox-item { margin: 12px 0; padding: 10px; background: white; border-left: 3px solid #fb923c; }
+        .checkbox-item input[type="checkbox"] { margin-right: 10px; transform: scale(1.3); }
+        .checkbox-item label { font-weight: 500; color: #292524; }
+        .notes-field { margin-top: 8px; }
+        textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-family: Arial, sans-serif; min-height: 60px; }
+        .info-box { background: #dbeafe; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; }
+        .warning-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th { background: #ea580c; color: white; padding: 10px; text-align: left; }
+        td { border: 1px solid #ddd; padding: 8px; }
+        input[type="text"], input[type="number"], input[type="date"] { width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px; }
+        @media print { body { margin: 15px; } }
+    </style>
+</head>
+<body>
+    <h1>Comprehensive Backtesting Checklist</h1>
+    
+    <div class="info-box">
+        <strong>Purpose:</strong> Use this checklist to ensure thorough and unbiased backtesting of your trading strategies. Complete all sections before deploying any strategy with real money.
+    </div>
+
+    <!-- Phase 1: Preparation -->
+    <div class="section">
+        <h2>Phase 1: Preparation & Setup</h2>
+        
+        <div class="checkbox-item">
+            <input type="checkbox" id="prep1">
+            <label for="prep1">Strategy rules are clearly defined and documented (entry, exit, risk management)</label>
+            <div class="notes-field">
+                <textarea placeholder="Notes: Document where your full strategy is written..."></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="prep2">
+            <label for="prep2">Selected appropriate backtesting platform/software (TradingView, MT4/MT5, Python, etc.)</label>
+            <div class="notes-field">
+                <textarea placeholder="Platform used:"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="prep3">
+            <label for="prep3">Obtained high-quality historical data (tick data or minimum M1 data)</label>
+            <div class="notes-field">
+                <textarea placeholder="Data source and timeframe:"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="prep4">
+            <label for="prep4">Defined testing period (minimum 1 year, ideally 3-5 years)</label>
+            <div class="notes-field">
+                <table>
+                    <tr>
+                        <td><strong>Start Date:</strong><input type="date"></td>
+                        <td><strong>End Date:</strong><input type="date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="prep5">
+            <label for="prep5">Ensured data includes different market conditions (trending, ranging, high/low volatility)</label>
+            <div class="notes-field">
+                <textarea placeholder="Market conditions covered:"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phase 2: Execution -->
+    <div class="section">
+        <h2>Phase 2: Backtest Execution</h2>
+        
+        <div class="checkbox-item">
+            <input type="checkbox" id="exec1">
+            <label for="exec1">Simulated realistic trading conditions (slippage, spreads, commissions)</label>
+            <div class="notes-field">
+                <table>
+                    <tr>
+                        <td><strong>Spread Used:</strong><input type="text" placeholder="e.g., 2 pips"></td>
+                        <td><strong>Slippage:</strong><input type="text" placeholder="e.g., 1 pip"></td>
+                        <td><strong>Commission:</strong><input type="text" placeholder="e.g., $7/lot"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="exec2">
+            <label for="exec2">Followed strategy rules exactly without cherry-picking trades or hindsight bias</label>
+            <div class="notes-field">
+                <textarea placeholder="Describe how you ensured objectivity:"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="exec3">
+            <label for="exec3">Documented ALL trades (winners AND losers) in trading journal/spreadsheet</label>
+            <div class="notes-field">
+                <textarea placeholder="Location of trade log:"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="exec4">
+            <label for="exec4">Minimum 100 trades executed (preferably 200+)</label>
+            <div class="notes-field">
+                <strong>Total Trades:</strong> <input type="number" placeholder="e.g., 187">
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="exec5">
+            <label for="exec5">Maintained consistent position sizing throughout the test</label>
+            <div class="notes-field">
+                <textarea placeholder="Position sizing method used:"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="exec6">
+            <label for="exec6">Tracked trade-by-trade equity curve in real-time</label>
+        </div>
+    </div>
+
+    <!-- Phase 3: Performance Analysis -->
+    <div class="section">
+        <h2>Phase 3: Performance Analysis</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Your Result</th>
+                    <th>Benchmark/Target</th>
+                    <th>Pass/Fail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Total Trades</td>
+                    <td><input type="number"></td>
+                    <td>Minimum 100</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Win Rate (%)</td>
+                    <td><input type="number" step="0.1"></td>
+                    <td>Depends on R:R (typically 40-60%)</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Profit Factor</td>
+                    <td><input type="number" step="0.01"></td>
+                    <td>Minimum 1.5, Good: >2.0</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Average R:R Ratio</td>
+                    <td><input type="text" placeholder="e.g., 1:2.5"></td>
+                    <td>Minimum 1:1.5, Good: >1:2</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Maximum Drawdown (%)</td>
+                    <td><input type="number" step="0.1"></td>
+                    <td>Maximum 20%, Good: <15%</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Sharpe Ratio</td>
+                    <td><input type="number" step="0.01"></td>
+                    <td>Good: >1.0, Excellent: >2.0</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Expectancy (per trade)</td>
+                    <td><input type="text" placeholder="e.g., $45"></td>
+                    <td>Must be positive</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Consecutive Losses (max)</td>
+                    <td><input type="number"></td>
+                    <td>Check if tolerable</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Total Net Profit</td>
+                    <td><input type="text" placeholder="e.g., +$8,450"></td>
+                    <td>Positive & meaningful</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="perf1">
+            <label for="perf1">Analyzed equity curve for smooth, consistent growth (not erratic)</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="perf2">
+            <label for="perf2">Checked that profits are not dependent on 1-2 outlier trades</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="perf3">
+            <label for="perf3">Verified strategy performs across multiple instruments/pairs</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="perf4">
+            <label for="perf4">Tested performance in different market phases (bull, bear, sideways)</label>
+        </div>
+    </div>
+
+    <!-- Phase 4: Risk Analysis -->
+    <div class="section">
+        <h2>Phase 4: Risk Analysis</h2>
+        
+        <div class="checkbox-item">
+            <input type="checkbox" id="risk1">
+            <label for="risk1">Maximum drawdown is acceptable and won't wipe out account</label>
+            <div class="notes-field">
+                <textarea placeholder="Max DD tolerance and reasoning:"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="risk2">
+            <label for="risk2">Longest losing streak is mentally and financially tolerable</label>
+            <div class="notes-field">
+                <strong>Max losing streak observed:</strong> <input type="number"> trades
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="risk3">
+            <label for="risk3">Risk per trade was consistent and never exceeded 2% of account</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="risk4">
+            <label for="risk4">Recovery time from drawdowns is reasonable</label>
+            <div class="notes-field">
+                <textarea placeholder="Average recovery time after drawdowns:"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="risk5">
+            <label for="risk5">Risk-adjusted returns (Sharpe ratio) are satisfactory</label>
+        </div>
+    </div>
+
+    <!-- Phase 5: Optimization & Validation -->
+    <div class="section">
+        <h2>Phase 5: Optimization & Out-of-Sample Testing</h2>
+        
+        <div class="warning-box">
+            <strong>Warning:</strong> Over-optimization (curve-fitting) is a major cause of backtesting failure in live trading. Be conservative!
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="opt1">
+            <label for="opt1">If optimized, used in-sample (60-70%) and out-of-sample (30-40%) data split</label>
+            <div class="notes-field">
+                <table>
+                    <tr>
+                        <td><strong>In-Sample Period:</strong><input type="text" placeholder="e.g., 2020-2022"></td>
+                        <td><strong>Out-of-Sample Period:</strong><input type="text" placeholder="e.g., 2023"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="opt2">
+            <label for="opt2">Out-of-sample results are within 20% of in-sample results (not dramatically worse)</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="opt3">
+            <label for="opt3">Limited number of optimized parameters (max 3-4 variables)</label>
+            <div class="notes-field">
+                <textarea placeholder="List optimized parameters:"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="opt4">
+            <label for="opt4">Walk-forward analysis performed (if using optimization)</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="opt5">
+            <label for="opt5">Strategy logic makes sense and is not based purely on historical patterns</label>
+        </div>
+    </div>
+
+    <!-- Phase 6: Forward Testing Decision -->
+    <div class="section">
+        <h2>Phase 6: Forward Testing Decision</h2>
+        
+        <div class="checkbox-item">
+            <input type="checkbox" id="fwd1">
+            <label for="fwd1">All critical metrics meet or exceed targets</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="fwd2">
+            <label for="fwd2">Strategy has logical foundation (not just curve-fitted)</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="fwd3">
+            <label for="fwd3">Comfortable with maximum drawdown and longest losing streak</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="fwd4">
+            <label for="fwd4">Ready to commit to forward testing on demo account for minimum 30-60 days</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" id="fwd5">
+            <label for="fwd5">Documented all assumptions and limitations of the backtest</label>
+            <div class="notes-field">
+                <textarea placeholder="List key assumptions and limitations:"></textarea>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>Next Step:</strong> If all boxes are checked and metrics are satisfactory, proceed to forward testing on a DEMO account for 30-60 days. Do NOT skip this step!
+        </div>
+    </div>
+
+    <!-- Final Notes -->
+    <div class="section">
+        <h2>Additional Notes & Observations</h2>
+        <textarea style="min-height: 120px;" placeholder="Record any additional insights, concerns, or observations from the backtesting process..."></textarea>
+    </div>
+
+    <div class="info-box">
+        <strong>📌 Remember:</strong>
+        <ul style="margin: 10px 0; padding-left: 25px;">
+            <li>Past performance does not guarantee future results</li>
+            <li>Backtest honestly - don't cherry-pick trades or use hindsight</li>
+            <li>Always forward test on demo before risking real money</li>
+            <li>Markets change - be prepared to adapt your strategy</li>
+            <li>Review and update this checklist after every major backtest</li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 30px; padding: 20px; background: #f3f4f6; border-radius: 8px;">
+        <strong>Backtest Summary Decision:</strong>
+        <div style="margin-top: 15px;">
+            <input type="radio" name="decision" id="dec1"> <label for="dec1"><strong style="color: #16a34a;">PASS - Proceed to Forward Testing</strong></label><br>
+            <input type="radio" name="decision" id="dec2"> <label for="dec2"><strong style="color: #f59e0b;">REVISE - Needs Optimization</strong></label><br>
+            <input type="radio" name="decision" id="dec3"> <label for="dec3"><strong style="color: #dc2626;">FAIL - Reject Strategy</strong></label>
+        </div>
+    </div>
+</body>
+</html>

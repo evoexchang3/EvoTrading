@@ -15,12 +15,15 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 import { LessonViewer } from "@/components/LessonViewer";
 import { getLessonContent } from "@/content/courses";
+import { useAuth } from "@/contexts/AuthContext";
+import { CourseCertificate } from "@/components/certificates/CourseCertificate";
 
 const COURSE_ID = "advanced-trading";
 
 export default function AdvancedCoursePage() {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const { user } = useAuth();
   const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
   const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
@@ -177,16 +180,9 @@ export default function AdvancedCoursePage() {
   ];
 
   const downloadableResources = [
-    { title: t('education.advancedCourse.resources.resource1'), type: "PDF", size: "2.8 MB" },
-    { title: t('education.advancedCourse.resources.resource2'), type: "PDF", size: "3.2 MB" },
-    { title: t('education.advancedCourse.resources.resource3'), type: "PDF", size: "4.1 MB" },
-    { title: t('education.advancedCourse.resources.resource4'), type: "Excel", size: "1.2 MB" },
-    { title: t('education.advancedCourse.resources.resource5'), type: "Excel", size: "1.8 MB" },
-    { title: t('education.advancedCourse.resources.resource6'), type: "Excel", size: "2.1 MB" },
-    { title: t('education.advancedCourse.resources.resource7'), type: "Excel", size: "1.5 MB" },
-    { title: t('education.advancedCourse.resources.resource8'), type: "Excel", size: "0.9 MB" },
-    { title: t('education.advancedCourse.resources.resource9'), type: "PDF", size: "3.5 MB" },
-    { title: t('education.advancedCourse.resources.resource10'), type: "Excel", size: "2.3 MB" }
+    { title: "Advanced Strategy Templates", type: "HTML/PDF", size: "52 KB", url: "/assets/courses/resources/advanced/advanced-strategy-templates.html" },
+    { title: "Backtesting Checklist", type: "HTML/PDF", size: "48 KB", url: "/assets/courses/resources/advanced/backtesting-checklist.html" },
+    { title: "Risk Management Matrix", type: "HTML", size: "42 KB", url: "/assets/courses/resources/advanced/risk-management-matrix.html" }
   ];
 
   const faqs = [
@@ -291,6 +287,36 @@ export default function AdvancedCoursePage() {
   ).length;
   const totalLessons = modules.reduce((sum, module) => sum + module.lessons.length, 0);
 
+  // Calculate modules passed (module is passed if all lessons are completed)
+  const modulesPassed = modules.filter(module => {
+    const moduleLessons = module.lessons;
+    const completedInModule = moduleLessons.filter(lesson => 
+      getLessonProgress(module.id, lesson.id)
+    ).length;
+    return completedInModule === moduleLessons.length;
+  }).length;
+
+  // Calculate time invested from completed lessons
+  const timeInvested = modules.reduce((totalMinutes, module) => {
+    return totalMinutes + module.lessons.reduce((moduleMinutes, lesson) => {
+      if (getLessonProgress(module.id, lesson.id)) {
+        const duration = parseInt(lesson.duration) || 0;
+        return moduleMinutes + duration;
+      }
+      return moduleMinutes;
+    }, 0);
+  }, 0);
+  
+  const timeInvestedHours = timeInvested / 60;
+  const timeInvestedDisplay = timeInvestedHours >= 1 
+    ? `${timeInvestedHours.toFixed(1)} hrs` 
+    : `${timeInvested} mins`;
+
+  const isCourseComplete = courseProgress === 100;
+  const userName = user?.firstName && user?.lastName 
+    ? `${user.firstName} ${user.lastName}` 
+    : user?.email?.split('@')[0] || 'Student';
+
   return (
     <DashboardLayout>
       <div className="p-6 space-y-6">
@@ -302,6 +328,18 @@ export default function AdvancedCoursePage() {
           </div>
           <GraduationCap className="w-8 h-8 text-muted-foreground" />
         </div>
+
+        {/* Certificate - shown when course is complete */}
+        {isCourseComplete && (
+          <CourseCertificate
+            courseName="Advanced Trading Mastery"
+            courseLevel="Advanced"
+            userName={userName}
+            completionDate={new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            totalLessons={totalLessons}
+            totalDuration="8-10 hours"
+          />
+        )}
 
         {/* Prerequisites Alert */}
         <Alert data-testid="alert-prerequisites">
@@ -339,14 +377,14 @@ export default function AdvancedCoursePage() {
                   <Target className="w-4 h-4 text-primary" />
                   <p className="text-sm text-muted-foreground">{t('education.advancedCourse.progress.modulesPassed')}</p>
                 </div>
-                <p className="text-2xl font-bold" data-testid="text-modules-passed">0/6</p>
+                <p className="text-2xl font-bold" data-testid="text-modules-passed">{modulesPassed}/{modules.length}</p>
               </div>
               <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <Clock className="w-4 h-4 text-primary" />
                   <p className="text-sm text-muted-foreground">{t('education.advancedCourse.progress.timeInvested')}</p>
                 </div>
-                <p className="text-2xl font-bold" data-testid="text-time-invested">1.3 hrs</p>
+                <p className="text-2xl font-bold" data-testid="text-time-invested">{timeInvestedDisplay}</p>
               </div>
             </div>
           </CardContent>
@@ -618,9 +656,10 @@ export default function AdvancedCoursePage() {
                   className="justify-between h-auto p-4"
                   data-testid={`button-download-${index}`}
                   onClick={() => {
+                    window.open(resource.url, '_blank');
                     toast({
-                      title: "Resources Locked",
-                      description: "Complete all course modules to unlock downloadable resources.",
+                      title: "Resource Opened",
+                      description: `${resource.title} has been opened in a new tab. You can save it as PDF using your browser's print function.`,
                       variant: "default"
                     });
                   }}
