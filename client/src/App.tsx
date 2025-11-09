@@ -117,6 +117,7 @@ function AppRoutes() {
       <Route path="/company/safety-of-funds" component={SafetyOfFundsPage} />
       <Route path="/company/complaints" component={ComplaintsPage} />
       <Route path="/company/platform-status" component={PlatformStatusPage} />
+      <Route path="/platform/status" component={PlatformStatusPage} />
       <Route path="/company/security" component={SecurityPageCompany} />
 
       {/* Auth Routes */}
