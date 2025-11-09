@@ -224,9 +224,9 @@ export default function BeginnerCoursePage() {
   ];
 
   const downloadableResources = [
-    { title: "Trading Plan Template", type: "HTML/PDF", size: "45 KB", url: "/assets/courses/resources/beginner/trading-plan-template.html" },
-    { title: "Trading Journal Template", type: "HTML/PDF", size: "38 KB", url: "/assets/courses/resources/beginner/trading-journal-template.html" },
-    { title: "Risk Calculator & Position Sizer", type: "HTML", size: "32 KB", url: "/assets/courses/resources/beginner/risk-calculator.html" }
+    { title: "Technical Analysis Quick Reference Guide", type: "HTML", size: "45 KB", url: "/assets/courses/resources/beginner/technical-analysis-reference.html", filename: "Technical-Analysis-Reference.html" },
+    { title: "Risk Management Rules & Formulas", type: "HTML", size: "38 KB", url: "/assets/courses/resources/beginner/risk-management-guide.html", filename: "Risk-Management-Guide.html" },
+    { title: "Common Trading Mistakes Guide", type: "HTML", size: "32 KB", url: "/assets/courses/resources/beginner/common-mistakes-guide.html", filename: "Common-Trading-Mistakes.html" }
   ];
 
   const faqs = [
@@ -625,10 +625,15 @@ export default function BeginnerCoursePage() {
                   className="justify-between h-auto p-4"
                   data-testid={`button-download-${index}`}
                   onClick={() => {
-                    window.open(resource.url, '_blank');
+                    const link = document.createElement('a');
+                    link.href = resource.url;
+                    link.download = resource.filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                     toast({
-                      title: "Resource Opened",
-                      description: `${resource.title} has been opened in a new tab. You can save it as PDF using your browser's print function.`,
+                      title: "Resource Downloaded",
+                      description: `${resource.title} downloaded. Open in your browser to view or print to PDF.`,
                       variant: "default"
                     });
                   }}

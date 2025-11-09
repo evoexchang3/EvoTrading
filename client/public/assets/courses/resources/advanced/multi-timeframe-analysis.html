@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Timeframe Analysis Framework</title>
+    <style>
+        @page { margin: 2cm; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { color: #0891b2; border-bottom: 4px solid #0891b2; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { color: #0e7490; background: #ecfeff; padding: 10px; margin-top: 30px; border-left: 5px solid #0891b2; }
+        h3 { color: #155e75; margin-top: 20px; }
+        .framework-box { background: #f0fdfa; border: 2px solid #5eead4; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .timeframe-card { background: white; border: 2px solid #0891b2; padding: 15px; margin: 15px 0; border-radius: 6px; }
+        .timeframe-card h4 { color: #0891b2; margin-top: 0; border-bottom: 2px solid #0891b2; padding-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th { background: #0891b2; color: white; padding: 12px; text-align: left; }
+        td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
+        tr:nth-child(even) { background: #f9fafb; }
+        .info-box { background: #dbeafe; border-left: 4px solid #3b82f6; padding: 15px; margin: 20px 0; }
+        .tip-box { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; }
+        .warning-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; }
+        .critical-box { background: #fee2e2; border-left: 4px solid #dc2626; padding: 15px; margin: 20px 0; font-weight: bold; }
+        ul { margin: 10px 0; padding-left: 30px; }
+        li { margin: 8px 0; }
+        .example { background: #f0fdf4; border: 2px solid #86efac; padding: 15px; margin: 15px 0; border-radius: 6px; }
+        .phase { display: inline-block; padding: 6px 12px; background: #0891b2; color: white; border-radius: 4px; font-weight: bold; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Multi-Timeframe Analysis Framework</h1>
+    
+    <div class="critical-box">
+        CORE PRINCIPLE: Trading a single timeframe is like driving while looking only at the road 5 feet in front of you. Multi-timeframe analysis reveals the full market picture - where we are, where we're going, and how to get there safely.
+    </div>
+
+    <h2>1. The Multi-Timeframe Hierarchy</h2>
+    
+    <div class="info-box">
+        <strong>Foundation Concept:</strong> Every timeframe tells a story, but they must align. Higher timeframes show the big picture (trend), while lower timeframes show precision entry opportunities. Your job is to trade in the direction of higher timeframes using signals from lower timeframes.
+    </div>
+    
+    <h3>Standard Timeframe Structure</h3>
+    <div class="timeframe-card">
+        <h4>Long-Term Timeframe (HTF - Higher Timeframe)</h4>
+        <strong>Purpose:</strong> Identify overall trend direction and major support/resistance<br>
+        <strong>For Day Trading:</strong> Daily, 4-Hour<br>
+        <strong>For Swing Trading:</strong> Weekly, Daily<br>
+        <strong>For Position Trading:</strong> Monthly, Weekly<br><br>
+        <strong>What to Look For:</strong>
+        <ul>
+            <li>Overall trend direction (up, down, or sideways)</li>
+            <li>Major support and resistance zones</li>
+            <li>Key moving averages (200 MA, 50 MA)</li>
+            <li>Long-term chart patterns</li>
+            <li>Market structure (higher highs/lows or lower highs/lows)</li>
+        </ul>
+    </div>
+    
+    <div class="timeframe-card">
+        <h4>Medium-Term Timeframe (MTF - Medium Timeframe)</h4>
+        <strong>Purpose:</strong> Identify intermediate trends and swing points<br>
+        <strong>For Day Trading:</strong> 1-Hour, 15-Minute<br>
+        <strong>For Swing Trading:</strong> 4-Hour, 1-Hour<br>
+        <strong>For Position Trading:</strong> Daily, 4-Hour<br><br>
+        <strong>What to Look For:</strong>
+        <ul>
+            <li>Pullbacks within HTF trend</li>
+            <li>Swing highs and swing lows</li>
+            <li>Continuation patterns (flags, pennants)</li>
+            <li>Reversal signals that align with HTF</li>
+            <li>Dynamic support/resistance (20/50 EMA)</li>
+        </ul>
+    </div>
+    
+    <div class="timeframe-card">
+        <h4>Short-Term Timeframe (LTF - Lower Timeframe)</h4>
+        <strong>Purpose:</strong> Precise entry timing and trade management<br>
+        <strong>For Day Trading:</strong> 5-Minute, 1-Minute<br>
+        <strong>For Swing Trading:</strong> 15-Minute, 5-Minute<br>
+        <strong>For Position Trading:</strong> 1-Hour, 15-Minute<br><br>
+        <strong>What to Look For:</strong>
+        <ul>
+            <li>Specific entry signals (candlestick patterns)</li>
+            <li>Exact entry and stop loss placement</li>
+            <li>Momentum confirmation (RSI, MACD)</li>
+            <li>Volume spikes and confirmations</li>
+            <li>Intraday support/resistance for entries</li>
+        </ul>
+    </div>
+
+    <h2>2. The MTF Analysis Process</h2>
+    
+    <div class="framework-box">
+        <h3><span class="phase">Phase 1</span> Higher Timeframe Analysis</h3>
+        
+        <strong>Step 1: Determine the Trend</strong>
+        <ul>
+            <li>Uptrend: Series of higher highs and higher lows</li>
+            <li>Downtrend: Series of lower highs and lower lows</li>
+            <li>Range/Sideways: Horizontal price action between support/resistance</li>
+        </ul>
+        
+        <strong>Step 2: Mark Key Levels</strong>
+        <ul>
+            <li>Draw horizontal support and resistance from swing points</li>
+            <li>Identify major round numbers (psychological levels)</li>
+            <li>Mark previous breakout points (become new SR)</li>
+            <li>Note 200 MA and 50 MA positions</li>
+        </ul>
+        
+        <strong>Step 3: Assess Market Phase</strong>
+        <ul>
+            <li>Strong trend (moving away from consolidation)</li>
+            <li>Consolidation (building energy for next move)</li>
+            <li>Exhaustion (trend nearing completion)</li>
+            <li>Reversal (trend changing direction)</li>
+        </ul>
+        
+        <div class="example">
+            <strong>Example - HTF Analysis (Daily Chart):</strong><br>
+            EUR/USD Daily: Clear uptrend with higher highs and higher lows. Price is above 200 MA. Strong support at 1.0800. Resistance at 1.1000. Trend is strong, not exhausted. <strong>Bias: Look for buys only.</strong>
+        </div>
+    </div>
+    
+    <div class="framework-box">
+        <h3><span class="phase">Phase 2</span> Medium Timeframe Confirmation</h3>
+        
+        <strong>Step 1: Identify Pullbacks</strong>
+        <ul>
+            <li>Look for retracements within HTF trend</li>
+            <li>Fibonacci levels (38.2%, 50%, 61.8% retracements)</li>
+            <li>Pullbacks to moving averages (20 EMA, 50 EMA)</li>
+            <li>Minor support/resistance zones</li>
+        </ul>
+        
+        <strong>Step 2: Recognize Patterns</strong>
+        <ul>
+            <li>Continuation patterns (flags, pennants) in HTF direction</li>
+            <li>Corrective patterns (ABC, triangles)</li>
+            <li>Avoid counter-trend patterns unless very strong</li>
+        </ul>
+        
+        <strong>Step 3: Wait for Alignment</strong>
+        <ul>
+            <li>MTF trend must align with HTF trend</li>
+            <li>If MTF shows counter-trend, wait for HTF confirmation</li>
+            <li>Best entries occur when MTF reverses back into HTF direction</li>
+        </ul>
+        
+        <div class="example">
+            <strong>Example - MTF Analysis (4-Hour Chart):</strong><br>
+            EUR/USD pulls back from 1.0950 to 1.0850 (within Daily uptrend). Finds support at 50 EMA. Bullish engulfing candle forms. Volume increasing. <strong>Setup: Potential buy signal forming.</strong>
+        </div>
+    </div>
+    
+    <div class="framework-box">
+        <h3><span class="phase">Phase 3</span> Lower Timeframe Entry</h3>
+        
+        <strong>Step 1: Wait for Trigger</strong>
+        <ul>
+            <li>Reversal candlestick patterns (hammer, engulfing, morning star)</li>
+            <li>Breakout from consolidation</li>
+            <li>Moving average crossover (5 EMA crosses 20 EMA)</li>
+            <li>Momentum confirmation (RSI crosses above 50, MACD crossover)</li>
+        </ul>
+        
+        <strong>Step 2: Confirm with Volume</strong>
+        <ul>
+            <li>Volume should spike on entry signal</li>
+            <li>Above-average volume validates the move</li>
+            <li>Low volume = wait for better signal</li>
+        </ul>
+        
+        <strong>Step 3: Execute with Precision</strong>
+        <ul>
+            <li>Enter on close of signal candle or pullback</li>
+            <li>Stop loss below recent swing low (or above swing high for shorts)</li>
+            <li>Target based on HTF objectives (next resistance level)</li>
+        </ul>
+        
+        <div class="example">
+            <strong>Example - LTF Entry (15-Minute Chart):</strong><br>
+            EUR/USD bounces from 1.0850 with bullish engulfing on 4H. On 15-min chart, price breaks above 1.0860 mini-resistance with volume spike. <strong>Entry: 1.0862, Stop: 1.0840, Target: 1.0950 (R:R = 1:4)</strong>
+        </div>
+    </div>
+
+    <h2>3. MTF Trade Scenarios</h2>
+    
+    <h3>Scenario A: Full Alignment (Ideal Setup)</h3>
+    <table>
+        <tr>
+            <th>Timeframe</th>
+            <th>Status</th>
+            <th>Signal</th>
+        </tr>
+        <tr>
+            <td><strong>HTF (Daily)</strong></td>
+            <td>Strong uptrend</td>
+            <td>Price above 200 MA, higher highs/lows</td>
+        </tr>
+        <tr>
+            <td><strong>MTF (4-Hour)</strong></td>
+            <td>Pullback complete</td>
+            <td>Bounced from 50 EMA, bullish pattern forming</td>
+        </tr>
+        <tr>
+            <td><strong>LTF (15-Min)</strong></td>
+            <td>Entry trigger</td>
+            <td>Break of mini-resistance with volume</td>
+        </tr>
+    </table>
+    <p><strong>Action:</strong> TAKE THE TRADE - All timeframes aligned. Highest probability setup.</p>
+    
+    <h3>Scenario B: Partial Alignment (Caution)</h3>
+    <table>
+        <tr>
+            <th>Timeframe</th>
+            <th>Status</th>
+            <th>Signal</th>
+        </tr>
+        <tr>
+            <td><strong>HTF (Daily)</strong></td>
+            <td>Uptrend</td>
+            <td>Price above 200 MA but approaching resistance</td>
+        </tr>
+        <tr>
+            <td><strong>MTF (4-Hour)</strong></td>
+            <td>Sideways</td>
+            <td>Consolidating, no clear direction</td>
+        </tr>
+        <tr>
+            <td><strong>LTF (15-Min)</strong></td>
+            <td>Buy signal</td>
+            <td>Bullish pattern on LTF</td>
+        </tr>
+    </table>
+    <p><strong>Action:</strong> REDUCE SIZE OR SKIP - Not all timeframes confirm. If taking trade, use 50% normal size.</p>
+    
+    <h3>Scenario C: Conflict (Avoid)</h3>
+    <table>
+        <tr>
+            <th>Timeframe</th>
+            <th>Status</th>
+            <th>Signal</th>
+        </tr>
+        <tr>
+            <td><strong>HTF (Daily)</strong></td>
+            <td>Downtrend</td>
+            <td>Price below 200 MA, lower highs/lows</td>
+        </tr>
+        <tr>
+            <td><strong>MTF (4-Hour)</strong></td>
+            <td>Short-term bounce</td>
+            <td>Counter-trend rally</td>
+        </tr>
+        <tr>
+            <td><strong>LTF (15-Min)</strong></td>
+            <td>Buy signal</td>
+            <td>Bullish candle pattern</td>
+        </tr>
+    </table>
+    <p><strong>Action:</strong> DO NOT TRADE - Buying into a downtrend. Wait for HTF to turn or look for sells instead.</p>
+
+    <h2>4. Common MTF Strategies</h2>
+    
+    <div class="tip-box">
+        <h3>Strategy #1: Trend + Pullback</h3>
+        <ul>
+            <li><strong>HTF:</strong> Identify strong trend (up or down)</li>
+            <li><strong>MTF:</strong> Wait for pullback to key support (uptrend) or resistance (downtrend)</li>
+            <li><strong>LTF:</strong> Enter on reversal signal in trend direction</li>
+        </ul>
+        <strong>Best For:</strong> Swing trading, position trading<br>
+        <strong>Win Rate:</strong> 65-70% when properly executed
+    </div>
+    
+    <div class="tip-box">
+        <h3>Strategy #2: Breakout Confirmation</h3>
+        <ul>
+            <li><strong>HTF:</strong> Identify consolidation or range</li>
+            <li><strong>MTF:</strong> Watch for breakout with volume</li>
+            <li><strong>LTF:</strong> Enter on pullback to broken level (retest)</li>
+        </ul>
+        <strong>Best For:</strong> All trading styles<br>
+        <strong>Win Rate:</strong> 55-65% (higher when HTF shows direction)
+    </div>
+    
+    <div class="tip-box">
+        <h3>Strategy #3: Triple Screen Trading System</h3>
+        <ul>
+            <li><strong>Screen 1 (HTF):</strong> Determine trend with weekly chart</li>
+            <li><strong>Screen 2 (MTF):</strong> Use daily oscillator (RSI/Stochastic) for timing</li>
+            <li><strong>Screen 3 (LTF):</strong> Use hourly breakout for entry</li>
+        </ul>
+        <strong>Best For:</strong> Position trading<br>
+        <strong>Win Rate:</strong> 60-75% with strict discipline
+    </div>
+
+    <h2>5. MTF Risk Management</h2>
+    
+    <h3>Stop Loss Placement</h3>
+    <table>
+        <tr>
+            <th>Based On</th>
+            <th>Stop Placement</th>
+            <th>Pros</th>
+            <th>Cons</th>
+        </tr>
+        <tr>
+            <td><strong>HTF Level</strong></td>
+            <td>Below HTF support (buy) / Above HTF resistance (sell)</td>
+            <td>Wider, less likely to get stopped out</td>
+            <td>Larger position risk</td>
+        </tr>
+        <tr>
+            <td><strong>MTF Level</strong></td>
+            <td>Below MTF swing low/high</td>
+            <td>Balanced risk/reward</td>
+            <td>Moderate stop distance</td>
+        </tr>
+        <tr>
+            <td><strong>LTF Level</strong></td>
+            <td>Below LTF pattern low/high</td>
+            <td>Tight stop, small risk</td>
+            <td>Higher chance of stop hit on noise</td>
+        </tr>
+    </table>
+    
+    <div class="warning-box">
+        <strong>Recommendation:</strong> Use MTF-based stops for most trades. If HTF is very strong, can use HTF stops with reduced position size. Avoid LTF-only stops unless scalping.
+    </div>
+    
+    <h3>Target Setting</h3>
+    <ul>
+        <li><strong>Conservative:</strong> Previous MTF swing high/low</li>
+        <li><strong>Moderate:</strong> HTF support/resistance level</li>
+        <li><strong>Aggressive:</strong> HTF measured move target</li>
+    </ul>
+
+    <h2>6. MTF Checklist</h2>
+    
+    <div class="info-box">
+        <strong>Before Every Trade:</strong><br><br>
+        
+        <strong>Higher Timeframe (HTF):</strong><br>
+        □ Trend identified clearly (up/down/sideways)<br>
+        □ Major SR levels marked on chart<br>
+        □ Know where price is in relation to 200 MA<br>
+        □ Understand market phase (trending, consolidating, reversing)<br><br>
+        
+        <strong>Medium Timeframe (MTF):</strong><br>
+        □ Current movement aligns with HTF trend<br>
+        □ Pullback/consolidation is complete or completing<br>
+        □ Pattern forming in direction of HTF<br>
+        □ Key support/resistance identified<br><br>
+        
+        <strong>Lower Timeframe (LTF):</strong><br>
+        □ Clear entry trigger present<br>
+        □ Volume confirms the move<br>
+        □ Can place logical stop loss<br>
+        □ R:R ratio is favorable (minimum 1:2)<br><br>
+        
+        <strong>Alignment Check:</strong><br>
+        □ All three timeframes tell the same story<br>
+        □ No conflicting signals between timeframes<br>
+        □ Trade direction matches HTF bias<br><br>
+        
+        <strong>If 100% aligned = Full position size</strong><br>
+        <strong>If 70-90% aligned = Reduced size (50%)</strong><br>
+        <strong>If <70% aligned = Skip the trade</strong>
+    </div>
+
+    <h2>7. Common MTF Mistakes</h2>
+    
+    <ul>
+        <li><strong>Mistake:</strong> Trading LTF signals that contradict HTF trend<br>
+            <strong>Fix:</strong> Always know HTF bias before looking at entries</li>
+        
+        <li><strong>Mistake:</strong> Using same indicators on all timeframes<br>
+            <strong>Fix:</strong> HTF = trend tools (MA), MTF = swing tools (SR), LTF = momentum (RSI, MACD)</li>
+        
+        <li><strong>Mistake:</strong> Not waiting for all timeframes to align<br>
+            <strong>Fix:</strong> Be patient - best setups have full alignment</li>
+        
+        <li><strong>Mistake:</strong> Setting stops based only on LTF<br>
+            <strong>Fix:</strong> Use MTF or HTF levels for stops to avoid noise</li>
+        
+        <li><strong>Mistake:</strong> Ignoring HTF context when scalping<br>
+            <strong>Fix:</strong> Even 1-minute scalps should respect Daily trend</li>
+    </ul>
+
+</body>
+</html>

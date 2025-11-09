@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Analysis Quick Reference Guide</title>
+    <style>
+        @page { margin: 2cm; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { color: #2563eb; border-bottom: 4px solid #2563eb; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { color: #1e40af; background: #eff6ff; padding: 10px; margin-top: 30px; border-left: 5px solid #2563eb; }
+        h3 { color: #1e3a8a; margin-top: 20px; }
+        .pattern-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0; }
+        .pattern-box { border: 2px solid #ddd; padding: 15px; background: #f9fafb; border-radius: 8px; }
+        .pattern-box h4 { color: #2563eb; margin-top: 0; }
+        .signal { display: inline-block; padding: 4px 12px; border-radius: 4px; font-weight: bold; margin: 5px 5px 5px 0; }
+        .bullish { background: #dcfce7; color: #166534; }
+        .bearish { background: #fee2e2; color: #991b1b; }
+        .neutral { background: #fef3c7; color: #92400e; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th { background: #2563eb; color: white; padding: 12px; text-align: left; }
+        td { border: 1px solid #ddd; padding: 10px; }
+        tr:nth-child(even) { background: #f9fafb; }
+        .info-box { background: #dbeafe; border-left: 4px solid #3b82f6; padding: 15px; margin: 20px 0; }
+        .tip-box { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; }
+        ul { margin: 10px 0; padding-left: 30px; }
+        li { margin: 8px 0; }
+    </style>
+</head>
+<body>
+    <h1>Technical Analysis Quick Reference Guide</h1>
+    
+    <div class="info-box">
+        <strong>Purpose:</strong> This guide provides a comprehensive overview of essential technical analysis concepts, patterns, and indicators used in trading. Keep this as a quick reference while analyzing charts.
+    </div>
+
+    <h2>1. Candlestick Patterns</h2>
+    
+    <h3>Single Candlestick Patterns</h3>
+    <div class="pattern-grid">
+        <div class="pattern-box">
+            <h4>Doji</h4>
+            <span class="signal neutral">Reversal/Indecision</span>
+            <p><strong>Description:</strong> Opening and closing prices are virtually equal, creating a cross or plus sign shape.</p>
+            <p><strong>Interpretation:</strong> Market indecision; potential reversal when at trend extremes.</p>
+            <p><strong>Confirmation:</strong> Look for high volume and next candle's direction.</p>
+        </div>
+        
+        <div class="pattern-box">
+            <h4>Hammer</h4>
+            <span class="signal bullish">Bullish Reversal</span>
+            <p><strong>Description:</strong> Small body at top, long lower wick (2-3x body length), minimal upper wick.</p>
+            <p><strong>Interpretation:</strong> Buyers rejected lower prices and pushed price back up.</p>
+            <p><strong>Best Context:</strong> Bottom of downtrend with volume confirmation.</p>
+        </div>
+        
+        <div class="pattern-box">
+            <h4>Shooting Star</h4>
+            <span class="signal bearish">Bearish Reversal</span>
+            <p><strong>Description:</strong> Small body at bottom, long upper wick (2-3x body length), minimal lower wick.</p>
+            <p><strong>Interpretation:</strong> Sellers rejected higher prices and pushed price back down.</p>
+            <p><strong>Best Context:</strong> Top of uptrend with volume confirmation.</p>
+        </div>
+        
+        <div class="pattern-box">
+            <h4>Engulfing Candle</h4>
+            <span class="signal bullish">Bullish</span> <span class="signal bearish">Bearish</span>
+            <p><strong>Description:</strong> Current candle's body completely engulfs previous candle's body.</p>
+            <p><strong>Bullish:</strong> Green candle engulfs red candle at support.</p>
+            <p><strong>Bearish:</strong> Red candle engulfs green candle at resistance.</p>
+        </div>
+    </div>
+
+    <h3>Multi-Candlestick Patterns</h3>
+    <table>
+        <tr>
+            <th>Pattern</th>
+            <th>Signal</th>
+            <th>Description</th>
+            <th>Key Points</th>
+        </tr>
+        <tr>
+            <td><strong>Morning Star</strong></td>
+            <td>Bullish Reversal</td>
+            <td>3 candles: large red, small-bodied, large green</td>
+            <td>Forms at bottom of downtrend; confirms buyers taking control</td>
+        </tr>
+        <tr>
+            <td><strong>Evening Star</strong></td>
+            <td>Bearish Reversal</td>
+            <td>3 candles: large green, small-bodied, large red</td>
+            <td>Forms at top of uptrend; confirms sellers taking control</td>
+        </tr>
+        <tr>
+            <td><strong>Three White Soldiers</strong></td>
+            <td>Strong Bullish</td>
+            <td>3 consecutive large green candles with higher closes</td>
+            <td>Strong buying pressure; each opens within previous body</td>
+        </tr>
+        <tr>
+            <td><strong>Three Black Crows</strong></td>
+            <td>Strong Bearish</td>
+            <td>3 consecutive large red candles with lower closes</td>
+            <td>Strong selling pressure; each opens within previous body</td>
+        </tr>
+    </table>
+
+    <h2>2. Support and Resistance</h2>
+    
+    <div class="tip-box">
+        <strong>Golden Rule:</strong> Support and resistance levels are zones, not exact prices. Always consider a range rather than a specific price point.
+    </div>
+    
+    <h3>Identifying Support/Resistance</h3>
+    <ul>
+        <li><strong>Horizontal Levels:</strong> Price levels where price has reversed multiple times (2+ touches)</li>
+        <li><strong>Round Numbers:</strong> Psychological levels (e.g., 1.2000, 50.00, 100.00) often act as SR</li>
+        <li><strong>Previous Highs/Lows:</strong> Swing highs become resistance; swing lows become support</li>
+        <li><strong>Moving Averages:</strong> 50-day, 100-day, and 200-day MAs often act as dynamic SR</li>
+        <li><strong>Fibonacci Levels:</strong> 38.2%, 50%, and 61.8% retracement levels</li>
+    </ul>
+    
+    <h3>Role Reversal Principle</h3>
+    <p><strong>Key Concept:</strong> When price breaks through resistance, that level often becomes new support (and vice versa).</p>
+    <ul>
+        <li>Broken resistance → New support (in uptrend)</li>
+        <li>Broken support → New resistance (in downtrend)</li>
+        <li>More tests of a level = stronger the level</li>
+        <li>Volume on breakout confirms strength</li>
+    </ul>
+
+    <h2>3. Trend Lines and Channels</h2>
+    
+    <h3>Drawing Trend Lines</h3>
+    <table>
+        <tr>
+            <th>Trend Type</th>
+            <th>How to Draw</th>
+            <th>Validation</th>
+        </tr>
+        <tr>
+            <td><strong>Uptrend Line</strong></td>
+            <td>Connect 2+ higher lows with ascending line</td>
+            <td>Third touch confirms validity; more touches = stronger trend</td>
+        </tr>
+        <tr>
+            <td><strong>Downtrend Line</strong></td>
+            <td>Connect 2+ lower highs with descending line</td>
+            <td>Third touch confirms validity; more touches = stronger trend</td>
+        </tr>
+        <tr>
+            <td><strong>Channel</strong></td>
+            <td>Draw parallel line to trend line connecting opposite extremes</td>
+            <td>Price should bounce between channel boundaries</td>
+        </tr>
+    </table>
+    
+    <h3>Trading Trend Lines</h3>
+    <ul>
+        <li><strong>Bounce Strategy:</strong> Buy/sell when price touches trend line with confirmation</li>
+        <li><strong>Breakout Strategy:</strong> Trade breakout with volume and wait for retest</li>
+        <li><strong>False Breakout:</strong> Price briefly breaks then returns; wait for confirmation</li>
+        <li><strong>Angle Matters:</strong> 45-degree angle = sustainable; steeper = unsustainable</li>
+    </ul>
+
+    <h2>4. Key Technical Indicators</h2>
+    
+    <h3>Moving Averages (MA)</h3>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Period</th>
+            <th>Purpose</th>
+            <th>Trading Signals</th>
+        </tr>
+        <tr>
+            <td>SMA 20</td>
+            <td>Short-term</td>
+            <td>Quick trend identification</td>
+            <td>Price above = bullish bias; below = bearish bias</td>
+        </tr>
+        <tr>
+            <td>EMA 50</td>
+            <td>Medium-term</td>
+            <td>Trend confirmation, dynamic SR</td>
+            <td>Crossover with 20 EMA signals trend change</td>
+        </tr>
+        <tr>
+            <td>SMA 200</td>
+            <td>Long-term</td>
+            <td>Major trend, institutional level</td>
+            <td>Above = bull market; below = bear market</td>
+        </tr>
+    </table>
+    
+    <h3>Relative Strength Index (RSI)</h3>
+    <ul>
+        <li><strong>Range:</strong> 0 to 100</li>
+        <li><strong>Overbought:</strong> Above 70 (potential reversal down)</li>
+        <li><strong>Oversold:</strong> Below 30 (potential reversal up)</li>
+        <li><strong>Divergence:</strong> Price makes new high but RSI doesn't = bearish divergence</li>
+        <li><strong>Best Use:</strong> Confirm momentum; don't use alone for entries</li>
+    </ul>
+    
+    <h3>MACD (Moving Average Convergence Divergence)</h3>
+    <ul>
+        <li><strong>Components:</strong> MACD line, Signal line, Histogram</li>
+        <li><strong>Bullish Signal:</strong> MACD crosses above signal line</li>
+        <li><strong>Bearish Signal:</strong> MACD crosses below signal line</li>
+        <li><strong>Zero Line:</strong> Crossing above = bullish momentum; below = bearish momentum</li>
+        <li><strong>Divergence:</strong> Powerful reversal signal when price and MACD disagree</li>
+    </ul>
+    
+    <h3>Bollinger Bands</h3>
+    <ul>
+        <li><strong>Structure:</strong> Middle band (20 SMA), Upper/Lower bands (2 standard deviations)</li>
+        <li><strong>Squeeze:</strong> Bands narrow = low volatility, breakout imminent</li>
+        <li><strong>Expansion:</strong> Bands widen = high volatility, strong trend</li>
+        <li><strong>Mean Reversion:</strong> Price at upper band may reverse to middle band</li>
+        <li><strong>Band Walk:</strong> In strong trends, price can ride the upper/lower band</li>
+    </ul>
+
+    <h2>5. Volume Analysis</h2>
+    
+    <div class="info-box">
+        <strong>Volume Principle:</strong> Volume confirms price movement. High volume = strong conviction; low volume = weak move.
+    </div>
+    
+    <h3>Volume Interpretation</h3>
+    <table>
+        <tr>
+            <th>Scenario</th>
+            <th>Interpretation</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>Price up + Volume up</td>
+            <td>Strong bullish conviction</td>
+            <td>Confirm uptrend continuation</td>
+        </tr>
+        <tr>
+            <td>Price up + Volume down</td>
+            <td>Weak buying, potential reversal</td>
+            <td>Be cautious, look for reversal signs</td>
+        </tr>
+        <tr>
+            <td>Price down + Volume up</td>
+            <td>Strong bearish conviction</td>
+            <td>Confirm downtrend continuation</td>
+        </tr>
+        <tr>
+            <td>Price down + Volume down</td>
+            <td>Weak selling, potential reversal</td>
+            <td>Watch for bullish reversal patterns</td>
+        </tr>
+        <tr>
+            <td>Breakout + High volume</td>
+            <td>Valid breakout</td>
+            <td>Consider entry with confirmation</td>
+        </tr>
+        <tr>
+            <td>Breakout + Low volume</td>
+            <td>False breakout likely</td>
+            <td>Wait for retest or avoid</td>
+        </tr>
+    </table>
+
+    <h2>6. Quick Reference Checklist</h2>
+    
+    <div class="tip-box">
+        <strong>Before Every Trade:</strong>
+        <ul style="margin: 10px 0;">
+            <li>Identify the overall trend (uptrend, downtrend, or range)</li>
+            <li>Mark key support and resistance levels on your chart</li>
+            <li>Check for confluence (multiple signals aligning)</li>
+            <li>Confirm with volume analysis</li>
+            <li>Use at least 2-3 indicators to confirm your bias</li>
+            <li>Never trade based on a single indicator or pattern</li>
+        </ul>
+    </div>
+    
+    <h3>Common Mistakes to Avoid</h3>
+    <ul>
+        <li>Trading against the major trend</li>
+        <li>Ignoring volume confirmation</li>
+        <li>Drawing trend lines to fit your bias</li>
+        <li>Using too many indicators (analysis paralysis)</li>
+        <li>Entering without clear invalidation point</li>
+        <li>Forgetting that indicators lag price action</li>
+    </ul>
+
+</body>
+</html>
