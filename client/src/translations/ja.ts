@@ -837,6 +837,18 @@ export const ja = {
   'tools.tradingSessions.faq.q7.question': '特定セッションが他より初心者に適していますか？',
   'tools.tradingSessions.faq.q7.answer': 'はい。難易度レベル別：初心者向け - ロンドン中間（09:00-14:00 UTC）：明確なトレンド、良好な流動性、極端なボラティリティ少ない。トレンドフォロー戦略使用。パターン学習が容易。中級 - ロンドン/NYオーバーラップ（12:00-16:00 UTC）：最良条件だが高速移動。初心者を圧倒可能性（決定麻痺）。デモで2-3ヶ月練習、その後実際に移行。上級 - アジアセッション（21:00-08:00 UTC）：レンジ取引専門知識が必要。偽ブレイクアウトが初心者を欺く。テクニカル分析に自信持った後のみ試す。エキスパート - ニュース取引（任意セッション）：経済データ、高速執行、感情コントロールの深い理解が必要。取引1年目には適さない。推奨：ロンドン中間で2-3ヶ月学習開始。マスター後、徐々にオーバーラップ取引追加。取引1年目はアジアとニュース取引回避。',
   
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': '初心者コース',
+  'tools.education.advancedCourse': '上級コース',
+  'tools.education.glossary': 'トレーディング用語集',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie設定',
+  'cookie.description': 'Cookieを使用して、お客様の体験を向上させ、サイトのトラフィックを分析し、パーソナライズされたコンテンツを提供します。「同意する」をクリックすると、Cookieの使用に同意したことになります。',
+  'cookie.learnMore': '詳細を見る',
+  'cookie.decline': '拒否',
+  'cookie.acceptAll': 'すべて同意',
   // Tools - Position Calculator
   'tools.positionCalculator.title': 'ポジションサイズ計算機',
   'tools.positionCalculator.description': 'リスク管理に基づいて最適なポジションサイズを計算',

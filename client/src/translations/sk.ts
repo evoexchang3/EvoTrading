@@ -593,6 +593,18 @@ export const sk = {
   'tools.tradingSessions.faq.q6.answer': 'Najvyššia/najnižšia cena relácie = najvyššia/najnižšia cena dosiahnutá počas konkrétnej relácie. Príklad: EUR/USD sa pohybovalo v rozmedzí 1,0850-1,0880. Ázijské maximum = 1,0880, ázijské minimum = 1,0850. Prečo je to kritické: Keď sa Londýn otvorí (08:00 UTC), ak cena prelomí nad 1,0880 (ázijské maximum) s objemom → BULLISH breakout → obchodníci hromadia long → rally na 1,0920+. Ak cena zostane pod 1,0880 a prelomí 1,0850 (ázijské minimum) → BEARISH breakout. Obchodná stratégia: Pri zmene seansy nastavte buy stop 5 pipov nad high predchádzajúcej seansy, sell stop 5 pipov pod low predchádzajúcej seansy. Zrušte opačný príkaz, keď sa jeden spustí. Funguje v 60-70 % prípadov pri hlavných zmenách seansy (Tokio→Londýn, Londýn→NY). Stop loss 40-50 pipov, cieľ 80-100 pipov (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Ako zmeny letného času ovplyvňujú obchodné relácie?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Kurz pre Začiatočníkov',
+  'tools.education.advancedCourse': 'Pokročilý Kurz',
+  'tools.education.glossary': 'Obchodný Slovník',
+  
+  // Cookie Consent
+  'cookie.title': 'Nastavenia Súborov Cookie',
+  'cookie.description': 'Používame súbory cookie na zlepšenie vašich skúseností, analýzu návštevnosti webu a poskytovanie personalizovaného obsahu. Kliknutím na "Prijať" súhlasíte s naším používaním súborov cookie.',
+  'cookie.learnMore': 'Dozvedieť sa viac',
+  'cookie.decline': 'Odmietnuť',
+  'cookie.acceptAll': 'Prijať Všetko',
   'settings.title': 'Nastavenia',
   'settings.description': 'Spravujte svoje nastavenia účtu a obchodovania',
   'settings.tabs.general': 'Všeobecné',

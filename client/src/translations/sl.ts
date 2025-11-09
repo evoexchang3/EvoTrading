@@ -593,6 +593,18 @@ export const sl = {
   'tools.tradingSessions.faq.q6.answer': 'Najvišja/najnižja cena seje = najvišja/najnižja cena, dosežena v določeni seji. Primer: EUR/USD se je gibal med 1,0850 in 1,0880. Azijski vrh = 1,0880, azijski padec = 1,0850. Zakaj je ključnega pomena: Ko se odpre London (08:00 UTC), če se cena prebije nad 1,0880 (azijski vrh) z obsegom → BULLISH preboj → trgovci se kopičijo v dolge → rally do 1,0920+. Če cena ostane pod 1,0880 in prebije 1,0850 (azijski minimum) → BEARISH preboj. Strategija trgovanja: Ob spremembi seje nastavite nakupni stop 5 pipov nad najvišjo vrednostjo prejšnje seje, prodajni stop 5 pipov pod najnižjo vrednostjo prejšnje seje. Prekličite nasprotno naročilo, ko se eno sproži. Deluje v 60-70 % primerov ob večjih spremembah seje (Tokio→London, London→Ni). Stop loss 40-50 pipov, cilj 80-100 pipov (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Kako spremembe poletnega časa vplivajo na trgovalne seje?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Tečaj za Začetnike',
+  'tools.education.advancedCourse': 'Napredni Tečaj',
+  'tools.education.glossary': 'Trgovalni Slovar',
+  
+  // Cookie Consent
+  'cookie.title': 'Nastavitve Piškotkov',
+  'cookie.description': 'Uporabljamo piškotke za izboljšanje vaše izkušnje, analizo prometa na spletnem mestu in zagotavljanje prilagojene vsebine. S klikom na "Sprejmi" se strinjate z našo uporabo piškotkov.',
+  'cookie.learnMore': 'Več informacij',
+  'cookie.decline': 'Zavrni',
+  'cookie.acceptAll': 'Sprejmi Vse',
   'settings.title': 'Nastavitve',
   'settings.description': 'Upravljanje nastavitev računa in trgovalnih nastavitev',
   'settings.tabs.general': 'Splošno',

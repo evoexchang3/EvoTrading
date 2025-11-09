@@ -593,6 +593,18 @@ export const sv = {
   'tools.tradingSessions.faq.q6.answer': 'Session high/low = det högsta/lägsta priset som uppnåtts under en viss session. Exempel: Asiatisk session (21:00-08:00 UTC) EUR/USD varierade mellan 1,0850-1,0880. Asiens högsta = 1,0880, Asiens lägsta = 1,0850. Varför kritiskt: När London öppnar (08:00 UTC), om priset bryter över 1,0880 (asiatisk hög) med volym → BULLISH breakout → handlare staplar in långa → rally till 1,0920+. Om priset stannar under 1,0880 och bryter 1,0850 (asiatisk låg) → BEARISH breakout. Strategi för handel: Vid sessionsbyte, sätt köpstopp 5 pips över föregående sessions högsta, säljstopp 5 pips under föregående sessions lägsta. Avbryt motsatt order när en sådan utlöses. Fungerar 60-70% av tiden vid större sessionsbyten (Tokyo→London, London→NY). Stop loss 40-50 pips, mål 80-100 pips (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Hur påverkar sommartidsomställningen handelssessionerna?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Nybörjarkurs',
+  'tools.education.advancedCourse': 'Avancerad Kurs',
+  'tools.education.glossary': 'Handelsordlista',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie-inställningar',
+  'cookie.description': 'Vi använder cookies för att förbättra din upplevelse, analysera webbplatstrafik och tillhandahålla personligt anpassat innehåll. Genom att klicka på "Acceptera" samtycker du till vår användning av cookies.',
+  'cookie.learnMore': 'Läs mer',
+  'cookie.decline': 'Avböj',
+  'cookie.acceptAll': 'Acceptera Alla',
   'settings.title': 'Inställningar',
   'settings.description': 'Hantera dina kontopreferenser och handelsinställningar',
   'settings.tabs.general': 'Allmänt',

@@ -957,6 +957,18 @@ export const enGB = {
   'error.notFound': 'Resource not found',
   'error.serverError': 'Server error. Please try again later.',
   
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Beginner Course',
+  'tools.education.advancedCourse': 'Advanced Course',
+  'tools.education.glossary': 'Trading Glossary',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie Preferences',
+  'cookie.description': 'We use biscuits to enhance your experience, analyse site traffic, and provide personalised content. By clicking "Accept", you consent to our use of cookies.',
+  'cookie.learnMore': 'Learn more',
+  'cookie.decline': 'Decline',
+  'cookie.acceptAll': 'Accept All',
+  
   // Profile Page
   'profile.title': 'Profile Settings',
   'profile.description': 'Manage your account information',

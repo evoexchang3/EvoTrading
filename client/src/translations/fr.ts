@@ -716,9 +716,16 @@ export const fr = {
   'error.unauthorized': 'Vous n\'êtes pas autorisé à accéder à cette ressource',
   'error.notFound': 'Ressource non trouvée',
   'error.serverError': 'Erreur serveur. Veuillez réessayer plus tard.',
-  'tools.education.beginnerCourse': 'Cours débutant',
-  'tools.education.advancedCourse': 'Cours avancé',
-  'tools.education.glossary': 'Glossaire',
+  'tools.education.beginnerCourse': 'Cours Débutant',
+  'tools.education.advancedCourse': 'Cours Avancé',
+  'tools.education.glossary': 'Glossaire de Trading',
+  
+  // Cookie Consent
+  'cookie.title': 'Préférences des Cookies',
+  'cookie.description': 'Nous utilisons des cookies pour améliorer votre expérience, analyser le trafic du site et fournir du contenu personnalisé. En cliquant sur "Accepter", vous consentez à notre utilisation des cookies.',
+  'cookie.learnMore': 'En savoir plus',
+  'cookie.decline': 'Refuser',
+  'cookie.acceptAll': 'Tout Accepter',
   
   // Profile Page
   'profile.title': 'Paramètres du profil',

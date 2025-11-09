@@ -593,6 +593,18 @@ export const ro = {
   'tools.tradingSessions.faq.q6.answer': 'Session high/low = cel mai mare/cel mai mic preț atins în timpul unei anumite sesiuni. Exemplu: Sesiunea asiatică (21:00-08:00 UTC) EUR/USD a variat între 1,0850-1,0880. Maxim asiatic = 1,0880, minim asiatic = 1,0850. De ce este critică: Când se deschide Londra (08:00 UTC), dacă prețul depășește 1,0880 (maximul asiatic) cu volum → BULLISH breakout → comercianții intră pe termen lung → raliu către 1,0920+. Dacă prețul rămâne sub 1,0880 și sparge 1,0850 (minim asiatic) → breakout BEARISH. Strategie de tranzacționare: La schimbarea sesiunii, setați buy stop cu 5 pips peste maximul sesiunii anterioare, sell stop cu 5 pips sub minimul sesiunii anterioare. Anulați ordinul opus atunci când se declanșează unul. Funcționează 60-70% din timp la schimbările majore de sesiune (Tokyo→Londra, Londra→NY). Stop loss 40-50 pips, țintă 80-100 pips (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Cum afectează schimbarea orei de vară sesiunile de tranzacționare?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Curs pentru Începători',
+  'tools.education.advancedCourse': 'Curs Avansat',
+  'tools.education.glossary': 'Glosar de Tranzacționare',
+  
+  // Cookie Consent
+  'cookie.title': 'Preferințe Cookie-uri',
+  'cookie.description': 'Folosim cookie-uri pentru a vă îmbunătăți experiența, a analiza traficul site-ului și a oferi conținut personalizat. Făcând clic pe "Accept", sunteți de acord cu utilizarea cookie-urilor.',
+  'cookie.learnMore': 'Aflați mai multe',
+  'cookie.decline': 'Refuz',
+  'cookie.acceptAll': 'Accept Toate',
   'settings.title': 'Setări',
   'settings.description': 'Gestionați preferințele contului dvs. și setările de tranzacționare',
   'settings.tabs.general': 'Generalități',

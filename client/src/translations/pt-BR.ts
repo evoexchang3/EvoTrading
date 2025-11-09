@@ -593,6 +593,18 @@ export const pt_BR = {
   'tools.tradingSessions.faq.q6.answer': 'Máximo/mínimo da sessão = o preço mais alto/mínimo atingido durante uma sessão específica. Exemplo: Sessão asiática (21:00-08:00 UTC) EUR/USD variou de 1,0850 a 1,0880. Máxima asiática = 1,0880, mínima asiática = 1,0850. Por que é crítico: quando Londres abrir (08:00 UTC), se o preço ultrapassar 1,0880 (alta asiática) com volume → rompimento BULLISH → os traders entram em posições compradas → rali para 1,0920+. Se o preço ficar abaixo de 1,0880 e romper 1,0850 (mínimo asiático) → rompimento BEARISH. Estratégia de negociação: Na mudança de sessão, defina o stop de compra 5 pips acima da máxima da sessão anterior e o stop de venda 5 pips abaixo da mínima da sessão anterior. Cancele a ordem oposta quando uma delas for acionada. Funciona de 60 a 70% das vezes nas principais mudanças de sessão (Tóquio→Londres, Londres→NY). Stop loss de 40-50 pips, meta de 80-100 pips (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Como as mudanças no horário de verão afetam as sessões de negociação?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Curso para Iniciantes',
+  'tools.education.advancedCourse': 'Curso Avançado',
+  'tools.education.glossary': 'Glossário de Trading',
+  
+  // Cookie Consent
+  'cookie.title': 'Preferências de Cookies',
+  'cookie.description': 'Usamos cookies para melhorar sua experiência, analisar o tráfego do site e fornecer conteúdo personalizado. Ao clicar em "Aceitar", você consente com o uso de cookies.',
+  'cookie.learnMore': 'Saiba mais',
+  'cookie.decline': 'Recusar',
+  'cookie.acceptAll': 'Aceitar Tudo',
   'settings.title': 'Configurações',
   'settings.description': 'Gerenciar as preferências de sua conta e as configurações de negociação',
   'settings.tabs.general': 'Geral',

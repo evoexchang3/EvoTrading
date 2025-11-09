@@ -593,6 +593,18 @@ export const hu = {
   'tools.tradingSessions.faq.q6.answer': 'Session high/low = az adott munkamenet során elért legmagasabb/legalacsonyabb árfolyam. Példa: Az EUR/USD árfolyama 1,0850-1,0880 között mozgott. Ázsiai csúcs = 1,0880, ázsiai mélypont = 1,0850. Miért kritikus: Amikor London kinyit (08:00 UTC), ha az árfolyam hangerővel 1,0880 (ázsiai csúcs) fölé tör → BULLISH kitörés → a kereskedők hosszúra törnek → rally 1,0920+-ig. Ha az ár 1,0880 alatt marad és áttöri az 1,0850-et (ázsiai mélypont) → BEARISH kitörés. Kereskedési stratégia: Az ülésváltáskor állítson be vételi stopot 5 pipel az előző ülésszak legmagasabb értéke fölé, eladási stopot 5 pipel az előző ülésszak legalacsonyabb értéke alá. Törölje az ellentétes megbízást, amikor az egyik kiváltja. Az esetek 60-70%-ában működik a főbb ülésváltásoknál (Tokió→London, London→NY). Stop loss 40-50 pip, cél 80-100 pip (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Hogyan befolyásolja a nyári időszámítás változása a kereskedési szekciókat?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Kezdő Tanfolyam',
+  'tools.education.advancedCourse': 'Haladó Tanfolyam',
+  'tools.education.glossary': 'Kereskedési Szószedet',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie Beállítások',
+  'cookie.description': 'Cookie-kat használunk az élmény javítására, a webhely forgalmának elemzésére és a személyre szabott tartalom biztosítására. Az "Elfogadom" gombra kattintva hozzájárul a cookie-k használatához.',
+  'cookie.learnMore': 'Tudjon meg többet',
+  'cookie.decline': 'Elutasítom',
+  'cookie.acceptAll': 'Mindent Elfogadok',
   'settings.title': 'Beállítások',
   'settings.description': 'Számla preferenciáinak és kereskedési beállításainak kezelése',
   'settings.tabs.general': 'Általános',

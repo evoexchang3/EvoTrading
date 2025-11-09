@@ -850,6 +850,18 @@ export const de = {
   'tools.tradingSessions.faq.q7.question': 'Wie beeinflussen Sommerzeit-Änderungen Handelssitzungen?',
   'tools.tradingSessions.faq.q7.answer': 'Forex verwendet UTC (ändert sich nie), aber lokale Zeiten verschieben sich: März (Vorwärts): London verschiebt von GMT (UTC+0) zu BST (UTC+1). London "Eröffnung" bewegt von 08:00 UTC zu 07:00 UTC lokal. NY verschiebt von EST (UTC-5) zu EDT (UTC-4). NY "Eröffnung" bleibt 12:00 UTC (aber ist 8 Uhr lokal statt 9 Uhr). November (Rückwärts): Umkehrung des obigen. Problem: Überlappungs-Timing ÄNDERT SICH. Wenn US auf DST aber UK nicht (oder umgekehrt für 2 Wochen), kann Überlappung 3 Stunden statt 4 sein. Lösung: Lokale Zeiten komplett ignorieren. UTC ausschließlich verwenden. Handelsplattform auf UTC setzen. Im Kalender markieren: London/NY-Überlappung ist IMMER 12:00-16:00 UTC unabhängig von DST. Andere Trader durch lokale Zeiten verwirren lassen - Sie kennen den genauen Moment wenn Überlappung startet.',
 
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Anfängerkurs',
+  'tools.education.advancedCourse': 'Fortgeschrittenenkurs',
+  'tools.education.glossary': 'Trading-Glossar',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie-Einstellungen',
+  'cookie.description': 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern, den Website-Traffic zu analysieren und personalisierte Inhalte bereitzustellen. Durch Klicken auf "Akzeptieren" stimmen Sie unserer Verwendung von Cookies zu.',
+  'cookie.learnMore': 'Mehr erfahren',
+  'cookie.decline': 'Ablehnen',
+  'cookie.acceptAll': 'Alle Akzeptieren',
   // Tools - Positionsgrößen-Rechner
   'tools.positionCalculator.title': 'Positionsgrößen-Rechner',
   'tools.positionCalculator.description': 'Berechnen Sie optimale Positionsgröße basierend auf Risikomanagement',

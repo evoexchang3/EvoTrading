@@ -797,6 +797,19 @@ export const it = {
   'error.unauthorized': 'Non sei autorizzato ad accedere a questa risorsa',
   'error.notFound': 'Risorsa non trovata',
   'error.serverError': 'Errore del server. Riprovare più tardi.',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Corso per Principianti',
+  'tools.education.advancedCourse': 'Corso Avanzato',
+  'tools.education.glossary': 'Glossario di Trading',
+  
+  // Cookie Consent
+  'cookie.title': 'Preferenze Cookie',
+  'cookie.description': 'Utilizziamo i cookie per migliorare la tua esperienza, analizzare il traffico del sito e fornire contenuti personalizzati. Cliccando su "Accetta", acconsenti al nostro utilizzo dei cookie.',
+  'cookie.learnMore': 'Scopri di più',
+  'cookie.decline': 'Rifiuta',
+  'cookie.acceptAll': 'Accetta Tutto',
+  
   'profile.title': 'Profile Settings',
   'profile.description': 'Gestire le informazioni del proprio account',
   'profile.personalInfo.title': 'Informazioni personali',

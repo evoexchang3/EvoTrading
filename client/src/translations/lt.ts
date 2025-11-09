@@ -593,6 +593,18 @@ export const lt = {
   'tools.tradingSessions.faq.q6.answer': 'Aukščiausia/žemiausia sesijos kaina = aukščiausia/žemiausia kaina, pasiekta per konkrečią sesiją. Pavyzdys: EUR/USD svyravo nuo 1,0850 iki 1,0880. Aukščiausia Azijos sesijos reikšmė = 1,0880, žemiausia Azijos sesijos reikšmė = 1,0850. Kodėl tai labai svarbu: atsidarius Londono biržai (08:00 UTC), jei kaina peržengia 1,0880 (Azijos aukštumas), esant dideliam kiekiui → BULLISH Breakout → prekiautojai kaupia ilgąsias pozicijas → ralis iki 1,0920+. Jei kaina išliks žemiau 1,0880 ir įveiks 1,0850 (Azijos žemumas) → BEARISH proveržis. Prekybos strategija: Sesijos pasikeitimo metu nustatykite buy stop 5 punktais aukščiau ankstesnės sesijos maksimumo, sell stop 5 punktais žemiau ankstesnės sesijos minimumo. Atšaukite priešingą pavedimą, kai jis suveikia. Veikia 60-70 % atvejų, kai keičiasi pagrindinės sesijos (Tokijas→Londonas, Londonas→Nyderlandas). Stop loss 40-50 punktų, tikslas 80-100 punktų (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Kaip vasaros laiko pokyčiai veikia prekybos sesijas?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Pradedančiųjų Kursas',
+  'tools.education.advancedCourse': 'Išplėstinis Kursas',
+  'tools.education.glossary': 'Prekybos Žodynas',
+  
+  // Cookie Consent
+  'cookie.title': 'Slapukų Nuostatos',
+  'cookie.description': 'Naudojame slapukus, kad pagerintume jūsų patirtį, analizuotume svetainės srautą ir teiktume pritaikytą turinį. Spustelėdami "Sutikti" jūs sutinkate su mūsų slapukų naudojimu.',
+  'cookie.learnMore': 'Sužinoti daugiau',
+  'cookie.decline': 'Atmesti',
+  'cookie.acceptAll': 'Sutikti su Visais',
   'settings.title': 'Nustatymai',
   'settings.description': 'Tvarkykite savo paskyros nuostatas ir prekybos nustatymus',
   'settings.tabs.general': 'Bendra',

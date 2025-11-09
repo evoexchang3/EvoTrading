@@ -593,6 +593,18 @@ export const zh_TW = {
   'tools.tradingSessions.faq.q6.answer': '時段最高/最低 = 特定時段內達到的最高/最低價格。例如：亞洲時段 (21:00-08:00 UTC) 歐元/美元在 1.0850-1.0880 之間波動。亞洲最高價 = 1.0880，亞洲最低價 = 1.0850。為什麼關鍵：當倫敦開市時（08:00 UTC），如果價格突破 1.0880（亞洲高點）並有成交量 → BULLISH breakout → 交易者囤積多頭 → 反彈至 1.0920+。如果價格維持在 1.0880 以下並突破 1.0850（亞洲低點） → BEARISH 突破。交易策略：在交易時段轉換時，在前一交易時段高點上方 5 點設置買入止損，在前一交易時段低點下方 5 點設置賣出止損。當一個訂單觸發後，取消相反的訂單。在主要交易時段（東京→倫敦，倫敦→紐約），60-70% 的時間有效。止損 40-50 點，目標 80-100 點 (1:2 R:R)。',
   'tools.tradingSessions.faq.q7.question': '夏令時間的變更如何影響交易時段？',
   'tools.tradingSessions.faq.q7.answer': '外匯使用 UTC（永遠不變），但當地時間會轉移：三月（春季前進）：倫敦從 GMT (UTC+0) 轉換到 BST (UTC+1).倫敦',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': '初學者課程',
+  'tools.education.advancedCourse': '進階課程',
+  'tools.education.glossary': '交易術語表',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie偏好設定',
+  'cookie.description': '我們使用Cookie來增強您的體驗、分析網站流量並提供個人化內容。點擊「接受」即表示您同意我們使用Cookie。',
+  'cookie.learnMore': '了解更多',
+  'cookie.decline': '拒絕',
+  'cookie.acceptAll': '全部接受',
   'settings.title': '設定',
   'settings.description': '管理您的帳戶偏好和交易設定',
   'settings.tabs.general': '一般',

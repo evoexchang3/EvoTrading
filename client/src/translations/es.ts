@@ -1054,9 +1054,18 @@ export const es = {
   
   'tools.tradingSessions.faq.q7.question': '¿Cómo afectan los cambios de horario de verano a las sesiones de trading?',
   'tools.tradingSessions.faq.q7.answer': 'Forex usa UTC (nunca cambia), pero los horarios locales cambian: Marzo (Adelante primavera): Londres cambia de GMT (UTC+0) a BST (UTC+1). La "apertura" de Londres se mueve de 08:00 UTC a 07:00 UTC local. NY cambia de EST (UTC-5) a EDT (UTC-4). La "apertura" de NY permanece 12:00 UTC (pero es 8am local en lugar de 9am). Noviembre (Atrás otoño): Lo contrario de arriba. Problema: El TIMING del solapamiento CAMBIA. Cuando EE.UU. está en horario de verano pero UK no (o viceversa por 2 semanas), el solapamiento puede ser 3 horas en lugar de 4. Solución: Ignora horarios locales completamente. Usa UTC exclusivamente. Configura tu plataforma de trading a UTC. Marca en calendario: El solapamiento Londres/NY es SIEMPRE 12:00-16:00 UTC sin importar el horario de verano. Deja que otros traders se confundan por horarios locales - tú sabrás el momento exacto en que comienza el solapamiento.',
-  'tools.education.beginnerCourse': 'Curso para principiantes',
-  'tools.education.advancedCourse': 'Curso avanzado',
-  'tools.education.glossary': 'Glosario',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Curso para Principiantes',
+  'tools.education.advancedCourse': 'Curso Avanzado',
+  'tools.education.glossary': 'Glosario de Trading',
+  
+  // Cookie Consent
+  'cookie.title': 'Preferencias de Cookies',
+  'cookie.description': 'Utilizamos cookies para mejorar su experiencia, analizar el tráfico del sitio y proporcionar contenido personalizado. Al hacer clic en "Aceptar", usted acepta nuestro uso de cookies.',
+  'cookie.learnMore': 'Más información',
+  'cookie.decline': 'Rechazar',
+  'cookie.acceptAll': 'Aceptar Todo',
 
   // Tools - Pip Calculator (Additional Translations)
   'tools.pipCalculator.description': 'Calcular beneficio y pérdida basado en pip movimiento',

@@ -593,6 +593,18 @@ export const lv = {
   'tools.tradingSessions.faq.q6.answer': 'Sesijas augstā/zemākā cena = augstākā/zemākā cena, kas sasniegta konkrētas sesijas laikā. Piemērs: EUR/USD svārstījās 1,0850-1,0880. Āzijas maksimums = 1,0880, Āzijas minimums = 1,0850. Kāpēc kritiski svarīgi: Kad Londona atveras (08:00 UTC), ja cena pārsniedz 1,0880 (Āzijas augstākais punkts) ar apjomu → BULLISH izrāviens → tirgotāji ieplūst garā → rallijs līdz 1,0920+. Ja cena saglabājas zem 1,0880 un lauž 1,0850 (Āzijas zemākais līmenis) → BEARISH izrāviens. Tirdzniecības stratēģija: Pie sesijas maiņas uzstādiet buy stop 5 pipsus virs iepriekšējā sesijas maksimuma, sell stop 5 pipsus zem iepriekšējā sesijas minimuma. Atcelt pretējo rīkojumu, kad viens no tiem aktivizējas. Darbojas 60-70% gadījumu pie lielākajām sesijas izmaiņām (Tokija→Londona, Londona→Nīnijs). Stop loss 40-50 pips, mērķis 80-100 pips (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Kā vasaras laika izmaiņas ietekmē tirdzniecības sesijas?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Iesācēju Kurss',
+  'tools.education.advancedCourse': 'Pap laslīmeņa Kurss',
+  'tools.education.glossary': 'Tirdzniecības Vārdnīca',
+  
+  // Cookie Consent
+  'cookie.title': 'Sīkdatņu Preferences',
+  'cookie.description': 'Mēs izmantojam sīkdatnes, lai uzlabotu jūsu pieredzi, analizētu vietnes apmeklējumu un sniegtu personalizētu saturu. Noklikšķinot uz "Piekrist", jūs piekrītat mūsu sīkdatņu lietošanai.',
+  'cookie.learnMore': 'Uzzināt vairāk',
+  'cookie.decline': 'Noraidīt',
+  'cookie.acceptAll': 'Piekrist Visiem',
   'settings.title': 'Iestatījumi',
   'settings.description': 'Pārvaldiet konta preferences un tirdzniecības iestatījumus',
   'settings.tabs.general': 'Vispārīgi',

@@ -593,6 +593,18 @@ export const et = {
   'tools.tradingSessions.faq.q6.answer': 'Session high/low = kõrgeim/madalam hind, mis on saavutatud konkreetse sessiooni jooksul. Näide: (21:00-08:00 UTC) EUR/USD kõikus 1,0850-1,0880. Aasia kõrgeim = 1,0880, Aasia madalaim = 1,0850. Miks kriitiline: Kui London avaneb (08:00 UTC), kui hind murrab üle 1,0880 (Aasia kõrgeim) mahuga → BULLISH läbimurre → kauplejad panevad pikalt → ralli 1,0920+. Kui hind jääb alla 1.0880 ja murrab 1.0850 (Aasia madal) → BEARISH Breakout. Kauplemisstrateegia: Müüa stopp 5 pipsi allapoole eelmise istungi madalaimat taset, müüa stopp 5 pipsi allapoole eelmise istungi madalaimat taset. Tühistage vastupidine korraldus, kui üks käivitub. Toimib 60-70% ajast suuremate sessioonivahetuste ajal (Tokyo→London, London→NY). Stop loss 40-50 pips, eesmärk 80-100 pips (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Kuidas mõjutavad suveaja muudatused kauplemissessioone?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Algajate Kursus',
+  'tools.education.advancedCourse': 'Edasijõudnute Kursus',
+  'tools.education.glossary': 'Kauplemise Sõnastik',
+  
+  // Cookie Consent
+  'cookie.title': 'Küpsiste Eelistused',
+  'cookie.description': 'Kasutame küpsiseid, et parandada teie kogemust, analüüsida veebisaidi liiklust ja pakkuda isikupärastatud sisu. Klõpsates nupul "Nõustu", nõustute meie küpsiste kasutamisega.',
+  'cookie.learnMore': 'Lisateave',
+  'cookie.decline': 'Keeldu',
+  'cookie.acceptAll': 'Nõustu Kõigiga',
   'settings.title': 'Seaded',
   'settings.description': 'Halda oma konto eelistusi ja kauplemisseadeid',
   'settings.tabs.general': 'Üldine',

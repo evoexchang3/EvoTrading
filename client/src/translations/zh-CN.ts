@@ -808,6 +808,18 @@ export const zhCN = {
   'tools.tradingSessions.faq.q7.question': '某些时段是否比其他时段更适合初学者？',
   'tools.tradingSessions.faq.q7.answer': '是的。按难度级别：初学者友好 - 伦敦中段（09:00-14:00 UTC）：清晰趋势，良好流动性，较少极端波动。使用趋势跟随策略。学习模式更容易。中级 - 伦敦/纽约重叠（12:00-16:00 UTC）：最佳条件但快速移动。可能压倒初学者（决策瘫痪）。在演示中练习2-3个月，然后过渡到实盘。高级 - 亚洲时段（21:00-08:00 UTC）：需要区间交易专业知识。假突破欺骗初学者。仅在对技术分析有信心后尝试。专家 - 新闻交易（任何时段）：需要对经济数据、快速执行和情绪控制的深刻理解。不适合第一年交易者。建议：在伦敦中段开始学习2-3个月。掌握后，逐渐添加重叠交易。避免第一年的亚洲和新闻交易。',
   
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': '初学者课程',
+  'tools.education.advancedCourse': '高级课程',
+  'tools.education.glossary': '交易术语表',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie偏好设置',
+  'cookie.description': '我们使用Cookie来增强您的体验、分析网站流量并提供个性化内容。点击"接受"即表示您同意我们使用Cookie。',
+  'cookie.learnMore': '了解更多',
+  'cookie.decline': '拒绝',
+  'cookie.acceptAll': '全部接受',
   // Tools - Position Calculator
   'tools.positionCalculator.title': '仓位规模计算器',
   'tools.positionCalculator.description': '基于风险管理计算最佳仓位大小',

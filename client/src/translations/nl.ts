@@ -593,6 +593,18 @@ export const nl = {
   'tools.tradingSessions.faq.q6.answer': 'Sessie hoog/laag = de hoogste/laagste prijs die tijdens een specifieke sessie is bereikt. Voorbeeld: Aziatische sessie (21:00-08:00 UTC) EUR/USD varieerde van 1.0850-1.0880. Aziatische high = 1.0880, Aziatische low = 1.0850. Waarom kritisch: Wanneer Londen opent (08:00 UTC), als de prijs boven 1.0880 (Asian high) breekt met volume → BULLISH breakout → traders stapelen long in → rally naar 1.0920+. Als de prijs onder 1.0880 blijft en 1.0850 (Asian low) breekt → BEARISH breakout. Trading strategie: Stel bij de sessiewissel een koopstop in van 5 pips boven de high van de vorige sessie en een verkoopstop van 5 pips onder de low van de vorige sessie. Annuleer het tegenovergestelde order wanneer er één geactiveerd wordt. Werkt 60-70% van de tijd bij grote sessiewisselingen (Tokio→Londen, Londen→NY). Stop loss 40-50 pips, koersdoel 80-100 pips (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Wat is de invloed van de zomertijd op handelssessies?',
   'tools.tradingSessions.faq.q7.answer': 'Forex gebruikt UTC (verandert nooit), maar lokale tijden verschuiven: Maart (Lente naar voren): Londen verschuift van GMT (UTC+0) naar BST (UTC+1). Londen',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Beginnerscursus',
+  'tools.education.advancedCourse': 'Gevorderde Cursus',
+  'tools.education.glossary': 'Handelswoordenlijst',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie Voorkeuren',
+  'cookie.description': 'We gebruiken cookies om uw ervaring te verbeteren, websiteverkeer te analyseren en gepersonaliseerde inhoud te bieden. Door op "Accepteren" te klikken, gaat u akkoord met ons gebruik van cookies.',
+  'cookie.learnMore': 'Meer informatie',
+  'cookie.decline': 'Weigeren',
+  'cookie.acceptAll': 'Alles Accepteren',
   'settings.title': 'Instellingen',
   'settings.description': 'Beheer uw accountvoorkeuren en handelsinstellingen',
   'settings.tabs.general': 'Algemeen',

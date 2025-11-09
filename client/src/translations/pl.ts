@@ -593,6 +593,18 @@ export const pl = {
   'tools.tradingSessions.faq.q6.answer': 'Session high/low = najwyższa/najniższa cena osiągnięta podczas określonej sesji. Przykład: Sesja azjatycka (21:00-08:00 UTC) EUR/USD w przedziale 1,0850-1,0880. Azjatyckie maksimum = 1,0880, azjatyckie minimum = 1,0850. Dlaczego krytyczne: Po otwarciu Londynu (08:00 UTC), jeśli cena przebije się powyżej 1,0880 (maksimum azjatyckie) z wolumenem → BULLISH breakout → traderzy gromadzą się długo → rajd do 1,0920+. Jeśli cena utrzyma się poniżej 1,0880 i przebije 1,0850 (azjatyckie minimum) → BEARISH breakout. Strategia handlowa: Przy zmianie sesji ustaw stop kupna 5 pipsów powyżej maksimum z poprzedniej sesji, stop sprzedaży 5 pipsów poniżej minimum z poprzedniej sesji. Anuluj przeciwne zlecenie, gdy jedno z nich zostanie uruchomione. Działa w 60-70% przypadków przy głównych zmianach sesji (Tokio→Londyn, Londyn→NY). Stop loss 40-50 pipsów, cel 80-100 pipsów (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Jak zmiany czasu letniego wpływają na sesje handlowe?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Kurs dla Początkujących',
+  'tools.education.advancedCourse': 'Kurs Zaawansowany',
+  'tools.education.glossary': 'Słownik Tradingowy',
+  
+  // Cookie Consent
+  'cookie.title': 'Preferencje Plików Cookie',
+  'cookie.description': 'Używamy plików cookie, aby ulepszyć Twoje doświadczenie, analizować ruch w witrynie i dostarczać spersonalizowane treści. Klikając "Akceptuj", wyrażasz zgodę na nasze użycie plików cookie.',
+  'cookie.learnMore': 'Dowiedz się więcej',
+  'cookie.decline': 'Odrzuć',
+  'cookie.acceptAll': 'Zaakceptuj Wszystko',
   'settings.title': 'Ustawienia',
   'settings.description': 'Zarządzanie preferencjami konta i ustawieniami handlowymi',
   'settings.tabs.general': 'Ogólne',

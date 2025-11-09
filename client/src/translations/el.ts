@@ -593,6 +593,18 @@ export const el = {
   'tools.tradingSessions.faq.q6.answer': 'Session high/low = η υψηλότερη/χαμηλότερη τιμή που επιτεύχθηκε κατά τη διάρκεια μιας συγκεκριμένης συνεδρίας. Παράδειγμα: UTC) EUR/USD κυμάνθηκε μεταξύ 1,0850-1,0880. Ασιατικό υψηλό = 1,0880, ασιατικό χαμηλό = 1,0850. Γιατί κρίσιμο: Όταν ανοίγει το Λονδίνο (08:00 UTC), εάν η τιμή διαρρήξει πάνω από το 1,0880 (ασιατικό υψηλό) με όγκο → BULLISH διάσπαση → οι έμποροι στοιβάζονται σε long → ράλι προς το 1,0920+. Εάν η τιμή παραμείνει κάτω από το 1,0880 και διασπάσει το 1,0850 (ασιατικό χαμηλό) → BEARISH breakout. Στρατηγική διαπραγμάτευσης: 5 pips πάνω από το υψηλό της προηγούμενης συνεδρίασης, stop πώλησης 5 pips κάτω από το χαμηλό της προηγούμενης συνεδρίασης. Ακυρώστε την αντίθετη εντολή όταν ενεργοποιηθεί η μία. Λειτουργεί στο 60-70% των περιπτώσεων στις μεγάλες αλλαγές συνόδου (Τόκιο→Λονδίνο, Λονδίνο→NY). Stop loss 40-50 pips, στόχος 80-100 pips (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Πώς επηρεάζουν οι αλλαγές της θερινής ώρας τις συνεδριάσεις συναλλαγών',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Μάθημα για Αρχάριους',
+  'tools.education.advancedCourse': 'Προχωρημένο Μάθημα',
+  'tools.education.glossary': 'Γλωσσάριο Συναλλαγών',
+  
+  // Cookie Consent
+  'cookie.title': 'Προτιμήσεις Cookie',
+  'cookie.description': 'Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία σας, να αναλύσουμε την επισκεψιμότητα του ιστότοπου και να παρέχουμε εξατομικευμένο περιεχόμενο. Κάνοντας κλικ στο "Αποδοχή", συναινείτε στη χρήση των cookies.',
+  'cookie.learnMore': 'Μάθετε περισσότερα',
+  'cookie.decline': 'Απόρριψη',
+  'cookie.acceptAll': 'Αποδοχή Όλων',
   'settings.title': 'Ρυθμίσεις',
   'settings.description': 'Διαχειριστείτε τις προτιμήσεις του λογαριασμού σας και τις ρυθμίσεις συναλλαγών',
   'settings.tabs.general': 'Γενικά',

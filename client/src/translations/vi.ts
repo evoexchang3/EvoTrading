@@ -593,6 +593,18 @@ export const vi = {
   'tools.tradingSessions.faq.q6.answer': 'Phiên cao/thấp = mức giá cao nhất/thấp nhất đạt được trong một phiên giao dịch cụ thể. Ví dụ: Phiên Á (21:00-08:00 UTC), EUR/USD dao động trong khoảng 1.0850-1.0880. Mức cao nhất của phiên Á = 1.0880, mức thấp nhất của phiên Á = 1.0850. Tại sao quan trọng: Khi London mở cửa (08:00 UTC), nếu giá phá vỡ trên 1.0880 (giá cao nhất phiên Á) với khối lượng → Phá vỡ tăng giá → Nhà giao dịch đổ xô vào vị thế mua → Giá tăng lên 1.0920+. Nếu giá duy trì dưới 1.0880 và phá vỡ 1.0850 (giá thấp nhất phiên Á) → Phá vỡ giảm giá. Chiến lược giao dịch: Tại thời điểm chuyển đổi phiên, đặt lệnh mua stop 5 pip trên mức cao của phiên trước, lệnh bán stop 5 pip dưới mức thấp của phiên trước. Hủy lệnh ngược khi một trong hai lệnh được kích hoạt. Chiến lược này hiệu quả 60-70% tại các thời điểm chuyển đổi phiên chính (Tokyo→London, London→NY). Dừng lỗ 40-50 pip, mục tiêu 80-100 pip (tỷ lệ R:R 1:2).',
   'tools.tradingSessions.faq.q7.question': 'Sự thay đổi giờ mùa hè ảnh hưởng như thế nào đến các phiên giao dịch?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Khóa Học Cơ Bản',
+  'tools.education.advancedCourse': 'Khóa Học Nâng Cao',
+  'tools.education.glossary': 'Từ Điển Giao Dịch',
+  
+  // Cookie Consent
+  'cookie.title': 'Tùy Chọn Cookie',
+  'cookie.description': 'Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn, phân tích lưu lượng trang web và cung cấp nội dung được cá nhân hóa. Bằng cách nhấp vào "Chấp nhận", bạn đồng ý với việc chúng tôi sử dụng cookie.',
+  'cookie.learnMore': 'Tìm hiểu thêm',
+  'cookie.decline': 'Từ chối',
+  'cookie.acceptAll': 'Chấp Nhận Tất Cả',
   'settings.title': 'Cài đặt',
   'settings.description': 'Quản lý cài đặt tài khoản và cài đặt giao dịch của bạn',
   'settings.tabs.general': 'Tổng quát',

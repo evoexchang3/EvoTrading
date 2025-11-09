@@ -593,6 +593,18 @@ export const he = {
   'tools.tradingSessions.faq.q6.answer': 'שיא/שפל של המפגש = המחיר הגבוה/הנמוך ביותר שהושג במהלך מפגש מסוים. דוגמה: במפגש האסייתי (21:00-08:00 UTC) טווח ה-EUR/USD היה 1.0850-1.0880. השיא האסייתי = 1.0880, השפל האסייתי = 1.0850. מדוע זה קריטי: כאשר לונדון נפתחת (08:00 UTC), אם המחיר עולה מעל 1.0880 (הגבוה באסייתי) עם נפח → פריצה שורית → סוחרים נכנסים לעסקאות לונג → עלייה ל-1.0920+. אם המחיר נשאר מתחת ל-1.0880 ושובר את 1.0850 (הנמוך באסייתי) → פריצה דובית. אסטרטגיית מסחר: עם שינוי המושב, קבעו סטופ קנייה 5 פיפס מעל השיא של המושב הקודם, סטופ מכירה 5 פיפס מתחת לשפל של המושב הקודם. בטלו את ההוראה ההפוכה כאשר אחת מהן מופעלת. עובד 60-70% מהזמן בשינויים משמעותיים במושב (טוקיו→לונדון, לונדון→ניו יורק). סטופ לוס 40-50 פיפס, יעד 80-100 פיפס (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'כיצד משפיעים שינויים בשעון הקיץ על מסחר בבורסה?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'קורס למתחילים',
+  'tools.education.advancedCourse': 'קורס מתקדם',
+  'tools.education.glossary': 'מילון מסחר',
+  
+  // Cookie Consent
+  'cookie.title': 'העדפות קובצי Cookie',
+  'cookie.description': 'אנו משתמשים בקובצי Cookie כדי לשפר את החוויה שלך, לנתח תנועה באתר ולספק תוכן מותאם אישית. על ידי לחיצה על "קבל", אתה מסכים לשימוש שלנו בקובצי Cookie.',
+  'cookie.learnMore': 'למד עוד',
+  'cookie.decline': 'דחה',
+  'cookie.acceptAll': 'קבל הכל',
   'settings.title': 'הגדרות',
   'settings.description': 'נהל את העדפות החשבון והגדרות המסחר שלך',
   'settings.tabs.general': 'כללי',

@@ -593,6 +593,18 @@ export const nb = {
   'tools.tradingSessions.faq.q6.answer': 'Øktens høyeste/laveste = den høyeste/laveste prisen som er oppnådd i løpet av en bestemt økt. Eksempel: Asiatisk økt (21:00-08:00 UTC) EUR/USD varierte mellom 1,0850-1,0880. Høyeste asiatiske kurs = 1,0880, laveste asiatiske kurs = 1,0850. Hvorfor kritisk: Når London åpner (08:00 UTC), hvis prisen bryter over 1,0880 (asiatisk høydepunkt) med volum → BULLISH utbrudd → tradere legger inn lang → rally til 1,0920+. Hvis prisen holder seg under 1,0880 og bryter 1,0850 (asiatisk lavpunkt) → BEARISH breakout. Handelsstrategi: Ved øktskifte, sett kjøpsstopp 5 pips over forrige sesjons høyeste, salgsstopp 5 pips under forrige sesjons laveste. Avbryt motsatt ordre når den ene utløses. Fungerer 60-70 % av gangene ved større sesjonsendringer (Tokyo→London, London→NY). Stop loss 40-50 pips, mål 80-100 pips (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Hvordan påvirker sommertid endringer handelsøkter?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Nybegynnerkurs',
+  'tools.education.advancedCourse': 'Avansert Kurs',
+  'tools.education.glossary': 'Handelsordbok',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie-innstillinger',
+  'cookie.description': 'Vi bruker informasjonskapsler for å forbedre din opplevelse, analysere nettstedstrafikk og gi tilpasset innhold. Ved å klikke på "Godta" samtykker du til vår bruk av informasjonskapsler.',
+  'cookie.learnMore': 'Lær mer',
+  'cookie.decline': 'Avvis',
+  'cookie.acceptAll': 'Godta Alle',
   'settings.title': 'Innstillinger',
   'settings.description': 'Administrer kontopreferanser og handelsinnstillinger',
   'settings.tabs.general': 'Generelt',

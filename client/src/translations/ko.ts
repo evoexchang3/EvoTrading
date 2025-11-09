@@ -593,6 +593,18 @@ export const ko = {
   'tools.tradingSessions.faq.q6.answer': '세션 최고가/최저가 = 특정 세션 동안 도달한 최고가/최저가입니다. 예시: 아시아 세션(21:00-08:00 UTC) EUR/USD 범위는 1.0850-1.0880입니다. 아시아 고점 = 1.0880, 아시아 저점 = 1.0850. 중요한 이유: 런던 개장(08:00 UTC) 시점에 가격이 거래량과 함께 1.0880(아시아 고점)을 돌파하면 → 강세 돌파 → 트레이더 매수세 유입 → 1.0920+까지 랠리. 가격이 1.0880 이하에서 유지되고 1.0850(아시아 저점)을 돌파하면 → 약세 돌파. 트레이딩 전략: 세션 변경 시 이전 세션 고점 5핍 위에 매수 스톱을 설정하고 이전 세션 저점 5핍 아래에 매도 스톱을 설정합니다. 한 주문이 발동되면 반대 주문을 취소합니다. 주요 세션 변경(도쿄→런던, 런던→뉴욕)에서 60~70% 작동합니다. 스톱로스 40~50핍, 목표 80~100핍(1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': '서머타임 변경이 트레이딩 세션에 어떤 영향을 미치나요?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': '초보자 과정',
+  'tools.education.advancedCourse': '고급 과정',
+  'tools.education.glossary': '거래 용어집',
+  
+  // Cookie Consent
+  'cookie.title': '쿠키 환경설정',
+  'cookie.description': '쿠키를 사용하여 경험을 향상시키고 사이트 트래픽을 분석하며 맞춤형 콘텐츠를 제공합니다. "수락"을 클릭하면 쿠키 사용에 동의하는 것입니다.',
+  'cookie.learnMore': '자세히 알아보기',
+  'cookie.decline': '거부',
+  'cookie.acceptAll': '모두 수락',
   'settings.title': '설정',
   'settings.description': '계정 환경설정 및 거래 설정 관리',
   'settings.tabs.general': '일반',

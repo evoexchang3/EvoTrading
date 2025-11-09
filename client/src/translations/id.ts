@@ -593,6 +593,18 @@ export const id = {
   'tools.tradingSessions.faq.q6.answer': 'Sesi tertinggi/rendah = harga tertinggi/terendah yang dicapai selama sesi tertentu. Contoh: Sesi Asia (21:00-08:00 UTC) EUR/USD berkisar antara 1.0850-1.0880. Level tertinggi Asia = 1.0880, level terendah Asia = 1.0850. Mengapa penting: Saat London dibuka (08:00 UTC), jika harga menembus di atas 1.0880 (level tertinggi Asia) dengan volume → BULLISH breakout → trader menumpuk posisi beli → reli ke 1.0920+. Jika harga bertahan di bawah 1,0880 dan menembus 1,0850 (level terendah Asia) → penembusan BEARISH. Strategi perdagangan: Pada pergantian sesi, tetapkan buy stop 5 pip di atas level tertinggi sesi sebelumnya, sell stop 5 pip di bawah level terendah sesi sebelumnya. Batalkan pesanan yang berlawanan saat salah satu terpicu. Bekerja 60-70% dari waktu pada perubahan sesi utama (Tokyo → London, London → NY). Stop loss 40-50 pip, target 80-100 pip (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Bagaimana perubahan waktu musim panas mempengaruhi sesi perdagangan?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Kursus Pemula',
+  'tools.education.advancedCourse': 'Kursus Lanjutan',
+  'tools.education.glossary': 'Glosarium Perdagangan',
+  
+  // Cookie Consent
+  'cookie.title': 'Preferensi Cookie',
+  'cookie.description': 'Kami menggunakan cookie untuk meningkatkan pengalaman Anda, menganalisis lalu lintas situs, dan menyediakan konten yang dipersonalisasi. Dengan mengklik "Terima", Anda menyetujui penggunaan cookie kami.',
+  'cookie.learnMore': 'Pelajari lebih lanjut',
+  'cookie.decline': 'Tolak',
+  'cookie.acceptAll': 'Terima Semua',
   'settings.title': 'Pengaturan',
   'settings.description': 'Kelola preferensi akun dan pengaturan trading Anda',
   'settings.tabs.general': 'Umum',

@@ -797,6 +797,19 @@ export const tr = {
   'error.unauthorized': 'Bu kaynağa erişim yetkiniz yok',
   'error.notFound': 'Kaynak bulunamadı',
   'error.serverError': 'Sunucu hatası. Lütfen daha sonra tekrar deneyin.',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Başlangıç Kursu',
+  'tools.education.advancedCourse': 'İleri Düzey Kurs',
+  'tools.education.glossary': 'Ticaret Sözlüğü',
+  
+  // Cookie Consent
+  'cookie.title': 'Çerez Tercihleri',
+  'cookie.description': 'Deneyiminizi geliştirmek, site trafiğini analiz etmek ve kişiselleştirilmiş içerik sağlamak için çerezler kullanıyoruz. "Kabul Et"e tıklayarak çerez kullanımımızı kabul etmiş olursunuz.',
+  'cookie.learnMore': 'Daha fazla bilgi',
+  'cookie.decline': 'Reddet',
+  'cookie.acceptAll': 'Tümünü Kabul Et',
+  
   'profile.title': 'Profil Ayarları',
   'profile.description': 'Hesap bilgilerinizi yönetin',
   'profile.personalInfo.title': 'Kişisel Bilgiler',

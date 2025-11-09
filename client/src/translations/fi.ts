@@ -593,6 +593,18 @@ export const fi = {
   'tools.tradingSessions.faq.q6.answer': 'Session high/low = korkein/matalin hinta, joka saavutettiin tietyn istunnon aikana. Esimerkki: Aasian istunto (21:00-08:00 UTC) EUR/USD vaihteli välillä 1,0850-1,0880. Aasian korkein = 1,0880, Aasian matalin = 1,0850. Miksi kriittinen: Kun Lontoo aukeaa (08:00 UTC), jos hinta murtautuu yli 1.0880 (Aasian korkein) volyymin kanssa → BULLISH breakout → kauppiaat kasaavat pitkät → ralli 1.0920 +. Jos hinta pysyy 1.0880:n alapuolella ja rikkoo 1.0850:n (Aasian matalin) → BEARISH breakout. Kaupankäyntistrategia: Myyntipysäkki 5 pistettä edellisen istunnon korkeimman tason yläpuolella, myyntipysäkki 5 pistettä edellisen istunnon matalimman tason alapuolella. Peruuta päinvastainen tilaus, kun yksi laukeaa. Toimii 60-70 % ajasta tärkeimpien istuntojen vaihtuessa (Tokio→Lontoo, Lontoo→NY). Stop loss 40-50 pistettä, tavoite 80-100 pistettä (1:2 R:R).',
   'tools.tradingSessions.faq.q7.question': 'Miten kesäajan muutokset vaikuttavat kaupankäyntiin?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \\',
+  
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Aloittelijoiden Kurssi',
+  'tools.education.advancedCourse': 'Edistynyt Kurssi',
+  'tools.education.glossary': 'Kaupankäynnin Sanasto',
+  
+  // Cookie Consent
+  'cookie.title': 'Evästeasetukset',
+  'cookie.description': 'Käytämme evästeitä parantaaksemme kokemustasi, analysoidaksemme sivuston liikennettä ja tarjotaksemme yksilöllistä sisältöä. Napsauttamalla "Hyväksy" hyväksyt evästeiden käytön.',
+  'cookie.learnMore': 'Lue lisää',
+  'cookie.decline': 'Hylkää',
+  'cookie.acceptAll': 'Hyväksy Kaikki',
   'settings.title': 'Asetukset',
   'settings.description': 'Hallitse tilisi asetuksia ja kaupankäynnin asetuksia',
   'settings.tabs.general': 'Yleistä',
