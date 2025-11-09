@@ -19,10 +19,11 @@ The frontend uses React 18 (TypeScript), Vite, Wouter, TanStack Query, and Tailw
 The platform includes comprehensive trading courses with English content (multi-language support planned as future enhancement):
 
 - **Beginner Course**: 30 lessons across 6 modules (Trading Basics, Technical Analysis, Risk Management, Trading Psychology, Strategy Development, Practical Trading)
-- **Advanced Course**: 30+ lessons (content structure created, full content in development)
-- **Content Structure**: Each lesson includes multiple sections, key points, examples, risk warnings, summaries, and quizzes with explanations
-- **File Organization**: Content split across `beginner-lessons.ts` (Module 1), `beginner-module2.ts` (Module 2), `beginner-modules-3-6.ts` (Modules 3-6) for maintainability
-- **LessonViewer Component**: Dynamically renders lesson content, quizzes, and tracks progress
+- **Advanced Course**: 30 lessons across 6 modules (Advanced Price Action, Multi-Timeframe Analysis, Advanced Risk Management, Market Psychology, Advanced Strategies, Professional Trading)
+- **Content Structure**: Each lesson includes 2-4 sections, key points, examples, risk warnings, summaries, and quizzes with explanations
+- **File Organization**: Content organized across 4 files - `beginner-lessons.ts`, `beginner-modules-3-6.ts`, `advanced-lessons.ts`, `advanced-modules-3-6.ts` for maintainability
+- **LessonViewer Component**: Reusable component that dynamically renders lesson content from course files, handles quiz state management, submission, and reset functionality
+- **Integration**: Both BeginnerCoursePage and AdvancedCoursePage use LessonViewer with consistent quiz state management (Record<number, number>), progress tracking via TanStack Query mutations, and lesson navigation
 - **Future Enhancement**: Multi-language translation system to be integrated with existing i18n infrastructure
 
 #### Layout Variant System
