@@ -12,7 +12,28 @@ Preferred communication style: Simple, everyday language.
 
 ### Frontend
 
-The frontend uses React 18 (TypeScript), Vite, Wouter, TanStack Query, and Tailwind CSS, built with shadcn/ui and custom trading components. It's structured into Public and Authenticated pages. State management leverages TanStack Query for server state, React Context for global state, and local hooks for UI state, including a WebSocket hook for real-time data. The design system is dark mode, Bloomberg Terminal-inspired, using HSL-based semantic trading colors. Internationalization supports 35 languages, powered by DeepL, with RTL support. Runtime customization is managed via `site-config.yml` for branding, 15 layout variants, and feature toggles, with an Admin Configuration UI for web-based management. Navigation and footer components are refactored to be prop-based for better architectural purity. The platform is WCAG AA compliant, with all 15 theme variants audited and adjusted for optimal saturation levels to reduce eye strain.
+The frontend uses React 18 (TypeScript), Vite, Wouter, TanStack Query, and Tailwind CSS, built with shadcn/ui and custom trading components. It's structured into Public and Authenticated pages. State management leverages TanStack Query for server state, React Context for global state, and local hooks for UI state, including a WebSocket hook for real-time data. The design system is dark mode, Bloomberg Terminal-inspired, using HSL-based semantic trading colors. Internationalization supports 35 languages, powered by DeepL, with RTL support. Runtime customization is managed via `site-config.yml` for branding, 16 layout variants (including "original" default), and feature toggles, with an Admin Configuration UI for web-based management. Navigation and footer components are refactored to be prop-based for better architectural purity. The platform is WCAG AA compliant, with all variants audited and adjusted for optimal saturation levels to reduce eye strain.
+
+#### Educational Content System
+
+The platform includes comprehensive trading courses with English content (multi-language support planned as future enhancement):
+
+- **Beginner Course**: 30 lessons across 6 modules (Trading Basics, Technical Analysis, Risk Management, Trading Psychology, Strategy Development, Practical Trading)
+- **Advanced Course**: 30+ lessons (content structure created, full content in development)
+- **Content Structure**: Each lesson includes multiple sections, key points, examples, risk warnings, summaries, and quizzes with explanations
+- **File Organization**: Content split across `beginner-lessons.ts` (Module 1), `beginner-module2.ts` (Module 2), `beginner-modules-3-6.ts` (Modules 3-6) for maintainability
+- **LessonViewer Component**: Dynamically renders lesson content, quizzes, and tracks progress
+- **Future Enhancement**: Multi-language translation system to be integrated with existing i18n infrastructure
+
+#### Layout Variant System
+
+16 unique layout variants with distinct dashboard compositions:
+- **Full-Featured Variants** (13): Complete trading features, unique dashboard layouts
+- **Minimalistic Variants** (3): Streamlined UX - `arctic-minimal`, `minimalist-corporate`, `nordic-clean`
+- **Dashboard Uniqueness**: Each variant has completely different widget arrangements, densities, and visual compositions
+- **Navigation Types**: 15 unique navigation patterns (compact-top, wide-split, ticker-bar, etc.)
+- **Footer Types**: 15 unique footer layouts (quad-grid, tiered-two-row, legal-micro, etc.)
+- **Dynamic Rendering**: `DashboardRenderer` component maps configurations to UI widgets
 
 ### Backend
 
