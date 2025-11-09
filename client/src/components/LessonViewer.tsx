@@ -10,7 +10,7 @@ import type { LessonQuiz } from "@/content/courses";
 
 interface LessonViewerProps {
   lessonId: string;
-  quizAnswers: Record<string, number>;
+  quizAnswers: Record<number, number>;
   quizSubmitted: boolean;
   onAnswerChange: (questionIndex: number, answerIndex: number) => void;
   onQuizSubmit: () => void;

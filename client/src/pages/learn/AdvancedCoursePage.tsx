@@ -13,6 +13,8 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { type CourseProgress } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
+import { LessonViewer } from "@/components/LessonViewer";
+import { getLessonContent } from "@/content/courses";
 
 const COURSE_ID = "advanced-trading";
 
@@ -20,7 +22,7 @@ export default function AdvancedCoursePage() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
-  const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
+  const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   
   useEffect(() => {
@@ -64,11 +66,11 @@ export default function AdvancedCoursePage() {
       description: t('education.advancedCourse.module1.description'),
       duration: t('education.advancedCourse.module1.duration'),
       lessons: [
-        { id: "lesson-adv-1-1", title: t('education.advancedCourse.module1.lesson1'), duration: "20 mins" },
-        { id: "lesson-adv-1-2", title: t('education.advancedCourse.module1.lesson2'), duration: "22 mins" },
-        { id: "lesson-adv-1-3", title: t('education.advancedCourse.module1.lesson3'), duration: "18 mins" },
-        { id: "lesson-adv-1-4", title: t('education.advancedCourse.module1.lesson4'), duration: "15 mins" },
-        { id: "lesson-adv-1-5", title: t('education.advancedCourse.module1.lesson5'), duration: "15 mins" }
+        { id: "advanced-1-1", title: t('education.advancedCourse.module1.lesson1'), duration: "20 mins" },
+        { id: "advanced-1-2", title: t('education.advancedCourse.module1.lesson2'), duration: "22 mins" },
+        { id: "advanced-1-3", title: t('education.advancedCourse.module1.lesson3'), duration: "18 mins" },
+        { id: "advanced-1-4", title: t('education.advancedCourse.module1.lesson4'), duration: "15 mins" },
+        { id: "advanced-1-5", title: t('education.advancedCourse.module1.lesson5'), duration: "15 mins" }
       ],
       quiz: {
         questions: 20,
@@ -83,11 +85,11 @@ export default function AdvancedCoursePage() {
       description: t('education.advancedCourse.module2.description'),
       duration: t('education.advancedCourse.module2.duration'),
       lessons: [
-        { id: "lesson-adv-2-1", title: t('education.advancedCourse.module2.lesson1'), duration: "18 mins" },
-        { id: "lesson-adv-2-2", title: t('education.advancedCourse.module2.lesson2'), duration: "16 mins" },
-        { id: "lesson-adv-2-3", title: t('education.advancedCourse.module2.lesson3'), duration: "15 mins" },
-        { id: "lesson-adv-2-4", title: t('education.advancedCourse.module2.lesson4'), duration: "14 mins" },
-        { id: "lesson-adv-2-5", title: t('education.advancedCourse.module2.lesson5'), duration: "12 mins" }
+        { id: "advanced-2-1", title: t('education.advancedCourse.module2.lesson1'), duration: "18 mins" },
+        { id: "advanced-2-2", title: t('education.advancedCourse.module2.lesson2'), duration: "16 mins" },
+        { id: "advanced-2-3", title: t('education.advancedCourse.module2.lesson3'), duration: "15 mins" },
+        { id: "advanced-2-4", title: t('education.advancedCourse.module2.lesson4'), duration: "14 mins" },
+        { id: "advanced-2-5", title: t('education.advancedCourse.module2.lesson5'), duration: "12 mins" }
       ],
       quiz: {
         questions: 18,
@@ -102,11 +104,11 @@ export default function AdvancedCoursePage() {
       description: t('education.advancedCourse.module3.description'),
       duration: t('education.advancedCourse.module3.duration'),
       lessons: [
-        { id: "lesson-adv-3-1", title: t('education.advancedCourse.module3.lesson1'), duration: "15 mins" },
-        { id: "lesson-adv-3-2", title: t('education.advancedCourse.module3.lesson2'), duration: "12 mins" },
-        { id: "lesson-adv-3-3", title: t('education.advancedCourse.module3.lesson3'), duration: "10 mins" },
-        { id: "lesson-adv-3-4", title: t('education.advancedCourse.module3.lesson4'), duration: "12 mins" },
-        { id: "lesson-adv-3-5", title: t('education.advancedCourse.module3.lesson5'), duration: "11 mins" }
+        { id: "advanced-3-1", title: t('education.advancedCourse.module3.lesson1'), duration: "15 mins" },
+        { id: "advanced-3-2", title: t('education.advancedCourse.module3.lesson2'), duration: "12 mins" },
+        { id: "advanced-3-3", title: t('education.advancedCourse.module3.lesson3'), duration: "10 mins" },
+        { id: "advanced-3-4", title: t('education.advancedCourse.module3.lesson4'), duration: "12 mins" },
+        { id: "advanced-3-5", title: t('education.advancedCourse.module3.lesson5'), duration: "11 mins" }
       ],
       quiz: {
         questions: 15,
@@ -121,11 +123,11 @@ export default function AdvancedCoursePage() {
       description: t('education.advancedCourse.module4.description'),
       duration: t('education.advancedCourse.module4.duration'),
       lessons: [
-        { id: "lesson-adv-4-1", title: t('education.advancedCourse.module4.lesson1'), duration: "20 mins" },
-        { id: "lesson-adv-4-2", title: t('education.advancedCourse.module4.lesson2'), duration: "22 mins" },
-        { id: "lesson-adv-4-3", title: t('education.advancedCourse.module4.lesson3'), duration: "18 mins" },
-        { id: "lesson-adv-4-4", title: t('education.advancedCourse.module4.lesson4'), duration: "15 mins" },
-        { id: "lesson-adv-4-5", title: t('education.advancedCourse.module4.lesson5'), duration: "15 mins" }
+        { id: "advanced-4-1", title: t('education.advancedCourse.module4.lesson1'), duration: "20 mins" },
+        { id: "advanced-4-2", title: t('education.advancedCourse.module4.lesson2'), duration: "22 mins" },
+        { id: "advanced-4-3", title: t('education.advancedCourse.module4.lesson3'), duration: "18 mins" },
+        { id: "advanced-4-4", title: t('education.advancedCourse.module4.lesson4'), duration: "15 mins" },
+        { id: "advanced-4-5", title: t('education.advancedCourse.module4.lesson5'), duration: "15 mins" }
       ],
       quiz: {
         questions: 20,
@@ -140,11 +142,11 @@ export default function AdvancedCoursePage() {
       description: t('education.advancedCourse.module5.description'),
       duration: t('education.advancedCourse.module5.duration'),
       lessons: [
-        { id: "lesson-adv-5-1", title: t('education.advancedCourse.module5.lesson1'), duration: "25 mins" },
-        { id: "lesson-adv-5-2", title: t('education.advancedCourse.module5.lesson2'), duration: "25 mins" },
-        { id: "lesson-adv-5-3", title: t('education.advancedCourse.module5.lesson3'), duration: "20 mins" },
-        { id: "lesson-adv-5-4", title: t('education.advancedCourse.module5.lesson4'), duration: "25 mins" },
-        { id: "lesson-adv-5-5", title: t('education.advancedCourse.module5.lesson5'), duration: "25 mins" }
+        { id: "advanced-5-1", title: t('education.advancedCourse.module5.lesson1'), duration: "25 mins" },
+        { id: "advanced-5-2", title: t('education.advancedCourse.module5.lesson2'), duration: "25 mins" },
+        { id: "advanced-5-3", title: t('education.advancedCourse.module5.lesson3'), duration: "20 mins" },
+        { id: "advanced-5-4", title: t('education.advancedCourse.module5.lesson4'), duration: "25 mins" },
+        { id: "advanced-5-5", title: t('education.advancedCourse.module5.lesson5'), duration: "25 mins" }
       ],
       quiz: {
         questions: 25,
@@ -159,11 +161,11 @@ export default function AdvancedCoursePage() {
       description: t('education.advancedCourse.module6.description'),
       duration: t('education.advancedCourse.module6.duration'),
       lessons: [
-        { id: "lesson-adv-6-1", title: t('education.advancedCourse.module6.lesson1'), duration: "15 mins" },
-        { id: "lesson-adv-6-2", title: t('education.advancedCourse.module6.lesson2'), duration: "12 mins" },
-        { id: "lesson-adv-6-3", title: t('education.advancedCourse.module6.lesson3'), duration: "10 mins" },
-        { id: "lesson-adv-6-4", title: t('education.advancedCourse.module6.lesson4'), duration: "13 mins" },
-        { id: "lesson-adv-6-5", title: t('education.advancedCourse.module6.lesson5'), duration: "10 mins" }
+        { id: "advanced-6-1", title: t('education.advancedCourse.module6.lesson1'), duration: "15 mins" },
+        { id: "advanced-6-2", title: t('education.advancedCourse.module6.lesson2'), duration: "12 mins" },
+        { id: "advanced-6-3", title: t('education.advancedCourse.module6.lesson3'), duration: "10 mins" },
+        { id: "advanced-6-4", title: t('education.advancedCourse.module6.lesson4'), duration: "13 mins" },
+        { id: "advanced-6-5", title: t('education.advancedCourse.module6.lesson5'), duration: "10 mins" }
       ],
       quiz: {
         questions: 15,
@@ -750,6 +752,7 @@ export default function AdvancedCoursePage() {
             const module = modules[selectedLesson.moduleIndex];
             const lesson = module.lessons[selectedLesson.lessonIndex];
             const isCompleted = getLessonProgress(selectedLesson.moduleId, selectedLesson.lessonId);
+            const lessonContent = getLessonContent(selectedLesson.lessonId);
             
             const handlePrevious = () => {
               if (selectedLesson.lessonIndex > 0) {
@@ -804,6 +807,35 @@ export default function AdvancedCoursePage() {
                 completed: !isCompleted 
               });
             };
+
+            const handleAnswerChange = (questionIndex: number, answerIndex: number) => {
+              setQuizAnswers({ ...quizAnswers, [questionIndex]: answerIndex });
+            };
+
+            const handleQuizSubmit = () => {
+              const numQuestions = lessonContent?.quiz?.length || 0;
+              if (Object.keys(quizAnswers).length === numQuestions) {
+                setQuizSubmitted(true);
+                if (!isCompleted) {
+                  saveProgressMutation.mutate({ 
+                    moduleId: selectedLesson.moduleId, 
+                    lessonId: selectedLesson.lessonId, 
+                    completed: true 
+                  });
+                }
+              } else {
+                toast({
+                  title: "Please answer all questions",
+                  description: "Complete all quiz questions before submitting.",
+                  variant: "destructive"
+                });
+              }
+            };
+
+            const handleQuizReset = () => {
+              setQuizAnswers({});
+              setQuizSubmitted(false);
+            };
             
             const hasPrevious = selectedLesson.moduleIndex > 0 || selectedLesson.lessonIndex > 0;
             const hasNext = selectedLesson.moduleIndex < modules.length - 1 || selectedLesson.lessonIndex < module.lessons.length - 1;
@@ -841,292 +873,15 @@ export default function AdvancedCoursePage() {
                   </div>
                 </DialogHeader>
                 
-                <div className="space-y-6 mt-6">
-                  <div className="prose prose-sm max-w-none dark:prose-invert">
-                    <h3 className="font-semibold text-lg mb-3">Introduction to Advanced Price Action</h3>
-                    <p className="text-muted-foreground mb-4">
-                      Price action trading is a pure form of technical analysis that focuses solely on price movements without relying on lagging indicators. 
-                      Professional traders use price action to understand market psychology, identify high-probability setups, and execute with precision.
-                    </p>
-                    
-                    <h3 className="font-semibold text-lg mb-3 mt-6">Understanding Market Structure</h3>
-                    <p className="text-muted-foreground mb-4">
-                      The foundation of price action trading is recognizing market structure: higher highs (HH), higher lows (HL), lower highs (LH), and lower lows (LL). 
-                      These patterns reveal whether the market is trending, consolidating, or reversing.
-                    </p>
-                    
-                    <div className="bg-muted p-4 rounded-lg my-4">
-                      <h4 className="font-semibold mb-2">Key Concept: Break of Structure (BOS)</h4>
-                      <p className="text-sm text-muted-foreground">
-                        A Break of Structure occurs when price breaks a significant swing point. In an uptrend, BOS is confirmed when price breaks above 
-                        the previous higher high. This signals trend continuation and provides entry opportunities on pullbacks.
-                      </p>
-                    </div>
-                    
-                    <h3 className="font-semibold text-lg mb-3 mt-6">Advanced Candlestick Patterns</h3>
-                    <ul className="space-y-2 mb-4">
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Pin Bar (Rejection Candle):</strong> Long wick with small body indicates strong rejection at a level</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Engulfing Pattern:</strong> Larger candle completely engulfs previous candle, signals reversal</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Inside Bar:</strong> Consolidation pattern where candle is contained within previous candle's range</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Doji:</strong> Indecision candle with equal open and close, signals potential reversal at extremes</span>
-                      </li>
-                    </ul>
-                    
-                    <div className="bg-primary/10 border-l-4 border-primary p-4 rounded my-4">
-                      <h4 className="font-semibold mb-2 flex items-center gap-2">
-                        <AlertTriangle className="w-5 h-5" />
-                        Professional Trading Rule
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        Never trade a candlestick pattern in isolation. Always consider the broader market context: trend direction, 
-                        key support/resistance levels, and confluence with other technical factors. Context is everything in price action trading.
-                      </p>
-                    </div>
-                    
-                    <h3 className="font-semibold text-lg mb-3 mt-6">Trading the Trend</h3>
-                    <p className="text-muted-foreground mb-3">
-                      The phrase "the trend is your friend" exists for a reason. Professional traders identify the trend on higher timeframes (H4, Daily) 
-                      and execute entries on lower timeframes (M15, H1) in the direction of the trend. This multi-timeframe approach dramatically 
-                      improves win rates.
-                    </p>
-                    <p className="text-muted-foreground">
-                      <strong>Entry Strategy:</strong> Wait for a pullback to a key level (previous structure, Fibonacci 50-61.8%, or moving average), 
-                      then look for a bullish price action signal (pin bar, engulfing) to enter long in an uptrend.
-                    </p>
-                  </div>
-                  
-                  <div className="border-t pt-6">
-                    <h3 className="font-semibold text-lg mb-4">Lesson Quiz</h3>
-                    <div className="space-y-4">
-                      <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">1. What does "Break of Structure" (BOS) indicate in an uptrend?</p>
-                        <div className="space-y-2">
-                          {['a', 'b', 'c', 'd'].map((option) => {
-                            const isCorrect = option === 'b';
-                            const isSelected = quizAnswers['q1'] === option;
-                            return (
-                              <label 
-                                key={option}
-                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                                  !quizSubmitted ? 'hover-elevate' : ''
-                                } ${
-                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
-                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
-                                }`}
-                              >
-                                <input 
-                                  type="radio" 
-                                  name="q1" 
-                                  value={option} 
-                                  className="w-4 h-4" 
-                                  checked={isSelected}
-                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q1: e.target.value})}
-                                  disabled={quizSubmitted}
-                                />
-                                <span className="text-sm">
-                                  {option === 'a' && 'Price is about to reverse downward'}
-                                  {option === 'b' && 'Trend continuation - price breaks above previous higher high'}
-                                  {option === 'c' && 'Market is entering consolidation phase'}
-                                  {option === 'd' && 'No clear signal - neutral market'}
-                                  {quizSubmitted && isCorrect && ' ✓'}
-                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
-                                </span>
-                              </label>
-                            );
-                          })}
-                        </div>
-                        {quizSubmitted && quizAnswers['q1'] !== 'b' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Trend continuation - price breaks above previous higher high</p>
-                        )}
-                      </div>
-                      
-                      <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">2. What does a pin bar candlestick pattern indicate?</p>
-                        <div className="space-y-2">
-                          {['a', 'b', 'c', 'd'].map((option) => {
-                            const isCorrect = option === 'c';
-                            const isSelected = quizAnswers['q2'] === option;
-                            return (
-                              <label 
-                                key={option}
-                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                                  !quizSubmitted ? 'hover-elevate' : ''
-                                } ${
-                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
-                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
-                                }`}
-                              >
-                                <input 
-                                  type="radio" 
-                                  name="q2" 
-                                  value={option} 
-                                  className="w-4 h-4"
-                                  checked={isSelected}
-                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q2: e.target.value})}
-                                  disabled={quizSubmitted}
-                                />
-                                <span className="text-sm">
-                                  {option === 'a' && 'Market indecision and consolidation'}
-                                  {option === 'b' && 'Strong trend continuation signal'}
-                                  {option === 'c' && 'Strong rejection at a price level (long wick, small body)'}
-                                  {option === 'd' && 'Breakout is imminent'}
-                                  {quizSubmitted && isCorrect && ' ✓'}
-                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
-                                </span>
-                              </label>
-                            );
-                          })}
-                        </div>
-                        {quizSubmitted && quizAnswers['q2'] !== 'c' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Strong rejection at a price level (long wick, small body)</p>
-                        )}
-                      </div>
-                      
-                      <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">3. What is the professional approach to trading with the trend?</p>
-                        <div className="space-y-2">
-                          {['a', 'b', 'c', 'd'].map((option) => {
-                            const isCorrect = option === 'b';
-                            const isSelected = quizAnswers['q3'] === option;
-                            return (
-                              <label 
-                                key={option}
-                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                                  !quizSubmitted ? 'hover-elevate' : ''
-                                } ${
-                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
-                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
-                                }`}
-                              >
-                                <input 
-                                  type="radio" 
-                                  name="q3" 
-                                  value={option} 
-                                  className="w-4 h-4"
-                                  checked={isSelected}
-                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q3: e.target.value})}
-                                  disabled={quizSubmitted}
-                                />
-                                <span className="text-sm">
-                                  {option === 'a' && 'Always trade against the trend for better risk/reward'}
-                                  {option === 'b' && 'Identify trend on higher timeframe, enter on lower timeframe pullbacks'}
-                                  {option === 'c' && 'Only use M1 charts for fastest entries'}
-                                  {option === 'd' && 'Ignore timeframes and trade all signals equally'}
-                                  {quizSubmitted && isCorrect && ' ✓'}
-                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
-                                </span>
-                              </label>
-                            );
-                          })}
-                        </div>
-                        {quizSubmitted && quizAnswers['q3'] !== 'b' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Identify trend on higher timeframe, enter on lower timeframe pullbacks</p>
-                        )}
-                      </div>
-                      
-                      <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">4. According to the lesson, why should you never trade candlestick patterns in isolation?</p>
-                        <div className="space-y-2">
-                          {['a', 'b', 'c', 'd'].map((option) => {
-                            const isCorrect = option === 'b';
-                            const isSelected = quizAnswers['q4'] === option;
-                            return (
-                              <label 
-                                key={option}
-                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                                  !quizSubmitted ? 'hover-elevate' : ''
-                                } ${
-                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
-                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
-                                }`}
-                              >
-                                <input 
-                                  type="radio" 
-                                  name="q4" 
-                                  value={option} 
-                                  className="w-4 h-4"
-                                  checked={isSelected}
-                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q4: e.target.value})}
-                                  disabled={quizSubmitted}
-                                />
-                                <span className="text-sm">
-                                  {option === 'a' && 'Candlestick patterns are unreliable and should be avoided'}
-                                  {option === 'b' && 'Context matters - consider trend, support/resistance, and confluence'}
-                                  {option === 'c' && 'You need at least 5 indicators to confirm any pattern'}
-                                  {option === 'd' && 'Patterns only work on 1-hour charts or higher'}
-                                  {quizSubmitted && isCorrect && ' ✓'}
-                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
-                                </span>
-                              </label>
-                            );
-                          })}
-                        </div>
-                        {quizSubmitted && quizAnswers['q4'] !== 'b' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">Correct answer: Context matters - consider trend, support/resistance, and confluence</p>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3 mt-4">
-                      {!quizSubmitted ? (
-                        <Button 
-                          onClick={() => {
-                            if (Object.keys(quizAnswers).length === 4) {
-                              setQuizSubmitted(true);
-                              // Auto-mark lesson as complete when quiz is submitted
-                              if (!isCompleted) {
-                                saveProgressMutation.mutate({ 
-                                  moduleId: selectedLesson.moduleId, 
-                                  lessonId: selectedLesson.lessonId, 
-                                  completed: true 
-                                });
-                              }
-                            } else {
-                              toast({
-                                title: t('education.advancedCourse.quiz.incompleteQuiz'),
-                                description: t('education.advancedCourse.quiz.answerAll'),
-                                variant: "destructive"
-                              });
-                            }
-                          }}
-                          data-testid="button-submit-quiz"
-                        >
-                          {t('education.advancedCourse.quiz.submitQuiz')}
-                        </Button>
-                      ) : (
-                        <>
-                          <Button 
-                            onClick={() => {
-                              setQuizAnswers({});
-                              setQuizSubmitted(false);
-                            }}
-                            variant="outline"
-                            data-testid="button-reset-quiz"
-                          >
-                            <Target className="w-4 h-4 mr-2" />
-                            {t('education.advancedCourse.quiz.tryAgain')}
-                          </Button>
-                          <Alert className="flex-1">
-                            <CheckCircle2 className="w-4 h-4" />
-                            <AlertDescription>
-                              {t('education.advancedCourse.quiz.quizSubmitted')}
-                            </AlertDescription>
-                          </Alert>
-                        </>
-                      )}
-                    </div>
-                  </div>
+                <div className="mt-6">
+                  <LessonViewer
+                    lessonId={selectedLesson.lessonId}
+                    quizAnswers={quizAnswers}
+                    quizSubmitted={quizSubmitted}
+                    onAnswerChange={handleAnswerChange}
+                    onQuizSubmit={handleQuizSubmit}
+                    onQuizReset={handleQuizReset}
+                  />
                 </div>
                 
                 <div className="flex items-center justify-between mt-6 pt-6 border-t">

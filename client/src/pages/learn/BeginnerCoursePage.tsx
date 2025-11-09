@@ -13,6 +13,8 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { type CourseProgress } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
+import { LessonViewer } from "@/components/LessonViewer";
+import { getLessonContent } from "@/content/courses";
 
 const COURSE_ID = "beginner-trading";
 
@@ -20,7 +22,7 @@ export default function BeginnerCoursePage() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [selectedLesson, setSelectedLesson] = useState<{ moduleId: string; moduleIndex: number; lessonId: string; lessonIndex: number; title: string } | null>(null);
-  const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
+  const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   
   useEffect(() => {
@@ -709,6 +711,7 @@ export default function BeginnerCoursePage() {
             const module = modules[selectedLesson.moduleIndex];
             const lesson = module.lessons[selectedLesson.lessonIndex];
             const isCompleted = getLessonProgress(selectedLesson.moduleId, selectedLesson.lessonId);
+            const lessonContent = getLessonContent(selectedLesson.lessonId);
             
             const handlePrevious = () => {
               if (selectedLesson.lessonIndex > 0) {
@@ -763,6 +766,36 @@ export default function BeginnerCoursePage() {
                 completed: !isCompleted 
               });
             };
+
+            const handleAnswerChange = (questionIndex: number, answerIndex: number) => {
+              setQuizAnswers({ ...quizAnswers, [questionIndex]: answerIndex });
+            };
+
+            const handleQuizSubmit = () => {
+              const numQuestions = lessonContent?.quiz?.length || 0;
+              if (Object.keys(quizAnswers).length === numQuestions) {
+                setQuizSubmitted(true);
+                // Auto-mark lesson as complete when quiz is submitted
+                if (!isCompleted) {
+                  saveProgressMutation.mutate({ 
+                    moduleId: selectedLesson.moduleId, 
+                    lessonId: selectedLesson.lessonId, 
+                    completed: true 
+                  });
+                }
+              } else {
+                toast({
+                  title: t('education.beginnerCourse.quiz.incomplete'),
+                  description: t('education.beginnerCourse.quiz.incompleteDescription'),
+                  variant: "destructive"
+                });
+              }
+            };
+
+            const handleQuizReset = () => {
+              setQuizAnswers({});
+              setQuizSubmitted(false);
+            };
             
             const hasPrevious = selectedLesson.moduleIndex > 0 || selectedLesson.lessonIndex > 0;
             const hasNext = selectedLesson.moduleIndex < modules.length - 1 || selectedLesson.lessonIndex < module.lessons.length - 1;
@@ -800,244 +833,15 @@ export default function BeginnerCoursePage() {
                   </div>
                 </DialogHeader>
                 
-                <div className="space-y-6 mt-6">
-                  <div className="prose prose-sm max-w-none dark:prose-invert">
-                    <h3 className="font-semibold text-lg mb-3">{t('education.beginnerCourse.lesson.introduction')}</h3>
-                    <p className="text-muted-foreground mb-4">
-                      {t('education.beginnerCourse.lesson.intro.text')}
-                    </p>
-                    
-                    <h3 className="font-semibold text-lg mb-3 mt-6">{t('education.beginnerCourse.lesson.howMarketWorks')}</h3>
-                    <p className="text-muted-foreground mb-4">
-                      {t('education.beginnerCourse.lesson.marketWorks.text')}
-                    </p>
-                    
-                    <div className="bg-muted p-4 rounded-lg my-4">
-                      <h4 className="font-semibold mb-2">{t('education.beginnerCourse.lesson.keyConcept.title')}</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {t('education.beginnerCourse.lesson.keyConcept.text')}
-                      </p>
-                    </div>
-                    
-                    <h3 className="font-semibold text-lg mb-3 mt-6">{t('education.beginnerCourse.lesson.whoTrades')}</h3>
-                    <ul className="space-y-2 mb-4">
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{t('education.beginnerCourse.lesson.centralBanks')}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{t('education.beginnerCourse.lesson.commercialBanks')}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{t('education.beginnerCourse.lesson.hedgeFunds')}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{t('education.beginnerCourse.lesson.corporations')}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{t('education.beginnerCourse.lesson.retailTraders')}</span>
-                      </li>
-                    </ul>
-                    
-                    <div className="bg-primary/10 border-l-4 border-primary p-4 rounded my-4">
-                      <h4 className="font-semibold mb-2 flex items-center gap-2">
-                        <AlertTriangle className="w-5 h-5" />
-                        {t('education.beginnerCourse.lesson.riskWarning')}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {t('education.beginnerCourse.lesson.riskWarning.text')}
-                      </p>
-                    </div>
-                    
-                    <h3 className="font-semibold text-lg mb-3 mt-6">{t('education.beginnerCourse.lesson.summary')}</h3>
-                    <p className="text-muted-foreground">
-                      {t('education.beginnerCourse.lesson.summary.text')}
-                    </p>
-                  </div>
-                  
-                  <div className="border-t pt-6">
-                    <h3 className="font-semibold text-lg mb-4">{t('education.beginnerCourse.lesson.quiz')}</h3>
-                    <div className="space-y-4">
-                      <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">{t('education.beginnerCourse.quiz.q1.question')}</p>
-                        <div className="space-y-2">
-                          {['a', 'b', 'c', 'd'].map((option) => {
-                            const isCorrect = option === 'c';
-                            const isSelected = quizAnswers['q1'] === option;
-                            return (
-                              <label 
-                                key={option}
-                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                                  !quizSubmitted ? 'hover-elevate' : ''
-                                } ${
-                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
-                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
-                                }`}
-                              >
-                                <input 
-                                  type="radio" 
-                                  name="q1" 
-                                  value={option} 
-                                  className="w-4 h-4" 
-                                  checked={isSelected}
-                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q1: e.target.value})}
-                                  disabled={quizSubmitted}
-                                />
-                                <span className="text-sm">
-                                  {option === 'a' && t('education.beginnerCourse.quiz.q1.a')}
-                                  {option === 'b' && t('education.beginnerCourse.quiz.q1.b')}
-                                  {option === 'c' && t('education.beginnerCourse.quiz.q1.c')}
-                                  {option === 'd' && t('education.beginnerCourse.quiz.q1.d')}
-                                  {quizSubmitted && isCorrect && ' ✓'}
-                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
-                                </span>
-                              </label>
-                            );
-                          })}
-                        </div>
-                        {quizSubmitted && quizAnswers['q1'] !== 'c' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">{t('education.beginnerCourse.quiz.correctAnswer')} {t('education.beginnerCourse.quiz.q1.c')}</p>
-                        )}
-                      </div>
-                      
-                      <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">{t('education.beginnerCourse.quiz.q2.question')}</p>
-                        <div className="space-y-2">
-                          {['a', 'b', 'c', 'd'].map((option) => {
-                            const isCorrect = option === 'a';
-                            const isSelected = quizAnswers['q2'] === option;
-                            return (
-                              <label 
-                                key={option}
-                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                                  !quizSubmitted ? 'hover-elevate' : ''
-                                } ${
-                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
-                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
-                                }`}
-                              >
-                                <input 
-                                  type="radio" 
-                                  name="q2" 
-                                  value={option} 
-                                  className="w-4 h-4"
-                                  checked={isSelected}
-                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q2: e.target.value})}
-                                  disabled={quizSubmitted}
-                                />
-                                <span className="text-sm">
-                                  {option === 'a' && t('education.beginnerCourse.quiz.q2.a')}
-                                  {option === 'b' && t('education.beginnerCourse.quiz.q2.b')}
-                                  {option === 'c' && t('education.beginnerCourse.quiz.q2.c')}
-                                  {option === 'd' && t('education.beginnerCourse.quiz.q2.d')}
-                                  {quizSubmitted && isCorrect && ' ✓'}
-                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
-                                </span>
-                              </label>
-                            );
-                          })}
-                        </div>
-                        {quizSubmitted && quizAnswers['q2'] !== 'a' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">{t('education.beginnerCourse.quiz.correctAnswer')} {t('education.beginnerCourse.quiz.q2.a')}</p>
-                        )}
-                      </div>
-                      
-                      <div className="p-4 border rounded-lg">
-                        <p className="font-medium mb-3">{t('education.beginnerCourse.quiz.q3.question')}</p>
-                        <div className="space-y-2">
-                          {['a', 'b', 'c', 'd'].map((option) => {
-                            const isCorrect = option === 'b';
-                            const isSelected = quizAnswers['q3'] === option;
-                            return (
-                              <label 
-                                key={option}
-                                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                                  !quizSubmitted ? 'hover-elevate' : ''
-                                } ${
-                                  quizSubmitted && isCorrect ? 'bg-green-500/10 border border-green-500/20' : 
-                                  quizSubmitted && isSelected && !isCorrect ? 'bg-red-500/10 border border-red-500/20' : ''
-                                }`}
-                              >
-                                <input 
-                                  type="radio" 
-                                  name="q3" 
-                                  value={option} 
-                                  className="w-4 h-4"
-                                  checked={isSelected}
-                                  onChange={(e) => !quizSubmitted && setQuizAnswers({...quizAnswers, q3: e.target.value})}
-                                  disabled={quizSubmitted}
-                                />
-                                <span className="text-sm">
-                                  {option === 'a' && t('education.beginnerCourse.quiz.q3.a')}
-                                  {option === 'b' && t('education.beginnerCourse.quiz.q3.b')}
-                                  {option === 'c' && t('education.beginnerCourse.quiz.q3.c')}
-                                  {option === 'd' && t('education.beginnerCourse.quiz.q3.d')}
-                                  {quizSubmitted && isCorrect && ' ✓'}
-                                  {quizSubmitted && isSelected && !isCorrect && ' ✗'}
-                                </span>
-                              </label>
-                            );
-                          })}
-                        </div>
-                        {quizSubmitted && quizAnswers['q3'] !== 'b' && (
-                          <p className="text-sm text-green-600 dark:text-green-400 mt-2">{t('education.beginnerCourse.quiz.correctAnswer')} {t('education.beginnerCourse.quiz.q3.b')}</p>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3 mt-4">
-                      {!quizSubmitted ? (
-                        <Button 
-                          onClick={() => {
-                            if (Object.keys(quizAnswers).length === 3) {
-                              setQuizSubmitted(true);
-                              // Auto-mark lesson as complete when quiz is submitted
-                              if (!isCompleted) {
-                                saveProgressMutation.mutate({ 
-                                  moduleId: selectedLesson.moduleId, 
-                                  lessonId: selectedLesson.lessonId, 
-                                  completed: true 
-                                });
-                              }
-                            } else {
-                              toast({
-                                title: t('education.beginnerCourse.quiz.incomplete'),
-                                description: t('education.beginnerCourse.quiz.incompleteDescription'),
-                                variant: "destructive"
-                              });
-                            }
-                          }}
-                          data-testid="button-submit-quiz"
-                        >
-                          {t('education.beginnerCourse.quiz.submit')}
-                        </Button>
-                      ) : (
-                        <>
-                          <Button 
-                            onClick={() => {
-                              setQuizAnswers({});
-                              setQuizSubmitted(false);
-                            }}
-                            variant="outline"
-                            data-testid="button-reset-quiz"
-                          >
-                            <Target className="w-4 h-4 mr-2" />
-                            {t('education.beginnerCourse.quiz.tryAgain')}
-                          </Button>
-                          <Alert className="flex-1">
-                            <CheckCircle2 className="w-4 h-4" />
-                            <AlertDescription>
-                              {t('education.beginnerCourse.quiz.submitted')}
-                            </AlertDescription>
-                          </Alert>
-                        </>
-                      )}
-                    </div>
-                  </div>
+                <div className="mt-6">
+                  <LessonViewer
+                    lessonId={selectedLesson.lessonId}
+                    quizAnswers={quizAnswers}
+                    quizSubmitted={quizSubmitted}
+                    onAnswerChange={handleAnswerChange}
+                    onQuizSubmit={handleQuizSubmit}
+                    onQuizReset={handleQuizReset}
+                  />
                 </div>
                 
                 <div className="flex items-center justify-between mt-6 pt-6 border-t">

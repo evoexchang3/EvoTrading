@@ -76,6 +76,24 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Never trade without a stop-loss - this is gambling, not trading.",
           "Place stops beyond support/resistance to avoid getting stopped by normal volatility."
         ]
+      },
+      {
+        title: "Types of Stop-Loss Orders",
+        content: [
+          "Fixed Stop: Set at specific price level when entering trade.",
+          "Trailing Stop: Moves with price to lock in profits as trade moves in your favor.",
+          "Time-based Stop: Exit after predetermined time if target not hit.",
+          "Each type serves different purposes based on your strategy and timeframe."
+        ]
+      },
+      {
+        title: "Common Stop-Loss Mistakes",
+        content: [
+          "Setting stops too tight - get stopped by normal market noise.",
+          "Moving stop further away when losing - turns small loss into large loss.",
+          "Removing stops entirely hoping trade will recover - recipe for disaster.",
+          "Placing stops at obvious levels where many others have stops (stop hunting)."
+        ]
       }
     ],
     keyPoints: [
@@ -104,6 +122,26 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Minimum acceptable R:R is 1:2 (risk $100 to make $200).",
           "With 1:2 R:R, you only need 33% win rate to be profitable.",
           "Professional traders often target 1:3 or better."
+        ]
+      },
+      {
+        title: "Calculating Your R:R",
+        content: [
+          "Measure distance from entry to stop-loss (your risk).",
+          "Measure distance from entry to target (your reward).",
+          "Divide reward by risk to get your R:R ratio.",
+          "Only take trades with minimum 1:2 R:R or better.",
+          "Factor in spread and commissions when calculating."
+        ]
+      },
+      {
+        title: "R:R and Win Rate Relationship",
+        content: [
+          "Higher R:R allows profitability with lower win rate.",
+          "1:1 R:R requires 50%+ win rate to be profitable.",
+          "1:2 R:R requires only 33%+ win rate.",
+          "1:3 R:R requires only 25%+ win rate.",
+          "Good R:R is more important than high win rate."
         ]
       }
     ],
@@ -134,6 +172,26 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Larger stop-loss = smaller position size (and vice versa).",
           "Never use fixed lot size - always calculate based on stop distance."
         ]
+      },
+      {
+        title: "Position Sizing Examples",
+        content: [
+          "$10,000 account, risking 1% = $100 per trade.",
+          "Stop-loss is 50 pips away on EUR/USD (pip value $10).",
+          "Position size: $100 ÷ 50 pips ÷ $10 = 0.2 lots (20,000 units).",
+          "If stop was 100 pips, position would be 0.1 lots.",
+          "Tighter stops allow larger positions for same dollar risk."
+        ]
+      },
+      {
+        title: "Common Position Sizing Mistakes",
+        content: [
+          "Using same lot size regardless of stop distance.",
+          "Over-leveraging on 'high confidence' trades.",
+          "Not accounting for spread and commissions in calculations.",
+          "Rounding up position size instead of down (increasing risk).",
+          "Forgetting to adjust as account grows or shrinks."
+        ]
       }
     ],
     keyPoints: [
@@ -163,6 +221,26 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Trading highly correlated pairs = multiplying risk, not diversifying.",
           "Mix major, minor, and uncorrelated pairs for true diversification."
         ]
+      },
+      {
+        title: "Understanding Currency Correlations",
+        content: [
+          "Positive correlation: Pairs move in same direction (EUR/USD + GBP/USD).",
+          "Negative correlation: Pairs move in opposite directions (EUR/USD + USD/CHF).",
+          "Correlation ranges from -1 (perfect inverse) to +1 (perfect positive).",
+          "Correlations above 0.7 or below -0.7 are considered strong.",
+          "Use correlation matrices to identify relationships between pairs."
+        ]
+      },
+      {
+        title: "Diversification Strategies",
+        content: [
+          "Limit simultaneous trades in highly correlated pairs.",
+          "Combine currency majors with commodities or indices for true diversification.",
+          "Consider different timeframes to reduce correlation impact.",
+          "Maximum 2-3 correlated positions at once, even if different pairs.",
+          "Diversification reduces overall portfolio risk and volatility."
+        ]
       }
     ],
     keyPoints: [
@@ -191,6 +269,26 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "If you lose 50%, you need 100% gain to recover.",
           "Set maximum drawdown limit (e.g., 20%) and stop trading if hit.",
           "Preservation of capital is more important than catching every trade."
+        ]
+      },
+      {
+        title: "The Mathematics of Recovery",
+        content: [
+          "10% loss requires 11% gain to recover.",
+          "20% loss requires 25% gain to recover.",
+          "30% loss requires 43% gain to recover.",
+          "50% loss requires 100% gain to recover.",
+          "Larger losses require exponentially larger gains - prevention is key."
+        ]
+      },
+      {
+        title: "Managing Drawdowns",
+        content: [
+          "Track drawdown daily - know where you stand.",
+          "Reduce position size during drawdowns to protect capital.",
+          "Take a break at 15-20% drawdown to reassess strategy.",
+          "Never increase risk trying to recover from drawdown faster.",
+          "Focus on consistent execution, not rapid recovery."
         ]
       }
     ],
@@ -222,6 +320,26 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Successful trading requires emotional discipline and mental toughness.",
           "Your mindset determines long-term success more than your strategy."
         ]
+      },
+      {
+        title: "Why Psychology Matters More Than Strategy",
+        content: [
+          "Perfect strategy fails if you can't execute it consistently.",
+          "Emotional decisions override logical analysis during stress.",
+          "Discipline to follow rules separates winners from losers.",
+          "Most traders fail due to psychological issues, not bad strategies.",
+          "Building mental resilience takes time and deliberate practice."
+        ]
+      },
+      {
+        title: "Common Psychological Traps",
+        content: [
+          "Hope: Holding losing trades hoping they'll turn around.",
+          "Regret: Missing a trade and chasing it at worse price.",
+          "Confirmation bias: Seeing only information that supports your view.",
+          "Recency bias: Overweighting recent results in decision-making.",
+          "Awareness of these traps is first step to avoiding them."
+        ]
       }
     ],
     keyPoints: [
@@ -250,6 +368,26 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Greed causes you to overtrade, risk too much, and hold losers hoping they reverse.",
           "Both emotions destroy accounts faster than bad strategy.",
           "Recognize when fear or greed is influencing your decisions."
+        ]
+      },
+      {
+        title: "How Fear Manifests in Trading",
+        content: [
+          "Fear of losing: Avoiding valid trades after recent losses.",
+          "Fear of missing out (FOMO): Chasing trades at poor prices.",
+          "Fear of being wrong: Holding losers to avoid admitting mistake.",
+          "Fear of profits disappearing: Exiting winners too early.",
+          "All fear-based decisions violate your trading plan."
+        ]
+      },
+      {
+        title: "How Greed Manifests in Trading",
+        content: [
+          "Overtrading: Taking too many trades to maximize profits.",
+          "Oversizing: Risking too much on 'sure thing' trades.",
+          "Moving targets: Extending profit targets hoping for bigger wins.",
+          "Ignoring warnings: Holding past exit signals wanting more.",
+          "Greed causes you to violate risk management rules."
         ]
       }
     ],
@@ -280,6 +418,27 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Results in even bigger losses and emotional devastation.",
           "Solution: Take a break after losses. Review what went wrong."
         ]
+      },
+      {
+        title: "The Revenge Trading Cycle",
+        content: [
+          "Step 1: Experience a painful loss or losing streak.",
+          "Step 2: Feel angry, frustrated, or desperate to recover.",
+          "Step 3: Abandon trading plan to 'win back' the losses.",
+          "Step 4: Take impulsive, oversized, or low-quality trades.",
+          "Step 5: Suffer even larger losses, intensifying the cycle.",
+          "Breaking the cycle requires immediate recognition and action."
+        ]
+      },
+      {
+        title: "Preventing Revenge Trading",
+        content: [
+          "Set hard daily/weekly loss limits and respect them.",
+          "Take mandatory 24-hour break after hitting loss limit.",
+          "Journal emotional state after each loss.",
+          "Remind yourself: losses are business expenses, not personal failures.",
+          "Focus on following process, not recovering specific dollar amounts."
+        ]
       }
     ],
     keyPoints: [
@@ -309,6 +468,27 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Quality over quantity - one good trade beats five mediocre ones.",
           "Stick to your plan regardless of recent results."
         ]
+      },
+      {
+        title: "Signs of Overconfidence",
+        content: [
+          "Increasing position sizes after winning streak.",
+          "Skipping proper analysis because 'you know what will happen'.",
+          "Taking trades that don't meet your criteria.",
+          "Dismissing warning signs or contrary evidence.",
+          "Believing you've 'figured out' the market.",
+          "Overconfidence leads to complacency and eventual large losses."
+        ]
+      },
+      {
+        title: "Combating Overtrading",
+        content: [
+          "Set maximum number of trades per day/week.",
+          "Require all trades to meet strict setup criteria.",
+          "Trade smaller after wins (stay humble).",
+          "Review quality of trades, not just quantity.",
+          "Remember: The market doesn't care about your recent results."
+        ]
       }
     ],
     keyPoints: [
@@ -337,6 +517,26 @@ export const module3To6Lessons: Record<string, LessonContent> = {
           "Follow your trading plan 100% - no exceptions.",
           "Accept that losses are part of the business.",
           "Focus on process, not profits. Good process = good results."
+        ]
+      },
+      {
+        title: "Building Discipline Through Routine",
+        content: [
+          "Pre-market routine: Review plan, check calendar, scan setups.",
+          "During trading: Execute plan mechanically, no improvising.",
+          "Post-market routine: Journal trades, review performance, identify lessons.",
+          "Consistent routine builds discipline through repetition.",
+          "Discipline is a skill developed through daily practice."
+        ]
+      },
+      {
+        title: "The Power of Process Focus",
+        content: [
+          "Focus on executing perfectly, not on making money.",
+          "Grade yourself on plan adherence, not P/L.",
+          "Perfect execution + good strategy = profits over time.",
+          "Short-term results are random; long-term results follow process.",
+          "Process control is your only control - outcomes are probabilistic."
         ]
       }
     ],
