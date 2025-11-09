@@ -20,6 +20,7 @@ import { LocationManager } from "@/components/admin/LocationManager";
 import { TeamManager } from "@/components/admin/TeamManager";
 
 const layoutVariants = [
+  { value: "original", label: "Original", description: "Default platform design - clean & professional" },
   { value: "bloomberg-dark", label: "Bloomberg Dark", description: "Professional charcoal with blue accents" },
   { value: "modern-light", label: "Modern Light", description: "Clean white with subtle grays" },
   { value: "minimalist-corporate", label: "Minimalist Corporate", description: "Ultra-minimal with navy tones" },

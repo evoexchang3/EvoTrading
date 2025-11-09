@@ -124,6 +124,55 @@ export interface VariantConfig {
 }
 
 export const variantConfigs: Record<string, VariantConfig> = {
+  // ORIGINAL: Default Platform Design
+  'original': {
+    id: 'original',
+    name: 'Original',
+    category: 'professional',
+    description: 'The original platform design with clean, professional aesthetics and full functionality',
+    structure: {
+      navigationLayout: 'compact-top',
+      footerLayout: 'quad-grid',
+      contentTone: 'professional',
+    },
+    layout: {
+      density: 'comfortable',
+      maxWidth: '1400px',
+      sidebarStyle: 'standard',
+      gridColumns: 3,
+    },
+    typography: {
+      size: 'standard',
+      headingScale: 1.4,
+      bodySpacing: 'normal',
+      fontWeight: 'medium',
+    },
+    visual: {
+      cardStyle: 'elevated',
+      borderRadius: 'md',
+      shadows: 'medium',
+      borders: 'subtle',
+    },
+    animations: {
+      style: 'smooth',
+      duration: 200,
+      pageTransition: 'fadeSlide',
+      heroEntry: 'slideUp',
+      cardHover: 'lift',
+      buttonHover: 'grow',
+    },
+    content: {
+      heroLayout: 'centered',
+      featureLayout: 'grid',
+      ctaStyle: 'prominent',
+      imageStyle: 'contained',
+    },
+    assets: {
+      heroImage: '/assets/layouts/original/hero.jpg',
+      iconSet: 'outlined',
+    },
+  },
+
   // GROUP A: Professional/Institutional
   'bloomberg-dark': {
     id: 'bloomberg-dark',
