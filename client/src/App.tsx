@@ -86,6 +86,7 @@ function AppRoutes() {
       <Route path="/about" component={AboutPage} />
       <Route path="/faq" component={FAQPage} />
       <Route path="/education" component={EducationPage} />
+      <Route path="/learn" component={EducationPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/partners" component={PartnersPage} />
       <Route path="/markets" component={MarketsPage} />
@@ -97,18 +98,24 @@ function AppRoutes() {
       <Route path="/legal/aml" component={AMLPage} />
       <Route path="/legal/risk" component={RiskPage} />
       <Route path="/legal/cookies" component={CookiesPage} />
+      <Route path="/legal" component={TermsPage} />
 
       {/* Customer Info Pages */}
       <Route path="/customer/account-types" component={AccountTypesPage} />
+      <Route path="/customer/accounts" component={AccountTypesPage} />
       <Route path="/customer/payment-methods" component={PaymentMethodsPage} />
+      <Route path="/customer/funding" component={PaymentMethodsPage} />
       <Route path="/customer/verification" component={VerificationPage} />
       <Route path="/customer/advice" component={TradingAdvicePage} />
 
       {/* Market Info Pages */}
       <Route path="/info/technical-analysis" component={TechnicalAnalysisPage} />
+      <Route path="/learn/resources" component={TechnicalAnalysisPage} />
       <Route path="/info/fundamental-analysis" component={FundamentalAnalysisPage} />
       <Route path="/info/trading-signals" component={TradingSignalsPage} />
+      <Route path="/tools/signals" component={TradingSignalsPage} />
       <Route path="/info/market-heatmap" component={MarketHeatmapPage} />
+      <Route path="/markets/heatmap" component={MarketHeatmapPage} />
 
       {/* Company Pages */}
       <Route path="/company/rates" component={RatesPage} />
