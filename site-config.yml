@@ -48,7 +48,7 @@ branding:
   locations: []
   team: []
 layout:
-  activeVariant: bloomberg-dark
+  activeVariant: original
   stickyHeader: true
   showFooter: true
   compactMode: false
