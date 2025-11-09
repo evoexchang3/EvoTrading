@@ -33,8 +33,13 @@ The platform includes comprehensive trading courses with English content (multi-
 - **Minimalistic Variants** (3): Streamlined UX - `arctic-minimal`, `minimalist-corporate`, `nordic-clean`
 - **Dashboard Uniqueness**: Each variant has completely different widget arrangements, densities, and visual compositions
 - **Navigation Types**: 15 unique navigation patterns (compact-top, wide-split, ticker-bar, etc.)
-- **Footer Types**: 15 unique footer layouts (quad-grid, tiered-two-row, legal-micro, etc.)
+- **Footer Types**: 15 unique footer layouts including:
+  - `FiveColumnOriginalFooter`: 5-column design (Information, Customer, Company, Trust & Security, Support) for "original" variant
+  - Other patterns: quad-grid, tiered-two-row, legal-micro, etc.
 - **Dynamic Rendering**: `DashboardRenderer` component maps configurations to UI widgets
+- **Preview System**: URL parameter `?preview=variant-name` overrides active variant for testing and screenshot capture without modifying configuration files
+- **Screenshot Automation**: Playwright script (`scripts/capture-layout-thumbnails.ts`) captures high-quality thumbnails (1920x1440, 4:3 ratio) of all 16 variants using preview parameter system
+- **Translation Coverage**: All footer sections support 35 languages with stable `data-testid` attributes for reliable cross-language testing
 
 ### Backend
 
