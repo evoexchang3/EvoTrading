@@ -162,7 +162,7 @@ tradingSettings:
     maxDrawdownAlert: 20
 accountSettings:
   registration:
-    requireEmailVerification: true
+    requireEmailVerification: false
     requirePhoneVerification: false
     allowSocialLogin: false
     minimumAge: 18
@@ -196,7 +196,7 @@ accountSettings:
   security:
     twoFactorAuth:
       required: false
-      enforcedForWithdrawals: true
+      enforcedForWithdrawals: false
       methods:
         - totp
         - sms
@@ -228,7 +228,7 @@ funding:
       crypto: 50000
       ewallet: 5000
     processing:
-      autoApprove: true
+      autoApprove: false
       autoApproveLimit: 5000
       reviewQueueEnabled: true
   withdrawals:
@@ -251,7 +251,7 @@ funding:
       manualReviewThreshold: 5000
 promotions:
   welcomeBonus:
-    enabled: true
+    enabled: false
     type: deposit_match
     percentage: 100
     maxBonus: 500
@@ -259,7 +259,7 @@ promotions:
     tradingRequirement: 30
     expiryDays: 90
   referralProgram:
-    enabled: true
+    enabled: false
     referrerReward: 50
     refereeReward: 25
     minRefereeDeposit: 100
@@ -447,10 +447,10 @@ regional:
       name: SIPC
       coverage: 500000
 demoAccounts:
-  enabled: true
+  enabled: false
   settings:
     initialBalance: 10000
-    allowReset: true
+    allowReset: false
     resetCooldownDays: 7
     maxResetsPerMonth: 4
     expiryDays: 90

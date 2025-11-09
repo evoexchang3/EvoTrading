@@ -48,7 +48,7 @@ branding:
   locations: []
   team: []
 layout:
-  activeVariant: emerald-trader
+  activeVariant: bloomberg-dark
   stickyHeader: true
   showFooter: true
   compactMode: false
