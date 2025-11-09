@@ -45,7 +45,7 @@ async function captureVariantScreenshot(variantId: string): Promise<void> {
   
   try {
     const context = await browser.newContext({
-      viewport: { width: 1920, height: 1080 },
+      viewport: { width: 1920, height: 1600 }, // Increased to accommodate clip height
       deviceScaleFactor: 2, // Retina quality
     });
     
@@ -63,7 +63,7 @@ async function captureVariantScreenshot(variantId: string): Promise<void> {
     // Additional wait for images and styles
     await page.waitForTimeout(2000);
     
-    // Capture the hero + navigation section (top 800px)
+    // Capture the hero + navigation section (4:3 aspect ratio thumbnail)
     const screenshot = await page.screenshot({
       type: 'webp',
       quality: 85,
@@ -71,7 +71,7 @@ async function captureVariantScreenshot(variantId: string): Promise<void> {
         x: 0,
         y: 0,
         width: 1920,
-        height: 1440, // 4:3 aspect ratio
+        height: 1440, // 4:3 aspect ratio for preview card thumbnails
       },
     });
     

@@ -253,7 +253,10 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (loading) return;
 
-    const activeVariant = config.layout.activeVariant;
+    // Check for preview parameter in URL (for screenshot capture and testing)
+    const urlParams = new URLSearchParams(window.location.search);
+    const previewVariant = urlParams.get('preview');
+    const activeVariant = previewVariant || config.layout.activeVariant;
     
     // Remove any existing layout variant CSS
     const existingLinks = document.querySelectorAll('link[data-layout-variant]');
