@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { X } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export function CookieConsent() {
+  const { t } = useLanguage();
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
@@ -31,13 +33,12 @@ export function CookieConsent() {
       <Card className="container mx-auto max-w-5xl p-6 shadow-lg">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex-1">
-            <h3 className="font-semibold mb-2">Cookie Preferences</h3>
+            <h3 className="font-semibold mb-2">{t('cookie.title')}</h3>
             <p className="text-sm text-muted-foreground">
-              We use cookies to enhance your experience, analyze site traffic, and provide personalized content. 
-              By clicking "Accept", you consent to our use of cookies.{" "}
+              {t('cookie.description')}{" "}
               <Link href="/legal/cookies">
                 <span className="text-primary hover:underline cursor-pointer">
-                  Learn more
+                  {t('cookie.learnMore')}
                 </span>
               </Link>
             </p>
@@ -49,14 +50,14 @@ export function CookieConsent() {
               onClick={declineCookies}
               data-testid="button-decline-cookies"
             >
-              Decline
+              {t('cookie.decline')}
             </Button>
             <Button
               size="sm"
               onClick={acceptCookies}
               data-testid="button-accept-cookies"
             >
-              Accept All
+              {t('cookie.acceptAll')}
             </Button>
           </div>
         </div>

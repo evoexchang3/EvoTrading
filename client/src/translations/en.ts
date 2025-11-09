@@ -717,6 +717,18 @@ export const en = {
   'tools.tradingSessions.faq.q7.question': 'How do daylight saving time changes affect trading sessions?',
   'tools.tradingSessions.faq.q7.answer': 'Forex uses UTC (never changes), but local times shift: March (Spring forward): London shifts from GMT (UTC+0) to BST (UTC+1). London \'open\' moves from 08:00 UTC to 07:00 UTC local. NY shifts from EST (UTC-5) to EDT (UTC-4). NY \'open\' stays 12:00 UTC (but is 8am local instead of 9am). November (Fall back): Reverse of above. Problem: Overlap timing CHANGES. When US on DST but UK not (or vice versa for 2 weeks), overlap may be 3 hours instead of 4. Solution: Ignore local times entirely. Use UTC exclusively. Set your trading platform to UTC. Mark on calendar: London/NY overlap is ALWAYS 12:00-16:00 UTC regardless of DST. Let other traders get confused by local times - you\'ll know the exact moment overlap starts.',
   
+  // Tools - Education Navigation
+  'tools.education.beginnerCourse': 'Beginner Course',
+  'tools.education.advancedCourse': 'Advanced Course',
+  'tools.education.glossary': 'Trading Glossary',
+  
+  // Cookie Consent
+  'cookie.title': 'Cookie Preferences',
+  'cookie.description': 'We use cookies to enhance your experience, analyze site traffic, and provide personalized content. By clicking "Accept", you consent to our use of cookies.',
+  'cookie.learnMore': 'Learn more',
+  'cookie.decline': 'Decline',
+  'cookie.acceptAll': 'Accept All',
+  
   // Settings
   'settings.title': 'Settings',
   'settings.description': 'Manage your account preferences and trading settings',
