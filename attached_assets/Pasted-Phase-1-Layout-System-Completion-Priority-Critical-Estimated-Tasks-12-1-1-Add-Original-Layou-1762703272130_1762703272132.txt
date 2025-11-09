@@ -1,0 +1,227 @@
+Phase 1: Layout System Completion
+Priority: 🔴 Critical Estimated Tasks: 12
+1.1 Add "Original" Layout Option
+* Add "original" to layoutVariants array in AdminConfigPage.tsx
+* Create variantConfig entry for "original" layout (representing current default design)
+* Set as first option in variant selector
+* Ensure it preserves all existing functionality
+1.2 Generate Screenshot-Style Thumbnails
+* Create thumb.webp/thumb.png for all 15 existing layouts
+* Create thumb.webp for new "original" layout (16 total)
+* Screenshots should show: homepage hero, navigation, footer, dashboard preview
+* Optimize images for fast loading (target <100KB per thumbnail)
+* Update VariantPreviewCard to correctly load thumbnails
+1.3 Select 3 Minimalistic Layouts
+Chosen layouts for minimal feature set:
+* arctic-minimal - Already designed for minimalism (Scandinavian-inspired)
+* minimalist-corporate - Ultra-minimal navy tones
+* nordic-clean - Scandinavian minimalism
+These 3 will have:
+* Simplified navigation (minimal-text or compact-top only)
+* Minimalist footer (minimalist-line or legal-micro only)
+* Fewer dashboard widgets
+* Streamlined page set (no markets page, simplified education)
+* Essential features only (dashboard, trading, deposits, withdrawals, profile)
+Remaining 12 layouts + original = Full-featured with complete navigation, all pages, full footer
+
+Phase 2: Dynamic Dashboard System
+Priority: 🔴 Critical Estimated Tasks: 25
+2.1 Create Layout Variant Context/Provider
+* Build VariantProvider to track active layout
+* Create useVariant() hook for components to access layout config
+* Implement layout-specific class injection system
+* Add variant switching mechanism
+2.2 Implement All 15 Navigation Types
+Build navigation components for each type from variantConfig:
+* compact-top (Logo left, minimal nav right)
+* wide-split (Logo centered, nav split left/right)
+* centered-double (Logo top, nav below)
+* ticker-bar (Live market data strip)
+* vertical-sidebar (Bloomberg-style)
+* hamburger-mobile (Slide-out panel)
+* mega-menu (Hover categories, full-width panels)
+* icon-rail (Icon-only left rail with tooltips)
+* glassmorphic (Transparent floating header)
+* minimal-text (Clean text links only)
+* breadcrumb-hybrid (Top nav + breadcrumb)
+* ribbon-secondary (Two-tier nav ribbons)
+* bottom-mobile (Mobile-app style bottom nav)
+* pillar-layout (Vertical pillars)
+* hero-overlay (Transparent nav over hero)
+2.3 Implement All 15 Footer Types
+Build footer components for each type from variantConfig:
+* quad-grid (4 columns, legal/compliance)
+* tiered-two-row (Links top, legal bottom)
+* social-first (Large social icons)
+* newsletter-hero (Email signup prominent)
+* legal-micro (Single row essentials)
+* multi-cta-card (3 columns + CTA card)
+* accordion-stack (Mobile-first accordion)
+* sticky-support (Fixed bottom support bar)
+* minimalist-line (Copyright + few links)
+* metrics-strip (Company stats/metrics)
+* partner-carousel (Partner logos)
+* card-resources (Resource cards grid)
+* contact-panel (Large contact info)
+* global-offices (Office locations with map)
+* faq-teaser (Common questions)
+2.4 Create Layout-Specific Dashboard Variants
+Each layout gets unique dashboard structure (EXCEPT trading page = colors only):
+Bloomberg-dark:
+* Multi-column dense grid (3 cols)
+* Real-time ticker strip at top
+* Compact widgets with borders
+* Data-heavy presentation
+Modern-light:
+* Spacious 2-column layout
+* Large hero cards
+* Generous whitespace
+* Friendly tone
+Crypto-neon:
+* Animated backgrounds
+* Glowing accent borders
+* Real-time price charts
+* Dark with neon highlights
+Financial-times:
+* Newspaper-style columns
+* Serif typography
+* News-first layout
+* Sepia tones
+Arctic-minimal (Minimalistic):
+* Single column, centered
+* Minimal widgets (balance, equity only)
+* Zen aesthetics
+* Generous spacing
+Minimalist-corporate (Minimalistic):
+* Essential metrics only
+* Ultra-clean presentation
+* Navy color palette
+* Business-focused
+Nordic-clean (Minimalistic):
+* Card-based minimal layout
+* Pastel color scheme
+* Focus on clarity
+* Scandinavian design
+...and so on for all 16 layouts
+* Create DashboardPage variants folder
+* Implement variant-specific dashboard components
+* Apply layout config (density, grid, spacing, typography)
+* Ensure trading page only differs by color scheme
+
+Phase 3: Comprehensive Educational Content
+Priority: 🔴 Critical Estimated Tasks: 30
+3.1 Beginner Course - Complete Content Creation
+Module 1: Introduction to Trading
+* Lesson 1: What is Trading? (15min) - Full text content
+* Lesson 2: Market Basics (20min) - Full text content
+* Lesson 3: Trading Terminology (25min) - Full text content + glossary integration
+* Quiz 1: 10 multiple-choice questions with explanations
+Module 2: Technical Analysis Fundamentals
+* Lesson 1: Chart Types (20min) - Full text + interactive chart examples
+* Lesson 2: Trend Identification (25min) - Full text content
+* Lesson 3: Support & Resistance (30min) - Full text + visual examples
+* Quiz 2: 10 questions with chart reading scenarios
+Module 3: Risk Management
+* Lesson 1: Position Sizing (20min) - Full text + calculator integration
+* Lesson 2: Stop Losses (25min) - Full text + examples
+* Lesson 3: Risk-Reward Ratios (20min) - Full text + calculations
+* Quiz 3: 10 scenario-based questions
+Module 4: Trading Psychology
+* Lesson 1: Emotional Control (15min) - Full text content
+* Lesson 2: Discipline & Patience (20min) - Full text content
+* Lesson 3: Common Mistakes (25min) - Full text content
+* Quiz 4: 10 psychological scenario questions
+Module 5: Building Your Trading Plan
+* Lesson 1: Setting Goals (15min) - Full text content
+* Lesson 2: Strategy Development (30min) - Full text + templates
+* Lesson 3: Journaling (20min) - Full text content
+* Final Quiz: 15 comprehensive questions
+Downloadable Resources:
+* Create Trading Plan Template (PDF)
+* Create Risk Calculator Spreadsheet (Excel)
+* Create Trading Journal Template (PDF)
+* Implement download functionality
+3.2 Advanced Course - Complete Content Creation
+Module 1: Advanced Technical Indicators
+* Lesson 1: MACD & RSI Deep Dive (30min) - Full text + examples
+* Lesson 2: Fibonacci Tools (25min) - Full text + chart examples
+* Lesson 3: Volume Analysis (20min) - Full text content
+* Quiz 1: 12 advanced indicator questions
+Module 2: Advanced Chart Patterns
+* Lesson 1: Complex Patterns (30min) - Full text + visuals
+* Lesson 2: Pattern Confirmation (25min) - Full text content
+* Lesson 3: Multi-Timeframe Analysis (30min) - Full text content
+* Quiz 2: 12 pattern recognition questions
+Module 3: Fundamental Analysis
+* Lesson 1: Economic Indicators (35min) - Full text + calendar integration
+* Lesson 2: News Trading (25min) - Full text content
+* Lesson 3: Correlation Analysis (30min) - Full text content
+* Quiz 3: 12 fundamental analysis questions
+Module 4: Advanced Risk Management
+* Lesson 1: Portfolio Allocation (30min) - Full text + examples
+* Lesson 2: Hedging Strategies (35min) - Full text content
+* Lesson 3: Advanced Position Sizing (25min) - Full text + math
+* Quiz 4: 12 risk management scenarios
+Module 5: Algorithmic Trading Basics
+* Lesson 1: Automation Concepts (25min) - Full text content
+* Lesson 2: Backtesting (30min) - Full text content
+* Lesson 3: Strategy Optimization (30min) - Full text content
+* Quiz 5: 12 algorithmic trading questions
+Module 6: Professional Trading
+* Lesson 1: Market Microstructure (30min) - Full text content
+* Lesson 2: Advanced Order Types (25min) - Full text content
+* Lesson 3: Institutional Strategies (35min) - Full text content
+* Final Quiz: 20 comprehensive advanced questions
+Downloadable Resources:
+* Create Advanced Strategy Templates (PDF)
+* Create Backtesting Checklist (PDF)
+* Create Risk Management Matrix (Excel)
+* Implement download functionality
+3.3 Progress Tracking Fixes
+* Calculate actual time invested from lesson durations
+* Fix module completion counting (remove hardcoded values)
+* Implement real-time progress percentage
+* Add course completion certificates
+* Create progress visualization charts
+
+Phase 4: Navigation & Page Accessibility
+Priority: 🟡 Medium Estimated Tasks: 8
+* Audit all pages for reachability from each navigation type
+* Create navigation maps for minimal vs full-featured layouts
+* Implement responsive navigation for mobile layouts
+* Add breadcrumb trails for breadcrumb-hybrid layouts
+* Test all 16 layouts for page accessibility
+* Add mega-menu category organization
+* Implement sticky navigation where appropriate
+* Create hamburger menu with proper slide-out animation
+
+Phase 5: Testing & Polish
+Priority: 🟡 Medium Estimated Tasks: 10
+* Test layout switching between all 16 variants
+* Verify thumbnail loading for all layouts
+* Test course completion flow end-to-end
+* Verify dashboard uniqueness across layouts
+* Test minimalistic vs full-featured layout differences
+* Verify navigation works in all layout types
+* Test footer rendering in all layout types
+* Verify trading page color-only differences
+* Test responsive design across all layouts
+* Final QA pass on all features
+
+Summary Breakdown
+Phase	Tasks	Priority	Complexity
+Phase 1: Layout System	12	🔴 Critical	Medium
+Phase 2: Dynamic Dashboards	25	🔴 Critical	High
+Phase 3: Course Content	30	🔴 Critical	High
+Phase 4: Navigation	8	🟡 Medium	Medium
+Phase 5: Testing	10	🟡 Medium	Low
+TOTAL	85 tasks	-	-
+Key Decisions Made
+✅ Minimalistic Layouts: arctic-minimal, minimalist-corporate, nordic-clean ✅ Screenshot Thumbnails: Generated for all 16 layouts (15 + original) ✅ Dashboard Uniqueness: All distinct EXCEPT trading page (colors only) ✅ Original Layout: First option, preserves current functionality ✅ Course Content: Written from scratch, comprehensive, professional
+
+Technical Approach
+1. Variant System: Use React Context + hooks for layout detection
+2. Component Strategy: Dynamic component loading based on active variant
+3. Course Content: Stored in structured JSON/TypeScript modules
+4. Thumbnails: Generated as optimized WebP with PNG fallback
+5. Testing: Comprehensive E2E testing for each layout variant
