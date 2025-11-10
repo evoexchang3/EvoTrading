@@ -69,6 +69,149 @@ export type HeroType =
   | 'ticker-overlay'        // Market ticker strip over hero image
   | 'carousel-features';    // Auto-rotating feature highlights
 
+// About Page Configuration Types
+export type AboutLayoutFocus = 
+  | 'mission-first'         // Mission statement leads, values below
+  | 'values-first'          // Core values highlighted at top
+  | 'team-first'            // Team members prominently featured
+  | 'timeline-led';         // Company history timeline leads
+
+export type TeamPresentation = 
+  | 'grid'                  // Standard grid layout
+  | 'carousel'              // Rotating carousel
+  | 'spotlight-list';       // Featured list with expanded view
+
+export type ValuesStyle = 
+  | 'cards'                 // Card-based values display
+  | 'icons'                 // Icon-led minimal style
+  | 'minimal';              // Text-only clean presentation
+
+// Markets Page Configuration Types
+export type MarketsLayout = 
+  | 'table'                 // Traditional table view
+  | 'cards'                 // Card-based market display
+  | 'accordion'             // Collapsible accordion sections
+  | 'tabs';                 // Tabbed interface
+
+export type MarketGrouping = 
+  | 'by-type'               // Grouped by asset type (Forex, Crypto, etc.)
+  | 'by-region'             // Grouped by geographical region
+  | 'popularity-weighted';  // Popular markets first
+
+// Contact Page Configuration Types
+export type ContactLayout = 
+  | 'form-first'            // Contact form prominently featured
+  | 'info-first'            // Contact info and offices lead
+  | 'split';                // 50/50 split between form and info
+
+export type FormStructure = 
+  | 'single-column'         // Traditional single column
+  | 'two-column'            // Wide two-column layout
+  | 'stepper';              // Multi-step wizard
+
+// FAQ Page Configuration Types
+export type FAQLayout = 
+  | 'accordion'             // Classic accordion
+  | 'tabs'                  // Categorized tabs
+  | 'cards';                // Card-based Q&A
+
+export type FAQOrganization = 
+  | 'categorised'           // Grouped by category
+  | 'flat'                  // All in one list
+  | 'searchable';           // Search-first interface
+
+export type FAQHighlight = 
+  | 'featured-top'          // Popular questions at top
+  | 'inline'                // Mixed with others, highlighted
+  | 'none';                 // No highlighting
+
+// Partners Page Configuration Types
+export type PartnersLayout = 
+  | 'logo-grid'             // Simple logo grid
+  | 'spotlight-carousel'    // Featured partner carousel
+  | 'case-study'            // Detailed case studies
+  | 'metrics-strip';        // Partner stats and logos
+
+// Page-Specific Configuration Interfaces
+export interface HomeContentConfig {
+  // Hero Configuration
+  heroType: HeroType;
+  heroLayout: 'full-width' | 'centered' | 'split' | 'minimal';
+  
+  // Section Layouts
+  featureLayout: 'grid' | 'list' | 'carousel' | 'masonry';
+  benefitsLayout: 'list' | 'grid' | 'cards';
+  statsLayout: 'grid' | 'row' | 'carousel';
+  ctaStyle: 'prominent' | 'subtle' | 'inline';
+  imageStyle: 'full-bleed' | 'contained' | 'rounded' | 'overlapping';
+  
+  // Optional Sections
+  showFeatures: boolean;
+  showBenefits: boolean;
+  showStats: boolean;
+  showCta: boolean;
+  
+  // Item Count Overrides
+  featureCount: 3 | 4 | 6;
+  benefitsCount: 3 | 4 | 6;
+  statsCount: 3 | 4;
+  
+  // Unique Modules
+  includeTestimonials: boolean;
+  includePartnerLogos: boolean;
+  includeLiveTicker: boolean;
+  includeComplianceBadges: boolean;
+  
+  // Section Ordering
+  sectionOrder: ('hero' | 'features' | 'benefits' | 'stats' | 'cta' | 'testimonials' | 'partners' | 'compliance')[];
+}
+
+export interface AboutContentConfig {
+  layout: AboutLayoutFocus;
+  teamPresentation: TeamPresentation;
+  valuesStyle: ValuesStyle;
+  showTimeline: boolean;
+  showMission: boolean;
+  showValues: boolean;
+  showTeam: boolean;
+  teamMemberCount: 4 | 6 | 8 | 12;
+}
+
+export interface MarketsContentConfig {
+  layout: MarketsLayout;
+  grouping: MarketGrouping;
+  showCharts: boolean;
+  showSpread: boolean;
+  showLeverage: boolean;
+  compactView: boolean;
+}
+
+export interface ContactContentConfig {
+  layout: ContactLayout;
+  formStructure: FormStructure;
+  showMap: boolean;
+  showOffices: boolean;
+  showSocial: boolean;
+  showHours: boolean;
+}
+
+export interface FAQContentConfig {
+  layout: FAQLayout;
+  organization: FAQOrganization;
+  highlight: FAQHighlight;
+  showSearch: boolean;
+  showCategories: boolean;
+  categoryCount: 4 | 6 | 8;
+}
+
+export interface PartnersContentConfig {
+  layout: PartnersLayout;
+  showLogos: boolean;
+  showTestimonials: boolean;
+  showCaseStudies: boolean;
+  partnerCount: 6 | 9 | 12;
+}
+
 export interface VariantConfig {
   // Identity
   id: string;
@@ -76,7 +219,7 @@ export interface VariantConfig {
   category: 'professional' | 'modern' | 'crypto' | 'warm' | 'specialized';
   description: string;
 
-  // Structural Components (NEW)
+  // Structural Components
   structure: {
     navigationLayout: NavigationLayout;
     footerLayout: FooterLayout;
@@ -117,39 +260,19 @@ export interface VariantConfig {
     buttonHover: string;
   };
 
-  // Content Presentation
-  content: {
-    // Hero Configuration
-    heroType: HeroType;
-    heroLayout: 'full-width' | 'centered' | 'split' | 'minimal';
-    
-    // Section Layouts
-    featureLayout: 'grid' | 'list' | 'carousel' | 'masonry';
-    benefitsLayout: 'list' | 'grid' | 'cards';
-    statsLayout: 'grid' | 'row' | 'carousel';
-    ctaStyle: 'prominent' | 'subtle' | 'inline';
-    imageStyle: 'full-bleed' | 'contained' | 'rounded' | 'overlapping';
-    
-    // Optional Sections (NEW)
-    showFeatures: boolean;
-    showBenefits: boolean;
-    showStats: boolean;
-    showCta: boolean;
-    
-    // Item Count Overrides (NEW)
-    featureCount: 3 | 4 | 6;
-    benefitsCount: 3 | 4 | 6;
-    statsCount: 3 | 4;
-    
-    // Unique Modules (NEW)
-    includeTestimonials: boolean;
-    includePartnerLogos: boolean;
-    includeLiveTicker: boolean;
-    includeComplianceBadges: boolean;
-    
-    // Section Ordering
-    sectionOrder: ('hero' | 'features' | 'benefits' | 'stats' | 'cta' | 'testimonials' | 'partners' | 'compliance')[];
+  // Page-Specific Configurations (HIERARCHICAL STRUCTURE)
+  pages: {
+    home: HomeContentConfig;
+    about: AboutContentConfig;
+    markets: MarketsContentConfig;
+    contact: ContactContentConfig;
+    faq: FAQContentConfig;
+    partners: PartnersContentConfig;
   };
+
+  // DEPRECATED: Legacy `content` field for backward compatibility
+  // TODO: Remove after all pages migrated to use `pages` structure
+  content: HomeContentConfig;
 
   // Assets
   assets: {
@@ -196,6 +319,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       heroEntry: 'slideUp',
       cardHover: 'lift',
       buttonHover: 'grow',
+    },
+    pages: {
+      home: {
+        heroType: 'standard-centered',
+        heroLayout: 'centered',
+        featureLayout: 'grid',
+        benefitsLayout: 'grid',
+        statsLayout: 'grid',
+        ctaStyle: 'prominent',
+        imageStyle: 'contained',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 4,
+        benefitsCount: 4,
+        statsCount: 4,
+        includeTestimonials: false,
+        includePartnerLogos: true,
+        includeLiveTicker: false,
+        includeComplianceBadges: false,
+        sectionOrder: ['hero', 'features', 'benefits', 'stats', 'partners', 'cta'],
+      },
+      about: {
+        layout: 'mission-first',
+        teamPresentation: 'grid',
+        valuesStyle: 'cards',
+        showTimeline: false,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 6,
+      },
+      markets: {
+        layout: 'table',
+        grouping: 'by-type',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'form-first',
+        formStructure: 'single-column',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'accordion',
+        organization: 'categorised',
+        highlight: 'featured-top',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 6,
+      },
+      partners: {
+        layout: 'logo-grid',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: true,
+        partnerCount: 12,
+      },
     },
     content: {
       heroType: 'standard-centered',
@@ -261,6 +448,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'none',
       buttonHover: 'subtle',
     },
+    pages: {
+      home: {
+        heroType: 'data-dashboard',
+        heroLayout: 'full-width',
+        featureLayout: 'grid',
+        benefitsLayout: 'list',
+        statsLayout: 'row',
+        ctaStyle: 'inline',
+        imageStyle: 'full-bleed',
+        showFeatures: true,
+        showBenefits: false,
+        showStats: true,
+        showCta: true,
+        featureCount: 6,
+        benefitsCount: 3,
+        statsCount: 4,
+        includeTestimonials: false,
+        includePartnerLogos: false,
+        includeLiveTicker: true,
+        includeComplianceBadges: true,
+        sectionOrder: ['hero', 'stats', 'features', 'compliance', 'cta'],
+      },
+      about: {
+        layout: 'values-first',
+        teamPresentation: 'grid',
+        valuesStyle: 'icons',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 8,
+      },
+      markets: {
+        layout: 'table',
+        grouping: 'by-region',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: true,
+        compactView: true,
+      },
+      contact: {
+        layout: 'form-first',
+        formStructure: 'two-column',
+        showMap: false,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'tabs',
+        organization: 'categorised',
+        highlight: 'inline',
+        showSearch: false,
+        showCategories: true,
+        categoryCount: 8,
+      },
+      partners: {
+        layout: 'spotlight-carousel',
+        showLogos: true,
+        showTestimonials: true,
+        showCaseStudies: false,
+        partnerCount: 9,
+      },
+    },
     content: {
       heroType: 'data-dashboard',
       heroLayout: 'full-width',
@@ -325,6 +576,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'lift',
       buttonHover: 'grow',
     },
+    pages: {
+      home: {
+        heroType: 'split-content',
+        heroLayout: 'split',
+        featureLayout: 'grid',
+        benefitsLayout: 'cards',
+        statsLayout: 'grid',
+        ctaStyle: 'prominent',
+        imageStyle: 'contained',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 6,
+        benefitsCount: 4,
+        statsCount: 4,
+        includeTestimonials: false,
+        includePartnerLogos: false,
+        includeLiveTicker: true,
+        includeComplianceBadges: false,
+        sectionOrder: ['hero', 'features', 'stats', 'benefits', 'cta'],
+      },
+      about: {
+        layout: 'mission-first',
+        teamPresentation: 'carousel',
+        valuesStyle: 'cards',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 4,
+      },
+      markets: {
+        layout: 'table',
+        grouping: 'by-type',
+        showCharts: false,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'info-first',
+        formStructure: 'two-column',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'accordion',
+        organization: 'flat',
+        highlight: 'none',
+        showSearch: false,
+        showCategories: false,
+        categoryCount: 4,
+      },
+      partners: {
+        layout: 'logo-grid',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: false,
+        partnerCount: 6,
+      },
+    },
     content: {
       heroType: 'split-content',
       heroLayout: 'split',
@@ -387,6 +702,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       heroEntry: 'fadeIn',
       cardHover: 'none',
       buttonHover: 'subtle',
+    },
+    pages: {
+      home: {
+        heroType: 'standard-centered',
+        heroLayout: 'centered',
+        featureLayout: 'list',
+        benefitsLayout: 'list',
+        statsLayout: 'row',
+        ctaStyle: 'subtle',
+        imageStyle: 'contained',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: false,
+        showCta: true,
+        featureCount: 4,
+        benefitsCount: 6,
+        statsCount: 3,
+        includeTestimonials: false,
+        includePartnerLogos: false,
+        includeLiveTicker: false,
+        includeComplianceBadges: true,
+        sectionOrder: ['hero', 'features', 'benefits', 'compliance', 'cta'],
+      },
+      about: {
+        layout: 'team-first',
+        teamPresentation: 'spotlight-list',
+        valuesStyle: 'minimal',
+        showTimeline: false,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 12,
+      },
+      markets: {
+        layout: 'table',
+        grouping: 'popularity-weighted',
+        showCharts: false,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'split',
+        formStructure: 'stepper',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'cards',
+        organization: 'searchable',
+        highlight: 'featured-top',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 6,
+      },
+      partners: {
+        layout: 'case-study',
+        showLogos: true,
+        showTestimonials: true,
+        showCaseStudies: true,
+        partnerCount: 9,
+      },
     },
     content: {
       heroType: 'standard-centered',
@@ -452,6 +831,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'lift',
       buttonHover: 'scale',
     },
+    pages: {
+      home: {
+        heroType: 'minimal-text',
+        heroLayout: 'minimal',
+        featureLayout: 'grid',
+        benefitsLayout: 'grid',
+        statsLayout: 'row',
+        ctaStyle: 'prominent',
+        imageStyle: 'rounded',
+        showFeatures: true,
+        showBenefits: false,
+        showStats: true,
+        showCta: true,
+        featureCount: 3,
+        benefitsCount: 3,
+        statsCount: 3,
+        includeTestimonials: false,
+        includePartnerLogos: false,
+        includeLiveTicker: false,
+        includeComplianceBadges: true,
+        sectionOrder: ['hero', 'features', 'stats', 'compliance', 'cta'],
+      },
+      about: {
+        layout: 'timeline-led',
+        teamPresentation: 'grid',
+        valuesStyle: 'minimal',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 6,
+      },
+      markets: {
+        layout: 'accordion',
+        grouping: 'popularity-weighted',
+        showCharts: false,
+        showSpread: true,
+        showLeverage: true,
+        compactView: true,
+      },
+      contact: {
+        layout: 'info-first',
+        formStructure: 'single-column',
+        showMap: false,
+        showOffices: true,
+        showSocial: true,
+        showHours: false,
+      },
+      faq: {
+        layout: 'cards',
+        organization: 'flat',
+        highlight: 'inline',
+        showSearch: true,
+        showCategories: false,
+        categoryCount: 4,
+      },
+      partners: {
+        layout: 'case-study',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: true,
+        partnerCount: 6,
+      },
+    },
     content: {
       heroType: 'minimal-text',
       heroLayout: 'minimal',
@@ -515,6 +958,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'lift',
       buttonHover: 'subtle',
     },
+    pages: {
+      home: {
+        heroType: 'minimal-text',
+        heroLayout: 'centered',
+        featureLayout: 'grid',
+        benefitsLayout: 'cards',
+        statsLayout: 'grid',
+        ctaStyle: 'subtle',
+        imageStyle: 'rounded',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 3,
+        benefitsCount: 4,
+        statsCount: 4,
+        includeTestimonials: true,
+        includePartnerLogos: false,
+        includeLiveTicker: false,
+        includeComplianceBadges: false,
+        sectionOrder: ['hero', 'features', 'benefits', 'testimonials', 'cta', 'stats'],
+      },
+      about: {
+        layout: 'values-first',
+        teamPresentation: 'carousel',
+        valuesStyle: 'cards',
+        showTimeline: false,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 8,
+      },
+      markets: {
+        layout: 'cards',
+        grouping: 'by-type',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: false,
+        compactView: false,
+      },
+      contact: {
+        layout: 'form-first',
+        formStructure: 'two-column',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'tabs',
+        organization: 'categorised',
+        highlight: 'none',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 6,
+      },
+      partners: {
+        layout: 'logo-grid',
+        showLogos: true,
+        showTestimonials: true,
+        showCaseStudies: false,
+        partnerCount: 9,
+      },
+    },
     content: {
       heroType: 'minimal-text',
       heroLayout: 'centered',
@@ -577,6 +1084,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       heroEntry: 'zoomIn',
       cardHover: 'bounce',
       buttonHover: 'grow',
+    },
+    pages: {
+      home: {
+        heroType: 'split-content',
+        heroLayout: 'split',
+        featureLayout: 'grid',
+        benefitsLayout: 'cards',
+        statsLayout: 'carousel',
+        ctaStyle: 'prominent',
+        imageStyle: 'rounded',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 4,
+        benefitsCount: 6,
+        statsCount: 4,
+        includeTestimonials: true,
+        includePartnerLogos: true,
+        includeLiveTicker: false,
+        includeComplianceBadges: false,
+        sectionOrder: ['hero', 'stats', 'benefits', 'testimonials', 'features', 'partners', 'cta'],
+      },
+      about: {
+        layout: 'team-first',
+        teamPresentation: 'grid',
+        valuesStyle: 'icons',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 6,
+      },
+      markets: {
+        layout: 'cards',
+        grouping: 'by-region',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'split',
+        formStructure: 'stepper',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'accordion',
+        organization: 'searchable',
+        highlight: 'featured-top',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 6,
+      },
+      partners: {
+        layout: 'spotlight-carousel',
+        showLogos: true,
+        showTestimonials: true,
+        showCaseStudies: true,
+        partnerCount: 9,
+      },
     },
     content: {
       heroType: 'split-content',
@@ -642,6 +1213,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'glow',
       buttonHover: 'pulse',
     },
+    pages: {
+      home: {
+        heroType: 'fullscreen-video',
+        heroLayout: 'full-width',
+        featureLayout: 'grid',
+        benefitsLayout: 'grid',
+        statsLayout: 'carousel',
+        ctaStyle: 'prominent',
+        imageStyle: 'full-bleed',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 6,
+        benefitsCount: 4,
+        statsCount: 4,
+        includeTestimonials: false,
+        includePartnerLogos: true,
+        includeLiveTicker: false,
+        includeComplianceBadges: false,
+        sectionOrder: ['hero', 'features', 'partners', 'cta', 'benefits', 'stats'],
+      },
+      about: {
+        layout: 'mission-first',
+        teamPresentation: 'carousel',
+        valuesStyle: 'icons',
+        showTimeline: false,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 8,
+      },
+      markets: {
+        layout: 'tabs',
+        grouping: 'by-type',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'form-first',
+        formStructure: 'stepper',
+        showMap: false,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'cards',
+        organization: 'categorised',
+        highlight: 'inline',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 8,
+      },
+      partners: {
+        layout: 'metrics-strip',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: false,
+        partnerCount: 12,
+      },
+    },
     content: {
       heroType: 'fullscreen-video',
       heroLayout: 'full-width',
@@ -706,6 +1341,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'skew',
       buttonHover: 'pulse',
     },
+    pages: {
+      home: {
+        heroType: 'split-content',
+        heroLayout: 'split',
+        featureLayout: 'masonry',
+        benefitsLayout: 'cards',
+        statsLayout: 'carousel',
+        ctaStyle: 'prominent',
+        imageStyle: 'overlapping',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: false,
+        showCta: true,
+        featureCount: 4,
+        benefitsCount: 6,
+        statsCount: 3,
+        includeTestimonials: true,
+        includePartnerLogos: false,
+        includeLiveTicker: false,
+        includeComplianceBadges: false,
+        sectionOrder: ['hero', 'features', 'testimonials', 'cta', 'benefits'],
+      },
+      about: {
+        layout: 'team-first',
+        teamPresentation: 'spotlight-list',
+        valuesStyle: 'icons',
+        showTimeline: false,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 8,
+      },
+      markets: {
+        layout: 'cards',
+        grouping: 'popularity-weighted',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: true,
+        compactView: true,
+      },
+      contact: {
+        layout: 'info-first',
+        formStructure: 'single-column',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'cards',
+        organization: 'flat',
+        highlight: 'featured-top',
+        showSearch: false,
+        showCategories: true,
+        categoryCount: 6,
+      },
+      partners: {
+        layout: 'metrics-strip',
+        showLogos: true,
+        showTestimonials: true,
+        showCaseStudies: false,
+        partnerCount: 9,
+      },
+    },
     content: {
       heroType: 'split-content',
       heroLayout: 'split',
@@ -769,6 +1468,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       heroEntry: 'typewriter',
       cardHover: 'scan',
       buttonHover: 'glitch',
+    },
+    pages: {
+      home: {
+        heroType: 'ticker-overlay',
+        heroLayout: 'full-width',
+        featureLayout: 'grid',
+        benefitsLayout: 'list',
+        statsLayout: 'grid',
+        ctaStyle: 'inline',
+        imageStyle: 'full-bleed',
+        showFeatures: true,
+        showBenefits: false,
+        showStats: true,
+        showCta: true,
+        featureCount: 6,
+        benefitsCount: 3,
+        statsCount: 4,
+        includeTestimonials: false,
+        includePartnerLogos: false,
+        includeLiveTicker: true,
+        includeComplianceBadges: true,
+        sectionOrder: ['hero', 'stats', 'features', 'compliance', 'cta'],
+      },
+      about: {
+        layout: 'timeline-led',
+        teamPresentation: 'grid',
+        valuesStyle: 'cards',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 6,
+      },
+      markets: {
+        layout: 'accordion',
+        grouping: 'by-type',
+        showCharts: false,
+        showSpread: true,
+        showLeverage: true,
+        compactView: true,
+      },
+      contact: {
+        layout: 'split',
+        formStructure: 'single-column',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'tabs',
+        organization: 'searchable',
+        highlight: 'inline',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 8,
+      },
+      partners: {
+        layout: 'spotlight-carousel',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: true,
+        partnerCount: 12,
+      },
     },
     content: {
       heroType: 'ticker-overlay',
@@ -835,6 +1598,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'lift',
       buttonHover: 'grow',
     },
+    pages: {
+      home: {
+        heroType: 'standard-centered',
+        heroLayout: 'centered',
+        featureLayout: 'grid',
+        benefitsLayout: 'cards',
+        statsLayout: 'row',
+        ctaStyle: 'prominent',
+        imageStyle: 'rounded',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 4,
+        benefitsCount: 4,
+        statsCount: 4,
+        includeTestimonials: true,
+        includePartnerLogos: true,
+        includeLiveTicker: false,
+        includeComplianceBadges: false,
+        sectionOrder: ['hero', 'benefits', 'testimonials', 'features', 'partners', 'cta', 'stats'],
+      },
+      about: {
+        layout: 'values-first',
+        teamPresentation: 'carousel',
+        valuesStyle: 'minimal',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 4,
+      },
+      markets: {
+        layout: 'cards',
+        grouping: 'by-region',
+        showCharts: false,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'info-first',
+        formStructure: 'two-column',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'accordion',
+        organization: 'flat',
+        highlight: 'none',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 4,
+      },
+      partners: {
+        layout: 'logo-grid',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: true,
+        partnerCount: 6,
+      },
+    },
     content: {
       heroType: 'standard-centered',
       heroLayout: 'centered',
@@ -898,6 +1725,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'lift',
       buttonHover: 'shine',
     },
+    pages: {
+      home: {
+        heroType: 'carousel-features',
+        heroLayout: 'split',
+        featureLayout: 'carousel',
+        benefitsLayout: 'grid',
+        statsLayout: 'carousel',
+        ctaStyle: 'prominent',
+        imageStyle: 'rounded',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 6,
+        benefitsCount: 6,
+        statsCount: 4,
+        includeTestimonials: true,
+        includePartnerLogos: false,
+        includeLiveTicker: false,
+        includeComplianceBadges: true,
+        sectionOrder: ['hero', 'features', 'testimonials', 'stats', 'compliance', 'cta', 'benefits'],
+      },
+      about: {
+        layout: 'timeline-led',
+        teamPresentation: 'spotlight-list',
+        valuesStyle: 'cards',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 12,
+      },
+      markets: {
+        layout: 'tabs',
+        grouping: 'popularity-weighted',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'form-first',
+        formStructure: 'stepper',
+        showMap: false,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'tabs',
+        organization: 'categorised',
+        highlight: 'featured-top',
+        showSearch: false,
+        showCategories: true,
+        categoryCount: 6,
+      },
+      partners: {
+        layout: 'metrics-strip',
+        showLogos: true,
+        showTestimonials: true,
+        showCaseStudies: false,
+        partnerCount: 9,
+      },
+    },
     content: {
       heroType: 'carousel-features',
       heroLayout: 'split',
@@ -960,6 +1851,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       heroEntry: 'fadeInScale',
       cardHover: 'lift',
       buttonHover: 'shimmer',
+    },
+    pages: {
+      home: {
+        heroType: 'fullscreen-video',
+        heroLayout: 'centered',
+        featureLayout: 'grid',
+        benefitsLayout: 'list',
+        statsLayout: 'grid',
+        ctaStyle: 'prominent',
+        imageStyle: 'contained',
+        showFeatures: false,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 3,
+        benefitsCount: 6,
+        statsCount: 4,
+        includeTestimonials: false,
+        includePartnerLogos: true,
+        includeLiveTicker: false,
+        includeComplianceBadges: true,
+        sectionOrder: ['hero', 'stats', 'benefits', 'compliance', 'partners', 'cta'],
+      },
+      about: {
+        layout: 'timeline-led',
+        teamPresentation: 'grid',
+        valuesStyle: 'icons',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 6,
+      },
+      markets: {
+        layout: 'tabs',
+        grouping: 'by-region',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'info-first',
+        formStructure: 'single-column',
+        showMap: false,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'accordion',
+        organization: 'searchable',
+        highlight: 'inline',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 6,
+      },
+      partners: {
+        layout: 'case-study',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: true,
+        partnerCount: 9,
+      },
     },
     content: {
       heroType: 'fullscreen-video',
@@ -1025,6 +1980,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'none',
       buttonHover: 'underline',
     },
+    pages: {
+      home: {
+        heroType: 'minimal-text',
+        heroLayout: 'centered',
+        featureLayout: 'list',
+        benefitsLayout: 'list',
+        statsLayout: 'row',
+        ctaStyle: 'inline',
+        imageStyle: 'contained',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: false,
+        showCta: true,
+        featureCount: 3,
+        benefitsCount: 3,
+        statsCount: 3,
+        includeTestimonials: false,
+        includePartnerLogos: false,
+        includeLiveTicker: false,
+        includeComplianceBadges: true,
+        sectionOrder: ['hero', 'features', 'benefits', 'compliance', 'cta'],
+      },
+      about: {
+        layout: 'team-first',
+        teamPresentation: 'spotlight-list',
+        valuesStyle: 'minimal',
+        showTimeline: true,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 8,
+      },
+      markets: {
+        layout: 'accordion',
+        grouping: 'popularity-weighted',
+        showCharts: false,
+        showSpread: true,
+        showLeverage: true,
+        compactView: true,
+      },
+      contact: {
+        layout: 'split',
+        formStructure: 'two-column',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'cards',
+        organization: 'flat',
+        highlight: 'none',
+        showSearch: true,
+        showCategories: false,
+        categoryCount: 4,
+      },
+      partners: {
+        layout: 'metrics-strip',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: false,
+        partnerCount: 6,
+      },
+    },
     content: {
       heroType: 'minimal-text',
       heroLayout: 'centered',
@@ -1088,6 +2107,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       cardHover: 'float',
       buttonHover: 'glow',
     },
+    pages: {
+      home: {
+        heroType: 'data-dashboard',
+        heroLayout: 'minimal',
+        featureLayout: 'grid',
+        benefitsLayout: 'grid',
+        statsLayout: 'carousel',
+        ctaStyle: 'prominent',
+        imageStyle: 'overlapping',
+        showFeatures: true,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 6,
+        benefitsCount: 6,
+        statsCount: 4,
+        includeTestimonials: true,
+        includePartnerLogos: true,
+        includeLiveTicker: true,
+        includeComplianceBadges: false,
+        sectionOrder: ['hero', 'benefits', 'testimonials', 'partners', 'cta', 'features', 'stats'],
+      },
+      about: {
+        layout: 'mission-first',
+        teamPresentation: 'carousel',
+        valuesStyle: 'cards',
+        showTimeline: false,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 12,
+      },
+      markets: {
+        layout: 'tabs',
+        grouping: 'by-type',
+        showCharts: true,
+        showSpread: true,
+        showLeverage: true,
+        compactView: false,
+      },
+      contact: {
+        layout: 'split',
+        formStructure: 'stepper',
+        showMap: true,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'tabs',
+        organization: 'searchable',
+        highlight: 'featured-top',
+        showSearch: true,
+        showCategories: true,
+        categoryCount: 8,
+      },
+      partners: {
+        layout: 'spotlight-carousel',
+        showLogos: true,
+        showTestimonials: true,
+        showCaseStudies: true,
+        partnerCount: 12,
+      },
+    },
     content: {
       heroType: 'data-dashboard',
       heroLayout: 'minimal',
@@ -1150,6 +2233,70 @@ export const variantConfigs: Record<string, VariantConfig> = {
       heroEntry: 'fadeIn',
       cardHover: 'subtle',
       buttonHover: 'subtle',
+    },
+    pages: {
+      home: {
+        heroType: 'standard-centered',
+        heroLayout: 'centered',
+        featureLayout: 'grid',
+        benefitsLayout: 'list',
+        statsLayout: 'grid',
+        ctaStyle: 'subtle',
+        imageStyle: 'contained',
+        showFeatures: false,
+        showBenefits: true,
+        showStats: true,
+        showCta: true,
+        featureCount: 3,
+        benefitsCount: 4,
+        statsCount: 3,
+        includeTestimonials: false,
+        includePartnerLogos: false,
+        includeLiveTicker: false,
+        includeComplianceBadges: true,
+        sectionOrder: ['hero', 'benefits', 'stats', 'compliance', 'cta'],
+      },
+      about: {
+        layout: 'values-first',
+        teamPresentation: 'spotlight-list',
+        valuesStyle: 'minimal',
+        showTimeline: false,
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        teamMemberCount: 8,
+      },
+      markets: {
+        layout: 'accordion',
+        grouping: 'by-region',
+        showCharts: false,
+        showSpread: true,
+        showLeverage: true,
+        compactView: true,
+      },
+      contact: {
+        layout: 'form-first',
+        formStructure: 'single-column',
+        showMap: false,
+        showOffices: true,
+        showSocial: true,
+        showHours: true,
+      },
+      faq: {
+        layout: 'accordion',
+        organization: 'categorised',
+        highlight: 'inline',
+        showSearch: false,
+        showCategories: true,
+        categoryCount: 6,
+      },
+      partners: {
+        layout: 'case-study',
+        showLogos: true,
+        showTestimonials: false,
+        showCaseStudies: true,
+        partnerCount: 12,
+      },
     },
     content: {
       heroType: 'standard-centered',
