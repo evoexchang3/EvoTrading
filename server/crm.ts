@@ -154,6 +154,8 @@ export function setupCRMIntegration(app: Express) {
       try {
         decoded = jwt.verify(token, SSO_SECRET, {
           algorithms: ['HS256'],
+          // Require expiration to be present and valid
+          maxAge: '1h', // Enforce maximum token age
         });
       } catch (err: any) {
         console.error('JWT verification failed:', err.message);
@@ -163,39 +165,46 @@ export function setupCRMIntegration(app: Express) {
       // Extract required claims
       const clientId = decoded.sub; // Standard JWT 'sub' claim for subject (clientId)
       const email = decoded.email;
-      const jti = decoded.jti; // JWT ID for replay protection
+      const jti = decoded.jti; // JWT ID for replay protection (REQUIRED)
+      const exp = decoded.exp; // Expiration timestamp (REQUIRED)
 
-      if (!clientId || !email) {
+      // Enforce all required claims
+      if (!clientId || !email || !jti || !exp) {
         return res.status(400).json({ 
-          message: 'Invalid token: missing required claims (sub, email)' 
+          message: 'Invalid token: missing required claims (sub, email, jti, exp)' 
+        });
+      }
+
+      // Verify expiration is valid
+      if (typeof exp !== 'number' || exp <= Math.floor(Date.now() / 1000)) {
+        return res.status(400).json({ 
+          message: 'Invalid or expired token: invalid expiration' 
         });
       }
 
       // Check for replay attack - verify jti hasn't been used
-      if (jti) {
-        const [existingToken] = await db
-          .select()
-          .from(ssoTokens)
-          .where(eq(ssoTokens.token, jti))
-          .limit(1);
+      const [existingToken] = await db
+        .select()
+        .from(ssoTokens)
+        .where(eq(ssoTokens.token, jti))
+        .limit(1);
 
-        if (existingToken) {
-          console.warn(`Replay attack detected: JWT ID ${jti} already consumed`);
-          return res.status(400).json({ message: 'Token already used' });
-        }
-
-        // Store jti to prevent replay
-        await db.insert(ssoTokens).values({
-          token: jti,
-          clientId,
-          adminId: decoded.adminId || 'crm-admin',
-          reason: decoded.reason || 'CRM JWT SSO login',
-          ipAddress: req.ip,
-          consumed: true,
-          consumedAt: new Date(),
-          expiresAt: new Date(decoded.exp * 1000), // Convert JWT exp to Date
-        });
+      if (existingToken) {
+        console.warn(`Replay attack detected: JWT ID ${jti} already consumed`);
+        return res.status(400).json({ message: 'Token already used' });
       }
+
+      // Store jti to prevent replay
+      await db.insert(ssoTokens).values({
+        token: jti,
+        clientId,
+        adminId: decoded.adminId || 'crm-admin',
+        reason: decoded.reason || 'CRM JWT SSO login',
+        ipAddress: req.ip,
+        consumed: true,
+        consumedAt: new Date(),
+        expiresAt: new Date(exp * 1000), // Convert JWT exp to Date
+      });
 
       // Verify client exists
       const [client] = await db

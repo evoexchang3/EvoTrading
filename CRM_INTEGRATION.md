@@ -80,7 +80,7 @@ Content-Type: application/json
 }
 ```
 
-### 2. SSO Login
+### 2. SSO Login (Legacy Flow)
 
 **Endpoint:** `GET /api/crm/sso-login?token={token}`
 
@@ -100,7 +100,129 @@ Content-Type: application/json
 }
 ```
 
-### 3. Get Client Info (Optional)
+### 3. SSO Consume (JWT-Based Flow) **⭐ Recommended**
+
+This is the new JWT-based SSO endpoint that the CRM can use for direct client authentication without the two-step token generation process.
+
+**Endpoint:** `GET /sso/consume?token={jwtToken}`
+
+**Authentication:** JWT token signed with shared `SSO_SECRET`
+
+**Query Parameters:**
+- `token` (required): A JWT token signed with the shared SSO_SECRET
+
+**JWT Token Requirements:**
+
+The JWT must be signed with `HS256` algorithm using the shared `SSO_SECRET` and contain:
+
+**Required Claims:**
+- `sub` (string): Client ID (UUID)
+- `email` (string): Client's email address
+- `exp` (number): Expiration timestamp (Unix epoch) - Maximum 1 hour from issue time
+- `jti` (string): JWT ID for replay protection (unique identifier)
+
+**Optional Claims:**
+- `adminId` (string): CRM admin ID who initiated the impersonation
+- `reason` (string): Reason for impersonation
+
+**Example JWT Payload:**
+```json
+{
+  "sub": "client-uuid-here",
+  "email": "client@example.com",
+  "exp": 1704123600,
+  "jti": "unique-jwt-id-12345",
+  "adminId": "admin-123",
+  "reason": "Customer support request #12345"
+}
+```
+
+**Generating the JWT Token (Node.js):**
+```javascript
+const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+
+function generateSSOToken(clientId, email, adminId, reason) {
+  const payload = {
+    sub: clientId,           // Client ID
+    email: email,            // Client email
+    exp: Math.floor(Date.now() / 1000) + 600, // 10 minutes
+    jti: crypto.randomBytes(16).toString('hex'), // Unique ID
+    adminId: adminId,        // Admin who initiated
+    reason: reason || 'CRM SSO login'
+  };
+
+  return jwt.sign(payload, process.env.SSO_SECRET, {
+    algorithm: 'HS256'
+  });
+}
+
+// Usage
+const token = generateSSOToken(
+  'client-uuid',
+  'client@example.com',
+  'admin-123',
+  'Support ticket #789'
+);
+
+// Redirect URL
+const loginUrl = `https://evo-trading-demo.com/sso/consume?token=${token}`;
+```
+
+**Response (Success):**
+- HTTP 302 Redirect to `/dashboard?accessToken=...&refreshToken=...`
+- Client is logged in and can access their dashboard
+
+**Response (Error - 400 - Invalid Token):**
+```json
+{
+  "message": "Invalid or expired token"
+}
+```
+
+**Response (Error - 400 - Missing Claims):**
+```json
+{
+  "message": "Invalid token: missing required claims (sub, email, jti, exp)"
+}
+```
+
+**Response (Error - 400 - Token Already Used):**
+```json
+{
+  "message": "Token already used"
+}
+```
+
+**Response (Error - 404 - Client Not Found):**
+```json
+{
+  "message": "Client not found"
+}
+```
+
+**Response (Error - 400 - Email Mismatch):**
+```json
+{
+  "message": "Invalid token: email mismatch"
+}
+```
+
+**Response (Error - 503 - SSO Not Configured):**
+```json
+{
+  "message": "SSO service not configured. Please contact support."
+}
+```
+
+**Security Features:**
+- ✅ **JWT Signature Validation**: Token must be signed with shared SSO_SECRET
+- ✅ **Expiration Check**: Tokens automatically expire (recommended: 10 minutes)
+- ✅ **Replay Protection**: JWT ID (jti) is tracked to prevent token reuse
+- ✅ **Email Verification**: Client email in JWT must match database
+- ✅ **Audit Logging**: All impersonations logged with admin ID and reason
+
+### 4. Get Client Info (Optional)
 
 **Endpoint:** `GET /api/crm/clients/:clientId`
 
@@ -233,9 +355,14 @@ You need to configure the following environment variables in your trading platfo
 CRM_SERVICE_TOKEN=your-secure-random-token-here
 WEBHOOK_SECRET=your-webhook-signature-secret-here
 
+# Required for JWT-based SSO (/sso/consume endpoint)
+SSO_SECRET=your-shared-sso-secret-here
+
 # Optional: CRM base URL for webhooks
 CRM_BASE_URL=https://your-crm.example.com
 ```
+
+**Important:** The `SSO_SECRET` must be shared between the CRM and the trading platform. Both systems use this secret to sign and verify JWT tokens. Make sure to use the same value in both systems.
 
 ### Generating Secure Tokens
 
@@ -246,6 +373,9 @@ Generate strong random tokens using:
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 # Generate WEBHOOK_SECRET
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+# Generate SSO_SECRET (must be shared with CRM)
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
