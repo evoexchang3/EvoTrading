@@ -401,6 +401,12 @@ export const insertNewsArticleSchema = createInsertSchema(newsArticles).omit({
   cachedAt: true,
 });
 
+export const insertSsoTokenSchema = createInsertSchema(ssoTokens).omit({
+  id: true,
+  createdAt: true,
+  consumedAt: true,
+});
+
 // Types
 export type Client = typeof clients.$inferSelect;
 export type InsertClient = z.infer<typeof insertClientSchema>;
@@ -427,6 +433,8 @@ export type AuditLog = typeof auditLogs.$inferSelect;
 export type InsertAuditLog = z.infer<typeof insertAuditLogSchema>;
 
 export type SsoToken = typeof ssoTokens.$inferSelect;
+export type InsertSsoToken = z.infer<typeof insertSsoTokenSchema>;
+
 export type Session = typeof sessions.$inferSelect;
 export type UserPreference = typeof userPreferences.$inferSelect;
 

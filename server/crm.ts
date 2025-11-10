@@ -26,7 +26,7 @@ if (process.env.WEBHOOK_SECRET) {
 
 // SSO Impersonation endpoint
 export function setupCRMIntegration(app: Express) {
-  // SSO Impersonation - CRM can generate token to impersonate user
+  // SSO Impersonation - CRM can generate token to impersonate client
   app.post('/api/crm/sso-token', async (req, res) => {
     try {
       const authHeader = req.headers['authorization'];
@@ -34,17 +34,21 @@ export function setupCRMIntegration(app: Express) {
         return res.status(401).json({ message: 'Unauthorized' });
       }
 
-      const { userId, adminId, reason } = req.body;
+      const { clientId, adminId, reason } = req.body;
 
-      // Verify user exists
-      const [user] = await db
+      if (!clientId || !adminId) {
+        return res.status(400).json({ message: 'clientId and adminId are required' });
+      }
+
+      // Verify client exists
+      const [client] = await db
         .select()
-        .from(users)
-        .where(eq(users.id, userId))
+        .from(clients)
+        .where(eq(clients.id, clientId))
         .limit(1);
 
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+      if (!client) {
+        return res.status(404).json({ message: 'Client not found' });
       }
 
       const token = crypto.randomBytes(32).toString('hex');
@@ -52,9 +56,9 @@ export function setupCRMIntegration(app: Express) {
 
       await db.insert(ssoTokens).values({
         token,
-        clientId: userId,
+        clientId,
         adminId,
-        reason,
+        reason: reason || 'CRM admin impersonation',
         ipAddress: req.ip,
         expiresAt,
       });
@@ -97,6 +101,23 @@ export function setupCRMIntegration(app: Express) {
         })
         .where(eq(ssoTokens.id, ssoToken.id));
 
+      // Log impersonation event
+      const { AuditService } = await import('./services/audit.service');
+      await AuditService.log({
+        userId: ssoToken.adminId || 'unknown',
+        action: 'impersonation',
+        targetType: 'client',
+        targetId: ssoToken.clientId,
+        details: {
+          reason: ssoToken.reason,
+          ssoTokenId: ssoToken.id,
+          method: 'sso_token',
+          crmServerIp: ssoToken.ipAddress, // CRM server IP (token generation)
+        },
+        ipAddress: req.ip, // Admin's browser IP (actual impersonator)
+        userAgent: req.headers['user-agent'],
+      });
+
       // Generate access token
       const { AuthService } = await import('./services/auth.service');
       const accessToken = AuthService.generateAccessToken(ssoToken.clientId);
@@ -109,39 +130,39 @@ export function setupCRMIntegration(app: Express) {
     }
   });
 
-  // Service API for CRM - get user info
-  app.get('/api/crm/users/:userId', async (req, res) => {
+  // Service API for CRM - get client info
+  app.get('/api/crm/clients/:clientId', async (req, res) => {
     try {
       const authHeader = req.headers['authorization'];
       if (authHeader !== `Bearer ${CRM_SERVICE_TOKEN}`) {
         return res.status(401).json({ message: 'Unauthorized' });
       }
 
-      const { userId } = req.params;
+      const { clientId } = req.params;
 
-      const [user] = await db
+      const [client] = await db
         .select()
-        .from(users)
-        .where(eq(users.id, userId))
+        .from(clients)
+        .where(eq(clients.id, clientId))
         .limit(1);
 
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+      if (!client) {
+        return res.status(404).json({ message: 'Client not found' });
       }
 
       res.json({
-        id: user.id,
-        email: user.email,
-        username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        phone: user.phone,
-        emailVerified: user.emailVerified,
-        twoFactorEnabled: user.twoFactorEnabled,
-        isActive: user.isActive,
-        tradingEnabled: user.tradingEnabled,
-        externalId: user.externalId,
-        createdAt: user.createdAt,
+        id: client.id,
+        email: client.email,
+        firstName: client.firstName,
+        lastName: client.lastName,
+        phone: client.phone,
+        role: client.role,
+        kycStatus: client.kycStatus,
+        emailVerified: client.emailVerified,
+        twoFactorEnabled: client.twoFactorEnabled,
+        isActive: client.isActive,
+        status: client.status,
+        createdAt: client.createdAt,
       });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
