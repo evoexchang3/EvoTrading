@@ -1,53 +1,355 @@
 import { LandingLayout } from "@/components/LandingLayout";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "wouter";
-import { BookOpen, TrendingUp, Shield, BarChart3, Lightbulb, GraduationCap } from "lucide-react";
+import { BookOpen, TrendingUp, Shield, BarChart3, Lightbulb, GraduationCap, ArrowRight } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useVariantContent } from "@/hooks/useVariantContent";
-import {
-  VariantSection,
-  VariantContainer,
-  VariantPageHeader,
-  VariantHeading,
-  VariantText,
-  VariantGrid,
-  VariantCard,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from "@/components/variant";
+import { useVariant } from "@/layouts/shared/useVariant";
+import { HeroRenderer } from "@/components/variant-rendering";
 
 export default function EducationPage() {
   const { t } = useLanguage();
   const { getPageContent } = useVariantContent();
+  const variant = useVariant();
   const educationContent = getPageContent('education');
+  
+  const educationConfig = variant.pages.education;
 
   if (!educationContent) {
     return null;
   }
 
-  const topicIcons = [BookOpen, TrendingUp, Shield, BarChart3, Lightbulb, GraduationCap];
-  const topics = educationContent.topics?.items?.map((item: {title: string; description: string; content: string}, index: number) => ({
-    ...item,
-    icon: topicIcons[index % topicIcons.length],
-  })) || [];
-
-  const resourceLevels = [
-    t('education.resources.forexGuide.level'),
-    t('education.resources.cryptoFundamentals.level'),
-    t('education.resources.technicalMasterclass.level'),
-    t('education.resources.riskEssentials.level'),
-    t('education.resources.algoTrading.level'),
+  const courses = [
+    { title: "Beginner Trading Course", level: "Beginner", duration: "6 weeks", icon: BookOpen, description: "Start your trading journey" },
+    { title: "Technical Analysis Mastery", level: "Intermediate", duration: "8 weeks", icon: TrendingUp, description: "Master chart patterns and indicators" },
+    { title: "Risk Management Essentials", level: "Beginner", duration: "4 weeks", icon: Shield, description: "Protect your capital effectively" },
+    { title: "Advanced Trading Strategies", level: "Advanced", duration: "10 weeks", icon: BarChart3, description: "Professional trading techniques" },
+    { title: "Trading Psychology", level: "All Levels", duration: "5 weeks", icon: Lightbulb, description: "Mental edge for traders" },
+    { title: "Algorithmic Trading", level: "Advanced", duration: "12 weeks", icon: GraduationCap, description: "Automated trading systems" },
   ];
-  
-  const resources = educationContent.resources?.items?.map((item: {title: string; description: string}, index: number) => ({
-    ...item,
-    level: resourceLevels[index % resourceLevels.length],
-  })) || [];
 
-  const academyFeatures = educationContent.academy?.features || [];
+  const categories = ["All Courses", "Beginner", "Intermediate", "Advanced"];
+
+  const heroProps = {
+    headline: educationContent.hero?.title || "Trading Education",
+    subheadline: educationContent.hero?.subtitle || "Learn from the best",
+    cta: "Start Learning",
+    style: 'standard' as const,
+  };
+
+  // Course Grid Layout
+  const CourseGridLayout = () => (
+    <section className="py-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4" data-testid="heading-courses">Available Courses</h2>
+          <p className="text-lg text-muted-foreground">Choose from our comprehensive curriculum</p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {courses.map((course, index) => {
+            const Icon = course.icon;
+            return (
+              <Card key={index} className="hover-elevate" data-testid={`course-card-${index}`}>
+                <CardHeader>
+                  <div className="p-3 rounded-lg bg-primary/10 w-fit mb-3">
+                    <Icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <CardTitle data-testid={`course-title-${index}`}>{course.title}</CardTitle>
+                  <CardDescription>{course.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between mb-4">
+                    <Badge variant="secondary">{course.level}</Badge>
+                    <span className="text-sm text-muted-foreground">{course.duration}</span>
+                  </div>
+                  <Link href="/education/beginner-course">
+                    <Button className="w-full" data-testid={`button-enroll-course-${index}`}>
+                      Enroll Now <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+
+  // Course List Layout
+  const CourseListLayout = () => (
+    <section className="py-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4" data-testid="heading-courses">Our Courses</h2>
+          <p className="text-lg text-muted-foreground">Structured learning paths for all levels</p>
+        </div>
+        <div className="max-w-4xl mx-auto space-y-4">
+          {courses.map((course, index) => {
+            const Icon = course.icon;
+            return (
+              <Card key={index} className="hover-elevate" data-testid={`course-list-${index}`}>
+                <CardHeader>
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-lg bg-primary/10">
+                      <Icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between gap-4 mb-2">
+                        <CardTitle>{course.title}</CardTitle>
+                        <Badge variant="secondary">{course.level}</Badge>
+                      </div>
+                      <CardDescription className="mb-4">{course.description}</CardDescription>
+                      <div className="flex items-center gap-4">
+                        <span className="text-sm text-muted-foreground">Duration: {course.duration}</span>
+                        <Link href="/education/beginner-course">
+                          <Button variant="outline" size="sm" data-testid={`button-course-list-learn-${index}`}>Learn More</Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </CardHeader>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+
+  // Path Visualization Layout
+  const PathVisualizationLayout = () => (
+    <section className="py-16 bg-gradient-to-b from-background to-muted/20">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4" data-testid="heading-learning-path">Learning Pathway</h2>
+          <p className="text-xl text-muted-foreground">Follow a structured journey from beginner to expert</p>
+        </div>
+        <div className="max-w-5xl mx-auto space-y-8">
+          {courses.slice(0, 4).map((course, index) => {
+            const Icon = course.icon;
+            return (
+              <div key={index} className="flex gap-6" data-testid={`path-step-${index}`}>
+                <div className="flex-shrink-0 flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-primary">{index + 1}</span>
+                  </div>
+                  {index < 3 && (
+                    <div className="w-0.5 flex-1 bg-border my-4" style={{ minHeight: '60px' }} />
+                  )}
+                </div>
+                <Card className="flex-1">
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start gap-3">
+                        <Icon className="w-6 h-6 text-primary mt-1" />
+                        <div>
+                          <CardTitle>{course.title}</CardTitle>
+                          <CardDescription className="mt-2">{course.description}</CardDescription>
+                        </div>
+                      </div>
+                      <Badge>{course.level}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">{course.duration}</span>
+                      <Link href="/education/beginner-course">
+                        <Button size="sm" data-testid={`button-path-start-${index}`}>Start Course</Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+
+  // Pathway Layout (simplified with categorization)
+  const PathwayLayout = () => (
+    <section className="py-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4" data-testid="heading-pathway">Choose Your Path</h2>
+          <p className="text-lg text-muted-foreground">Select the right learning track for your goals</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {["Beginner Track", "Intermediate Track", "Advanced Track"].map((track, trackIndex) => (
+            <Card key={trackIndex} className="hover-elevate" data-testid={`pathway-${trackIndex}`}>
+              <CardHeader>
+                <CardTitle className="text-xl mb-4">{track}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {courses.slice(trackIndex * 2, trackIndex * 2 + 2).map((course, index) => {
+                    const Icon = course.icon;
+                    return (
+                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
+                        <Icon className="w-5 h-5 text-primary mt-0.5" />
+                        <div className="flex-1">
+                          <div className="font-semibold text-sm">{course.title}</div>
+                          <div className="text-xs text-muted-foreground">{course.duration}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <Link href="/education/beginner-course">
+                    <Button className="w-full mt-4" data-testid={`button-start-track-${trackIndex}`}>Start Track</Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  // Category Tabs Layout
+  const CategoryTabsLayout = () => (
+    <section className="py-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4" data-testid="heading-courses-tabs">Browse Courses</h2>
+          <p className="text-lg text-muted-foreground">Filter by skill level</p>
+        </div>
+        <Tabs defaultValue="all" className="max-w-6xl mx-auto">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
+            {categories.map((cat, index) => (
+              <TabsTrigger key={index} value={cat.toLowerCase().replace(' ', '-')} data-testid={`tab-${cat.toLowerCase().replace(' ', '-')}`}>
+                {cat}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {categories.map((cat) => (
+            <TabsContent key={cat} value={cat.toLowerCase().replace(' ', '-')}>
+              <div className="grid md:grid-cols-3 gap-6">
+                {courses
+                  .filter(c => cat === "All Courses" || c.level === cat)
+                  .map((course, index) => {
+                    const Icon = course.icon;
+                    return (
+                      <Card key={index} className="hover-elevate">
+                        <CardHeader>
+                          <div className="p-3 rounded-lg bg-primary/10 w-fit mb-3">
+                            <Icon className="w-6 h-6 text-primary" />
+                          </div>
+                          <CardTitle>{course.title}</CardTitle>
+                          <CardDescription>{course.description}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <Link href="/education/beginner-course">
+                            <Button className="w-full" data-testid={`button-tab-view-course-${index}`}>View Course</Button>
+                          </Link>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
+    </section>
+  );
+
+  // Featured List Layout
+  const FeaturedListLayout = () => (
+    <section className="py-16 bg-muted/20">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4" data-testid="heading-featured">Featured Courses</h2>
+          <p className="text-lg text-muted-foreground">Most popular learning resources</p>
+        </div>
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
+            {courses.slice(0, 2).map((course, index) => {
+              const Icon = course.icon;
+              return (
+                <Card key={index} className="hover-elevate" data-testid={`featured-course-${index}`}>
+                  <CardHeader>
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="p-4 rounded-lg bg-primary/10">
+                        <Icon className="w-8 h-8 text-primary" />
+                      </div>
+                      <Badge variant="secondary">Featured</Badge>
+                    </div>
+                    <CardTitle className="text-2xl">{course.title}</CardTitle>
+                    <CardDescription className="text-base">{course.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">Level: {course.level}</span>
+                        <span className="text-sm text-muted-foreground">{course.duration}</span>
+                      </div>
+                      <Link href="/education/beginner-course">
+                        <Button className="w-full" size="lg" data-testid={`button-featured-enroll-${index}`}>Enroll Now</Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+          <div className="mt-8 space-y-4">
+            <h3 className="text-xl font-semibold mb-4">More Courses</h3>
+            {courses.slice(2).map((course, index) => {
+              const Icon = course.icon;
+              return (
+                <Card key={index} className="hover-elevate">
+                  <CardHeader>
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <Icon className="w-5 h-5 text-primary" />
+                        <CardTitle className="text-lg">{course.title}</CardTitle>
+                      </div>
+                      <Link href="/education/beginner-course">
+                        <Button variant="outline" data-testid={`button-more-view-${index}`}>View Course</Button>
+                      </Link>
+                    </div>
+                  </CardHeader>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
+  // Layout dispatcher
+  const renderContent = () => {
+    switch (educationConfig.layout) {
+      case 'course-grid':
+        return <CourseGridLayout />;
+      
+      case 'course-list':
+        return <CourseListLayout />;
+      
+      case 'path-visualization':
+        return <PathVisualizationLayout />;
+      
+      case 'pathway':
+        return <PathwayLayout />;
+      
+      case 'category-tabs':
+        return <CategoryTabsLayout />;
+      
+      case 'featured-list':
+        return <FeaturedListLayout />;
+      
+      default:
+        return <CourseGridLayout />;
+    }
+  };
 
   return (
     <LandingLayout>
@@ -56,145 +358,10 @@ export default function EducationPage() {
         description={t('education.seo.description')}
         keywords={t('education.seo.keywords')}
       />
-      
-      {educationContent.hero && (
-        <VariantPageHeader
-          title={educationContent.hero.title}
-          subtitle={educationContent.hero.subtitle}
-          titleTestId="text-education-title"
-        />
-      )}
-
-      {educationContent.topics && (
-        <VariantSection>
-          <VariantContainer>
-            <div className="text-center mb-12">
-              <VariantHeading level="heading" data-testid="text-topics-title">
-                {educationContent.topics.title}
-              </VariantHeading>
-              <VariantText className="max-w-2xl mx-auto">
-                {educationContent.topics.subtitle}
-              </VariantText>
-            </div>
-
-            <VariantGrid>
-              {topics.map((topic: {title: string; description: string; content: string; icon: any}, index: number) => {
-                const Icon = topic.icon;
-                return (
-                  <VariantCard key={index} data-testid={`card-topic-${index}`}>
-                    <CardHeader>
-                      <div className="mb-4">
-                        <div className="inline-flex p-3 rounded-lg bg-primary/10">
-                          <Icon className="h-6 w-6 text-primary" />
-                        </div>
-                      </div>
-                      <CardTitle>{topic.title}</CardTitle>
-                      <CardDescription className="font-medium text-primary">{topic.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <VariantText>{topic.content}</VariantText>
-                    </CardContent>
-                  </VariantCard>
-                );
-              })}
-            </VariantGrid>
-          </VariantContainer>
-        </VariantSection>
-      )}
-
-      {educationContent.resources && (
-        <VariantSection background="muted">
-          <VariantContainer>
-            <div className="text-center mb-12">
-              <VariantHeading level="heading" data-testid="text-resources-title">
-                {educationContent.resources.title}
-              </VariantHeading>
-              <VariantText className="max-w-2xl mx-auto">
-                {educationContent.resources.subtitle}
-              </VariantText>
-            </div>
-
-            <div className="max-w-4xl mx-auto space-y-4">
-              {resources.map((resource: {title: string; description: string; level: string}, index: number) => (
-                <VariantCard key={index} data-testid={`card-resource-${index}`}>
-                  <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
-                    <div className="flex-1">
-                      <CardTitle className="mb-2">{resource.title}</CardTitle>
-                      <CardDescription>{resource.description}</CardDescription>
-                    </div>
-                    <div className="flex flex-col items-end gap-2">
-                      <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
-                        resource.level === 'Beginner' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
-                        resource.level === 'Intermediate' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' :
-                        'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400'
-                      }`}>
-                        {resource.level}
-                      </span>
-                    </div>
-                  </CardHeader>
-                </VariantCard>
-              ))}
-            </div>
-          </VariantContainer>
-        </VariantSection>
-      )}
-
-      {educationContent.academy && (
-        <VariantSection>
-          <VariantContainer>
-            <VariantCard className="bg-primary text-primary-foreground">
-              <CardHeader className="text-center pb-8">
-                <div className="inline-flex mx-auto p-4 rounded-full bg-primary-foreground/10">
-                  <GraduationCap className="h-8 w-8" />
-                </div>
-                <CardTitle>{educationContent.academy.title}</CardTitle>
-                <CardDescription className="opacity-90 text-primary-foreground">
-                  {educationContent.academy.subtitle}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <VariantGrid className="max-w-4xl mx-auto">
-                  {academyFeatures.map((feature: {title: string; description: string}, index: number) => (
-                    <div key={index} className="text-center space-y-2">
-                      <h3 className="font-semibold">{feature.title}</h3>
-                      <VariantText className="opacity-90">{feature.description}</VariantText>
-                    </div>
-                  ))}
-                </VariantGrid>
-                <div className="text-center pt-4">
-                  <Link href="/register">
-                    <Button variant="secondary" size="lg" data-testid="button-get-started">
-                      {t('education.academy.button')}
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </VariantCard>
-          </VariantContainer>
-        </VariantSection>
-      )}
-
-      {educationContent.cta && (
-        <VariantSection background="muted">
-          <VariantContainer>
-            <div className="max-w-3xl mx-auto text-center">
-              <VariantHeading level="heading" data-testid="text-cta-title">
-                {educationContent.cta.headline}
-              </VariantHeading>
-              <VariantText className="mb-6">
-                {educationContent.cta.description}
-              </VariantText>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/register">
-                  <Button size="lg" data-testid="button-create-account">
-                    {educationContent.cta.buttonText}
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </VariantContainer>
-        </VariantSection>
-      )}
+      <div className="min-h-screen">
+        <HeroRenderer {...heroProps} />
+        {renderContent()}
+      </div>
     </LandingLayout>
   );
 }
