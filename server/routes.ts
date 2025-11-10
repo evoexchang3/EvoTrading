@@ -17,7 +17,7 @@ import {
   placeOrderSchema,
   createTransactionSchema 
 } from "@shared/schema";
-import { clients, accounts, transactions, kycDocuments, userPreferences } from "@shared/schema";
+import { clients, accounts, transactions, kycDocuments, userPreferences, users } from "@shared/schema";
 import { eq, sql } from "drizzle-orm";
 
 function requireAdmin(req: AuthRequest, res: Response, next: NextFunction) {
