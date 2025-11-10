@@ -8,8 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Skeleton } from "@/components/ui/skeleton";
 import { ConnectionStatus } from "@/components/ConnectionStatus";
 import { useWebSocketContext } from "@/contexts/WebSocketContext";
-import { BarChart3, LineChart, CandlestickChart, TrendingUp, ZoomIn, ZoomOut } from "lucide-react";
+import { BarChart3, LineChart, CandlestickChart, TrendingUp, ZoomIn, ZoomOut, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useTimezone } from "@/hooks/use-timezone";
+import { getTimezoneAbbreviation } from "@/lib/timezone-utils";
+import { formatInTimeZone } from 'date-fns-tz';
 
 type TradingChartProps = {
   symbol: string;
@@ -50,6 +53,9 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
   const [chartType, setChartType] = useState<ChartType>('candlestick');
   const [timeframe, setTimeframe] = useState<Timeframe>('1h');
   const { toast } = useToast();
+
+  // Get user's timezone preference
+  const { timezone, isAutoDetect } = useTimezone();
 
   // Subscribe to WebSocket for real-time price updates
   const { prices } = useWebSocketContext();
@@ -121,6 +127,20 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
         secondsVisible: false,
         borderColor: colors.borderColor,
       },
+      localization: {
+        timeFormatter: (time: number) => {
+          // Format UTC timestamps in user's selected timezone
+          const date = new Date(time * 1000);
+          
+          // For daily and weekly charts, show date
+          if (timeframe === '1d' || timeframe === '1w') {
+            return formatInTimeZone(date, timezone, 'MMM dd, yyyy');
+          }
+          
+          // For intraday charts, show time
+          return formatInTimeZone(date, timezone, 'HH:mm');
+        },
+      },
       rightPriceScale: {
         borderColor: colors.borderColor,
       },
@@ -160,13 +180,20 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
     seriesRef.current = series;
 
     // Convert candle data to chart format
-    const chartData: CandlestickData[] = candles.map((candle) => ({
-      time: (new Date(candle.timestamp).getTime() / 1000) as UTCTimestamp,
-      open: parseFloat(candle.open),
-      high: parseFloat(candle.high),
-      low: parseFloat(candle.low),
-      close: parseFloat(candle.close),
-    })).sort((a, b) => (a.time as number) - (b.time as number));
+    // Backend stores timestamps in UTC - pass them as-is
+    // Timezone formatting is handled by localization.timeFormatter
+    const chartData: CandlestickData[] = candles.map((candle) => {
+      // Parse UTC timestamp from backend (already in UTC from database)
+      const utcTimestamp = Math.floor(new Date(candle.timestamp).getTime() / 1000);
+      
+      return {
+        time: utcTimestamp as UTCTimestamp,
+        open: parseFloat(candle.open),
+        high: parseFloat(candle.high),
+        low: parseFloat(candle.low),
+        close: parseFloat(candle.close),
+      };
+    }).sort((a, b) => (a.time as number) - (b.time as number));
 
     // Store last candle for incremental updates
     if (chartData.length > 0) {
@@ -206,7 +233,7 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
         chartRef.current = null;
       }
     };
-  }, [candles, chartType, timeframe]);
+  }, [candles, chartType, timeframe, timezone]);
 
   // Update chart incrementally with real-time WebSocket price data
   useEffect(() => {
@@ -331,9 +358,17 @@ export function TradingChart({ symbol, connectionStatus = "connected" }: Trading
         <div className="flex items-center gap-4">
           <div>
             <div className="text-lg font-semibold" data-testid="text-chart-symbol">{symbol}</div>
-            <div className="text-xs text-muted-foreground">{timeframe} Chart</div>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span>{timeframe} Chart</span>
+              <span>•</span>
+              <span className="flex items-center gap-1">
+                <Clock className="h-3 w-3" />
+                {getTimezoneAbbreviation(timezone)}
+                {isAutoDetect && " (auto)"}
+              </span>
+            </div>
           </div>
-          <ConnectionStatus status={connectionStatus} />
+          <ConnectionStatus status={connectionStatus} symbol={symbol} />
         </div>
 
         {/* Chart Controls */}

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { db } from '../db';
 import { symbols, candles } from '@shared/schema';
 import { eq, and, gte } from 'drizzle-orm';
+import { isMarketOpen } from './market-hours.service';
 
 const TWELVE_DATA_API_KEY = process.env.TWELVEDATA_API_KEY;
 
@@ -157,5 +158,50 @@ export class MarketService {
   static async getCurrentPriceWithTimestamp(symbol: string): Promise<{ price: number; timestamp: Date }> {
     const quote = await this.getQuote(symbol);
     return { price: quote.bid, timestamp: quote.timestamp };
+  }
+
+  static async getSymbolInfo(symbol: string) {
+    const [symbolInfo] = await db
+      .select()
+      .from(symbols)
+      .where(eq(symbols.symbol, symbol))
+      .limit(1);
+
+    if (!symbolInfo) {
+      return null;
+    }
+
+    return {
+      symbol: symbolInfo.symbol,
+      name: symbolInfo.name,
+      type: symbolInfo.type,
+      exchangeTimezone: symbolInfo.exchangeTimezone,
+      tradingHours: symbolInfo.tradingHours,
+      exchange: symbolInfo.exchange,
+      digits: symbolInfo.digits,
+      spread: symbolInfo.spread,
+    };
+  }
+
+  static async getMarketStatus(symbol: string) {
+    const symbolInfo = await this.getSymbolInfo(symbol);
+
+    if (!symbolInfo) {
+      return {
+        isOpen: false,
+        timezone: 'UTC',
+      };
+    }
+
+    const isOpen = isMarketOpen(
+      symbolInfo.type,
+      symbolInfo.exchangeTimezone,
+      symbolInfo.tradingHours as any
+    );
+
+    return {
+      isOpen,
+      timezone: symbolInfo.exchangeTimezone || 'UTC',
+    };
   }
 }

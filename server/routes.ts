@@ -567,6 +567,29 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  app.get("/api/market/symbols/:symbol", async (req, res) => {
+    try {
+      const { symbol } = req.params;
+      const symbolInfo = await MarketService.getSymbolInfo(symbol);
+      if (!symbolInfo) {
+        return res.status(404).json({ message: "Symbol not found" });
+      }
+      res.json(symbolInfo);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/market/status/:symbol", async (req, res) => {
+    try {
+      const { symbol } = req.params;
+      const status = await MarketService.getMarketStatus(symbol);
+      res.json(status);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
   // Funding routes
   app.post("/api/funding/deposit", authenticateToken, async (req: AuthRequest, res) => {
     try {

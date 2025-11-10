@@ -2,8 +2,24 @@ import axios from 'axios';
 import { db } from './db';
 import { symbols } from '@shared/schema';
 import { eq } from 'drizzle-orm';
+import { DEFAULT_EXCHANGE_HOURS } from './services/market-hours.service';
 
 const TWELVE_DATA_API_KEY = process.env.TWELVEDATA_API_KEY;
+
+// Helper function to get exchange timezone and hours
+function getExchangeInfo(exchange: string | null | undefined) {
+  if (!exchange) return { timezone: null, tradingHours: null };
+  
+  const exchangeInfo = DEFAULT_EXCHANGE_HOURS[exchange.toUpperCase()];
+  if (exchangeInfo) {
+    return {
+      timezone: exchangeInfo.timezone,
+      tradingHours: exchangeInfo.hours
+    };
+  }
+  
+  return { timezone: null, tradingHours: null };
+}
 
 async function importAllForexPairs() {
   console.log('Importing ALL forex pairs...');
@@ -112,6 +128,7 @@ async function importAllETFs() {
         const existing = await db.select().from(symbols).where(eq(symbols.symbol, etf.symbol)).limit(1);
         
         if (existing.length === 0) {
+          const exchangeInfo = getExchangeInfo(etf.exchange);
           await db.insert(symbols).values({
             symbol: etf.symbol,
             twelveDataSymbol: etf.symbol,
@@ -124,6 +141,8 @@ async function importAllETFs() {
             lotStep: '1',
             spread: '0.01',
             exchange: etf.exchange,
+            exchangeTimezone: exchangeInfo.timezone,
+            tradingHours: exchangeInfo.tradingHours as any,
             country: etf.country,
             currency: etf.currency,
             isActive: true,
@@ -161,6 +180,7 @@ async function importAllStocks() {
           const existing = await db.select().from(symbols).where(eq(symbols.symbol, stock.symbol)).limit(1);
           
           if (existing.length === 0) {
+            const exchangeInfo = getExchangeInfo(stock.exchange);
             await db.insert(symbols).values({
               symbol: stock.symbol,
               twelveDataSymbol: stock.symbol,
@@ -173,6 +193,8 @@ async function importAllStocks() {
               lotStep: '1',
               spread: '0.01',
               exchange: stock.exchange,
+              exchangeTimezone: exchangeInfo.timezone,
+              tradingHours: exchangeInfo.tradingHours as any,
               country: stock.country,
               currency: stock.currency,
               isActive: true,
