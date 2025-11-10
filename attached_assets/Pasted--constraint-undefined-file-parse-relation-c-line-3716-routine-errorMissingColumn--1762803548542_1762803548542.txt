@@ -1,0 +1,1078 @@
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for GBPNZD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for CHFJPY: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Error updating positions for CADCHF: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for GBPNOK: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for GBPSGD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for CHFSGD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Error updating positions for GBPUSD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Error updating positions for GBPZAR: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for AUDJPY: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Error updating positions for EURJPY: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Error updating positions for GBPCAD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for BTCUSD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for XAUUSD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for EURNOK: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for GBPDKK: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Error updating positions for GBPCHF: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for EURSAR: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Error updating positions for EURAUD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for GBPAUD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for EURUSD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for NOKJPY: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Error updating positions for EURCHF: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for EURSGD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for EURGBP: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for NZDCAD: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Successfully subscribed to symbols
+Error updating positions for CADJPY: NeonDbError: column "created_at" does not exist
+    at execute (file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1556:55)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-http/session.ts:68:18)
+    at async Function.updatePositionPrices (/home/runner/workspace/server/services/trading.service.ts:378:27)
+    at async WebSocket.<anonymous> (/home/runner/workspace/server/websocket.ts:122:13) {
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '409',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn',
+  sourceError: undefined
+}
+Twelve Data connection closed
+Reconnecting to Twelve Data in 5 seconds...
+7:36:06 PM [express] GET /api/account 304 in 73ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+7:36:08 PM [express] GET /api/account 304 in 68ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+Twelve Data WebSocket error: Error: Unexpected server response: 200
+    at ClientRequest.<anonymous> (/home/runner/workspace/node_modules/ws/lib/websocket.js:913:7)
+    at ClientRequest.emit (node:events:524:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23)
+Twelve Data connection closed
+Reconnecting to Twelve Data in 5 seconds...
+7:36:10 PM [express] GET /api/account 304 in 70ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+7:36:13 PM [express] GET /api/account 304 in 75ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+Twelve Data WebSocket error: Error: Unexpected server response: 200
+    at ClientRequest.<anonymous> (/home/runner/workspace/node_modules/ws/lib/websocket.js:913:7)
+    at ClientRequest.emit (node:events:524:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23)
+Twelve Data connection closed
+Reconnecting to Twelve Data in 5 seconds...
+7:36:15 PM [express] GET /api/account 304 in 71ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+Cache miss or expired for EURUSD 15min, fetching from API...
+✓ Fetched and cached 100 fresh candles for EURUSD 15min (latest: Tue Nov 11 2025 06:30:00 GMT+0000 (Coordinated Universal Time))
+7:36:16 PM [express] GET /api/market/candles/EURUSD 200 in 270ms :: [{"symbol":"EURUSD","interval":"…
+7:36:17 PM [express] GET /api/account 304 in 74ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+7:36:19 PM [express] GET /api/account 304 in 70ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+Twelve Data WebSocket error: Error: Unexpected server response: 200
+    at ClientRequest.<anonymous> (/home/runner/workspace/node_modules/ws/lib/websocket.js:913:7)
+    at ClientRequest.emit (node:events:524:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23)
+Twelve Data connection closed
+Reconnecting to Twelve Data in 5 seconds...
+7:36:22 PM [express] GET /api/account 304 in 69ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+7:36:24 PM [express] GET /api/account 304 in 71ms :: {"id":"1383f139-2c7b-42fb-83c8-58308997d6ef","c…
+Twelve Data WebSocket error: Error: Unexpected server response: 200
+    at ClientRequest.<anonymous> (/home/runner/workspace/node_modules/ws/lib/websocket.js:913:7)
+    at ClientRequest.emit (node:events:524:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23)
+Twelve Data connection closed
+Reconnecting to Twelve Data in 5 seconds...
+Twelve Data WebSocket error: Error: Unexpected server response: 200
+    at ClientRequest.<anonymous> (/home/runner/workspace/node_modules/ws/lib/websocket.js:913:7)
+    at ClientRequest.emit (node:events:524:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23)
+Twelve Data connection closed
+Reconnecting to Twelve Data in 5 seconds...
+Twelve Data WebSocket error: Error: Unexpected server response: 200
+    at ClientRequest.<anonymous> (/home/runner/workspace/node_modules/ws/lib/websocket.js:913:7)
+    at ClientRequest.emit (node:events:524:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23)
+Twelve Data connection closed
+Reconnecting to Twelve Data in 5 seconds...
+Twelve Data WebSocket error: Error: Unexpected server response: 200
+    at ClientRequest.<anonymous> (/home/runner/workspace/node_modules/ws/lib/websocket.js:913:7)
+    at ClientRequest.emit (node:events:524:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23)
+Twelve Data connection closed
+Reconnecting to Twelve Data in 5 seconds...
+WebSocket client disconnected
+Twelve Data WebSocket error: Error: Unexpected server response: 200
+    at ClientRequest.<anonymous> (/home/runner/workspace/node_modules/ws/lib/websocket.js:913:7)
+    at ClientRequest.emit (node:events:524:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23)
+Twelve Data connection closed
+7:37:10 PM [express] GET /api/site-config 304 in 13ms :: {"version":"1.0.0","branding":{"companyName…
+7:37:10 PM [express] GET /api/auth/profile 304 in 142ms :: {"user":{"id":"c526a660-63c0-40bd-bd11-9f…
+WebSocket client connected
