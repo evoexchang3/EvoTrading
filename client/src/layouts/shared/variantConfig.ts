@@ -132,6 +132,47 @@ export type PartnersLayout =
   | 'case-study'            // Detailed case studies
   | 'metrics-strip';        // Partner stats and logos
 
+export type PartnersHeroStyle =
+  | 'standard'              // Traditional hero
+  | 'split-visual'          // Split with visual
+  | 'minimal';              // Minimal text-only
+
+// Company/Education Page Configuration Types
+export type CompanyLayout =
+  | 'mission-led'           // Mission statement leads
+  | 'values-showcase'       // Values prominently featured
+  | 'timeline-focus'        // Company history timeline
+  | 'team-spotlight';       // Leadership team featured
+
+export type EducationLayout =
+  | 'course-grid'           // Grid of courses
+  | 'path-visualization'    // Learning path visualization
+  | 'category-tabs'         // Tabbed by category
+  | 'featured-list';        // Featured courses list
+
+// Legal Pages Configuration Types
+export type LegalLayout =
+  | 'single-column'         // Traditional single column
+  | 'sidebar-nav'           // Sidebar navigation
+  | 'accordion-sections';   // Collapsible accordion sections
+
+// Customer Info Pages Configuration Types
+export type CustomerInfoLayout =
+  | 'comparison-table'      // Comparison tables
+  | 'step-by-step'          // Step-by-step guide
+  | 'faq-hybrid';           // FAQ + informational hybrid
+
+// Market Info Pages Configuration Types
+export type MarketInfoLayout =
+  | 'data-heavy'            // Charts and data focus
+  | 'educational'           // Educational content focus
+  | 'tool-interactive';     // Interactive tools focus
+
+// Company Subpages Configuration Types
+export type CompanySubpageLayout =
+  | 'document-style'        // Document-like layout
+  | 'card-sections';        // Card-based sections
+
 // Page-Specific Configuration Interfaces
 export interface HomeContentConfig {
   // Hero Configuration
