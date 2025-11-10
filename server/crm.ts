@@ -1,5 +1,6 @@
 import axios from 'axios';
 import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
 import { db } from './db';
 import { ssoTokens, clients, users } from '@shared/schema';
 import { eq } from 'drizzle-orm';
@@ -7,6 +8,7 @@ import type { Express } from 'express';
 
 const CRM_BASE_URL = process.env.CRM_BASE_URL;
 const CRM_SERVICE_TOKEN = process.env.CRM_SERVICE_TOKEN;
+const SSO_SECRET = process.env.SSO_SECRET; // Shared secret for JWT validation
 
 let WEBHOOK_SECRET: string;
 
@@ -126,6 +128,118 @@ export function setupCRMIntegration(app: Express) {
       // Redirect to dashboard with tokens
       res.redirect(`/dashboard?accessToken=${accessToken}&refreshToken=${refreshToken}`);
     } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // New JWT-based SSO Consume endpoint (CRM requirement)
+  app.get('/sso/consume', async (req, res) => {
+    try {
+      const { token } = req.query;
+
+      if (!token || typeof token !== 'string') {
+        return res.status(400).json({ message: 'Token required' });
+      }
+
+      // Check if SSO_SECRET is configured
+      if (!SSO_SECRET) {
+        console.error('SSO_SECRET not configured - JWT SSO flow unavailable');
+        return res.status(503).json({ 
+          message: 'SSO service not configured. Please contact support.' 
+        });
+      }
+
+      // Verify and decode JWT token
+      let decoded: any;
+      try {
+        decoded = jwt.verify(token, SSO_SECRET, {
+          algorithms: ['HS256'],
+        });
+      } catch (err: any) {
+        console.error('JWT verification failed:', err.message);
+        return res.status(400).json({ message: 'Invalid or expired token' });
+      }
+
+      // Extract required claims
+      const clientId = decoded.sub; // Standard JWT 'sub' claim for subject (clientId)
+      const email = decoded.email;
+      const jti = decoded.jti; // JWT ID for replay protection
+
+      if (!clientId || !email) {
+        return res.status(400).json({ 
+          message: 'Invalid token: missing required claims (sub, email)' 
+        });
+      }
+
+      // Check for replay attack - verify jti hasn't been used
+      if (jti) {
+        const [existingToken] = await db
+          .select()
+          .from(ssoTokens)
+          .where(eq(ssoTokens.token, jti))
+          .limit(1);
+
+        if (existingToken) {
+          console.warn(`Replay attack detected: JWT ID ${jti} already consumed`);
+          return res.status(400).json({ message: 'Token already used' });
+        }
+
+        // Store jti to prevent replay
+        await db.insert(ssoTokens).values({
+          token: jti,
+          clientId,
+          adminId: decoded.adminId || 'crm-admin',
+          reason: decoded.reason || 'CRM JWT SSO login',
+          ipAddress: req.ip,
+          consumed: true,
+          consumedAt: new Date(),
+          expiresAt: new Date(decoded.exp * 1000), // Convert JWT exp to Date
+        });
+      }
+
+      // Verify client exists
+      const [client] = await db
+        .select()
+        .from(clients)
+        .where(eq(clients.id, clientId))
+        .limit(1);
+
+      if (!client) {
+        return res.status(404).json({ message: 'Client not found' });
+      }
+
+      // Verify email matches (additional security check)
+      if (client.email !== email) {
+        console.error(`Email mismatch: JWT=${email}, DB=${client.email}`);
+        return res.status(400).json({ message: 'Invalid token: email mismatch' });
+      }
+
+      // Log impersonation event
+      const { AuditService } = await import('./services/audit.service');
+      await AuditService.log({
+        userId: decoded.adminId || 'crm-admin',
+        action: 'impersonation',
+        targetType: 'client',
+        targetId: clientId,
+        details: {
+          reason: decoded.reason || 'CRM JWT SSO login',
+          method: 'jwt_sso',
+          jwtId: jti,
+          email,
+        },
+        ipAddress: req.ip,
+        userAgent: req.headers['user-agent'],
+      });
+
+      // Generate access and refresh tokens
+      const { AuthService } = await import('./services/auth.service');
+      const accessToken = AuthService.generateAccessToken(clientId);
+      const refreshToken = AuthService.generateRefreshToken(clientId);
+
+      // Redirect to dashboard with tokens
+      res.redirect(`/dashboard?accessToken=${accessToken}&refreshToken=${refreshToken}`);
+    } catch (error: any) {
+      console.error('SSO consume error:', error);
       res.status(500).json({ message: error.message });
     }
   });
