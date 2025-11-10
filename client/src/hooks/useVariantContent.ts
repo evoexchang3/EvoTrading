@@ -4,7 +4,7 @@
  */
 
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { variantContentRegistry, VariantContent, PageContent } from '@/content/variantContent';
+import { variantContentRegistry, VariantContent } from '@/content/variantContent';
 
 export function useVariantContent() {
   const { activeVariant } = useSiteConfig();
@@ -15,8 +15,8 @@ export function useVariantContent() {
   /**
    * Get content for a specific page
    */
-  function getPageContent(page: keyof VariantContent): Partial<PageContent> {
-    return variantContent[page] || {};
+  function getPageContent<K extends keyof VariantContent>(page: K): VariantContent[K] {
+    return variantContent[page] || ({} as VariantContent[K]);
   }
 
   return {
