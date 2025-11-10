@@ -13,6 +13,7 @@ import { Loader2 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
+import { useVariantContent } from "@/hooks/useVariantContent";
 import {
   VariantSection,
   VariantContainer,
@@ -28,6 +29,12 @@ export default function ContactPage() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const { config, loading } = useSiteConfig();
+  const { getPageContent } = useVariantContent();
+  const contactContent = getPageContent('contact');
+  
+  if (!contactContent) {
+    return null;
+  }
   
   const supportEmail = loading ? "support@tradingplatform.com" : (config.branding?.supportEmail || "support@tradingplatform.com");
   
@@ -76,28 +83,11 @@ export default function ContactPage() {
     contactMutation.mutate(data);
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: t('contact.info.emailSupport.title'),
-      description: supportEmail,
-    },
-    {
-      icon: Clock,
-      title: t('contact.info.supportHours.title'),
-      description: t('contact.info.supportHours.value'),
-    },
-    {
-      icon: MapPin,
-      title: t('contact.info.officeAddress.title'),
-      description: `${t('contact.info.officeAddress.line1')}\n${t('contact.info.officeAddress.line2')}`,
-    },
-    {
-      icon: MessageSquare,
-      title: t('contact.info.liveChat.title'),
-      description: t('contact.info.liveChat.value'),
-    },
-  ];
+  const infoIcons = [Mail, Clock, MapPin, MessageSquare];
+  const contactInfo = contactContent.info?.items?.map((item: {title: string; description: string}, index: number) => ({
+    ...item,
+    icon: infoIcons[index % infoIcons.length],
+  })) || [];
 
   return (
     <LandingLayout>
@@ -107,23 +97,26 @@ export default function ContactPage() {
         keywords={t('contact.seo.keywords')}
       />
       
-      <VariantPageHeader
-        title={t('contact.hero.title')}
-        subtitle={t('contact.hero.subtitle')}
-        titleTestId="text-contact-title"
-      />
+      {contactContent.hero && (
+        <VariantPageHeader
+          title={contactContent.hero.title}
+          subtitle={contactContent.hero.subtitle}
+          titleTestId="text-contact-title"
+        />
+      )}
 
       <VariantSection>
         <VariantContainer>
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <VariantCard>
-                <CardHeader>
-                  <CardTitle>{t('contact.form.title')}</CardTitle>
-                  <CardDescription>
-                    {t('contact.form.description')}
-                  </CardDescription>
-                </CardHeader>
+              {contactContent.form && (
+                <VariantCard>
+                  <CardHeader>
+                    <CardTitle>{contactContent.form.title}</CardTitle>
+                    <CardDescription>
+                      {contactContent.form.description}
+                    </CardDescription>
+                  </CardHeader>
                 <CardContent>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <div className="space-y-2">
@@ -201,11 +194,12 @@ export default function ContactPage() {
                     </Button>
                   </form>
                 </CardContent>
-              </VariantCard>
+                </VariantCard>
+              )}
             </div>
 
             <div className="space-y-6">
-              {contactInfo.map((info, index) => {
+              {contactInfo.map((info: {title: string; description: string; icon: any}, index: number) => {
                 const Icon = info.icon;
                 return (
                   <VariantCard key={index}>
@@ -227,6 +221,22 @@ export default function ContactPage() {
           </div>
         </VariantContainer>
       </VariantSection>
+
+      {contactContent.cta && (
+        <VariantSection background="muted">
+          <VariantContainer>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-4">{contactContent.cta.headline}</h2>
+              <p className="text-lg text-muted-foreground mb-8">{contactContent.cta.description}</p>
+              {contactContent.cta.buttonText && (
+                <Button size="lg" data-testid="button-cta">
+                  {contactContent.cta.buttonText}
+                </Button>
+              )}
+            </div>
+          </VariantContainer>
+        </VariantSection>
+      )}
     </LandingLayout>
   );
 }
