@@ -17,6 +17,14 @@ export interface PageContent {
     subheadline: string;
     cta: string;
   };
+  features: {
+    title: string;
+    subtitle: string;
+    items: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
   benefits: {
     title: string;
     items: Array<{
@@ -24,10 +32,21 @@ export interface PageContent {
       description: string;
     }>;
   };
+  stats: {
+    currencyPairs: string;
+    cryptoAssets: string;
+    customerSupport: string;
+    avgExecutionTime: string;
+  };
   cta: {
     headline: string;
     description: string;
     buttonText: string;
+    learnMore: string;
+  };
+  seo: {
+    title: string;
+    description: string;
   };
 }
 
@@ -178,6 +197,36 @@ const variant1Content: VariantContent = {
       subheadline: 'Access enterprise-level execution technology with institutional pricing models and advanced risk management protocols.',
       cta: 'Access Platform',
     },
+    features: {
+      title: 'Enterprise-Grade Execution Capabilities',
+      subtitle: 'Institutional infrastructure engineered for professional market participants requiring sophisticated trading solutions.',
+      items: [
+        {
+          title: 'Sub-Millisecond Execution',
+          description: 'Low-latency infrastructure with co-located servers ensuring institutional-grade execution speeds across all asset classes.',
+        },
+        {
+          title: 'Bank-Level Security Framework',
+          description: 'Multi-layer security architecture with institutional custody solutions and real-time threat monitoring systems.',
+        },
+        {
+          title: 'Continuous Market Access',
+          description: 'Uninterrupted trading infrastructure with enterprise SLA guarantees and redundant system architecture.',
+        },
+        {
+          title: 'Transparent Pricing Model',
+          description: 'Institutional pricing structure with full cost transparency, competitive spreads, and volume-based pricing tiers.',
+        },
+        {
+          title: 'Professional Analytics Suite',
+          description: 'Institutional-grade charting platform with advanced technical indicators and algorithmic trading capabilities.',
+        },
+        {
+          title: 'Global Market Coverage',
+          description: 'Comprehensive access to international markets with institutional liquidity across FX, equities, commodities, and digital assets.',
+        },
+      ],
+    },
     benefits: {
       title: 'Enterprise Trading Capabilities',
       items: [
@@ -195,10 +244,21 @@ const variant1Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Major Currency Pairs',
+      cryptoAssets: 'Digital Asset Instruments',
+      customerSupport: 'Enterprise Support',
+      avgExecutionTime: 'Average Execution Latency',
+    },
     cta: {
       headline: 'Deploy Your Trading Strategy',
       description: 'Join institutional traders leveraging our enterprise infrastructure.',
       buttonText: 'Request Access',
+      learnMore: 'View Documentation',
+    },
+    seo: {
+      title: 'Institutional Trading Platform - Enterprise Execution Infrastructure',
+      description: 'Institutional-grade trading infrastructure with enterprise execution technology, advanced risk management, and tier-1 liquidity access for professional traders.',
     },
   },
   about: {
@@ -430,6 +490,36 @@ const variant2Content: VariantContent = {
       subheadline: 'Experience next-generation trading with intelligent tools designed for modern traders who demand speed and simplicity.',
       cta: 'Start Trading',
     },
+    features: {
+      title: 'Everything You Need to Trade Better',
+      subtitle: 'Modern trading tools built for speed, simplicity, and success.',
+      items: [
+        {
+          title: 'Lightning Execution',
+          description: 'Blazing-fast order processing that keeps you ahead of the market with every trade.',
+        },
+        {
+          title: 'Fort Knox Security',
+          description: 'Your funds protected by military-grade encryption and multi-factor authentication.',
+        },
+        {
+          title: 'Trade Anytime, Anywhere',
+          description: 'Markets never sleep, and neither do we. Full platform access 24/7 on any device.',
+        },
+        {
+          title: 'Zero Hidden Fees',
+          description: 'What you see is what you pay. Simple, transparent pricing with no surprises.',
+        },
+        {
+          title: 'Smart Tools, Smarter Trades',
+          description: 'AI-powered charts and analytics that help you spot opportunities before everyone else.',
+        },
+        {
+          title: 'Trade Everything',
+          description: 'From crypto to forex, stocks to commodities—all your favorite markets in one place.',
+        },
+      ],
+    },
     benefits: {
       title: 'Why Traders Choose Us',
       items: [
@@ -447,10 +537,21 @@ const variant2Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Trading Pairs',
+      cryptoAssets: 'Crypto Assets',
+      customerSupport: 'Always-On Support',
+      avgExecutionTime: 'Execution Speed',
+    },
     cta: {
       headline: 'Ready to Level Up Your Trading?',
       description: 'Join thousands of traders who upgraded to smarter trading.',
       buttonText: 'Get Started Free',
+      learnMore: 'Explore Features',
+    },
+    seo: {
+      title: 'Smart Trading Platform - Modern Tools for Today\'s Traders',
+      description: 'Experience next-generation trading with AI-powered tools, lightning-fast execution, and zero hidden fees. Start trading smarter today.',
     },
   },
   about: {
@@ -682,6 +783,36 @@ const variant3Content: VariantContent = {
       subheadline: 'Partner with a trusted financial institution offering sophisticated investment solutions and personalized wealth management services.',
       cta: 'Schedule Consultation',
     },
+    features: {
+      title: 'Conservative Investment Capabilities',
+      subtitle: 'Time-tested financial services designed to preserve capital while generating sustainable long-term returns.',
+      items: [
+        {
+          title: 'Prudent Order Execution',
+          description: 'Reliable trade processing with established banking infrastructure ensuring steady, dependable market access.',
+        },
+        {
+          title: 'Trust-Based Security',
+          description: 'Conservative risk controls with segregated accounts and fiduciary-grade fund protection standards.',
+        },
+        {
+          title: 'Consistent Availability',
+          description: 'Dependable access to markets with traditional business hours support and steady platform reliability.',
+        },
+        {
+          title: 'Transparent Fee Structure',
+          description: 'Straightforward pricing with no hidden charges—clear statements reflecting all costs and commissions.',
+        },
+        {
+          title: 'Established Research Tools',
+          description: 'Time-proven analytical resources with fundamental research and conservative investment methodologies.',
+        },
+        {
+          title: 'Diversified Market Access',
+          description: 'Access to established markets including blue-chip equities, government bonds, and stable currency pairs.',
+        },
+      ],
+    },
     benefits: {
       title: 'Premium Financial Services',
       items: [
@@ -699,10 +830,21 @@ const variant3Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Traditional Currency Pairs',
+      cryptoAssets: 'Established Digital Assets',
+      customerSupport: 'Private Banking Support',
+      avgExecutionTime: 'Standard Settlement Time',
+    },
     cta: {
       headline: 'Begin Your Wealth Journey',
       description: 'Discover how our private banking services can help achieve your financial goals.',
       buttonText: 'Speak with Advisor',
+      learnMore: 'Investment Philosophy',
+    },
+    seo: {
+      title: 'Wealth Management & Private Banking Services',
+      description: 'Conservative investment solutions with personalized wealth management, legacy planning, and dedicated relationship managers for long-term capital preservation.',
     },
   },
   about: {
@@ -924,6 +1066,36 @@ const variant4Content: VariantContent = {
       subheadline: 'Trade digital assets with complete transparency on a platform built for the blockchain generation.',
       cta: 'Connect Wallet',
     },
+    features: {
+      title: 'Web3 Trading Revolution',
+      subtitle: 'Blockchain-powered trading infrastructure bringing trustless execution and permissionless access to digital asset markets.',
+      items: [
+        {
+          title: 'Instant On-Chain Settlement',
+          description: 'Lightning-fast blockchain execution with smart contract automation ensuring trustless, immediate trade finality.',
+        },
+        {
+          title: 'Non-Custodial Security',
+          description: 'Your keys, your crypto. Self-custody architecture with multi-sig protection and zero counterparty risk.',
+        },
+        {
+          title: 'Always-On Decentralization',
+          description: 'Unstoppable protocol running 24/7/365 with no downtime—truly permissionless global market access.',
+        },
+        {
+          title: 'Zero Platform Fees',
+          description: 'Only network gas fees—no trading commissions, no spreads, no hidden charges. Pure DeFi economics.',
+        },
+        {
+          title: 'Advanced DeFi Tools',
+          description: 'Real-time on-chain analytics, yield optimization algorithms, and cross-chain liquidity aggregation.',
+        },
+        {
+          title: 'Multi-Chain Universe',
+          description: 'Trade across Ethereum, BSC, Polygon, Avalanche, Arbitrum, and 20+ blockchains from one interface.',
+        },
+      ],
+    },
     benefits: {
       title: 'Web3 Trading Advantages',
       items: [
@@ -941,10 +1113,21 @@ const variant4Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Token Pairs',
+      cryptoAssets: 'Listed Cryptocurrencies',
+      customerSupport: 'Community Support Channels',
+      avgExecutionTime: 'Block Confirmation Time',
+    },
     cta: {
       headline: 'Enter the Decentralized Future',
       description: 'Join the Web3 revolution with trustless, permissionless trading.',
       buttonText: 'Launch dApp',
+      learnMore: 'Protocol Documentation',
+    },
+    seo: {
+      title: 'Decentralized Crypto Exchange - Web3 Trading Platform',
+      description: 'Trade digital assets with complete transparency on our blockchain-powered platform. Non-custodial, trustless, permissionless trading across 20+ chains.',
     },
   },
   about: {
@@ -1166,6 +1349,36 @@ const variant5Content: VariantContent = {
       subheadline: 'Join a vibrant community of traders sharing strategies, insights, and success stories in real-time.',
       cta: 'Join Community',
     },
+    features: {
+      title: 'Exclusive Premium Trading Experience',
+      subtitle: 'Luxury financial services crafted for discerning investors who demand excellence in every aspect of trading.',
+      items: [
+        {
+          title: 'Priority Execution Service',
+          description: 'White-glove order processing with dedicated execution team ensuring preferred market access and premium fills.',
+        },
+        {
+          title: 'Vault-Grade Asset Protection',
+          description: 'Swiss-standard security with private custody solutions, biometric authentication, and discretionary fund management.',
+        },
+        {
+          title: 'Concierge-Level Availability',
+          description: 'Personal account specialists available around the clock to serve your trading and portfolio management needs.',
+        },
+        {
+          title: 'Bespoke Pricing Terms',
+          description: 'Negotiated spreads and personalized fee arrangements reflecting your exclusive status and trading volume.',
+        },
+        {
+          title: 'Elite Research Access',
+          description: 'Proprietary market intelligence, private investment opportunities, and exclusive analyst briefings.',
+        },
+        {
+          title: 'Curated Market Selection',
+          description: 'Access to premium instruments including private placements, pre-IPO opportunities, and exclusive fund offerings.',
+        },
+      ],
+    },
     benefits: {
       title: 'Social Trading Benefits',
       items: [
@@ -1183,10 +1396,21 @@ const variant5Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Premium Currency Pairs',
+      cryptoAssets: 'Select Digital Assets',
+      customerSupport: 'Dedicated Concierge',
+      avgExecutionTime: 'Priority Processing',
+    },
     cta: {
       headline: 'Start Your Trading Journey with Friends',
       description: 'Never trade alone again. Learn from the best, share your wins.',
       buttonText: 'Explore Traders',
+      learnMore: 'Membership Benefits',
+    },
+    seo: {
+      title: 'Premium Luxury Trading - Exclusive Investment Services',
+      description: 'Exclusive trading platform for discerning investors. White-glove service, priority execution, and bespoke pricing for premium clients.',
     },
   },
   about: {
@@ -1406,6 +1630,36 @@ const variant6Content: VariantContent = {
       subheadline: 'Deploy sophisticated trading algorithms without writing code. Backtest, optimize, and automate your strategies.',
       cta: 'Build Strategy',
     },
+    features: {
+      title: 'Clean. Simple. Powerful.',
+      subtitle: 'Essential algorithmic trading infrastructure with zero unnecessary complexity.',
+      items: [
+        {
+          title: 'Instant Algorithm Deployment',
+          description: 'One-click strategy execution with minimal latency. Clean, efficient, no bloat.',
+        },
+        {
+          title: 'Simple Security Model',
+          description: 'API-key based authentication with read-only market access. Straightforward protection.',
+        },
+        {
+          title: 'Continuous Operation',
+          description: '24/7 algorithm execution with automatic failover. Always running, always simple.',
+        },
+        {
+          title: 'Fixed Pricing',
+          description: 'One flat monthly fee. No commissions, no hidden costs. Clear and simple.',
+        },
+        {
+          title: 'Minimal Interface Tools',
+          description: 'Essential metrics only. Clean dashboards showing exactly what matters—nothing more.',
+        },
+        {
+          title: 'Curated Market Data',
+          description: 'Major pairs and leading assets only. Quality over quantity in every feed.',
+        },
+      ],
+    },
     benefits: {
       title: 'Automated Trading Power',
       items: [
@@ -1423,10 +1677,21 @@ const variant6Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Supported Pairs',
+      cryptoAssets: 'Digital Assets',
+      customerSupport: 'Tech Support',
+      avgExecutionTime: 'Execution Time',
+    },
     cta: {
       headline: 'Automate Your Trading Edge',
       description: 'Let algorithms handle the execution while you focus on strategy.',
       buttonText: 'Start Building',
+      learnMore: 'Platform Docs',
+    },
+    seo: {
+      title: 'Minimalist Algorithmic Trading - Clean & Efficient',
+      description: 'Deploy trading algorithms without complexity. Clean interface, simple pricing, and essential tools for systematic traders. Start automating today.',
     },
   },
   about: {
@@ -1645,6 +1910,36 @@ const variant7Content: VariantContent = {
       subheadline: 'Trade forex, stocks, crypto, and commodities without paying a single cent in commissions or hidden fees.',
       cta: 'Trade Free',
     },
+    features: {
+      title: 'Adventure Trading Unleashed',
+      subtitle: 'High-energy trading platform built for thrill-seekers and opportunity hunters who live for the adrenaline rush.',
+      items: [
+        {
+          title: 'Rocket-Speed Execution',
+          description: 'Blazing-fast order fills that capture explosive market moves before they vanish. No lag, pure action.',
+        },
+        {
+          title: 'Fortress-Level Security',
+          description: 'Battle-tested protection safeguarding your capital while you chase high-reward opportunities fearlessly.',
+        },
+        {
+          title: 'Non-Stop Action',
+          description: 'Markets never sleep and neither do we. Trade around the clock chasing opportunities across time zones.',
+        },
+        {
+          title: 'Zero-Fee Revolution',
+          description: 'No commissions eating your gains. Keep every penny of profit from your winning trades.',
+        },
+        {
+          title: 'Power Tools',
+          description: 'Advanced charting and analysis weaponry to spot breakouts, reversals, and explosive trading setups.',
+        },
+        {
+          title: 'Unlimited Markets',
+          description: 'Volatile forex, surging cryptos, commodity rallies—chase profits wherever opportunities explode.',
+        },
+      ],
+    },
     benefits: {
       title: 'Transparent Pricing Benefits',
       items: [
@@ -1662,10 +1957,21 @@ const variant7Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Action-Packed Pairs',
+      cryptoAssets: 'Volatile Crypto Assets',
+      customerSupport: 'Round-the-Clock Backup',
+      avgExecutionTime: 'Lightning Execution',
+    },
     cta: {
       headline: 'Start Trading for Free Today',
       description: 'More profit in your pocket with every trade.',
       buttonText: 'Open Free Account',
+      learnMore: 'Adventure Awaits',
+    },
+    seo: {
+      title: 'Adventure Trading Platform - Zero Commissions',
+      description: 'High-energy trading with zero commissions. Chase explosive opportunities 24/7 across forex, crypto, and commodities. Free to trade, built for action.',
     },
   },
   about: {
@@ -1884,6 +2190,36 @@ const variant8Content: VariantContent = {
       subheadline: 'Advanced technical analysis platform with institutional-quality charting and data feeds.',
       cta: 'Explore Platform',
     },
+    features: {
+      title: 'Academic-Grade Trading Infrastructure',
+      subtitle: 'Rigorous, research-backed trading platform designed for methodical analysis and evidence-based decision making.',
+      items: [
+        {
+          title: 'Precision Order Execution',
+          description: 'Scientifically optimized execution algorithms with documented performance metrics and comprehensive audit trails.',
+        },
+        {
+          title: 'Research-Grade Security',
+          description: 'Academically validated encryption protocols with peer-reviewed security architecture and continuous monitoring.',
+        },
+        {
+          title: 'Systematic Market Access',
+          description: 'Continuous platform availability with documented uptime statistics and redundant infrastructure systems.',
+        },
+        {
+          title: 'Transparent Fee Framework',
+          description: 'Clearly documented pricing structure with published transaction cost analysis and comprehensive fee disclosure.',
+        },
+        {
+          title: 'Professional Research Tools',
+          description: 'Evidence-based analytical platform with scholarly-grade indicators and peer-reviewed technical methodologies.',
+        },
+        {
+          title: 'Comprehensive Market Coverage',
+          description: 'Systematic access to global instruments with structured product taxonomy and academic market classification.',
+        },
+      ],
+    },
     benefits: {
       title: 'Professional Analysis Tools',
       items: [
@@ -1901,10 +2237,21 @@ const variant8Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Analyzed Currency Pairs',
+      cryptoAssets: 'Researched Digital Assets',
+      customerSupport: 'Educational Support',
+      avgExecutionTime: 'Documented Execution',
+    },
     cta: {
       headline: 'Upgrade Your Market Analysis',
       description: 'Professional traders deserve professional tools.',
       buttonText: 'Access Tools',
+      learnMore: 'Research Library',
+    },
+    seo: {
+      title: 'Academic Trading Platform - Research-Based Analysis',
+      description: 'Evidence-based trading with academic-grade tools. Professional charting, real-time data, and research-backed methodologies for serious traders.',
     },
   },
   about: {
@@ -2123,6 +2470,36 @@ const variant9Content: VariantContent = {
       subheadline: 'Start your investment journey with guided tutorials, demo accounts, and educational resources designed for newcomers.',
       cta: 'Learn & Trade',
     },
+    features: {
+      title: 'Disrupt Traditional Finance',
+      subtitle: 'Revolutionary trading platform challenging legacy brokers with bold innovation and startup-speed execution.',
+      items: [
+        {
+          title: 'Disruptive Speed Execution',
+          description: 'Break-the-mold order processing that challenges industry giants with startup agility and tech-first innovation.',
+        },
+        {
+          title: 'Next-Gen Security',
+          description: 'Rethinking asset protection with cutting-edge biometrics, AI monitoring, and zero-trust architecture.',
+        },
+        {
+          title: 'Relentless Availability',
+          description: 'Never-down platform built on cloud-native infrastructure designed for unstoppable uptime.',
+        },
+        {
+          title: 'Radical Pricing Transparency',
+          description: 'Disrupting the fee-heavy status quo with honest, visible pricing that challenges old-school broker markups.',
+        },
+        {
+          title: 'Innovation-First Tools',
+          description: 'AI-powered analytics and machine learning insights that make Wall Street tools accessible to everyone.',
+        },
+        {
+          title: 'Unrestricted Market Access',
+          description: 'Breaking down barriers to global markets—trade what you want, when you want, wherever you are.',
+        },
+      ],
+    },
     benefits: {
       title: 'Perfect for Beginners',
       items: [
@@ -2140,10 +2517,21 @@ const variant9Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Tradable Pairs',
+      cryptoAssets: 'Crypto Offerings',
+      customerSupport: 'Startup-Speed Support',
+      avgExecutionTime: 'Rapid Fill Time',
+    },
     cta: {
       headline: 'Begin Your Trading Education',
       description: 'Everyone starts somewhere. Start here, start smart.',
       buttonText: 'Start Learning',
+      learnMore: 'Our Revolution',
+    },
+    seo: {
+      title: 'Startup Trading Disruptor - Bold Innovation',
+      description: 'Revolutionary trading platform disrupting traditional finance. AI-powered tools, radical transparency, and startup-speed execution challenging legacy brokers.',
     },
   },
   about: {
@@ -2362,6 +2750,36 @@ const variant10Content: VariantContent = {
       subheadline: 'Access up to 1:500 leverage with built-in safeguards, margin monitoring, and automated risk management.',
       cta: 'Maximize Potential',
     },
+    features: {
+      title: 'Established Trading Excellence',
+      subtitle: 'Time-honored brokerage services delivering traditional execution standards with proven reliability and professional-grade infrastructure.',
+      items: [
+        {
+          title: 'Proven Order Processing',
+          description: 'Decades-refined execution technology built on established protocols ensuring consistent, reliable trade placement.',
+        },
+        {
+          title: 'Traditional Security Standards',
+          description: 'Classic risk management with segregated client accounts following long-established regulatory frameworks.',
+        },
+        {
+          title: 'Standard Market Hours',
+          description: 'Dependable platform availability aligned with traditional market sessions and established trading schedules.',
+        },
+        {
+          title: 'Conventional Fee Structure',
+          description: 'Straightforward commission model reflecting industry-standard pricing without complex calculations.',
+        },
+        {
+          title: 'Established Analysis Tools',
+          description: 'Classic charting and technical analysis following proven methodologies trusted by generations of traders.',
+        },
+        {
+          title: 'Traditional Market Access',
+          description: 'Focus on established instruments—major forex pairs, blue-chip stocks, and time-tested commodities.',
+        },
+      ],
+    },
     benefits: {
       title: 'Leverage Trading Features',
       items: [
@@ -2379,10 +2797,21 @@ const variant10Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Established Pairs',
+      cryptoAssets: 'Select Cryptocurrencies',
+      customerSupport: 'Traditional Support',
+      avgExecutionTime: 'Standard Processing',
+    },
     cta: {
       headline: 'Amplify Your Trading Power',
       description: 'Leverage magnifies both profits and risks. Trade responsibly.',
       buttonText: 'Understand Leverage',
+      learnMore: 'Broker History',
+    },
+    seo: {
+      title: 'Classic Broker - Traditional Trading Services',
+      description: 'Established brokerage with time-honored trading services. Proven execution, traditional market access, and decades of reliable service.',
     },
   },
   about: {
@@ -2601,6 +3030,36 @@ const variant11Content: VariantContent = {
       subheadline: 'Trade with confidence knowing your account adheres to Islamic finance principles with zero overnight interest.',
       cta: 'Open Islamic Account',
     },
+    features: {
+      title: 'Trade Together, Win Together',
+      subtitle: 'Community-driven trading platform where collaboration, knowledge sharing, and collective success define the experience.',
+      items: [
+        {
+          title: 'Social Execution Network',
+          description: 'Copy successful traders or share your strategies with the community. Collaborative trading amplifies everyone\'s potential.',
+        },
+        {
+          title: 'Community-Verified Security',
+          description: 'Multi-layered protection backed by community oversight, verified trader profiles, and transparent track records.',
+        },
+        {
+          title: 'Round-the-Clock Community',
+          description: 'Global trading community active 24/7 sharing insights, signals, and support across all market sessions.',
+        },
+        {
+          title: 'Transparent Community Fees',
+          description: 'Clear, visible pricing with community-reviewed fee structures. No hidden costs, community-vetted transparency.',
+        },
+        {
+          title: 'Collaborative Analysis Tools',
+          description: 'Share charts, discuss strategies, and analyze markets together with integrated social trading features.',
+        },
+        {
+          title: 'Community Market Access',
+          description: 'Trade popular instruments favored by the community—from trending cryptos to high-volume forex pairs.',
+        },
+      ],
+    },
     benefits: {
       title: 'Sharia-Compliant Features',
       items: [
@@ -2618,10 +3077,21 @@ const variant11Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Popular Trading Pairs',
+      cryptoAssets: 'Community Favorite Cryptos',
+      customerSupport: 'Community + Support',
+      avgExecutionTime: 'Fast Social Execution',
+    },
     cta: {
       headline: 'Trade in Accordance with Your Faith',
       description: 'Ethical trading that respects Islamic financial principles.',
       buttonText: 'Learn More',
+      learnMore: 'Join the Community',
+    },
+    seo: {
+      title: 'Social Trading Community - Copy & Share Strategies',
+      description: 'Join the trading community. Copy expert traders, share strategies, and learn together. Social trading platform where everyone wins together.',
     },
   },
   about: {
@@ -2840,6 +3310,36 @@ const variant12Content: VariantContent = {
       subheadline: 'Full-featured mobile app with fingerprint login, push notifications, and one-tap trading.',
       cta: 'Download App',
     },
+    features: {
+      title: 'Data-Driven Trading Intelligence',
+      subtitle: 'Quantitative platform leveraging statistical analysis, machine learning, and big data for systematic trading advantage.',
+      items: [
+        {
+          title: 'Algorithmic Execution',
+          description: 'Data-optimized order routing using statistical models to minimize slippage and maximize execution quality metrics.',
+        },
+        {
+          title: 'Quantitative Security',
+          description: 'Risk quantification frameworks with statistical monitoring, anomaly detection, and probability-based threat assessment.',
+        },
+        {
+          title: 'Continuous Data Feed',
+          description: '24/7 real-time data streams with microsecond timestamps enabling high-frequency analysis and backtesting.',
+        },
+        {
+          title: 'Predictive Pricing Model',
+          description: 'Machine learning-powered fee optimization with transparent cost analysis and statistical performance attribution.',
+        },
+        {
+          title: 'Advanced Analytics Suite',
+          description: 'Statistical indicators, regression analysis, correlation matrices, and ML-powered pattern recognition tools.',
+        },
+        {
+          title: 'Multi-Asset Data Access',
+          description: 'Comprehensive historical and real-time data across asset classes for quantitative research and analysis.',
+        },
+      ],
+    },
     benefits: {
       title: 'Mobile-First Features',
       items: [
@@ -2857,10 +3357,21 @@ const variant12Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Data Points Available',
+      cryptoAssets: 'Analyzed Assets',
+      customerSupport: 'Data Science Support',
+      avgExecutionTime: 'Processing Latency',
+    },
     cta: {
       headline: 'Take Trading in Your Pocket',
       description: 'Desktop power in a mobile package.',
       buttonText: 'Get Mobile App',
+      learnMore: 'Data Documentation',
+    },
+    seo: {
+      title: 'Data Science Trading - Quantitative Analysis Platform',
+      description: 'Trade with data-driven intelligence. Machine learning analytics, statistical tools, and quantitative research for systematic traders.',
     },
   },
   about: {
@@ -3079,6 +3590,36 @@ const variant13Content: VariantContent = {
       subheadline: 'Unlock premium features, dedicated account managers, and institutional pricing with our VIP membership.',
       cta: 'Apply for VIP',
     },
+    features: {
+      title: 'Trading That Gets You',
+      subtitle: 'Modern platform built for how millennials actually trade—mobile-first, social-connected, and no BS.',
+      items: [
+        {
+          title: 'One-Tap Execution',
+          description: 'Swipe to trade. Seriously. Lightning-fast mobile execution optimized for how you actually use your phone.',
+        },
+        {
+          title: 'Legit Security',
+          description: 'Face ID, Touch ID, plus bank-level encryption. Your money stays yours, period.',
+        },
+        {
+          title: 'Always-On Markets',
+          description: 'Trade literally whenever—2am crypto moves or lunch break stocks. Markets don\'t sleep, neither do we.',
+        },
+        {
+          title: 'Honest Fees',
+          description: 'What you see is what you pay. Zero hidden charges, zero surprise fees. Just straight-up transparent pricing.',
+        },
+        {
+          title: 'Smart Tools',
+          description: 'Clean charts, AI signals, portfolio tracking. Professional tools without the complicated BS.',
+        },
+        {
+          title: 'Your Favorite Markets',
+          description: 'Trade the stuff you actually care about—Tesla, Bitcoin, Apple, ETH. All the trending assets in one app.',
+        },
+      ],
+    },
     benefits: {
       title: 'VIP Member Benefits',
       items: [
@@ -3096,10 +3637,21 @@ const variant13Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Pairs to Trade',
+      cryptoAssets: 'Crypto Options',
+      customerSupport: 'Always-On Chat',
+      avgExecutionTime: 'Super Fast Fills',
+    },
     cta: {
       headline: 'Elevate Your Trading Experience',
       description: 'VIP treatment for VIP traders.',
       buttonText: 'View Requirements',
+      learnMore: 'Check Features',
+    },
+    seo: {
+      title: 'Millennial Trading App - Modern & Mobile-First',
+      description: 'Trading that actually makes sense. Mobile-first platform with one-tap execution, honest fees, and all your favorite assets. Built for how you trade.',
     },
   },
   about: {
@@ -3141,6 +3693,36 @@ const variant14Content: VariantContent = {
       subheadline: 'Lightning-fast deposits via credit card, e-wallets, crypto, and instant bank transfers.',
       cta: 'Fund Account',
     },
+    features: {
+      title: 'Enterprise-Level Trading Infrastructure',
+      subtitle: 'Corporate-grade platform delivering professional trading capabilities with institutional oversight and compliance frameworks.',
+      items: [
+        {
+          title: 'Corporate Execution Standards',
+          description: 'Enterprise-class order processing with SLA guarantees, compliance reporting, and audit trail capabilities.',
+        },
+        {
+          title: 'Enterprise Security Framework',
+          description: 'Corporate-grade security with SSO integration, role-based access controls, and comprehensive audit logging.',
+        },
+        {
+          title: 'Business Hours Support',
+          description: 'Dedicated corporate support team available 24/5 with SLA response times and escalation procedures.',
+        },
+        {
+          title: 'Corporate Fee Structure',
+          description: 'Volume-based enterprise pricing with transparent fee schedules and comprehensive cost reporting.',
+        },
+        {
+          title: 'Professional Tools Suite',
+          description: 'Enterprise analytics platform with multi-user support, team collaboration, and centralized reporting.',
+        },
+        {
+          title: 'Corporate Market Access',
+          description: 'Comprehensive instrument coverage with institutional liquidity and corporate account management.',
+        },
+      ],
+    },
     benefits: {
       title: 'Funding Convenience',
       items: [
@@ -3158,10 +3740,21 @@ const variant14Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Enterprise Instruments',
+      cryptoAssets: 'Corporate-Approved Assets',
+      customerSupport: 'Corporate Support Desk',
+      avgExecutionTime: 'SLA Execution Time',
+    },
     cta: {
       headline: 'Start Trading Immediately',
       description: 'No waiting. No delays. Just instant access to markets.',
       buttonText: 'Deposit Now',
+      learnMore: 'Corporate Solutions',
+    },
+    seo: {
+      title: 'Enterprise Trading Platform - Corporate Solutions',
+      description: 'Corporate-grade trading infrastructure with enterprise security, SLA support, and institutional execution for professional organizations.',
     },
   },
   about: {
@@ -3203,6 +3796,36 @@ const variant15Content: VariantContent = {
       subheadline: 'Multi-jurisdictional regulation, segregated client funds, and tier-1 banking relationships ensure your capital is protected.',
       cta: 'Trust & Safety',
     },
+    features: {
+      title: 'Sustainable Trading for a Better Planet',
+      subtitle: 'Values-driven platform combining responsible investing with environmental consciousness and ethical market participation.',
+      items: [
+        {
+          title: 'Carbon-Neutral Execution',
+          description: 'Every trade offset with renewable energy credits. Climate-positive operations supporting global sustainability goals.',
+        },
+        {
+          title: 'Ethical Security Standards',
+          description: 'Responsible data practices with green data centers and sustainable infrastructure protecting both assets and environment.',
+        },
+        {
+          title: 'Always-Available Responsibly',
+          description: '24/7 market access powered by renewable energy with ongoing commitment to reducing platform carbon footprint.',
+        },
+        {
+          title: 'Transparent Conscious Pricing',
+          description: 'Fair fees with portion donated to environmental causes. Clear pricing supporting sustainable business practices.',
+        },
+        {
+          title: 'ESG-Integrated Tools',
+          description: 'Analytics highlighting sustainable investments, ESG scores, and tools for values-aligned portfolio construction.',
+        },
+        {
+          title: 'Responsible Market Access',
+          description: 'Focus on sustainable companies, green bonds, and ESG-screened instruments supporting positive global impact.',
+        },
+      ],
+    },
     benefits: {
       title: 'Security & Compliance',
       items: [
@@ -3220,10 +3843,21 @@ const variant15Content: VariantContent = {
         },
       ],
     },
+    stats: {
+      currencyPairs: 'Sustainable Instruments',
+      cryptoAssets: 'Green Digital Assets',
+      customerSupport: 'Conscious Support',
+      avgExecutionTime: 'Carbon-Offset Speed',
+    },
     cta: {
       headline: 'Trade with Confidence',
       description: 'Decade of trust, transparency, and regulatory compliance.',
       buttonText: 'View Licenses',
+      learnMore: 'Our Impact',
+    },
+    seo: {
+      title: 'Eco-Conscious Trading - Sustainable Investing Platform',
+      description: 'Values-driven trading platform. Carbon-neutral operations, ESG-integrated tools, and responsible investing supporting positive environmental impact.',
     },
   },
   about: {
