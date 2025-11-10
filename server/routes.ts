@@ -597,33 +597,100 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Get all symbols with pagination
+  // Get all symbols with cursor-based pagination for infinite scroll
   app.get("/api/market/symbols", async (req, res) => {
     try {
-      const { page = '1', pageSize = '50', type = '' } = req.query;
-      const { and } = await import('drizzle-orm');
-      const pageNum = parseInt(page as string);
-      const size = parseInt(pageSize as string);
-      const offset = (pageNum - 1) * size;
+      const { 
+        cursor, 
+        limit = '100', 
+        type = '', 
+        search = '',
+        sort = 'symbol' 
+      } = req.query;
       
+      const { and, or, gt, ilike, desc } = await import('drizzle-orm');
+      
+      // Validate and parse limit parameter
+      const parsedLimit = parseInt(limit as string);
+      const pageSize = isNaN(parsedLimit) || parsedLimit < 1 
+        ? 100  // Default to 100 if invalid
+        : Math.min(parsedLimit, 500); // Cap at 500 per page
+      
+      // Build filter conditions
       const conditions = [eq(symbols.isActive, true)];
+      
       if (type) {
         conditions.push(eq(symbols.type, type as string));
       }
       
-      const [results, countResult] = await Promise.all([
-        db.select().from(symbols).where(and(...conditions)).limit(size).offset(offset).orderBy(symbols.symbol),
-        db.select({ count: sql<number>`count(*)` }).from(symbols).where(and(...conditions))
-      ]);
+      if (search && (search as string).length >= 2) {
+        const searchTerm = `%${search}%`;
+        const searchCondition = or(
+          ilike(symbols.symbol, searchTerm),
+          ilike(symbols.name, searchTerm)
+        );
+        if (searchCondition) {
+          conditions.push(searchCondition);
+        }
+      }
+      
+      // Cursor pagination: cursor format is "sortValue:id"
+      // For sort=symbol: "EURUSD:abc-123", for sort=name: "Euro vs US Dollar:abc-123"
+      if (cursor && typeof cursor === 'string') {
+        const lastColonIndex = cursor.lastIndexOf(':');
+        if (lastColonIndex > 0) {
+          const cursorValue = cursor.substring(0, lastColonIndex);
+          const cursorId = cursor.substring(lastColonIndex + 1);
+          
+          // Tuple comparison: (sortField > cursorValue) OR (sortField = cursorValue AND id > cursorId)
+          const sortField = sort === 'name' ? symbols.name : symbols.symbol;
+          const cursorCondition = or(
+            gt(sortField, cursorValue),
+            and(
+              eq(sortField, cursorValue),
+              gt(symbols.id, cursorId)
+            )
+          );
+          if (cursorCondition) {
+            conditions.push(cursorCondition);
+          }
+        }
+      }
+      
+      // Fetch one extra to determine if there are more results
+      // Always order by primary sort field + id for deterministic pagination
+      const sortField = sort === 'name' ? symbols.name : symbols.symbol;
+      const results = await db
+        .select({
+          id: symbols.id,
+          symbol: symbols.symbol,
+          name: symbols.name,
+          type: symbols.type,
+          twelveDataSymbol: symbols.twelveDataSymbol,
+          exchange: symbols.exchange,
+          currency: symbols.currency,
+          digits: symbols.digits,
+        })
+        .from(symbols)
+        .where(and(...conditions))
+        .orderBy(sortField, symbols.id)
+        .limit(pageSize + 1);
+      
+      const hasMore = results.length > pageSize;
+      const data = hasMore ? results.slice(0, pageSize) : results;
+      
+      // Generate next cursor from last item using the active sort field
+      let nextCursor: string | undefined;
+      if (hasMore && data.length > 0) {
+        const lastItem = data[data.length - 1];
+        const sortValue = sort === 'name' ? lastItem.name : lastItem.symbol;
+        nextCursor = `${sortValue}:${lastItem.id}`;
+      }
       
       res.json({
-        data: results,
-        pagination: {
-          page: pageNum,
-          pageSize: size,
-          total: countResult[0]?.count || 0,
-          totalPages: Math.ceil((countResult[0]?.count || 0) / size)
-        }
+        data,
+        nextCursor,
+        hasMore
       });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
