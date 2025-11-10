@@ -55,7 +55,13 @@ export class MarketService {
   }
 
   static async getCandles(symbol: string, interval: string = '1h', limit: number = 100) {
-    // Check for fresh cache first (within 1 hour)
+    // Determine cache TTL based on interval (shorter intervals need fresher data)
+    // Twelve Data API uses formats like '1min', '5min', '15min', '1h', '1day', '1week'
+    const cacheTTL = interval === '1min' || interval === '5min' || interval === '15min' || interval === '1h'
+      ? 300000  // 5 minutes for intraday
+      : 1800000; // 30 minutes for daily/weekly
+      
+    // Check for fresh cache first
     const cached = await db
       .select()
       .from(candles)
@@ -63,14 +69,17 @@ export class MarketService {
         and(
           eq(candles.symbol, symbol),
           eq(candles.interval, interval),
-          gte(candles.cachedAt, new Date(Date.now() - 3600000)) // 1 hour cache
+          gte(candles.cachedAt, new Date(Date.now() - cacheTTL))
         )
       )
       .limit(limit);
 
     if (cached.length > 0) {
+      console.log(`✓ Using fresh cache for ${symbol} ${interval} (${cached.length} candles)`);
       return cached;
     }
+    
+    console.log(`Cache miss or expired for ${symbol} ${interval}, fetching from API...`);
 
     // Cache expired or missing - try to fetch fresh data from API
     // Get the twelve_data_symbol from database
@@ -115,14 +124,16 @@ export class MarketService {
             )
           );
           await db.insert(candles).values(candleData);
-          console.log(`✓ Cached ${candleData.length} candles for ${symbol} ${interval}`);
+          const latestTime = candleData.length > 0 ? candleData[0].timestamp : 'N/A';
+          console.log(`✓ Fetched and cached ${candleData.length} fresh candles for ${symbol} ${interval} (latest: ${latestTime})`);
         } catch (error) {
           console.error('Error caching candles:', error);
         }
 
         return candleData;
       } else if (response.data?.status === 'error') {
-        console.error(`TwelveData API error for ${symbol}:`, response.data.message);
+        console.error(`❌ TwelveData API error for ${symbol}:`, response.data.message);
+        console.error('API response:', JSON.stringify(response.data, null, 2));
       }
     } catch (error: any) {
       console.error(`Error fetching candles from TwelveData for ${symbol}:`, error.message);

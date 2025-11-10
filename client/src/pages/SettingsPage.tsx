@@ -26,11 +26,14 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Loader2, DollarSign, Bell, Layout, TrendingUp } from "lucide-react";
+import { Loader2, DollarSign, Bell, Layout, TrendingUp, Globe } from "lucide-react";
 import type { UserPreference } from "@shared/schema";
 import { useLanguage } from "@/hooks/useLanguage";
+import { detectBrowserTimezone } from "@/lib/timezone-utils";
 
 const settingsSchema = z.object({
+  timezone: z.string(),
+  autoDetectTimezone: z.boolean(),
   displayCurrency: z.string(),
   theme: z.string(),
   defaultLotSize: z.string(),
@@ -55,6 +58,8 @@ export default function SettingsPage() {
   const form = useForm<SettingsFormData>({
     resolver: zodResolver(settingsSchema),
     defaultValues: {
+      timezone: 'UTC',
+      autoDetectTimezone: true,
       displayCurrency: 'USD',
       theme: 'dark',
       defaultLotSize: '0.01',
@@ -70,6 +75,8 @@ export default function SettingsPage() {
   useEffect(() => {
     if (preferences && !isLoading) {
       form.reset({
+        timezone: preferences.timezone || 'UTC',
+        autoDetectTimezone: preferences.autoDetectTimezone ?? true,
         displayCurrency: preferences.displayCurrency || 'USD',
         theme: preferences.theme || 'dark',
         defaultLotSize: preferences.defaultLotSize || '0.01',
@@ -104,6 +111,8 @@ export default function SettingsPage() {
 
   const onSubmit = (data: SettingsFormData) => {
     updatePreferencesMutation.mutate({
+      timezone: data.timezone,
+      autoDetectTimezone: data.autoDetectTimezone,
       displayCurrency: data.displayCurrency,
       theme: data.theme,
       defaultLotSize: data.defaultLotSize,
@@ -151,6 +160,82 @@ export default function SettingsPage() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-6">
             <TabsContent value="general" className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>
+                    <Globe className="h-5 w-5 inline mr-2" />
+                    {t("settings.timezone.title") || "Timezone"}
+                  </CardTitle>
+                  <CardDescription>
+                    {t("settings.timezone.description") || "Configure your timezone for chart display"}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="autoDetectTimezone"
+                    render={({ field }) => (
+                      <FormItem className="flex items-center justify-between rounded-lg border p-4">
+                        <div className="space-y-0.5">
+                          <FormLabel className="text-base">
+                            {t("settings.timezone.autoDetect") || "Auto-detect timezone"}
+                          </FormLabel>
+                          <FormDescription>
+                            {t("settings.timezone.autoDetectDescription") || `Automatically use your browser's timezone (${detectBrowserTimezone()})`}
+                          </FormDescription>
+                        </div>
+                        <FormControl>
+                          <Switch
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            data-testid="switch-auto-timezone"
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+
+                  {!form.watch('autoDetectTimezone') && (
+                    <FormField
+                      control={form.control}
+                      name="timezone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("settings.timezone.manual") || "Timezone"}</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger data-testid="select-timezone">
+                                <SelectValue placeholder="Select timezone..." />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                              <SelectItem value="Europe/London">London (GMT+0/+1)</SelectItem>
+                              <SelectItem value="Europe/Berlin">Berlin (GMT+1/+2)</SelectItem>
+                              <SelectItem value="Europe/Paris">Paris (GMT+1/+2)</SelectItem>
+                              <SelectItem value="America/New_York">New York (GMT-5/-4)</SelectItem>
+                              <SelectItem value="America/Chicago">Chicago (GMT-6/-5)</SelectItem>
+                              <SelectItem value="America/Los_Angeles">Los Angeles (GMT-8/-7)</SelectItem>
+                              <SelectItem value="Asia/Tokyo">Tokyo (GMT+9)</SelectItem>
+                              <SelectItem value="Asia/Singapore">Singapore (GMT+8)</SelectItem>
+                              <SelectItem value="Asia/Hong_Kong">Hong Kong (GMT+8)</SelectItem>
+                              <SelectItem value="Australia/Sydney">Sydney (GMT+10/+11)</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormDescription>
+                            {t("settings.timezone.manualDescription") || "Charts will display times in this timezone"}
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  )}
+                </CardContent>
+              </Card>
+
               <Card>
                 <CardHeader>
                   <CardTitle>{t("settings.appearance.title")}</CardTitle>
