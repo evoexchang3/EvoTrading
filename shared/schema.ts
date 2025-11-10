@@ -101,6 +101,8 @@ export const symbols = pgTable("symbols", {
   swapLong: decimal("swap_long", { precision: 10, scale: 2 }).default('0'),
   swapShort: decimal("swap_short", { precision: 10, scale: 2 }).default('0'),
   exchange: text("exchange"), // For stocks/ETFs
+  exchangeTimezone: text("exchange_timezone"), // IANA timezone (e.g. "America/New_York" for NYSE)
+  tradingHours: jsonb("trading_hours"), // Market open/close times in exchange timezone
   country: text("country"), // For stocks/ETFs
   currency: text("currency"), // Base currency
   isActive: boolean("is_active").default(true),
@@ -112,13 +114,13 @@ export const candles = pgTable("candles", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   symbol: text("symbol").notNull(),
   interval: text("interval").notNull(), // 1m, 5m, 15m, 1h, 4h, 1d
-  timestamp: timestamp("timestamp").notNull(),
+  timestamp: timestamp("timestamp", { withTimezone: true }).notNull(), // UTC timestamp with timezone
   open: decimal("open", { precision: 18, scale: 8 }).notNull(),
   high: decimal("high", { precision: 18, scale: 8 }).notNull(),
   low: decimal("low", { precision: 18, scale: 8 }).notNull(),
   close: decimal("close", { precision: 18, scale: 8 }).notNull(),
   volume: decimal("volume", { precision: 18, scale: 2 }),
-  cachedAt: timestamp("cached_at").defaultNow(),
+  cachedAt: timestamp("cached_at", { withTimezone: true }).defaultNow(),
 });
 
 // Orders
@@ -278,6 +280,8 @@ export const userPreferences = pgTable("user_preferences", {
   clientId: varchar("client_id").references(() => clients.id).notNull().unique(),
   displayCurrency: text("display_currency").notNull().default('USD'), // USD, EUR, GBP, JPY
   theme: text("theme").default('dark'), // dark, light
+  timezone: text("timezone").default('UTC'), // IANA timezone string (e.g. "America/New_York")
+  autoDetectTimezone: boolean("auto_detect_timezone").notNull().default(true),
   defaultLotSize: decimal("default_lot_size", { precision: 10, scale: 2 }).default('0.01'),
   layoutConfig: jsonb("layout_config"), // Stores panel positions, sizes, visibility
   favorites: text("favorites").array().default(sql`ARRAY[]::text[]`), // Favorite symbols
