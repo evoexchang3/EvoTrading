@@ -1,0 +1,98 @@
+2025-11-10T21:07:33Z info: Connecting to builder
+2025-11-10T21:07:33Z info: Builder connected
+2025-11-10T21:07:34Z info: Installing packages
+2025-11-10T21:07:34Z info: Starting Build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+
+vite v5.4.20 building for production...
+
+transforming...
+
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/translations/zh-CN.ts: Duplicate key "tools.education.glossary" in object literal
+1323|    'tools.education.beginnerCourse': '初级课程',
+1324|    'tools.education.advancedCourse': '高级课程',
+1325|    'tools.education.glossary': '术语表',
+   |    ^
+1326|    
+1327|    // About Page
+
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/translations/ja.ts: Duplicate key "tools.education.glossary" in object literal
+1324|    'tools.education.beginnerCourse': '初級コース',
+1325|    'tools.education.advancedCourse': '上級コース',
+1326|    'tools.education.glossary': '用語集',
+   |    ^
+1327|    
+1328|    // About Page
+
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/translations/ar.ts: Duplicate key "tools.education.glossary" in object literal
+5093|    'tools.education.beginnerCourse': 'دورة المبتدئين',
+5094|    'tools.education.advancedCourse': 'دورة متقدمة',
+5095|    'tools.education.glossary': 'مسرد التداول',
+   |    ^
+5096|    
+5097|    // Cookie Consent
+
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/translations/ru.ts: Duplicate key "tools.education.glossary" in object literal
+1286|    'tools.education.beginnerCourse': 'Курс для начинающих',
+1287|    'tools.education.advancedCourse': 'Продвинутый курс',
+1288|    'tools.education.glossary': 'Глоссарий',
+   |    ^
+1289|    
+1290|    // Profile Page
+
+
+✓ 2386 modules transformed.
+
+rendering chunks...
+
+computing gzip size...
+
+../dist/public/assets/da-CqrlUXIg.js        429.28 kB │ gzip: 113.86 kB
+
+../dist/public/assets/nl-C1JA3cGh.js        438.28 kB │ gzip: 114.43 kB
+../dist/public/assets/id-Uak4ekMU.js        439.06 kB │ gzip: 110.58 kB
+../dist/public/assets/fi-Cccz9TxW.js        439.42 kB │ gzip: 121.08 kB
+../dist/public/assets/hu-B-Xjyn-p.js        440.99 kB │ gzip: 124.65 kB
+../dist/public/assets/lv-BUtTtmEx.js        441.61 kB │ gzip: 120.95 kB
+../dist/public/assets/en-BvkBxSST.js        443.31 kB │ gzip: 115.28 kB
+../dist/public/assets/en-GB-lbus4DSR.js     443.32 kB │ gzip: 115.30 kB
+../dist/public/assets/uk-CP8aWp8M.js        443.96 kB │ gzip: 142.19 kB
+../dist/public/assets/pl-DHxXN4Nd.js        446.17 kB │ gzip: 124.10 kB
+../dist/public/assets/lt-DTpfMce9.js        446.34 kB │ gzip: 123.73 kB
+../dist/public/assets/bg-Bnsd9h6V.js        449.53 kB │ gzip: 139.32 kB
+../dist/public/assets/vi-D83A0Byu.js        452.33 kB │ gzip: 119.70 kB
+../dist/public/assets/ro-_n0CuYUF.js        454.65 kB │ gzip: 120.50 kB
+../dist/public/assets/el-C00qX6YO.js        457.95 kB │ gzip: 144.89 kB
+../dist/public/assets/it-BSAv-ggv.js        461.00 kB │ gzip: 116.88 kB
+../dist/public/assets/ru-NNPAuhWv.js        488.45 kB │ gzip: 155.10 kB
+../dist/public/assets/de-CBIZ330w.js        493.27 kB │ gzip: 130.37 kB
+../dist/public/assets/fr-6KedVXnO.js        497.71 kB │ gzip: 129.40 kB
+../dist/public/assets/es-BW0yzs9Y.js        542.73 kB │ gzip: 141.14 kB
+../dist/public/assets/index-D4Oq9e_b.js   1,876.99 kB │ gzip: 440.09 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 30.47s
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.6.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+npm notice To update run: npm install -g npm@11.6.2
+npm notice
+
+2025-11-10T21:08:11Z info: Pushing pid1 binary layer...
+2025-11-10T21:08:13Z info: Created pid1 binary layer
+2025-11-10T21:08:18Z info: Pushing hosting layer...
+2025-11-10T21:08:19Z info: Retrieved cached nix layer
+2025-11-10T21:08:19Z info: Created hosting layer
