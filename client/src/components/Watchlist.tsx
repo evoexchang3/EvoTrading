@@ -34,10 +34,11 @@ export function Watchlist({ onSymbolSelect, selectedSymbol }: WatchlistProps) {
 
   const favorites = new Set(preferences?.favorites || []);
 
-  const { data: symbolsData = [] } = useQuery<SymbolType[]>({
+  const { data: symbolsResponse } = useQuery<{ data: SymbolType[], total: number }>({
     queryKey: ["/api/market/symbols"],
   });
 
+  const symbolsData = symbolsResponse?.data || [];
   const symbolList = useMemo(() => symbolsData.map(s => s.symbol), [symbolsData]);
   const { prices, subscribe } = useWebSocketContext();
 

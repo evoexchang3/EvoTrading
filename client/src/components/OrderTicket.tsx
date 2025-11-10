@@ -38,16 +38,18 @@ export function OrderTicket({ symbol, currentPrice = 1.08545, priceTimestamp }: 
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data: symbols } = useQuery<Symbol[]>({
+  const { data: symbolsResponse } = useQuery<{ data: Symbol[], total: number }>({
     queryKey: ["/api/market/symbols"],
   });
+
+  const symbols = symbolsResponse?.data || [];
 
   const { data: account } = useQuery<Account>({
     queryKey: ["/api/account"],
   });
 
   const symbolData = useMemo(() => {
-    return symbols?.find((s) => s.symbol === symbol);
+    return symbols.find((s) => s.symbol === symbol);
   }, [symbols, symbol]);
 
   const form = useForm<PlaceOrderRequest>({
