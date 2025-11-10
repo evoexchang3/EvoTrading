@@ -1,5 +1,4 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLanguage } from "@/hooks/useLanguage";
 import { useVariantClasses } from "@/layouts/shared/useVariant";
 import { 
   Zap, 
@@ -7,60 +6,45 @@ import {
   Clock, 
   DollarSign, 
   BarChart3, 
-  Globe2
+  Globe2,
+  LucideIcon
 } from "lucide-react";
+
+interface FeaturesProps {
+  title: string;
+  subtitle: string;
+  items: Array<{
+    title: string;
+    description: string;
+  }>;
+}
 
 /**
  * List-based features layout
  * More traditional, vertical layout
  * Used by: navy-institutional, financial-times
  */
-export function FeaturesList() {
-  const { t } = useLanguage();
+export function FeaturesList({ title, subtitle, items }: FeaturesProps) {
   const classes = useVariantClasses();
 
-  const features = [
-    {
-      icon: Zap,
-      title: t('home.features.fastExecution.title'),
-      description: t('home.features.fastExecution.description'),
-    },
-    {
-      icon: Shield,
-      title: t('home.features.secure.title'),
-      description: t('home.features.secure.description'),
-    },
-    {
-      icon: Clock,
-      title: t('home.features.24/7Trading.title'),
-      description: t('home.features.24/7Trading.description'),
-    },
-    {
-      icon: DollarSign,
-      title: t('home.features.transparentFees.title'),
-      description: t('home.features.transparentFees.description'),
-    },
-    {
-      icon: BarChart3,
-      title: t('home.features.advancedTools.title'),
-      description: t('home.features.advancedTools.description'),
-    },
-    {
-      icon: Globe2,
-      title: t('home.features.globalMarkets.title'),
-      description: t('home.features.globalMarkets.description'),
-    },
-  ];
+  // Canonical icon order (matches variant content structure)
+  const iconMap: LucideIcon[] = [Zap, Shield, Clock, DollarSign, BarChart3, Globe2];
+
+  const features = items.map((item, index) => ({
+    icon: iconMap[index % iconMap.length],
+    title: item.title,
+    description: item.description,
+  }));
 
   return (
     <section className={`${classes.spacing('section')} bg-muted/30`}>
       <div className={classes.container}>
         <div className={`text-center mb-12 ${classes.spacing('element')}`}>
           <h2 className={`${classes.textSize('heading')} font-bold`} data-testid="text-features-title">
-            {t('home.features.title')}
+            {title}
           </h2>
           <p className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto`}>
-            {t('home.features.subtitle')}
+            {subtitle}
           </p>
         </div>
 

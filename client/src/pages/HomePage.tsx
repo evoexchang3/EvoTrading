@@ -2,7 +2,6 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { LandingLayout } from "@/components/LandingLayout";
 import { SEO } from "@/components/SEO";
-import { useLanguage } from "@/hooks/useLanguage";
 import { useVariantContent } from "@/hooks/useVariantContent";
 import { useVariant } from "@/layouts/shared/useVariant";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -30,7 +29,6 @@ import { FeaturesGrid } from "@/components/home/FeaturesGrid";
 import { FeaturesList } from "@/components/home/FeaturesList";
 
 export default function HomePage() {
-  const { t } = useLanguage();
   const variant = useVariant();
   const { getPageContent } = useVariantContent();
   const homeContent = getPageContent('home');
@@ -74,31 +72,33 @@ export default function HomePage() {
   };
 
   const FeaturesComponent = () => {
+    if (!homeContent.features) return null;
+    
     switch (variant.content.featureLayout) {
       case 'list':
-        return <FeaturesList />;
+        return <FeaturesList {...homeContent.features} />;
       case 'grid':
       default:
-        return <FeaturesGrid />;
+        return <FeaturesGrid {...homeContent.features} />;
     }
   };
 
-  // Stats remain local (not variant-specific)
-  const stats = [
-    { value: 50, suffix: '+', label: t('home.stats.currencyPairs'), icon: TrendingUp, color: 'text-blue-500' },
-    { value: 100, suffix: '+', label: t('home.stats.cryptoAssets'), icon: TrendingUp, color: 'text-purple-500' },
-    { value: 24, suffix: '/7', label: t('home.stats.customerSupport'), icon: Users, color: 'text-green-500' },
-    { value: 0.01, suffix: 's', label: t('home.stats.avgExecutionTime'), decimals: 2, icon: Award, color: 'text-yellow-500' },
-  ];
+  // Stats use variant-specific labels
+  const stats = homeContent.stats ? [
+    { value: 50, suffix: '+', label: homeContent.stats.currencyPairs, icon: TrendingUp, color: 'text-blue-500' },
+    { value: 100, suffix: '+', label: homeContent.stats.cryptoAssets, icon: TrendingUp, color: 'text-purple-500' },
+    { value: 24, suffix: '/7', label: homeContent.stats.customerSupport, icon: Users, color: 'text-green-500' },
+    { value: 0.01, suffix: 's', label: homeContent.stats.avgExecutionTime, decimals: 2, icon: Award, color: 'text-yellow-500' },
+  ] : [];
 
   return (
     <LandingLayout>
       <SEO
-        title={t('home.hero.title')}
-        description={t('home.hero.subtitle')}
+        title={homeContent.seo?.title || 'Trading Platform'}
+        description={homeContent.seo?.description || 'Professional trading platform'}
         keywords="forex trading, crypto trading, commodities trading, online trading platform, regulated broker"
-        ogTitle="Trading Platform - Professional Forex, Crypto & Commodities Trading"
-        ogDescription={t('home.hero.subtitle')}
+        ogTitle={homeContent.seo?.title || 'Trading Platform'}
+        ogDescription={homeContent.seo?.description || 'Professional trading platform'}
       />
       
       {/* Variant-aware Hero Section */}
@@ -201,7 +201,7 @@ export default function HomePage() {
                   className="border-primary-foreground/30 bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground backdrop-blur-sm w-full sm:w-auto" 
                   data-testid="button-cta-learn"
                 >
-                  {t('home.cta.learnMore')}
+                  {homeContent.cta.learnMore}
                 </Button>
               </Link>
             </div>

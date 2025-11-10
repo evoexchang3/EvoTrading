@@ -1,5 +1,4 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLanguage } from "@/hooks/useLanguage";
 import { useVariantClasses } from "@/layouts/shared/useVariant";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { 
@@ -8,62 +7,39 @@ import {
   Clock, 
   DollarSign, 
   BarChart3, 
-  Globe2
+  Globe2,
+  LucideIcon
 } from "lucide-react";
+
+interface FeaturesProps {
+  title: string;
+  subtitle: string;
+  items: Array<{
+    title: string;
+    description: string;
+  }>;
+}
 
 /**
  * Grid-based features layout with scroll-triggered animations
  * Modern 2025 design with staggered entrance effects
  */
-export function FeaturesGrid() {
-  const { t } = useLanguage();
+export function FeaturesGrid({ title, subtitle, items }: FeaturesProps) {
   const classes = useVariantClasses();
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
-  const features = [
-    {
-      icon: Zap,
-      title: t('home.features.fastExecution.title'),
-      description: t('home.features.fastExecution.description'),
-      color: 'text-yellow-500',
-      bg: 'bg-yellow-500/10',
-    },
-    {
-      icon: Shield,
-      title: t('home.features.secure.title'),
-      description: t('home.features.secure.description'),
-      color: 'text-green-500',
-      bg: 'bg-green-500/10',
-    },
-    {
-      icon: Clock,
-      title: t('home.features.24/7Trading.title'),
-      description: t('home.features.24/7Trading.description'),
-      color: 'text-blue-500',
-      bg: 'bg-blue-500/10',
-    },
-    {
-      icon: DollarSign,
-      title: t('home.features.transparentFees.title'),
-      description: t('home.features.transparentFees.description'),
-      color: 'text-emerald-500',
-      bg: 'bg-emerald-500/10',
-    },
-    {
-      icon: BarChart3,
-      title: t('home.features.advancedTools.title'),
-      description: t('home.features.advancedTools.description'),
-      color: 'text-purple-500',
-      bg: 'bg-purple-500/10',
-    },
-    {
-      icon: Globe2,
-      title: t('home.features.globalMarkets.title'),
-      description: t('home.features.globalMarkets.description'),
-      color: 'text-cyan-500',
-      bg: 'bg-cyan-500/10',
-    },
-  ];
+  // Canonical icon order (matches variant content structure)
+  const iconMap: LucideIcon[] = [Zap, Shield, Clock, DollarSign, BarChart3, Globe2];
+  const colorMap = ['text-yellow-500', 'text-green-500', 'text-blue-500', 'text-emerald-500', 'text-purple-500', 'text-cyan-500'];
+  const bgMap = ['bg-yellow-500/10', 'bg-green-500/10', 'bg-blue-500/10', 'bg-emerald-500/10', 'bg-purple-500/10', 'bg-cyan-500/10'];
+
+  const features = items.map((item, index) => ({
+    icon: iconMap[index % iconMap.length],
+    title: item.title,
+    description: item.description,
+    color: colorMap[index % colorMap.length],
+    bg: bgMap[index % bgMap.length],
+  }));
 
   return (
     <section className={`${classes.spacing('section')} bg-muted/30 relative overflow-hidden`}>
@@ -76,13 +52,13 @@ export function FeaturesGrid() {
             className={`${classes.textSize('heading')} font-bold mb-3 sm:mb-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} 
             data-testid="text-features-title"
           >
-            {t('home.features.title')}
+            {title}
           </h2>
           <p 
             className={`${classes.textSize('body')} text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
             style={{ animationDelay: '100ms' }}
           >
-            {t('home.features.subtitle')}
+            {subtitle}
           </p>
         </div>
 
