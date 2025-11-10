@@ -3,11 +3,16 @@ import { SEO } from "@/components/SEO";
 import { useVariantContent } from "@/hooks/useVariantContent";
 import { useVariant } from "@/layouts/shared/useVariant";
 
-// Hero components
+// Hero components - Original
 import { HeroFullWidth } from "@/components/home/HeroFullWidth";
 import { HeroCentered } from "@/components/home/HeroCentered";
 import { HeroSplit } from "@/components/home/HeroSplit";
 import { HeroMinimal } from "@/components/home/HeroMinimal";
+
+// Hero components - New heroType variants
+import { HeroDataDashboard } from "@/components/home/HeroDataDashboard";
+import { HeroTickerOverlay } from "@/components/home/HeroTickerOverlay";
+import { HeroCarouselFeatures } from "@/components/home/HeroCarouselFeatures";
 
 // Features components
 import { FeaturesGrid } from "@/components/home/FeaturesGrid";
@@ -30,6 +35,11 @@ import { CTAProminent } from "@/components/home/CTAProminent";
 import { CTASubtle } from "@/components/home/CTASubtle";
 import { CTAInline } from "@/components/home/CTAInline";
 
+// New section components
+import { Testimonials } from "@/components/home/Testimonials";
+import { PartnerLogos } from "@/components/home/PartnerLogos";
+import { ComplianceBadges } from "@/components/home/ComplianceBadges";
+
 export default function HomePage() {
   const variant = useVariant();
   const { getPageContent } = useVariantContent();
@@ -46,57 +56,81 @@ export default function HomePage() {
     cta: homeContent.hero.cta,
   } : null;
 
-  // Select appropriate components based on variant configuration
+  // Select appropriate hero component based on heroType (NEW)
   const renderHero = () => {
     if (!heroProps) return null;
     
-    switch (variant.content.heroLayout) {
-      case 'full-width':
-        return <HeroFullWidth {...heroProps} />;
-      case 'centered':
+    // Use new heroType field for more dramatic variety
+    switch (variant.content.heroType) {
+      case 'standard-centered':
         return <HeroCentered {...heroProps} />;
-      case 'split':
+      case 'fullscreen-video':
+        return <HeroFullWidth {...heroProps} />;
+      case 'split-content':
         return <HeroSplit {...heroProps} />;
-      case 'minimal':
+      case 'minimal-text':
         return <HeroMinimal {...heroProps} />;
+      case 'data-dashboard':
+        return <HeroDataDashboard {...heroProps} />;
+      case 'ticker-overlay':
+        return <HeroTickerOverlay {...heroProps} />;
+      case 'carousel-features':
+        return <HeroCarouselFeatures {...heroProps} />;
       default:
         return <HeroCentered {...heroProps} />;
     }
   };
 
   const renderFeatures = () => {
-    if (!homeContent.features) return null;
+    // Conditional rendering based on showFeatures flag (NEW)
+    if (!homeContent.features || !variant.content.showFeatures) return null;
+    
+    // Apply featureCount override (NEW)
+    const featuresData = {
+      ...homeContent.features,
+      items: homeContent.features.items.slice(0, variant.content.featureCount),
+    };
     
     switch (variant.content.featureLayout) {
       case 'list':
-        return <FeaturesList {...homeContent.features} />;
+        return <FeaturesList {...featuresData} />;
       case 'carousel':
-        return <FeaturesCarousel {...homeContent.features} />;
+        return <FeaturesCarousel {...featuresData} />;
       case 'masonry':
-        return <FeaturesMasonry {...homeContent.features} />;
+        return <FeaturesMasonry {...featuresData} />;
       case 'grid':
       default:
-        return <FeaturesGrid {...homeContent.features} />;
+        return <FeaturesGrid {...featuresData} />;
     }
   };
 
   const renderBenefits = () => {
-    if (!homeContent.benefits) return null;
+    // Conditional rendering based on showBenefits flag (NEW)
+    if (!homeContent.benefits || !variant.content.showBenefits) return null;
+    
+    // Apply benefitsCount override (NEW)
+    const benefitsData = {
+      ...homeContent.benefits,
+      items: homeContent.benefits.items.slice(0, variant.content.benefitsCount),
+    };
     
     switch (variant.content.benefitsLayout) {
       case 'list':
-        return <BenefitsList {...homeContent.benefits} />;
+        return <BenefitsList {...benefitsData} />;
       case 'cards':
-        return <BenefitsCards {...homeContent.benefits} />;
+        return <BenefitsCards {...benefitsData} />;
       case 'grid':
       default:
-        return <BenefitsGrid {...homeContent.benefits} />;
+        return <BenefitsGrid {...benefitsData} />;
     }
   };
 
   const renderStats = () => {
-    if (!homeContent.stats) return null;
+    // Conditional rendering based on showStats flag (NEW)
+    if (!homeContent.stats || !variant.content.showStats) return null;
     
+    // Stats use statsCount for limiting display, but stats object structure is different
+    // so we just pass it through - each stats component handles count internally
     switch (variant.content.statsLayout) {
       case 'row':
         return <StatsRow {...homeContent.stats} />;
@@ -109,7 +143,8 @@ export default function HomePage() {
   };
 
   const renderCTA = () => {
-    if (!homeContent.cta) return null;
+    // Conditional rendering based on showCta flag (NEW)
+    if (!homeContent.cta || !variant.content.showCta) return null;
     
     switch (variant.content.ctaStyle) {
       case 'subtle':
@@ -122,13 +157,33 @@ export default function HomePage() {
     }
   };
 
-  // Section mapping for dynamic ordering
+  // New section renderers for unique modules (NEW)
+  const renderTestimonials = () => {
+    if (!variant.content.includeTestimonials) return null;
+    return <Testimonials />;
+  };
+
+  const renderPartnerLogos = () => {
+    if (!variant.content.includePartnerLogos) return null;
+    return <PartnerLogos />;
+  };
+
+  const renderComplianceBadges = () => {
+    if (!variant.content.includeComplianceBadges) return null;
+    return <ComplianceBadges />;
+  };
+
+  // Section mapping for dynamic ordering (EXPANDED)
   const sectionMap: Record<string, () => JSX.Element | null> = {
     hero: renderHero,
     features: renderFeatures,
     benefits: renderBenefits,
     stats: renderStats,
     cta: renderCTA,
+    // New unique module sections
+    testimonials: renderTestimonials,
+    partners: renderPartnerLogos,
+    compliance: renderComplianceBadges,
   };
 
   return (
