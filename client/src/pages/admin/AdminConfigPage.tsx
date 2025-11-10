@@ -350,25 +350,21 @@ export default function AdminConfigPage() {
   const handlePreview = (variant: string) => {
     setPreviewVariant(variant);
     
-    // Update URL with preview parameter (context will handle the rest)
-    const url = new URL(window.location.href);
-    url.searchParams.set('preview', variant);
-    window.history.pushState({}, '', url.toString());
+    // Open preview in new tab to avoid losing unsaved form data
+    window.open(`/?preview=${variant}`, '_blank', 'noopener,noreferrer');
     
-    // Dispatch event to notify context
-    window.dispatchEvent(new Event('previewchange'));
+    toast({
+      title: "Preview Opened",
+      description: `${layoutVariants.find(v => v.value === variant)?.label} layout opened in new tab.`,
+    });
   };
 
   const handleClearPreview = () => {
     setPreviewVariant(null);
-    
-    // Remove preview parameter from URL
-    const url = new URL(window.location.href);
-    url.searchParams.delete('preview');
-    window.history.pushState({}, '', url.toString());
-    
-    // Dispatch event to notify context
-    window.dispatchEvent(new Event('previewchange'));
+    toast({
+      title: "Preview Cleared",
+      description: "Preview mode deactivated.",
+    });
   };
 
   if (loading) {

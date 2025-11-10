@@ -48,7 +48,7 @@ branding:
   locations: []
   team: []
 layout:
-  activeVariant: original
+  activeVariant: carbon-sleek
   stickyHeader: true
   showFooter: true
   compactMode: false
