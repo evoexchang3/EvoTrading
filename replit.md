@@ -28,23 +28,65 @@ The platform includes comprehensive trading courses with English content (multi-
 
 #### Layout Variant System
 
-16 unique layout variants with distinct dashboard compositions:
+16 unique layout variants with completely different content AND structure across ALL pages:
+
+**Variant Categories:**
 - **Full-Featured Variants** (13): Complete trading features, unique dashboard layouts
 - **Minimalistic Variants** (3): Streamlined UX - `arctic-minimal`, `minimalist-corporate`, `nordic-clean`
-- **Dashboard Uniqueness**: Each variant has completely different widget arrangements, densities, and visual compositions
+
+**Global Layout Elements:**
 - **Navigation Types**: 15 unique navigation patterns (compact-top, wide-split, ticker-bar, etc.)
-- **Footer Types**: 15 unique footer layouts including:
-  - `FiveColumnOriginalFooter`: 5-column design (Information, Customer, Company, Trust & Security, Support) for "original" variant
-  - Other patterns: quad-grid, tiered-two-row, legal-micro, etc.
-- **Dynamic Rendering**: `DashboardRenderer` component maps configurations to UI widgets
-- **Preview System**: 
-  - URL parameter `?preview=variant-name` overrides active variant for testing
-  - Admin preview buttons open layout in new tab (preserves unsaved form data)
-  - Preview mode shows dismissible banner with "Back to Admin" button on landing page
-  - Centralized preview handling via SiteConfigContext with URL change detection
-- **Screenshot Automation**: Playwright script (`scripts/capture-layout-thumbnails.ts`) captures high-quality PNG thumbnails (1920x1440, 4:3 ratio) of all 16 variants using preview parameter system
-- **Layout Thumbnails**: Real screenshots (400KB-1.5MB PNG) generated from actual landing pages, displayed in Admin Configuration UI
-- **Translation Coverage**: All footer sections support 35 languages with stable `data-testid` attributes for reliable cross-language testing
+- **Footer Types**: 15 unique footer layouts including FiveColumnOriginalFooter, quad-grid, tiered-two-row, legal-micro, etc.
+- **Translation Coverage**: All sections support 35 languages with stable `data-testid` attributes
+
+**Page-Specific Structural Variants:**
+
+*HomePage (7 hero types, optional sections, configurable counts):*
+- **Hero Types**: standard-centered, split-content, minimal-text, data-dashboard, ticker-overlay, carousel-features, video-background
+- **Section Control**: Optional testimonials, partner logos, live ticker, compliance badges
+- **Count Overrides**: 3/4/6 features, 3/4 benefits, 4 stats
+- **Section Ordering**: Dynamic reordering (hero→features→benefits vs hero→stats→features, etc.)
+
+*AboutPage (4 layout types, 3 team presentations, 3 values styles):*
+- **Layout Types**: mission-first, values-first, team-first, timeline-led
+- **Team Presentation**: grid (2-column), carousel (embla-carousel), spotlight-list (featured leader + team list)
+- **Values Styles**: cards (icon cards), icons (compact icon list), minimal (text-only)
+- **Conditional Elements**: Optional timeline, mission, values, team sections with configurable team member count (4/6/8)
+
+*MarketsPage (4 layout types, 3 grouping strategies, locale-independent):*
+- **Layout Types**: table (data table), cards (grid layout), accordion (expandable sections), tabs (category tabs)
+- **Grouping**: by-type (forex/crypto/commodities), by-region (Americas/Europe/Asia), popularity-weighted (sorted by popularity score)
+- **Conditional Display**: Optional charts, spread stats, leverage stats, compact view mode
+- **Locale Independence**: Stats filtering uses explicit type metadata ('spread' | 'leverage' | 'other') instead of substring matching for cross-language reliability
+
+*ContactPage (3 layout types, 2 form structures, 4 optional elements):*
+- **Layout Types**: form-first (form left, info right), info-first (reversed), split (50/50 with visual differentiation)
+- **Form Structure**: single-column (traditional stacked), two-column (name/email side-by-side)
+- **Optional Elements**: showMap (location map), showOffices (office locations), showSocial (social media links), showHours (business hours)
+
+*FAQPage (3 layouts, 3 organizations, 3 highlight modes):*
+- **Layout Types**: accordion (classic expandable), tabs (category-based tabs), cards (grid of Q&A cards)
+- **Organization**: categorised (grouped by category), flat (single list), searchable (search-first interface with live filtering)
+- **Highlight Modes**: featured-top (dedicated featured section at top), inline (visual highlighting within layouts), none (no special treatment)
+- **Optional Controls**: Search bar, category filter pills, configurable category count (4/6/8)
+- **Data Flow**: Computed collections (visibleCategories, allQuestions, featuredQuestions, filteredQuestions, mainQuestions) with memoized filtering for performance
+
+**Technical Architecture:**
+- **Hierarchical Config**: `variant.pages.{pageName}` structure in variantConfig for type-safe page-specific settings
+- **Layout Dispatchers**: Each page uses renderLayout() function to dispatch to appropriate renderer based on config
+- **Component Extraction**: Reusable section components (e.g., ContactFormSection, ContactInfoSection) for clean architecture
+- **Conditional Rendering**: Boolean flags and enum types control which sections/features appear
+- **Dynamic Rendering**: DashboardRenderer maps configurations to UI widgets for authenticated dashboard
+
+**Preview & Testing:**
+- **Preview System**: URL parameter `?preview=variant-name` overrides active variant
+- **Admin Preview**: Preview buttons open layout in new tab preserving unsaved form data
+- **Preview Banner**: Dismissible "Back to Admin" banner on landing page in preview mode
+- **Screenshot Automation**: Playwright script captures high-quality PNG thumbnails (1920x1440, 4:3) of all 16 variants
+- **Layout Thumbnails**: Real screenshots (400KB-1.5MB PNG) displayed in Admin Configuration UI
+
+**Result:**
+Maximum structural diversity achieved - each of the 16 variants displays different text, component layouts, section ordering, optional sections, varied item counts, and unique modules while maintaining informational parity across all major pages (Home, About, Markets, Contact, FAQ).
 
 ### Backend
 
