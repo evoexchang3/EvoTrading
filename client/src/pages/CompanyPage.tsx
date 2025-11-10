@@ -1,23 +1,17 @@
-import { Link } from "wouter";
 import { LandingLayout } from "@/components/LandingLayout";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useVariantContent } from "@/hooks/useVariantContent";
-import {
-  Building2,
-  Shield,
-  Award,
-  Users,
-  Globe,
-  FileText,
-  Lock,
-  TrendingUp,
-  ArrowRight,
-  CheckCircle,
-  AlertCircle,
-} from "lucide-react";
+import { useVariant } from "@/layouts/shared/useVariant";
+import { HeroRenderer } from "@/components/variant-rendering";
+import { VariantPageHeader } from "@/components/variant";
+
+import { MissionSection } from "@/components/company/sections/MissionSection";
+import { TimelineSection } from "@/components/company/sections/TimelineSection";
+import { TeamSection } from "@/components/company/sections/TeamSection";
+import { ValuesShowcaseSection } from "@/components/company/sections/ValuesShowcaseSection";
+import { ResourceLinksSection } from "@/components/company/sections/ResourceLinksSection";
+import { StatsSection } from "@/components/company/sections/StatsSection";
+import { CompanyCTASection } from "@/components/company/sections/CompanyCTASection";
 
 export default function CompanyPage() {
   const { t } = useLanguage();
