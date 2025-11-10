@@ -18,6 +18,13 @@ export function AccountInfoBar() {
   const { data: account } = useQuery<AccountInfo>({
     queryKey: ["/api/account"],
     refetchInterval: 2000, // Real-time updates every 2 seconds
+    retry: (failureCount, error: any) => {
+      // Don't retry on authentication errors (401/403)
+      if (error?.message?.includes("Invalid or expired token")) return false;
+      if (error?.message?.includes("Unauthorized")) return false;
+      // Retry other errors up to 3 times
+      return failureCount < 3;
+    },
   });
 
   const realBalance = parseFloat(account?.realBalance || "0");
