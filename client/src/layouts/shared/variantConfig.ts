@@ -247,10 +247,66 @@ export interface FAQContentConfig {
 
 export interface PartnersContentConfig {
   layout: PartnersLayout;
+  heroStyle: PartnersHeroStyle;
+  showBenefits: boolean;
+  showCommission: boolean;
   showLogos: boolean;
   showTestimonials: boolean;
   showCaseStudies: boolean;
+  showHowItWorks: boolean;
+  showCTA: boolean;
   partnerCount: 6 | 9 | 12;
+  sectionOrder: ('hero' | 'benefits' | 'commission' | 'logos' | 'testimonials' | 'caseStudies' | 'howItWorks' | 'cta')[];
+}
+
+export interface CompanyContentConfig {
+  layout: CompanyLayout;
+  showMission: boolean;
+  showValues: boolean;
+  showTeam: boolean;
+  showTimeline: boolean;
+  showLocations: boolean;
+  showCTA: boolean;
+}
+
+export interface EducationContentConfig {
+  layout: EducationLayout;
+  showBeginner: boolean;
+  showAdvanced: boolean;
+  showResources: boolean;
+  showGlossary: boolean;
+  courseCount: 2 | 3 | 4;
+}
+
+export interface LegalContentConfig {
+  layout: LegalLayout;
+  showTableOfContents: boolean;
+  showLastUpdated: boolean;
+  showRelatedDocs: boolean;
+  sectionStyle: 'numbered' | 'headings' | 'plain';
+}
+
+export interface CustomerInfoContentConfig {
+  layout: CustomerInfoLayout;
+  showComparison: boolean;
+  showFAQ: boolean;
+  showCTA: boolean;
+  detailLevel: 'concise' | 'detailed';
+}
+
+export interface MarketInfoContentConfig {
+  layout: MarketInfoLayout;
+  showCharts: boolean;
+  showExamples: boolean;
+  showRelatedTopics: boolean;
+  contentDepth: 'overview' | 'comprehensive';
+}
+
+export interface CompanySubpageContentConfig {
+  layout: CompanySubpageLayout;
+  showMetrics: boolean;
+  showDocuments: boolean;
+  showCTA: boolean;
 }
 
 export interface VariantConfig {
@@ -309,6 +365,12 @@ export interface VariantConfig {
     contact: ContactContentConfig;
     faq: FAQContentConfig;
     partners: PartnersContentConfig;
+    company: CompanyContentConfig;
+    education: EducationContentConfig;
+    legal: LegalContentConfig;
+    customerInfo: CustomerInfoContentConfig;
+    marketInfo: MarketInfoContentConfig;
+    companySubpage: CompanySubpageContentConfig;
   };
 
   // DEPRECATED: Legacy `content` field for backward compatibility
@@ -419,10 +481,60 @@ export const variantConfigs: Record<string, VariantConfig> = {
       },
       partners: {
         layout: 'logo-grid',
+        heroStyle: 'standard',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
         showTestimonials: false,
         showCaseStudies: true,
+        showHowItWorks: true,
+        showCTA: true,
         partnerCount: 12,
+        sectionOrder: ['hero', 'benefits', 'commission', 'logos', 'howItWorks', 'cta'],
+      },
+      company: {
+        layout: 'mission-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-grid',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: true,
+        courseCount: 4,
+      },
+      legal: {
+        layout: 'single-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'headings',
+      },
+      customerInfo: {
+        layout: 'comparison-table',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'detailed',
+      },
+      marketInfo: {
+        layout: 'educational',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'comprehensive',
+      },
+      companySubpage: {
+        layout: 'document-style',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
       },
     },
     content: {
