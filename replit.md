@@ -78,6 +78,21 @@ The platform includes comprehensive trading courses with English content (multi-
 - **Conditional Rendering**: Boolean flags and enum types control which sections/features appear
 - **Dynamic Rendering**: DashboardRenderer maps configurations to UI widgets for authenticated dashboard
 
+**Validation & Quality Assurance:**
+- **Zod Schema Validation**: Complete runtime validation (`variantValidation.ts`) ensures all configs are valid
+  - All boolean flags required (prevents silent section omissions)
+  - Proper numeric literal unions for counts (featureCount, teamMemberCount, etc.)
+  - Non-empty validation for critical arrays (sectionOrder must have at least one section)
+  - Three validation modes: single variant, all variants (with results map), strict (throws on first error)
+- **Preflight Script**: `scripts/validate-variants.ts` validates all 16 variants before deployment
+  - All 16 variants pass strict validation with complete flag definitions
+  - Automated CI check ensures no invalid configs are deployed
+- **Uniqueness Testing**: `scripts/test-variant-uniqueness.ts` generates structural fingerprints
+  - Combines sectionOrder, optional modules, hero type, navigation/footer layouts, all page layouts
+  - Verifies 16/16 unique fingerprints and 16/16 unique section orders
+  - Displays distribution across layouts for all pages
+  - Catches duplicate structures early in development
+
 **Preview & Testing:**
 - **Preview System**: URL parameter `?preview=variant-name` overrides active variant
 - **Admin Preview**: Preview buttons open layout in new tab preserving unsaved form data
@@ -86,7 +101,7 @@ The platform includes comprehensive trading courses with English content (multi-
 - **Layout Thumbnails**: Real screenshots (400KB-1.5MB PNG) displayed in Admin Configuration UI
 
 **Result:**
-Maximum structural diversity achieved - each of the 16 variants displays different text, component layouts, section ordering, optional sections, varied item counts, and unique modules while maintaining informational parity across all major pages (Home, About, Markets, Contact, FAQ).
+Maximum structural diversity achieved and validated - each of the 16 variants displays different text, component layouts, section ordering, optional sections, varied item counts, and unique modules while maintaining informational parity across all major pages (Home, About, Markets, Contact, FAQ). Automated validation ensures configurations remain complete and unique.
 
 ### Backend
 
