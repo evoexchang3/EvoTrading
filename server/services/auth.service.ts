@@ -28,6 +28,25 @@ export class AuthService {
     return bcrypt.compare(password, hash);
   }
 
+  static hashToken(token: string): string {
+    return crypto.createHash('sha256').update(token).digest('hex');
+  }
+
+  static compareTokens(tokenA: string, tokenB: string): boolean {
+    if (!/^[0-9a-f]+$/i.test(tokenA) || !/^[0-9a-f]+$/i.test(tokenB)) {
+      return false;
+    }
+    
+    const bufferA = Buffer.from(tokenA, 'hex');
+    const bufferB = Buffer.from(tokenB, 'hex');
+    
+    if (bufferA.length !== bufferB.length) {
+      return false;
+    }
+    
+    return crypto.timingSafeEqual(bufferA, bufferB);
+  }
+
   static generateAccessToken(clientId: string): string {
     return jwt.sign({ clientId }, JWT_SECRET, { expiresIn: '15m' });
   }
@@ -50,6 +69,22 @@ export class AuthService {
 
   static generateVerificationToken(): string {
     return crypto.randomBytes(32).toString('hex');
+  }
+
+  static async generateAndStoreEmailVerificationToken(clientId: string): Promise<string> {
+    const verificationToken = this.generateVerificationToken();
+    const hashedToken = this.hashToken(verificationToken);
+
+    await db
+      .update(clients)
+      .set({
+        emailVerificationToken: hashedToken,
+        updatedAt: new Date(),
+      })
+      .where(eq(clients.id, clientId));
+
+    console.log(`[DEV] Email verification token for client ${clientId}: ${verificationToken}`);
+    return verificationToken;
   }
 
   static async register(data: {
@@ -82,6 +117,9 @@ export class AuthService {
       leverage: 100,
     });
 
+    // Generate and store email verification token
+    await this.generateAndStoreEmailVerificationToken(client.id);
+
     return { client };
   }
 
@@ -113,6 +151,101 @@ export class AuthService {
     });
   }
 
-  // Note: CRM doesn't support email verification or password reset tokens
-  // These features are managed in the CRM system
+  static async requestPasswordReset(email: string): Promise<string | null> {
+    const [client] = await db
+      .select()
+      .from(clients)
+      .where(eq(clients.email, email))
+      .limit(1);
+
+    if (!client) {
+      return null;
+    }
+
+    const resetToken = this.generateResetToken();
+    const hashedToken = this.hashToken(resetToken);
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+
+    await db
+      .update(clients)
+      .set({
+        passwordResetToken: hashedToken,
+        passwordResetExpires: expiresAt,
+        updatedAt: new Date(),
+      })
+      .where(eq(clients.id, client.id));
+
+    return resetToken;
+  }
+
+  static async resetPassword(token: string, newPassword: string): Promise<boolean> {
+    const hashedToken = this.hashToken(token);
+    
+    const [client] = await db
+      .select()
+      .from(clients)
+      .where(eq(clients.passwordResetToken, hashedToken))
+      .limit(1);
+
+    if (!client || !client.passwordResetToken || !client.passwordResetExpires) {
+      return false;
+    }
+
+    if (!this.compareTokens(hashedToken, client.passwordResetToken)) {
+      return false;
+    }
+
+    if (new Date() > client.passwordResetExpires) {
+      return false;
+    }
+
+    const hashedPassword = await this.hashPassword(newPassword);
+
+    await db
+      .update(clients)
+      .set({
+        password: hashedPassword,
+        passwordResetToken: null,
+        passwordResetExpires: null,
+        updatedAt: new Date(),
+      })
+      .where(eq(clients.id, client.id));
+
+    return true;
+  }
+
+  static async verifyEmail(token: string): Promise<Client | null> {
+    const hashedToken = this.hashToken(token);
+    
+    const [client] = await db
+      .select()
+      .from(clients)
+      .where(eq(clients.emailVerificationToken, hashedToken))
+      .limit(1);
+
+    if (!client || !client.emailVerificationToken) {
+      return null;
+    }
+
+    if (!this.compareTokens(hashedToken, client.emailVerificationToken)) {
+      return null;
+    }
+
+    await db
+      .update(clients)
+      .set({
+        emailVerified: true,
+        emailVerificationToken: null,
+        updatedAt: new Date(),
+      })
+      .where(eq(clients.id, client.id));
+
+    const [updatedClient] = await db
+      .select()
+      .from(clients)
+      .where(eq(clients.id, client.id))
+      .limit(1);
+
+    return updatedClient;
+  }
 }

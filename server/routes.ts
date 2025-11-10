@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import crypto from "crypto";
+import speakeasy from "speakeasy";
 import { db } from "./db";
 import { AuthService } from "./services/auth.service";
 import { TradingService } from "./services/trading.service";
@@ -106,6 +107,28 @@ export function registerRoutes(app: Express): Server {
         return res.status(403).json({ message: "Account is disabled" });
       }
 
+      if (client.twoFactorEnabled && client.twoFactorSecret) {
+        const { totpCode } = req.body;
+        
+        if (!totpCode || !/^\d{6}$/.test(totpCode)) {
+          return res.status(401).json({ 
+            message: "2FA code required",
+            requires2FA: true 
+          });
+        }
+
+        const verified = speakeasy.totp.verify({
+          secret: client.twoFactorSecret,
+          encoding: 'base32',
+          token: totpCode,
+          window: 2
+        });
+
+        if (!verified) {
+          return res.status(401).json({ message: "Invalid 2FA code" });
+        }
+      }
+
       const accessToken = AuthService.generateAccessToken(client.id);
       const refreshToken = AuthService.generateRefreshToken(client.id);
 
@@ -182,8 +205,8 @@ export function registerRoutes(app: Express): Server {
         return res.status(401).json({ message: "Refresh token required" });
       }
 
-      const { userId } = AuthService.verifyRefreshToken(refreshToken);
-      const accessToken = AuthService.generateAccessToken(userId);
+      const { clientId } = AuthService.verifyRefreshToken(refreshToken);
+      const accessToken = AuthService.generateAccessToken(clientId);
       
       res.json({ accessToken });
     } catch (error: any) {
@@ -217,16 +240,19 @@ export function registerRoutes(app: Express): Server {
 
   app.post("/api/auth/2fa/setup", authenticateToken, async (req: AuthRequest, res) => {
     try {
-      const secret = crypto.randomBytes(20).toString('hex');
+      const secret = speakeasy.generateSecret({
+        name: `TradingPlatform (${req.user!.email})`,
+        issuer: 'TradingPlatform'
+      });
       
       await db
-        .update(users)
-        .set({ twoFactorSecret: secret })
-        .where(eq(users.id, req.userId!));
+        .update(clients)
+        .set({ twoFactorSecret: secret.base32 })
+        .where(eq(clients.id, req.user!.id));
 
       res.json({
-        secret,
-        qrCode: `otpauth://totp/TradingPlatform:${req.userId}?secret=${secret}&issuer=TradingPlatform`
+        secret: secret.base32,
+        qrCode: secret.otpauth_url
       });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
@@ -241,34 +267,31 @@ export function registerRoutes(app: Express): Server {
         return res.status(400).json({ message: "Invalid code format" });
       }
 
-      const [user] = await db
+      const [client] = await db
         .select()
-        .from(users)
-        .where(eq(users.id, req.userId!))
+        .from(clients)
+        .where(eq(clients.id, req.user!.id))
         .limit(1);
 
-      if (!user?.twoFactorSecret) {
+      if (!client?.twoFactorSecret) {
         return res.status(400).json({ message: "2FA not set up" });
       }
 
-      // TODO: Implement proper TOTP verification using speakeasy or similar library
-      // const verified = speakeasy.totp.verify({
-      //   secret: user.twoFactorSecret,
-      //   encoding: 'hex',
-      //   token: code,
-      //   window: 2
-      // });
-      // if (!verified) {
-      //   return res.status(400).json({ message: "Invalid verification code" });
-      // }
+      const verified = speakeasy.totp.verify({
+        secret: client.twoFactorSecret,
+        encoding: 'base32',
+        token: code,
+        window: 2
+      });
 
-      // For development: accept the code (INSECURE - replace in production)
-      console.warn('WARNING: 2FA verification accepting any code. Implement proper TOTP verification for production!');
+      if (!verified) {
+        return res.status(400).json({ message: "Invalid verification code" });
+      }
 
       await db
-        .update(users)
+        .update(clients)
         .set({ twoFactorEnabled: true })
-        .where(eq(users.id, req.userId!));
+        .where(eq(clients.id, req.user!.id));
 
       res.json({ message: "2FA enabled successfully" });
     } catch (error: any) {
@@ -279,14 +302,40 @@ export function registerRoutes(app: Express): Server {
   app.post("/api/auth/2fa/disable", authenticateToken, async (req: AuthRequest, res) => {
     try {
       await db
-        .update(users)
+        .update(clients)
         .set({ 
           twoFactorEnabled: false,
           twoFactorSecret: null,
         })
-        .where(eq(users.id, req.userId!));
+        .where(eq(clients.id, req.user!.id));
 
       res.json({ message: "2FA disabled successfully" });
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/auth/request-email-verification", authenticateToken, async (req: AuthRequest, res) => {
+    try {
+      const [client] = await db
+        .select()
+        .from(clients)
+        .where(eq(clients.id, req.user!.id))
+        .limit(1);
+
+      if (!client) {
+        return res.status(404).json({ message: "Client not found" });
+      }
+
+      if (client.emailVerified) {
+        return res.status(400).json({ message: "Email already verified" });
+      }
+
+      await AuthService.generateAndStoreEmailVerificationToken(client.id);
+
+      res.status(202).json({ 
+        message: "Verification email has been sent. Please check your email." 
+      });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
@@ -363,6 +412,9 @@ export function registerRoutes(app: Express): Server {
   app.get("/api/trading/positions", authenticateToken, async (req: AuthRequest, res) => {
     try {
       const account = await TradingService.getAccount(req.clientId!);
+      if (!account) {
+        return res.status(404).json({ message: "Trading account not found" });
+      }
       const positions = await TradingService.getPositions(account.id);
       res.json(positions);
     } catch (error: any) {
@@ -373,6 +425,9 @@ export function registerRoutes(app: Express): Server {
   app.get("/api/trading/orders", authenticateToken, async (req: AuthRequest, res) => {
     try {
       const account = await TradingService.getAccount(req.clientId!);
+      if (!account) {
+        return res.status(404).json({ message: "Trading account not found" });
+      }
       const orders = await TradingService.getOrders(account.id);
       res.json(orders);
     } catch (error: any) {
@@ -383,6 +438,9 @@ export function registerRoutes(app: Express): Server {
   app.get("/api/trading/trades", authenticateToken, async (req: AuthRequest, res) => {
     try {
       const account = await TradingService.getAccount(req.clientId!);
+      if (!account) {
+        return res.status(404).json({ message: "Trading account not found" });
+      }
       const trades = await TradingService.getTrades(account.id);
       res.json(trades);
     } catch (error: any) {
@@ -394,10 +452,13 @@ export function registerRoutes(app: Express): Server {
     try {
       const orderData = placeOrderSchema.parse(req.body);
       const account = await TradingService.getAccount(req.clientId!);
+      if (!account) {
+        return res.status(404).json({ message: "Trading account not found" });
+      }
       
       // Use frontend-provided live WebSocket price if available and recent
-      let currentPrice: number;
-      let quoteTimestamp: Date;
+      let currentPrice: number = 0;
+      let quoteTimestamp: Date = new Date();
       let useFrontendPrice = false;
       
       if (orderData.currentPrice && orderData.priceTimestamp) {
@@ -429,7 +490,7 @@ export function registerRoutes(app: Express): Server {
       const result = await TradingService.placeOrder(account.id, orderData, currentPrice, quoteTimestamp);
 
       await AuditService.log({
-        userId: req.userId,
+        userId: req.user!.id,
         action: "trade_create",
         entity: "order",
         entityId: result.order.id,
@@ -450,7 +511,7 @@ export function registerRoutes(app: Express): Server {
       const result = await TradingService.closePosition(positionId);
 
       await AuditService.log({
-        userId: req.userId,
+        userId: req.user!.id,
         action: "trade_close",
         entity: "position",
         entityId: positionId,
@@ -637,7 +698,7 @@ export function registerRoutes(app: Express): Server {
       const { documentType, fileName } = req.body;
 
       const [document] = await db.insert(kycDocuments).values({
-        userId: req.userId!,
+        clientId: req.user!.id,
         documentType,
         fileName,
         status: 'pending',
@@ -654,7 +715,7 @@ export function registerRoutes(app: Express): Server {
       const documents = await db
         .select()
         .from(kycDocuments)
-        .where(eq(kycDocuments.userId, req.userId!));
+        .where(eq(kycDocuments.clientId, req.user!.id));
 
       res.json(documents);
     } catch (error: any) {
