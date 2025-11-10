@@ -112,8 +112,11 @@ export interface VariantConfig {
   content: {
     heroLayout: 'full-width' | 'centered' | 'split' | 'minimal';
     featureLayout: 'grid' | 'list' | 'carousel' | 'masonry';
+    benefitsLayout: 'list' | 'grid' | 'cards';
+    statsLayout: 'grid' | 'row' | 'carousel';
     ctaStyle: 'prominent' | 'subtle' | 'inline';
     imageStyle: 'full-bleed' | 'contained' | 'rounded' | 'overlapping';
+    sectionOrder: ('hero' | 'features' | 'benefits' | 'stats' | 'cta')[];
   };
 
   // Assets
@@ -165,8 +168,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'centered',
       featureLayout: 'grid',
+      benefitsLayout: 'grid',
+      statsLayout: 'grid',
       ctaStyle: 'prominent',
       imageStyle: 'contained',
+      sectionOrder: ['hero', 'features', 'benefits', 'stats', 'cta'],
     },
     assets: {
       heroImage: '/assets/layouts/original/hero.jpg',
@@ -214,8 +220,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'full-width',
       featureLayout: 'grid',
+      benefitsLayout: 'list',
+      statsLayout: 'row',
       ctaStyle: 'inline',
       imageStyle: 'full-bleed',
+      sectionOrder: ['hero', 'stats', 'features', 'benefits', 'cta'],
     },
     assets: {
       heroImage: '/assets/layouts/bloomberg-dark/hero.jpg',
@@ -263,8 +272,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'split',
       featureLayout: 'grid',
+      benefitsLayout: 'cards',
+      statsLayout: 'grid',
       ctaStyle: 'prominent',
       imageStyle: 'contained',
+      sectionOrder: ['hero', 'features', 'stats', 'benefits', 'cta'],
     },
     assets: {
       heroImage: '/assets/layouts/charcoal-pro/hero.jpg',
@@ -311,8 +323,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'centered',
       featureLayout: 'list',
+      benefitsLayout: 'list',
+      statsLayout: 'row',
       ctaStyle: 'subtle',
       imageStyle: 'contained',
+      sectionOrder: ['hero', 'features', 'benefits', 'stats', 'cta'],
     },
     assets: {
       heroImage: '/assets/layouts/navy-institutional/hero.jpg',
@@ -360,8 +375,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'minimal',
       featureLayout: 'grid',
+      benefitsLayout: 'grid',
+      statsLayout: 'row',
       ctaStyle: 'prominent',
       imageStyle: 'rounded',
+      sectionOrder: ['hero', 'benefits', 'features', 'stats', 'cta'],
     },
     assets: {
       heroImage: '/assets/layouts/arctic-minimal/hero.jpg',
@@ -408,8 +426,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'centered',
       featureLayout: 'grid',
+      benefitsLayout: 'cards',
+      statsLayout: 'grid',
       ctaStyle: 'subtle',
       imageStyle: 'rounded',
+      sectionOrder: ['hero', 'features', 'benefits', 'cta', 'stats'],
     },
     assets: {
       heroImage: '/assets/layouts/nordic-clean/hero.jpg',
@@ -456,8 +477,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'split',
       featureLayout: 'grid',
+      benefitsLayout: 'cards',
+      statsLayout: 'carousel',
       ctaStyle: 'prominent',
       imageStyle: 'rounded',
+      sectionOrder: ['hero', 'stats', 'benefits', 'features', 'cta'],
     },
     assets: {
       heroImage: '/assets/layouts/modern-light/hero.jpg',
@@ -505,8 +529,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'full-width',
       featureLayout: 'grid',
+      benefitsLayout: 'grid',
+      statsLayout: 'carousel',
       ctaStyle: 'prominent',
       imageStyle: 'full-bleed',
+      sectionOrder: ['hero', 'features', 'cta', 'benefits', 'stats'],
     },
     assets: {
       heroImage: '/assets/layouts/crypto-neon/hero.jpg',
@@ -554,8 +581,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'split',
       featureLayout: 'masonry',
+      benefitsLayout: 'cards',
+      statsLayout: 'carousel',
       ctaStyle: 'prominent',
       imageStyle: 'overlapping',
+      sectionOrder: ['hero', 'stats', 'features', 'cta', 'benefits'],
     },
     assets: {
       heroImage: '/assets/layouts/carbon-sleek/hero.jpg',
@@ -603,8 +633,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'full-width',
       featureLayout: 'grid',
+      benefitsLayout: 'list',
+      statsLayout: 'grid',
       ctaStyle: 'inline',
       imageStyle: 'full-bleed',
+      sectionOrder: ['hero', 'benefits', 'stats', 'features', 'cta'],
     },
     assets: {
       heroImage: '/assets/layouts/emerald-trader/hero.jpg',
@@ -653,8 +686,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'centered',
       featureLayout: 'grid',
+      benefitsLayout: 'cards',
+      statsLayout: 'row',
       ctaStyle: 'prominent',
       imageStyle: 'rounded',
+      sectionOrder: ['hero', 'benefits', 'features', 'cta', 'stats'],
     },
     assets: {
       heroImage: '/assets/layouts/terracotta-warm/hero.jpg',
@@ -701,8 +737,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'split',
       featureLayout: 'carousel',
+      benefitsLayout: 'grid',
+      statsLayout: 'carousel',
       ctaStyle: 'prominent',
       imageStyle: 'rounded',
+      sectionOrder: ['hero', 'features', 'stats', 'cta', 'benefits'],
     },
     assets: {
       heroImage: '/assets/layouts/sunset-trading/hero.jpg',
@@ -749,8 +788,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'centered',
       featureLayout: 'grid',
+      benefitsLayout: 'list',
+      statsLayout: 'grid',
       ctaStyle: 'prominent',
       imageStyle: 'contained',
+      sectionOrder: ['hero', 'stats', 'benefits', 'cta', 'features'],
     },
     assets: {
       heroImage: '/assets/layouts/sapphire-finance/hero.jpg',
@@ -798,8 +840,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'centered',
       featureLayout: 'list',
+      benefitsLayout: 'list',
+      statsLayout: 'row',
       ctaStyle: 'inline',
       imageStyle: 'contained',
+      sectionOrder: ['hero', 'features', 'benefits', 'stats', 'cta'],
     },
     assets: {
       heroImage: '/assets/layouts/financial-times/hero.jpg',
@@ -846,8 +891,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'minimal',
       featureLayout: 'grid',
+      benefitsLayout: 'grid',
+      statsLayout: 'carousel',
       ctaStyle: 'prominent',
       imageStyle: 'overlapping',
+      sectionOrder: ['hero', 'benefits', 'cta', 'features', 'stats'],
     },
     assets: {
       heroImage: '/assets/layouts/midnight-premium/hero.jpg',
@@ -894,8 +942,11 @@ export const variantConfigs: Record<string, VariantConfig> = {
     content: {
       heroLayout: 'centered',
       featureLayout: 'grid',
+      benefitsLayout: 'list',
+      statsLayout: 'grid',
       ctaStyle: 'subtle',
       imageStyle: 'contained',
+      sectionOrder: ['hero', 'benefits', 'stats', 'cta', 'features'],
     },
     assets: {
       heroImage: '/assets/layouts/minimalist-corporate/hero.jpg',
