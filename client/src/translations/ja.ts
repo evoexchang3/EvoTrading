@@ -1321,9 +1321,6 @@ export const ja = {
   'error.unauthorized': 'このリソースにアクセスする権限がありません',
   'error.notFound': 'リソースが見つかりません',
   'error.serverError': 'サーバーエラー。後でもう一度お試しください。',
-  'tools.education.beginnerCourse': '初級コース',
-  'tools.education.advancedCourse': '上級コース',
-  'tools.education.glossary': '用語集',
   
   // About Page
   'about.seo.title': '会社概要',

@@ -1282,10 +1282,6 @@ export const ru = {
   'tools.tradingSessions.export.timezone.title': '🌍 Конвертер часовых поясов',
   'tools.tradingSessions.export.timezone.description': 'Конвертируйте время сессий UTC в ваш местный часовой пояс для удобства',
   'tools.tradingSessions.export.timezone.button': 'Конвертировать время',
-
-  'tools.education.beginnerCourse': 'Курс для начинающих',
-  'tools.education.advancedCourse': 'Продвинутый курс',
-  'tools.education.glossary': 'Глоссарий',
   
   // Profile Page
   'profile.title': 'Настройки профиля',

@@ -1320,9 +1320,6 @@ export const zhCN = {
   'error.unauthorized': '您无权访问此资源',
   'error.notFound': '未找到资源',
   'error.serverError': '服务器错误。请稍后再试。',
-  'tools.education.beginnerCourse': '初级课程',
-  'tools.education.advancedCourse': '高级课程',
-  'tools.education.glossary': '术语表',
   
   // About Page
   'about.seo.title': '关于我们',
