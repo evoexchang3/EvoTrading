@@ -4,12 +4,18 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { useVariantClasses } from "@/layouts/shared/useVariant";
 import { Lock, Shield, CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
 
+interface HeroProps {
+  headline: string;
+  subheadline: string;
+  cta: string;
+}
+
 /**
  * Centered hero layout - Modern 2025 Design
  * Used by: navy-institutional, arctic-minimal, minimalist-corporate
  * Features: Clean, elegant center-aligned design with subtle animations
  */
-export function HeroCentered() {
+export function HeroCentered({ headline, subheadline, cta }: HeroProps) {
   const { t } = useLanguage();
   const classes = useVariantClasses();
 
@@ -36,7 +42,7 @@ export function HeroCentered() {
             className={`${classes.textSize('hero')} font-bold tracking-tight mb-4 sm:mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text animate-fade-in-up`} 
             data-testid="text-hero-title"
           >
-            {t('home.hero.title')}
+            {headline}
           </h1>
           
           <p 
@@ -44,13 +50,13 @@ export function HeroCentered() {
             style={{ animationDelay: '200ms' }}
             data-testid="text-hero-subtitle"
           >
-            {t('home.hero.subtitle')}
+            {subheadline}
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             <Link href="/register" className="w-full sm:w-auto">
               <Button size="lg" className="group w-full sm:w-auto" data-testid="button-hero-register">
-                {t('home.hero.registerButton')}
+                {cta}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>

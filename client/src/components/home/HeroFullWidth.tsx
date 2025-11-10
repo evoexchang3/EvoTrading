@@ -4,12 +4,18 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { useVariantClasses } from "@/layouts/shared/useVariant";
 import { Lock, Shield, CheckCircle2, TrendingUp, ArrowRight } from "lucide-react";
 
+interface HeroProps {
+  headline: string;
+  subheadline: string;
+  cta: string;
+}
+
 /**
  * Full-width hero layout - Modern 2025 Design
  * Used by: bloomberg-dark, crypto-neon, emerald-trader
  * Features: Animated gradient backgrounds, floating elements, modern visual depth
  */
-export function HeroFullWidth() {
+export function HeroFullWidth({ headline, subheadline, cta }: HeroProps) {
   const { t } = useLanguage();
   const classes = useVariantClasses();
 
@@ -37,7 +43,7 @@ export function HeroFullWidth() {
             className={`${classes.textSize('hero')} font-bold tracking-tight mb-4 sm:mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent animate-fade-in-up`} 
             data-testid="text-hero-title"
           >
-            {t('home.hero.title')}
+            {headline}
           </h1>
           
           <p 
@@ -45,13 +51,13 @@ export function HeroFullWidth() {
             style={{ animationDelay: '200ms' }}
             data-testid="text-hero-subtitle"
           >
-            {t('home.hero.subtitle')}
+            {subheadline}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             <Link href="/register" className="w-full sm:w-auto">
               <Button size="lg" className="group w-full sm:w-auto" data-testid="button-hero-register">
-                {t('home.hero.registerButton')}
+                {cta}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>

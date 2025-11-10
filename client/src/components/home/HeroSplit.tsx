@@ -5,12 +5,18 @@ import { useVariant, useVariantClasses } from "@/layouts/shared/useVariant";
 import { Lock, Shield, CheckCircle2, TrendingUp, BarChart3, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
+interface HeroProps {
+  headline: string;
+  subheadline: string;
+  cta: string;
+}
+
 /**
  * Split hero layout with image/visual on one side - Modern 2025 Design
  * Used by: charcoal-pro, nordic-clean, terracotta-warm, sunset-trading, sapphire-finance
  * Features: Asymmetric layout with floating card elements for modern depth
  */
-export function HeroSplit() {
+export function HeroSplit({ headline, subheadline, cta }: HeroProps) {
   const { t } = useLanguage();
   const variant = useVariant();
   const classes = useVariantClasses();
@@ -27,20 +33,20 @@ export function HeroSplit() {
             </div>
 
             <h1 className={`${classes.textSize('hero')} font-bold tracking-tight mb-4 sm:mb-6`} data-testid="text-hero-title">
-              {t('home.hero.title')}
+              {headline}
             </h1>
             
             <p 
               className={`${classes.textSize('body')} text-muted-foreground leading-relaxed mb-6 sm:mb-8`} 
               data-testid="text-hero-subtitle"
             >
-              {t('home.hero.subtitle')}
+              {subheadline}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
               <Link href="/register" className="w-full sm:w-auto">
                 <Button size="lg" className="group w-full sm:w-auto" data-testid="button-hero-register">
-                  {t('home.hero.registerButton')}
+                  {cta}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
