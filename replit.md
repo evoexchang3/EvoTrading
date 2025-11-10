@@ -37,8 +37,13 @@ The platform includes comprehensive trading courses with English content (multi-
   - `FiveColumnOriginalFooter`: 5-column design (Information, Customer, Company, Trust & Security, Support) for "original" variant
   - Other patterns: quad-grid, tiered-two-row, legal-micro, etc.
 - **Dynamic Rendering**: `DashboardRenderer` component maps configurations to UI widgets
-- **Preview System**: URL parameter `?preview=variant-name` overrides active variant for testing and screenshot capture without modifying configuration files
-- **Screenshot Automation**: Playwright script (`scripts/capture-layout-thumbnails.ts`) captures high-quality thumbnails (1920x1440, 4:3 ratio) of all 16 variants using preview parameter system
+- **Preview System**: 
+  - URL parameter `?preview=variant-name` overrides active variant for testing
+  - Admin preview buttons open layout in new tab (preserves unsaved form data)
+  - Preview mode shows dismissible banner with "Back to Admin" button on landing page
+  - Centralized preview handling via SiteConfigContext with URL change detection
+- **Screenshot Automation**: Playwright script (`scripts/capture-layout-thumbnails.ts`) captures high-quality PNG thumbnails (1920x1440, 4:3 ratio) of all 16 variants using preview parameter system
+- **Layout Thumbnails**: Real screenshots (400KB-1.5MB PNG) generated from actual landing pages, displayed in Admin Configuration UI
 - **Translation Coverage**: All footer sections support 35 languages with stable `data-testid` attributes for reliable cross-language testing
 
 ### Backend
