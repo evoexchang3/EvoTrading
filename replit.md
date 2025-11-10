@@ -93,6 +93,26 @@ The platform includes comprehensive trading courses with English content (multi-
   - Displays distribution across layouts for all pages
   - Catches duplicate structures early in development
 
+**Template-Driven Configuration System (Phase 2 Complete):**
+- **Automated Config Generation**: Reproducible pipeline for scaling to 30+ pages
+  - `variantOverrides.ts`: Data-driven override mappings (96 overrides for 16 variants × 6 new page types)
+  - `scripts/generate-variant-configs.ts`: Generates complete configs from defaults + overrides
+  - `scripts/apply-variant-pages.ts`: Brace-aware file modification for safe automated updates
+  - Dynamic variant discovery via `Object.keys(variantOverrides)` ensures all 16 variants covered
+- **Extended Page Types**: 6 new page categories with full variant support
+  - **PartnersPage**: 6 layouts (logo-grid, carousel, case-studies, benefits-led, testimonials-led, minimal), 15 hero styles
+  - **CompanyPage**: 7 layouts (timeline, values, leadership, benefits, stats, case-studies, mission-vision)
+  - **EducationPage**: 5 layouts (card-grid, list-view, category-tabs, featured-carousel, simple-list)
+  - **LegalPage**: 4 layouts (single-column, two-column, accordion, tabs)
+  - **CustomerInfoPage**: 6 detail levels (concise, detailed, summary, overview, comprehensive, simplified)
+  - **MarketInfoPage**: 5 detail levels with variant-specific market focus
+  - **CompanySubpage**: 3 layouts (default, minimal, detailed)
+- **Type System Expansion**: 56+ new enum types, configurable counts (partnerCount: 6-16, courseCount: 2-6)
+- **Reproducibility Guaranteed**: Full pipeline (generate → apply → validate → uniqueness) produces identical results
+  - 112 total configs (16 variants × 7 page types)
+  - All 16 variants validated and structurally unique
+  - Zero manual editing required
+
 **Preview & Testing:**
 - **Preview System**: URL parameter `?preview=variant-name` overrides active variant
 - **Admin Preview**: Preview buttons open layout in new tab preserving unsaved form data
