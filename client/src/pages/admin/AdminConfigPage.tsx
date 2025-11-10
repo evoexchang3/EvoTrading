@@ -51,7 +51,7 @@ const languages = [
 ];
 
 export default function AdminConfigPage() {
-  const { config, loading, reloadConfig } = useSiteConfig();
+  const { config, loading, reloadConfig, updateConfig } = useSiteConfig();
   const { toast } = useToast();
   const [saving, setSaving] = useState(false);
   const [previewVariant, setPreviewVariant] = useState<string | null>(null);
@@ -321,19 +321,21 @@ export default function AdminConfigPage() {
         }
       };
 
-      await apiRequest("PUT", "/api/admin/site-config", updatedConfig);
+      const savedConfig = await apiRequest("PUT", "/api/admin/site-config", updatedConfig);
 
       toast({
         title: "Configuration updated",
         description: "Site configuration has been saved successfully.",
       });
 
-      // Reload config to get fresh data
-      await reloadConfig();
+      // Update context directly with saved config (more efficient than reload)
+      updateConfig(savedConfig);
       initialized.current = false;
       
       // Clear preview if active
-      setPreviewVariant(null);
+      if (previewVariant) {
+        handleClearPreview();
+      }
     } catch (error) {
       toast({
         title: "Update failed",
@@ -347,23 +349,26 @@ export default function AdminConfigPage() {
 
   const handlePreview = (variant: string) => {
     setPreviewVariant(variant);
-    // Apply preview CSS
-    const existingLinks = document.querySelectorAll('link[data-layout-variant]');
-    existingLinks.forEach(link => link.remove());
     
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `/layouts/variants/${variant}.css`;
-    link.setAttribute('data-layout-variant', variant);
-    document.head.appendChild(link);
+    // Update URL with preview parameter (context will handle the rest)
+    const url = new URL(window.location.href);
+    url.searchParams.set('preview', variant);
+    window.history.pushState({}, '', url.toString());
     
-    document.documentElement.setAttribute('data-layout', variant);
+    // Dispatch event to notify context
+    window.dispatchEvent(new Event('previewchange'));
   };
 
   const handleClearPreview = () => {
     setPreviewVariant(null);
-    // Restore active variant
-    handlePreview(formData.activeVariant);
+    
+    // Remove preview parameter from URL
+    const url = new URL(window.location.href);
+    url.searchParams.delete('preview');
+    window.history.pushState({}, '', url.toString());
+    
+    // Dispatch event to notify context
+    window.dispatchEvent(new Event('previewchange'));
   };
 
   if (loading) {

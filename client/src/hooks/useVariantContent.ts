@@ -7,8 +7,7 @@ import { useSiteConfig } from '@/contexts/SiteConfigContext';
 import { variantContentRegistry, VariantContent, PageContent } from '@/content/variantContent';
 
 export function useVariantContent() {
-  const { config } = useSiteConfig();
-  const activeVariant = config.layout?.activeVariant || 'bloomberg-dark';
+  const { activeVariant } = useSiteConfig();
 
   // Get content for active variant, fallback to bloomberg-dark
   const variantContent: VariantContent = variantContentRegistry[activeVariant] || variantContentRegistry['bloomberg-dark'];

@@ -30,9 +30,8 @@ const VARIANTS = [
   'terracotta-warm',
 ];
 
-const BASE_URL = process.env.REPL_SLUG ? 
-  `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` :
-  'http://localhost:5000';
+// Always use localhost for screenshot capture (works in dev environment)
+const BASE_URL = 'http://localhost:5000';
 
 const OUTPUT_DIR = 'client/public/assets/layouts';
 
@@ -65,8 +64,7 @@ async function captureVariantScreenshot(variantId: string): Promise<void> {
     
     // Capture the hero + navigation section (4:3 aspect ratio thumbnail)
     const screenshot = await page.screenshot({
-      type: 'webp',
-      quality: 85,
+      type: 'png',
       clip: {
         x: 0,
         y: 0,
@@ -76,7 +74,7 @@ async function captureVariantScreenshot(variantId: string): Promise<void> {
     });
     
     // Save screenshot
-    const outputPath = path.join(OUTPUT_DIR, variantId, 'thumb.webp');
+    const outputPath = path.join(OUTPUT_DIR, variantId, 'thumb.png');
     fs.writeFileSync(outputPath, screenshot);
     
     console.log(`✅ Saved: ${outputPath}`);

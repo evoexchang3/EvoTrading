@@ -10,11 +10,11 @@ interface LandingLayoutProps {
 }
 
 export function LandingLayout({ children }: LandingLayoutProps) {
-  const { config, loading, getBranding } = useSiteConfig();
+  const { config, loading, activeVariant: contextActiveVariant, getBranding } = useSiteConfig();
   const { t, language } = useLanguage();
 
-  // Get variant-specific components
-  const activeVariant = loading ? 'bloomberg-dark' : (config.layout?.activeVariant || 'bloomberg-dark');
+  // Get variant-specific components using centralized activeVariant (honors ?preview parameter)
+  const activeVariant = loading ? 'bloomberg-dark' : (contextActiveVariant || 'bloomberg-dark');
   const variantConfig = getVariantConfig(activeVariant);
   
   const NavigationComponent = getNavigationComponent(variantConfig.structure.navigationLayout);
@@ -34,7 +34,7 @@ export function LandingLayout({ children }: LandingLayoutProps) {
   // CSS loading is handled by SiteConfigContext - no duplicate logic here
 
   return (
-    <div className="flex min-h-screen flex-col bg-background" data-layout={loading ? undefined : config.layout?.activeVariant}>
+    <div className="flex min-h-screen flex-col bg-background" data-layout={loading ? undefined : activeVariant}>
       {/* Dynamic Navigation */}
       <NavigationComponent 
         variant={activeVariant} 

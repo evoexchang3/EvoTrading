@@ -6,8 +6,8 @@ import { getVariantConfig, type VariantConfig } from './variantConfig';
  * Pages can use this to adapt their rendering based on the active variant
  */
 export function useVariant(): VariantConfig {
-  const { config } = useSiteConfig();
-  return getVariantConfig(config.layout.activeVariant);
+  const { activeVariant } = useSiteConfig();
+  return getVariantConfig(activeVariant);
 }
 
 /**

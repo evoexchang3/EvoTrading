@@ -190,7 +190,9 @@ interface SiteConfigContextType {
   config: SiteConfig;
   loading: boolean;
   error: string | null;
+  activeVariant: string; // Centralized variant selection (honors ?preview parameter)
   reloadConfig: () => Promise<void>;
+  updateConfig: (newConfig: SiteConfig) => void; // Direct update (after save)
   getBranding: (language?: string) => {
     companyName: string;
     supportEmail: string;
@@ -203,6 +205,7 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
   const [config, setConfig] = useState<SiteConfig>(defaultConfig);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeVariant, setActiveVariant] = useState<string>('bloomberg-dark');
 
   const loadConfig = async () => {
     try {
@@ -249,14 +252,43 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
     loadConfig();
   }, []);
 
-  // Apply active layout variant CSS
+  // Compute active variant (honors ?preview parameter and reacts to URL changes)
   useEffect(() => {
     if (loading) return;
 
-    // Check for preview parameter in URL (for screenshot capture and testing)
-    const urlParams = new URLSearchParams(window.location.search);
-    const previewVariant = urlParams.get('preview');
-    const activeVariant = previewVariant || config.layout.activeVariant;
+    const computeVariant = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const previewVariant = urlParams.get('preview');
+      return previewVariant || config.layout.activeVariant;
+    };
+
+    // Set initial variant
+    setActiveVariant(computeVariant());
+
+    // Listen for URL changes (navigation, preview changes)
+    const handleUrlChange = () => {
+      setActiveVariant(computeVariant());
+    };
+
+    window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
+    
+    // Also listen for custom preview events (when admin changes preview without navigation)
+    const handlePreviewChange = () => {
+      setActiveVariant(computeVariant());
+    };
+    window.addEventListener('previewchange', handlePreviewChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
+      window.removeEventListener('previewchange', handlePreviewChange);
+    };
+  }, [config.layout.activeVariant, loading]);
+
+  // Apply active layout variant CSS
+  useEffect(() => {
+    if (loading || !activeVariant) return;
     
     // Remove any existing layout variant CSS
     const existingLinks = document.querySelectorAll('link[data-layout-variant]');
@@ -276,7 +308,22 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
       // Cleanup on unmount
       link.remove();
     };
-  }, [config.layout.activeVariant, loading]);
+  }, [activeVariant, loading]);
+
+  const updateConfig = (newConfig: SiteConfig) => {
+    setConfig(newConfig);
+    // Update localStorage cache
+    try {
+      localStorage.setItem('site-config', JSON.stringify(newConfig));
+    } catch (e) {
+      console.warn('Failed to update cached config in localStorage:', e);
+    }
+    
+    // Recompute activeVariant based on new config and current URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const previewVariant = urlParams.get('preview');
+    setActiveVariant(previewVariant || newConfig.layout.activeVariant);
+  };
 
   const getBranding = (language?: string) => {
     const defaultBranding = {
@@ -300,7 +347,7 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <SiteConfigContext.Provider value={{ config, loading, error, reloadConfig: loadConfig, getBranding }}>
+    <SiteConfigContext.Provider value={{ config, loading, error, activeVariant, reloadConfig: loadConfig, updateConfig, getBranding }}>
       {children}
     </SiteConfigContext.Provider>
   );
