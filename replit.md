@@ -130,8 +130,11 @@ The platform includes comprehensive trading courses with English content (multi-
 - **Preview System**: URL parameter `?preview=variant-name` overrides active variant
 - **Admin Preview**: Preview buttons open layout in new tab preserving unsaved form data
 - **Preview Banner**: Dismissible "Back to Admin" banner on landing page in preview mode
-- **Screenshot Automation**: Playwright script captures high-quality PNG thumbnails (1920x1440, 4:3) of all 16 variants
-- **Layout Thumbnails**: Real screenshots (400KB-1.5MB PNG) displayed in Admin Configuration UI
+- **Screenshot Automation**: Playwright script (`scripts/capture-layout-thumbnails.ts`) captures high-quality PNG thumbnails (1920x1440, 4:3)
+  - Efficient single-browser architecture with per-variant context isolation
+  - 80 total screenshots: 16 variants × 5 pages (home, about, partners, company, education)
+  - Optimized capture with retry logic and progress tracking
+- **Layout Thumbnails**: Real screenshots (728KB-1.2MB PNG) stored in `client/public/assets/layouts/{variant}/{page}.png`
 
 **Result:**
 Maximum structural diversity achieved and validated - each of the 16 variants displays different text, component layouts, section ordering, optional sections, varied item counts, and unique modules while maintaining informational parity across all major pages (Home, About, Markets, Contact, FAQ). Automated validation ensures configurations remain complete and unique.
