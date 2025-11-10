@@ -99,14 +99,18 @@ The platform includes comprehensive trading courses with English content (multi-
   - `scripts/generate-variant-configs.ts`: Generates complete configs from defaults + overrides
   - `scripts/apply-variant-pages.ts`: Brace-aware file modification for safe automated updates
   - Dynamic variant discovery via `Object.keys(variantOverrides)` ensures all 16 variants covered
-- **Extended Page Types**: 6 new page categories with full variant support
-  - **PartnersPage**: 6 layouts (logo-grid, carousel, case-studies, benefits-led, testimonials-led, minimal), 15 hero styles
-  - **CompanyPage**: 7 layouts (timeline, values, leadership, benefits, stats, case-studies, mission-vision)
-  - **EducationPage**: 5 layouts (card-grid, list-view, category-tabs, featured-carousel, simple-list)
-  - **LegalPage**: 4 layouts (single-column, two-column, accordion, tabs)
-  - **CustomerInfoPage**: 6 detail levels (concise, detailed, summary, overview, comprehensive, simplified)
-  - **MarketInfoPage**: 5 detail levels with variant-specific market focus
-  - **CompanySubpage**: 3 layouts (default, minimal, detailed)
+- **Extended Page Types**: 7 new page categories with full variant support
+  - **PartnersPage (IMPLEMENTED)**: 6 layouts with specialized components
+    - Layouts: logo-grid, spotlight-carousel, case-study, case-studies, benefits-led, metrics-strip
+    - Specialized Components: LogoGridLayout (8 partner logos), SpotlightCarouselLayout (3 partners with carousel), CaseStudyLayout (detailed success story with 4 metrics), MetricsStripLayout (program statistics)
+    - Each layout delivers unique content structure, not just reordered sections
+    - Hero renderer integrated with 15 hero style variants
+  - **CompanyPage**: 7 layouts (mission-led, values-led, values-showcase, timeline-focus, timeline-led, team-spotlight, team-led)
+  - **EducationPage**: 6 layouts (course-grid, course-list, path-visualization, pathway, category-tabs, featured-list)
+  - **LegalPage**: 5 layouts (single-column, two-column, sidebar-nav, accordion, accordion-sections)
+  - **CustomerInfoPage**: 5 layouts (comparison-table, step-by-step, faq-led, faq-hybrid, benefit-cards)
+  - **MarketInfoPage**: TBD layouts with variant-specific market focus
+  - **CompanySubpage**: TBD layouts
 - **Type System Expansion**: 56+ new enum types, configurable counts (partnerCount: 6-16, courseCount: 2-6)
 - **Reproducibility Guaranteed**: Full pipeline (generate → apply → validate → uniqueness) produces identical results
   - 112 total configs (16 variants × 7 page types)
