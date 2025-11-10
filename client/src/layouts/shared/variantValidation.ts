@@ -53,7 +53,54 @@ export const faqLayoutSchema = z.enum(['accordion', 'tabs', 'cards']);
 export const faqOrganizationSchema = z.enum(['categorised', 'flat', 'searchable']);
 export const faqHighlightSchema = z.enum(['featured-top', 'inline', 'none']);
 
-export const partnersLayoutSchema = z.enum(['logo-grid', 'spotlight-carousel', 'case-study', 'metrics-strip']);
+export const partnersLayoutSchema = z.enum([
+  'logo-grid', 'spotlight-carousel', 'case-study', 'case-studies', 
+  'benefits-led', 'metrics-strip'
+]);
+
+export const partnersHeroStyleSchema = z.enum([
+  'standard', 'split-visual', 'minimal', 'gradient', 'tech-forward', 'modern',
+  'sleek', 'neon', 'vibrant', 'cyber', 'electric', 'corporate', 'clean',
+  'professional', 'data-focused'
+]);
+
+export const companyLayoutSchema = z.enum([
+  'mission-led', 'values-led', 'values-showcase', 'timeline-focus', 
+  'timeline-led', 'team-spotlight', 'team-led'
+]);
+
+export const educationLayoutSchema = z.enum([
+  'course-grid', 'course-list', 'path-visualization', 'pathway', 
+  'category-tabs', 'featured-list'
+]);
+
+export const legalLayoutSchema = z.enum([
+  'single-column', 'two-column', 'sidebar-nav', 'accordion', 'accordion-sections'
+]);
+
+export const legalSectionStyleSchema = z.enum([
+  'headings', 'numbered', 'bullets', 'plain'
+]);
+
+export const customerInfoLayoutSchema = z.enum([
+  'comparison-table', 'step-by-step', 'faq-led', 'faq-hybrid', 'benefit-cards'
+]);
+
+export const customerInfoDetailLevelSchema = z.enum([
+  'concise', 'detailed', 'summary'
+]);
+
+export const marketInfoLayoutSchema = z.enum([
+  'data-heavy', 'data-driven', 'educational', 'beginner-friendly', 'tool-interactive'
+]);
+
+export const marketInfoContentDepthSchema = z.enum([
+  'overview', 'comprehensive', 'detailed', 'simplified'
+]);
+
+export const companySubpageLayoutSchema = z.enum([
+  'document-style', 'metrics-focused', 'timeline-view', 'card-sections'
+]);
 
 // Page-specific config schemas
 export const homeContentConfigSchema = z.object({
@@ -132,10 +179,72 @@ export const faqContentConfigSchema = z.object({
 
 export const partnersContentConfigSchema = z.object({
   layout: partnersLayoutSchema,
+  heroStyle: partnersHeroStyleSchema,
+  showBenefits: z.boolean(),
+  showCommission: z.boolean(),
   showLogos: z.boolean(),
   showTestimonials: z.boolean(),
   showCaseStudies: z.boolean(),
-  partnerCount: z.union([z.literal(6), z.literal(9), z.literal(12)]),
+  showHowItWorks: z.boolean(),
+  showCTA: z.boolean(),
+  partnerCount: z.union([
+    z.literal(6), z.literal(8), z.literal(9), z.literal(10), 
+    z.literal(12), z.literal(15), z.literal(16)
+  ]),
+  sectionOrder: z.array(z.enum([
+    'hero', 'benefits', 'commission', 'logos', 'testimonials', 
+    'caseStudies', 'howItWorks', 'cta'
+  ])).min(1),
+});
+
+export const companyContentConfigSchema = z.object({
+  layout: companyLayoutSchema,
+  showMission: z.boolean(),
+  showValues: z.boolean(),
+  showTeam: z.boolean(),
+  showTimeline: z.boolean(),
+  showLocations: z.boolean(),
+  showCTA: z.boolean(),
+});
+
+export const educationContentConfigSchema = z.object({
+  layout: educationLayoutSchema,
+  showBeginner: z.boolean(),
+  showAdvanced: z.boolean(),
+  showResources: z.boolean(),
+  showGlossary: z.boolean(),
+  courseCount: z.union([z.literal(2), z.literal(3), z.literal(4), z.literal(5), z.literal(6)]),
+});
+
+export const legalContentConfigSchema = z.object({
+  layout: legalLayoutSchema,
+  showTableOfContents: z.boolean(),
+  showLastUpdated: z.boolean(),
+  showRelatedDocs: z.boolean(),
+  sectionStyle: legalSectionStyleSchema,
+});
+
+export const customerInfoContentConfigSchema = z.object({
+  layout: customerInfoLayoutSchema,
+  showComparison: z.boolean(),
+  showFAQ: z.boolean(),
+  showCTA: z.boolean(),
+  detailLevel: customerInfoDetailLevelSchema,
+});
+
+export const marketInfoContentConfigSchema = z.object({
+  layout: marketInfoLayoutSchema,
+  showCharts: z.boolean(),
+  showExamples: z.boolean(),
+  showRelatedTopics: z.boolean(),
+  contentDepth: marketInfoContentDepthSchema,
+});
+
+export const companySubpageContentConfigSchema = z.object({
+  layout: companySubpageLayoutSchema,
+  showMetrics: z.boolean(),
+  showDocuments: z.boolean(),
+  showCTA: z.boolean(),
 });
 
 // Main variant config schema
@@ -188,6 +297,12 @@ export const variantConfigSchema = z.object({
     contact: contactContentConfigSchema,
     faq: faqContentConfigSchema,
     partners: partnersContentConfigSchema,
+    company: companyContentConfigSchema,
+    education: educationContentConfigSchema,
+    legal: legalContentConfigSchema,
+    customerInfo: customerInfoContentConfigSchema,
+    marketInfo: marketInfoContentConfigSchema,
+    companySubpage: companySubpageContentConfigSchema,
   }),
   
   // Legacy content field (for backward compatibility)

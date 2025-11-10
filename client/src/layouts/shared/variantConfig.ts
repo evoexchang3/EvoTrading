@@ -130,47 +130,91 @@ export type PartnersLayout =
   | 'logo-grid'             // Simple logo grid
   | 'spotlight-carousel'    // Featured partner carousel
   | 'case-study'            // Detailed case studies
+  | 'case-studies'          // Multiple case studies
+  | 'benefits-led'          // Benefits-focused layout
   | 'metrics-strip';        // Partner stats and logos
 
 export type PartnersHeroStyle =
   | 'standard'              // Traditional hero
   | 'split-visual'          // Split with visual
-  | 'minimal';              // Minimal text-only
+  | 'minimal'               // Minimal text-only
+  | 'gradient'              // Gradient background
+  | 'tech-forward'          // Technology-focused
+  | 'modern'                // Modern design
+  | 'sleek'                 // Sleek minimalist
+  | 'neon'                  // Neon accents
+  | 'vibrant'               // Vibrant colors
+  | 'cyber'                 // Cyberpunk style
+  | 'electric'              // Electric theme
+  | 'corporate'             // Corporate professional
+  | 'clean'                 // Clean minimal
+  | 'professional'          // Professional tone
+  | 'data-focused';         // Data-driven focus
 
 // Company/Education Page Configuration Types
 export type CompanyLayout =
   | 'mission-led'           // Mission statement leads
-  | 'values-showcase'       // Values prominently featured
+  | 'values-led'            // Values prominently featured
+  | 'values-showcase'       // Values showcase style
   | 'timeline-focus'        // Company history timeline
-  | 'team-spotlight';       // Leadership team featured
+  | 'timeline-led'          // Timeline-driven layout
+  | 'team-spotlight'        // Leadership team featured
+  | 'team-led';             // Team-driven layout
 
 export type EducationLayout =
   | 'course-grid'           // Grid of courses
+  | 'course-list'           // List view of courses
   | 'path-visualization'    // Learning path visualization
+  | 'pathway'               // Learning pathway layout
   | 'category-tabs'         // Tabbed by category
   | 'featured-list';        // Featured courses list
 
 // Legal Pages Configuration Types
 export type LegalLayout =
   | 'single-column'         // Traditional single column
+  | 'two-column'            // Two-column layout
   | 'sidebar-nav'           // Sidebar navigation
+  | 'accordion'             // Accordion layout
   | 'accordion-sections';   // Collapsible accordion sections
+
+export type LegalSectionStyle =
+  | 'headings'              // Heading-based sections
+  | 'numbered'              // Numbered sections
+  | 'bullets'               // Bulleted lists
+  | 'plain';                // Plain text
 
 // Customer Info Pages Configuration Types
 export type CustomerInfoLayout =
   | 'comparison-table'      // Comparison tables
   | 'step-by-step'          // Step-by-step guide
-  | 'faq-hybrid';           // FAQ + informational hybrid
+  | 'faq-led'               // FAQ-driven layout
+  | 'faq-hybrid'            // FAQ + informational hybrid
+  | 'benefit-cards';        // Benefit cards layout
+
+export type CustomerInfoDetailLevel =
+  | 'concise'               // Brief overview
+  | 'detailed'              // Detailed information
+  | 'summary';              // Summary format
 
 // Market Info Pages Configuration Types
 export type MarketInfoLayout =
   | 'data-heavy'            // Charts and data focus
+  | 'data-driven'           // Data-driven layout
   | 'educational'           // Educational content focus
+  | 'beginner-friendly'     // Beginner-focused
   | 'tool-interactive';     // Interactive tools focus
+
+export type MarketInfoContentDepth =
+  | 'overview'              // High-level overview
+  | 'comprehensive'         // Complete coverage
+  | 'detailed'              // Detailed information
+  | 'simplified';           // Simplified for beginners
 
 // Company Subpages Configuration Types
 export type CompanySubpageLayout =
   | 'document-style'        // Document-like layout
+  | 'metrics-focused'       // Metrics and data focus
+  | 'timeline-view'         // Timeline visualization
   | 'card-sections';        // Card-based sections
 
 // Page-Specific Configuration Interfaces
@@ -255,7 +299,7 @@ export interface PartnersContentConfig {
   showCaseStudies: boolean;
   showHowItWorks: boolean;
   showCTA: boolean;
-  partnerCount: 6 | 9 | 12;
+  partnerCount: 6 | 8 | 9 | 10 | 12 | 15 | 16;
   sectionOrder: ('hero' | 'benefits' | 'commission' | 'logos' | 'testimonials' | 'caseStudies' | 'howItWorks' | 'cta')[];
 }
 
@@ -275,7 +319,7 @@ export interface EducationContentConfig {
   showAdvanced: boolean;
   showResources: boolean;
   showGlossary: boolean;
-  courseCount: 2 | 3 | 4;
+  courseCount: 2 | 3 | 4 | 5 | 6;
 }
 
 export interface LegalContentConfig {
@@ -283,7 +327,7 @@ export interface LegalContentConfig {
   showTableOfContents: boolean;
   showLastUpdated: boolean;
   showRelatedDocs: boolean;
-  sectionStyle: 'numbered' | 'headings' | 'plain';
+  sectionStyle: LegalSectionStyle;
 }
 
 export interface CustomerInfoContentConfig {
@@ -291,7 +335,7 @@ export interface CustomerInfoContentConfig {
   showComparison: boolean;
   showFAQ: boolean;
   showCTA: boolean;
-  detailLevel: 'concise' | 'detailed';
+  detailLevel: CustomerInfoDetailLevel;
 }
 
 export interface MarketInfoContentConfig {
@@ -299,7 +343,7 @@ export interface MarketInfoContentConfig {
   showCharts: boolean;
   showExamples: boolean;
   showRelatedTopics: boolean;
-  contentDepth: 'overview' | 'comprehensive';
+  contentDepth: MarketInfoContentDepth;
 }
 
 export interface CompanySubpageContentConfig {
@@ -536,7 +580,7 @@ export const variantConfigs: Record<string, VariantConfig> = {
         showDocuments: true,
         showCTA: true,
       },
-    },
+      },
     content: {
       heroType: 'standard-centered',
       heroLayout: 'centered',
@@ -659,12 +703,62 @@ export const variantConfigs: Record<string, VariantConfig> = {
       },
       partners: {
         layout: 'spotlight-carousel',
+        heroStyle: 'minimal',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
         showTestimonials: true,
         showCaseStudies: false,
+        showHowItWorks: true,
+        showCTA: true,
         partnerCount: 9,
+        sectionOrder: ['hero', 'logos', 'testimonials', 'commission', 'benefits', 'cta'],
       },
-    },
+      company: {
+        layout: 'values-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: true,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-list',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: false,
+        courseCount: 6,
+      },
+      legal: {
+        layout: 'two-column',
+        showTableOfContents: false,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'numbered',
+      },
+      customerInfo: {
+        layout: 'faq-led',
+        showComparison: false,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'concise',
+      },
+      marketInfo: {
+        layout: 'data-driven',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: false,
+        contentDepth: 'detailed',
+      },
+      companySubpage: {
+        layout: 'metrics-focused',
+        showMetrics: true,
+        showDocuments: false,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'data-dashboard',
       heroLayout: 'full-width',
@@ -786,13 +880,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 4,
       },
       partners: {
-        layout: 'logo-grid',
+        layout: 'benefits-led',
+        heroStyle: 'data-focused',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
         showTestimonials: false,
-        showCaseStudies: false,
-        partnerCount: 6,
+        showCaseStudies: true,
+        showHowItWorks: false,
+        showCTA: true,
+        partnerCount: 8,
+        sectionOrder: ['hero', 'benefits', 'logos', 'commission', 'caseStudies', 'cta'],
       },
-    },
+      company: {
+        layout: 'team-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: false,
+        showCTA: true,
+      },
+      education: {
+        layout: 'pathway',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: false,
+        showGlossary: true,
+        courseCount: 5,
+      },
+      legal: {
+        layout: 'accordion',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: false,
+        sectionStyle: 'headings',
+      },
+      customerInfo: {
+        layout: 'benefit-cards',
+        showComparison: true,
+        showFAQ: false,
+        showCTA: true,
+        detailLevel: 'summary',
+      },
+      marketInfo: {
+        layout: 'beginner-friendly',
+        showCharts: true,
+        showExamples: false,
+        showRelatedTopics: true,
+        contentDepth: 'simplified',
+      },
+      companySubpage: {
+        layout: 'document-style',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: false,
+      },
+      },
     content: {
       heroType: 'split-content',
       heroLayout: 'split',
@@ -913,13 +1057,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 6,
       },
       partners: {
-        layout: 'case-study',
-        showLogos: true,
-        showTestimonials: true,
+        layout: 'case-studies',
+        heroStyle: 'professional',
+        showBenefits: true,
+        showCommission: true,
+        showLogos: false,
+        showTestimonials: false,
         showCaseStudies: true,
-        partnerCount: 9,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 10,
+        sectionOrder: ['hero', 'caseStudies', 'benefits', 'commission', 'howItWorks', 'cta'],
       },
-    },
+      company: {
+        layout: 'timeline-led',
+        showMission: false,
+        showValues: true,
+        showTeam: true,
+        showTimeline: true,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-grid',
+        showBeginner: false,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: true,
+        courseCount: 4,
+      },
+      legal: {
+        layout: 'single-column',
+        showTableOfContents: true,
+        showLastUpdated: false,
+        showRelatedDocs: true,
+        sectionStyle: 'bullets',
+      },
+      customerInfo: {
+        layout: 'comparison-table',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: false,
+        detailLevel: 'detailed',
+      },
+      marketInfo: {
+        layout: 'educational',
+        showCharts: false,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'comprehensive',
+      },
+      companySubpage: {
+        layout: 'timeline-view',
+        showMetrics: true,
+        showDocuments: false,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'standard-centered',
       heroLayout: 'centered',
@@ -1041,13 +1235,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 4,
       },
       partners: {
-        layout: 'case-study',
+        layout: 'logo-grid',
+        heroStyle: 'minimal',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
         showTestimonials: false,
-        showCaseStudies: true,
+        showCaseStudies: false,
+        showHowItWorks: false,
+        showCTA: true,
         partnerCount: 6,
+        sectionOrder: ['hero', 'logos', 'benefits', 'commission', 'cta'],
       },
-    },
+      company: {
+        layout: 'mission-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: false,
+        showCTA: false,
+      },
+      education: {
+        layout: 'course-grid',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: false,
+        showGlossary: true,
+        courseCount: 4,
+      },
+      legal: {
+        layout: 'single-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: false,
+        sectionStyle: 'headings',
+      },
+      customerInfo: {
+        layout: 'comparison-table',
+        showComparison: true,
+        showFAQ: false,
+        showCTA: true,
+        detailLevel: 'concise',
+      },
+      marketInfo: {
+        layout: 'educational',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: false,
+        contentDepth: 'simplified',
+      },
+      companySubpage: {
+        layout: 'document-style',
+        showMetrics: false,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'minimal-text',
       heroLayout: 'minimal',
@@ -1168,13 +1412,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 6,
       },
       partners: {
-        layout: 'logo-grid',
+        layout: 'benefits-led',
+        heroStyle: 'clean',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
-        showTestimonials: true,
-        showCaseStudies: false,
-        partnerCount: 9,
+        showTestimonials: false,
+        showCaseStudies: true,
+        showHowItWorks: false,
+        showCTA: true,
+        partnerCount: 10,
+        sectionOrder: ['hero', 'benefits', 'logos', 'commission', 'cta'],
       },
-    },
+      company: {
+        layout: 'team-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'pathway',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: true,
+        courseCount: 5,
+      },
+      legal: {
+        layout: 'accordion',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'headings',
+      },
+      customerInfo: {
+        layout: 'benefit-cards',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'detailed',
+      },
+      marketInfo: {
+        layout: 'beginner-friendly',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'comprehensive',
+      },
+      companySubpage: {
+        layout: 'metrics-focused',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'minimal-text',
       heroLayout: 'centered',
@@ -1295,13 +1589,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 6,
       },
       partners: {
-        layout: 'spotlight-carousel',
+        layout: 'logo-grid',
+        heroStyle: 'gradient',
+        showBenefits: false,
+        showCommission: true,
         showLogos: true,
-        showTestimonials: true,
+        showTestimonials: false,
         showCaseStudies: true,
-        partnerCount: 9,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 15,
+        sectionOrder: ['hero', 'logos', 'commission', 'testimonials', 'howItWorks', 'cta'],
       },
-    },
+      company: {
+        layout: 'mission-led',
+        showMission: true,
+        showValues: false,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-list',
+        showBeginner: true,
+        showAdvanced: false,
+        showResources: true,
+        showGlossary: true,
+        courseCount: 6,
+      },
+      legal: {
+        layout: 'two-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'headings',
+      },
+      customerInfo: {
+        layout: 'faq-led',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'concise',
+      },
+      marketInfo: {
+        layout: 'data-driven',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'detailed',
+      },
+      companySubpage: {
+        layout: 'metrics-focused',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'split-content',
       heroLayout: 'split',
@@ -1423,13 +1767,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 8,
       },
       partners: {
-        layout: 'metrics-strip',
+        layout: 'logo-grid',
+        heroStyle: 'neon',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
         showTestimonials: false,
         showCaseStudies: false,
-        partnerCount: 12,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 16,
+        sectionOrder: ['hero', 'logos', 'benefits', 'commission', 'howItWorks', 'cta'],
       },
-    },
+      company: {
+        layout: 'mission-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'pathway',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: true,
+        courseCount: 5,
+      },
+      legal: {
+        layout: 'accordion',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'headings',
+      },
+      customerInfo: {
+        layout: 'benefit-cards',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'summary',
+      },
+      marketInfo: {
+        layout: 'beginner-friendly',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'simplified',
+      },
+      companySubpage: {
+        layout: 'document-style',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'fullscreen-video',
       heroLayout: 'full-width',
@@ -1551,13 +1945,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 6,
       },
       partners: {
-        layout: 'metrics-strip',
+        layout: 'case-studies',
+        heroStyle: 'sleek',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
-        showTestimonials: true,
-        showCaseStudies: false,
-        partnerCount: 9,
+        showTestimonials: false,
+        showCaseStudies: true,
+        showHowItWorks: false,
+        showCTA: true,
+        partnerCount: 8,
+        sectionOrder: ['hero', 'caseStudies', 'benefits', 'commission', 'logos', 'cta'],
       },
-    },
+      company: {
+        layout: 'timeline-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: false,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-list',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: false,
+        showGlossary: true,
+        courseCount: 6,
+      },
+      legal: {
+        layout: 'two-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'bullets',
+      },
+      customerInfo: {
+        layout: 'faq-led',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'concise',
+      },
+      marketInfo: {
+        layout: 'data-driven',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'detailed',
+      },
+      companySubpage: {
+        layout: 'metrics-focused',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'split-content',
       heroLayout: 'split',
@@ -1679,13 +2123,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 8,
       },
       partners: {
-        layout: 'spotlight-carousel',
+        layout: 'benefits-led',
+        heroStyle: 'modern',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
         showTestimonials: false,
         showCaseStudies: true,
-        partnerCount: 12,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 9,
+        sectionOrder: ['hero', 'benefits', 'commission', 'logos', 'howItWorks', 'cta'],
       },
-    },
+      company: {
+        layout: 'team-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: true,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-grid',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: true,
+        courseCount: 4,
+      },
+      legal: {
+        layout: 'single-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'headings',
+      },
+      customerInfo: {
+        layout: 'comparison-table',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'detailed',
+      },
+      marketInfo: {
+        layout: 'educational',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'comprehensive',
+      },
+      companySubpage: {
+        layout: 'timeline-view',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'ticker-overlay',
       heroLayout: 'full-width',
@@ -1808,13 +2302,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 4,
       },
       partners: {
-        layout: 'logo-grid',
-        showLogos: true,
+        layout: 'case-studies',
+        heroStyle: 'electric',
+        showBenefits: true,
+        showCommission: true,
+        showLogos: false,
         showTestimonials: false,
         showCaseStudies: true,
-        partnerCount: 6,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 9,
+        sectionOrder: ['hero', 'caseStudies', 'benefits', 'commission', 'howItWorks', 'cta'],
       },
-    },
+      company: {
+        layout: 'timeline-led',
+        showMission: false,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'pathway',
+        showBeginner: false,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: true,
+        courseCount: 5,
+      },
+      legal: {
+        layout: 'accordion',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'bullets',
+      },
+      customerInfo: {
+        layout: 'benefit-cards',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'summary',
+      },
+      marketInfo: {
+        layout: 'beginner-friendly',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'simplified',
+      },
+      companySubpage: {
+        layout: 'document-style',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'standard-centered',
       heroLayout: 'centered',
@@ -1936,12 +2480,62 @@ export const variantConfigs: Record<string, VariantConfig> = {
       },
       partners: {
         layout: 'metrics-strip',
+        heroStyle: 'modern',
+        showBenefits: true,
+        showCommission: true,
         showLogos: true,
         showTestimonials: true,
         showCaseStudies: false,
-        partnerCount: 9,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 12,
+        sectionOrder: ['hero', 'logos', 'benefits', 'testimonials', 'commission', 'cta'],
       },
-    },
+      company: {
+        layout: 'mission-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: true,
+        showLocations: false,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-grid',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: false,
+        showGlossary: true,
+        courseCount: 4,
+      },
+      legal: {
+        layout: 'single-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'plain',
+      },
+      customerInfo: {
+        layout: 'comparison-table',
+        showComparison: true,
+        showFAQ: false,
+        showCTA: true,
+        detailLevel: 'detailed',
+      },
+      marketInfo: {
+        layout: 'educational',
+        showCharts: false,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'comprehensive',
+      },
+      companySubpage: {
+        layout: 'card-sections',
+        showMetrics: false,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'carousel-features',
       heroLayout: 'split',
@@ -2062,13 +2656,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 6,
       },
       partners: {
-        layout: 'case-study',
+        layout: 'spotlight-carousel',
+        heroStyle: 'tech-forward',
+        showBenefits: true,
+        showCommission: false,
         showLogos: true,
         showTestimonials: false,
         showCaseStudies: true,
-        partnerCount: 9,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 12,
+        sectionOrder: ['hero', 'benefits', 'logos', 'caseStudies', 'howItWorks', 'cta'],
       },
-    },
+      company: {
+        layout: 'values-led',
+        showMission: true,
+        showValues: true,
+        showTeam: false,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'pathway',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: false,
+        courseCount: 5,
+      },
+      legal: {
+        layout: 'accordion',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'numbered',
+      },
+      customerInfo: {
+        layout: 'benefit-cards',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'summary',
+      },
+      marketInfo: {
+        layout: 'beginner-friendly',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'simplified',
+      },
+      companySubpage: {
+        layout: 'document-style',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'fullscreen-video',
       heroLayout: 'centered',
@@ -2190,13 +2834,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 4,
       },
       partners: {
-        layout: 'metrics-strip',
+        layout: 'benefits-led',
+        heroStyle: 'cyber',
+        showBenefits: true,
+        showCommission: false,
         showLogos: true,
         showTestimonials: false,
-        showCaseStudies: false,
-        partnerCount: 6,
+        showCaseStudies: true,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 12,
+        sectionOrder: ['hero', 'benefits', 'logos', 'caseStudies', 'howItWorks', 'cta'],
       },
-    },
+      company: {
+        layout: 'team-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-list',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: true,
+        courseCount: 6,
+      },
+      legal: {
+        layout: 'two-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'headings',
+      },
+      customerInfo: {
+        layout: 'faq-led',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'concise',
+      },
+      marketInfo: {
+        layout: 'data-driven',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'detailed',
+      },
+      companySubpage: {
+        layout: 'metrics-focused',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'minimal-text',
       heroLayout: 'centered',
@@ -2318,12 +3012,62 @@ export const variantConfigs: Record<string, VariantConfig> = {
       },
       partners: {
         layout: 'spotlight-carousel',
+        heroStyle: 'vibrant',
+        showBenefits: false,
+        showCommission: true,
         showLogos: true,
-        showTestimonials: true,
+        showTestimonials: false,
         showCaseStudies: true,
-        partnerCount: 12,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 10,
+        sectionOrder: ['hero', 'testimonials', 'logos', 'commission', 'caseStudies', 'cta'],
       },
-    },
+      company: {
+        layout: 'values-led',
+        showMission: true,
+        showValues: true,
+        showTeam: true,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-grid',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: false,
+        courseCount: 4,
+      },
+      legal: {
+        layout: 'single-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'numbered',
+      },
+      customerInfo: {
+        layout: 'comparison-table',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'detailed',
+      },
+      marketInfo: {
+        layout: 'educational',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'comprehensive',
+      },
+      companySubpage: {
+        layout: 'timeline-view',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'data-dashboard',
       heroLayout: 'minimal',
@@ -2444,13 +3188,63 @@ export const variantConfigs: Record<string, VariantConfig> = {
         categoryCount: 6,
       },
       partners: {
-        layout: 'case-study',
+        layout: 'spotlight-carousel',
+        heroStyle: 'corporate',
+        showBenefits: false,
+        showCommission: false,
         showLogos: true,
         showTestimonials: false,
         showCaseStudies: true,
-        partnerCount: 12,
+        showHowItWorks: true,
+        showCTA: true,
+        partnerCount: 8,
+        sectionOrder: ['hero', 'logos', 'caseStudies', 'cta'],
       },
-    },
+      company: {
+        layout: 'values-led',
+        showMission: true,
+        showValues: true,
+        showTeam: false,
+        showTimeline: false,
+        showLocations: true,
+        showCTA: true,
+      },
+      education: {
+        layout: 'course-list',
+        showBeginner: true,
+        showAdvanced: true,
+        showResources: true,
+        showGlossary: false,
+        courseCount: 6,
+      },
+      legal: {
+        layout: 'two-column',
+        showTableOfContents: true,
+        showLastUpdated: true,
+        showRelatedDocs: true,
+        sectionStyle: 'numbered',
+      },
+      customerInfo: {
+        layout: 'faq-led',
+        showComparison: true,
+        showFAQ: true,
+        showCTA: true,
+        detailLevel: 'summary',
+      },
+      marketInfo: {
+        layout: 'data-driven',
+        showCharts: true,
+        showExamples: true,
+        showRelatedTopics: true,
+        contentDepth: 'detailed',
+      },
+      companySubpage: {
+        layout: 'timeline-view',
+        showMetrics: true,
+        showDocuments: true,
+        showCTA: true,
+      },
+      },
     content: {
       heroType: 'standard-centered',
       heroLayout: 'centered',
