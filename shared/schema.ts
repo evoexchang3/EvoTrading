@@ -113,7 +113,7 @@ export const symbols = pgTable("symbols", {
 export const candles = pgTable("candles", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   symbol: text("symbol").notNull(),
-  interval: text("interval").notNull(), // 1m, 5m, 15m, 1h, 4h, 1d
+  interval: text("interval").notNull(), // 1min, 5min, 15min, 1h, 1day, 1week
   timestamp: timestamp("timestamp", { withTimezone: true }).notNull(), // UTC timestamp with timezone
   open: decimal("open", { precision: 18, scale: 8 }).notNull(),
   high: decimal("high", { precision: 18, scale: 8 }).notNull(),
@@ -121,7 +121,10 @@ export const candles = pgTable("candles", {
   close: decimal("close", { precision: 18, scale: 8 }).notNull(),
   volume: decimal("volume", { precision: 18, scale: 2 }),
   cachedAt: timestamp("cached_at", { withTimezone: true }).defaultNow(),
-});
+}, (table) => ({
+  // Unique constraint for upsert operations
+  uniqueCandle: sql`UNIQUE (symbol, interval, timestamp)`,
+}));
 
 // Orders
 export const orders = pgTable("orders", {

@@ -21,30 +21,45 @@ export function setupWebSocket(httpServer: Server) {
   // Track subscribed symbols on Twelve Data
   const subscribedSymbols = new Set<string>();
   
-  // Cache for symbol format mappings (symbol -> twelveDataSymbol)
-  const symbolFormatCache = new Map<string, string>();
+  // Bidirectional cache for symbol format mappings
+  // dbSymbol (EURUSD) <-> formattedSymbol (EUR/USD)
+  const symbolFormatCache = new Map<string, string>(); // dbSymbol -> formattedSymbol
+  const reverseSymbolCache = new Map<string, string>(); // formattedSymbol -> dbSymbol
   
-  // Pre-load all symbol mappings into cache
-  (async () => {
+  // Lazy-load symbol format mapping with bidirectional caching
+  async function getSymbolFormat(symbol: string): Promise<string> {
+    // Check cache first
+    if (symbolFormatCache.has(symbol)) {
+      return symbolFormatCache.get(symbol)!;
+    }
+    
+    // Fetch from database
     try {
       const { db } = await import('./db');
       const { symbols: symbolsTable } = await import('@shared/schema');
+      const { eq } = await import('drizzle-orm');
       
-      const allSymbols = await db
-        .select({ symbol: symbolsTable.symbol, twelveDataSymbol: symbolsTable.twelveDataSymbol })
-        .from(symbolsTable);
+      const [symbolRecord] = await db
+        .select({ twelveDataSymbol: symbolsTable.twelveDataSymbol })
+        .from(symbolsTable)
+        .where(eq(symbolsTable.symbol, symbol))
+        .limit(1);
       
-      allSymbols.forEach(s => {
-        if (s.twelveDataSymbol) {
-          symbolFormatCache.set(s.symbol, s.twelveDataSymbol);
-        }
-      });
+      const formattedSymbol = symbolRecord?.twelveDataSymbol || symbol;
       
-      console.log(`Loaded ${symbolFormatCache.size} symbol format mappings into cache`);
+      // Cache bidirectionally for O(1) lookups
+      symbolFormatCache.set(symbol, formattedSymbol);
+      reverseSymbolCache.set(formattedSymbol, symbol);
+      
+      return formattedSymbol;
     } catch (error) {
-      console.error('Error pre-loading symbol cache:', error);
+      console.error(`Error fetching symbol format for ${symbol}:`, error);
+      // Fallback to original symbol
+      symbolFormatCache.set(symbol, symbol);
+      reverseSymbolCache.set(symbol, symbol);
+      return symbol;
     }
-  })();
+  }
 
   function ensureTwelveDataConnection() {
     if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
@@ -58,24 +73,24 @@ export function setupWebSocket(httpServer: Server) {
 
     twelveDataWs = new WebSocket(`${TWELVEDATA_WS_URL}?apikey=${TWELVEDATA_API_KEY}`);
 
-    twelveDataWs.on('open', () => {
+    twelveDataWs.on('open', async () => {
       console.log('Connected to Twelve Data WebSocket');
       
       // Resubscribe to all symbols that have subscribers
       if (subscribedSymbols.size > 0) {
         const symbolsToSubscribe = Array.from(subscribedSymbols);
-        console.log(`Subscribing to ${symbolsToSubscribe.length} symbols`);
+        console.log(`Resubscribing to ${symbolsToSubscribe.length} active symbols`);
         
-        // Use cached format or fallback to original symbol
-        const formattedSymbols = symbolsToSubscribe
-          .map(s => symbolFormatCache.get(s) || s)
-          .join(',');
+        // Get formatted symbols (lazy-load if not cached)
+        const formattedSymbols = await Promise.all(
+          symbolsToSubscribe.map(s => getSymbolFormat(s))
+        );
         
-        if (formattedSymbols) {
+        if (formattedSymbols.length > 0) {
           twelveDataWs?.send(JSON.stringify({
             action: 'subscribe',
             params: {
-              symbols: formattedSymbols
+              symbols: formattedSymbols.join(',')
             }
           }));
         }
@@ -101,17 +116,11 @@ export function setupWebSocket(httpServer: Server) {
           const twelveDataSymbol = message.symbol; // EUR/USD format
           const price = parseFloat(message.price);
           
-          // Find the database symbol (EURUSD) from the formatted symbol (EUR/USD)
-          let dbSymbol = null;
-          for (const entry of Array.from(symbolFormatCache.entries())) {
-            if (entry[1] === twelveDataSymbol) {
-              dbSymbol = entry[0];
-              break;
-            }
-          }
-
+          // O(1) lookup using reverse cache
+          let dbSymbol = reverseSymbolCache.get(twelveDataSymbol);
+          
           if (!dbSymbol) {
-            // Fallback: remove slashes
+            // Fallback: remove slashes and try to match
             dbSymbol = twelveDataSymbol.replace(/\//g, '');
           }
           
@@ -180,31 +189,7 @@ export function setupWebSocket(httpServer: Server) {
       
       // If connection is open, subscribe immediately
       if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
-        // Check cache first
-        let formattedSymbol = symbolFormatCache.get(symbol);
-        
-        // If not cached, fetch from database and cache it
-        if (!formattedSymbol) {
-          try {
-            const { db } = await import('./db');
-            const { symbols: symbolsTable } = await import('@shared/schema');
-            const { eq } = await import('drizzle-orm');
-            
-            const [symbolRecord] = await db
-              .select({ twelveDataSymbol: symbolsTable.twelveDataSymbol })
-              .from(symbolsTable)
-              .where(eq(symbolsTable.symbol, symbol))
-              .limit(1);
-            
-            formattedSymbol = symbolRecord?.twelveDataSymbol || symbol;
-            symbolFormatCache.set(symbol, formattedSymbol);
-          } catch (error) {
-            console.error(`Error fetching symbol format for ${symbol}:`, error);
-            // Fallback to original symbol
-            formattedSymbol = symbol;
-            symbolFormatCache.set(symbol, formattedSymbol);
-          }
-        }
+        const formattedSymbol = await getSymbolFormat(symbol);
         
         twelveDataWs.send(JSON.stringify({
           action: 'subscribe',
@@ -216,14 +201,13 @@ export function setupWebSocket(httpServer: Server) {
     }
   }
 
-  function unsubscribeFromSymbol(symbol: string) {
+  async function unsubscribeFromSymbol(symbol: string) {
     if (subscribedSymbols.has(symbol)) {
       subscribedSymbols.delete(symbol);
       
       // If connection is open, unsubscribe immediately
       if (twelveDataWs && twelveDataWs.readyState === WebSocket.OPEN) {
-        // Use cached format
-        const formattedSymbol = symbolFormatCache.get(symbol) || symbol;
+        const formattedSymbol = await getSymbolFormat(symbol);
         
         twelveDataWs.send(JSON.stringify({
           action: 'unsubscribe',

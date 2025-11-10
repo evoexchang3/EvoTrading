@@ -98,6 +98,7 @@ export class MarketService {
           symbol: apiSymbol,
           interval,
           outputsize: limit,
+          timezone: 'UTC', // Request UTC timestamps to avoid timezone conversion issues
           apikey: TWELVE_DATA_API_KEY,
         },
         timeout: 10000,
@@ -107,7 +108,8 @@ export class MarketService {
         const candleData = response.data.values.map((v: any) => ({
           symbol,
           interval,
-          timestamp: new Date(v.datetime),
+          // Parse as UTC by appending 'Z' to ensure correct timezone handling
+          timestamp: new Date(v.datetime + (v.datetime.includes('Z') ? '' : 'Z')),
           open: v.open,
           high: v.high,
           low: v.low,
@@ -115,17 +117,26 @@ export class MarketService {
           volume: v.volume || '0',
         }));
 
-        // Cache candles - delete existing entries first to refresh cache
+        // Cache candles using upsert (more efficient than delete+insert)
         try {
-          await db.delete(candles).where(
-            and(
-              eq(candles.symbol, symbol),
-              eq(candles.interval, interval)
-            )
-          );
-          await db.insert(candles).values(candleData);
+          // Use upsert to insert or update existing candles
+          for (const candle of candleData) {
+            await db.insert(candles)
+              .values(candle)
+              .onConflictDoUpdate({
+                target: [candles.symbol, candles.interval, candles.timestamp],
+                set: {
+                  open: candle.open,
+                  high: candle.high,
+                  low: candle.low,
+                  close: candle.close,
+                  volume: candle.volume,
+                  cachedAt: new Date(),
+                }
+              });
+          }
           const latestTime = candleData.length > 0 ? candleData[0].timestamp : 'N/A';
-          console.log(`✓ Fetched and cached ${candleData.length} fresh candles for ${symbol} ${interval} (latest: ${latestTime})`);
+          console.log(`✓ Upserted ${candleData.length} candles for ${symbol} ${interval} (latest: ${latestTime})`);
         } catch (error) {
           console.error('Error caching candles:', error);
         }

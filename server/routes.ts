@@ -18,7 +18,7 @@ import {
   placeOrderSchema,
   createTransactionSchema 
 } from "@shared/schema";
-import { clients, accounts, transactions, kycDocuments, userPreferences, users } from "@shared/schema";
+import { clients, accounts, transactions, kycDocuments, userPreferences, users, symbols } from "@shared/schema";
 import { eq, sql } from "drizzle-orm";
 
 function requireAdmin(req: AuthRequest, res: Response, next: NextFunction) {
@@ -537,10 +537,94 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Market data routes
+  // Symbol search with pagination (lazy loading)
+  app.get("/api/symbols/search", async (req, res) => {
+    try {
+      const { q = '', type = '', limit = '20', offset = '0' } = req.query;
+      const { and, or, ilike } = await import('drizzle-orm');
+      
+      const conditions = [eq(symbols.isActive, true)];
+      
+      // Search by symbol or name
+      if (q) {
+        const searchTerm = `%${q}%`;
+        conditions.push(
+          or(
+            ilike(symbols.symbol, searchTerm),
+            ilike(symbols.name, searchTerm)
+          )!
+        );
+      }
+      
+      // Filter by type
+      if (type) {
+        conditions.push(eq(symbols.type, type as string));
+      }
+      
+      const results = await db
+        .select()
+        .from(symbols)
+        .where(and(...conditions))
+        .limit(parseInt(limit as string))
+        .offset(parseInt(offset as string))
+        .orderBy(symbols.symbol);
+      
+      res.json(results);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Get popular/featured symbols
+  app.get("/api/symbols/popular", async (req, res) => {
+    try {
+      const { limit = '10' } = req.query;
+      
+      // Popular symbols - hardcoded for now, could be based on trading volume later
+      const popularSymbols = ['EURUSD', 'GBPUSD', 'USDJPY', 'BTCUSD', 'ETHUSD', 'XAUUSD', 'SPY', 'QQQ', 'AAPL', 'TSLA'];
+      
+      const results = await db
+        .select()
+        .from(symbols)
+        .where(
+          sql`${symbols.symbol} = ANY(${popularSymbols})`
+        )
+        .limit(parseInt(limit as string));
+      
+      res.json(results);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Get all symbols with pagination
   app.get("/api/market/symbols", async (req, res) => {
     try {
-      const symbols = await MarketService.getSymbols();
-      res.json(symbols);
+      const { page = '1', pageSize = '50', type = '' } = req.query;
+      const { and } = await import('drizzle-orm');
+      const pageNum = parseInt(page as string);
+      const size = parseInt(pageSize as string);
+      const offset = (pageNum - 1) * size;
+      
+      const conditions = [eq(symbols.isActive, true)];
+      if (type) {
+        conditions.push(eq(symbols.type, type as string));
+      }
+      
+      const [results, countResult] = await Promise.all([
+        db.select().from(symbols).where(and(...conditions)).limit(size).offset(offset).orderBy(symbols.symbol),
+        db.select({ count: sql<number>`count(*)` }).from(symbols).where(and(...conditions))
+      ]);
+      
+      res.json({
+        data: results,
+        pagination: {
+          page: pageNum,
+          pageSize: size,
+          total: countResult[0]?.count || 0,
+          totalPages: Math.ceil((countResult[0]?.count || 0) / size)
+        }
+      });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
