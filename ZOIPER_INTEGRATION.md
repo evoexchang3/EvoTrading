@@ -20,10 +20,12 @@ The platform supports multiple phone URI protocols:
 
 | Protocol | Format | Best For | Notes |
 |----------|--------|----------|-------|
-| **zoiper:** | `zoiper:+15551234567` | Zoiper users | ✅ **Recommended** - Direct to Zoiper, won't be hijacked |
+| **tel:** | `tel:+15551234567` | Default (backward compatible) | ⚠️ Shows OS dialog |
+| **zoiper:** | `zoiper:+15551234567` | Zoiper users | ✅ **Recommended for VoIP** - Direct to Zoiper, won't be hijacked |
 | **callto:** | `callto:+15551234567` | Generic VoIP | ⚠️ May conflict with Skype/FaceTime |
-| **tel:** | `tel:+15551234567` | Default | ⚠️ Shows OS dialog (not ideal) |
 | **sip:** | `sip:user@domain` | Enterprise SIP | For SIP URIs with domain |
+
+**Note:** The default protocol is `tel:` for backward compatibility. To use Zoiper, you must explicitly configure `VITE_PHONE_PROTOCOL=zoiper` in your `.env` file.
 
 ---
 
@@ -73,7 +75,7 @@ Make Zoiper the default application for phone protocols:
 
 ### 4. Configure the Trading Platform
 
-Set the phone protocol in your `.env` file:
+**Enable Zoiper integration** by setting the phone protocol in your `.env` file:
 
 ```bash
 # .env
@@ -81,10 +83,12 @@ VITE_PHONE_PROTOCOL=zoiper
 ```
 
 **Available Options:**
-- `zoiper` - Direct Zoiper integration (recommended)
+- `tel` - Standard phone protocol (default - backward compatible, shows OS dialog)
+- `zoiper` - Direct Zoiper integration (recommended for VoIP users)
 - `callto` - Generic VoIP (may conflict with other apps)
-- `tel` - Standard phone protocol (shows OS dialog)
 - `sip` - SIP URIs with domain
+
+**Important:** If you don't set `VITE_PHONE_PROTOCOL`, the platform defaults to `tel:` for backward compatibility. You **must** explicitly set `VITE_PHONE_PROTOCOL=zoiper` to enable Zoiper integration.
 
 ### 5. Restart the Application
 
@@ -280,9 +284,10 @@ For issues with this integration:
 ## Changelog
 
 ### Version 1.0.0 (Current)
-- ✅ Initial Zoiper integration
-- ✅ Support for zoiper://, callto://, tel://, sip:// protocols
-- ✅ Environment-based configuration
+- ✅ Initial Zoiper integration (opt-in via environment variable)
+- ✅ Support for tel://, zoiper://, callto://, sip:// protocols
+- ✅ Environment-based configuration with backward compatibility
+- ✅ Defaults to `tel:` protocol (backward compatible with existing deployments)
 - ✅ Utility functions for phone URI generation
 - ✅ Updated footer and locations pages
 

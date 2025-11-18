@@ -25,24 +25,24 @@ export function sanitizePhoneNumber(phoneNumber: string): string {
  * Generates a phone URI for click-to-dial functionality
  * 
  * Supports multiple protocols:
- * - 'zoiper': zoiper:+15551234567 (Recommended - won't be hijacked by other apps)
+ * - 'tel': tel:+15551234567 (Default - standard phone protocol)
+ * - 'zoiper': zoiper:+15551234567 (Zoiper integration - won't be hijacked by other apps)
  * - 'callto': callto:+15551234567 (May conflict with Skype/FaceTime)
- * - 'tel': tel:+15551234567 (Standard, may show OS dialog)
  * - 'sip': sip:user@domain (For SIP URIs with domain)
  * 
  * @param phoneNumber - The phone number to call
  * @param options - Configuration options
- * @returns URI string (e.g., "zoiper:+15551234567")
+ * @returns URI string (e.g., "tel:+15551234567")
  * 
  * @example
- * // Default protocol from environment or 'zoiper'
+ * // Default protocol from environment or 'tel' (backward compatible)
  * getPhoneUri('+1 (555) 123-4567')
- * // => "zoiper:+15551234567"
+ * // => "tel:+15551234567"
  * 
  * @example
  * // Specific protocol
- * getPhoneUri('+15551234567', { protocol: 'tel' })
- * // => "tel:+15551234567"
+ * getPhoneUri('+15551234567', { protocol: 'zoiper' })
+ * // => "zoiper:+15551234567"
  * 
  * @example
  * // SIP with domain
@@ -55,7 +55,7 @@ export function getPhoneUri(
 ): string {
   const protocol = options.protocol || 
     (import.meta.env.VITE_PHONE_PROTOCOL as PhoneProtocol) || 
-    'zoiper';
+    'tel';
 
   if (protocol === 'sip' && options.domain) {
     const username = phoneNumber.replace(/[^a-zA-Z0-9._-]/g, '');
@@ -68,12 +68,12 @@ export function getPhoneUri(
 
 /**
  * Gets the configured default phone protocol from environment
- * Falls back to 'zoiper' if not configured
+ * Falls back to 'tel' if not configured (backward compatible)
  * 
  * @returns The configured phone protocol
  */
 export function getDefaultPhoneProtocol(): PhoneProtocol {
-  return (import.meta.env.VITE_PHONE_PROTOCOL as PhoneProtocol) || 'zoiper';
+  return (import.meta.env.VITE_PHONE_PROTOCOL as PhoneProtocol) || 'tel';
 }
 
 /**
