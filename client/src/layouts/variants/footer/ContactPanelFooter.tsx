@@ -7,12 +7,13 @@ import { Link } from 'wouter';
 import { FooterProps } from './index';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
+import { getPhoneUri } from '@/lib/phoneUtils';
 
 export default function ContactPanelFooter({ variant, companyName, supportEmail, language, t }: FooterProps) {
 
   const contactMethods = [
     { icon: Mail, label: t('footer.emailSupport'), value: supportEmail, href: `mailto:${supportEmail}`, testId: 'footer-contact-email' },
-    { icon: Phone, label: t('footer.phoneSupport'), value: '+1 (555) 123-4567', href: 'tel:+15551234567', testId: 'footer-contact-phone' },
+    { icon: Phone, label: t('footer.phoneSupport'), value: '+1 (555) 123-4567', href: getPhoneUri('+1 (555) 123-4567'), testId: 'footer-contact-phone' },
     { icon: MessageCircle, label: t('footer.liveChat'), value: t('footer.available247'), href: '#', testId: 'footer-contact-chat' },
   ];
 
