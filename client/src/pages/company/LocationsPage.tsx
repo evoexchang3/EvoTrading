@@ -11,6 +11,7 @@ import {
 import { useLanguage } from "@/hooks/useLanguage";
 import { VariantSection, VariantContainer, VariantGrid, VariantCard, VariantHeading, VariantText, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/variant";
 import { SEO } from "@/components/SEO";
+import { getPhoneUri } from "@/lib/phoneUtils";
 
 export default function LocationsPage() {
   const { t } = useLanguage();
@@ -109,7 +110,7 @@ export default function LocationsPage() {
                         <div className="flex items-center gap-2">
                           <Phone className="w-4 h-4 text-muted-foreground" />
                           <a 
-                            href={`tel:${location.phone}`}
+                            href={getPhoneUri(location.phone)}
                             className="text-sm hover:text-primary transition-colors"
                             data-testid={`link-location-phone-${index}`}
                           >
